@@ -19,6 +19,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UIV
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
@@ -57,71 +58,70 @@ internal object EntrodynamicallyPhaseChangerCasingRecipes
     fun init()
     {
         // Lattice QCD Shielding Casing
-        SPACE_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(frameGt, QuantumchromodynamicallyConfinedMatter, 4)
-            .input(plate, Shirabon, 16)
-            .input(plate, CinobiteA243, 16)
-            .input(plate, HalkoniteSteel, 16)
-            .input(stickLong, LanthanumGroupAlloyB, 8)
-            .input(screw, HastelloyK243, 32)
-            .input(nanite, Chrome)
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
-            .fluidInputs(CosmicNeutronium.getFluid(L * 40))
-            .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 20))
-            .outputs(MultiblockCasing.LATTICE_QCD_THERMAL_SHIELDING_CASING.getStack(64))
-            .EUt(VA[UEV])
-            .duration(5 * SECOND)
-            .tier(3)
-            .buildAndRegister()
+        SPACE_ASSEMBLER_RECIPES.addRecipe {
+            input(frameGt, QuantumchromodynamicallyConfinedMatter, 4)
+            input(plate, Shirabon, 16)
+            input(plate, CinobiteA243, 16)
+            input(plate, HalkoniteSteel, 16)
+            input(stickLong, LanthanumGroupAlloyB, 8)
+            input(screw, HastelloyK243, 32)
+            input(nanite, Chrome)
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+            fluidInputs(CosmicNeutronium.getFluid(L * 40))
+            fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 20))
+            outputs(MultiblockCasing.LATTICE_QCD_THERMAL_SHIELDING_CASING.getStack(64))
+            EUt(VA[UEV])
+            duration(5 * SECOND)
+            tier(3)
+        }
 
         // Hamilton-Killing Flow Control Casing
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(frameGt, Neutronium, 16)
-            .inputs(ScienceCasing.HOLLOW_CASING.getStack(32))
-            .inputs(ActiveUniqueCasing.TEMPERATURE_CONTROLLER.getStack(64))
-            .input(plateDense, Neutronium, 6)
-            .input(ELECTRIC_PUMP_UIV, 8)
-            .input(wireGtSingle, VibraniumTritaniumActiniumIronSuperhydride, 16)
-            .input(QUANTUM_ANOMALY)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 40))
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
-            .fluidInputs(CosmicNeutronium.getFluid(L * 10))
-            .fluidInputs(TransitionAlloyB.getFluid(L * 5))
-            .outputs(MultiblockCasing.HAMILTON_KILLING_FLOW_CONTROL_CASING.getStack(64))
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(frameGt, Neutronium, 16)
+            inputs(ScienceCasing.HOLLOW_CASING.getStack(32))
+            inputs(ActiveUniqueCasing.TEMPERATURE_CONTROLLER.getStack(64))
+            input(plateDense, Neutronium, 6)
+            input(ELECTRIC_PUMP_UIV, 8)
+            input(wireGtSingle, VibraniumTritaniumActiniumIronSuperhydride, 16)
+            input(QUANTUM_ANOMALY)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 40))
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+            fluidInputs(CosmicNeutronium.getFluid(L * 10))
+            fluidInputs(TransitionAlloyB.getFluid(L * 5))
+            outputs(MultiblockCasing.HAMILTON_KILLING_FLOW_CONTROL_CASING.getStack(64))
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+            stationResearch {
                 it.researchStack(ActiveUniqueCasing.TEMPERATURE_CONTROLLER.stack)
                     .EUt(VA[UIV])
                     .CWUt(64)
             }
-            .buildAndRegister()
+        }
 
         // Nano Shielding Frame
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(GlassCasing.QUANTUM.getStack(8))
-            .input(frameGt, ChromaticGlass, 16)
-            .input(stickLong, Lafium, 2)
-            .input(stickLong, TransitionAlloyA, 2)
-            .input(lens, GSTGlass, 4)
-            .input(lens, ZBLANGlass, 4)
-            .input(lens, WoodsGlass, 4)
-            .input(lens, Polymethylmethacrylate, 4)
-            .input(nanite, Iron)
-            .fluidInputs(Bedrockium.getFluid(L * 40))
-            .fluidInputs(Pikyonium64B.getFluid(L * 20))
-            .fluidInputs(Thulium.getFluid(L * 16))
-            .fluidInputs(Hypogen.getFluid(L * 4))
-            .outputs(GlassCasing.NANO_SHIELDING_FRAME.getStack(64))
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(GlassCasing.QUANTUM.getStack(8))
+            input(frameGt, ChromaticGlass, 16)
+            input(stickLong, Lafium, 2)
+            input(stickLong, TransitionAlloyA, 2)
+            input(lens, GSTGlass, 4)
+            input(lens, ZBLANGlass, 4)
+            input(lens, WoodsGlass, 4)
+            input(lens, Polymethylmethacrylate, 4)
+            input(nanite, Iron)
+            fluidInputs(Bedrockium.getFluid(L * 40))
+            fluidInputs(Pikyonium64B.getFluid(L * 20))
+            fluidInputs(Thulium.getFluid(L * 16))
+            fluidInputs(Hypogen.getFluid(L * 4))
+            outputs(GlassCasing.NANO_SHIELDING_FRAME.getStack(64))
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+            stationResearch {
                 it.researchStack(GlassCasing.QUANTUM.stack)
                     .EUt(VA[UIV])
                     .CWUt(32)
             }
-            .buildAndRegister()
-
+        }
     }
 
     // @formatter:on

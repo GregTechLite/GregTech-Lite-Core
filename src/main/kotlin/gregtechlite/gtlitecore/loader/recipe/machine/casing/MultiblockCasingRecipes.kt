@@ -29,6 +29,8 @@ import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MolybdenumDisilicide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
@@ -49,16 +51,16 @@ internal object MultiblockCasingRecipes
             'R', UnificationEntry(rotor, Titanium),
             'L', UnificationEntry(stickLong, MolybdenumDisilicide))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(plate, TantalumCarbide, 4)
-            .input(plateDouble, MolybdenumDisilicide, 2)
-            .input(rotor, Titanium, 2)
-            .input(stickLong, MolybdenumDisilicide, 1)
-            .outputs(ActiveUniqueCasing.HEAT_VENT.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(plate, TantalumCarbide, 4)
+            input(plateDouble, MolybdenumDisilicide, 2)
+            input(rotor, Titanium, 2)
+            input(stickLong, MolybdenumDisilicide, 1)
+            outputs(ActiveUniqueCasing.HEAT_VENT.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // Substrate Casing
         ModHandler.addShapedRecipe(true, "substrate_casing", MultiblockCasing.SUBSTRATE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft),
@@ -67,15 +69,15 @@ internal object MultiblockCasingRecipes
             'R', UnificationEntry(stick, RedSteel),
             'F', UnificationEntry(frameGt, BlueSteel))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(frameGt, BlueSteel)
-            .input(plate, Palladium, 3)
-            .input(stick, RedSteel, 4)
-            .outputs(MultiblockCasing.SUBSTRATE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(frameGt, BlueSteel)
+            input(plate, Palladium, 3)
+            input(stick, RedSteel, 4)
+            outputs(MultiblockCasing.SUBSTRATE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // Advanced Substrate Casing
         ModHandler.addShapedRecipe(true, "advanced_substrate_casing", MultiblockCasing.ADVANCED_SUBSTRATE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft),
@@ -84,37 +86,36 @@ internal object MultiblockCasingRecipes
             'R', UnificationEntry(stick, Duranium),
             'F', UnificationEntry(frameGt, NaquadahAlloy))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(frameGt, NaquadahAlloy)
-            .input(plate, Ruridit, 3)
-            .input(stick, Duranium, 4)
-            .outputs(MultiblockCasing.ADVANCED_SUBSTRATE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(frameGt, NaquadahAlloy)
+            input(plate, Ruridit, 3)
+            input(stick, Duranium, 4)
+            outputs(MultiblockCasing.ADVANCED_SUBSTRATE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // Drill Head
         ModHandler.addShapedRecipe(true, "drill_head", MultiblockCasing.DRILL_HEAD.stack,
             "PGP", "MHM", "SSS",
-            'P', ELECTRIC_PISTON_UV.stackForm,
+            'P', ELECTRIC_PISTON_UV.stack(),
             'G', UnificationEntry(gear, Tritanium),
             'M', ELECTRIC_MOTOR_UV.stackForm,
             'H', HULL[UV].stackForm,
-            'S', COMPONENT_GRINDER_TUNGSTEN.stackForm)
+            'S', COMPONENT_GRINDER_TUNGSTEN.stack())
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(HULL[UV])
-            .input(gear, Tritanium)
-            .input(ELECTRIC_MOTOR_UV, 2)
-            .input(ELECTRIC_PISTON_UV, 2)
-            .input(COMPONENT_GRINDER_TUNGSTEN, 3)
-            .outputs(MultiblockCasing.DRILL_HEAD.stack)
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
-
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(HULL[UV])
+            input(gear, Tritanium)
+            input(ELECTRIC_MOTOR_UV, 2)
+            input(ELECTRIC_PISTON_UV, 2)
+            input(COMPONENT_GRINDER_TUNGSTEN, 3)
+            outputs(MultiblockCasing.DRILL_HEAD.stack)
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
     }
 
     // @formatter:on

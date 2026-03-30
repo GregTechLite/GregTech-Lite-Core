@@ -11,6 +11,7 @@ import gregtech.loaders.recipe.CraftingComponent
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.common.block.variant.component.ConveyorCasing
 import net.minecraft.item.ItemStack
 
@@ -29,16 +30,16 @@ internal object ConveyorCasingRecipes
 
         for (voltage in conveyorCasings.indices)
         {
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(9)
-                .input(frameGt, Steel)
-                .input(plate, Steel, 4)
-                .input(round, Steel, 2)
-                .inputs(CraftingComponent.CONVEYOR.getIngredient(voltage + 1) as ItemStack)
-                .outputs(conveyorCasings[voltage])
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            ASSEMBLER_RECIPES.addRecipe {
+                circuitMeta(9)
+                input(frameGt, Steel)
+                input(plate, Steel, 4)
+                input(round, Steel, 2)
+                inputs(CraftingComponent.CONVEYOR.getIngredient(voltage + 1) as ItemStack)
+                outputs(conveyorCasings[voltage])
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
         }
     }
 

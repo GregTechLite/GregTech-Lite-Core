@@ -11,6 +11,7 @@ import gregtech.loaders.recipe.CraftingComponent
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.common.block.variant.component.MotorCasing
 import net.minecraft.item.ItemStack
 
@@ -28,16 +29,16 @@ internal object MotorCasingRecipes
 
         for (voltage in motorCasings.indices)
         {
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(9)
-                .input(frameGt, Steel)
-                .input(plate, Steel, 4)
-                .input(ring, Steel, 2)
-                .inputs(CraftingComponent.MOTOR.getIngredient(voltage + 1) as ItemStack)
-                .outputs(motorCasings[voltage])
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            ASSEMBLER_RECIPES.addRecipe {
+                circuitMeta(9)
+                input(frameGt, Steel)
+                input(plate, Steel, 4)
+                input(ring, Steel, 2)
+                inputs(CraftingComponent.MOTOR.getIngredient(voltage + 1) as ItemStack)
+                outputs(motorCasings[voltage])
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
         }
     }
 

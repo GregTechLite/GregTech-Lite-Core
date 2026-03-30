@@ -9,7 +9,6 @@ import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VH
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
@@ -23,6 +22,8 @@ import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
@@ -49,130 +50,130 @@ internal object GTMachineCasingRecipes
             "PPP", "PwP", "PPP",
             'P', UnificationEntry(plate, Vibranium))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(plate, Vibranium, 8)
-            .outputs(GTMachineCasing.UEV.stack)
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(plate, Vibranium, 8)
+            outputs(GTMachineCasing.UEV.stack)
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // UIV Machine Casing
         ModHandler.addShapedRecipe(true, "casing_uiv", GTMachineCasing.UIV.stack,
             "PPP", "PwP", "PPP",
             'P', UnificationEntry(plate, Shirabon))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(plate, Shirabon, 8)
-            .outputs(GTMachineCasing.UIV.stack)
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(plate, Shirabon, 8)
+            outputs(GTMachineCasing.UIV.stack)
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // UXV Machine Casing
         ModHandler.addShapedRecipe(true, "casing_uxv", GTMachineCasing.UXV.stack,
             "PPP", "PwP", "PPP",
             'P', UnificationEntry(plate, Creon))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(plate, Creon, 8)
-            .outputs(GTMachineCasing.UXV.stack)
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(plate, Creon, 8)
+            outputs(GTMachineCasing.UXV.stack)
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // OpV Machine Casing
         ModHandler.addShapedRecipe(true, "casing_opv", GTMachineCasing.OpV.stack,
             "PPP", "PwP", "PPP",
             'P', UnificationEntry(plate, BlackDwarfMatter))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(plate, BlackDwarfMatter, 8)
-            .outputs(GTMachineCasing.OpV.stack)
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(plate, BlackDwarfMatter, 8)
+            outputs(GTMachineCasing.OpV.stack)
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // MAX Machine Casing
         ModHandler.addShapedRecipe(true, "casing_max", GTMachineCasing.MAX.stack,
             "PPP", "PwP", "PPP",
             'P', UnificationEntry(plate, AxinoFusedRedMatter))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(plate, AxinoFusedRedMatter, 8)
-            .outputs(GTMachineCasing.MAX.stack)
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(plate, AxinoFusedRedMatter, 8)
+            outputs(GTMachineCasing.MAX.stack)
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // UHV Machine Hull
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(GTMachineCasing.UHV.stack,
-                OreDictUnifier.get(cableGtSingle, Europium, 2)),
+                    OreDictUnifier.get(cableGtSingle, Europium, 2)),
             arrayOf(Polybenzimidazole.getFluid(L * 2)))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .inputs(GTMachineCasing.UHV.stack)
-            .input(cableGtSingle, Europium, 2)
-            .fluidInputs(Kevlar.getFluid(L * 2))
-            .output(HULL[UHV])
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GTMachineCasing.UHV.stack)
+            input(cableGtSingle, Europium, 2)
+            fluidInputs(Kevlar.getFluid(L * 2))
+            output(HULL[UHV])
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // UEV Machine Hull
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .inputs(GTMachineCasing.UEV.stack)
-            .input(cableGtSingle, Seaborgium, 2)
-            .fluidInputs(Kevlar.getFluid(L * 2))
-            .output(HULL[UEV])
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GTMachineCasing.UEV.stack)
+            input(cableGtSingle, Seaborgium, 2)
+            fluidInputs(Kevlar.getFluid(L * 2))
+            output(HULL[UEV])
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // UIV Machine Hull
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .inputs(GTMachineCasing.UIV.stack)
-            .input(cableGtSingle, SuperheavyAlloyA, 2)
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
-            .output(HULL[UIV])
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GTMachineCasing.UIV.stack)
+            input(cableGtSingle, SuperheavyAlloyA, 2)
+            fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
+            output(HULL[UIV])
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // UXV Machine Hull
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .inputs(GTMachineCasing.UXV.stack)
-            .input(cableGtSingle, SuperheavyAlloyB, 2)
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
-            .output(HULL[UXV])
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GTMachineCasing.UXV.stack)
+            input(cableGtSingle, SuperheavyAlloyB, 2)
+            fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
+            output(HULL[UXV])
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // OpV Machine Hull
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .inputs(GTMachineCasing.OpV.stack)
-            .input(cableGtSingle, Periodicium, 2)
-            .fluidInputs(CosmicFabric.getFluid(L * 2))
-            .output(HULL[OpV])
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GTMachineCasing.OpV.stack)
+            input(cableGtSingle, Periodicium, 2)
+            fluidInputs(CosmicFabric.getFluid(L * 2))
+            output(HULL[OpV])
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // MAX Machine Hull
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .inputs(GTMachineCasing.MAX.stack)
-            .input(cableGtSingle, RealizedQuantumFoamShard, 2)
-            .fluidInputs(CosmicFabric.getFluid(L * 2))
-            .output(HULL[MAX])
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GTMachineCasing.MAX.stack)
+            input(cableGtSingle, RealizedQuantumFoamShard, 2)
+            fluidInputs(CosmicFabric.getFluid(L * 2))
+            output(HULL[MAX])
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
     }
 
     // @formatter:on
