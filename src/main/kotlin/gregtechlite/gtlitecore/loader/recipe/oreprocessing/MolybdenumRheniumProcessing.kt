@@ -35,6 +35,7 @@ import gregtech.api.unification.material.Materials.Wulfenite
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPerrhenate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadDichloride
@@ -69,116 +70,115 @@ internal object MolybdenumRheniumProcessing
     private fun molybdenumProcess()
     {
         // MoS2 + 9O -> MoO3 + 2SO2 + ReO2
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, Molybdenite, 3)
-            .fluidInputs(Oxygen.getFluid(9000))
-            .output(dust, MolybdenumTrioxide, 4)
-            .fluidOutputs(SulfurDioxide.getFluid(2000))
-            .fluidOutputs(MolybdenumFlue.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            input(dust, Molybdenite, 3)
+            fluidInputs(Oxygen.getFluid(9000))
+            output(dust, MolybdenumTrioxide, 4)
+            fluidOutputs(SulfurDioxide.getFluid(2000))
+            fluidOutputs(MolybdenumFlue.getFluid(1000))
+            EUt(VA[MV])
+            duration(10 * SECOND)
+        }
 
         // MoO3 + 6H -> Mo + 3H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, MolybdenumTrioxide, 4)
-            .fluidInputs(Hydrogen.getFluid(6000))
-            .output(dust, Molybdenum)
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, MolybdenumTrioxide, 4)
+            fluidInputs(Hydrogen.getFluid(6000))
+            output(dust, Molybdenum)
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // CaMoO4 + 2HCl -> MoO3 + CaCl2 + H2O
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Powellite, 6)
-            .fluidInputs(HydrochloricAcid.getFluid(2000))
-            .output(dust, MolybdenumTrioxide, 4)
-            .output(dust, CalciumChloride, 3)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, Powellite, 6)
+            fluidInputs(HydrochloricAcid.getFluid(2000))
+            output(dust, MolybdenumTrioxide, 4)
+            output(dust, CalciumChloride, 3)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // PbMoO4 + 2HCl -> MoO3 + H2O + PbCl2
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Wulfenite, 6)
-            .fluidInputs(HydrochloricAcid.getFluid(2000))
-            .output(dust, MolybdenumTrioxide, 4)
-            .output(dust, LeadDichloride, 3)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, Wulfenite, 6)
+            fluidInputs(HydrochloricAcid.getFluid(2000))
+            output(dust, MolybdenumTrioxide, 4)
+            output(dust, LeadDichloride, 3)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // Another recipes for PbCl2.
 
         // Pb + 2Cl -> PbCl2
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Lead)
-            .fluidInputs(Chlorine.getFluid(2000))
-            .output(dust, LeadDichloride, 3)
-            .EUt(VA[LV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Lead)
+            fluidInputs(Chlorine.getFluid(2000))
+            output(dust, LeadDichloride, 3)
+            EUt(VA[LV])
+            duration(4 * SECOND)
+        }
 
         // PbO + 2HCl -> PbCl2 + H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Massicot, 2)
-            .fluidInputs(HydrochloricAcid.getFluid(2000))
-            .output(dust, LeadDichloride, 3)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Massicot, 2)
+            fluidInputs(HydrochloricAcid.getFluid(2000))
+            output(dust, LeadDichloride, 3)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
     }
 
     private fun rheniumProcess()
     {
         // ReO2? -> MoO3 + ReO2
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .fluidInputs(MolybdenumFlue.getFluid(1000))
-            .output(dust, MolybdenumTrioxide)
-            .fluidOutputs(TraceRheniumFlue.getFluid(500))
-            .EUt(VH[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CENTRIFUGE_RECIPES.addRecipe {
+            fluidInputs(MolybdenumFlue.getFluid(1000))
+            output(dust, MolybdenumTrioxide)
+            fluidOutputs(TraceRheniumFlue.getFluid(500))
+            EUt(VH[MV])
+            duration(10 * SECOND)
+        }
 
         // ReO2 + Na2CO3 + NaOH + 3Cl -> HReO4 + 3NaCl + CO2
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, SodaAsh, 6)
-            .input(dust, SodiumHydroxide, 3)
-            .fluidInputs(TraceRheniumFlue.getFluid(1000))
-            .fluidInputs(Chlorine.getFluid(3000))
-            .output(dust, PerrhenicAcid, 6)
-            .output(dust, Salt, 6)
-            .fluidOutputs(CarbonDioxide.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, SodaAsh, 6)
+            input(dust, SodiumHydroxide, 3)
+            fluidInputs(TraceRheniumFlue.getFluid(1000))
+            fluidInputs(Chlorine.getFluid(3000))
+            output(dust, PerrhenicAcid, 6)
+            output(dust, Salt, 6)
+            fluidOutputs(CarbonDioxide.getFluid(1000))
+            EUt(VA[IV])
+            duration(5 * SECOND)
+        }
 
         // HReO4 + NH3 -> NH4ReO4
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, PerrhenicAcid, 6)
-            .fluidInputs(Ammonia.getFluid(1000))
-            .output(dust, AmmoniumPerrhenate, 10)
-            .EUt(VA[EV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, PerrhenicAcid, 6)
+            fluidInputs(Ammonia.getFluid(1000))
+            output(dust, AmmoniumPerrhenate, 10)
+            EUt(VA[EV])
+            duration(5 * SECOND)
+        }
 
         // NH4ReO4 + H2S + Cl -> Re + NH4Cl + H2SO4
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, AmmoniumPerrhenate, 10)
-            .fluidInputs(HydrogenSulfide.getFluid(1000))
-            .fluidInputs(Chlorine.getFluid(1000))
-            .output(dust, Rhenium, 1)
-            .output(dust, AmmoniumChloride, 2)
-            .fluidOutputs(SulfuricAcid.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, AmmoniumPerrhenate, 10)
+            fluidInputs(HydrogenSulfide.getFluid(1000))
+            fluidInputs(Chlorine.getFluid(1000))
+            output(dust, Rhenium, 1)
+            output(dust, AmmoniumChloride, 2)
+            fluidOutputs(SulfuricAcid.getFluid(1000))
+            EUt(VA[EV])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on

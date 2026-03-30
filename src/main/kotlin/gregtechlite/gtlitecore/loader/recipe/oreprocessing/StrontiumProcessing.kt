@@ -16,6 +16,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
@@ -38,57 +39,56 @@ internal object StrontiumProcessing
     private fun strontianiteProcess()
     {
         // SrCO3 -> SrO + CO2
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, Strontianite, 5)
-            .output(dust, StrontiumOxide, 2)
-            .fluidOutputs(CarbonDioxide.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(10 * TICK)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            input(dust, Strontianite, 5)
+            output(dust, StrontiumOxide, 2)
+            fluidOutputs(CarbonDioxide.getFluid(1000))
+            EUt(VA[HV])
+            duration(10 * TICK)
+        }
 
         // 3SrO + 2Fe -> 3Sr + Fe2O3
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, StrontiumOxide, 6)
-            .input(dust, Iron, 2)
-            .output(dust, Strontium, 3)
-            .output(dust, BandedIron, 5)
-            .EUt(VA[MV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            input(dust, StrontiumOxide, 6)
+            input(dust, Iron, 2)
+            output(dust, Strontium, 3)
+            output(dust, BandedIron, 5)
+            EUt(VA[MV])
+            duration(20 * SECOND)
+        }
 
         // 3SrO + 2Al -> 3Sr + Al2O3
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, StrontiumOxide, 6)
-            .input(dust, Aluminium, 2)
-            .output(dust, Strontium, 3)
-            .output(dust, Alumina, 5)
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            input(dust, StrontiumOxide, 6)
+            input(dust, Aluminium, 2)
+            output(dust, Strontium, 3)
+            output(dust, Alumina, 5)
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
     }
 
     private fun celestineProcess()
     {
         // SrSO4 + 4C -> SrS + 4CO
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, Celestine, 6)
-            .input(dust, Carbon, 4)
-            .output(dust, StrontiumSulfide, 2)
-            .fluidOutputs(CarbonMonoxide.getFluid(4000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            input(dust, Celestine, 6)
+            input(dust, Carbon, 4)
+            output(dust, StrontiumSulfide, 2)
+            fluidOutputs(CarbonMonoxide.getFluid(4000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // SrS + 2O -> Sr + SO2
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, StrontiumSulfide, 2)
-            .fluidInputs(Oxygen.getFluid(2000))
-            .output(dust, Strontium)
-            .fluidOutputs(SulfurDioxide.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
+        ROASTER_RECIPES.addRecipe {
+            input(dust, StrontiumSulfide, 2)
+            fluidInputs(Oxygen.getFluid(2000))
+            output(dust, Strontium)
+            fluidOutputs(SulfurDioxide.getFluid(1000))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on

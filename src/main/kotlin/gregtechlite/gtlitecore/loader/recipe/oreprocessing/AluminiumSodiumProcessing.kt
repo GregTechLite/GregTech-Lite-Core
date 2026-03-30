@@ -5,7 +5,8 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VHA
-import gregtech.api.recipes.GTRecipeHandler
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
@@ -83,296 +84,292 @@ internal object AluminiumSodiumProcessing
         for (inputPrefix in arrayOf(crushed, crushedPurified, dustImpure, dustPure))
         {
             // Green Sapphire Juice
-            MIXER_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(inputPrefix, GreenSapphire)
-                .input(dustTiny, SodiumHydroxide)
-                .fluidInputs(HydrochloricAcid.getFluid(1000))
-                .fluidOutputs(GreenSapphireJuice.getFluid(1000))
-                .EUt(VA[MV])
-                .duration(2 * SECOND)
-                .buildAndRegister()
+            MIXER_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(inputPrefix, GreenSapphire)
+                input(dustTiny, SodiumHydroxide)
+                fluidInputs(HydrochloricAcid.getFluid(1000))
+                fluidOutputs(GreenSapphireJuice.getFluid(1000))
+                EUt(VA[MV])
+                duration(2 * SECOND)
+            }
 
             // Sapphire Juice
-            MIXER_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(inputPrefix, Sapphire)
-                .input(dustTiny, SodiumHydroxide)
-                .fluidInputs(HydrochloricAcid.getFluid(1000))
-                .fluidOutputs(SapphireJuice.getFluid(1000))
-                .EUt(VA[MV])
-                .duration(2 * SECOND)
-                .buildAndRegister()
+            MIXER_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(inputPrefix, Sapphire)
+                input(dustTiny, SodiumHydroxide)
+                fluidInputs(HydrochloricAcid.getFluid(1000))
+                fluidOutputs(SapphireJuice.getFluid(1000))
+                EUt(VA[MV])
+                duration(2 * SECOND)
+            }
 
             // Ruby Juice
-            MIXER_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(inputPrefix, Ruby)
-                .input(dustTiny, SodiumHydroxide)
-                .fluidInputs(HydrochloricAcid.getFluid(1000))
-                .fluidOutputs(RubyJuice.getFluid(1000))
-                .EUt(VA[MV])
-                .duration(2 * SECOND)
-                .buildAndRegister()
+            MIXER_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(inputPrefix, Ruby)
+                input(dustTiny, SodiumHydroxide)
+                fluidInputs(HydrochloricAcid.getFluid(1000))
+                fluidOutputs(RubyJuice.getFluid(1000))
+                EUt(VA[MV])
+                duration(2 * SECOND)
+            }
         }
 
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .fluidInputs(GreenSapphireJuice.getFluid(1000))
-            .output(dust, AluminiumHydroxide, 3)
-            .chancedOutput(dust, Iron, 1000, 500)
-            .chancedOutput(dust, Vanadium, 200, 100)
-            .chancedOutput(dust, Manganese, 200, 100)
-            .chancedOutput(dust, Beryllium, 200, 100)
-            .fluidOutputs(HydrochloricAcid.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        CENTRIFUGE_RECIPES.addRecipe {
+            fluidInputs(GreenSapphireJuice.getFluid(1000))
+            output(dust, AluminiumHydroxide, 3)
+            chancedOutput(dust, Iron, 1000, 500)
+            chancedOutput(dust, Vanadium, 200, 100)
+            chancedOutput(dust, Manganese, 200, 100)
+            chancedOutput(dust, Beryllium, 200, 100)
+            fluidOutputs(HydrochloricAcid.getFluid(1000))
+            EUt(VA[MV])
+            duration(2 * SECOND + 5 * TICK)
+        }
 
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .fluidInputs(SapphireJuice.getFluid(1000))
-            .output(dust, AluminiumHydroxide, 3)
-            .chancedOutput(dust, Iron, 3000, 1000)
-            .chancedOutput(dust, Vanadium, 200, 100)
-            .chancedOutput(dust, Magnesium, 200, 100)
-            .fluidOutputs(HydrochloricAcid.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        CENTRIFUGE_RECIPES.addRecipe {
+            fluidInputs(SapphireJuice.getFluid(1000))
+            output(dust, AluminiumHydroxide, 3)
+            chancedOutput(dust, Iron, 3000, 1000)
+            chancedOutput(dust, Vanadium, 200, 100)
+            chancedOutput(dust, Magnesium, 200, 100)
+            fluidOutputs(HydrochloricAcid.getFluid(1000))
+            EUt(VA[MV])
+            duration(2 * SECOND + 5 * TICK)
+        }
 
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .fluidInputs(RubyJuice.getFluid(1000))
-            .output(dust, AluminiumHydroxide, 3)
-            .chancedOutput(dust, Chrome, 5000, 1000)
-            .chancedOutput(dust, Iron, 300, 150)
-            .chancedOutput(dust, Vanadium, 200, 100)
-            .chancedOutput(dust, Magnesium, 200, 100)
-            .fluidOutputs(HydrochloricAcid.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
-
+        CENTRIFUGE_RECIPES.addRecipe {
+            fluidInputs(RubyJuice.getFluid(1000))
+            output(dust, AluminiumHydroxide, 3)
+            chancedOutput(dust, Chrome, 5000, 1000)
+            chancedOutput(dust, Iron, 300, 150)
+            chancedOutput(dust, Vanadium, 200, 100)
+            chancedOutput(dust, Magnesium, 200, 100)
+            fluidOutputs(HydrochloricAcid.getFluid(1000))
+            EUt(VA[MV])
+            duration(2 * SECOND + 5 * TICK)
+        }
     }
 
     private fun aluminiumHydroxideProcess()
     {
         // An easier NaOH recipes.
         // Na + H2O -> NaOH + H
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Sodium)
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, SodiumHydroxide, 3)
-            .fluidOutputs(Hydrogen.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Sodium)
+            fluidInputs(Water.getFluid(1000))
+            output(dust, SodiumHydroxide, 3)
+            fluidOutputs(Hydrogen.getFluid(1000))
+            EUt(VA[MV])
+            duration(2 * SECOND + 5 * TICK)
+        }
 
         // (Al2O3)3(TiO2)2(H2O)2? (bauxite) + 4NaOH + H2O -> 4NaAlO2
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Bauxite, 4)
-            .input(dust, SodiumHydroxide, 12)
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, SodiumAluminate, 16)
-            .EUt(VA[MV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Bauxite, 4)
+            input(dust, SodiumHydroxide, 12)
+            fluidInputs(Water.getFluid(1000))
+            output(dust, SodiumAluminate, 16)
+            EUt(VA[MV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // NaAlO2 + 2H2O -> Al(OH)3 + NaOH
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, SodiumAluminate, 4)
-            .fluidInputs(Water.getFluid(2000))
-            .output(dust, AluminiumHydroxide, 4)
-            .output(dust, SodiumHydroxide, 3)
-            .EUt(VA[MV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, SodiumAluminate, 4)
+            fluidInputs(Water.getFluid(2000))
+            output(dust, AluminiumHydroxide, 4)
+            output(dust, SodiumHydroxide, 3)
+            EUt(VA[MV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // 2NaAlO2 + CO2 -> Al2O3 + Na2CO3
-        BLAST_RECIPES.recipeBuilder()
-            .input(dust, SodiumAluminate, 8)
-            .fluidInputs(CarbonDioxide.getFluid(1000))
-            .output(dust, Alumina, 5)
-            .output(dust, SodaAsh, 6)
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200) // Cupronickel
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(dust, SodiumAluminate, 8)
+            fluidInputs(CarbonDioxide.getFluid(1000))
+            output(dust, Alumina, 5)
+            output(dust, SodaAsh, 6)
+            EUt(VA[HV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200) // Cupronickel
+        }
 
         // Common Na2CO3 decomposition.
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .fluidInputs(SodiumCarbonateSolution.getFluid(1000))
-            .output(dust, SodaAsh, 6)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+            fluidInputs(SodiumCarbonateSolution.getFluid(1000))
+            output(dust, SodaAsh, 6)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Another Na2CO3 recipes.
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, SodaAsh, 6)
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(SodiumCarbonateSolution.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, SodaAsh, 6)
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(SodiumCarbonateSolution.getFluid(1000))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
 
         // Chemistry cryolite processing.
         // 3NaOH + Al(OH)3 + 6HF -> Na3AlF6 + 6H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, SodiumHydroxide, 9)
-            .input(dust, AluminiumHydroxide, 4)
-            .fluidInputs(HydrofluoricAcid.getFluid(6000))
-            .output(dust, Cryolite, 10)
-            .fluidOutputs(Water.getFluid(6000))
-            .EUt(VA[LV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, SodiumHydroxide, 9)
+            input(dust, AluminiumHydroxide, 4)
+            fluidInputs(HydrofluoricAcid.getFluid(6000))
+            output(dust, Cryolite, 10)
+            fluidOutputs(Water.getFluid(6000))
+            EUt(VA[LV])
+            duration(15 * SECOND)
+        }
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(dust, SodiumHydroxide, 63)
-            .input(dust, AluminiumHydroxide, 28)
-            .fluidInputs(HydrofluoricAcid.getFluid(42000))
-            .output(dust, Cryolite, 64)
-            .output(dust, Cryolite, 6)
-            .fluidOutputs(Water.getFluid(42000))
-            .EUt(VA[HV])
-            .duration(30 * SECOND)
-            .buildAndRegister()
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(dust, SodiumHydroxide, 63)
+            input(dust, AluminiumHydroxide, 28)
+            fluidInputs(HydrofluoricAcid.getFluid(42000))
+            output(dust, Cryolite, 64)
+            output(dust, Cryolite, 6)
+            fluidOutputs(Water.getFluid(42000))
+            EUt(VA[HV])
+            duration(30 * SECOND)
+        }
     }
 
     private fun aluminaBlastingProcess()
     {
         // Add Alumina (Al2O3) to Aluminium recipes.
-
         // Al2O3 + 3H -> 2Al + 3H2O
-        BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Alumina, 5)
-            .fluidInputs(Hydrogen.getFluid(3000))
-            .output(ingot, Aluminium)
-            .fluidOutputs(Steam.getFluid(3 * SU))
-            .EUt(VA[MV])
-            .duration(1 * MINUTE + 20 * SECOND)
-            .blastFurnaceTemp(963) // Cupronickel
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Alumina, 5)
+            fluidInputs(Hydrogen.getFluid(3000))
+            output(ingot, Aluminium)
+            fluidOutputs(Steam.getFluid(3 * SU))
+            EUt(VA[MV])
+            duration(1 * MINUTE + 20 * SECOND)
+            blastFurnaceTemp(963) // Cupronickel
+        }
 
         // 2Al2O3 + 0.5Na3AlF6 -> 4Al
-        BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Alumina, 10)
-            .input(dust, Cryolite, 5)
-            .output(ingot, Aluminium, 4)
-            .EUt(VA[MV])
-            .duration(80 * SECOND)
-            .blastFurnaceTemp(963) // Cupronickel
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Alumina, 10)
+            input(dust, Cryolite, 5)
+            output(ingot, Aluminium, 4)
+            EUt(VA[MV])
+            duration(80 * SECOND)
+            blastFurnaceTemp(963) // Cupronickel
+        }
 
         // 2Al2O3 + 3C -> 4Al + 3CO2
-        BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Alumina, 10)
-            .input(dust, Carbon, 3)
-            .output(ingot, Aluminium, 4)
-            .fluidOutputs(CarbonDioxide.getFluid(3000))
-            .EUt(VA[MV])
-            .duration(1 * MINUTE)
-            .blastFurnaceTemp(2054) // Kanthal
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Alumina, 10)
+            input(dust, Carbon, 3)
+            output(ingot, Aluminium, 4)
+            fluidOutputs(CarbonDioxide.getFluid(3000))
+            EUt(VA[MV])
+            duration(1 * MINUTE)
+            blastFurnaceTemp(2054) // Kanthal
+        }
     }
 
     private fun saltElectrolysisProcess()
     {
         // NaOH + HClO -> NaClO + H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, SodiumHydroxide, 3)
-            .fluidInputs(HypochlorousAcid.getFluid(1000))
-            .output(dust, SodiumHypochlorite, 3)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, SodiumHydroxide, 3)
+            fluidInputs(HypochlorousAcid.getFluid(1000))
+            output(dust, SodiumHypochlorite, 3)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // NaOH + HCl -> NaClO + 2H
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, SodiumHydroxide, 3)
-            .fluidInputs(HydrochloricAcid.getFluid(1000))
-            .output(dust, SodiumHypochlorite, 3)
-            .fluidOutputs(Hydrogen.getFluid(2000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, SodiumHydroxide, 3)
+            fluidInputs(HydrochloricAcid.getFluid(1000))
+            output(dust, SodiumHypochlorite, 3)
+            fluidOutputs(Hydrogen.getFluid(2000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // 2NaOH + 2Cl -> NaClO + NaCl + H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, SodiumHydroxide, 6)
-            .fluidInputs(Chlorine.getFluid(2000))
-            .output(dust, SodiumHypochlorite, 3)
-            .output(dust, Salt, 2)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, SodiumHydroxide, 6)
+            fluidInputs(Chlorine.getFluid(2000))
+            output(dust, SodiumHypochlorite, 3)
+            output(dust, Salt, 2)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // Modified Salt (NaCl) electrolysis recipes.
-        GTRecipeHandler.removeRecipesByInputs(ELECTROLYZER_RECIPES,
-            OreDictUnifier.get(dust, Salt, 2)) // Safety delete, we ensure it is disabled decomposition but cannot check other mod if these recipe be re-added.
+        ELECTROLYZER_RECIPES.removeRecipe(OreDictUnifier.get(dust, Salt, 2)) // Safety delete, we ensure it is disabled decomposition but cannot check other mod if these recipe be re-added.
 
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Salt, 2)
-            .output(dust, Sodium)
-            .fluidOutputs(Chlorine.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(2 * SECOND + 16 * TICK)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Salt, 2)
+            output(dust, Sodium)
+            fluidOutputs(Chlorine.getFluid(1000))
+            EUt(VA[LV])
+            duration(2 * SECOND + 16 * TICK)
+        }
 
         // NaCl + 3H2O -> NaClO3 + 6H
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Salt, 2)
-            .fluidInputs(Water.getFluid(3000))
-            .output(dust, SodiumChlorate, 5)
-            .fluidOutputs(Hydrogen.getFluid(6000))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Salt, 2)
+            fluidInputs(Water.getFluid(3000))
+            output(dust, SodiumChlorate, 5)
+            fluidOutputs(Hydrogen.getFluid(6000))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // Dehydration decompose of NaClO3 -> NaCl + 3O
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .input(dust, SodiumChlorate, 5)
-            .output(dust, Salt, 2)
-            .fluidOutputs(Oxygen.getFluid(3000))
-            .EUt(VHA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+            input(dust, SodiumChlorate, 5)
+            output(dust, Salt, 2)
+            fluidOutputs(Oxygen.getFluid(3000))
+            EUt(VHA[MV])
+            duration(5 * SECOND)
+        }
 
         // Common decompose of NaClO3.
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, SodiumChlorate, 5)
-            .output(dust, Sodium)
-            .fluidOutputs(Chlorine.getFluid(1000))
-            .fluidOutputs(Oxygen.getFluid(3000))
-            .EUt(VHA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, SodiumChlorate, 5)
+            output(dust, Sodium)
+            fluidOutputs(Chlorine.getFluid(1000))
+            fluidOutputs(Oxygen.getFluid(3000))
+            EUt(VHA[MV])
+            duration(5 * SECOND)
+        }
 
         // NaClO3 + H2O -> NaClO4 + 2H
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, SodiumChlorate, 5)
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, SodiumPerchlorate, 6)
-            .fluidOutputs(Hydrogen.getFluid(2000))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, SodiumChlorate, 5)
+            fluidInputs(Water.getFluid(1000))
+            output(dust, SodiumPerchlorate, 6)
+            fluidOutputs(Hydrogen.getFluid(2000))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on

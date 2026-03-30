@@ -30,6 +30,7 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueVitriol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChalcogenAnodeMud
@@ -48,81 +49,81 @@ internal object SeleniumTelluriumProcessing
     fun init()
     {
         // Cu + H2SO4 -> CuSO4 + 2H
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Copper)
-            .fluidInputs(SulfuricAcid.getFluid(1000))
-            .fluidOutputs(BlueVitriol.getFluid(1000))
-            .fluidOutputs(Hydrogen.getFluid(2000))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Copper)
+            fluidInputs(SulfuricAcid.getFluid(1000))
+            fluidOutputs(BlueVitriol.getFluid(1000))
+            fluidOutputs(Hydrogen.getFluid(2000))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // CuO + H2SO4 -> CuSO4 + H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Tenorite, 2)
-            .fluidInputs(SulfuricAcid.getFluid(1000))
-            .fluidOutputs(BlueVitriol.getFluid(1000))
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Tenorite, 2)
+            fluidInputs(SulfuricAcid.getFluid(1000))
+            fluidOutputs(BlueVitriol.getFluid(1000))
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // Cu2O + 2H2SO4 -> 2CuSO4 + H2O + 2H (lost)
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Cuprite, 3)
-            .fluidInputs(SulfuricAcid.getFluid(2000))
-            .fluidOutputs(BlueVitriol.getFluid(2000))
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Cuprite, 3)
+            fluidInputs(SulfuricAcid.getFluid(2000))
+            fluidOutputs(BlueVitriol.getFluid(2000))
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // CuSO4 -> Cu + S + 4O
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(BlueVitriol.getFluid(1000))
-            .output(dust, Copper)
-            .output(dust, Sulfur)
-            .fluidOutputs(Oxygen.getFluid(4000))
-            .EUt(VHA[MV])
-            .duration(7 * SECOND + 4 * TICK)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(BlueVitriol.getFluid(1000))
+            output(dust, Copper)
+            output(dust, Sulfur)
+            fluidOutputs(Oxygen.getFluid(4000))
+            EUt(VHA[MV])
+            duration(7 * SECOND + 4 * TICK)
+        }
 
         // CuSO4 + H2O -> CuSO4·H2O
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .fluidInputs(BlueVitriol.getFluid(1000))
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(SulfuricCopperSolution.getFluid(1000))
-            .EUt(VHA[MV])
-            .duration(7 * SECOND + 4 * TICK)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(2)
+            fluidInputs(BlueVitriol.getFluid(1000))
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(SulfuricCopperSolution.getFluid(1000))
+            EUt(VHA[MV])
+            duration(7 * SECOND + 4 * TICK)
+        }
 
         // CuSO4 + H2O -> Ag2TeSe + Cu + O + H2SO4
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(BlueVitriol.getFluid(1000))
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, Copper)
-            .chancedOutput(dust, ChalcogenAnodeMud, 4, 500, 0)
-            .fluidOutputs(SulfuricAcid.getFluid(1000))
-            .fluidOutputs(Oxygen.getFluid(1000))
-            .EUt(VHA[MV])
-            .duration(3 * SECOND + 12 * TICK)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(BlueVitriol.getFluid(1000))
+            fluidInputs(Water.getFluid(1000))
+            output(dust, Copper)
+            chancedOutput(dust, ChalcogenAnodeMud, 4, 500, 0)
+            fluidOutputs(SulfuricAcid.getFluid(1000))
+            fluidOutputs(Oxygen.getFluid(1000))
+            EUt(VHA[MV])
+            duration(3 * SECOND + 12 * TICK)
+        }
 
         // Optional recovery of metals to provide some nice bonus.
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(dust, ChalcogenAnodeMud, 4)
-            .output(dust, Silver)
-            .chancedOutput(dust, Copper, 1000, 1000)
-            .chancedOutput(dust, Gold, 750, 750)
-            .EUt(VHA[MV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CENTRIFUGE_RECIPES.addRecipe {
+            input(dust, ChalcogenAnodeMud, 4)
+            output(dust, Silver)
+            chancedOutput(dust, Copper, 1000, 1000)
+            chancedOutput(dust, Gold, 750, 750)
+            EUt(VHA[MV])
+            duration(15 * SECOND)
+        }
 
         telluriumProcess()
         seleniumProcess()
@@ -131,64 +132,64 @@ internal object SeleniumTelluriumProcessing
     private fun telluriumProcess()
     {
         // Ag2TeSe + 4O + Na2CO3 -> Na2TeO3 + SeO2 + 2Ag + CO2
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, ChalcogenAnodeMud, 4)
-            .input(dust, SodaAsh, 6)
-            .fluidInputs(Oxygen.getFluid(4000))
-            .output(dust, SodiumTellurite, 6)
-            .output(dust, SeleniumDioxide, 3)
-            .output(ingot, Silver, 2)
-            .fluidOutputs(CarbonDioxide.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(30 * SECOND)
-            .buildAndRegister() // Because this reaction is above 1900K, so silver will output by ingot form.
+        ROASTER_RECIPES.addRecipe {
+            input(dust, ChalcogenAnodeMud, 4)
+            input(dust, SodaAsh, 6)
+            fluidInputs(Oxygen.getFluid(4000))
+            output(dust, SodiumTellurite, 6)
+            output(dust, SeleniumDioxide, 3)
+            output(ingot, Silver, 2)
+            fluidOutputs(CarbonDioxide.getFluid(1000))
+            EUt(VA[HV])
+            duration(30 * SECOND)
+        } // Because this reaction is above 1900K, so silver will output by ingot form.
 
         // Na2TeO3 + H2O -> TeO2 + 2NaOH
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, SodiumTellurite, 6)
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, TelluriumDioxide, 3)
-            .output(dust, SodiumHydroxide, 6)
-            .EUt(VA[MV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, SodiumTellurite, 6)
+            fluidInputs(Water.getFluid(1000))
+            output(dust, TelluriumDioxide, 3)
+            output(dust, SodiumHydroxide, 6)
+            EUt(VA[MV])
+            duration(20 * SECOND)
+        }
 
         // TeO2 + 2SO2 + H2O -> Te + H2SO4 + SO3
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, TelluriumDioxide, 3)
-            .fluidInputs(SulfurDioxide.getFluid(2000))
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, Tellurium)
-            .fluidOutputs(SulfuricAcid.getFluid(1000))
-            .fluidOutputs(SulfurTrioxide.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, TelluriumDioxide, 3)
+            fluidInputs(SulfurDioxide.getFluid(2000))
+            fluidInputs(Water.getFluid(1000))
+            output(dust, Tellurium)
+            fluidOutputs(SulfuricAcid.getFluid(1000))
+            fluidOutputs(SulfurTrioxide.getFluid(1000))
+            EUt(VA[EV])
+            duration(15 * SECOND)
+        }
     }
 
     private fun seleniumProcess()
     {
         // SeO2 + H2O -> H2SeO3
-        MIXER_RECIPES.recipeBuilder()
-            .input(dust, SeleniumDioxide, 3)
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, SelenousAcid, 6)
-            .EUt(VA[MV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            input(dust, SeleniumDioxide, 3)
+            fluidInputs(Water.getFluid(1000))
+            output(dust, SelenousAcid, 6)
+            EUt(VA[MV])
+            duration(20 * SECOND)
+        }
 
         // H2SeO3 + 2SO2 -> Se + H2SO4 + SO3
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, SelenousAcid, 6)
-            .fluidInputs(SulfurDioxide.getFluid(2000))
-            .output(dust, Selenium)
-            .fluidOutputs(SulfuricAcid.getFluid(1000))
-            .fluidOutputs(SulfurTrioxide.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, SelenousAcid, 6)
+            fluidInputs(SulfurDioxide.getFluid(2000))
+            output(dust, Selenium)
+            fluidOutputs(SulfuricAcid.getFluid(1000))
+            fluidOutputs(SulfurTrioxide.getFluid(1000))
+            EUt(VA[EV])
+            duration(15 * SECOND)
+        }
     }
 
     // @formatter:on

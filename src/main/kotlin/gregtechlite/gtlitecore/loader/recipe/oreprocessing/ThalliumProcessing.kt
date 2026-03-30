@@ -5,7 +5,8 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VHA
-import gregtech.api.recipes.GTRecipeHandler
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
 import gregtech.api.unification.OreDictUnifier
@@ -47,71 +48,70 @@ internal object ThalliumProcessing
     fun init()
     {
         // FeS2 -> Fe2(SO4)3 + S
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, Pyrite)),
             arrayOf(Oxygen.getFluid(3000)))
 
-        ROASTER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Pyrite, 2)
-            .output(dust, Iron3Sulfate)
-            .output(dust, Sulfur)
-            .EUt(VA[ULV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Pyrite, 2)
+            output(dust, Iron3Sulfate)
+            output(dust, Sulfur)
+            EUt(VA[ULV])
+            duration(4 * SECOND)
+        }
 
         // FeS2 + 6O -> Fe + Tl2SO4 + SO2
-        ROASTER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Pyrite, 3)
-            .fluidInputs(Oxygen.getFluid(6000))
-            .output(ingot, Iron)
-            .output(dust, ThalliumSulfate, 7)
-            .fluidOutputs(SulfurDioxide.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Pyrite, 3)
+            fluidInputs(Oxygen.getFluid(6000))
+            output(ingot, Iron)
+            output(dust, ThalliumSulfate, 7)
+            fluidOutputs(SulfurDioxide.getFluid(1000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // PbS + 3O -> PbO + 1/3Ag + SO2
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, Galena)),
             arrayOf(Oxygen.getFluid(3000)))
 
-        ROASTER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Galena)
-            .fluidInputs(Oxygen.getFluid(3000))
-            .output(dust, Massicot)
-            .output(dustTiny, Silver, 6)
-            .fluidOutputs(SulfurDioxide.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Galena)
+            fluidInputs(Oxygen.getFluid(3000))
+            output(dust, Massicot)
+            output(dustTiny, Silver, 6)
+            fluidOutputs(SulfurDioxide.getFluid(1000))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // 2PbS + 6O -> 2Pb + Tl2SO4 + SO2
-        ROASTER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Galena, 4)
-            .fluidInputs(Oxygen.getFluid(6000))
-            .output(ingot, Lead, 2)
-            .output(dust, ThalliumSulfate, 7)
-            .fluidOutputs(SulfurDioxide.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Galena, 4)
+            fluidInputs(Oxygen.getFluid(6000))
+            output(ingot, Lead, 2)
+            output(dust, ThalliumSulfate, 7)
+            fluidOutputs(SulfurDioxide.getFluid(1000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // Tl2SO4 + H2O -> 2Tl + H2SO4 + O
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, ThalliumSulfate, 7)
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, Thallium, 2)
-            .fluidOutputs(SulfuricAcid.getFluid(1000))
-            .fluidOutputs(Oxygen.getFluid(1000))
-            .EUt(VHA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, ThalliumSulfate, 7)
+            fluidInputs(Water.getFluid(1000))
+            output(dust, Thallium, 2)
+            fluidOutputs(SulfuricAcid.getFluid(1000))
+            fluidOutputs(Oxygen.getFluid(1000))
+            EUt(VHA[MV])
+            duration(10 * SECOND)
+        }
     }
 
     // @formatter:on

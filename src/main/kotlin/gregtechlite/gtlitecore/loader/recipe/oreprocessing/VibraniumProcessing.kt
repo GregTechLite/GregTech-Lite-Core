@@ -5,7 +5,8 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.recipes.GTRecipeHandler
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROMAGNETIC_SEPARATOR_RECIPES
@@ -47,71 +48,70 @@ internal object VibraniumProcessing
     fun init()
     {
         // 10Ad -> Vb? + Fe2KeIn + 2Nq + 2Os
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(dust, Adamantium, 10)
-            .fluidInputs(BedrockGas.getFluid(100))
-            .fluidInputs(SulfuricAcid.getFluid(100))
-            .output(dust, AdamantiumEnriched, 1)
-            .output(dust, DeepIron, 5)
-            .output(dust, Naquadah, 2)
-            .output(dust, Osmium, 2)
-            .fluidOutputs(DilutedSulfuricAcid.getFluid(900))
-            .EUt(VA[UHV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(dust, Adamantium, 10)
+            fluidInputs(BedrockGas.getFluid(100))
+            fluidInputs(SulfuricAcid.getFluid(100))
+            output(dust, AdamantiumEnriched, 1)
+            output(dust, DeepIron, 5)
+            output(dust, Naquadah, 2)
+            output(dust, Osmium, 2)
+            fluidOutputs(DilutedSulfuricAcid.getFluid(900))
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+        }
 
         // Fe2KeIn -> 2Fe + Ke + In
-        ELECTROMAGNETIC_SEPARATOR_RECIPES.recipeBuilder()
-            .input(dust, DeepIron, 4)
-            .output(dust, Iron, 2)
-            .output(dust, Trinium)
-            .output(dust, Indium)
-            .EUt(VA[IV])
-            .duration(30 * SECOND)
-            .buildAndRegister()
+        ELECTROMAGNETIC_SEPARATOR_RECIPES.addRecipe {
+            input(dust, DeepIron, 4)
+            output(dust, Iron, 2)
+            output(dust, Trinium)
+            output(dust, Indium)
+            EUt(VA[IV])
+            duration(30 * SECOND)
+        }
 
         // 4Vb? + 4Nq+ -> Vb* + 2Nq+ (part cycle) + Pu239
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, AdamantiumEnriched, 4)
-            .fluidInputs(NaquadahEnriched.getFluid(L * 4))
-            .output(dust, NaquadahEnriched, 2)
-            .output(dust, Plutonium239, 1)
-            .fluidOutputs(VibraniumUnstable.getFluid(L * 4))
-            .EUt(VA[ZPM])
-            .duration(1 * MINUTE + 20 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, AdamantiumEnriched, 4)
+            fluidInputs(NaquadahEnriched.getFluid(L * 4))
+            output(dust, NaquadahEnriched, 2)
+            output(dust, Plutonium239, 1)
+            fluidOutputs(VibraniumUnstable.getFluid(L * 4))
+            EUt(VA[ZPM])
+            duration(1 * MINUTE + 20 * SECOND)
+        }
 
         // Tr + Vb* -> Vb
-        FUSION_RECIPES.recipeBuilder()
-            .fluidInputs(Tritanium.getFluid(L))
-            .fluidInputs(VibraniumUnstable.getFluid(L))
-            .fluidOutputs(Vibranium.getPlasma(L))
-            .EUt(VA[ZPM] * 2L) // ZPM
-            .duration(3 * SECOND + 4 * TICK)
-            .EUToStart(620_000_000L) // 620M EU, MK3
-            .buildAndRegister()
+        FUSION_RECIPES.addRecipe {
+            fluidInputs(Tritanium.getFluid(L))
+            fluidInputs(VibraniumUnstable.getFluid(L))
+            fluidOutputs(Vibranium.getPlasma(L))
+            EUt(VA[ZPM] * 2L) // ZPM
+            duration(3 * SECOND + 4 * TICK)
+            EUToStart(620_000_000L) // 620M EU, MK3
+        }
 
         // Vibranium plasma will direct cooling by fluid solidification to
         // a hot vibranium ingot, vibranium dust cannot blast to ingot yet,
         // just like adamantium.
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, Vibranium),
             IntCircuitIngredient.getIntegratedCircuit(1))
 
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, Vibranium),
-                IntCircuitIngredient.getIntegratedCircuit(2)),
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Neon.getFluid(25)))
 
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_INGOT)
-            .fluidInputs(Vibranium.getPlasma(L))
-            .output(ingotHot, Vibranium)
-            .EUt(500_000) // UV
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
+        FLUID_SOLIDFICATION_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_INGOT)
+            fluidInputs(Vibranium.getPlasma(L))
+            output(ingotHot, Vibranium)
+            EUt(500_000) // UV
+            duration(20 * SECOND)
+        }
     }
 
     // @formatter:on

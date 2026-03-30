@@ -12,6 +12,7 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylEther
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThoriumDioxide
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrate
 
 /**
@@ -27,17 +28,16 @@ internal object ProtactiniumProcessing
     fun init()
     {
         // UO2(NO3)2 + (C2H5)2O -> 0.5UO2 + Pa + 0.75ThO2 + 2C2H5NO3
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, UranylNitrate, 10)
-            .fluidInputs(DiethylEther.getFluid(1000))
-            .output(dust, Uraninite)
-            .output(dust, Protactinium)
-            .output(dustSmall, ThoriumDioxide, 3)
-            .fluidOutputs(AminooxyaceticAcid.getFluid(1000))
-            .EUt(VA[ZPM])
-            .duration(14 * SECOND)
-            .buildAndRegister()
-
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, UranylNitrate, 10)
+            fluidInputs(DiethylEther.getFluid(1000))
+            output(dust, Uraninite)
+            output(dust, Protactinium)
+            output(dustSmall, ThoriumDioxide, 3)
+            fluidOutputs(AminooxyaceticAcid.getFluid(1000))
+            EUt(VA[ZPM])
+            duration(14 * SECOND)
+        }
     }
 
     // @formatter:on

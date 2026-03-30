@@ -23,6 +23,7 @@ import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GermaniumDioxide
@@ -49,79 +50,78 @@ internal object GermaniumZincProcessing
         // Waelz processing of sphalerite.
 
         // ZnS + 5O -> (GeO2)? + ZnO + SO2
-        ROASTER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Sphalerite, 2)
-            .fluidInputs(Oxygen.getFluid(5000))
-            .output(dust, RoastedSphalerite, 4)
-            .output(dust, Zincite, 2)
-            .fluidOutputs(SulfurDioxide.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Sphalerite, 2)
+            fluidInputs(Oxygen.getFluid(5000))
+            output(dust, RoastedSphalerite, 4)
+            output(dust, Zincite, 2)
+            fluidOutputs(SulfurDioxide.getFluid(1000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // (GeO2)? + 2Zn -> Zn2(GaGeO2)
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, RoastedSphalerite, 4)
-            .input(dust, Zinc, 2)
-            .output(dust, ZincRichSphalerite, 6)
-            .EUt(VA[LV])
-            .duration(16 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, RoastedSphalerite, 4)
+            input(dust, Zinc, 2)
+            output(dust, ZincRichSphalerite, 6)
+            EUt(VA[LV])
+            duration(16 * SECOND)
+        }
 
         // Zn2(GaGeO2) + H2SO4 -> (GeO2)Zn + (ZnSO4)Ga + 2H (lost)
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, ZincRichSphalerite, 6)
-            .fluidInputs(SulfuricAcid.getFluid(1000))
-            .output(dust, WaelzOxide, 4)
-            .output(dust, WaelzSlag, 7)
-            .EUt(VA[EV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, ZincRichSphalerite, 6)
+            fluidInputs(SulfuricAcid.getFluid(1000))
+            output(dust, WaelzOxide, 4)
+            output(dust, WaelzSlag, 7)
+            EUt(VA[EV])
+            duration(10 * SECOND)
+        }
 
         // (GeO2)Zn + H2SO4 -> GeO2 + (ZnSO4)Ga + 2H (lost) + (Cd)
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, WaelzOxide, 4)
-            .fluidInputs(SulfuricAcid.getFluid(1000))
-            .output(dust, GermaniumDioxide, 3)
-            .output(dust, WaelzSlag, 7)
-            .chancedOutput(dust, Cadmium, 500, 1000)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            input(dust, WaelzOxide, 4)
+            fluidInputs(SulfuricAcid.getFluid(1000))
+            output(dust, GermaniumDioxide, 3)
+            output(dust, WaelzSlag, 7)
+            chancedOutput(dust, Cadmium, 500, 1000)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // GeO2 + 4H -> Ge + 2H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, GermaniumDioxide, 3)
-            .fluidInputs(Hydrogen.getFluid(4000))
-            .output(dust, Germanium)
-            .fluidOutputs(Water.getFluid(2000))
-            .EUt(VA[EV])
-            .duration(12 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, GermaniumDioxide, 3)
+            fluidInputs(Hydrogen.getFluid(4000))
+            output(dust, Germanium)
+            fluidOutputs(Water.getFluid(2000))
+            EUt(VA[EV])
+            duration(12 * SECOND)
+        }
 
         // GeO2 + C -> Ge + CO2
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, GermaniumDioxide, 3)
-            .input(dust, Carbon)
-            .output(dust, Germanium)
-            .fluidOutputs(CarbonDioxide.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(36 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            input(dust, GermaniumDioxide, 3)
+            input(dust, Carbon)
+            output(dust, Germanium)
+            fluidOutputs(CarbonDioxide.getFluid(1000))
+            EUt(VA[EV])
+            duration(36 * SECOND)
+        }
 
         // (ZnSO4)Ga + H2O -> ZnO + H2SO4 (cycle) + (Ga)
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, WaelzSlag, 7)
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, Zincite, 2)
-            .chancedOutput(dust, Gallium, 2000, 1000)
-            .fluidOutputs(SulfuricAcid.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
-
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, WaelzSlag, 7)
+            fluidInputs(Water.getFluid(1000))
+            output(dust, Zincite, 2)
+            chancedOutput(dust, Gallium, 2000, 1000)
+            fluidOutputs(SulfuricAcid.getFluid(1000))
+            EUt(VA[HV])
+            duration(8 * SECOND)
+        }
     }
 
     // @formatter:on
