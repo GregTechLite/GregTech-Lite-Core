@@ -64,6 +64,7 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
@@ -150,7 +151,6 @@ internal object AlloyBlastSmelterRecipes
         registerBinaryAlloy(LithiumFluoride, 2, BerylliumDifluoride, 3,
                             LithiumBerylliumFluorides, 5, 5 * SECOND)
 
-
         registerTrinaryAlloy(Brass, 7, Aluminium, 1,
                              Cobalt, 1, CobaltBrass, 9, 45 * SECOND)
         registerTrinaryAlloy(Tin, 6, Lead, 3,
@@ -167,177 +167,175 @@ internal object AlloyBlastSmelterRecipes
 
     private fun manualRecipes()
     {
-
         // One-Step ABS recipe of Eglin Steel
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(dust, Iron, 4)
-            .input(dust, Kanthal, 1)
-            .input(dust, Invar, 5)
-            .input(dust, Sulfur, 1)
-            .input(dust, Silicon, 1)
-            .input(dust, Carbon, 1)
-            .fluidInputs(Nitrogen.getFluid(13000))
-            .fluidOutputs(EglinSteel.getFluid(L * 13))
-            .EUt(VA[MV])
-            .duration(7 * SECOND + 16 * TICK)
-            .blastFurnaceTemp(1048) // Cupronickel
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(dust, Iron, 4)
+            input(dust, Kanthal, 1)
+            input(dust, Invar, 5)
+            input(dust, Sulfur, 1)
+            input(dust, Silicon, 1)
+            input(dust, Carbon, 1)
+            fluidInputs(Nitrogen.getFluid(13000))
+            fluidOutputs(EglinSteel.getFluid(L * 13))
+            EUt(VA[MV])
+            duration(7 * SECOND + 16 * TICK)
+            blastFurnaceTemp(1048) // Cupronickel
+        }
 
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(dust, Iron, 4)
-            .input(dust, Kanthal, 1)
-            .input(dust, Invar, 5)
-            .input(dust, Sulfur, 1)
-            .input(dust, Silicon, 1)
-            .input(dust, Carbon, 1)
-            .fluidOutputs(EglinSteel.getFluid(L * 13))
-            .EUt(VA[MV])
-            .duration(11 * SECOND + 14 * TICK)
-            .blastFurnaceTemp(1048) // Cupronickel
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(dust, Iron, 4)
+            input(dust, Kanthal, 1)
+            input(dust, Invar, 5)
+            input(dust, Sulfur, 1)
+            input(dust, Silicon, 1)
+            input(dust, Carbon, 1)
+            fluidOutputs(EglinSteel.getFluid(L * 13))
+            EUt(VA[MV])
+            duration(11 * SECOND + 14 * TICK)
+            blastFurnaceTemp(1048) // Cupronickel
+        }
 
         // ZBLAN Glass
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(dust, Zirconium, 5)
-            .input(dust, Barium, 2)
-            .input(dust, Lanthanum)
-            .input(dust, Aluminium)
-            .input(dust, Sodium, 2)
-            .fluidInputs(Fluorine.getFluid(6200))
-            .fluidOutputs(ZBLANGlass.getFluid(L * 11))
-            .EUt(VA[HV])
-            .duration(1 * MINUTE + 30 * SECOND)
-            .blastFurnaceTemp(1073) // Cupronickel
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(dust, Zirconium, 5)
+            input(dust, Barium, 2)
+            input(dust, Lanthanum)
+            input(dust, Aluminium)
+            input(dust, Sodium, 2)
+            fluidInputs(Fluorine.getFluid(6200))
+            fluidOutputs(ZBLANGlass.getFluid(L * 11))
+            EUt(VA[HV])
+            duration(1 * MINUTE + 30 * SECOND)
+            blastFurnaceTemp(1073) // Cupronickel
+        }
 
         // GST Glass
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Germanium, 2)
-            .input(dust, Antimony, 2)
-            .input(dust, Tellurium, 5)
-            .fluidOutputs(GSTGlass.getFluid(L * 9))
-            .EUt(VA[HV])
-            .duration(MINUTE + 20 * SECOND)
-            .blastFurnaceTemp(873) // Cupronickel
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Germanium, 2)
+            input(dust, Antimony, 2)
+            input(dust, Tellurium, 5)
+            fluidOutputs(GSTGlass.getFluid(L * 9))
+            EUt(VA[HV])
+            duration(MINUTE + 20 * SECOND)
+            blastFurnaceTemp(873) // Cupronickel
+        }
 
         // BSCCO
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(14)
-            .input(dust, BismuthTrioxide, 5)
-            .input(dust, Strontianite, 10)
-            .input(dust, Calcite, 5)
-            .input(dust, Tenorite, 4)
-            .fluidInputs(Neon.getFluid(150))
-            .fluidOutputs(BismuthStrontiumCalciumCuprate.getFluid(L * 15))
-            .EUt(VA[UV])
-            .duration(2 * MINUTE + 9 * SECOND + 12 * TICK)
-            .blastFurnaceTemp(7000) // Naquadah
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(14)
+            input(dust, BismuthTrioxide, 5)
+            input(dust, Strontianite, 10)
+            input(dust, Calcite, 5)
+            input(dust, Tenorite, 4)
+            fluidInputs(Neon.getFluid(150))
+            fluidOutputs(BismuthStrontiumCalciumCuprate.getFluid(L * 15))
+            EUt(VA[UV])
+            duration(2 * MINUTE + 9 * SECOND + 12 * TICK)
+            blastFurnaceTemp(7000) // Naquadah
+        }
 
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(dust, BismuthTrioxide, 5)
-            .input(dust, Strontianite, 10)
-            .input(dust, Calcite, 5)
-            .input(dust, Tenorite, 4)
-            .fluidOutputs(BismuthStrontiumCalciumCuprate.getFluid(L * 15))
-            .EUt(VA[UV])
-            .duration(3 * MINUTE + 13 * SECOND + 10 * TICK)
-            .blastFurnaceTemp(7000) // Naquadah
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(dust, BismuthTrioxide, 5)
+            input(dust, Strontianite, 10)
+            input(dust, Calcite, 5)
+            input(dust, Tenorite, 4)
+            fluidOutputs(BismuthStrontiumCalciumCuprate.getFluid(L * 15))
+            EUt(VA[UV])
+            duration(3 * MINUTE + 13 * SECOND + 10 * TICK)
+            blastFurnaceTemp(7000) // Naquadah
+        }
 
         // Halkonite Steel
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(dust, CosmicNeutronium, 2)
-            .input(dust, Tairitsium, 2)
-            .input(dust, RedPhosphorus, 2)
-            .input(dust, TitanSteel)
-            .input(dust, Infinity)
-            .fluidInputs(HeavyLeptonMixture.getFluid(1000))
-            .fluidOutputs(HalkoniteSteel.getFluid(L * 8))
-            .EUt(VA[UEV])
-            .duration(1 * MINUTE)
-            .blastFurnaceTemp(13801) // Infinity
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(dust, CosmicNeutronium, 2)
+            input(dust, Tairitsium, 2)
+            input(dust, RedPhosphorus, 2)
+            input(dust, TitanSteel)
+            input(dust, Infinity)
+            fluidInputs(HeavyLeptonMixture.getFluid(1000))
+            fluidOutputs(HalkoniteSteel.getFluid(L * 8))
+            EUt(VA[UEV])
+            duration(1 * MINUTE)
+            blastFurnaceTemp(13801) // Infinity
+        }
 
         // Vibranium Tritanium Actinium Iron Superhydride
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(15)
-            .input(dust, Vibranium, 5)
-            .input(dust, Tritanium, 5)
-            .input(dust, ActiniumSuperhydride)
-            .input(dust, BETSPerrhenate)
-            .fluidInputs(Iron.getPlasma(L))
-            .fluidInputs(Krypton.getFluid(130))
-            .fluidOutputs(VibraniumTritaniumActiniumIronSuperhydride.getFluid(L * 13))
-            .EUt(VA[UEV])
-            .duration(195 * SECOND + 19 * TICK)
-            .blastFurnaceTemp(14400) // Infinity
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(15)
+            input(dust, Vibranium, 5)
+            input(dust, Tritanium, 5)
+            input(dust, ActiniumSuperhydride)
+            input(dust, BETSPerrhenate)
+            fluidInputs(Iron.getPlasma(L))
+            fluidInputs(Krypton.getFluid(130))
+            fluidOutputs(VibraniumTritaniumActiniumIronSuperhydride.getFluid(L * 13))
+            EUt(VA[UEV])
+            duration(195 * SECOND + 19 * TICK)
+            blastFurnaceTemp(14400) // Infinity
+        }
 
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(dust, Vibranium, 5)
-            .input(dust, Tritanium, 5)
-            .input(dust, ActiniumSuperhydride)
-            .input(dust, BETSPerrhenate)
-            .fluidInputs(Iron.getPlasma(L))
-            .fluidOutputs(VibraniumTritaniumActiniumIronSuperhydride.getFluid(L * 13))
-            .EUt(VA[UEV])
-            .duration(292 * SECOND + 10 * TICK)
-            .blastFurnaceTemp(14400) // Infinity
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(dust, Vibranium, 5)
+            input(dust, Tritanium, 5)
+            input(dust, ActiniumSuperhydride)
+            input(dust, BETSPerrhenate)
+            fluidInputs(Iron.getPlasma(L))
+            fluidOutputs(VibraniumTritaniumActiniumIronSuperhydride.getFluid(L * 13))
+            EUt(VA[UEV])
+            duration(292 * SECOND + 10 * TICK)
+            blastFurnaceTemp(14400) // Infinity
+        }
 
         // Mellion
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(dust, Rubidium, 11)
-            .input(dust, Tritanium, 11)
-            .input(dust, Adamantium, 7)
-            .input(dust, Firestone, 13)
-            .input(dust, MetastableOganesson, 13)
-            .input(dust, ActiniumSuperhydride, 8)
-            .fluidInputs(ResonantStrangeMeson.getFluid(1000))
-            .fluidOutputs(Mellion.getFluid(L * 64))
-            .EUt(VA[UXV])
-            .duration(20 * SECOND)
-            .blastFurnaceTemp(16000)
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(dust, Rubidium, 11)
+            input(dust, Tritanium, 11)
+            input(dust, Adamantium, 7)
+            input(dust, Firestone, 13)
+            input(dust, MetastableOganesson, 13)
+            input(dust, ActiniumSuperhydride, 8)
+            fluidInputs(ResonantStrangeMeson.getFluid(1000))
+            fluidOutputs(Mellion.getFluid(L * 64))
+            EUt(VA[UXV])
+            duration(20 * SECOND)
+            blastFurnaceTemp(16000)
+        }
 
         // Fullerene Superconductor
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(15)
-            .input(dust, TitanSteel, 16)
-            .input(dust, LanthanumFullereneNanotube, 4)
-            .input(dust, SeaborgiumDopedCarbonNanotube, 4)
-            .input(dust, MetastableOganesson, 3)
-            .fluidInputs(Xenon.getPlasma(1000))
-            .fluidInputs(Krypton.getFluid(280))
-            .fluidOutputs(FullereneSuperconductor.getFluid(L * 28))
-            .EUt(VA[UIV])
-            .duration(2884 * SECOND + 7 * TICK)
-            .blastFurnaceTemp(15900) // Halkonite Steel
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(15)
+            input(dust, TitanSteel, 16)
+            input(dust, LanthanumFullereneNanotube, 4)
+            input(dust, SeaborgiumDopedCarbonNanotube, 4)
+            input(dust, MetastableOganesson, 3)
+            fluidInputs(Xenon.getPlasma(1000))
+            fluidInputs(Krypton.getFluid(280))
+            fluidOutputs(FullereneSuperconductor.getFluid(L * 28))
+            EUt(VA[UIV])
+            duration(2884 * SECOND + 7 * TICK)
+            blastFurnaceTemp(15900) // Halkonite Steel
+        }
 
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(dust, TitanSteel, 16)
-            .input(dust, LanthanumFullereneNanotube, 4)
-            .input(dust, SeaborgiumDopedCarbonNanotube, 4)
-            .input(dust, MetastableOganesson, 3)
-            .fluidInputs(Xenon.getPlasma(1000))
-            .fluidOutputs(FullereneSuperconductor.getFluid(L * 28))
-            .EUt(VA[UIV])
-            .duration(4305 * SECOND)
-            .blastFurnaceTemp(15900) // Halkonite Steel
-            .buildAndRegister()
-
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(dust, TitanSteel, 16)
+            input(dust, LanthanumFullereneNanotube, 4)
+            input(dust, SeaborgiumDopedCarbonNanotube, 4)
+            input(dust, MetastableOganesson, 3)
+            fluidInputs(Xenon.getPlasma(1000))
+            fluidOutputs(FullereneSuperconductor.getFluid(L * 28))
+            EUt(VA[UIV])
+            duration(4305 * SECOND)
+            blastFurnaceTemp(15900) // Halkonite Steel
+        }
     }
 
     private fun registerBinaryAlloy(input1: Material, input1Amount: Int,
@@ -345,15 +343,15 @@ internal object AlloyBlastSmelterRecipes
                                     output: Material, outputAmount: Int,
                                     duration: Int)
     {
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(input1Amount + input2Amount)
-            .input(dust, input1, input1Amount)
-            .input(dust, input2, input2Amount)
-            .fluidOutputs(output.getFluid(L * outputAmount))
-            .EUt(16)
-            .duration(duration * 3 / 4)
-            .blastFurnaceTemp((output.fluid as Fluid).temperature)
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(input1Amount + input2Amount)
+            input(dust, input1, input1Amount)
+            input(dust, input2, input2Amount)
+            fluidOutputs(output.getFluid(L * outputAmount))
+            EUt(16)
+            duration(duration * 3 / 4)
+            blastFurnaceTemp((output.fluid as Fluid).temperature)
+        }
     }
 
     private fun registerTrinaryAlloy(input1: Material, input1Amount: Int,
@@ -362,16 +360,16 @@ internal object AlloyBlastSmelterRecipes
                                      output: Material, outputAmount: Int,
                                      duration: Int)
     {
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(input1Amount + input2Amount + input3Amount)
-            .input(dust, input1, input1Amount)
-            .input(dust, input2, input2Amount)
-            .input(dust, input3, input3Amount)
-            .fluidOutputs(output.getFluid(L * outputAmount))
-            .EUt(16)
-            .duration(duration * 3 / 4)
-            .blastFurnaceTemp((output.fluid as Fluid).temperature)
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(input1Amount + input2Amount + input3Amount)
+            input(dust, input1, input1Amount)
+            input(dust, input2, input2Amount)
+            input(dust, input3, input3Amount)
+            fluidOutputs(output.getFluid(L * outputAmount))
+            EUt(16)
+            duration(duration * 3 / 4)
+            blastFurnaceTemp((output.fluid as Fluid).temperature)
+        }
     }
 
 }
