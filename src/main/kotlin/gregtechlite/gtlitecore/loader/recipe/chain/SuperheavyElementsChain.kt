@@ -5,7 +5,6 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
@@ -28,6 +27,8 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FleroviumYtterbiumPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableFlerovium
@@ -53,117 +54,115 @@ internal object SuperheavyElementsChain
     private fun hassiumProcess()
     {
         // Sc + Ti -> ScTi
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(Scandium.getFluid(L))
-            .fluidInputs(Titanium.getFluid(L))
-            .fluidOutputs(ScandiumTitaniumMixture.getFluid(L * 2))
-            .EUt(VA[ZPM])
-            .duration(12 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            fluidInputs(Scandium.getFluid(L))
+            fluidInputs(Titanium.getFluid(L))
+            fluidOutputs(ScandiumTitaniumMixture.getFluid(L * 2))
+            EUt(VA[ZPM])
+            duration(12 * SECOND)
+        }
 
         // Ra + Rn -> RaRn
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(Radium.getFluid(L))
-            .fluidInputs(Radon.getFluid(125))
-            .fluidOutputs(RadiumRadonMixture.getFluid(L * 2))
-            .EUt(VA[ZPM])
-            .duration(12 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            fluidInputs(Radium.getFluid(L))
+            fluidInputs(Radon.getFluid(125))
+            fluidOutputs(RadiumRadonMixture.getFluid(L * 2))
+            EUt(VA[ZPM])
+            duration(12 * SECOND)
+        }
 
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, MetastableHassium),
             IntCircuitIngredient.getIntegratedCircuit(1))
 
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, MetastableHassium),
-                IntCircuitIngredient.getIntegratedCircuit(2)),
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Krypton.getFluid(10)))
 
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_INGOT)
-            .fluidInputs(MetastableHassium.getPlasma(L))
-            .output(ingotHot, MetastableHassium)
-            .EUt(VA[UV])
-            .duration(14 * SECOND)
-            .buildAndRegister()
+        FLUID_SOLIDFICATION_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_INGOT)
+            fluidInputs(MetastableHassium.getPlasma(L))
+            output(ingotHot, MetastableHassium)
+            EUt(VA[UV])
+            duration(14 * SECOND)
+        }
     }
 
     private fun fleroviumProcess()
     {
         // U235 + U238 -> U235U238?
-        FUSION_RECIPES.recipeBuilder()
-            .fluidInputs(Uranium235.getFluid(L))
-            .fluidInputs(Uranium238.getFluid(L))
-            .fluidOutputs(QuasifissioningPlasma.getPlasma(L * 2))
-            .EUt(VA[ZPM])
-            .duration(5 * SECOND)
-            .EUToStart(325_000_000L) // 325M EU, MK3
-            .buildAndRegister()
+        FUSION_RECIPES.addRecipe {
+            fluidInputs(Uranium235.getFluid(L))
+            fluidInputs(Uranium238.getFluid(L))
+            fluidOutputs(QuasifissioningPlasma.getPlasma(L * 2))
+            EUt(VA[ZPM])
+            duration(5 * SECOND)
+            EUToStart(325_000_000L) // 325M EU (MK3)
+        }
 
         // U235U238? -> FlYb?
-        VACUUM_CHAMBER_RECIPES.recipeBuilder()
-            .fluidInputs(QuasifissioningPlasma.getPlasma(L * 4))
-            .fluidOutputs(FleroviumYtterbiumPlasma.getPlasma(L * 4))
-            .EUt(VA[ZPM])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        VACUUM_CHAMBER_RECIPES.addRecipe {
+            fluidInputs(QuasifissioningPlasma.getPlasma(L * 4))
+            fluidOutputs(FleroviumYtterbiumPlasma.getPlasma(L * 4))
+            EUt(VA[ZPM])
+            duration(4 * SECOND)
+        }
 
         // FlYb? -> Fl + Yb
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .fluidInputs(FleroviumYtterbiumPlasma.getPlasma(L * 4))
-            .output(dust, Ytterbium, 2)
-            .fluidOutputs(MetastableFlerovium.getPlasma(L * 2))
-            .EUt(VA[UV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        CENTRIFUGE_RECIPES.addRecipe {
+            fluidInputs(FleroviumYtterbiumPlasma.getPlasma(L * 4))
+            output(dust, Ytterbium, 2)
+            fluidOutputs(MetastableFlerovium.getPlasma(L * 2))
+            EUt(VA[UV])
+            duration(2 * SECOND)
+        }
 
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, MetastableFlerovium),
             IntCircuitIngredient.getIntegratedCircuit(1))
 
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, MetastableFlerovium),
-                IntCircuitIngredient.getIntegratedCircuit(2)),
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Krypton.getFluid(10)))
 
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_INGOT)
-            .fluidInputs(MetastableFlerovium.getPlasma(L))
-            .output(ingotHot, MetastableFlerovium)
-            .EUt(VA[IV])
-            .duration(7 * SECOND + 15 * TICK)
-            .buildAndRegister()
-
+        FLUID_SOLIDFICATION_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_INGOT)
+            fluidInputs(MetastableFlerovium.getPlasma(L))
+            output(ingotHot, MetastableFlerovium)
+            EUt(VA[IV])
+            duration(7 * SECOND + 15 * TICK)
+        }
     }
 
     private fun oganessonProcess()
     {
         // 2Ti + 2Cf -> TiCf (Og Breeding Base)
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(Titanium.getFluid(L * 2))
-            .fluidInputs(Californium.getFluid(L * 2))
-            .fluidOutputs(OganessonBreedingBase.getFluid(L * 4))
-            .EUt(VA[IV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            fluidInputs(Titanium.getFluid(L * 2))
+            fluidInputs(Californium.getFluid(L * 2))
+            fluidOutputs(OganessonBreedingBase.getFluid(L * 4))
+            EUt(VA[IV])
+            duration(6 * SECOND)
+        }
 
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, MetastableOganesson),
             IntCircuitIngredient.getIntegratedCircuit(1))
 
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, MetastableOganesson),
-                IntCircuitIngredient.getIntegratedCircuit(2)),
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Krypton.getFluid(10)))
 
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_INGOT)
-            .fluidInputs(MetastableOganesson.getPlasma(L))
-            .output(ingotHot, MetastableOganesson)
-            .EUt(VA[ZPM])
-            .duration(12 * SECOND + 15 * TICK)
-            .buildAndRegister()
-
+        FLUID_SOLIDFICATION_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_INGOT)
+            fluidInputs(MetastableOganesson.getPlasma(L))
+            output(ingotHot, MetastableOganesson)
+            EUt(VA[ZPM])
+            duration(12 * SECOND + 15 * TICK)
+        }
     }
 
     // @formatter:on

@@ -24,10 +24,12 @@ import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
 
 internal object AlloysChain
@@ -45,6 +47,16 @@ internal object AlloysChain
     {
         // Delete original SiO2 electrolyzing recipe and move it to arc smelting.
         ELECTROLYZER_RECIPES.removeRecipe(OreDictUnifier.get(dust, SiliconDioxide, 3))
+
+        // Si + 2O -> SiO2
+        ROASTER_RECIPES.recipeBuilder()
+            .circuitMeta(2)
+            .input(dust, Silicon)
+            .fluidInputs(Oxygen.getFluid(2000))
+            .output(dust, SiliconDioxide, 3)
+            .EUt(VA[LV])
+            .duration(10 * TICK)
+            .buildAndRegister()
 
         // SiO2 -> Si + 2O
         ARC_FURNACE_RECIPES.addRecipe {

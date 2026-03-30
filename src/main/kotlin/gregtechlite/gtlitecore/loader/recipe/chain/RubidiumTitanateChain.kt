@@ -15,6 +15,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RubidiumChloride
@@ -29,35 +30,34 @@ internal object RubidiumTitanateChain
     fun init()
     {
         // Rb + Cl -> RbCl
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Rubidium)
-            .fluidInputs(Chlorine.getFluid(1000))
-            .output(dust, RubidiumChloride, 2)
-            .EUt(VA[LV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Rubidium)
+            fluidInputs(Chlorine.getFluid(1000))
+            output(dust, RubidiumChloride, 2)
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
 
         // 2NaOH + TiO2 -> Na2TiO3 + H2O
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .input(dust, Rutile, 3)
-            .input(dust, SodiumHydroxide, 6)
-            .output(dust, SodiumTitanate, 6)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(16 * TICK)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+            input(dust, Rutile, 3)
+            input(dust, SodiumHydroxide, 6)
+            output(dust, SodiumTitanate, 6)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[EV])
+            duration(16 * TICK)
+        }
 
         // 2Na2TiO3 + 4RbCl -> Rb2TiO3 + 4NaCl
-        CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, SodiumTitanate, 12)
-            .input(dust, RubidiumChloride, 8)
-            .output(dust, RubidiumTitanate, 6)
-            .output(dust, Salt, 8)
-            .EUt(VA[LuV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
-
+        CRYOGENIC_REACTOR_RECIPES.addRecipe {
+            input(dust, SodiumTitanate, 12)
+            input(dust, RubidiumChloride, 8)
+            output(dust, RubidiumTitanate, 6)
+            output(dust, Salt, 8)
+            EUt(VA[LuV])
+            duration(2 * SECOND + 10 * TICK)
+        }
     }
 
     // @formatter:on

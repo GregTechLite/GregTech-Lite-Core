@@ -6,7 +6,6 @@ import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
-import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES
@@ -23,6 +22,9 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COSMIC_RAY_DETECTING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
@@ -62,121 +64,119 @@ internal object ParticlesChain
 
     fun init()
     {
-
         // Neutron-Proton Fermi Superfluid
-        COSMIC_RAY_DETECTING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidOutputs(NeutronProtonFermiSuperfluid.getFluid(10))
-            .EUt(VA[UHV])
-            .duration(10 * TICK)
-            .minHeight(100)
-            .buildAndRegister()
+        COSMIC_RAY_DETECTING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidOutputs(NeutronProtonFermiSuperfluid.getFluid(10))
+            EUt(VA[UHV])
+            duration(10 * TICK)
+            minHeight(100)
+        }
 
         // Heavy Lepton Mixture
-        COSMIC_RAY_DETECTING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .fluidOutputs(HeavyLeptonMixture.getFluid(10))
-            .EUt(VA[UHV])
-            .duration(10 * TICK)
-            .minHeight(120)
-            .buildAndRegister()
+        COSMIC_RAY_DETECTING_RECIPES.addRecipe {
+            circuitMeta(2)
+            fluidOutputs(HeavyLeptonMixture.getFluid(10))
+            EUt(VA[UHV])
+            duration(10 * TICK)
+            minHeight(120)
+        }
 
         // Hadronic Resonant Matter
-        LASER_ENGRAVER_RECIPES.recipeBuilder()
-            .notConsumable(lens, NdYAG)
-            .notConsumable(lens, CubicHeterodiamond)
-            .input(dust, MagnetoResonatic)
-            .input(dust, StrontiumFerrite, 2)
-            .fluidInputs(QuasifissioningPlasma.getFluid(L * 2))
-            .fluidInputs(UUMatter.getFluid(1000))
-            .fluidOutputs(HadronicResonantGas.getFluid(1000))
-            .EUt(VA[UHV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        LASER_ENGRAVER_RECIPES.addRecipe {
+            notConsumable(lens, NdYAG)
+            notConsumable(lens, CubicHeterodiamond)
+            input(dust, MagnetoResonatic)
+            input(dust, StrontiumFerrite, 2)
+            fluidInputs(QuasifissioningPlasma.getFluid(L * 2))
+            fluidInputs(UUMatter.getFluid(1000))
+            fluidOutputs(HadronicResonantGas.getFluid(1000))
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+        }
 
         // Stable Baryonic Matter
-        ALLOY_BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(dust, Taranium)
-            .input(dust, MetastableOganesson)
-            .input(dust, Praseodymium, 2)
-            .input(dust, ZephyreanAerotheum, 4)
-            .fluidInputs(NaquadriaEnergetic.getFluid(1000))
-            .fluidOutputs(StableBaryonicMatter.getFluid(9000))
-            .EUt(VA[UHV])
-            .duration(1 * MINUTE + 30 * SECOND)
-            .blastFurnaceTemp(9800) // Tritanium
-            .buildAndRegister()
+        ALLOY_BLAST_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(dust, Taranium)
+            input(dust, MetastableOganesson)
+            input(dust, Praseodymium, 2)
+            input(dust, ZephyreanAerotheum, 4)
+            fluidInputs(NaquadriaEnergetic.getFluid(1000))
+            fluidOutputs(StableBaryonicMatter.getFluid(9000))
+            EUt(VA[UHV])
+            duration(1 * MINUTE + 30 * SECOND)
+            blastFurnaceTemp(9800) // Tritanium
+        }
 
         // Dimensionally Shifted Superfluid
-        LARGE_MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .fluidInputs(FreeElectronGas.getFluid(2000))
-            .fluidInputs(HadronicResonantGas.getFluid(1000))
-            .fluidInputs(StableBaryonicMatter.getFluid(500))
-            .fluidInputs(HeavyQuarks.getFluid(200))
-            .fluidInputs(LightQuarks.getFluid(200))
-            .fluidInputs(Gluons.getFluid(100))
-            .fluidOutputs(DimensionallyShiftedSuperfluid.getFluid(4000))
-            .EUt(VA[UEV])
-            .duration(2 * MINUTE)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        LARGE_MIXER_RECIPES.addRecipe {
+            circuitMeta(6)
+            fluidInputs(FreeElectronGas.getFluid(2000))
+            fluidInputs(HadronicResonantGas.getFluid(1000))
+            fluidInputs(StableBaryonicMatter.getFluid(500))
+            fluidInputs(HeavyQuarks.getFluid(200))
+            fluidInputs(LightQuarks.getFluid(200))
+            fluidInputs(Gluons.getFluid(100))
+            fluidOutputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+            EUt(VA[UEV])
+            duration(2 * MINUTE)
+            cleanroom()
+        }
 
         // Resonant Strange Meson
-        FLUID_HEATER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(HadronicResonantGas.getFluid(200))
-            .fluidOutputs(ResonantStrangeMeson.getFluid(100))
-            .EUt(VA[UEV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        FLUID_HEATER_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(HadronicResonantGas.getFluid(200))
+            fluidOutputs(ResonantStrangeMeson.getFluid(100))
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
 
         // Quantum Anomaly
-        SIFTER_RECIPES.recipeBuilder()
-            .notConsumable(springSmall, CosmicNeutronium)
-            .fluidInputs(ResonantStrangeMeson.getFluid(4000))
-            .chancedOutput(QUANTUM_ANOMALY, 2000, 0)
-            .chancedOutput(QUANTUM_ANOMALY, 1500, 0)
-            .chancedOutput(QUANTUM_ANOMALY, 1000, 0)
-            .chancedOutput(QUANTUM_ANOMALY, 500, 0)
-            .EUt(VA[UHV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        SIFTER_RECIPES.addRecipe {
+            notConsumable(springSmall, CosmicNeutronium)
+            fluidInputs(ResonantStrangeMeson.getFluid(4000))
+            chancedOutput(QUANTUM_ANOMALY, 2000, 0)
+            chancedOutput(QUANTUM_ANOMALY, 1500, 0)
+            chancedOutput(QUANTUM_ANOMALY, 1000, 0)
+            chancedOutput(QUANTUM_ANOMALY, 500, 0)
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+        }
 
         // Advanced recipes for Quantum Anomaly.
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, ChromaticGlass)
-            .input(gem, Diamond, 16)
-            .inputs(ItemStack(TARANIUM_CHARGE))
-            .fluidInputs(Duranium.getFluid(L))
-            .output(QUANTUM_ANOMALY, 16)
-            .EUt(VA[UEV])
-            .duration(1 * MINUTE)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, ChromaticGlass)
+            input(gem, Diamond, 16)
+            inputs(ItemStack(TARANIUM_CHARGE))
+            fluidInputs(Duranium.getFluid(L))
+            output(QUANTUM_ANOMALY, 16)
+            EUt(VA[UEV])
+            duration(1 * MINUTE)
+        }
 
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, ChromaticGlass)
-            .input(gem, Heterodiamond, 16)
-            .inputs(ItemStack(LEPTONIC_CHARGE))
-            .fluidInputs(Tritanium.getFluid(L))
-            .output(QUANTUM_ANOMALY, 64)
-            .EUt(VA[UIV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, ChromaticGlass)
+            input(gem, Heterodiamond, 16)
+            inputs(ItemStack(LEPTONIC_CHARGE))
+            fluidInputs(Tritanium.getFluid(L))
+            output(QUANTUM_ANOMALY, 64)
+            EUt(VA[UIV])
+            duration(20 * SECOND)
+        }
 
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .notConsumable(lens, ChromaticGlass)
-            .input(gem, CubicHeterodiamond, 16)
-            .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
-            .fluidInputs(Taranium.getFluid(L))
-            .output(QUANTUM_ANOMALY, 64)
-            .output(QUANTUM_ANOMALY, 64)
-            .EUt(VA[UXV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
-
+        STELLAR_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, ChromaticGlass)
+            input(gem, CubicHeterodiamond, 16)
+            inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
+            fluidInputs(Taranium.getFluid(L))
+            output(QUANTUM_ANOMALY, 64)
+            output(QUANTUM_ANOMALY, 64)
+            EUt(VA[UXV])
+            duration(20 * SECOND)
+        }
     }
 
 }
