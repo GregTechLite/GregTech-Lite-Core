@@ -38,6 +38,7 @@ class MobProximityRecipeBuilder : RecipeBuilder<MobProximityRecipeBuilder>
         return this
     }
 
+    // TODO: KClass support?
     fun mob(entityClazz: Class<out Entity>): MobProximityRecipeBuilder
     {
         this.applyProperty(MobOnTopProperty, EntityList.getKey(entityClazz)!!)

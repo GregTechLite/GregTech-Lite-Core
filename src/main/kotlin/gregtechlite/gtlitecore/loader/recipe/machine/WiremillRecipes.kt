@@ -1,13 +1,14 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.WIREMILL_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Polycaprolactam
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtechlite.gtlitecore.api.SECOND
-import net.minecraft.init.Items
-import net.minecraft.item.ItemStack
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.outputs
+import gregtechlite.gtlitecore.api.extension.removeRecipe
+import net.minecraft.init.Items.STRING
 
 internal object WiremillRecipes
 {
@@ -16,19 +17,15 @@ internal object WiremillRecipes
 
     fun init()
     {
-
         // Let Polycaprolactam also used same int circuit configuration like another wire.
-        GTRecipeHandler.removeRecipesByInputs(WIREMILL_RECIPES,
-            OreDictUnifier.get(ingot, Polycaprolactam))
-
-        WIREMILL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(ingot, Polycaprolactam)
-            .outputs(ItemStack(Items.STRING, 32))
-            .EUt(48) // MV
-            .duration(4 * SECOND)
-            .buildAndRegister()
-
+        WIREMILL_RECIPES.removeRecipe(OreDictUnifier.get(ingot, Polycaprolactam))
+        WIREMILL_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(ingot, Polycaprolactam)
+            outputs(STRING, 32)
+            EUt(48) // MV
+            duration(4 * SECOND)
+        }
     }
 
     // @formatter:on

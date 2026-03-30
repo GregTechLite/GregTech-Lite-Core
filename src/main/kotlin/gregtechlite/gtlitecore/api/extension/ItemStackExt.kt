@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.api.extension
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.MetaOreDictItem
 import gregtech.api.metatileentity.MetaTileEntity
+import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
@@ -71,6 +72,11 @@ fun MetaItem<*>.MetaValueItem.addOreDicts(vararg oreDictNames: String): MetaItem
 fun MetaOreDictItem.OreDictValueItem.stack(): ItemStack = getStack(1)
 
 fun MetaOreDictItem.OreDictValueItem.getStack(count: Int): ItemStack = getItemStack(count)
+
+fun Block.stack(): ItemStack = getStack(1)
+
+fun Block.getStack(count: Int = 1, meta: Int = 0)
+    = ItemStack(this, count, meta)
 
 fun MetaTileEntity.stack(): ItemStack = getStack()
 

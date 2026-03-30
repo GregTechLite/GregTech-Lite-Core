@@ -27,21 +27,21 @@ fun <T: RecipeBuilder<T>> RecipeMap<T>.addRecipe(builder: T.() -> Unit)
 
 // region Recipe Input Shortcut
 
-fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(item: Item, amount: Int = 1, metadata: Int = 0): T
-    = inputs(ItemStack(item, amount, metadata))
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(item: Item, amount: Int = 1, meta: Int = 0): T
+    = inputs(ItemStack(item, amount, meta))
 
-fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(block: Block, amount: Int = 1): T
-    = inputs(ItemStack(block, amount))
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(block: Block, amount: Int = 1, meta: Int = 0): T
+    = inputs(ItemStack(block, amount, meta))
 
 // endregion
 
 // region Recipe Output Shortcut
 
-fun <T: RecipeBuilder<T>> RecipeBuilder<T>.outputs(item: Item, amount: Int = 1, metadata: Int = 0): T
-    = outputs(ItemStack(item, amount, metadata))
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.outputs(item: Item, amount: Int = 1, meta: Int = 0): T
+    = outputs(ItemStack(item, amount, meta))
 
-fun <T: RecipeBuilder<T>> RecipeBuilder<T>.outputs(block: Block, amount: Int = 1): T
-    = outputs(ItemStack(block, amount))
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.outputs(block: Block, amount: Int = 1, meta: Int = 0): T
+    = outputs(ItemStack(block, amount, meta))
 
 // endregion
 

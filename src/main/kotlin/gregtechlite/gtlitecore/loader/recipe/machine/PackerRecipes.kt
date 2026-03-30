@@ -6,9 +6,11 @@ import gregtech.api.recipes.RecipeMaps.PACKER_RECIPES
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.inputs
+import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SAND_DUST
-import net.minecraft.init.Blocks
-import net.minecraft.item.ItemStack
+import net.minecraft.init.Blocks.SAND
 
 internal object PackerRecipes
 {
@@ -17,23 +19,23 @@ internal object PackerRecipes
 
     fun init()
     {
-        // Sand block -> 4x Sand dust.
-        PACKER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .inputs(ItemStack(Blocks.SAND))
-            .output(SAND_DUST, 4)
-            .EUt(VH[ULV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        // Sand Block -> 4x Sand Dust
+        PACKER_RECIPES.addRecipe {
+            circuitMeta(4)
+            inputs(SAND)
+            output(SAND_DUST, 4)
+            EUt(VH[ULV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
-        // 4x Sand dust -> Sand block.
-        PACKER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(SAND_DUST, 4)
-            .outputs(ItemStack(Blocks.SAND))
-            .EUt(VH[ULV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        // 4x Sand Dust -> Sand Block
+        PACKER_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(SAND_DUST, 4)
+            outputs(SAND)
+            EUt(VH[ULV])
+            duration(2 * SECOND + 10 * TICK)
+        }
     }
 
     // @formatter:on

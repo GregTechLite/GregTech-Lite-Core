@@ -7,7 +7,7 @@ internal object VacuumChamberRecipes
 
     fun init()
     {
-
+        // ...
     }
 
     // @formatter:on

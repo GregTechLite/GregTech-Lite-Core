@@ -53,6 +53,7 @@ import gregtech.common.items.MetaItems.RAW_CRYSTAL_CHIP
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aegirine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminatedFullerene
@@ -83,730 +84,728 @@ object EntrodynamicallyPhaseChangerRecipes
 
     fun init()
     {
-
         // region Fusion Reactor Recipes
 
         // Argon Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Argon.getFluid(1000))
-            .fluidOutputs(Argon.getPlasma(1000))
-            .EUt(VA[LuV])
-            .duration(18 * TICK)
-            .blastFurnaceTemp(4600)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Argon.getFluid(1000))
+            fluidOutputs(Argon.getPlasma(1000))
+            EUt(VA[LuV])
+            duration(18 * TICK)
+            blastFurnaceTemp(4600)
+        }
 
         // Bismuth Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Bismuth)
-            .fluidOutputs(Bismuth.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Bismuth)
+            fluidOutputs(Bismuth.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Bismuth)
-            .fluidOutputs(Bismuth.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Bismuth)
+            fluidOutputs(Bismuth.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Bismuth)
-            .fluidOutputs(Bismuth.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Bismuth)
+            fluidOutputs(Bismuth.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Bismuth)
-            .fluidOutputs(Bismuth.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Bismuth)
+            fluidOutputs(Bismuth.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
         // Boron Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Boron)
-            .fluidOutputs(Boron.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Boron)
+            fluidOutputs(Boron.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Boron)
-            .fluidOutputs(Boron.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Boron)
+            fluidOutputs(Boron.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
         // Calcium Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Calcium)
-            .fluidOutputs(Calcium.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Calcium)
+            fluidOutputs(Calcium.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Calcium)
-            .fluidOutputs(Calcium.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Calcium)
+            fluidOutputs(Calcium.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Calcium)
-            .fluidOutputs(Calcium.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Calcium)
+            fluidOutputs(Calcium.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Calcium)
-            .fluidOutputs(Calcium.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Calcium)
+            fluidOutputs(Calcium.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
         // Helium Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Helium.getFluid(1000))
-            .fluidOutputs(Helium.getPlasma(1000))
-            .EUt(VA[IV])
-            .duration(5 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Helium.getFluid(1000))
+            fluidOutputs(Helium.getPlasma(1000))
+            EUt(VA[IV])
+            duration(5 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
         // Iron Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Iron)
-            .fluidOutputs(Iron.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Iron)
+            fluidOutputs(Iron.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Iron)
-            .fluidOutputs(Iron.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Iron)
+            fluidOutputs(Iron.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Iron)
-            .fluidOutputs(Iron.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Iron)
+            fluidOutputs(Iron.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Iron)
-            .fluidOutputs(Iron.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Iron)
+            fluidOutputs(Iron.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
         // Krypton Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Krypton.getFluid(1000))
-            .fluidOutputs(Krypton.getPlasma(1000))
-            .EUt(VA[ZPM])
-            .duration(18 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Krypton.getFluid(1000))
+            fluidOutputs(Krypton.getPlasma(1000))
+            EUt(VA[ZPM])
+            duration(18 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
         // Lead Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Lead)
-            .fluidOutputs(Lead.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Lead)
+            fluidOutputs(Lead.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Lead)
-            .fluidOutputs(Lead.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Lead)
+            fluidOutputs(Lead.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Lead)
-            .fluidOutputs(Lead.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Lead)
+            fluidOutputs(Lead.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Lead)
-            .fluidOutputs(Lead.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Lead)
+            fluidOutputs(Lead.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
         // Neon Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Neon.getFluid(1000))
-            .fluidOutputs(Neon.getPlasma(1000))
-            .EUt(VA[LuV])
-            .duration(1 * SECOND + 12 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Neon.getFluid(1000))
+            fluidOutputs(Neon.getPlasma(1000))
+            EUt(VA[LuV])
+            duration(1 * SECOND + 12 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
         // Nickel Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Nickel)
-            .fluidOutputs(Nickel.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Nickel)
+            fluidOutputs(Nickel.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Nickel)
-            .fluidOutputs(Nickel.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Nickel)
+            fluidOutputs(Nickel.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Nickel)
-            .fluidOutputs(Nickel.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Nickel)
+            fluidOutputs(Nickel.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Nickel)
-            .fluidOutputs(Nickel.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Nickel)
+            fluidOutputs(Nickel.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
         // Nitrogen Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Nitrogen.getFluid(1000))
-            .fluidOutputs(Nitrogen.getPlasma(1000))
-            .EUt(VA[LuV])
-            .duration(8 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Nitrogen.getFluid(1000))
+            fluidOutputs(Nitrogen.getPlasma(1000))
+            EUt(VA[LuV])
+            duration(8 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
         // Oxygen Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Oxygen.getFluid(1000))
-            .fluidOutputs(Oxygen.getPlasma(1000))
-            .EUt(VA[IV])
-            .duration(16 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Oxygen.getFluid(1000))
+            fluidOutputs(Oxygen.getPlasma(1000))
+            EUt(VA[IV])
+            duration(16 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
         // Radon Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Radon.getFluid(1000))
-            .fluidOutputs(Radon.getPlasma(1000))
-            .EUt(VA[ZPM])
-            .duration(16 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Radon.getFluid(1000))
+            fluidOutputs(Radon.getPlasma(1000))
+            EUt(VA[ZPM])
+            duration(16 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
         // Rubidium Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Rubidium)
-            .fluidOutputs(Rubidium.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Rubidium)
+            fluidOutputs(Rubidium.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Rubidium)
-            .fluidOutputs(Rubidium.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Rubidium)
+            fluidOutputs(Rubidium.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Rubidium)
-            .fluidOutputs(Rubidium.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Rubidium)
+            fluidOutputs(Rubidium.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Rubidium)
-            .fluidOutputs(Rubidium.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Rubidium)
+            fluidOutputs(Rubidium.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
         // Silver Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Silver)
-            .fluidOutputs(Silver.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1235)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Silver)
+            fluidOutputs(Silver.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1235)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Silver)
-            .fluidOutputs(Silver.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1235)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Silver)
+            fluidOutputs(Silver.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1235)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Silver)
-            .fluidOutputs(Silver.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1235)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Silver)
+            fluidOutputs(Silver.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1235)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Silver)
-            .fluidOutputs(Silver.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1235)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Silver)
+            fluidOutputs(Silver.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1235)
+        }
 
         // Sulfur Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Sulfur)
-            .fluidOutputs(Sulfur.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Sulfur)
+            fluidOutputs(Sulfur.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Sulfur)
-            .fluidOutputs(Sulfur.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Sulfur)
+            fluidOutputs(Sulfur.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Sulfur)
-            .fluidOutputs(Sulfur.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Sulfur)
+            fluidOutputs(Sulfur.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Sulfur)
-            .fluidOutputs(Sulfur.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Sulfur)
+            fluidOutputs(Sulfur.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
         // Thorium
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Thorium)
-            .fluidOutputs(Thorium.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(2023)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Thorium)
+            fluidOutputs(Thorium.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(2023)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Thorium)
-            .fluidOutputs(Thorium.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(2023)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Thorium)
+            fluidOutputs(Thorium.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(2023)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Thorium)
-            .fluidOutputs(Thorium.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(2023)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Thorium)
+            fluidOutputs(Thorium.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(2023)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Thorium)
-            .fluidOutputs(Thorium.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(2023)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Thorium)
+            fluidOutputs(Thorium.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(2023)
+        }
 
         // Tin
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Tin)
-            .fluidOutputs(Tin.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Tin)
+            fluidOutputs(Tin.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Tin)
-            .fluidOutputs(Tin.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Tin)
+            fluidOutputs(Tin.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Tin)
-            .fluidOutputs(Tin.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Tin)
+            fluidOutputs(Tin.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Tin)
-            .fluidOutputs(Tin.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Tin)
+            fluidOutputs(Tin.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
         // Xenon Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Xenon.getFluid(1000))
-            .fluidOutputs(Xenon.getPlasma(1000))
-            .EUt(VA[UV])
-            .duration(8 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Xenon.getFluid(1000))
+            fluidOutputs(Xenon.getPlasma(1000))
+            EUt(VA[UV])
+            duration(8 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
         // Zinc Plasma
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Zinc)
-            .fluidOutputs(Zinc.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Zinc)
+            fluidOutputs(Zinc.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Zinc)
-            .fluidOutputs(Zinc.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Zinc)
+            fluidOutputs(Zinc.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(ingot, Zinc)
-            .fluidOutputs(Zinc.getFluid(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(ingot, Zinc)
+            fluidOutputs(Zinc.getFluid(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ingot, Zinc)
-            .fluidOutputs(Zinc.getPlasma(L))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ingot, Zinc)
+            fluidOutputs(Zinc.getPlasma(L))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
         // endregion
 
         // region Fluid Heater Recipes
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Acetone.getFluid(1000))
-            .fluidOutputs(Ethenone.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(5 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Acetone.getFluid(1000))
+            fluidOutputs(Ethenone.getFluid(1000))
+            EUt(VA[LV])
+            duration(5 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(DissolvedCalciumAcetate.getFluid(2000))
-            .fluidOutputs(Acetone.getFluid(2000))
-            .EUt(VA[LV])
-            .duration(5 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(DissolvedCalciumAcetate.getFluid(2000))
+            fluidOutputs(Acetone.getFluid(2000))
+            EUt(VA[LV])
+            duration(5 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Ice.getFluid(L))
-            .fluidOutputs(Water.getFluid(L))
-            .EUt(4) // ULV
-            .duration(16 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Ice.getFluid(L))
+            fluidOutputs(Water.getFluid(L))
+            EUt(4) // ULV
+            duration(16 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(Steam.getFluid(16000))
-            .EUt(VA[LV])
-            .duration(14 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(Steam.getFluid(16000))
+            EUt(VA[LV])
+            duration(14 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .fluidOutputs(Steam.getFluid(16000))
-            .EUt(VA[LV])
-            .duration(14 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(DistilledWater.getFluid(1000))
+            fluidOutputs(Steam.getFluid(16000))
+            EUt(VA[LV])
+            duration(14 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Air.getFluid(1000))
-            .fluidOutputs(GreenhouseGas.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(12 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Air.getFluid(1000))
+            fluidOutputs(GreenhouseGas.getFluid(1000))
+            EUt(VA[MV])
+            duration(12 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Carbon5Fraction.getFluid(1000))
-            .fluidOutputs(DimerizedCarbon5Fraction.getFluid(870))
-            .EUt(VA[LV])
-            .duration(6 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Carbon5Fraction.getFluid(1000))
+            fluidOutputs(DimerizedCarbon5Fraction.getFluid(870))
+            EUt(VA[LV])
+            duration(6 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Dicyclopentadiene.getFluid(1000))
-            .fluidOutputs(Isoprene.getFluid(2000))
-            .EUt(VA[LV])
-            .duration(1 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Dicyclopentadiene.getFluid(1000))
+            fluidOutputs(Isoprene.getFluid(2000))
+            EUt(VA[LV])
+            duration(1 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Butene.getFluid(2000))
-            .fluidOutputs(Octene.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(6 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Butene.getFluid(2000))
+            fluidOutputs(Octene.getFluid(1000))
+            EUt(VA[MV])
+            duration(6 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(BacterialSludge.getFluid(2000))
-            .fluidOutputs(EnrichedBacterialSludge.getFluid(2000))
-            .EUt(VA[EV])
-            .duration(3 * SECOND + 4 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(BacterialSludge.getFluid(2000))
+            fluidOutputs(EnrichedBacterialSludge.getFluid(2000))
+            EUt(VA[EV])
+            duration(3 * SECOND + 4 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(HadronicResonantGas.getFluid(2000))
-            .fluidOutputs(ResonantStrangeMeson.getFluid(1000))
-            .EUt(VA[UEV])
-            .duration(5 * SECOND)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(HadronicResonantGas.getFluid(2000))
+            fluidOutputs(ResonantStrangeMeson.getFluid(1000))
+            EUt(VA[UEV])
+            duration(5 * SECOND)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(AminatedFullerene.getFluid(1000))
-            .fluidOutputs(Azafullerene.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(1 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(AminatedFullerene.getFluid(1000))
+            fluidOutputs(Azafullerene.getFluid(1000))
+            EUt(VA[IV])
+            duration(1 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(AppleCaneSyrup.getFluid(2000))
-            .fluidOutputs(HardAppleCandySyrup.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(2 * SECOND + 2 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(AppleCaneSyrup.getFluid(2000))
+            fluidOutputs(HardAppleCandySyrup.getFluid(1000))
+            EUt(VA[LV])
+            duration(2 * SECOND + 2 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(LemonLimeSodaSyrup.getFluid(1000))
-            .fluidOutputs(Etirps.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(5 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(LemonLimeSodaSyrup.getFluid(1000))
+            fluidOutputs(Etirps.getFluid(1000))
+            EUt(VA[LV])
+            duration(5 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(CranberrySodaSyrup.getFluid(1000))
-            .fluidOutputs(CranberryEtirps.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(5 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(CranberrySodaSyrup.getFluid(1000))
+            fluidOutputs(CranberryEtirps.getFluid(1000))
+            EUt(VA[LV])
+            duration(5 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(FulvicAcid.getFluid(100))
-            .fluidOutputs(Kerogen.getFluid(100))
-            .EUt(VA[LV])
-            .duration(2 * SECOND + 5 * TICK)
-            .blastFurnaceTemp(1200)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(FulvicAcid.getFluid(100))
+            fluidOutputs(Kerogen.getFluid(100))
+            EUt(VA[LV])
+            duration(2 * SECOND + 5 * TICK)
+            blastFurnaceTemp(1200)
+        }
 
         // endregion
 
         // region Unduplicated EBF Recipes
 
         // Engraved Crystal Chip
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(plate, Emerald)
-            .input(RAW_CRYSTAL_CHIP)
-            .output(ENGRAVED_CRYSTAL_CHIP)
-            .EUt(VA[HV])
-            .duration(22 * SECOND + 10 * TICK)
-            .blastFurnaceTemp(5000)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(plate, Emerald)
+            input(RAW_CRYSTAL_CHIP)
+            output(ENGRAVED_CRYSTAL_CHIP)
+            EUt(VA[HV])
+            duration(22 * SECOND + 10 * TICK)
+            blastFurnaceTemp(5000)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(plate, Olivine)
-            .input(RAW_CRYSTAL_CHIP)
-            .output(ENGRAVED_CRYSTAL_CHIP)
-            .EUt(VA[HV])
-            .duration(22 * SECOND + 10 * TICK)
-            .blastFurnaceTemp(5000)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(plate, Olivine)
+            input(RAW_CRYSTAL_CHIP)
+            output(ENGRAVED_CRYSTAL_CHIP)
+            EUt(VA[HV])
+            duration(22 * SECOND + 10 * TICK)
+            blastFurnaceTemp(5000)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(plate, Forsterite)
-            .input(RAW_CRYSTAL_CHIP)
-            .output(ENGRAVED_CRYSTAL_CHIP)
-            .EUt(VA[HV])
-            .duration(22 * SECOND + 10 * TICK)
-            .blastFurnaceTemp(5000)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(plate, Forsterite)
+            input(RAW_CRYSTAL_CHIP)
+            output(ENGRAVED_CRYSTAL_CHIP)
+            EUt(VA[HV])
+            duration(22 * SECOND + 10 * TICK)
+            blastFurnaceTemp(5000)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(plate, Aegirine)
-            .input(RAW_CRYSTAL_CHIP)
-            .output(ENGRAVED_CRYSTAL_CHIP)
-            .EUt(VA[HV])
-            .duration(22 * SECOND + 10 * TICK)
-            .blastFurnaceTemp(5000)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(plate, Aegirine)
+            input(RAW_CRYSTAL_CHIP)
+            output(ENGRAVED_CRYSTAL_CHIP)
+            EUt(VA[HV])
+            duration(22 * SECOND + 10 * TICK)
+            blastFurnaceTemp(5000)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(plate, Jade)
-            .input(RAW_CRYSTAL_CHIP)
-            .output(ENGRAVED_CRYSTAL_CHIP)
-            .EUt(VA[HV])
-            .duration(22 * SECOND + 10 * TICK)
-            .blastFurnaceTemp(5000)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(plate, Jade)
+            input(RAW_CRYSTAL_CHIP)
+            output(ENGRAVED_CRYSTAL_CHIP)
+            EUt(VA[HV])
+            duration(22 * SECOND + 10 * TICK)
+            blastFurnaceTemp(5000)
+        }
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(plate, Prasiolite)
-            .input(RAW_CRYSTAL_CHIP)
-            .output(ENGRAVED_CRYSTAL_CHIP)
-            .EUt(VA[HV])
-            .duration(22 * SECOND + 10 * TICK)
-            .blastFurnaceTemp(5000)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(plate, Prasiolite)
+            input(RAW_CRYSTAL_CHIP)
+            output(ENGRAVED_CRYSTAL_CHIP)
+            EUt(VA[HV])
+            duration(22 * SECOND + 10 * TICK)
+            blastFurnaceTemp(5000)
+        }
 
         // endregion
-
     }
 
     // @formatter:on

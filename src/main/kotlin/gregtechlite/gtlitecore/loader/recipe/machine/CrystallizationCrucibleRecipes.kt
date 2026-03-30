@@ -5,7 +5,7 @@ internal object CrystallizationCrucibleRecipes
 
     fun init()
     {
-        // TODO check all crystallization recipes, and resolved conflicts at there.
+        // TODO: Check all crystallization recipes, and resolved conflicts at there.
     }
 
 }
