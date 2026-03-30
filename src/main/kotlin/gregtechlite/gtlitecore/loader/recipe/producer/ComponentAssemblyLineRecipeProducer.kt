@@ -187,6 +187,9 @@ import gregtech.common.items.MetaItems.SENSOR_UXV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPONENT_ASSEMBLY_LINE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
@@ -238,6 +241,8 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UXV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_ZPM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ZENITH_STAR
 import net.minecraft.init.Items
+import net.minecraft.init.Items.ENDER_EYE
+import net.minecraft.init.Items.NETHER_STAR
 import net.minecraft.item.ItemStack
 
 /**
@@ -280,210 +285,210 @@ internal object ComponentAssemblyLineRecipeProducer
     private fun electricMotorRecipes()
     {
         // LV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(cableGtHex, Tin, 8) // 64x (2x cableGtSingle) = 64x (1x cableGtDouble) = 8x cableGtHex
-            .input(stickLong, Iron, 64) // 2x (64x stick) = 64x stickLong
-            .input(stickLong, IronMagnetic, 32) // 64x stick = 32x stickLong
-            .input(wireGtHex, Copper, 16) // 64x (4x wireGtSingle) = 64x (1x wireGtQuadruple) = 16x wireGtHex
-            .output(ELECTRIC_MOTOR_LV, 64)
-            .EUt(VA[LV].toLong())
-            .duration(15 * SECOND)
-            .tier(LV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(cableGtHex, Tin, 8) // 64x (2x cableGtSingle) = 64x (1x cableGtDouble) = 8x cableGtHex
+            input(stickLong, Iron, 64) // 2x (64x stick) = 64x stickLong
+            input(stickLong, IronMagnetic, 32) // 64x stick = 32x stickLong
+            input(wireGtHex, Copper, 16) // 64x (4x wireGtSingle) = 64x (1x wireGtQuadruple) = 16x wireGtHex
+            output(ELECTRIC_MOTOR_LV, 64)
+            EUt(VA[LV])
+            duration(15 * SECOND)
+            tier(LV)
+        }
 
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(cableGtHex, Tin, 8) // 64x (2x cableGtSingle) = 64x (1x cableGtDouble) = 8x cableGtHex
-            .input(stickLong, Steel, 64) // 2x (64x stick) = 64x stickLong
-            .input(stickLong, SteelMagnetic, 32) // 64x stick = 32x stickLong
-            .input(wireGtHex, Copper, 16) // 64x(4x wireGtSingle) = 64x (1x wireGtQuadruple) = 16x wireGtHex
-            .output(ELECTRIC_MOTOR_LV, 64)
-            .EUt(VA[LV].toLong())
-            .duration(15 * SECOND)
-            .tier(LV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(cableGtHex, Tin, 8) // 64x (2x cableGtSingle) = 64x (1x cableGtDouble) = 8x cableGtHex
+            input(stickLong, Steel, 64) // 2x (64x stick) = 64x stickLong
+            input(stickLong, SteelMagnetic, 32) // 64x stick = 32x stickLong
+            input(wireGtHex, Copper, 16) // 64x(4x wireGtSingle) = 64x (1x wireGtQuadruple) = 16x wireGtHex
+            output(ELECTRIC_MOTOR_LV, 64)
+            EUt(VA[LV])
+            duration(15 * SECOND)
+            tier(LV)
+        }
 
         // MV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(cableGtHex, Copper, 8) // 64x (2x cableGtSingle) = 64x (1x cableGtDouble) = 8x cableGtHex
-            .input(stickLong, Aluminium, 64) // 2x (64x stick) = 64x stickLong
-            .input(stickLong, SteelMagnetic, 32) // 64x stick = 32x stickLong
-            .input(wireGtHex, Cupronickel, 32) // 64x (4x wireGtDouble) = 64x (1x wireGtOctal) = 32x wireGtHex
-            .output(ELECTRIC_MOTOR_MV, 64)
-            .EUt(VA[MV].toLong())
-            .duration(30 * SECOND)
-            .tier(MV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(cableGtHex, Copper, 8) // 64x (2x cableGtSingle) = 64x (1x cableGtDouble) = 8x cableGtHex
+            input(stickLong, Aluminium, 64) // 2x (64x stick) = 64x stickLong
+            input(stickLong, SteelMagnetic, 32) // 64x stick = 32x stickLong
+            input(wireGtHex, Cupronickel, 32) // 64x (4x wireGtDouble) = 64x (1x wireGtOctal) = 32x wireGtHex
+            output(ELECTRIC_MOTOR_MV, 64)
+            EUt(VA[MV])
+            duration(30 * SECOND)
+            tier(MV)
+        }
 
         // HV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(cableGtHex, Silver, 16) // 64x (2x cableGtDouble) = 64x (1x cableGtQuadruple) = 16x cableGtHex
-            .input(stickLong, StainlessSteel, 64) // 2x (64x stick) = 64x stickLong
-            .input(stickLong, SteelMagnetic, 32) // 64x stick = 32x stickLong
-            .input(wireGtHex, Electrum, 32) // 64x (4x wireGtDouble) = 64x (1x wireGtOctal) = 32x wireGtHex
-            .output(ELECTRIC_MOTOR_HV, 64)
-            .EUt(VA[HV].toLong())
-            .duration(30 * SECOND)
-            .tier(HV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(cableGtHex, Silver, 16) // 64x (2x cableGtDouble) = 64x (1x cableGtQuadruple) = 16x cableGtHex
+            input(stickLong, StainlessSteel, 64) // 2x (64x stick) = 64x stickLong
+            input(stickLong, SteelMagnetic, 32) // 64x stick = 32x stickLong
+            input(wireGtHex, Electrum, 32) // 64x (4x wireGtDouble) = 64x (1x wireGtOctal) = 32x wireGtHex
+            output(ELECTRIC_MOTOR_HV, 64)
+            EUt(VA[HV])
+            duration(30 * SECOND)
+            tier(HV)
+        }
 
         // EV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(cableGtHex, Aluminium, 16) // 64x (2x cableGtDouble) = 64x (1x cableGtQuadruple) = 16x cableGtHex
-            .input(stickLong, Titanium, 64) // 2x (64x stick) = 64x stickLong
-            .input(stickLong, NeodymiumMagnetic, 32) // 64x stick = 32x stickLong
-            .input(wireGtHex, Kanthal, 32) // 64x (4x wireGtDouble) = 64x (1x wireGtOctal) = 32x wireGtHex
-            .output(ELECTRIC_MOTOR_EV, 64)
-            .EUt(VA[EV].toLong())
-            .duration(45 * SECOND)
-            .tier(EV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(cableGtHex, Aluminium, 16) // 64x (2x cableGtDouble) = 64x (1x cableGtQuadruple) = 16x cableGtHex
+            input(stickLong, Titanium, 64) // 2x (64x stick) = 64x stickLong
+            input(stickLong, NeodymiumMagnetic, 32) // 64x stick = 32x stickLong
+            input(wireGtHex, Kanthal, 32) // 64x (4x wireGtDouble) = 64x (1x wireGtOctal) = 32x wireGtHex
+            output(ELECTRIC_MOTOR_EV, 64)
+            EUt(VA[EV])
+            duration(45 * SECOND)
+            tier(EV)
+        }
 
         // IV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(cableGtHex, Tungsten, 16) // 64x (2x cableGtDouble) = 64x (1x cableGtQuadruple) = 16x cableGtHex
-            .input(stickLong, TungstenSteel, 64) // 2x (64x stick) = 64x stickLong
-            .input(stickLong, NeodymiumMagnetic, 32) // 64x stick = 32x stickLong
-            .input(wireGtHex, Graphene, 32) // 64x (4x wireGtDouble) = 64x (1x wireGtOctal) = 32x wireGtHex
-            .output(ELECTRIC_MOTOR_IV, 64)
-            .EUt(VA[IV].toLong())
-            .duration(45 * SECOND)
-            .tier(IV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(cableGtHex, Tungsten, 16) // 64x (2x cableGtDouble) = 64x (1x cableGtQuadruple) = 16x cableGtHex
+            input(stickLong, TungstenSteel, 64) // 2x (64x stick) = 64x stickLong
+            input(stickLong, NeodymiumMagnetic, 32) // 64x stick = 32x stickLong
+            input(wireGtHex, Graphene, 32) // 64x (4x wireGtDouble) = 64x (1x wireGtOctal) = 32x wireGtHex
+            output(ELECTRIC_MOTOR_IV, 64)
+            EUt(VA[IV])
+            duration(45 * SECOND)
+            tier(IV)
+        }
 
         // LuV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, SamariumMagnetic, 64) // 64x stickLong
-            .input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(Lubricant.getFluid(250 * 64)) // 250 * 64
-            .fluidInputs(HSSS.getFluid(L * 64 // stickLongX: [(144L) * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, SamariumMagnetic, 64) // 64x stickLong
+            input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 64)) // 144 * 64
+            fluidInputs(Lubricant.getFluid(250 * 64)) // 250 * 64
+            fluidInputs(HSSS.getFluid(L * 64 // stickLongX: [(144L) * 64]
                     + 36 * 2 * 64 // ringX: [(36L) * 2 * 64]
                     + 18 * 4 * 64)) // roundX: [(18L) * 4 * 64]
-            .fluidInputs(Ruridit.getFluid(18 * 64 * 64)) // wireFineX: [(18L) * 64 * 64]
-            .output(ELECTRIC_MOTOR_LuV, 64)
-            .EUt(VA[LuV].toLong())
-            .duration(1 * MINUTE)
-            .tier(LuV)
-            .buildAndRegister()
+            fluidInputs(Ruridit.getFluid(18 * 64 * 64)) // wireFineX: [(18L) * 64 * 64]
+            output(ELECTRIC_MOTOR_LuV, 64)
+            EUt(VA[LuV])
+            duration(1 * MINUTE)
+            tier(LuV)
+        }
 
         // ZPM
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, SamariumMagnetic, 64) // 64x stickLong
-            .input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(Lubricant.getFluid(500 * 64)) // 500 * 64
-            .fluidInputs(Osmiridium.getFluid(L * 64 // stickLongX: [(144L) * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, SamariumMagnetic, 64) // 64x stickLong
+            input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(Lubricant.getFluid(500 * 64)) // 500 * 64
+            fluidInputs(Osmiridium.getFluid(L * 64 // stickLongX: [(144L) * 64]
                     + 36 * 2 * 64 // ringX: [(36L) * 2 * 64]
                     + 18 * 4 * 64)) //  roundX: [(18L) * 4 * 64]
-            .fluidInputs(Europium.getFluid(18 * (64 + 32) * 64)) // wireFineX: [(18L) * (64 + 32) * 64]
-            .output(ELECTRIC_MOTOR_ZPM, 64)
-            .EUt(VA[ZPM].toLong())
-            .duration(1 * MINUTE)
-            .tier(ZPM)
-            .buildAndRegister()
+            fluidInputs(Europium.getFluid(18 * (64 + 32) * 64)) // wireFineX: [(18L) * (64 + 32) * 64]
+            output(ELECTRIC_MOTOR_ZPM, 64)
+            EUt(VA[ZPM])
+            duration(1 * MINUTE)
+            tier(ZPM)
+        }
 
         // UV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, SamariumMagnetic, 64) // 64x stickLong
-            .input(cableGtHex, YttriumBariumCuprate, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Lubricant.getFluid(1000 * 64)) // 1000 * 64
-            .fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(Tritanium.getFluid(L * 2 * 64 // stickLongX: [(144L) * 2 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, SamariumMagnetic, 64) // 64x stickLong
+            input(cableGtHex, YttriumBariumCuprate, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Lubricant.getFluid(1000 * 64)) // 1000 * 64
+            fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
+            fluidInputs(Tritanium.getFluid(L * 2 * 64 // stickLongX: [(144L) * 2 * 64]
                     + 36 * 4 * 64 // ringX: [(36L) * 4 * 64]
                     + 18 * 8 * 64)) // roundX: [(18L) * 8 * 64]
-            .fluidInputs(Americium.getFluid(18 * (64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64) * 64 ]
-            .output(ELECTRIC_MOTOR_UV, 64)
-            .EUt(VA[UV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UV)
-            .buildAndRegister()
+            fluidInputs(Americium.getFluid(18 * (64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64) * 64 ]
+            output(ELECTRIC_MOTOR_UV, 64)
+            EUt(VA[UV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UV)
+        }
 
         // UHV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, ChromiumGermaniumTellurideMagnetic, 64) // 64x stickLong
-            .input(cableGtHex, Europium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(Lubricant.getFluid(2000 * 64)) // 2000 * 64
-            .fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(Adamantium.getFluid(L * 2 * 64 // stickLongX: [(144L) * 2 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, ChromiumGermaniumTellurideMagnetic, 64) // 64x stickLong
+            input(cableGtHex, Europium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(Lubricant.getFluid(2000 * 64)) // 2000 * 64
+            fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(Adamantium.getFluid(L * 2 * 64 // stickLongX: [(144L) * 2 * 64]
                 + 36 * 4 * 64// ringX: [(36L) * 4 * 64]
                 + 18 * 8 * 64)) // roundX: [(18L) * 8 * 64]
-            .fluidInputs(Bedrockium.getFluid(18 * (64 + 64 + 32) * 64)) // wireFineX: [(18L) * (64 + 64 + 32) * 64]
-            .output(ELECTRIC_MOTOR_UHV, 64)
-            .EUt(VA[UHV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UHV)
-            .buildAndRegister()
+            fluidInputs(Bedrockium.getFluid(18 * (64 + 64 + 32) * 64)) // wireFineX: [(18L) * (64 + 64 + 32) * 64]
+            output(ELECTRIC_MOTOR_UHV, 64)
+            EUt(VA[UHV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UHV)
+        }
 
         // UEV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, ChromiumGermaniumTellurideMagnetic, 64) // 64x stickLong
-            .input(cableGtHex, Seaborgium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000 * 64)) // 4000 * 64
-            .fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(CosmicNeutronium.getFluid(L * 4 * 64 // stickLongX: [(144L) * 4 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, ChromiumGermaniumTellurideMagnetic, 64) // 64x stickLong
+            input(cableGtHex, Seaborgium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000 * 64)) // 4000 * 64
+            fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
+            fluidInputs(CosmicNeutronium.getFluid(L * 4 * 64 // stickLongX: [(144L) * 4 * 64]
                 + 36 * 8 * 64 // ringX: [(36L) * 8 * 64]
                 + 18 * 16 * 64)) // roundX: [(18L) * 16 * 64]
-            .fluidInputs(MetastableHassium.getFluid(18 * (64 + 64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64 + 64) * 64]
-            .output(ELECTRIC_MOTOR_UEV, 64)
-            .EUt(VA[UEV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UEV)
-            .buildAndRegister()
+            fluidInputs(MetastableHassium.getFluid(18 * (64 + 64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64 + 64) * 64]
+            output(ELECTRIC_MOTOR_UEV, 64)
+            EUt(VA[UEV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UEV)
+        }
 
         // UIV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, Magnetium, 64) // 64x stickLong
-            .input(cableGtHex, SuperheavyAlloyA, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000 * 64)) // 8000 * 64
-            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 4 * 64 // stickLongX: [(144L) * 4 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, Magnetium, 64) // 64x stickLong
+            input(cableGtHex, SuperheavyAlloyA, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000 * 64)) // 8000 * 64
+            fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 4 * 64 // stickLongX: [(144L) * 4 * 64]
                 + 36 * 8 * 64 // ringX: [(36L) * 8 * 64]
                 + 18 * 16 * 64)) // roundX: [(18L) * 16 * 64]
-            .fluidInputs(Hypogen.getFluid(18 * (64 + 64 + 64 + 32) * 64)) // wireFine: [(18L) * (64 + 64 + 64 + 32) * 64]
-            .output(ELECTRIC_MOTOR_UIV, 64)
-            .EUt(VA[UIV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UIV)
-            .buildAndRegister()
+            fluidInputs(Hypogen.getFluid(18 * (64 + 64 + 64 + 32) * 64)) // wireFine: [(18L) * (64 + 64 + 64 + 32) * 64]
+            output(ELECTRIC_MOTOR_UIV, 64)
+            EUt(VA[UIV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UIV)
+        }
 
         // UXV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(ENERGISED_TESSERACT, 64)
-            .input(stickLong, Magnetium, 64) // 64x (2x stickLong)
-            .input(stickLong, Magnetium, 64)
-            .input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
-            .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(TranscendentMetal.getFluid(144 * 8 * 64 // stickLongX: [(144L) * 8 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(ENERGISED_TESSERACT, 64)
+            input(stickLong, Magnetium, 64) // 64x (2x stickLong)
+            input(stickLong, Magnetium, 64)
+            input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
+            fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(TranscendentMetal.getFluid(144 * 8 * 64 // stickLongX: [(144L) * 8 * 64]
                 + 36 * 16 * 64 // ringX: [(36L) * 16 * 64]
                 + 18 * 32 * 64)) // roundX: [(18L) * 32 * 64]
-            .fluidInputs(MagMatter.getFluid(18 * (64 + 64 + 64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64 + 64 + 64) * 64]
-            .output(ELECTRIC_MOTOR_UXV, 64)
-            .EUt(VA[UXV].toLong())
-            .duration(1 * MINUTE + 45 * SECOND)
-            .tier(UXV)
-            .buildAndRegister()
+            fluidInputs(MagMatter.getFluid(18 * (64 + 64 + 64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64 + 64 + 64) * 64]
+            output(ELECTRIC_MOTOR_UXV, 64)
+            EUt(VA[UXV])
+            duration(1 * MINUTE + 45 * SECOND)
+            tier(UXV)
+        }
 
         // OpV
 
@@ -493,224 +498,224 @@ internal object ComponentAssemblyLineRecipeProducer
     private fun electricPistonRecipes()
     {
         // LV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, Steel, 64) // 64x (2x stick) = 64x stickLong
-            .input(cableGtHex, Tin, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .input(plateDouble, Steel, 64) // 64x (3x plate) = 96x plateDouble = (64 + 32)x plateDouble
-            .input(plateDouble, Steel, 32)
-            .input(gearSmall, Steel, 64) // 64x gearSmall
-            .input(ELECTRIC_MOTOR_LV, 64)
-            .output(ELECTRIC_PISTON_LV, 64)
-            .EUt(VA[LV].toLong())
-            .duration(15 * SECOND)
-            .tier(LV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, Steel, 64) // 64x (2x stick) = 64x stickLong
+            input(cableGtHex, Tin, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            input(plateDouble, Steel, 64) // 64x (3x plate) = 96x plateDouble = (64 + 32)x plateDouble
+            input(plateDouble, Steel, 32)
+            input(gearSmall, Steel, 64) // 64x gearSmall
+            input(ELECTRIC_MOTOR_LV, 64)
+            output(ELECTRIC_PISTON_LV, 64)
+            EUt(VA[LV])
+            duration(15 * SECOND)
+            tier(LV)
+        }
 
         // MV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, Aluminium, 64) // 64x (2x stick) = 64x stickLong
-            .input(cableGtHex, Copper, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .input(plateDouble, Aluminium, 64) // 64x (3x plate) = 96x plateDouble = (64 + 32)x plateDouble
-            .input(plateDouble, Aluminium, 32)
-            .input(gearSmall, Aluminium, 64) // 64x gearSmall
-            .input(ELECTRIC_MOTOR_MV, 64)
-            .output(ELECTRIC_PISTON_MV, 64)
-            .EUt(VA[MV].toLong())
-            .duration(30 * SECOND)
-            .tier(MV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, Aluminium, 64) // 64x (2x stick) = 64x stickLong
+            input(cableGtHex, Copper, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            input(plateDouble, Aluminium, 64) // 64x (3x plate) = 96x plateDouble = (64 + 32)x plateDouble
+            input(plateDouble, Aluminium, 32)
+            input(gearSmall, Aluminium, 64) // 64x gearSmall
+            input(ELECTRIC_MOTOR_MV, 64)
+            output(ELECTRIC_PISTON_MV, 64)
+            EUt(VA[MV])
+            duration(30 * SECOND)
+            tier(MV)
+        }
 
         // HV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, StainlessSteel, 64) // 64x (2x stick) = 64x stickLong
-            .input(cableGtHex, Gold, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .input(plateDouble, StainlessSteel, 64) // 64x (3x plate) = 96x plateDouble = (64 + 32)x plateDouble
-            .input(plateDouble, StainlessSteel, 32)
-            .input(gearSmall, StainlessSteel, 64) // 64x gearSmall
-            .input(ELECTRIC_MOTOR_HV, 64)
-            .output(ELECTRIC_PISTON_HV, 64)
-            .EUt(VA[HV].toLong())
-            .duration(30 * SECOND)
-            .tier(HV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, StainlessSteel, 64) // 64x (2x stick) = 64x stickLong
+            input(cableGtHex, Gold, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            input(plateDouble, StainlessSteel, 64) // 64x (3x plate) = 96x plateDouble = (64 + 32)x plateDouble
+            input(plateDouble, StainlessSteel, 32)
+            input(gearSmall, StainlessSteel, 64) // 64x gearSmall
+            input(ELECTRIC_MOTOR_HV, 64)
+            output(ELECTRIC_PISTON_HV, 64)
+            EUt(VA[HV])
+            duration(30 * SECOND)
+            tier(HV)
+        }
 
         // EV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, Titanium, 64) // 64x (2x stick) = 64x stickLong
-            .input(cableGtHex, Aluminium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .input(plateDouble, Titanium, 64) // 64x (3x plate) = 96x plateDouble = (64 + 32)x plateDouble
-            .input(plateDouble, Titanium, 32)
-            .input(gearSmall, Titanium, 64) // 64x gearSmall
-            .input(ELECTRIC_MOTOR_EV, 64)
-            .output(ELECTRIC_PISTON_EV, 64)
-            .EUt(VA[EV].toLong())
-            .duration(45 * SECOND)
-            .tier(EV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, Titanium, 64) // 64x (2x stick) = 64x stickLong
+            input(cableGtHex, Aluminium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            input(plateDouble, Titanium, 64) // 64x (3x plate) = 96x plateDouble = (64 + 32)x plateDouble
+            input(plateDouble, Titanium, 32)
+            input(gearSmall, Titanium, 64) // 64x gearSmall
+            input(ELECTRIC_MOTOR_EV, 64)
+            output(ELECTRIC_PISTON_EV, 64)
+            EUt(VA[EV])
+            duration(45 * SECOND)
+            tier(EV)
+        }
 
         // IV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, TungstenSteel, 64) // 64x (2x stick) = 64x stickLong
-            .input(cableGtHex, Tungsten, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .input(plateDouble, TungstenSteel, 64) // 64x (3x plate) = 96x plateDouble = (64 + 32)x plateDouble
-            .input(plateDouble, TungstenSteel, 32)
-            .input(gearSmall, TungstenSteel, 64) // 64x gearSmall
-            .input(ELECTRIC_MOTOR_IV, 64)
-            .output(ELECTRIC_PISTON_IV, 64)
-            .EUt(VA[IV].toLong())
-            .duration(45 * SECOND)
-            .tier(IV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, TungstenSteel, 64) // 64x (2x stick) = 64x stickLong
+            input(cableGtHex, Tungsten, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            input(plateDouble, TungstenSteel, 64) // 64x (3x plate) = 96x plateDouble = (64 + 32)x plateDouble
+            input(plateDouble, TungstenSteel, 32)
+            input(gearSmall, TungstenSteel, 64) // 64x gearSmall
+            input(ELECTRIC_MOTOR_IV, 64)
+            output(ELECTRIC_PISTON_IV, 64)
+            EUt(VA[IV])
+            duration(45 * SECOND)
+            tier(IV)
+        }
 
         // LuV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(ELECTRIC_MOTOR_LuV, 64)
-            .input(plateDouble, HSSS, 32) // 64x plate = 32x plateDouble
-            .input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(Lubricant.getFluid(250 * 64)) // 250 * 64
-            .fluidInputs(HSSS.getFluid(36 * 2 * 64 // ringX: [(36L) * 2 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(ELECTRIC_MOTOR_LuV, 64)
+            input(plateDouble, HSSS, 32) // 64x plate = 32x plateDouble
+            input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 64)) // 144 * 64
+            fluidInputs(Lubricant.getFluid(250 * 64)) // 250 * 64
+            fluidInputs(HSSS.getFluid(36 * 2 * 64 // ringX: [(36L) * 2 * 64]
                     + 18 * 4 * 64 // roundX: [(18L) * 4 * 64]
                     + 72 * 2 * 64 // stickX: [(72L) * 2 * 64]
                     + 576 * 64 // gearX: [(576L) * 64]
                     + 144 * 2 * 64)) // gearSmallX: [(144L) * 2 * 64]
-            .output(ELECTRIC_PISTON_LUV, 64)
-            .EUt(VA[LuV].toLong())
-            .duration(1 * MINUTE)
-            .tier(LuV)
-            .buildAndRegister()
+            output(ELECTRIC_PISTON_LUV, 64)
+            EUt(VA[LuV])
+            duration(1 * MINUTE)
+            tier(LuV)
+        }
 
         // ZPM
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(ELECTRIC_MOTOR_ZPM, 64)
-            .input(plateDouble, Osmiridium, 32) // 64x plate = 32x plateDouble
-            .input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(Lubricant.getFluid(500 * 64)) // 500 * 64
-            .fluidInputs(Osmiridium.getFluid(36 * 2 * 64 // ringX: [(36L) * 2 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(ELECTRIC_MOTOR_ZPM, 64)
+            input(plateDouble, Osmiridium, 32) // 64x plate = 32x plateDouble
+            input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(Lubricant.getFluid(500 * 64)) // 500 * 64
+            fluidInputs(Osmiridium.getFluid(36 * 2 * 64 // ringX: [(36L) * 2 * 64]
                 + 18 * 4 * 64 // roundX: [(18L) * 4 * 64]
                 + 72 * 2 * 64 // stickX: [(72L) * 2 * 64]
                 + 576 * 64 // gearX: [(576L) * 64]
                 + 144 * 2 * 64)) // gearSmall: [(144L) * 2 * 64]
-            .output(ELECTRIC_PISTON_ZPM, 64)
-            .EUt(VA[ZPM].toLong())
-            .duration(1 * MINUTE)
-            .tier(ZPM)
-            .buildAndRegister()
+            output(ELECTRIC_PISTON_ZPM, 64)
+            EUt(VA[ZPM])
+            duration(1 * MINUTE)
+            tier(ZPM)
+        }
 
         // UV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(ELECTRIC_MOTOR_UV, 64)
-            .input(plateDouble, Tritanium, 64) // 64x (2x plate) = 64x plateDouble
-            .input(cableGtHex, YttriumBariumCuprate, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Lubricant.getFluid(1000 * 64)) // 1000 * 64
-            .fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(Tritanium.getFluid(36 * 4 * 64 // ringX: [(36L) * 4 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(ELECTRIC_MOTOR_UV, 64)
+            input(plateDouble, Tritanium, 64) // 64x (2x plate) = 64x plateDouble
+            input(cableGtHex, YttriumBariumCuprate, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Lubricant.getFluid(1000 * 64)) // 1000 * 64
+            fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
+            fluidInputs(Tritanium.getFluid(36 * 4 * 64 // ringX: [(36L) * 4 * 64]
                 + 18 * 8 * 64 // roundX: [(18L) * 8 * 64]
                 + 72 * 4 * 64 // stickX: [(72L) * 4 * 64]
                 + 576 * 64 // gearX: [(576L) * 64]
                 + 144 * 2 * 64)) // gearSmallX: [(144L) * 2 * 64]
-            .output(ELECTRIC_PISTON_UV, 64)
-            .EUt(VA[UV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UV)
-            .buildAndRegister()
+            output(ELECTRIC_PISTON_UV, 64)
+            EUt(VA[UV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UV)
+        }
 
         // UHV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(ELECTRIC_MOTOR_UHV, 64)
-            .input(plateDouble, Adamantium, 64) // 64x (2x plate) = 64x plateDouble
-            .input(cableGtHex, Europium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(Lubricant.getFluid(2000 * 64)) // 2000 * 64
-            .fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(Adamantium.getFluid(36 * 4 * 64 // ringX: [(36L) * 4 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(ELECTRIC_MOTOR_UHV, 64)
+            input(plateDouble, Adamantium, 64) // 64x (2x plate) = 64x plateDouble
+            input(cableGtHex, Europium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(Lubricant.getFluid(2000 * 64)) // 2000 * 64
+            fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(Adamantium.getFluid(36 * 4 * 64 // ringX: [(36L) * 4 * 64]
                 + 18 * 8 * 64 // roundX: [(18L) * 8 * 64]
                 + 72 * 4 * 64 // stickX: [(72L) * 4 * 64]
                 + 576 * 64 // gearX: [(576L) * 64]
                 + 144 * 2 * 64)) // gearSmallX: [(144L) * 2 * 64]
-            .output(ELECTRIC_PISTON_UHV, 64)
-            .EUt(VA[UHV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UHV)
-            .buildAndRegister()
+            output(ELECTRIC_PISTON_UHV, 64)
+            EUt(VA[UHV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UHV)
+        }
 
         // UEV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(ELECTRIC_MOTOR_UEV, 64)
-            .input(plateDouble, CosmicNeutronium, 64) // 64x (4x plate) = 64x (2x plateDouble)
-            .input(plateDouble, CosmicNeutronium, 64)
-            .input(cableGtHex, Seaborgium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000 * 64)) // 4000 * 64
-            .fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(CosmicNeutronium.getFluid(36 * 8 * 64 // ringX: [(36L) * 8 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(ELECTRIC_MOTOR_UEV, 64)
+            input(plateDouble, CosmicNeutronium, 64) // 64x (4x plate) = 64x (2x plateDouble)
+            input(plateDouble, CosmicNeutronium, 64)
+            input(cableGtHex, Seaborgium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000 * 64)) // 4000 * 64
+            fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
+            fluidInputs(CosmicNeutronium.getFluid(36 * 8 * 64 // ringX: [(36L) * 8 * 64]
                 + 18 * 16 * 64 // roundX: [(18L) * 16 * 64]
                 + 72 * 4 * 64 // stickX: [(72L) * 4 * 64]
                 + 576 * 64 // gearX: [(576L) * 64]
                 + 144 * 2 * 64)) // gearSmallX: [(144L) * 2 * 64]
-            .output(ELECTRIC_PISTON_UEV, 64)
-            .EUt(VA[UEV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UEV)
-            .buildAndRegister()
+            output(ELECTRIC_PISTON_UEV, 64)
+            EUt(VA[UEV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UEV)
+        }
 
         // UIV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(ELECTRIC_MOTOR_UIV, 64)
-            .input(plateDouble, HeavyQuarkDegenerateMatter, 64) // 64x (4x plate) = 64x (2x plateDouble)
-            .input(plateDouble, HeavyQuarkDegenerateMatter, 64)
-            .input(cableGtHex, SuperheavyAlloyA, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000 * 64)) // 8000 * 64
-            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(36 * 8 * 64 // ringX: [(36L) * 8 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(ELECTRIC_MOTOR_UIV, 64)
+            input(plateDouble, HeavyQuarkDegenerateMatter, 64) // 64x (4x plate) = 64x (2x plateDouble)
+            input(plateDouble, HeavyQuarkDegenerateMatter, 64)
+            input(cableGtHex, SuperheavyAlloyA, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000 * 64)) // 8000 * 64
+            fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(HeavyQuarkDegenerateMatter.getFluid(36 * 8 * 64 // ringX: [(36L) * 8 * 64]
                     + 18 * 16 * 64 // roundX: [(18L) * 16 * 64]
                     + 72 * 4 * 64 // stickX: [(72L) * 4 * 64]
                     + 576 * 64 // gearX: [(576L) * 64]
                     + 144 * 2 * 64)) // gearSmallX: [(144L) * 2 * 64]
-            .output(ELECTRIC_PISTON_UIV, 64)
-            .EUt(VA[UIV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UIV)
-            .buildAndRegister()
+            output(ELECTRIC_PISTON_UIV, 64)
+            EUt(VA[UIV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UIV)
+        }
 
         // UXV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(ELECTRIC_MOTOR_UXV, 64)
-            .input(plateDouble, TranscendentMetal, 64) // 64x (8x plate) = 64x (4x plateDouble)
-            .input(plateDouble, TranscendentMetal, 64)
-            .input(plateDouble, TranscendentMetal, 64)
-            .input(plateDouble, TranscendentMetal, 64)
-            .input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
-            .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(TranscendentMetal.getFluid(36 * 16 * 64 // ringX: [(36L) * 16 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(ELECTRIC_MOTOR_UXV, 64)
+            input(plateDouble, TranscendentMetal, 64) // 64x (8x plate) = 64x (4x plateDouble)
+            input(plateDouble, TranscendentMetal, 64)
+            input(plateDouble, TranscendentMetal, 64)
+            input(plateDouble, TranscendentMetal, 64)
+            input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
+            fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(TranscendentMetal.getFluid(36 * 16 * 64 // ringX: [(36L) * 16 * 64]
                 + 18 * 32 * 64 // roundX: [(18L) * 32 * 64]
                 + 576 * 2 * 64 // gearX: [(576L) * 2 * 64]
                 + 144 * 4 * 64)) // gearSmallX: [(144L) * 4 * 64]
-            .output(ELECTRIC_PISTON_UXV)
-            .EUt(VA[UXV].toLong())
-            .duration(1 * MINUTE + 45 * SECOND)
-            .tier(UXV)
-            .buildAndRegister()
+            output(ELECTRIC_PISTON_UXV)
+            EUt(VA[UXV])
+            duration(1 * MINUTE + 45 * SECOND)
+            tier(UXV)
+        }
 
         // OpV
 
@@ -729,64 +734,64 @@ internal object ComponentAssemblyLineRecipeProducer
             PolyphosphonitrileFluoroRubber.getFluid(36 * 2 * 64)))
         {
             // LV
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(cableGtHex, Tin, 4) // 64x cableGtSingle = 4x cableGtHex
-                .input(pipeHugeFluid, Bronze, 16) // 64x pipeNormalFluid = 16x pipeHugeFluid
-                .input(screw, Tin, 64)
-                .input(rotor, Tin, 64)
-                .input(ELECTRIC_MOTOR_LV, 64)
-                .fluidInputs(rubber)
-                .output(ELECTRIC_PUMP_LV, 64)
-                .EUt(VA[LV].toLong())
-                .duration(15 * SECOND)
-                .tier(LV)
-                .buildAndRegister()
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(cableGtHex, Tin, 4) // 64x cableGtSingle = 4x cableGtHex
+                input(pipeHugeFluid, Bronze, 16) // 64x pipeNormalFluid = 16x pipeHugeFluid
+                input(screw, Tin, 64)
+                input(rotor, Tin, 64)
+                input(ELECTRIC_MOTOR_LV, 64)
+                fluidInputs(rubber)
+                output(ELECTRIC_PUMP_LV, 64)
+                EUt(VA[LV])
+                duration(15 * SECOND)
+                tier(LV)
+            }
 
             // MV
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(cableGtHex, Copper, 4) // 64x cableGtSingle = 4x cableGtHex
-                .input(pipeHugeFluid, Steel, 16) // 64x pipeNormalFluid = 16x pipeHugeFluid
-                .input(screw, Bronze, 64)
-                .input(rotor, Bronze, 64)
-                .input(ELECTRIC_MOTOR_MV,  64)
-                .fluidInputs(rubber)
-                .output(ELECTRIC_PUMP_MV, 64)
-                .EUt(VA[MV].toLong())
-                .duration(30 * SECOND)
-                .tier(MV)
-                .buildAndRegister()
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(cableGtHex, Copper, 4) // 64x cableGtSingle = 4x cableGtHex
+                input(pipeHugeFluid, Steel, 16) // 64x pipeNormalFluid = 16x pipeHugeFluid
+                input(screw, Bronze, 64)
+                input(rotor, Bronze, 64)
+                input(ELECTRIC_MOTOR_MV,  64)
+                fluidInputs(rubber)
+                output(ELECTRIC_PUMP_MV, 64)
+                EUt(VA[MV])
+                duration(30 * SECOND)
+                tier(MV)
+            }
 
             // HV
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(cableGtHex, Gold, 4) // 64x cableGtSingle = 4x cableGtHex
-                .input(pipeHugeFluid, StainlessSteel, 16) // 64x pipeNormalFluid = 16x pipeHugeFluid
-                .input(screw, Steel, 64)
-                .input(rotor, Steel, 64)
-                .input(ELECTRIC_MOTOR_HV, 64)
-                .fluidInputs(rubber)
-                .output(ELECTRIC_PUMP_HV, 64)
-                .EUt(VA[HV].toLong())
-                .duration(30 * SECOND)
-                .tier(HV)
-                .buildAndRegister()
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(cableGtHex, Gold, 4) // 64x cableGtSingle = 4x cableGtHex
+                input(pipeHugeFluid, StainlessSteel, 16) // 64x pipeNormalFluid = 16x pipeHugeFluid
+                input(screw, Steel, 64)
+                input(rotor, Steel, 64)
+                input(ELECTRIC_MOTOR_HV, 64)
+                fluidInputs(rubber)
+                output(ELECTRIC_PUMP_HV, 64)
+                EUt(VA[HV])
+                duration(30 * SECOND)
+                tier(HV)
+            }
 
             // EV
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(cableGtHex, Aluminium, 4) // 64x cableGtSingle = 4x cableGtHex
-                .input(pipeHugeFluid, Titanium, 16) // 64x pipeNormalFluid = 16x pipeHugeFluid
-                .input(screw, StainlessSteel, 64)
-                .input(rotor, StainlessSteel, 64)
-                .input(ELECTRIC_MOTOR_EV, 64)
-                .fluidInputs(rubber)
-                .output(ELECTRIC_PUMP_EV, 64)
-                .EUt(VA[EV].toLong())
-                .duration(45 * SECOND)
-                .tier(EV)
-                .buildAndRegister()
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(cableGtHex, Aluminium, 4) // 64x cableGtSingle = 4x cableGtHex
+                input(pipeHugeFluid, Titanium, 16) // 64x pipeNormalFluid = 16x pipeHugeFluid
+                input(screw, StainlessSteel, 64)
+                input(rotor, StainlessSteel, 64)
+                input(ELECTRIC_MOTOR_EV, 64)
+                fluidInputs(rubber)
+                output(ELECTRIC_PUMP_EV, 64)
+                EUt(VA[EV])
+                duration(45 * SECOND)
+                tier(EV)
+            }
         }
 
         // IV
@@ -796,19 +801,19 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(36 * 2 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(36 * 2 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(cableGtHex, Tungsten, 4) // 64x cableGtSingle = 4x cableGtHex
-                .input(pipeHugeFluid, TungstenSteel, 16) // 64x pipeNormalFluid = 16x pipeHugeFluid
-                .input(screw, TungstenSteel, 64)
-                .input(rotor, TungstenSteel, 64)
-                .input(ELECTRIC_MOTOR_IV, 64)
-                .fluidInputs(rubber)
-                .output(ELECTRIC_PUMP_IV , 64)
-                .EUt(VA[IV].toLong())
-                .duration(45 * SECOND)
-                .tier(IV)
-                .buildAndRegister()
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(cableGtHex, Tungsten, 4) // 64x cableGtSingle = 4x cableGtHex
+                input(pipeHugeFluid, TungstenSteel, 16) // 64x pipeNormalFluid = 16x pipeHugeFluid
+                input(screw, TungstenSteel, 64)
+                input(rotor, TungstenSteel, 64)
+                input(ELECTRIC_MOTOR_IV, 64)
+                fluidInputs(rubber)
+                output(ELECTRIC_PUMP_IV , 64)
+                EUt(VA[IV])
+                duration(45 * SECOND)
+                tier(IV)
+            }
         }
 
         // LuV
@@ -818,22 +823,22 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(36 * 4 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(36 * 4 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(ELECTRIC_MOTOR_LuV, 64)
-                .input(plateDouble, HSSS, 32) // 64x plate = 32x plateDouble
-                .input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(SolderingAlloy.getFluid(L * 64)) // 144 * 64
-                .fluidInputs(Lubricant.getFluid(250 * 64)) // 250 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(HSSS.getFluid(18 * 4 * 64 // screwX: [(18L) * 4 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(ELECTRIC_MOTOR_LuV, 64)
+                input(plateDouble, HSSS, 32) // 64x plate = 32x plateDouble
+                input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(SolderingAlloy.getFluid(L * 64)) // 144 * 64
+                fluidInputs(Lubricant.getFluid(250 * 64)) // 250 * 64
+                fluidInputs(rubber)
+                fluidInputs(HSSS.getFluid(18 * 4 * 64 // screwX: [(18L) * 4 * 64]
                     + 576 * 64)) // rotorX: [(576) * 64]
-                .fluidInputs(NiobiumTitanium.getFluid(432 * 64)) // pipeNormalFluidX: [(432L) * 64]
-                .output(ELECTRIC_PUMP_LuV, 64)
-                .EUt(VA[LuV].toLong())
-                .duration(1 * MINUTE)
-                .tier(LuV)
-                .buildAndRegister()
+                fluidInputs(NiobiumTitanium.getFluid(432 * 64)) // pipeNormalFluidX: [(432L) * 64]
+                output(ELECTRIC_PUMP_LuV, 64)
+                EUt(VA[LuV])
+                duration(1 * MINUTE)
+                tier(LuV)
+            }
         }
 
         // ZPM
@@ -843,22 +848,22 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(36 * 6 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(36 * 6 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(ELECTRIC_MOTOR_ZPM, 64)
-                .input(plateDouble, Osmiridium, 32) // 64x plate = 32x plateDouble
-                .input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
-                .fluidInputs(Lubricant.getFluid(500 * 64)) // 500 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(Osmiridium.getFluid(18 * 4 * 64 // screwX: [(18L) * 4 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(ELECTRIC_MOTOR_ZPM, 64)
+                input(plateDouble, Osmiridium, 32) // 64x plate = 32x plateDouble
+                input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
+                fluidInputs(Lubricant.getFluid(500 * 64)) // 500 * 64
+                fluidInputs(rubber)
+                fluidInputs(Osmiridium.getFluid(18 * 4 * 64 // screwX: [(18L) * 4 * 64]
                     + 576 * 64)) // rotorX: [(576L) * 64]
-                .fluidInputs(Iridium.getFluid(432 * 64)) // pipeNormalFluidX: [(432L) * 64]
-                .output(ELECTRIC_PUMP_ZPM, 64)
-                .EUt(VA[ZPM].toLong())
-                .duration(1 * MINUTE)
-                .tier(ZPM)
-                .buildAndRegister()
+                fluidInputs(Iridium.getFluid(432 * 64)) // pipeNormalFluidX: [(432L) * 64]
+                output(ELECTRIC_PUMP_ZPM, 64)
+                EUt(VA[ZPM])
+                duration(1 * MINUTE)
+                tier(ZPM)
+            }
         }
 
         // UV
@@ -868,23 +873,23 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(36 * 8 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(36 * 8 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(ELECTRIC_MOTOR_UV, 64)
-                .input(plateDouble, Tritanium, 64) // 64x (2x plate) = 64x plateDouble
-                .input(cableGtHex, YttriumBariumCuprate, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
-                .fluidInputs(Lubricant.getFluid(1000 * 64)) // 1000 * 64
-                .fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(Tritanium.getFluid(18 * 8 * 64 // screwX: [(18L) * 8 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(ELECTRIC_MOTOR_UV, 64)
+                input(plateDouble, Tritanium, 64) // 64x (2x plate) = 64x plateDouble
+                input(cableGtHex, YttriumBariumCuprate, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
+                fluidInputs(Lubricant.getFluid(1000 * 64)) // 1000 * 64
+                fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
+                fluidInputs(rubber)
+                fluidInputs(Tritanium.getFluid(18 * 8 * 64 // screwX: [(18L) * 8 * 64]
                     + 576 * 64)) // rotorX: [(576L) * 64]
-                .fluidInputs(Naquadah.getFluid(864 * 64)) // pipeLargeFluidX: [(864L) * 64]
-                .output(ELECTRIC_PUMP_UV, 64)
-                .EUt(VA[UV].toLong())
-                .duration(1 * MINUTE + 15 * SECOND)
-                .tier(UV)
-                .buildAndRegister()
+                fluidInputs(Naquadah.getFluid(864 * 64)) // pipeLargeFluidX: [(864L) * 64]
+                output(ELECTRIC_PUMP_UV, 64)
+                EUt(VA[UV])
+                duration(1 * MINUTE + 15 * SECOND)
+                tier(UV)
+            }
         }
 
         // UHV
@@ -892,23 +897,23 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(36 * 12 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(36 * 12 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(ELECTRIC_MOTOR_UHV, 64)
-                .input(plateDouble, Adamantium, 64) // 64x (2x plate) = 64x plateDouble
-                .input(cableGtHex, Europium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
-                .fluidInputs(Lubricant.getFluid(2000 * 64)) // 2000 * 64
-                .fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(Adamantium.getFluid(18 * 8 * 64 // screwX: [(18L) * 8 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(ELECTRIC_MOTOR_UHV, 64)
+                input(plateDouble, Adamantium, 64) // 64x (2x plate) = 64x plateDouble
+                input(cableGtHex, Europium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
+                fluidInputs(Lubricant.getFluid(2000 * 64)) // 2000 * 64
+                fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
+                fluidInputs(rubber)
+                fluidInputs(Adamantium.getFluid(18 * 8 * 64 // screwX: [(18L) * 8 * 64]
                         + 576 * 64)) // rotorX: [(576L) * 64]
-                .fluidInputs(Europium.getFluid(864 * 64)) // pipeLargeFluidX: [(864L) * 64]
-                .output(ELECTRIC_PUMP_UHV, 64)
-                .EUt(VA[UHV].toLong())
-                .duration(1 * MINUTE + 15 * SECOND)
-                .tier(UHV)
-                .buildAndRegister()
+                fluidInputs(Europium.getFluid(864 * 64)) // pipeLargeFluidX: [(864L) * 64]
+                output(ELECTRIC_PUMP_UHV, 64)
+                EUt(VA[UHV])
+                duration(1 * MINUTE + 15 * SECOND)
+                tier(UHV)
+            }
         }
 
         // UEV
@@ -916,25 +921,25 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(36 * 24 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(36 * 24 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(ELECTRIC_MOTOR_UEV, 64)
-                .input(plateDouble, CosmicNeutronium, 64) // 64x (4x plate) = 64x (2x plateDouble)
-                .input(plateDouble, CosmicNeutronium, 64)
-                .input(cableGtHex, Seaborgium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
-                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000 * 64)) // 4000 * 64
-                .fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
-                .fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(CosmicNeutronium.getFluid(18 * 8 * 64 // screwX: [(18L) * 8 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(ELECTRIC_MOTOR_UEV, 64)
+                input(plateDouble, CosmicNeutronium, 64) // 64x (4x plate) = 64x (2x plateDouble)
+                input(plateDouble, CosmicNeutronium, 64)
+                input(cableGtHex, Seaborgium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
+                fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000 * 64)) // 4000 * 64
+                fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
+                fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
+                fluidInputs(rubber)
+                fluidInputs(CosmicNeutronium.getFluid(18 * 8 * 64 // screwX: [(18L) * 8 * 64]
                     + 576 * 64)) // rotorX: [(576L) * 64]
-                .fluidInputs(Duranium.getFluid(864 * 2 * 64)) // pipeLargeFluidX: [(864L) * 2 * 64]
-                .output(ELECTRIC_PUMP_UEV, 64)
-                .EUt(VA[UEV].toLong())
-                .duration(1 * MINUTE + 30 * SECOND)
-                .tier(UEV)
-                .buildAndRegister()
+                fluidInputs(Duranium.getFluid(864 * 2 * 64)) // pipeLargeFluidX: [(864L) * 2 * 64]
+                output(ELECTRIC_PUMP_UEV, 64)
+                EUt(VA[UEV])
+                duration(1 * MINUTE + 30 * SECOND)
+                tier(UEV)
+            }
         }
 
         // UIV
@@ -942,25 +947,25 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(36 * 32 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(36 * 32 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(ELECTRIC_MOTOR_UIV, 64)
-                .input(plateDouble, HeavyQuarkDegenerateMatter, 64) // 64x (4x plate) = 64x (2x plateDouble)
-                .input(plateDouble, HeavyQuarkDegenerateMatter, 64)
-                .input(cableGtHex, SuperheavyAlloyA, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
-                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000 * 64)) // 8000 * 64
-                .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
-                .fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(18 * 8 * 64 // screwX: [(18L) * 8 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(ELECTRIC_MOTOR_UIV, 64)
+                input(plateDouble, HeavyQuarkDegenerateMatter, 64) // 64x (4x plate) = 64x (2x plateDouble)
+                input(plateDouble, HeavyQuarkDegenerateMatter, 64)
+                input(cableGtHex, SuperheavyAlloyA, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
+                fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000 * 64)) // 8000 * 64
+                fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
+                fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
+                fluidInputs(rubber)
+                fluidInputs(HeavyQuarkDegenerateMatter.getFluid(18 * 8 * 64 // screwX: [(18L) * 8 * 64]
                         + 576 * 64)) // rotorX: [(576L) * 64]
-                .fluidInputs(Neutronium.getFluid(864 * 2 * 64)) // pipeLargeFluidX: [(864L) * 2 * 64]
-                .output(ELECTRIC_PUMP_UIV, 64)
-                .EUt(VA[UIV].toLong())
-                .duration(1 * MINUTE + 30 * SECOND)
-                .tier(UIV)
-                .buildAndRegister()
+                fluidInputs(Neutronium.getFluid(864 * 2 * 64)) // pipeLargeFluidX: [(864L) * 2 * 64]
+                output(ELECTRIC_PUMP_UIV, 64)
+                EUt(VA[UIV])
+                duration(1 * MINUTE + 30 * SECOND)
+                tier(UIV)
+            }
         }
 
         // UXV
@@ -968,27 +973,27 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(36 * 64 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(36 * 64 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .input(ELECTRIC_MOTOR_UXV, 64)
-                .input(plateDense, TranscendentMetal, 64) // 64x (8x plate) = 64x (4x plateDouble)
-                .input(plateDense, TranscendentMetal, 64)
-                .input(plateDense, TranscendentMetal, 64)
-                .input(plateDense, TranscendentMetal, 64)
-                .input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
-                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
-                .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
-                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(TranscendentMetal.getFluid(18 * 16 * 64 // screwX: [(18L) * 16 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(3)
+                input(ELECTRIC_MOTOR_UXV, 64)
+                input(plateDense, TranscendentMetal, 64) // 64x (8x plate) = 64x (4x plateDouble)
+                input(plateDense, TranscendentMetal, 64)
+                input(plateDense, TranscendentMetal, 64)
+                input(plateDense, TranscendentMetal, 64)
+                input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+                fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
+                fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+                fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+                fluidInputs(rubber)
+                fluidInputs(TranscendentMetal.getFluid(18 * 16 * 64 // screwX: [(18L) * 16 * 64]
                     + 576 * 2 * 64)) // rotorX: [(576L) * 2 * 64]
-                .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(864 * 4 * 64)) // pipeLargeFluidX: [(864L) * 4 * 64]
-                .output(ELECTRIC_PUMP_UXV)
-                .EUt(VA[UXV].toLong())
-                .duration(1 * MINUTE + 45 * SECOND)
-                .tier(UXV)
-                .buildAndRegister()
+                fluidInputs(HeavyQuarkDegenerateMatter.getFluid(864 * 4 * 64)) // pipeLargeFluidX: [(864L) * 4 * 64]
+                output(ELECTRIC_PUMP_UXV)
+                EUt(VA[UXV])
+                duration(1 * MINUTE + 45 * SECOND)
+                tier(UXV)
+            }
         }
 
         // OpV
@@ -1007,56 +1012,56 @@ internal object ComponentAssemblyLineRecipeProducer
             PolyphosphonitrileFluoroRubber.getFluid(L * 6 * 64)))
         {
             // LV
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(cableGtHex, Tin, 4) // 64x cableGtSingle = 4x cableGtHex
-                .input(ELECTRIC_MOTOR_LV, 64)
-                .input(ELECTRIC_MOTOR_LV, 64)
-                .fluidInputs(rubber)
-                .output(CONVEYOR_MODULE_LV, 64)
-                .EUt(VA[LV].toLong())
-                .duration(15 * SECOND)
-                .tier(LV)
-                .buildAndRegister()
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(cableGtHex, Tin, 4) // 64x cableGtSingle = 4x cableGtHex
+                input(ELECTRIC_MOTOR_LV, 64)
+                input(ELECTRIC_MOTOR_LV, 64)
+                fluidInputs(rubber)
+                output(CONVEYOR_MODULE_LV, 64)
+                EUt(VA[LV])
+                duration(15 * SECOND)
+                tier(LV)
+            }
 
             // MV
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(cableGtHex, Copper, 4) // 64x cableGtSingle = 4x cableGtHex
-                .input(ELECTRIC_MOTOR_MV, 64)
-                .input(ELECTRIC_MOTOR_MV, 64)
-                .fluidInputs(rubber)
-                .output(CONVEYOR_MODULE_MV, 64)
-                .EUt(VA[MV].toLong())
-                .duration(30 * SECOND)
-                .tier(MV)
-                .buildAndRegister()
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(cableGtHex, Copper, 4) // 64x cableGtSingle = 4x cableGtHex
+                input(ELECTRIC_MOTOR_MV, 64)
+                input(ELECTRIC_MOTOR_MV, 64)
+                fluidInputs(rubber)
+                output(CONVEYOR_MODULE_MV, 64)
+                EUt(VA[MV])
+                duration(30 * SECOND)
+                tier(MV)
+            }
 
             // HV
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(cableGtHex, Gold, 4) // 64x cableGtSingle = 4x cableGtHex
-                .input(ELECTRIC_MOTOR_HV, 64)
-                .input(ELECTRIC_MOTOR_HV, 64)
-                .fluidInputs(rubber)
-                .output(CONVEYOR_MODULE_HV, 64)
-                .EUt(VA[HV].toLong())
-                .duration(30 * SECOND)
-                .tier(HV)
-                .buildAndRegister()
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(cableGtHex, Gold, 4) // 64x cableGtSingle = 4x cableGtHex
+                input(ELECTRIC_MOTOR_HV, 64)
+                input(ELECTRIC_MOTOR_HV, 64)
+                fluidInputs(rubber)
+                output(CONVEYOR_MODULE_HV, 64)
+                EUt(VA[HV])
+                duration(30 * SECOND)
+                tier(HV)
+            }
 
             // EV
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(cableGtHex, Aluminium, 4) // 64x cableGtSingle = 4x cableGtHex
-                .input(ELECTRIC_MOTOR_EV, 64)
-                .input(ELECTRIC_MOTOR_EV, 64)
-                .fluidInputs(rubber)
-                .output(CONVEYOR_MODULE_EV, 64)
-                .EUt(VA[EV].toLong())
-                .duration(45 * SECOND)
-                .tier(EV)
-                .buildAndRegister()
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(cableGtHex, Aluminium, 4) // 64x cableGtSingle = 4x cableGtHex
+                input(ELECTRIC_MOTOR_EV, 64)
+                input(ELECTRIC_MOTOR_EV, 64)
+                fluidInputs(rubber)
+                output(CONVEYOR_MODULE_EV, 64)
+                EUt(VA[EV])
+                duration(45 * SECOND)
+                tier(EV)
+            }
         }
 
         // IV
@@ -1066,17 +1071,17 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(L * 6 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(L * 6 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(cableGtHex, Tungsten, 4) // 64x cableGtSingle = 4x cableGtHex
-                .input(ELECTRIC_MOTOR_IV, 64)
-                .input(ELECTRIC_MOTOR_IV, 64)
-                .fluidInputs(rubber)
-                .output(CONVEYOR_MODULE_IV, 64)
-                .EUt(VA[IV].toLong())
-                .duration(45 * SECOND)
-                .tier(IV)
-                .buildAndRegister()
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(cableGtHex, Tungsten, 4) // 64x cableGtSingle = 4x cableGtHex
+                input(ELECTRIC_MOTOR_IV, 64)
+                input(ELECTRIC_MOTOR_IV, 64)
+                fluidInputs(rubber)
+                output(CONVEYOR_MODULE_IV, 64)
+                EUt(VA[IV])
+                duration(45 * SECOND)
+                tier(IV)
+            }
         }
 
         // LuV
@@ -1086,23 +1091,23 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(L * 8 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(L * 8 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(ELECTRIC_MOTOR_LuV, 64)
-                .input(ELECTRIC_MOTOR_LuV, 64)
-                .input(plateDouble, HSSS, 32) // 64x plate = 32x plateDouble
-                .input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(SolderingAlloy.getFluid(L * 64)) // 144 * 64
-                .fluidInputs(Lubricant.getFluid(250 * 64)) // 250 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(HSSS.getFluid(36 * 4 * 64 // ringX: [(36L) * 4 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(ELECTRIC_MOTOR_LuV, 64)
+                input(ELECTRIC_MOTOR_LuV, 64)
+                input(plateDouble, HSSS, 32) // 64x plate = 32x plateDouble
+                input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(SolderingAlloy.getFluid(L * 64)) // 144 * 64
+                fluidInputs(Lubricant.getFluid(250 * 64)) // 250 * 64
+                fluidInputs(rubber)
+                fluidInputs(HSSS.getFluid(36 * 4 * 64 // ringX: [(36L) * 4 * 64]
                     + 18 * 8 * 64 // roundX: [(18L) * 8 * 64]
                     + 18 * 4 * 64)) // screwX: [(18L) * 4 * 64]
-                .output(CONVEYOR_MODULE_LuV, 64)
-                .EUt(VA[LuV].toLong())
-                .duration(1 * MINUTE)
-                .tier(LuV)
-                .buildAndRegister()
+                output(CONVEYOR_MODULE_LuV, 64)
+                EUt(VA[LuV])
+                duration(1 * MINUTE)
+                tier(LuV)
+            }
         }
 
         // ZPM
@@ -1112,23 +1117,23 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(L * 10 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(L * 10 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(ELECTRIC_MOTOR_ZPM, 64)
-                .input(ELECTRIC_MOTOR_ZPM, 64)
-                .input(plateDouble, Osmiridium, 32) // 64x plate = 32x plateDouble
-                .input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
-                .fluidInputs(Lubricant.getFluid(500 * 64)) // 500 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(Osmiridium.getFluid(36 * 4 * 64 // ringX: [(36L) * 4 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(ELECTRIC_MOTOR_ZPM, 64)
+                input(ELECTRIC_MOTOR_ZPM, 64)
+                input(plateDouble, Osmiridium, 32) // 64x plate = 32x plateDouble
+                input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
+                fluidInputs(Lubricant.getFluid(500 * 64)) // 500 * 64
+                fluidInputs(rubber)
+                fluidInputs(Osmiridium.getFluid(36 * 4 * 64 // ringX: [(36L) * 4 * 64]
                     + 18 * 8 * 64 // roundX: [(18L) * 8 * 64]
                     + 18 * 4 * 64)) // screwX: [(18L) * 4 * 64]
-                .output(CONVEYOR_MODULE_ZPM, 64)
-                .EUt(VA[ZPM].toLong())
-                .duration(1 * MINUTE)
-                .tier(ZPM)
-                .buildAndRegister()
+                output(CONVEYOR_MODULE_ZPM, 64)
+                EUt(VA[ZPM])
+                duration(1 * MINUTE)
+                tier(ZPM)
+            }
         }
 
         // UV
@@ -1138,24 +1143,24 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(L * 12 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(L * 12 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(ELECTRIC_MOTOR_UV, 64)
-                .input(ELECTRIC_MOTOR_UV, 64)
-                .input(plateDouble, Tritanium, 64) // 64x (2x plate) = 64x plateDouble
-                .input(cableGtHex, YttriumBariumCuprate, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
-                .fluidInputs(Lubricant.getFluid(1000 * 64)) // 64000
-                .fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(Tritanium.getFluid(36 * 8 * 64 // ringX: [(36L) * 8 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(ELECTRIC_MOTOR_UV, 64)
+                input(ELECTRIC_MOTOR_UV, 64)
+                input(plateDouble, Tritanium, 64) // 64x (2x plate) = 64x plateDouble
+                input(cableGtHex, YttriumBariumCuprate, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
+                fluidInputs(Lubricant.getFluid(1000 * 64)) // 64000
+                fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
+                fluidInputs(rubber)
+                fluidInputs(Tritanium.getFluid(36 * 8 * 64 // ringX: [(36L) * 8 * 64]
                     + 18 * 16 * 64 // roundX: [(18L) * 16 * 64]
                     + 18 * 8 * 64)) // screwX: [(18L) * 8 * 64]
-                .output(CONVEYOR_MODULE_UV, 64)
-                .EUt(VA[UV].toLong())
-                .duration(1 * MINUTE + 15 * SECOND)
-                .tier(UV)
-                .buildAndRegister()
+                output(CONVEYOR_MODULE_UV, 64)
+                EUt(VA[UV])
+                duration(1 * MINUTE + 15 * SECOND)
+                tier(UV)
+            }
         }
 
         // UHV
@@ -1163,24 +1168,24 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(L * 16 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(L * 16 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(ELECTRIC_MOTOR_UHV, 64)
-                .input(ELECTRIC_MOTOR_UHV, 64)
-                .input(plateDouble, Adamantium, 64) // 64x (2x plate) = 64x plateDouble
-                .input(cableGtHex, Europium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
-                .fluidInputs(Lubricant.getFluid(2000 * 64)) // 2000 * 64
-                .fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(Adamantium.getFluid(36 * 8 * 64 // ringX: [(36L) * 8 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(ELECTRIC_MOTOR_UHV, 64)
+                input(ELECTRIC_MOTOR_UHV, 64)
+                input(plateDouble, Adamantium, 64) // 64x (2x plate) = 64x plateDouble
+                input(cableGtHex, Europium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
+                fluidInputs(Lubricant.getFluid(2000 * 64)) // 2000 * 64
+                fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
+                fluidInputs(rubber)
+                fluidInputs(Adamantium.getFluid(36 * 8 * 64 // ringX: [(36L) * 8 * 64]
                     + 18 * 16 * 64 // roundX: [(18L) * 16 * 64]
                     + 18 * 8 * 64)) // screwX: [(18L) * 8 * 64]
-                .output(CONVEYOR_MODULE_UHV, 64)
-                .EUt(VA[UHV].toLong())
-                .duration(1 * MINUTE + 15 * SECOND)
-                .tier(UHV)
-                .buildAndRegister()
+                output(CONVEYOR_MODULE_UHV, 64)
+                EUt(VA[UHV])
+                duration(1 * MINUTE + 15 * SECOND)
+                tier(UHV)
+            }
         }
 
         // UEV
@@ -1188,26 +1193,26 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(L * 32 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(L * 32 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(ELECTRIC_MOTOR_UEV, 64)
-                .input(ELECTRIC_MOTOR_UEV, 64)
-                .input(plateDouble, CosmicNeutronium, 64) // 64x (4x plate) = 64x (2x plateDouble)
-                .input(plateDouble, CosmicNeutronium, 64)
-                .input(cableGtHex, Seaborgium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
-                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000 * 64)) // 4000 * 64
-                .fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
-                .fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(CosmicNeutronium.getFluid(36 * 16 * 64 // ringX: [(36L) * 16 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(ELECTRIC_MOTOR_UEV, 64)
+                input(ELECTRIC_MOTOR_UEV, 64)
+                input(plateDouble, CosmicNeutronium, 64) // 64x (4x plate) = 64x (2x plateDouble)
+                input(plateDouble, CosmicNeutronium, 64)
+                input(cableGtHex, Seaborgium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
+                fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000 * 64)) // 4000 * 64
+                fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
+                fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
+                fluidInputs(rubber)
+                fluidInputs(CosmicNeutronium.getFluid(36 * 16 * 64 // ringX: [(36L) * 16 * 64]
                     + 18 * 32 * 64 // roundX: [(18L) * 32 * 64]
                     + 18 * 8 * 64)) // screwX: [(18L) * 8 * 64]
-                .output(CONVEYOR_MODULE_UEV, 64)
-                .EUt(VA[UEV].toLong())
-                .duration(1 * MINUTE + 30 * SECOND)
-                .tier(UEV)
-                .buildAndRegister()
+                output(CONVEYOR_MODULE_UEV, 64)
+                EUt(VA[UEV])
+                duration(1 * MINUTE + 30 * SECOND)
+                tier(UEV)
+            }
         }
 
         // UIV
@@ -1215,26 +1220,26 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(L * 48 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(L * 48 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(ELECTRIC_MOTOR_UIV, 64)
-                .input(ELECTRIC_MOTOR_UIV, 64)
-                .input(plateDouble, HeavyQuarkDegenerateMatter, 64) // 64x (4x plate) = 64x (2x plateDouble)
-                .input(plateDouble, HeavyQuarkDegenerateMatter, 64)
-                .input(cableGtHex, SuperheavyAlloyA, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
-                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000 * 64)) // 8000 * 64
-                .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
-                .fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(36 * 16 * 64 // ringX: [(36L) * 16 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(ELECTRIC_MOTOR_UIV, 64)
+                input(ELECTRIC_MOTOR_UIV, 64)
+                input(plateDouble, HeavyQuarkDegenerateMatter, 64) // 64x (4x plate) = 64x (2x plateDouble)
+                input(plateDouble, HeavyQuarkDegenerateMatter, 64)
+                input(cableGtHex, SuperheavyAlloyA, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
+                fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000 * 64)) // 8000 * 64
+                fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
+                fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
+                fluidInputs(rubber)
+                fluidInputs(HeavyQuarkDegenerateMatter.getFluid(36 * 16 * 64 // ringX: [(36L) * 16 * 64]
                     + 18 * 32 * 64 // roundX: [(18L) * 32 * 64]
                     + 18 * 8 * 64)) // screwX: [(18L) * 8 * 64]
-                .output(CONVEYOR_MODULE_UIV, 64)
-                .EUt(VA[UIV].toLong())
-                .duration(1 * MINUTE + 30 * SECOND)
-                .tier(UIV)
-                .buildAndRegister()
+                output(CONVEYOR_MODULE_UIV, 64)
+                EUt(VA[UIV])
+                duration(1 * MINUTE + 30 * SECOND)
+                tier(UIV)
+            }
         }
 
         // UXV
@@ -1242,28 +1247,28 @@ internal object ComponentAssemblyLineRecipeProducer
             PolytetramethyleneGlycolRubber.getFluid(L * 64 * 64),
             PolyphosphonitrileFluoroRubber.getFluid(L * 64 * 64)))
         {
-            COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-                .circuitMeta(4)
-                .input(ELECTRIC_MOTOR_UXV, 64)
-                .input(ELECTRIC_MOTOR_UXV, 64)
-                .input(plateDouble, TranscendentMetal, 64) // 64x (8x plate) = 64x (4x plateDouble)
-                .input(plateDouble, TranscendentMetal, 64)
-                .input(plateDouble, TranscendentMetal, 64)
-                .input(plateDouble, TranscendentMetal, 64)
-                .input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-                .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
-                .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
-                .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
-                .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
-                .fluidInputs(rubber)
-                .fluidInputs(TranscendentMetal.getFluid(36 * 32 * 64 // ringX: [(36L) * 32 * 64]
+            COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+                circuitMeta(4)
+                input(ELECTRIC_MOTOR_UXV, 64)
+                input(ELECTRIC_MOTOR_UXV, 64)
+                input(plateDouble, TranscendentMetal, 64) // 64x (8x plate) = 64x (4x plateDouble)
+                input(plateDouble, TranscendentMetal, 64)
+                input(plateDouble, TranscendentMetal, 64)
+                input(plateDouble, TranscendentMetal, 64)
+                input(cableGtHex, SuperheavyAlloyB, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+                fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+                fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
+                fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+                fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+                fluidInputs(rubber)
+                fluidInputs(TranscendentMetal.getFluid(36 * 32 * 64 // ringX: [(36L) * 32 * 64]
                     + 18 * 64 * 64 // roundX: [(18L) * 64 * 64]
                     + 18 * 16 * 64)) // screwX: [(18L) * 16 * 64]
-                .output(CONVEYOR_MODULE_UXV, 64)
-                .EUt(VA[UXV].toLong())
-                .duration(1 * MINUTE + 45 * SECOND)
-                .tier(UXV)
-                .buildAndRegister()
+                output(CONVEYOR_MODULE_UXV, 64)
+                EUt(VA[UXV])
+                duration(1 * MINUTE + 45 * SECOND)
+                tier(UXV)
+            }
         }
 
         // OpV
@@ -1275,234 +1280,234 @@ internal object ComponentAssemblyLineRecipeProducer
     private fun robotArmRecipes()
     {
         // LV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(cableGtHex, Tin, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
-            .input(stickLong, Steel, 64) // 64x (2x stick) = 64x stickLong
-            .input(ELECTRIC_MOTOR_LV, 64)
-            .input(ELECTRIC_MOTOR_LV, 64)
-            .input(ELECTRIC_PISTON_LV, 64)
-            .input(WRAP_CIRCUIT_LV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .output(ROBOT_ARM_LV, 64)
-            .EUt(VA[LV].toLong())
-            .duration(15 * SECOND)
-            .tier(LV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(cableGtHex, Tin, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
+            input(stickLong, Steel, 64) // 64x (2x stick) = 64x stickLong
+            input(ELECTRIC_MOTOR_LV, 64)
+            input(ELECTRIC_MOTOR_LV, 64)
+            input(ELECTRIC_PISTON_LV, 64)
+            input(WRAP_CIRCUIT_LV, 4) // 64x circuitX = 4x wrappedCircuitX
+            output(ROBOT_ARM_LV, 64)
+            EUt(VA[LV])
+            duration(15 * SECOND)
+            tier(LV)
+        }
 
         // MV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(cableGtHex, Copper, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
-            .input(stickLong, Aluminium, 64) // 64x (2x stick) = 64x stickLong
-            .input(ELECTRIC_MOTOR_MV, 64)
-            .input(ELECTRIC_MOTOR_MV, 64)
-            .input(ELECTRIC_PISTON_MV, 64)
-            .input(WRAP_CIRCUIT_MV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .output(ROBOT_ARM_MV, 64)
-            .EUt(VA[MV].toLong())
-            .duration(30 * SECOND)
-            .tier(MV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(cableGtHex, Copper, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
+            input(stickLong, Aluminium, 64) // 64x (2x stick) = 64x stickLong
+            input(ELECTRIC_MOTOR_MV, 64)
+            input(ELECTRIC_MOTOR_MV, 64)
+            input(ELECTRIC_PISTON_MV, 64)
+            input(WRAP_CIRCUIT_MV, 4) // 64x circuitX = 4x wrappedCircuitX
+            output(ROBOT_ARM_MV, 64)
+            EUt(VA[MV])
+            duration(30 * SECOND)
+            tier(MV)
+        }
 
         // HV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(cableGtHex, Gold, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
-            .input(stickLong, StainlessSteel, 64) // 64x (2x stick) = 64x stickLong
-            .input(ELECTRIC_MOTOR_HV, 64)
-            .input(ELECTRIC_MOTOR_HV, 64)
-            .input(ELECTRIC_PISTON_HV, 64)
-            .input(WRAP_CIRCUIT_HV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .output(ROBOT_ARM_HV, 64)
-            .EUt(VA[HV].toLong())
-            .duration(30 * SECOND)
-            .tier(HV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(cableGtHex, Gold, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
+            input(stickLong, StainlessSteel, 64) // 64x (2x stick) = 64x stickLong
+            input(ELECTRIC_MOTOR_HV, 64)
+            input(ELECTRIC_MOTOR_HV, 64)
+            input(ELECTRIC_PISTON_HV, 64)
+            input(WRAP_CIRCUIT_HV, 4) // 64x circuitX = 4x wrappedCircuitX
+            output(ROBOT_ARM_HV, 64)
+            EUt(VA[HV])
+            duration(30 * SECOND)
+            tier(HV)
+        }
 
         // EV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(cableGtHex, Aluminium, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
-            .input(stickLong, Titanium, 64)
-            .input(ELECTRIC_MOTOR_EV, 64)
-            .input(ELECTRIC_MOTOR_EV, 64)
-            .input(ELECTRIC_PISTON_EV, 64)
-            .input(WRAP_CIRCUIT_EV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .output(ROBOT_ARM_EV, 64)
-            .EUt(VA[EV].toLong())
-            .duration(45 * SECOND)
-            .tier(EV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(cableGtHex, Aluminium, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
+            input(stickLong, Titanium, 64)
+            input(ELECTRIC_MOTOR_EV, 64)
+            input(ELECTRIC_MOTOR_EV, 64)
+            input(ELECTRIC_PISTON_EV, 64)
+            input(WRAP_CIRCUIT_EV, 4) // 64x circuitX = 4x wrappedCircuitX
+            output(ROBOT_ARM_EV, 64)
+            EUt(VA[EV])
+            duration(45 * SECOND)
+            tier(EV)
+        }
 
         // IV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(cableGtHex, Tungsten, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
-            .input(stickLong, TungstenSteel, 64)
-            .input(ELECTRIC_MOTOR_IV, 64)
-            .input(ELECTRIC_MOTOR_IV, 64)
-            .input(ELECTRIC_PISTON_IV, 64)
-            .input(WRAP_CIRCUIT_IV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .output(ROBOT_ARM_IV, 64)
-            .EUt(VA[IV].toLong())
-            .duration(45 * SECOND)
-            .tier(IV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(cableGtHex, Tungsten, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
+            input(stickLong, TungstenSteel, 64)
+            input(ELECTRIC_MOTOR_IV, 64)
+            input(ELECTRIC_MOTOR_IV, 64)
+            input(ELECTRIC_PISTON_IV, 64)
+            input(WRAP_CIRCUIT_IV, 4) // 64x circuitX = 4x wrappedCircuitX
+            output(ROBOT_ARM_IV, 64)
+            EUt(VA[IV])
+            duration(45 * SECOND)
+            tier(IV)
+        }
 
         // LuV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ELECTRIC_MOTOR_LuV, 64)
-            .input(ELECTRIC_MOTOR_LuV, 64)
-            .input(ELECTRIC_PISTON_LUV, 64)
-            .input(WRAP_CIRCUIT_LuV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(WRAP_CIRCUIT_IV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(WRAP_CIRCUIT_EV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
-            .input(cableGtHex, NiobiumTitanium, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Lubricant.getFluid(250 * 64)) // 250 * 64
-            .fluidInputs(HSSS.getFluid(144 * 2 * 64 // stickLongX: [(144L) * 2 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ELECTRIC_MOTOR_LuV, 64)
+            input(ELECTRIC_MOTOR_LuV, 64)
+            input(ELECTRIC_PISTON_LUV, 64)
+            input(WRAP_CIRCUIT_LuV, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(WRAP_CIRCUIT_IV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(WRAP_CIRCUIT_EV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
+            input(cableGtHex, NiobiumTitanium, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Lubricant.getFluid(250 * 64)) // 250 * 64
+            fluidInputs(HSSS.getFluid(144 * 2 * 64 // stickLongX: [(144L) * 2 * 64]
                 + 576 * 64 // gearX: [(576L) * 64]
                 + 144 * 2 * 64)) // gearSmallX: [(144L) * 2 * 64]
-            .output(ROBOT_ARM_LuV, 64)
-            .EUt(VA[LuV].toLong())
-            .duration(1 * MINUTE)
-            .tier(LuV)
-            .buildAndRegister()
+            output(ROBOT_ARM_LuV, 64)
+            EUt(VA[LuV])
+            duration(1 * MINUTE)
+            tier(LuV)
+        }
 
         // ZPM
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ELECTRIC_MOTOR_ZPM, 64)
-            .input(ELECTRIC_MOTOR_ZPM, 64)
-            .input(ELECTRIC_PISTON_ZPM, 64)
-            .input(WRAP_CIRCUIT_ZPM, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(WRAP_CIRCUIT_LuV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(WRAP_CIRCUIT_IV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
-            .input(cableGtHex, VanadiumGallium, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(Lubricant.getFluid(500 * 64)) // 500 * 64
-            .fluidInputs(Osmiridium.getFluid(144 * 2 * 64 // stickLong: [(144L) * 2 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ELECTRIC_MOTOR_ZPM, 64)
+            input(ELECTRIC_MOTOR_ZPM, 64)
+            input(ELECTRIC_PISTON_ZPM, 64)
+            input(WRAP_CIRCUIT_ZPM, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(WRAP_CIRCUIT_LuV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(WRAP_CIRCUIT_IV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
+            input(cableGtHex, VanadiumGallium, 12) // 64x (3x cableGtSingle) = 192x cableGtSingle = 12x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(Lubricant.getFluid(500 * 64)) // 500 * 64
+            fluidInputs(Osmiridium.getFluid(144 * 2 * 64 // stickLong: [(144L) * 2 * 64]
                 + 576 * 64 // gearX: [(576L) * 64]
                 + 144 * 2 * 64)) // gearSmallX: [(144L) * 2 * 64]
-            .output(ROBOT_ARM_ZPM, 64)
-            .EUt(VA[ZPM].toLong())
-            .duration(1 * MINUTE)
-            .tier(ZPM)
-            .buildAndRegister()
+            output(ROBOT_ARM_ZPM, 64)
+            EUt(VA[ZPM])
+            duration(1 * MINUTE)
+            tier(ZPM)
+        }
 
         // UV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ELECTRIC_MOTOR_UV, 64)
-            .input(ELECTRIC_MOTOR_UV, 64)
-            .input(ELECTRIC_PISTON_UV, 64)
-            .input(WRAP_CIRCUIT_UV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(WRAP_CIRCUIT_ZPM, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(WRAP_CIRCUIT_LuV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
-            .input(cableGtHex, YttriumBariumCuprate, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 12 * 64)) // 1728 * 64
-            .fluidInputs(Lubricant.getFluid(1000 * 64)) // 1000 * 64
-            .fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(Tritanium.getFluid(144 * 4 * 64 // stickLongX: [(144L) * 4 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ELECTRIC_MOTOR_UV, 64)
+            input(ELECTRIC_MOTOR_UV, 64)
+            input(ELECTRIC_PISTON_UV, 64)
+            input(WRAP_CIRCUIT_UV, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(WRAP_CIRCUIT_ZPM, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(WRAP_CIRCUIT_LuV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
+            input(cableGtHex, YttriumBariumCuprate, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 12 * 64)) // 1728 * 64
+            fluidInputs(Lubricant.getFluid(1000 * 64)) // 1000 * 64
+            fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
+            fluidInputs(Tritanium.getFluid(144 * 4 * 64 // stickLongX: [(144L) * 4 * 64]
                 + 576 * 64 // gearX: [(576L) * 64]
                 + 144 * 3 * 64)) // gearSmall [(144L) * 3 * 64]
-            .output(ROBOT_ARM_UV, 64)
-            .EUt(VA[UV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UV)
-            .buildAndRegister()
+            output(ROBOT_ARM_UV, 64)
+            EUt(VA[UV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UV)
+        }
 
         // UHV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ELECTRIC_MOTOR_UHV, 64)
-            .input(ELECTRIC_MOTOR_UHV, 64)
-            .input(ELECTRIC_PISTON_UHV, 64)
-            .input(WRAP_CIRCUIT_UHV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(WRAP_CIRCUIT_UV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(WRAP_CIRCUIT_ZPM, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
-            .input(cableGtHex, Europium, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(Lubricant.getFluid(2000 * 64)) // 2000 * 64
-            .fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(Adamantium.getFluid(144 * 4 * 64 // stickLongX: [(144L) * 4 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ELECTRIC_MOTOR_UHV, 64)
+            input(ELECTRIC_MOTOR_UHV, 64)
+            input(ELECTRIC_PISTON_UHV, 64)
+            input(WRAP_CIRCUIT_UHV, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(WRAP_CIRCUIT_UV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(WRAP_CIRCUIT_ZPM, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
+            input(cableGtHex, Europium, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(Lubricant.getFluid(2000 * 64)) // 2000 * 64
+            fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(Adamantium.getFluid(144 * 4 * 64 // stickLongX: [(144L) * 4 * 64]
                 + 576 * 64 // gearX: [(576L) * 64]
                 + 144 * 3 * 64)) // gearSmallX: [(144L) * 3 * 64]
-            .output(ROBOT_ARM_UHV, 64)
-            .EUt(VA[UHV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UHV)
-            .buildAndRegister()
+            output(ROBOT_ARM_UHV, 64)
+            EUt(VA[UHV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UHV)
+        }
 
         // UEV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ELECTRIC_MOTOR_UEV, 64)
-            .input(ELECTRIC_MOTOR_UEV, 64)
-            .input(ELECTRIC_PISTON_UEV, 64)
-            .input(WRAP_CIRCUIT_UEV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(WRAP_CIRCUIT_UHV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(WRAP_CIRCUIT_UV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
-            .input(cableGtHex, Seaborgium, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000 * 64)) // 4000 * 64
-            .fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(CosmicNeutronium.getFluid(144 * 4 * 64 // stickLongX: [(144L) * 4 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ELECTRIC_MOTOR_UEV, 64)
+            input(ELECTRIC_MOTOR_UEV, 64)
+            input(ELECTRIC_PISTON_UEV, 64)
+            input(WRAP_CIRCUIT_UEV, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(WRAP_CIRCUIT_UHV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(WRAP_CIRCUIT_UV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
+            input(cableGtHex, Seaborgium, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000 * 64)) // 4000 * 64
+            fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
+            fluidInputs(CosmicNeutronium.getFluid(144 * 4 * 64 // stickLongX: [(144L) * 4 * 64]
                 + 576 * 2 * 64 // gearX: [(576L) * 2 * 64]
                 + 144 * 6 * 64)) // gearSmallX: [(144L) * 6 * 64]
-            .output(ROBOT_ARM_UEV, 64)
-            .EUt(VA[UEV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UEV)
-            .buildAndRegister()
+            output(ROBOT_ARM_UEV, 64)
+            EUt(VA[UEV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UEV)
+        }
 
         // UIV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ELECTRIC_MOTOR_UIV, 64)
-            .input(ELECTRIC_MOTOR_UIV, 64)
-            .input(ELECTRIC_PISTON_UIV, 64)
-            .input(WRAP_CIRCUIT_UIV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(WRAP_CIRCUIT_UEV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(WRAP_CIRCUIT_UHV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
-            .input(cableGtHex, SuperheavyAlloyA, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000 * 64)) // 8000 * 64
-            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(144 * 4 * 64 // stickLongX: [(144L) * 4 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ELECTRIC_MOTOR_UIV, 64)
+            input(ELECTRIC_MOTOR_UIV, 64)
+            input(ELECTRIC_PISTON_UIV, 64)
+            input(WRAP_CIRCUIT_UIV, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(WRAP_CIRCUIT_UEV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(WRAP_CIRCUIT_UHV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
+            input(cableGtHex, SuperheavyAlloyA, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000 * 64)) // 8000 * 64
+            fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(HeavyQuarkDegenerateMatter.getFluid(144 * 4 * 64 // stickLongX: [(144L) * 4 * 64]
                     + 576 * 2 * 64 // gearX: [(576L) * 2 * 64]
                     + 144 * 6 * 64)) // gearSmallX: [(144L) * 6 * 64]
-            .output(ROBOT_ARM_UIV, 64)
-            .EUt(VA[UIV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UIV)
-            .buildAndRegister()
+            output(ROBOT_ARM_UIV, 64)
+            EUt(VA[UIV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UIV)
+        }
 
         // UXV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(ELECTRIC_MOTOR_UXV, 64)
-            .input(ELECTRIC_MOTOR_UXV, 64)
-            .input(ELECTRIC_PISTON_UXV, 64)
-            .input(WRAP_CIRCUIT_UXV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(WRAP_CIRCUIT_UIV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(WRAP_CIRCUIT_UEV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
-            .input(cableGtHex, SuperheavyAlloyB, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 128 * 64)) // 18432 * 64
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
-            .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(TranscendentMetal.getFluid(L * 8 * 64 // stickLongX: [(144L) * 8 * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(ELECTRIC_MOTOR_UXV, 64)
+            input(ELECTRIC_MOTOR_UXV, 64)
+            input(ELECTRIC_PISTON_UXV, 64)
+            input(WRAP_CIRCUIT_UXV, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(WRAP_CIRCUIT_UIV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(WRAP_CIRCUIT_UEV, 16) // 64x (4x circuitX) = 16x wrappedCircuitX
+            input(cableGtHex, SuperheavyAlloyB, 16) //  64x (cableGtQuadruple) = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 128 * 64)) // 18432 * 64
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000 * 64)) // 16000 * 64
+            fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(TranscendentMetal.getFluid(L * 8 * 64 // stickLongX: [(144L) * 8 * 64]
                 + 576 * 2 * 64 // gearX: [(576L) * 2 * 64]
                 + 144 * 6 * 64)) // gearSmallX: [(144L) * 6 * 64)
-            .output(ROBOT_ARM_UXV, 64)
-            .EUt(VA[UXV].toLong())
-            .duration(1 * MINUTE + 45 * SECOND)
-            .tier(UXV)
-            .buildAndRegister()
+            output(ROBOT_ARM_UXV, 64)
+            EUt(VA[UXV])
+            duration(1 * MINUTE + 45 * SECOND)
+            tier(UXV)
+        }
 
         // OpV
 
@@ -1513,209 +1518,209 @@ internal object ComponentAssemblyLineRecipeProducer
     private fun emitterRecipes()
     {
         // LV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(stickLong, Brass, 64) // 64x (4x stick) = 64x (2x stickLong)
-            .input(stickLong, Brass, 64)
-            .input(cableGtHex, Tin, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .input(WRAP_CIRCUIT_LV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(gem, Quartzite, 64)
-            .output(EMITTER_LV, 64)
-            .EUt(VA[LV].toLong())
-            .duration(15 * SECOND)
-            .tier(LV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(stickLong, Brass, 64) // 64x (4x stick) = 64x (2x stickLong)
+            input(stickLong, Brass, 64)
+            input(cableGtHex, Tin, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            input(WRAP_CIRCUIT_LV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(gem, Quartzite, 64)
+            output(EMITTER_LV, 64)
+            EUt(VA[LV])
+            duration(15 * SECOND)
+            tier(LV)
+        }
 
         // MV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(stickLong, Electrum, 64) // 64x (4x stick) = 64x (2x stickLong)
-            .input(stickLong, Electrum, 64)
-            .input(cableGtHex, Copper, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .input(WRAP_CIRCUIT_MV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(gemFlawless, Emerald, 64)
-            .output(EMITTER_MV, 64)
-            .EUt(VA[MV].toLong())
-            .duration(30 * SECOND)
-            .tier(MV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(stickLong, Electrum, 64) // 64x (4x stick) = 64x (2x stickLong)
+            input(stickLong, Electrum, 64)
+            input(cableGtHex, Copper, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            input(WRAP_CIRCUIT_MV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(gemFlawless, Emerald, 64)
+            output(EMITTER_MV, 64)
+            EUt(VA[MV])
+            duration(30 * SECOND)
+            tier(MV)
+        }
 
         // HV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(stickLong, Chrome, 64) // 64x (4x stick) = 64x (2x stickLong)
-            .input(stickLong, Chrome, 64)
-            .input(cableGtHex, Gold, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .input(WRAP_CIRCUIT_HV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .inputs(ItemStack(Items.ENDER_EYE, 64))
-            .output(EMITTER_HV, 64)
-            .EUt(VA[HV].toLong())
-            .duration(30 * SECOND)
-            .tier(HV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(stickLong, Chrome, 64) // 64x (4x stick) = 64x (2x stickLong)
+            input(stickLong, Chrome, 64)
+            input(cableGtHex, Gold, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            input(WRAP_CIRCUIT_HV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            inputs(ENDER_EYE, 64)
+            output(EMITTER_HV, 64)
+            EUt(VA[HV])
+            duration(30 * SECOND)
+            tier(HV)
+        }
 
         // EV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(stickLong, Platinum, 64) // 64x (4x stick) = 64x (2x stickLong)
-            .input(stickLong, Platinum, 64)
-            .input(cableGtHex, Aluminium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .input(WRAP_CIRCUIT_EV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(QUANTUM_EYE, 64)
-            .output(EMITTER_EV, 64)
-            .EUt(VA[EV].toLong())
-            .duration(45 * SECOND)
-            .tier(EV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(stickLong, Platinum, 64) // 64x (4x stick) = 64x (2x stickLong)
+            input(stickLong, Platinum, 64)
+            input(cableGtHex, Aluminium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            input(WRAP_CIRCUIT_EV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(QUANTUM_EYE, 64)
+            output(EMITTER_EV, 64)
+            EUt(VA[EV])
+            duration(45 * SECOND)
+            tier(EV)
+        }
 
         // IV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(stickLong, Iridium, 64) // 64x (4x stick) = 64x (2x stickLong)
-            .input(stickLong, Iridium, 64)
-            .input(cableGtHex, Tungsten, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .input(WRAP_CIRCUIT_IV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(QUANTUM_STAR, 64)
-            .output(EMITTER_IV, 64)
-            .EUt(VA[IV].toLong())
-            .duration(45 * SECOND)
-            .tier(IV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(stickLong, Iridium, 64) // 64x (4x stick) = 64x (2x stickLong)
+            input(stickLong, Iridium, 64)
+            input(cableGtHex, Tungsten, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            input(WRAP_CIRCUIT_IV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(QUANTUM_STAR, 64)
+            output(EMITTER_IV, 64)
+            EUt(VA[IV])
+            duration(45 * SECOND)
+            tier(IV)
+        }
 
         // LuV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(ELECTRIC_MOTOR_LuV, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(WRAP_CIRCUIT_LuV, 8) // // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(HSSS.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(Ruridit.getFluid(144 * 2 * 64)) // stickLongX: [(144L) * 2 * 64]
-            .fluidInputs(Osmium.getFluid(36 * 64 * 64)) // foilX: [(36L) * 64 * 64]
-            .output(EMITTER_LuV, 64)
-            .EUt(VA[LuV].toLong())
-            .duration(1 * MINUTE)
-            .tier(LuV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(ELECTRIC_MOTOR_LuV, 64)
+            input(QUANTUM_STAR, 64)
+            input(WRAP_CIRCUIT_LuV, 8) // // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(HSSS.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(Ruridit.getFluid(144 * 2 * 64)) // stickLongX: [(144L) * 2 * 64]
+            fluidInputs(Osmium.getFluid(36 * 64 * 64)) // foilX: [(36L) * 64 * 64]
+            output(EMITTER_LuV, 64)
+            EUt(VA[LuV])
+            duration(1 * MINUTE)
+            tier(LuV)
+        }
 
         // ZPM
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(ELECTRIC_MOTOR_ZPM, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(WRAP_CIRCUIT_ZPM, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Osmiridium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(NaquadahAlloy.getFluid(144 * 2 * 64)) // stickLongX: [(144L) * 2 * 64]
-            .fluidInputs(Trinium.getFluid(36 * (64 + 32) * 64)) // foilX: [(36L) * (64 + 32) * 64]
-            .output(EMITTER_ZPM, 64)
-            .EUt(VA[ZPM].toLong())
-            .duration(1 * MINUTE)
-            .tier(ZPM)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(ELECTRIC_MOTOR_ZPM, 64)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(WRAP_CIRCUIT_ZPM, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Osmiridium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(NaquadahAlloy.getFluid(144 * 2 * 64)) // stickLongX: [(144L) * 2 * 64]
+            fluidInputs(Trinium.getFluid(36 * (64 + 32) * 64)) // foilX: [(36L) * (64 + 32) * 64]
+            output(EMITTER_ZPM, 64)
+            EUt(VA[ZPM])
+            duration(1 * MINUTE)
+            tier(ZPM)
+        }
 
         // UV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(ELECTRIC_MOTOR_UV, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(WRAP_CIRCUIT_UV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, YttriumBariumCuprate, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(Naquadria.getFluid(L * 64 // 144 * 64
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(ELECTRIC_MOTOR_UV, 64)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(WRAP_CIRCUIT_UV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, YttriumBariumCuprate, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(Naquadria.getFluid(L * 64 // 144 * 64
                 + 36 * (64 + 64) * 64)) // foilX: [(36L) * (64 + 64) * 64]
-            .fluidInputs(Tritanium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(EnrichedNaquadahAlloy.getFluid(144 * 4 * 64)) // stickLongX: [(144L) * 4 * 64]
-            .output(EMITTER_UV, 64)
-            .EUt(VA[UV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UV)
-            .buildAndRegister()
+            fluidInputs(Tritanium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(EnrichedNaquadahAlloy.getFluid(144 * 4 * 64)) // stickLongX: [(144L) * 4 * 64]
+            output(EMITTER_UV, 64)
+            EUt(VA[UV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UV)
+        }
 
         // UHV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(ELECTRIC_MOTOR_UHV, 64)
-            .input(GRAVI_STAR, 64)
-            .input(WRAP_CIRCUIT_UHV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, Europium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 12 * 64)) // 1728 * 64
-            .fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(Adamantium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(Dubnium.getFluid(144 * 4 * 64)) // stickLongX: [(144L) * 4 * 64]
-            .fluidInputs(Vibranium.getFluid(36 * (64 + 64 + 32) * 64)) // foilX: [(36L) * (64 + 64 + 32) * 64]
-            .output(EMITTER_UHV, 64)
-            .EUt(VA[UHV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UHV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(ELECTRIC_MOTOR_UHV, 64)
+            input(GRAVI_STAR, 64)
+            input(WRAP_CIRCUIT_UHV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, Europium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 12 * 64)) // 1728 * 64
+            fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(Adamantium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(Dubnium.getFluid(144 * 4 * 64)) // stickLongX: [(144L) * 4 * 64]
+            fluidInputs(Vibranium.getFluid(36 * (64 + 64 + 32) * 64)) // foilX: [(36L) * (64 + 64 + 32) * 64]
+            output(EMITTER_UHV, 64)
+            EUt(VA[UHV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UHV)
+        }
 
         // UEV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(ELECTRIC_MOTOR_UEV, 64)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(WRAP_CIRCUIT_UEV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, Seaborgium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Taranium.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(CosmicNeutronium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(Bohrium.getFluid(144 * 8 * 64)) // stickLongX: [(144L) * 8 * 64]
-            .fluidInputs(MetastableFlerovium.getFluid(36 * (64 + 64 + 64) * 64)) // foilX: [(36L) * (64 + 64 + 64) * 64]
-            .output(EMITTER_UEV, 64)
-            .EUt(VA[UEV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UEV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(ELECTRIC_MOTOR_UEV, 64)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(WRAP_CIRCUIT_UEV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, Seaborgium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Taranium.getFluid(L * 64)) // 144 * 64
+            fluidInputs(CosmicNeutronium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(Bohrium.getFluid(144 * 8 * 64)) // stickLongX: [(144L) * 8 * 64]
+            fluidInputs(MetastableFlerovium.getFluid(36 * (64 + 64 + 64) * 64)) // foilX: [(36L) * (64 + 64 + 64) * 64]
+            output(EMITTER_UEV, 64)
+            EUt(VA[UEV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UEV)
+        }
 
         // UIV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(ELECTRIC_MOTOR_UIV, 64)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(WRAP_CIRCUIT_UIV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, SuperheavyAlloyA, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
-            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(Shirabon.getFluid(144 * 8 * 64)) // stickLongX: [(144L) * 8 * 64]
-            .fluidInputs(Rhugnor.getFluid(36 * (64 + 64 + 64 + 32) * 64)) // foilX: [(36L) * (64 + 64 + 64 + 32) * 64]
-            .output(EMITTER_UIV, 64)
-            .EUt(VA[UIV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UIV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(ELECTRIC_MOTOR_UIV, 64)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(WRAP_CIRCUIT_UIV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, SuperheavyAlloyA, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
+            fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(HeavyQuarkDegenerateMatter.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(Shirabon.getFluid(144 * 8 * 64)) // stickLongX: [(144L) * 8 * 64]
+            fluidInputs(Rhugnor.getFluid(36 * (64 + 64 + 64 + 32) * 64)) // foilX: [(36L) * (64 + 64 + 64 + 32) * 64]
+            output(EMITTER_UIV, 64)
+            EUt(VA[UIV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UIV)
+        }
 
         // UXV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(ELECTRIC_MOTOR_UXV, 64)
-            .input(ZENITH_STAR, 64)
-            .input(WRAP_CIRCUIT_UXV , 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, SuperheavyAlloyB, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
-            .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(TranscendentMetal.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(Mellion.getFluid(144 * 16 * 64)) // stickLongX: [(144L) * 16 * 64]
-            .fluidInputs(SpaceTime.getFluid(36 * (64 + 64 + 64 + 64) * 64)) // foilX: [(36L) * (64 + 64 + 64 + 64) * 64]
-            .output(EMITTER_UXV, 64)
-            .EUt(VA[UXV].toLong())
-            .duration(1 * MINUTE + 45 * SECOND)
-            .tier(UXV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(ELECTRIC_MOTOR_UXV, 64)
+            input(ZENITH_STAR, 64)
+            input(WRAP_CIRCUIT_UXV , 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, SuperheavyAlloyB, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+            fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(TranscendentMetal.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(Mellion.getFluid(144 * 16 * 64)) // stickLongX: [(144L) * 16 * 64]
+            fluidInputs(SpaceTime.getFluid(36 * (64 + 64 + 64 + 64) * 64)) // foilX: [(36L) * (64 + 64 + 64 + 64) * 64]
+            output(EMITTER_UXV, 64)
+            EUt(VA[UXV])
+            duration(1 * MINUTE + 45 * SECOND)
+            tier(UXV)
+        }
 
         // OpV
 
@@ -1725,210 +1730,210 @@ internal object ComponentAssemblyLineRecipeProducer
     private fun sensorRecipes()
     {
         // LV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(stickLong, Brass, 32) // 64x stick = 32x stickLong
-            .input(plateDouble, Steel, 64) // 64x (4x plate) = 64x (2x plateDouble)
-            .input(plateDouble, Steel, 64)
-            .input(WRAP_CIRCUIT_LV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(gem, Quartzite, 64)
-            .output(SENSOR_LV, 64)
-            .EUt(VA[LV].toLong())
-            .duration(15 * SECOND)
-            .tier(LV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(stickLong, Brass, 32) // 64x stick = 32x stickLong
+            input(plateDouble, Steel, 64) // 64x (4x plate) = 64x (2x plateDouble)
+            input(plateDouble, Steel, 64)
+            input(WRAP_CIRCUIT_LV, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(gem, Quartzite, 64)
+            output(SENSOR_LV, 64)
+            EUt(VA[LV])
+            duration(15 * SECOND)
+            tier(LV)
+        }
 
         // MV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(stickLong, Electrum, 32) // 64x stick = 32x stickLong
-            .input(plateDouble, Aluminium, 64) // 64x (4x plate) = 64x (2x plateDouble)
-            .input(plateDouble, Aluminium, 64)
-            .input(WRAP_CIRCUIT_MV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(gemFlawless, Emerald, 64)
-            .output(SENSOR_MV, 64)
-            .EUt(VA[MV].toLong())
-            .duration(30 * SECOND)
-            .tier(MV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(stickLong, Electrum, 32) // 64x stick = 32x stickLong
+            input(plateDouble, Aluminium, 64) // 64x (4x plate) = 64x (2x plateDouble)
+            input(plateDouble, Aluminium, 64)
+            input(WRAP_CIRCUIT_MV, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(gemFlawless, Emerald, 64)
+            output(SENSOR_MV, 64)
+            EUt(VA[MV])
+            duration(30 * SECOND)
+            tier(MV)
+        }
 
         // HV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(stickLong, Chrome, 32) // 64x stick = 32x stickLong
-            .input(plateDouble, StainlessSteel, 64) // 64x (4x plate) = 64x (2x plateDouble)
-            .input(plateDouble, StainlessSteel, 64)
-            .input(WRAP_CIRCUIT_HV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .inputs(ItemStack(Items.ENDER_EYE, 64))
-            .output(SENSOR_HV, 64)
-            .EUt(VA[HV].toLong())
-            .duration(30 * SECOND)
-            .tier(HV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(stickLong, Chrome, 32) // 64x stick = 32x stickLong
+            input(plateDouble, StainlessSteel, 64) // 64x (4x plate) = 64x (2x plateDouble)
+            input(plateDouble, StainlessSteel, 64)
+            input(WRAP_CIRCUIT_HV, 4) // 64x circuitX = 4x wrappedCircuitX
+            inputs(ItemStack(Items.ENDER_EYE, 64))
+            output(SENSOR_HV, 64)
+            EUt(VA[HV])
+            duration(30 * SECOND)
+            tier(HV)
+        }
 
         // EV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(stickLong, Platinum, 32) // 64x stick = 32x stickLong
-            .input(plateDouble, Titanium, 64) // 64x (4x plate) = 64x (2x plateDouble)
-            .input(plateDouble, Titanium, 64)
-            .input(WRAP_CIRCUIT_EV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(QUANTUM_EYE, 64)
-            .output(SENSOR_EV, 64)
-            .EUt(VA[EV].toLong())
-            .duration(45 * SECOND)
-            .tier(EV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(stickLong, Platinum, 32) // 64x stick = 32x stickLong
+            input(plateDouble, Titanium, 64) // 64x (4x plate) = 64x (2x plateDouble)
+            input(plateDouble, Titanium, 64)
+            input(WRAP_CIRCUIT_EV, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(QUANTUM_EYE, 64)
+            output(SENSOR_EV, 64)
+            EUt(VA[EV])
+            duration(45 * SECOND)
+            tier(EV)
+        }
 
         // IV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(stickLong, Iridium, 32) // 64x stick = 32x stickLong
-            .input(plateDouble, TungstenSteel, 64) // 64x (4x plate) = 64x (2x plateDouble)
-            .input(plateDouble, TungstenSteel, 64)
-            .input(WRAP_CIRCUIT_IV, 4) // 64x circuitX = 4x wrappedCircuitX
-            .input(QUANTUM_STAR, 64)
-            .output(SENSOR_IV, 64)
-            .EUt(VA[IV].toLong())
-            .duration(45 * SECOND)
-            .tier(IV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(stickLong, Iridium, 32) // 64x stick = 32x stickLong
+            input(plateDouble, TungstenSteel, 64) // 64x (4x plate) = 64x (2x plateDouble)
+            input(plateDouble, TungstenSteel, 64)
+            input(WRAP_CIRCUIT_IV, 4) // 64x circuitX = 4x wrappedCircuitX
+            input(QUANTUM_STAR, 64)
+            output(SENSOR_IV, 64)
+            EUt(VA[IV])
+            duration(45 * SECOND)
+            tier(IV)
+        }
 
         // LuV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(ELECTRIC_MOTOR_LuV, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(WRAP_CIRCUIT_LuV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(HSSS.getFluid(288 * 64)) // frameGt: [(288L) * 64]
-            .fluidInputs(Ruridit.getFluid(144 * 2 * 64)) // plateX: [(144L) * 2 * 64]
-            .fluidInputs(Palladium.getFluid(36 * 64 * 64)) // foilX: [(36L) * 64 * 64]
-            .output(SENSOR_LuV, 64)
-            .EUt(VA[LuV].toLong())
-            .duration(1 * MINUTE)
-            .tier(LuV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(ELECTRIC_MOTOR_LuV, 64)
+            input(QUANTUM_STAR, 64)
+            input(WRAP_CIRCUIT_LuV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(HSSS.getFluid(288 * 64)) // frameGt: [(288L) * 64]
+            fluidInputs(Ruridit.getFluid(144 * 2 * 64)) // plateX: [(144L) * 2 * 64]
+            fluidInputs(Palladium.getFluid(36 * 64 * 64)) // foilX: [(36L) * 64 * 64]
+            output(SENSOR_LuV, 64)
+            EUt(VA[LuV])
+            duration(1 * MINUTE)
+            tier(LuV)
+        }
 
         // ZPM
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(ELECTRIC_MOTOR_ZPM, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(WRAP_CIRCUIT_ZPM, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Osmiridium.getFluid(288 * 64)) // frameGt: [(288L) * 64]
-            .fluidInputs(NaquadahAlloy.getFluid(144 * 2 * 64)) // plateX: [(144L) * 2 * 64]
-            .fluidInputs(NaquadahEnriched.getFluid(36 * (64 + 32) * 64)) // foilX: [(36L) * (64 + 32) * 64]
-            .output(SENSOR_ZPM, 64)
-            .EUt(VA[ZPM].toLong())
-            .duration(1 * MINUTE)
-            .tier(ZPM)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(ELECTRIC_MOTOR_ZPM, 64)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(WRAP_CIRCUIT_ZPM, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Osmiridium.getFluid(288 * 64)) // frameGt: [(288L) * 64]
+            fluidInputs(NaquadahAlloy.getFluid(144 * 2 * 64)) // plateX: [(144L) * 2 * 64]
+            fluidInputs(NaquadahEnriched.getFluid(36 * (64 + 32) * 64)) // foilX: [(36L) * (64 + 32) * 64]
+            output(SENSOR_ZPM, 64)
+            EUt(VA[ZPM])
+            duration(1 * MINUTE)
+            tier(ZPM)
+        }
 
         // UV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(ELECTRIC_MOTOR_UV, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(WRAP_CIRCUIT_UV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, YttriumBariumCuprate, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(Tritanium.getFluid(288 * 64)) // frameGt: [(288L) * 64]
-            .fluidInputs(EnrichedNaquadahAlloy.getFluid(144 * 4 * 64)) // plateX: [(144L) * 4 * 64]
-            .fluidInputs(Rutherfordium.getFluid(36 * (64 + 64) * 64)) // foilX: [(36L) * (64 + 64) * 64]
-            .output(SENSOR_UV, 64)
-            .EUt(VA[UV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(ELECTRIC_MOTOR_UV, 64)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(WRAP_CIRCUIT_UV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, YttriumBariumCuprate, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
+            fluidInputs(Tritanium.getFluid(288 * 64)) // frameGt: [(288L) * 64]
+            fluidInputs(EnrichedNaquadahAlloy.getFluid(144 * 4 * 64)) // plateX: [(144L) * 4 * 64]
+            fluidInputs(Rutherfordium.getFluid(36 * (64 + 64) * 64)) // foilX: [(36L) * (64 + 64) * 64]
+            output(SENSOR_UV, 64)
+            EUt(VA[UV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UV)
+        }
 
         // UHV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(ELECTRIC_MOTOR_UHV, 64)
-            .input(GRAVI_STAR, 64)
-            .input(WRAP_CIRCUIT_UHV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, Europium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 12 * 64)) // 1728 * 64
-            .fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(Adamantium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(Dubnium.getFluid(L * 4 * 64)) // plateX: [(144L) * 4 * 64]
-            .fluidInputs(Neutronium.getFluid(36 * (64 + 64 + 32) * 64)) // foilX: [(36L) * (64 + 64 + 32) * 64]
-            .output(SENSOR_UHV, 64)
-            .EUt(VA[UHV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UHV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(ELECTRIC_MOTOR_UHV, 64)
+            input(GRAVI_STAR, 64)
+            input(WRAP_CIRCUIT_UHV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, Europium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 12 * 64)) // 1728 * 64
+            fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(Adamantium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(Dubnium.getFluid(L * 4 * 64)) // plateX: [(144L) * 4 * 64]
+            fluidInputs(Neutronium.getFluid(36 * (64 + 64 + 32) * 64)) // foilX: [(36L) * (64 + 64 + 32) * 64]
+            output(SENSOR_UHV, 64)
+            EUt(VA[UHV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UHV)
+        }
 
         // UEV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(ELECTRIC_MOTOR_UEV, 64)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(WRAP_CIRCUIT_UEV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, Seaborgium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(CosmicNeutronium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(Bohrium.getFluid(L * 8 * 64)) // plateX: [(144L) * 8 * 64]
-            .fluidInputs(Infinity.getFluid(36 * (64 + 64 + 64) * 64)) // foilX: [(36L) * (64 + 64 + 64) * 64]
-            .output(SENSOR_UEV, 64)
-            .EUt(VA[UEV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UEV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(ELECTRIC_MOTOR_UEV, 64)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(WRAP_CIRCUIT_UEV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, Seaborgium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
+            fluidInputs(CosmicNeutronium.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(Bohrium.getFluid(L * 8 * 64)) // plateX: [(144L) * 8 * 64]
+            fluidInputs(Infinity.getFluid(36 * (64 + 64 + 64) * 64)) // foilX: [(36L) * (64 + 64 + 64) * 64]
+            output(SENSOR_UEV, 64)
+            EUt(VA[UEV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UEV)
+        }
 
         // UIV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(ELECTRIC_MOTOR_UIV, 64)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(WRAP_CIRCUIT_UIV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, SuperheavyAlloyA, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
-            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 2 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(Shirabon.getFluid(L * 8 * 64)) // plateX: [(144L) * 8 * 64]
-            .fluidInputs(HalkoniteSteel.getFluid(36 * (64 + 64 + 64 + 32) * 64)) // foilX: [(36L) * (64 + 64 + 64 + 32) * 64]
-            .fluidInputs(Bedrockium.getFluid(36 * (64 + 64 + 64 + 32) * 64))
-            .output(SENSOR_UIV, 64)
-            .EUt(VA[UIV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UIV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(ELECTRIC_MOTOR_UIV, 64)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(WRAP_CIRCUIT_UIV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, SuperheavyAlloyA, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
+            fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 2 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(Shirabon.getFluid(L * 8 * 64)) // plateX: [(144L) * 8 * 64]
+            fluidInputs(HalkoniteSteel.getFluid(36 * (64 + 64 + 64 + 32) * 64)) // foilX: [(36L) * (64 + 64 + 64 + 32) * 64]
+            fluidInputs(Bedrockium.getFluid(36 * (64 + 64 + 64 + 32) * 64))
+            output(SENSOR_UIV, 64)
+            EUt(VA[UIV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UIV)
+        }
 
         // UXV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(7)
-            .input(ELECTRIC_MOTOR_UXV, 64)
-            .input(ZENITH_STAR, 64)
-            .input(WRAP_CIRCUIT_UXV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, SuperheavyAlloyB, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
-            .fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(TranscendentMetal.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
-            .fluidInputs(Mellion.getFluid(L * 16)) // plateX: [(144L) * 16 * 64]
-            .fluidInputs(HarmonicPhononMatter.getFluid(36 * (64 + 64 + 64 + 64) * 64)) // foilX: [(36L) * (64 + 64 + 64 + 64) * 64]
-            .output(SENSOR_UXV, 64)
-            .EUt(VA[UXV].toLong())
-            .duration(1 * MINUTE + 45 * SECOND)
-            .tier(UXV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(7)
+            input(ELECTRIC_MOTOR_UXV, 64)
+            input(ZENITH_STAR, 64)
+            input(WRAP_CIRCUIT_UXV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, SuperheavyAlloyB, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+            fluidInputs(PrimordialMatter.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(FullerenePolymerMatrix.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(TranscendentMetal.getFluid(288 * 64)) // frameGtX: [(288L) * 64]
+            fluidInputs(Mellion.getFluid(L * 16)) // plateX: [(144L) * 16 * 64]
+            fluidInputs(HarmonicPhononMatter.getFluid(36 * (64 + 64 + 64 + 64) * 64)) // foilX: [(36L) * (64 + 64 + 64 + 64) * 64]
+            output(SENSOR_UXV, 64)
+            EUt(VA[UXV])
+            duration(1 * MINUTE + 45 * SECOND)
+            tier(UXV)
+        }
 
         // OpV
 
@@ -1939,193 +1944,193 @@ internal object ComponentAssemblyLineRecipeProducer
     private fun fieldGeneratorRecipes()
     {
         // LV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .inputs(ItemStack(Items.ENDER_PEARL, 64))
-            .input(plateDouble, Steel, 64) // 64x (2x plate) = 64x plateDouble
-            .input(WRAP_CIRCUIT_LV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .fluidInputs(ManganesePhosphide.getFluid(288 * 4 * 64)) // wireGtQuadruple: [(288L) * 4 * 64]
-            .output(FIELD_GENERATOR_LV, 64)
-            .EUt(VA[LV].toLong())
-            .duration(15 * SECOND)
-            .tier(LV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            inputs(ItemStack(Items.ENDER_PEARL, 64))
+            input(plateDouble, Steel, 64) // 64x (2x plate) = 64x plateDouble
+            input(WRAP_CIRCUIT_LV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            fluidInputs(ManganesePhosphide.getFluid(288 * 4 * 64)) // wireGtQuadruple: [(288L) * 4 * 64]
+            output(FIELD_GENERATOR_LV, 64)
+            EUt(VA[LV])
+            duration(15 * SECOND)
+            tier(LV)
+        }
 
         // MV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .inputs(ItemStack(Items.ENDER_EYE, 64))
-            .input(plateDouble, Aluminium, 64) // 64x (2x plate) = 64x plateDouble
-            .input(WRAP_CIRCUIT_MV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .fluidInputs(MagnesiumDiboride.getFluid(288 * 4 * 64)) // wireGtQuadruple: [(288L) * 4 * 64]
-            .output(FIELD_GENERATOR_MV, 64)
-            .EUt(VA[MV].toLong())
-            .duration(30 * SECOND)
-            .tier(MV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            inputs(ItemStack(Items.ENDER_EYE, 64))
+            input(plateDouble, Aluminium, 64) // 64x (2x plate) = 64x plateDouble
+            input(WRAP_CIRCUIT_MV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            fluidInputs(MagnesiumDiboride.getFluid(288 * 4 * 64)) // wireGtQuadruple: [(288L) * 4 * 64]
+            output(FIELD_GENERATOR_MV, 64)
+            EUt(VA[MV])
+            duration(30 * SECOND)
+            tier(MV)
+        }
 
         // HV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(QUANTUM_EYE, 64)
-            .input(plateDouble, StainlessSteel, 64) // 64x (2x plate) = 64x plateDouble
-            .input(WRAP_CIRCUIT_HV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .fluidInputs(MercuryBariumCalciumCuprate.getFluid(288 * 4 * 64)) // wireGtQuadruple: [(288L) * 4 * 64]
-            .output(FIELD_GENERATOR_HV, 64)
-            .EUt(VA[HV].toLong())
-            .duration(30 * SECOND)
-            .tier(HV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(QUANTUM_EYE, 64)
+            input(plateDouble, StainlessSteel, 64) // 64x (2x plate) = 64x plateDouble
+            input(WRAP_CIRCUIT_HV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            fluidInputs(MercuryBariumCalciumCuprate.getFluid(288 * 4 * 64)) // wireGtQuadruple: [(288L) * 4 * 64]
+            output(FIELD_GENERATOR_HV, 64)
+            EUt(VA[HV])
+            duration(30 * SECOND)
+            tier(HV)
+        }
 
         // EV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .inputs(ItemStack(Items.NETHER_STAR, 64))
-            .input(plateDouble, Titanium, 64) // 64x (2x plateDouble)
-            .input(plateDouble, Titanium, 64)
-            .input(WRAP_CIRCUIT_EV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .fluidInputs(UraniumTriplatinum.getFluid(288 * 4 * 64)) // wireGtQuadruple: [(288L) * 4 * 64]
-            .output(FIELD_GENERATOR_EV, 64)
-            .EUt(VA[EV].toLong())
-            .duration(45 * SECOND)
-            .tier(EV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            inputs(NETHER_STAR, 64)
+            input(plateDouble, Titanium, 64) // 64x (2x plateDouble)
+            input(plateDouble, Titanium, 64)
+            input(WRAP_CIRCUIT_EV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            fluidInputs(UraniumTriplatinum.getFluid(288 * 4 * 64)) // wireGtQuadruple: [(288L) * 4 * 64]
+            output(FIELD_GENERATOR_EV, 64)
+            EUt(VA[EV])
+            duration(45 * SECOND)
+            tier(EV)
+        }
 
         // IV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(QUANTUM_STAR, 64)
-            .input(plateDouble, TungstenSteel, 64) // 64x (2x plateDouble)
-            .input(plateDouble, TungstenSteel, 64)
-            .input(WRAP_CIRCUIT_IV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .fluidInputs(SamariumIronArsenicOxide.getFluid(288 * 4 * 64)) // wireGtQuadruple: [(288L) * 4 * 64]
-            .output(FIELD_GENERATOR_IV, 64)
-            .EUt(VA[IV].toLong())
-            .duration(45 * SECOND)
-            .tier(IV)
-            .buildAndRegister()
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(QUANTUM_STAR, 64)
+            input(plateDouble, TungstenSteel, 64) // 64x (2x plateDouble)
+            input(plateDouble, TungstenSteel, 64)
+            input(WRAP_CIRCUIT_IV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            fluidInputs(SamariumIronArsenicOxide.getFluid(288 * 4 * 64)) // wireGtQuadruple: [(288L) * 4 * 64]
+            output(FIELD_GENERATOR_IV, 64)
+            EUt(VA[IV])
+            duration(45 * SECOND)
+            tier(IV)
+        }
 
         // LuV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(QUANTUM_STAR, 64)
-            .input(EMITTER_LuV, 64)
-            .input(EMITTER_LuV, 64)
-            .input(WRAP_CIRCUIT_LuV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(HSSS.getFluid(288 * 64 // frameGt: [(288L) * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(QUANTUM_STAR, 64)
+            input(EMITTER_LuV, 64)
+            input(EMITTER_LuV, 64)
+            input(WRAP_CIRCUIT_LuV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, NiobiumTitanium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(HSSS.getFluid(288 * 64 // frameGt: [(288L) * 64]
                 + 288 * 4 * 64)) // plateDoubleX: [(288L) * 4 * 64]
-            .fluidInputs(IndiumTinBariumTitaniumCuprate.getFluid(18 * 64 * 64)) // wireFineX: [(18L) * 64 * 64]
-            .output(FIELD_GENERATOR_LuV, 64)
-            .EUt(VA[LuV].toLong())
-            .duration(1 * MINUTE)
-            .tier(LuV)
-            .buildAndRegister()
+            fluidInputs(IndiumTinBariumTitaniumCuprate.getFluid(18 * 64 * 64)) // wireFineX: [(18L) * 64 * 64]
+            output(FIELD_GENERATOR_LuV, 64)
+            EUt(VA[LuV])
+            duration(1 * MINUTE)
+            tier(LuV)
+        }
 
         // ZPM
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(EMITTER_ZPM, 64)
-            .input(EMITTER_ZPM, 64)
-            .input(WRAP_CIRCUIT_ZPM, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
-            .fluidInputs(Osmiridium.getFluid(288 * 64 // frameGtX: [(288L) * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(EMITTER_ZPM, 64)
+            input(EMITTER_ZPM, 64)
+            input(WRAP_CIRCUIT_ZPM, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, VanadiumGallium, 8) // 64x (2x cableGtSingle) = 64x cableGtDouble = 8x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 8 * 64)) // 1152 * 64
+            fluidInputs(Osmiridium.getFluid(288 * 64 // frameGtX: [(288L) * 64]
                     + 288 * 4 * 64)) // plateDoubleX: [(288L) * 4 * 64]
-            .fluidInputs(UraniumRhodiumDinaquadide.getFluid(18 * (64 + 32) * 64)) // wireFineX: [(18L) * (64 + 32) * 64]
-            .output(FIELD_GENERATOR_ZPM, 64)
-            .EUt(VA[ZPM].toLong())
-            .duration(1 * MINUTE)
-            .tier(ZPM)
-            .buildAndRegister()
+            fluidInputs(UraniumRhodiumDinaquadide.getFluid(18 * (64 + 32) * 64)) // wireFineX: [(18L) * (64 + 32) * 64]
+            output(FIELD_GENERATOR_ZPM, 64)
+            EUt(VA[ZPM])
+            duration(1 * MINUTE)
+            tier(ZPM)
+        }
 
         // UV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(QUANTUM_STAR, 64)
-            .input(EMITTER_UV, 64)
-            .input(EMITTER_UV, 64)
-            .input(WRAP_CIRCUIT_UV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, YttriumBariumCuprate, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 12 * 64)) // 1728 * 64
-            .fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(Tritanium.getFluid(288 * 64 // frameGtX: [(288L) * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(QUANTUM_STAR, 64)
+            input(EMITTER_UV, 64)
+            input(EMITTER_UV, 64)
+            input(WRAP_CIRCUIT_UV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, YttriumBariumCuprate, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 12 * 64)) // 1728 * 64
+            fluidInputs(Naquadria.getFluid(L * 64)) // 144 * 64
+            fluidInputs(Tritanium.getFluid(288 * 64 // frameGtX: [(288L) * 64]
                     + 288 * 4 * 64)) // plateDoubleX: [(288L) * 4 * 64]
-            .fluidInputs(EnrichedNaquadahTriniumEuropiumDuranide.getFluid(18 * (64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64) * 64]
-            .output(FIELD_GENERATOR_UV, 64)
-            .EUt(VA[UV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UV)
-            .buildAndRegister()
+            fluidInputs(EnrichedNaquadahTriniumEuropiumDuranide.getFluid(18 * (64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64) * 64]
+            output(FIELD_GENERATOR_UV, 64)
+            EUt(VA[UV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UV)
+        }
 
         // UHV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(GRAVI_STAR, 64)
-            .input(EMITTER_UHV, 64)
-            .input(EMITTER_UHV, 64)
-            .input(WRAP_CIRCUIT_UHV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, Europium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(SolderingAlloy.getFluid(L * 16 * 64)) // 2304 * 64
-            .fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(Adamantium.getFluid(288 * 64 // frameGtX: [(288L) * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(GRAVI_STAR, 64)
+            input(EMITTER_UHV, 64)
+            input(EMITTER_UHV, 64)
+            input(WRAP_CIRCUIT_UHV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, Europium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(SolderingAlloy.getFluid(L * 16 * 64)) // 2304 * 64
+            fluidInputs(Taranium.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(Adamantium.getFluid(288 * 64 // frameGtX: [(288L) * 64]
                 + 288 * 4 * 64)) // plateDoubleX: [(288L) * 4 * 64]
-            .fluidInputs(RutheniumTriniumAmericiumNeutronate.getFluid(18 * (64 + 64 + 32) * 64)) // wireFineX: [(18L) * (64 + 64 + 32) * 64]
-            .output(FIELD_GENERATOR_UHV, 64)
-            .EUt(VA[UHV].toLong())
-            .duration(1 * MINUTE + 15 * SECOND)
-            .tier(UHV)
-            .buildAndRegister()
+            fluidInputs(RutheniumTriniumAmericiumNeutronate.getFluid(18 * (64 + 64 + 32) * 64)) // wireFineX: [(18L) * (64 + 64 + 32) * 64]
+            output(FIELD_GENERATOR_UHV, 64)
+            EUt(VA[UHV])
+            duration(1 * MINUTE + 15 * SECOND)
+            tier(UHV)
+        }
 
         // UEV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(EMITTER_UEV, 64)
-            .input(EMITTER_UEV, 64)
-            .input(WRAP_CIRCUIT_UEV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, Seaborgium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
-            .fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
-            .fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
-            .fluidInputs(CosmicNeutronium.getFluid(288 * 64 // frameGtX: [(288L) * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(EMITTER_UEV, 64)
+            input(EMITTER_UEV, 64)
+            input(WRAP_CIRCUIT_UEV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, Seaborgium, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 32 * 64)) // 4608 * 64
+            fluidInputs(MetastableOganesson.getFluid(L * 4 * 64)) // 576 * 64
+            fluidInputs(Fullerene.getFluid(L * 64)) // 144 * 64
+            fluidInputs(CosmicNeutronium.getFluid(288 * 64 // frameGtX: [(288L) * 64]
                 + 288 * 8 * 64)) // plateDoubleX: [(288L) * 8 * 64]
-            .fluidInputs(VibraniumTritaniumActiniumIronSuperhydride.getFluid(18 * (64 + 64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64 + 64) * 64]
-            .output(FIELD_GENERATOR_UEV, 64)
-            .EUt(VA[UEV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UEV)
-            .buildAndRegister()
+            fluidInputs(VibraniumTritaniumActiniumIronSuperhydride.getFluid(18 * (64 + 64 + 64) * 64)) // wireFineX: [(18L) * (64 + 64 + 64) * 64]
+            output(FIELD_GENERATOR_UEV, 64)
+            EUt(VA[UEV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UEV)
+        }
 
         // UIV
-        COMPONENT_ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .circuitMeta(8)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(GRAVI_STAR, 64)
-            .input(EMITTER_UIV, 64)
-            .input(EMITTER_UIV, 64)
-            .input(WRAP_CIRCUIT_UIV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
-            .input(cableGtHex, SuperheavyAlloyA, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
-            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 576 * 64
-            .fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
-            .fluidInputs(HeavyQuarkDegenerateMatter.getFluid(288 * 64 // frameGtX: [(288L) * 64]
+        COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            circuitMeta(8)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(GRAVI_STAR, 64)
+            input(EMITTER_UIV, 64)
+            input(EMITTER_UIV, 64)
+            input(WRAP_CIRCUIT_UIV, 8) // 64x (2x circuitX) = 8x wrappedCircuitX
+            input(cableGtHex, SuperheavyAlloyA, 16) // 64x (4x cableGtSingle) = 64x cableGtQuadruple = 16x cableGtHex
+            fluidInputs(MutatedLivingSolder.getFluid(L * 64 * 64)) // 9216 * 64
+            fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8 * 64)) // 576 * 64
+            fluidInputs(CarbonNanotube.getFluid(L * 2 * 64)) // 288 * 64
+            fluidInputs(HeavyQuarkDegenerateMatter.getFluid(288 * 64 // frameGtX: [(288L) * 64]
                     + 288 * 8 * 64)) // plateDoubleX: [(288) * 8 * 64]
-            .fluidInputs(FullereneSuperconductor.getFluid(18 * (64 + 64 + 64 + 32) * 64)) // wireFineX: [(18L) * (64 + 64 + 64 + 32) * 64]
-            .output(FIELD_GENERATOR_UIV, 64)
-            .EUt(VA[UIV].toLong())
-            .duration(1 * MINUTE + 30 * SECOND)
-            .tier(UIV)
-            .buildAndRegister()
+            fluidInputs(FullereneSuperconductor.getFluid(18 * (64 + 64 + 64 + 32) * 64)) // wireFineX: [(18L) * (64 + 64 + 64 + 32) * 64]
+            output(FIELD_GENERATOR_UIV, 64)
+            EUt(VA[UIV])
+            duration(1 * MINUTE + 30 * SECOND)
+            tier(UIV)
+        }
 
         // UXV
 
@@ -2136,7 +2141,7 @@ internal object ComponentAssemblyLineRecipeProducer
 
     private fun componentCasingsRecipes()
     {
-
+        // TODO: Support Tiered Component Casing recipes in CoAL
     }
 
     // @formatter:on
