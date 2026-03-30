@@ -6,7 +6,6 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
@@ -14,7 +13,8 @@ import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
-import gregtech.api.unification.material.MarkerMaterials
+import gregtech.api.unification.material.MarkerMaterials.Component
+import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.AnnealedCopper
 import gregtech.api.unification.material.Materials.CalciumChloride
@@ -59,6 +59,8 @@ import gregtech.common.items.MetaItems.VACUUM_TUBE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
@@ -82,108 +84,107 @@ internal object ElectronicCircuits
     private fun circuitBoardRecipes()
     {
         // Deleted vanilla recipes of Phenolic board.
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1),
                     OreDictUnifier.get(dust, Wood)),
             arrayOf(Glue.getFluid(50)))
 
-        GTRecipeHandler.removeRecipesByInputs(EXTRACTOR_RECIPES,
-            OreDictUnifier.get(dust, Resin))
+        EXTRACTOR_RECIPES.removeRecipe(OreDictUnifier.get(dust, Resin))
 
         // Coagulate resin liquid to dust.
-        COAGULATION_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .notConsumable(stick, Iron)
-            .fluidInputs(Resin.getFluid(1000))
-            .output(dust, Resin)
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        COAGULATION_RECIPES.addRecipe {
+            circuitMeta(1)
+            notConsumable(stick, Iron)
+            fluidInputs(Resin.getFluid(1000))
+            output(dust, Resin)
+            duration(5 * SECOND)
+        }
 
-        COAGULATION_RECIPES.recipeBuilder()
-            .notConsumable(stick, Iron)
-            .notConsumable(dust, CalciumChloride)
-            .fluidInputs(Resin.getFluid(1000))
-            .output(dust, Resin)
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        COAGULATION_RECIPES.addRecipe {
+            notConsumable(stick, Iron)
+            notConsumable(dust, CalciumChloride)
+            fluidInputs(Resin.getFluid(1000))
+            output(dust, Resin)
+            duration(2 * SECOND + 5 * TICK)
+        }
 
-        COAGULATION_RECIPES.recipeBuilder()
-            .notConsumable(stick, Iron)
-            .notConsumable(SulfuricAcid.getFluid(1))
-            .fluidInputs(Resin.getFluid(1000))
-            .output(dust, Resin)
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        COAGULATION_RECIPES.addRecipe {
+            notConsumable(stick, Iron)
+            notConsumable(SulfuricAcid.getFluid(1))
+            fluidInputs(Resin.getFluid(1000))
+            output(dust, Resin)
+            duration(1 * SECOND)
+        }
 
-        COAGULATION_RECIPES.recipeBuilder()
-            .notConsumable(stick, Iron)
-            .notConsumable(AceticAcid.getFluid(1))
-            .fluidInputs(Resin.getFluid(1000))
-            .output(dust, Resin)
-            .duration(5 * TICK)
-            .buildAndRegister()
+        COAGULATION_RECIPES.addRecipe {
+            notConsumable(stick, Iron)
+            notConsumable(AceticAcid.getFluid(1))
+            fluidInputs(Resin.getFluid(1000))
+            output(dust, Resin)
+            duration(5 * TICK)
+        }
 
         // New phenolic board recipes.
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Resin)
-            .fluidInputs(Glue.getFluid(50))
-            .output(PHENOLIC_BOARD)
-            .EUt(VA[LV])
-            .duration(7 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Resin)
+            fluidInputs(Glue.getFluid(50))
+            output(PHENOLIC_BOARD)
+            EUt(VA[LV])
+            duration(7 * SECOND + 10 * TICK)
+        }
 
         // Add advanced recipes of phenolic board.
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Epoxy)
-            .fluidInputs(Glue.getFluid(50))
-            .output(PHENOLIC_BOARD, 8)
-            .EUt(VA[LV])
-            .duration(7 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Epoxy)
+            fluidInputs(Glue.getFluid(50))
+            output(PHENOLIC_BOARD, 8)
+            EUt(VA[LV])
+            duration(7 * SECOND + 10 * TICK)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, ReinforcedEpoxyResin)
-            .fluidInputs(Glue.getFluid(50))
-            .output(PHENOLIC_BOARD, 16)
-            .EUt(VA[LV])
-            .duration(7 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, ReinforcedEpoxyResin)
+            fluidInputs(Glue.getFluid(50))
+            output(PHENOLIC_BOARD, 16)
+            EUt(VA[LV])
+            duration(7 * SECOND + 10 * TICK)
+        }
 
         // Advanced recipes of basic circuit board.
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(foil, AnnealedCopper, 4)
-            .input(plate, Wood)
-            .fluidInputs(Glue.getFluid(100))
-            .output(BASIC_CIRCUIT_BOARD, 4)
-            .EUt(7) // ULV
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(foil, AnnealedCopper, 4)
+            input(plate, Wood)
+            fluidInputs(Glue.getFluid(100))
+            output(BASIC_CIRCUIT_BOARD, 4)
+            EUt(7) // ULV
+            duration(10 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(foil, Cupronickel, 4)
-            .input(plate, Wood)
-            .fluidInputs(Glue.getFluid(100))
-            .output(BASIC_CIRCUIT_BOARD, 16)
-            .EUt(7) // ULV
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(foil, Cupronickel, 4)
+            input(plate, Wood)
+            fluidInputs(Glue.getFluid(100))
+            output(BASIC_CIRCUIT_BOARD, 16)
+            EUt(7) // ULV
+            duration(10 * SECOND)
+        }
 
         // Advanced etching liquids recipe addition.
         for (etchingLiquid in arrayOf(
             TetramethylammoniumHydroxide.getFluid(50),
             EthylenediaminePyrocatechol.getFluid(25)))
         {
-            CHEMICAL_RECIPES.recipeBuilder()
-                .input(foil, Silver, 4)
-                .input(PHENOLIC_BOARD)
-                .fluidInputs(etchingLiquid)
-                .output(GOOD_CIRCUIT_BOARD)
-                .EUt(VA[LV])
-                .duration(15 * SECOND)
-                .buildAndRegister()
+            CHEMICAL_RECIPES.addRecipe {
+                input(foil, Silver, 4)
+                input(PHENOLIC_BOARD)
+                fluidInputs(etchingLiquid)
+                output(GOOD_CIRCUIT_BOARD)
+                EUt(VA[LV])
+                duration(15 * SECOND)
+            }
         }
 
     }
@@ -217,78 +218,77 @@ internal object ElectronicCircuits
             'B', UnificationEntry(bolt, Steel),
             'D', UnificationEntry(dustSmall, Quicklime))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(wireFine, Cupronickel)
-            .input(foil, Nickel, 2)
-            .input(bolt, Steel, 4)
-            .output(VACUUM_TUBE_COMPONENT, 6)
-            .EUt(VA[LV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(wireFine, Cupronickel)
+            input(foil, Nickel, 2)
+            input(bolt, Steel, 4)
+            output(VACUUM_TUBE_COMPONENT, 6)
+            EUt(VA[LV])
+            duration(20 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(wireFine, Cupronickel)
-            .input(foil, Molybdenum, 2)
-            .input(bolt, Steel, 4)
-            .output(VACUUM_TUBE_COMPONENT, 12)
-            .EUt(VA[LV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(wireFine, Cupronickel)
+            input(foil, Molybdenum, 2)
+            input(bolt, Steel, 4)
+            output(VACUUM_TUBE_COMPONENT, 12)
+            EUt(VA[LV])
+            duration(20 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(wireFine, Cupronickel)
-            .input(foil, Nickel, 2)
-            .input(bolt, Steel, 4)
-            .input(dustSmall, Quicklime)
-            .output(VACUUM_TUBE_COMPONENT, 8)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(wireFine, Cupronickel)
+            input(foil, Nickel, 2)
+            input(bolt, Steel, 4)
+            input(dustSmall, Quicklime)
+            output(VACUUM_TUBE_COMPONENT, 8)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(wireFine, Cupronickel)
-            .input(foil, Molybdenum, 2)
-            .input(bolt, Steel, 4)
-            .input(dustSmall, Quicklime)
-            .output(VACUUM_TUBE_COMPONENT, 16)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(wireFine, Cupronickel)
+            input(foil, Molybdenum, 2)
+            input(bolt, Steel, 4)
+            input(dustSmall, Quicklime)
+            output(VACUUM_TUBE_COMPONENT, 16)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Vacuum Tube
         ModHandler.removeRecipeByName("${GTValues.MODID}:vacuum_tube")
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             GLASS_TUBE.stackForm,
             OreDictUnifier.get(bolt, Steel, 2),
             OreDictUnifier.get(wireGtSingle, Copper, 2),
             IntCircuitIngredient.getIntegratedCircuit(1))
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(GLASS_TUBE.stackForm,
                     OreDictUnifier.get(bolt, Steel, 2),
                     OreDictUnifier.get(wireGtSingle, Copper, 2)),
             arrayOf(RedAlloy.getFluid(L / 8)))
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(GLASS_TUBE.stackForm,
                     OreDictUnifier.get(bolt, Steel, 2),
                     OreDictUnifier.get(wireGtSingle, AnnealedCopper, 2)),
             arrayOf(RedAlloy.getFluid(L / 8)))
 
         // Vacuum Tube
-        VACUUM_CHAMBER_RECIPES.recipeBuilder()
-            .input(GLASS_TUBE)
-            .input(VACUUM_TUBE_COMPONENT)
-            .input(ring, Kovar)
-            .output(VACUUM_TUBE, 2)
-            .EUt(VA[ULV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
+        VACUUM_CHAMBER_RECIPES.addRecipe {
+            input(GLASS_TUBE)
+            input(VACUUM_TUBE_COMPONENT)
+            input(ring, Kovar)
+            output(VACUUM_TUBE, 2)
+            EUt(VA[ULV])
+            duration(5 * SECOND)
+        }
     }
 
     private fun circuitRecipes()
@@ -303,28 +303,28 @@ internal object ElectronicCircuits
             'C', BASIC_CIRCUIT_BOARD,
             'W', UnificationEntry(cableGtSingle, RedAlloy))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(BASIC_CIRCUIT_BOARD.stackForm,
-                    OreDictUnifier.get(component, MarkerMaterials.Component.Resistor, 2),
+                    OreDictUnifier.get(component, Component.Resistor, 2),
                     OreDictUnifier.get(wireGtSingle, RedAlloy, 2),
                     VACUUM_TUBE.getStackForm(2)),
             arrayOf(Tin.getFluid(L)))
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(BASIC_CIRCUIT_BOARD.stackForm,
-                OreDictUnifier.get(component, MarkerMaterials.Component.Resistor, 2),
-                OreDictUnifier.get(wireGtSingle, RedAlloy, 2),
-                VACUUM_TUBE.getStackForm(2)),
+                    OreDictUnifier.get(component, Component.Resistor, 2),
+                    OreDictUnifier.get(wireGtSingle, RedAlloy, 2),
+                    VACUUM_TUBE.getStackForm(2)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(BASIC_CIRCUIT_BOARD)
-            .input(component, MarkerMaterials.Component.Resistor, 2)
-            .input(VACUUM_TUBE, 2)
-            .input(wireGtSingle, RedAlloy, 2)
-            .output(ELECTRONIC_CIRCUIT_LV, 4)
-            .EUt(VH[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(BASIC_CIRCUIT_BOARD)
+            input(component, Component.Resistor, 2)
+            input(VACUUM_TUBE, 2)
+            input(wireGtSingle, RedAlloy, 2)
+            output(ELECTRONIC_CIRCUIT_LV, 4)
+            EUt(VH[LV])
+            duration(10 * SECOND)
+        }
 
         // Deleted original recipes for Electronic Circuit MV (player do not
         // need steel plate to make it yet and x2 product).
@@ -336,29 +336,28 @@ internal object ElectronicCircuits
             'C', GOOD_CIRCUIT_BOARD,
             'W', UnificationEntry(wireGtSingle, Copper))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(GOOD_CIRCUIT_BOARD.stackForm,
-                    OreDictUnifier.get(circuit, MarkerMaterials.Tier.LV, 2),
-                    OreDictUnifier.get(component, MarkerMaterials.Component.Diode, 2),
+                    OreDictUnifier.get(circuit, Tier.LV, 2),
+                    OreDictUnifier.get(component, Component.Diode, 2),
                     OreDictUnifier.get(wireGtSingle, Copper, 2)),
             arrayOf(Tin.getFluid(L)))
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(GOOD_CIRCUIT_BOARD.stackForm,
-                OreDictUnifier.get(circuit, MarkerMaterials.Tier.LV, 2),
-                OreDictUnifier.get(component, MarkerMaterials.Component.Diode, 2),
-                OreDictUnifier.get(wireGtSingle, Copper, 2)),
+                    OreDictUnifier.get(circuit, Tier.LV, 2),
+                    OreDictUnifier.get(component, Component.Diode, 2),
+                    OreDictUnifier.get(wireGtSingle, Copper, 2)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(GOOD_CIRCUIT_BOARD)
-            .input(ELECTRONIC_CIRCUIT_LV, 2) // Make sure this input circuit cannot be other circuits.
-            .input(component, MarkerMaterials.Component.Diode, 2)
-            .input(wireGtSingle, Copper, 2)
-            .output(ELECTRONIC_CIRCUIT_MV, 2)
-            .EUt(VH[LV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
-
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(GOOD_CIRCUIT_BOARD)
+            input(ELECTRONIC_CIRCUIT_LV, 2) // Make sure this input circuit cannot be other circuits.
+            input(component, Component.Diode, 2)
+            input(wireGtSingle, Copper, 2)
+            output(ELECTRONIC_CIRCUIT_MV, 2)
+            EUt(VH[LV])
+            duration(15 * SECOND)
+        }
     }
 
     // @formatter:on
