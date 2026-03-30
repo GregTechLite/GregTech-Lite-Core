@@ -11,7 +11,6 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.RESEARCH_STATION_RECIPES
 import gregtech.api.unification.OreDictUnifier
@@ -50,6 +49,8 @@ import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
@@ -93,262 +94,262 @@ internal object MotorRecipes
 
     fun init()
     {
-
         // LuV
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+        ASSEMBLY_LINE_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(stickLong, SamariumMagnetic),
-                OreDictUnifier.get(stickLong, HSSS, 2),
-                OreDictUnifier.get(ring, HSSS, 2),
-                OreDictUnifier.get(round, HSSS, 4),
-                OreDictUnifier.get(wireFine, Ruridit, 64),
-                OreDictUnifier.get(cableGtSingle, NiobiumTitanium, 2)),
+                    OreDictUnifier.get(stickLong, HSSS, 2),
+                    OreDictUnifier.get(ring, HSSS, 2),
+                    OreDictUnifier.get(round, HSSS, 4),
+                    OreDictUnifier.get(wireFine, Ruridit, 64),
+                    OreDictUnifier.get(cableGtSingle, NiobiumTitanium, 2)),
             arrayOf(SolderingAlloy.getFluid(L),
-                Lubricant.getFluid(250)))
+                    Lubricant.getFluid(250)))
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(stickLong, SamariumMagnetic)
-            .input(stickLong, HSSS)
-            .input(ring, HSSS, 2)
-            .input(round, HSSS, 4)
-            .input(wireFine, Ruridit, 64)
-            .input(cableGtSingle, NiobiumTitanium, 2)
-            .fluidInputs(SolderingAlloy.getFluid(L))
-            .fluidInputs(Lubricant.getFluid(250))
-            .output(ELECTRIC_MOTOR_LuV)
-            .EUt(6000) // IV
-            .duration(20 * SECOND)
-            .scannerResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(stickLong, SamariumMagnetic)
+            input(stickLong, HSSS)
+            input(ring, HSSS, 2)
+            input(round, HSSS, 4)
+            input(wireFine, Ruridit, 64)
+            input(cableGtSingle, NiobiumTitanium, 2)
+            fluidInputs(SolderingAlloy.getFluid(L))
+            fluidInputs(Lubricant.getFluid(250))
+            output(ELECTRIC_MOTOR_LuV)
+            EUt(6000) // IV
+            duration(20 * SECOND)
+            scannerResearch {
                 it.researchStack(ELECTRIC_MOTOR_IV)
                     .EUt(VA[HV])
                     .duration(30 * SECOND)
             }
-            .buildAndRegister()
+        }
 
         // ZPM
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+        ASSEMBLY_LINE_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(stickLong, SamariumMagnetic),
-                OreDictUnifier.get(stickLong, Osmiridium, 4),
-                OreDictUnifier.get(ring, Osmiridium, 4),
-                OreDictUnifier.get(round, Osmiridium, 8),
-                OreDictUnifier.get(wireFine, Europium, 64),
-                OreDictUnifier.get(wireFine, Europium, 32),
-                OreDictUnifier.get(cableGtSingle, VanadiumGallium, 2)),
-            arrayOf(SolderingAlloy.getFluid(L * 2), Lubricant.getFluid(500)))
+                    OreDictUnifier.get(stickLong, Osmiridium, 4),
+                    OreDictUnifier.get(ring, Osmiridium, 4),
+                    OreDictUnifier.get(round, Osmiridium, 8),
+                    OreDictUnifier.get(wireFine, Europium, 64),
+                    OreDictUnifier.get(wireFine, Europium, 32),
+                    OreDictUnifier.get(cableGtSingle, VanadiumGallium, 2)),
+            arrayOf(SolderingAlloy.getFluid(L * 2),
+                    Lubricant.getFluid(500)))
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(stickLong, SamariumMagnetic)
-            .input(stickLong, Osmiridium)
-            .input(ring, Osmiridium, 2)
-            .input(round, Osmiridium, 4)
-            .input(wireFine, Europium, 64)
-            .input(wireFine, Europium, 32)
-            .input(cableGtSingle, VanadiumGallium, 2)
-            .fluidInputs(SolderingAlloy.getFluid(L * 2))
-            .fluidInputs(Lubricant.getFluid(500))
-            .output(ELECTRIC_MOTOR_ZPM)
-            .EUt(24000) // LuV
-            .duration(20 * SECOND)
-            .scannerResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(stickLong, SamariumMagnetic)
+            input(stickLong, Osmiridium)
+            input(ring, Osmiridium, 2)
+            input(round, Osmiridium, 4)
+            input(wireFine, Europium, 64)
+            input(wireFine, Europium, 32)
+            input(cableGtSingle, VanadiumGallium, 2)
+            fluidInputs(SolderingAlloy.getFluid(L * 2))
+            fluidInputs(Lubricant.getFluid(500))
+            output(ELECTRIC_MOTOR_ZPM)
+            EUt(24000) // LuV
+            duration(20 * SECOND)
+            scannerResearch {
                 it.researchStack(ELECTRIC_MOTOR_LuV)
                     .EUt(VA[IV])
-                    .duration(MINUTE)
+                    .duration(1 * MINUTE)
             }
-            .buildAndRegister()
+        }
 
         // UV
-        GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
-            ELECTRIC_MOTOR_ZPM.stackForm, TOOL_DATA_ORB.stackForm)
+        RESEARCH_STATION_RECIPES.removeRecipe(ELECTRIC_MOTOR_ZPM.stackForm, TOOL_DATA_ORB.stackForm)
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+        ASSEMBLY_LINE_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(stickLong, SamariumMagnetic),
-                OreDictUnifier.get(stickLong, Tritanium, 4),
-                OreDictUnifier.get(ring, Tritanium, 4),
-                OreDictUnifier.get(round, Tritanium, 8),
-                OreDictUnifier.get(wireFine, Americium, 64),
-                OreDictUnifier.get(wireFine, Americium, 64),
-                OreDictUnifier.get(cableGtSingle, YttriumBariumCuprate, 2)),
+                    OreDictUnifier.get(stickLong, Tritanium, 4),
+                    OreDictUnifier.get(ring, Tritanium, 4),
+                    OreDictUnifier.get(round, Tritanium, 8),
+                    OreDictUnifier.get(wireFine, Americium, 64),
+                    OreDictUnifier.get(wireFine, Americium, 64),
+                    OreDictUnifier.get(cableGtSingle, YttriumBariumCuprate, 2)),
             arrayOf(SolderingAlloy.getFluid(L * 4),
-                Lubricant.getFluid(1000), Naquadria.getFluid(L * 4)))
+                    Lubricant.getFluid(1000),
+                    Naquadria.getFluid(L * 4)))
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(stickLong, SamariumMagnetic)
-            .input(stickLong, Tritanium, 2)
-            .input(ring, Tritanium, 4)
-            .input(round, Tritanium, 8)
-            .input(wireFine, Americium, 64)
-            .input(wireFine, Americium, 64)
-            .input(cableGtSingle, YttriumBariumCuprate, 2)
-            .fluidInputs(SolderingAlloy.getFluid(L * 4))
-            .fluidInputs(Lubricant.getFluid(1000))
-            .fluidInputs(Naquadria.getFluid(L))
-            .output(ELECTRIC_MOTOR_UV)
-            .EUt(100_000) // ZPM
-            .duration(20 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(stickLong, SamariumMagnetic)
+            input(stickLong, Tritanium, 2)
+            input(ring, Tritanium, 4)
+            input(round, Tritanium, 8)
+            input(wireFine, Americium, 64)
+            input(wireFine, Americium, 64)
+            input(cableGtSingle, YttriumBariumCuprate, 2)
+            fluidInputs(SolderingAlloy.getFluid(L * 4))
+            fluidInputs(Lubricant.getFluid(1000))
+            fluidInputs(Naquadria.getFluid(L))
+            output(ELECTRIC_MOTOR_UV)
+            EUt(100_000) // ZPM
+            duration(20 * SECOND)
+            stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_ZPM)
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
-            .buildAndRegister()
+        }
 
         // UHV
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(stickLong, ChromiumGermaniumTellurideMagnetic)
-            .input(stickLong, Adamantium, 2)
-            .input(ring, Adamantium, 4)
-            .input(round, Adamantium, 8)
-            .input(wireFine, Bedrockium, 64)
-            .input(wireFine, Bedrockium, 64)
-            .input(wireFine, Bedrockium, 32)
-            .input(cableGtSingle, Europium, 2)
-            .fluidInputs(SolderingAlloy.getFluid(L * 8))
-            .fluidInputs(Lubricant.getFluid(2000))
-            .fluidInputs(Taranium.getFluid(L * 2))
-            .output(ELECTRIC_MOTOR_UHV)
-            .EUt(400_000) // UV
-            .duration(20 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(stickLong, ChromiumGermaniumTellurideMagnetic)
+            input(stickLong, Adamantium, 2)
+            input(ring, Adamantium, 4)
+            input(round, Adamantium, 8)
+            input(wireFine, Bedrockium, 64)
+            input(wireFine, Bedrockium, 64)
+            input(wireFine, Bedrockium, 32)
+            input(cableGtSingle, Europium, 2)
+            fluidInputs(SolderingAlloy.getFluid(L * 8))
+            fluidInputs(Lubricant.getFluid(2000))
+            fluidInputs(Taranium.getFluid(L * 2))
+            output(ELECTRIC_MOTOR_UHV)
+            EUt(400_000) // UV
+            duration(20 * SECOND)
+            stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_UV)
                     .EUt(VA[UV])
                     .CWUt(24)
             }
-            .buildAndRegister()
+        }
 
         // UEV
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(stickLong, ChromiumGermaniumTellurideMagnetic)
-            .input(stickLong, CosmicNeutronium, 4)
-            .input(ring, CosmicNeutronium, 8)
-            .input(round, CosmicNeutronium, 16)
-            .input(wireFine, MetastableHassium, 64)
-            .input(wireFine, MetastableHassium, 64)
-            .input(wireFine, MetastableHassium, 64)
-            .input(cableGtSingle, Seaborgium, 2)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 16))
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
-            .fluidInputs(MetastableOganesson.getFluid(L * 4))
-            .fluidInputs(Fullerene.getFluid(L))
-            .output(ELECTRIC_MOTOR_UEV)
-            .EUt(1_800_000) // UHV
-            .duration(40 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(stickLong, ChromiumGermaniumTellurideMagnetic)
+            input(stickLong, CosmicNeutronium, 4)
+            input(ring, CosmicNeutronium, 8)
+            input(round, CosmicNeutronium, 16)
+            input(wireFine, MetastableHassium, 64)
+            input(wireFine, MetastableHassium, 64)
+            input(wireFine, MetastableHassium, 64)
+            input(cableGtSingle, Seaborgium, 2)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 16))
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(4000))
+            fluidInputs(MetastableOganesson.getFluid(L * 4))
+            fluidInputs(Fullerene.getFluid(L))
+            output(ELECTRIC_MOTOR_UEV)
+            EUt(1_800_000) // UHV
+            duration(40 * SECOND)
+            stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_UHV)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
-            .buildAndRegister()
+        }
 
         // UIV
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(stickLong, Magnetium)
-            .input(stickLong, HeavyQuarkDegenerateMatter, 4)
-            .input(ring, HeavyQuarkDegenerateMatter, 8)
-            .input(round, HeavyQuarkDegenerateMatter, 16)
-            .input(wireFine, Hypogen, 64)
-            .input(wireFine, Hypogen, 64)
-            .input(wireFine, Hypogen, 64)
-            .input(wireFine, Hypogen, 32)
-            .input(cableGtSingle, SuperheavyAlloyA, 2)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 32))
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000))
-            .fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8))
-            .fluidInputs(CarbonNanotube.getFluid(L * 2))
-            .output(ELECTRIC_MOTOR_UIV)
-            .EUt(6_000_000) // UEV
-            .duration(40 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(stickLong, Magnetium)
+            input(stickLong, HeavyQuarkDegenerateMatter, 4)
+            input(ring, HeavyQuarkDegenerateMatter, 8)
+            input(round, HeavyQuarkDegenerateMatter, 16)
+            input(wireFine, Hypogen, 64)
+            input(wireFine, Hypogen, 64)
+            input(wireFine, Hypogen, 64)
+            input(wireFine, Hypogen, 32)
+            input(cableGtSingle, SuperheavyAlloyA, 2)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 32))
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(8000))
+            fluidInputs(QuantumchromodynamicallyConfinedMatter.getFluid(L * 8))
+            fluidInputs(CarbonNanotube.getFluid(L * 2))
+            output(ELECTRIC_MOTOR_UIV)
+            EUt(6_000_000) // UEV
+            duration(40 * SECOND)
+            stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_UEV)
                     .EUt(VA[UEV])
                     .CWUt(64)
             }
-            .buildAndRegister()
+        }
 
         // UXV
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ENERGISED_TESSERACT)
-            .input(stickLong, Magnetium, 2)
-            .input(stickLong, TranscendentMetal, 8)
-            .input(ring, TranscendentMetal, 16)
-            .input(round, TranscendentMetal, 32)
-            .input(wireFine, MagMatter, 64)
-            .input(wireFine, MagMatter, 64)
-            .input(wireFine, MagMatter, 64)
-            .input(wireFine, MagMatter, 64)
-            .input(cableGtSingle, SuperheavyAlloyB, 2)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 64))
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
-            .fluidInputs(PrimordialMatter.getFluid(L * 16))
-            .fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
-            .output(ELECTRIC_MOTOR_UXV)
-            .EUt(20_000_000) // UIV
-            .duration(1 * MINUTE)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ENERGISED_TESSERACT)
+            input(stickLong, Magnetium, 2)
+            input(stickLong, TranscendentMetal, 8)
+            input(ring, TranscendentMetal, 16)
+            input(round, TranscendentMetal, 32)
+            input(wireFine, MagMatter, 64)
+            input(wireFine, MagMatter, 64)
+            input(wireFine, MagMatter, 64)
+            input(wireFine, MagMatter, 64)
+            input(cableGtSingle, SuperheavyAlloyB, 2)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 64))
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+            fluidInputs(PrimordialMatter.getFluid(L * 16))
+            fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
+            output(ELECTRIC_MOTOR_UXV)
+            EUt(20_000_000) // UIV
+            duration(1 * MINUTE)
+            stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_UIV)
                     .EUt(VA[UIV])
                     .CWUt(96)
             }
-            .buildAndRegister()
+        }
 
         // OpV
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ENERGISED_TESSERACT)
-            .input(stickLong, Magnetium, 2)
-            .input(stickLong, MagnetohydrodynamicallyConstrainedStarMatter, 8)
-            .input(ring, MagnetohydrodynamicallyConstrainedStarMatter, 16)
-            .input(round, MagnetohydrodynamicallyConstrainedStarMatter, 32)
-            .input(wireFine, Universium, 64)
-            .input(wireFine, Universium, 64)
-            .input(wireFine, Universium, 64)
-            .input(wireFine, Universium, 64)
-            .input(wireFine, Universium, 64)
-            .input(wireFine, Universium, 64)
-            .input(cableGtSingle, Periodicium, 2)
-            .input(nanite, Neutronium, 4)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 128))
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(32000))
-            .fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
-            .fluidInputs(CosmicFabric.getFluid(L * 8))
-            .output(ELECTRIC_MOTOR_OpV)
-            .EUt(50_000_000) // UXV
-            .duration(1 * MINUTE)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ENERGISED_TESSERACT)
+            input(stickLong, Magnetium, 2)
+            input(stickLong, MagnetohydrodynamicallyConstrainedStarMatter, 8)
+            input(ring, MagnetohydrodynamicallyConstrainedStarMatter, 16)
+            input(round, MagnetohydrodynamicallyConstrainedStarMatter, 32)
+            input(wireFine, Universium, 64)
+            input(wireFine, Universium, 64)
+            input(wireFine, Universium, 64)
+            input(wireFine, Universium, 64)
+            input(wireFine, Universium, 64)
+            input(wireFine, Universium, 64)
+            input(cableGtSingle, Periodicium, 2)
+            input(nanite, Neutronium, 4)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 128))
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(32000))
+            fluidInputs(WhiteDwarfMatter.getFluid(L * 32))
+            fluidInputs(CosmicFabric.getFluid(L * 8))
+            output(ELECTRIC_MOTOR_OpV)
+            EUt(50_000_000) // UXV
+            duration(1 * MINUTE)
+            stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_UXV)
                     .EUt(VA[UXV])
                     .CWUt(128)
             }
-            .buildAndRegister()
+        }
 
         // MAX
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ENERGISED_TESSERACT, 4)
-            .input(frameGt, Magnetium, 64)
-            .input(frameGt, Eternity, 64)
-            .input(frameGt, BlackDwarfMatter, 64)
-            .input(ring, Omnium, 32)
-            .input(round, Omnium, 48)
-            .input(wireFine, SpaceTime, 64)
-            .input(wireFine, SpaceTime, 64)
-            .input(wireFine, Universium, 64)
-            .input(wireFine, Universium, 64)
-            .input(wireFine, SelfInteractingDarkMatter, 64)
-            .input(wireFine, SelfInteractingDarkMatter, 64)
-            .input(wireFine, WhiteDwarfMatter, 64)
-            .input(wireFine, WhiteDwarfMatter, 64)
-            .input(cableGtHex, RealizedQuantumFoamShard, 2)
-            .input(nanite, MagMatter, 4)
-            .fluidInputs(MutatedLivingSolder.getFluid(L * 256))
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(64000))
-            .fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 64))
-            .fluidInputs(CosmicFabric.getFluid(L * 16))
-            .output(ELECTRIC_MOTOR_MAX)
-            .EUt(300_000_000) // OpV
-            .duration(1 * MINUTE)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ENERGISED_TESSERACT, 4)
+            input(frameGt, Magnetium, 64)
+            input(frameGt, Eternity, 64)
+            input(frameGt, BlackDwarfMatter, 64)
+            input(ring, Omnium, 32)
+            input(round, Omnium, 48)
+            input(wireFine, SpaceTime, 64)
+            input(wireFine, SpaceTime, 64)
+            input(wireFine, Universium, 64)
+            input(wireFine, Universium, 64)
+            input(wireFine, SelfInteractingDarkMatter, 64)
+            input(wireFine, SelfInteractingDarkMatter, 64)
+            input(wireFine, WhiteDwarfMatter, 64)
+            input(wireFine, WhiteDwarfMatter, 64)
+            input(cableGtHex, RealizedQuantumFoamShard, 2)
+            input(nanite, MagMatter, 4)
+            fluidInputs(MutatedLivingSolder.getFluid(L * 256))
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(64000))
+            fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 64))
+            fluidInputs(CosmicFabric.getFluid(L * 16))
+            output(ELECTRIC_MOTOR_MAX)
+            EUt(300_000_000) // OpV
+            duration(1 * MINUTE)
+            stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_OpV)
                     .EUt(VA[OpV])
                     .CWUt(256)
             }
-            .buildAndRegister()
+        }
     }
 
     // @formatter:on
