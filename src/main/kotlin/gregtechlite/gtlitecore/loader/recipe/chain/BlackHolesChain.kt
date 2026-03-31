@@ -25,6 +25,8 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
@@ -62,7 +64,6 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RECURSIVELY_FOLDED_NE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.STABILIZED_WORMHOLE_GENERATOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TIME_DILATION_CONTAINMENT_CELL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TRIPLET_NEUTRONIUM_SPHERE
-import net.minecraft.item.ItemStack
 
 internal object BlackHolesChain
 {
@@ -71,156 +72,156 @@ internal object BlackHolesChain
     fun init()
     {
         // Time Dilation Containment Cell
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(BOSE_EINSTEIN_CONDENSATE)
-            .input(nanite, MagMatter)
-            .fluidInputs(SpaceTime.getFluid(L * 4))
-            .output(TIME_DILATION_CONTAINMENT_CELL)
-            .fluidOutputs(Rubidium.getPlasma(L * 8))
-            .EUt(VA[UXV])
-            .duration(2 * TICK)
-            .buildAndRegister()
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(BOSE_EINSTEIN_CONDENSATE)
+            input(nanite, MagMatter)
+            fluidInputs(SpaceTime.getFluid(L * 4))
+            output(TIME_DILATION_CONTAINMENT_CELL)
+            fluidOutputs(Rubidium.getPlasma(L * 8))
+            EUt(VA[UXV])
+            duration(2 * TICK)
+        }
 
         // Neutronium Sphere
-        FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_BALL)
-            .fluidInputs(Neutronium.getFluid(L))
-            .output(NEUTRONIUM_SPHERE)
-            .EUt(VA[UHV])
-            .duration(1 * TICK)
-            .buildAndRegister()
+        FLUID_SOLIDFICATION_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_BALL)
+            fluidInputs(Neutronium.getFluid(L))
+            output(NEUTRONIUM_SPHERE)
+            EUt(VA[UHV])
+            duration(1 * TICK)
+        }
 
         // High Density Protonic Matter Containment Cell
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(TIME_DILATION_CONTAINMENT_CELL)
-            .input(NEUTRONIUM_SPHERE, 8)
-            .fluidInputs(NeutronProtonFermiSuperfluid.getFluid(16000))
-            .output(CONTAINED_HIGH_DENSITY_PROTONIC_MATTER)
-            .EUt(VA[UIV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(TIME_DILATION_CONTAINMENT_CELL)
+            input(NEUTRONIUM_SPHERE, 8)
+            fluidInputs(NeutronProtonFermiSuperfluid.getFluid(16000))
+            output(CONTAINED_HIGH_DENSITY_PROTONIC_MATTER)
+            EUt(VA[UIV])
+            duration(1 * SECOND)
+        }
 
         // Exotic Matter Containment Cell
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .input(CONTAINED_HIGH_DENSITY_PROTONIC_MATTER, 2)
-            .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
-            .output(CONTAINED_EXOTIC_MATTER)
-            .output(TIME_DILATION_CONTAINMENT_CELL)
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            input(CONTAINED_HIGH_DENSITY_PROTONIC_MATTER, 2)
+            inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
+            output(CONTAINED_EXOTIC_MATTER)
+            output(TIME_DILATION_CONTAINMENT_CELL)
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
         // Triplet Neutronium Sphere
-        POLARIZER_RECIPES.recipeBuilder()
-            .input(NEUTRONIUM_SPHERE)
-            .fluidInputs(Magnetium.getFluid(L * 4))
-            .output(TRIPLET_NEUTRONIUM_SPHERE)
-            .EUt(VA[UEV])
-            .duration(2 * TICK)
-            .buildAndRegister()
+        POLARIZER_RECIPES.addRecipe {
+            input(NEUTRONIUM_SPHERE)
+            fluidInputs(Magnetium.getFluid(L * 4))
+            output(TRIPLET_NEUTRONIUM_SPHERE)
+            EUt(VA[UEV])
+            duration(2 * TICK)
+        }
 
         // Contained RN (Reissner-Nordstrom) Black Hole Singularity
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .input(TIME_DILATION_CONTAINMENT_CELL)
-            .input(TRIPLET_NEUTRONIUM_SPHERE, 16)
-            .inputs(ItemStack(LEPTONIC_CHARGE))
-            .output(CONTAINED_RN_SINGULARITY)
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            input(TIME_DILATION_CONTAINMENT_CELL)
+            input(TRIPLET_NEUTRONIUM_SPHERE, 16)
+            inputs(LEPTONIC_CHARGE)
+            output(CONTAINED_RN_SINGULARITY)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
         // Contained KN (Kerr-Newmann) Black Hole Singularity
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .input(CONTAINED_RN_SINGULARITY, 2)
-            .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
-            .output(CONTAINED_KN_SINGULARITY)
-            .output(TIME_DILATION_CONTAINMENT_CELL)
-            .EUt(VA[UXV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            input(CONTAINED_RN_SINGULARITY, 2)
+            inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
+            output(CONTAINED_KN_SINGULARITY)
+            output(TIME_DILATION_CONTAINMENT_CELL)
+            EUt(VA[UXV])
+            duration(20 * SECOND)
+        }
 
         // Contained Kerr Singularity
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(CONTAINED_KN_SINGULARITY)
-            .fluidInputs(Mellion.getFluid(L / 8))
-            .output(CONTAINED_KERR_SINGULARITY)
-            .fluidOutputs(FreeElectronGas.getFluid(16000))
-            .EUt(VA[OpV])
-            .duration(1 * TICK)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(CONTAINED_KN_SINGULARITY)
+            fluidInputs(Mellion.getFluid(L / 8))
+            output(CONTAINED_KERR_SINGULARITY)
+            fluidOutputs(FreeElectronGas.getFluid(16000))
+            EUt(VA[OpV])
+            duration(1 * TICK)
+        }
 
         // Microwormhole Generator
-        SPACE_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(CONTAINED_KERR_SINGULARITY)
-            .input(FIELD_GENERATOR_UHV)
-            .input(plate, CosmicNeutronium, 2)
-            .input(screw, Taranium, 4)
-            .fluidInputs(SpaceTime.getFluid(L))
-            .output(MICROWORMHOLE_GENERATOR)
-            .EUt(VA[UHV])
-            .duration(5 * SECOND)
-            .tier(3)
-            .buildAndRegister()
+        SPACE_ASSEMBLER_RECIPES.addRecipe {
+            input(CONTAINED_KERR_SINGULARITY)
+            input(FIELD_GENERATOR_UHV)
+            input(plate, CosmicNeutronium, 2)
+            input(screw, Taranium, 4)
+            fluidInputs(SpaceTime.getFluid(L))
+            output(MICROWORMHOLE_GENERATOR)
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+            tier(3)
+        }
 
         // Macrowormhole Generator
-        SPACE_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(CONTAINED_KERR_SINGULARITY)
-            .input(FIELD_GENERATOR_UEV)
-            .input(plate, Infinity, 4)
-            .input(plate, HeavyQuarkDegenerateMatter, 8)
-            .input(CONTAINED_HIGH_DENSITY_PROTONIC_MATTER)
-            .input(BATTERY_HULL_LARGE_NEUTRONIUM)
-            .input(screw, Shirabon, 16)
-            .fluidInputs(SpaceTime.getFluid(L * 4))
-            .output(MACROWORMHOLE_GENERATOR)
-            .EUt(VA[UEV])
-            .duration(5 * SECOND)
-            .tier(4)
-            .buildAndRegister()
+        SPACE_ASSEMBLER_RECIPES.addRecipe {
+            input(CONTAINED_KERR_SINGULARITY)
+            input(FIELD_GENERATOR_UEV)
+            input(plate, Infinity, 4)
+            input(plate, HeavyQuarkDegenerateMatter, 8)
+            input(CONTAINED_HIGH_DENSITY_PROTONIC_MATTER)
+            input(BATTERY_HULL_LARGE_NEUTRONIUM)
+            input(screw, Shirabon, 16)
+            fluidInputs(SpaceTime.getFluid(L * 4))
+            output(MACROWORMHOLE_GENERATOR)
+            EUt(VA[UEV])
+            duration(5 * SECOND)
+            tier(4)
+        }
 
         // Stabilized Wormhole Generator
-        SPACE_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(MACROWORMHOLE_GENERATOR)
-            .input(CONTAINED_KN_SINGULARITY, 2)
-            .input(FIELD_GENERATOR_UIV)
-            .input(plate, Mellion, 8)
-            .input(plate, QuantumchromodynamicallyConfinedMatter, 16)
-            .input(CONTAINED_EXOTIC_MATTER)
-            .input(rotor, Creon, 6)
-            .input(rotor, Hypogen, 6)
-            .input(wireGtSingle, VibraniumTritaniumActiniumIronSuperhydride, 16)
-            .input(screw, TranscendentMetal, 32)
-            .fluidInputs(SpaceTime.getFluid(L * 16))
-            .output(STABILIZED_WORMHOLE_GENERATOR)
-            .EUt(VA[UIV])
-            .duration(5 * SECOND)
-            .tier(5)
-            .buildAndRegister()
+        SPACE_ASSEMBLER_RECIPES.addRecipe {
+            input(MACROWORMHOLE_GENERATOR)
+            input(CONTAINED_KN_SINGULARITY, 2)
+            input(FIELD_GENERATOR_UIV)
+            input(plate, Mellion, 8)
+            input(plate, QuantumchromodynamicallyConfinedMatter, 16)
+            input(CONTAINED_EXOTIC_MATTER)
+            input(rotor, Creon, 6)
+            input(rotor, Hypogen, 6)
+            input(wireGtSingle, VibraniumTritaniumActiniumIronSuperhydride, 16)
+            input(screw, TranscendentMetal, 32)
+            fluidInputs(SpaceTime.getFluid(L * 16))
+            output(STABILIZED_WORMHOLE_GENERATOR)
+            EUt(VA[UIV])
+            duration(5 * SECOND)
+            tier(5)
+        }
 
         // Recursively Folded Negative Space
-        FORMING_PRESS_RECIPES.recipeBuilder()
-            .input(MICROWORMHOLE_GENERATOR)
-            .output(RECURSIVELY_FOLDED_NEGATIVE_SPACE, 2)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        FORMING_PRESS_RECIPES.addRecipe {
+            input(MICROWORMHOLE_GENERATOR)
+            output(RECURSIVELY_FOLDED_NEGATIVE_SPACE, 2)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        FORMING_PRESS_RECIPES.recipeBuilder()
-            .input(MACROWORMHOLE_GENERATOR)
-            .output(RECURSIVELY_FOLDED_NEGATIVE_SPACE, 16)
-            .EUt(VA[UXV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        FORMING_PRESS_RECIPES.addRecipe {
+            input(MACROWORMHOLE_GENERATOR)
+            output(RECURSIVELY_FOLDED_NEGATIVE_SPACE, 16)
+            EUt(VA[UXV])
+            duration(2 * SECOND)
+        }
 
         // Eigenfolded Spacetime Manifold
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .input(STABILIZED_WORMHOLE_GENERATOR)
-            .input(RECURSIVELY_FOLDED_NEGATIVE_SPACE)
-            .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
-            .output(EIGENFOLDED_SPACETIME_MANIFOLD)
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            input(STABILIZED_WORMHOLE_GENERATOR)
+            input(RECURSIVELY_FOLDED_NEGATIVE_SPACE)
+            inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
+            output(EIGENFOLDED_SPACETIME_MANIFOLD)
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
     }
 
     // @formatter:on

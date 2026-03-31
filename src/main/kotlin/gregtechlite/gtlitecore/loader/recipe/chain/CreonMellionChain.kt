@@ -6,7 +6,6 @@ import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
@@ -20,12 +19,14 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.inputs
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
-import net.minecraft.item.ItemStack
 
 internal object CreonMellionChain
 {
@@ -35,77 +36,76 @@ internal object CreonMellionChain
     fun init()
     {
         // Creon plasma
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
-            .fluidInputs(Fermium.getPlasma(L * 4))
-            .fluidInputs(Thorium.getPlasma(L * 8))
-            .fluidInputs(Technetium.getPlasma(L * 12))
-            .fluidInputs(Calcium.getPlasma(L * 36))
-            .fluidOutputs(Creon.getPlasma(L * 18))
-            .EUt(VA[UXV])
-            .duration(1 * MINUTE)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            circuitMeta(1)
+            inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
+            fluidInputs(Fermium.getPlasma(L * 4))
+            fluidInputs(Thorium.getPlasma(L * 8))
+            fluidInputs(Technetium.getPlasma(L * 12))
+            fluidInputs(Calcium.getPlasma(L * 36))
+            fluidOutputs(Creon.getPlasma(L * 18))
+            EUt(VA[UXV])
+            duration(1 * MINUTE)
+        }
 
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
-            .fluidInputs(Fermium.getPlasma(L * 4 * 16))
-            .fluidInputs(Thorium.getPlasma(L * 8 * 16))
-            .fluidInputs(Technetium.getPlasma(L * 12 * 16))
-            .fluidInputs(Calcium.getPlasma(L * 36 * 16))
-            .fluidOutputs(Creon.getPlasma(L * 18 * 16))
-            .EUt(VA[OpV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            circuitMeta(2)
+            inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
+            fluidInputs(Fermium.getPlasma(L * 4 * 16))
+            fluidInputs(Thorium.getPlasma(L * 8 * 16))
+            fluidInputs(Technetium.getPlasma(L * 12 * 16))
+            fluidInputs(Calcium.getPlasma(L * 36 * 16))
+            fluidOutputs(Creon.getPlasma(L * 18 * 16))
+            EUt(VA[OpV])
+            duration(20 * SECOND)
+        }
 
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
-            .fluidInputs(Fermium.getPlasma(L * 4 * 64))
-            .fluidInputs(Thorium.getPlasma(L * 8 * 64))
-            .fluidInputs(Technetium.getPlasma(L * 12 * 64))
-            .fluidInputs(Calcium.getPlasma(L * 36 * 64))
-            .fluidOutputs(Creon.getPlasma(L * 18 * 64))
-            .EUt(VA[MAX])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            circuitMeta(3)
+            inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
+            fluidInputs(Fermium.getPlasma(L * 4 * 64))
+            fluidInputs(Thorium.getPlasma(L * 8 * 64))
+            fluidInputs(Technetium.getPlasma(L * 12 * 64))
+            fluidInputs(Calcium.getPlasma(L * 36 * 64))
+            fluidOutputs(Creon.getPlasma(L * 18 * 64))
+            EUt(VA[MAX])
+            duration(5 * SECOND)
+        }
 
         // Mellion
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, Mellion),
             IntCircuitIngredient.getIntegratedCircuit(1))
 
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, Mellion),
-                IntCircuitIngredient.getIntegratedCircuit(2)),
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Krypton.getFluid(10)))
 
-        GTRecipeHandler.removeRecipesByInputs(TOPOLOGICAL_ORDER_CHANGING_RECIPES,
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, Mellion),
             IntCircuitIngredient.getIntegratedCircuit(1))
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Mellion)
-            .fluidInputs(Creon.getPlasma(L))
-            .output(ingot, Mellion)
-            .fluidOutputs(Creon.getFluid(L))
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .blastFurnaceTemp(22000)
-            .buildAndRegister()
-
         // Creon
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, Creon),
             IntCircuitIngredient.getIntegratedCircuit(1))
 
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, Creon),
-            IntCircuitIngredient.getIntegratedCircuit(2)),
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Krypton.getFluid(10)))
 
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Mellion)
+            fluidInputs(Creon.getPlasma(L))
+            output(ingot, Mellion)
+            fluidOutputs(Creon.getFluid(L))
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+            blastFurnaceTemp(22000)
+        }
     }
 
     // @formatter:on

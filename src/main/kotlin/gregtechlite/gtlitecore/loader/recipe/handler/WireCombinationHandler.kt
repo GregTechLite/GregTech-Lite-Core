@@ -5,6 +5,7 @@ import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.PACKER_RECIPES
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Rubber
@@ -67,25 +68,25 @@ object WireCombinationHandler
         {
             for (i in 1 until 5 - startTier)
             {
-                LOOM_RECIPES.recipeBuilder()
-                    .circuitMeta(2.0.pow(i).toInt())
-                    .inputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[startTier], material, 1 shl i))
-                    .outputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[startTier + i], material, 1))
-                    .EUt(12) // LV
-                    .duration(10 * TICK)
-                    .buildAndRegister()
+                LOOM_RECIPES.addRecipe {
+                    circuitMeta(2.0.pow(i).toInt())
+                    inputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[startTier], material, 1 shl i))
+                    outputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[startTier + i], material, 1))
+                    EUt(12) // LV
+                    duration(10 * TICK)
+                }
             }
         }
 
         for (i in 1 until 5)
         {
-            LOOM_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .inputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[i], material, 1))
-                .outputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[0], material, 2.0.pow(i).toInt()))
-                .EUt(12) // LV
-                .duration(10 * TICK)
-                .buildAndRegister()
+            LOOM_RECIPES.addRecipe {
+                circuitMeta(1)
+                inputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[i], material, 1))
+                outputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[0], material, 2.0.pow(i).toInt()))
+                EUt(12) // LV
+                duration(10 * TICK)
+            }
         }
 
     }
@@ -127,13 +128,13 @@ object WireCombinationHandler
      */
     private fun processCableStripping(prefix: OrePrefix, material: Material, property: WireProperties)
     {
-        PACKER_RECIPES.recipeBuilder()
-            .input(prefix, material)
-            .output(cableToWireMap[prefix], material)
-            .output(plate, Rubber, (prefix.secondaryMaterials[0].amount / M).toInt())
-            .EUt(VA[ULV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        PACKER_RECIPES.addRecipe {
+            input(prefix, material)
+            output(cableToWireMap[prefix], material)
+            output(plate, Rubber, (prefix.secondaryMaterials[0].amount / M).toInt())
+            EUt(VA[ULV])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on

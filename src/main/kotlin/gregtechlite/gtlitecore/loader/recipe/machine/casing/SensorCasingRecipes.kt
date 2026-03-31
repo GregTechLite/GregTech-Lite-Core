@@ -11,6 +11,7 @@ import gregtech.loaders.recipe.CraftingComponent
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.common.block.variant.component.SensorCasing
 import net.minecraft.item.ItemStack
 
@@ -28,16 +29,16 @@ internal object SensorCasingRecipes
 
         for (voltage in sensorCasings.indices)
         {
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(9)
-                .input(frameGt, Steel)
-                .input(plate, Steel, 4)
-                .input(wireFine, Steel, 2)
-                .inputs(CraftingComponent.SENSOR.getIngredient(voltage + 1) as ItemStack)
-                .outputs(sensorCasings[voltage])
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            ASSEMBLER_RECIPES.addRecipe {
+                circuitMeta(9)
+                input(frameGt, Steel)
+                input(plate, Steel, 4)
+                input(wireFine, Steel, 2)
+                inputs(CraftingComponent.SENSOR.getIngredient(voltage + 1) as ItemStack)
+                outputs(sensorCasings[voltage])
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
         }
     }
 

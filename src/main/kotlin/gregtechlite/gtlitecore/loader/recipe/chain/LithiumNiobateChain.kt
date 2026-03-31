@@ -17,6 +17,7 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenPeroxide
@@ -33,26 +34,26 @@ internal object LithiumNiobateChain
     fun init()
     {
         // Nb2O5 + 10HCl -> 2NbCl5 + 3H2O + 4H
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, NiobiumPentoxide, 7)
-            .fluidInputs(HydrochloricAcid.getFluid(10000))
-            .output(dust, NiobiumPentachloride, 12)
-            .fluidOutputs(Hydrogen.getFluid(4000))
-            .fluidOutputs(Steam.getFluid(3 * SU))
-            .EUt(VA[EV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            input(dust, NiobiumPentoxide, 7)
+            fluidInputs(HydrochloricAcid.getFluid(10000))
+            output(dust, NiobiumPentachloride, 12)
+            fluidOutputs(Hydrogen.getFluid(4000))
+            fluidOutputs(Steam.getFluid(3 * SU))
+            EUt(VA[EV])
+            duration(20 * SECOND)
+        }
 
         // NbCl5 + LiH + 2H2O2 -> 6LiNbO4 + 5HCl (cycle)
-        ARC_FURNACE_RECIPES.recipeBuilder()
-            .input(dust, NiobiumPentachloride, 6)
-            .input(dust, LithiumHydride, 2)
-            .fluidInputs(HydrogenPeroxide.getFluid(2000))
-            .output(ingotHot, LithiumNiobate, 6)
-            .fluidOutputs(HydrochloricAcid.getFluid(5000))
-            .EUt(VA[IV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ARC_FURNACE_RECIPES.addRecipe {
+            input(dust, NiobiumPentachloride, 6)
+            input(dust, LithiumHydride, 2)
+            fluidInputs(HydrogenPeroxide.getFluid(2000))
+            output(ingotHot, LithiumNiobate, 6)
+            fluidOutputs(HydrochloricAcid.getFluid(5000))
+            EUt(VA[IV])
+            duration(20 * SECOND)
+        }
     }
 
     // @formatter:on

@@ -14,6 +14,8 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilicaGel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilicaGelBase
@@ -26,27 +28,27 @@ internal object SilicaGelChain
     fun init()
     {
         // SiO2 + NaOH + HCl + H2O -> (SiNa(OH)O2)(HCl)(H2O)
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(dust, SiliconDioxide, 3)
-            .input(dust, SodiumHydroxide, 3)
-            .fluidInputs(HydrochloricAcid.getFluid(1000))
-            .fluidInputs(Steam.getFluid(1000))
-            .fluidOutputs(SilicaGelBase.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(3 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(dust, SiliconDioxide, 3)
+            input(dust, SodiumHydroxide, 3)
+            fluidInputs(HydrochloricAcid.getFluid(1000))
+            fluidInputs(Steam.getFluid(1000))
+            fluidOutputs(SilicaGelBase.getFluid(1000))
+            EUt(VA[MV])
+            duration(3 * SECOND)
+        }
 
         // (SiNa(OH)O2)(HCl)(H2O) -> SiO2 + NaCl + 2H2O
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .fluidInputs(SilicaGelBase.getFluid(1000))
-            .output(dust, SilicaGel, 3)
-            .output(dust, Salt, 2)
-            .fluidOutputs(Water.getFluid(2000))
-            .EUt(VA[HV])
-            .duration(6 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+            fluidInputs(SilicaGelBase.getFluid(1000))
+            output(dust, SilicaGel, 3)
+            output(dust, Salt, 2)
+            fluidOutputs(Water.getFluid(2000))
+            EUt(VA[HV])
+            duration(6 * SECOND)
+            cleanroom()
+        }
     }
 
     // @formatter:on

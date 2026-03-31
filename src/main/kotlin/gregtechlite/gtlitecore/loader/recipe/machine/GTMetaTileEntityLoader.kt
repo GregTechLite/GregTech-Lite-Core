@@ -1,10 +1,8 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.*
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
-import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.*
@@ -19,7 +17,8 @@ import gregtech.loaders.recipe.MetaTileEntityLoader
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addMultiFluidHatchRecipes
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
 import gregtechlite.gtlitecore.api.recipe.util.TieredAdhesiveFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
@@ -35,7 +34,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Rhugnor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaborgiumCarbide
@@ -458,14 +456,14 @@ internal object GTMetaTileEntityLoader
             'H', HULL[LV].stackForm,
             'P', UnificationEntry(pipeNormalItem, Nickel))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(HULL[LV])
-            .input(pipeNormalItem, Nickel, 2)
-            .output(INVENTORY_BRIDGE)
-            .EUt(VH[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(HULL[LV])
+            input(pipeNormalItem, Nickel, 2)
+            output(INVENTORY_BRIDGE)
+            EUt(VH[LV])
+            duration(10 * SECOND)
+        }
 
         // Tank Bridge
         ModHandler.addShapedRecipe(true, "tank_bridge", TANK_BRIDGE.stackForm,
@@ -473,14 +471,14 @@ internal object GTMetaTileEntityLoader
             'H', HULL[LV].stackForm,
             'P', UnificationEntry(pipeNormalFluid, Steel))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(HULL[LV])
-            .input(pipeNormalFluid, Steel, 2)
-            .output(TANK_BRIDGE)
-            .EUt(VH[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(HULL[LV])
+            input(pipeNormalFluid, Steel, 2)
+            output(TANK_BRIDGE)
+            EUt(VH[LV])
+            duration(10 * SECOND)
+        }
 
         // Inventory Tank Bridge
         ModHandler.addShapedRecipe(true, "inventory_tank_bridge", INVENTORY_TANK_BRIDGE.stackForm,
@@ -489,15 +487,15 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(pipeNormalItem, Nickel),
             'Q', UnificationEntry(pipeNormalFluid, Steel))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(HULL[LV])
-            .input(pipeNormalFluid, Steel, 2)
-            .input(pipeNormalItem, Nickel, 2)
-            .output(INVENTORY_TANK_BRIDGE)
-            .EUt(VH[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(HULL[LV])
+            input(pipeNormalFluid, Steel, 2)
+            input(pipeNormalItem, Nickel, 2)
+            output(INVENTORY_TANK_BRIDGE)
+            EUt(VH[LV])
+            duration(10 * SECOND)
+        }
 
         // Universal Bridge
         ModHandler.addShapedRecipe(true, "universal_bridge", UNIVERSAL_BRIDGE.stackForm,
@@ -510,19 +508,19 @@ internal object GTMetaTileEntityLoader
             'G', UnificationEntry(gear, Aluminium),
             'X', UnificationEntry(circuit, Tier.LV))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(HULL[MV])
-            .input(circuit, Tier.LV)
-            .input(rotor, Aluminium)
-            .input(gear, Aluminium)
-            .input(spring, Aluminium)
-            .input(pipeNormalFluid, Aluminium, 2)
-            .input(pipeNormalItem, Electrum, 2)
-            .output(UNIVERSAL_BRIDGE)
-            .EUt(VH[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(HULL[MV])
+            input(circuit, Tier.LV)
+            input(rotor, Aluminium)
+            input(gear, Aluminium)
+            input(spring, Aluminium)
+            input(pipeNormalFluid, Aluminium, 2)
+            input(pipeNormalItem, Electrum, 2)
+            output(UNIVERSAL_BRIDGE)
+            EUt(VH[MV])
+            duration(10 * SECOND)
+        }
 
         // Inventory Extender
         ModHandler.addShapedRecipe(true, "inventory_extender", INVENTORY_EXTENDER.stackForm,
@@ -530,14 +528,14 @@ internal object GTMetaTileEntityLoader
             'H', HULL[LV].stackForm,
             'P', UnificationEntry(pipeNormalItem, Nickel))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(HULL[LV])
-            .input(pipeNormalItem, Nickel, 2)
-            .output(INVENTORY_EXTENDER)
-            .EUt(VH[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(HULL[LV])
+            input(pipeNormalItem, Nickel, 2)
+            output(INVENTORY_EXTENDER)
+            EUt(VH[LV])
+            duration(10 * SECOND)
+        }
 
         // Tank Extender
         ModHandler.addShapedRecipe(true, "tank_extender", TANK_EXTENDER.stackForm,
@@ -545,14 +543,14 @@ internal object GTMetaTileEntityLoader
             'H', HULL[LV].stackForm,
             'P', UnificationEntry(pipeNormalFluid, Steel))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(HULL[LV])
-            .input(pipeNormalFluid, Steel, 2)
-            .output(TANK_EXTENDER)
-            .EUt(VH[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(HULL[LV])
+            input(pipeNormalFluid, Steel, 2)
+            output(TANK_EXTENDER)
+            EUt(VH[LV])
+            duration(10 * SECOND)
+        }
 
         // Inventory Tank Extender
         ModHandler.addShapedRecipe(true, "inventory_tank_extender", INVENTORY_TANK_EXTENDER.stackForm,
@@ -561,15 +559,15 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(pipeNormalFluid, Steel),
             'Q', UnificationEntry(pipeNormalItem, Nickel))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(HULL[LV])
-            .input(pipeNormalFluid, Steel, 2)
-            .input(pipeNormalItem, Nickel, 2)
-            .output(INVENTORY_TANK_EXTENDER)
-            .EUt(VH[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(HULL[LV])
+            input(pipeNormalFluid, Steel, 2)
+            input(pipeNormalItem, Nickel, 2)
+            output(INVENTORY_TANK_EXTENDER)
+            EUt(VH[LV])
+            duration(10 * SECOND)
+        }
 
         // Universal Extender
         ModHandler.addShapedRecipe(true, "universal_extender", UNIVERSAL_EXTENDER.stackForm,
@@ -582,19 +580,19 @@ internal object GTMetaTileEntityLoader
             'S', UnificationEntry(spring, Aluminium),
             'X', UnificationEntry(circuit, Tier.LV))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(HULL[MV])
-            .input(circuit, Tier.LV)
-            .input(rotor, Aluminium)
-            .input(gear, Aluminium)
-            .input(spring, Aluminium)
-            .input(pipeNormalFluid, Aluminium, 2)
-            .input(pipeNormalItem, Electrum, 2)
-            .output(UNIVERSAL_EXTENDER)
-            .EUt(VH[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(HULL[MV])
+            input(circuit, Tier.LV)
+            input(rotor, Aluminium)
+            input(gear, Aluminium)
+            input(spring, Aluminium)
+            input(pipeNormalFluid, Aluminium, 2)
+            input(pipeNormalItem, Electrum, 2)
+            output(UNIVERSAL_EXTENDER)
+            EUt(VH[MV])
+            duration(10 * SECOND)
+        }
 
         // Iron Drum
         ModHandler.addShapelessNBTClearingRecipe("drum_nbt_iron",
@@ -605,14 +603,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Iron),
             'S', UnificationEntry(stickLong, Iron))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, Iron, 2)
-            .input(plate, Iron, 4)
-            .output(IRON_DRUM)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, Iron, 2)
+            input(plate, Iron, 4)
+            output(IRON_DRUM)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Copper Drum
         ModHandler.addShapelessNBTClearingRecipe("drum_nbt_copper",
@@ -623,14 +621,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Copper),
             'S', UnificationEntry(stickLong, Copper))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, Copper, 2)
-            .input(plate, Copper, 4)
-            .output(COPPER_DRUM)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, Copper, 2)
+            input(plate, Copper, 4)
+            output(COPPER_DRUM)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Lead Drum
         ModHandler.addShapelessNBTClearingRecipe("drum_nbt_lead",
@@ -641,14 +639,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Lead),
             'S', UnificationEntry(stickLong, Lead))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, Lead, 2)
-            .input(plate, Lead, 4)
-            .output(LEAD_DRUM)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, Lead, 2)
+            input(plate, Lead, 4)
+            output(LEAD_DRUM)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Chrome Drum
         ModHandler.addShapelessNBTClearingRecipe("drum_nbt_chrome",
@@ -659,14 +657,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Chrome),
             'S', UnificationEntry(stickLong, Chrome))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, Chrome, 2)
-            .input(plate, Chrome, 4)
-            .output(CHROME_DRUM)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, Chrome, 2)
+            input(plate, Chrome, 4)
+            output(CHROME_DRUM)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Tungsten Drum
         ModHandler.addShapelessNBTClearingRecipe("drum_nbt_tungsten",
@@ -677,14 +675,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Tungsten),
             'S', UnificationEntry(stickLong, Tungsten))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, Tungsten, 2)
-            .input(plate, Tungsten, 4)
-            .output(TUNGSTEN_DRUM)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, Tungsten, 2)
+            input(plate, Tungsten, 4)
+            output(TUNGSTEN_DRUM)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Iridium Drum
         ModHandler.addShapelessNBTClearingRecipe("drum_nbt_iridium",
@@ -695,14 +693,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Iridium),
             'S', UnificationEntry(stickLong, Iridium))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(stickLong, Iridium, 2)
-            .input(plate, Iridium, 4)
-            .output(IRIDIUM_DRUM)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(stickLong, Iridium, 2)
+            input(plate, Iridium, 4)
+            output(IRIDIUM_DRUM)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Iron Crate
         ModHandler.addShapedRecipe(true, "iron_crate", IRON_CRATE.stackForm,
@@ -710,14 +708,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Iron),
             'S', UnificationEntry(stickLong, Iron))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, Iron, 4)
-            .input(plate, Iron, 4)
-            .output(IRON_CRATE)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, Iron, 4)
+            input(plate, Iron, 4)
+            output(IRON_CRATE)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Copper Crate
         ModHandler.addShapedRecipe(true, "copper_crate", COPPER_CRATE.stackForm,
@@ -725,14 +723,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Copper),
             'S', UnificationEntry(stickLong, Copper))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, Copper, 4)
-            .input(plate, Copper, 4)
-            .output(COPPER_CRATE)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, Copper, 4)
+            input(plate, Copper, 4)
+            output(COPPER_CRATE)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Silver Crate
         ModHandler.addShapedRecipe(true, "silver_crate", SILVER_CRATE.stackForm,
@@ -740,14 +738,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Silver),
             'S', UnificationEntry(stickLong, Silver))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, Silver, 4)
-            .input(plate, Silver, 4)
-            .output(SILVER_CRATE)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, Silver, 4)
+            input(plate, Silver, 4)
+            output(SILVER_CRATE)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Gold Crate
         ModHandler.addShapedRecipe(true, "gold_crate", GOLD_CRATE.stackForm,
@@ -755,14 +753,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Gold),
             'S', UnificationEntry(stickLong, Gold))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, Gold, 4)
-            .input(plate, Gold, 4)
-            .output(GOLD_CRATE)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, Gold, 4)
+            input(plate, Gold, 4)
+            output(GOLD_CRATE)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Diamond Crate
         ModHandler.addShapedRecipe(true, "diamond_crate", DIAMOND_CRATE.stackForm,
@@ -770,14 +768,14 @@ internal object GTMetaTileEntityLoader
             'P', UnificationEntry(plate, Diamond),
             'S', UnificationEntry(stickLong, Diamond))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(stickLong, Diamond, 4)
-            .input(plate, Diamond, 4)
-            .output(DIAMOND_CRATE)
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(stickLong, Diamond, 4)
+            input(plate, Diamond, 4)
+            output(DIAMOND_CRATE)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // UHV Transformer
         ModHandler.addShapedRecipe(true, "transformer_uhv", TRANSFORMER[UHV].stackForm,
@@ -860,394 +858,394 @@ internal object GTMetaTileEntityLoader
             'U', UnificationEntry(cableGtQuadruple, Periodicium))
 
         // UHV Adjustable Transformer
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UHV])
-            .input(ELECTRIC_PUMP_IV)
-            .input(cableGtOctal, Seaborgium)
-            .input(cableGtOctal, Europium, 2)
-            .input(springSmall, Europium)
-            .input(spring, Seaborgium)
-            .fluidInputs(Lubricant.getFluid(2000))
-            .output(POWER_TRANSFORMER[UHV])
-            .EUt(VA[UHV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UHV])
+            input(ELECTRIC_PUMP_IV)
+            input(cableGtOctal, Seaborgium)
+            input(cableGtOctal, Europium, 2)
+            input(springSmall, Europium)
+            input(spring, Seaborgium)
+            fluidInputs(Lubricant.getFluid(2000))
+            output(POWER_TRANSFORMER[UHV])
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+        }
 
         // UEV Adjustable Transformer
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UEV])
-            .input(ELECTRIC_PUMP_LuV)
-            .input(cableGtOctal, SuperheavyAlloyA)
-            .input(cableGtOctal, Seaborgium, 2)
-            .input(springSmall, Seaborgium)
-            .input(spring, SuperheavyAlloyA)
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
-            .output(POWER_TRANSFORMER[UEV])
-            .EUt(VA[UEV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UEV])
+            input(ELECTRIC_PUMP_LuV)
+            input(cableGtOctal, SuperheavyAlloyA)
+            input(cableGtOctal, Seaborgium, 2)
+            input(springSmall, Seaborgium)
+            input(spring, SuperheavyAlloyA)
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
+            output(POWER_TRANSFORMER[UEV])
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+        }
 
         // UIV Adjustable Transformer
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UIV])
-            .input(ELECTRIC_PUMP_LuV)
-            .input(cableGtOctal, SuperheavyAlloyB)
-            .input(cableGtOctal, SuperheavyAlloyA, 2)
-            .input(springSmall, SuperheavyAlloyA)
-            .input(spring, SuperheavyAlloyB)
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
-            .output(POWER_TRANSFORMER[UIV])
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UIV])
+            input(ELECTRIC_PUMP_LuV)
+            input(cableGtOctal, SuperheavyAlloyB)
+            input(cableGtOctal, SuperheavyAlloyA, 2)
+            input(springSmall, SuperheavyAlloyA)
+            input(spring, SuperheavyAlloyB)
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
+            output(POWER_TRANSFORMER[UIV])
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
         // UXV Adjustable Transformer
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UXV])
-            .input(ELECTRIC_PUMP_ZPM)
-            .input(cableGtOctal, Periodicium)
-            .input(cableGtOctal, SuperheavyAlloyB, 2)
-            .input(springSmall, SuperheavyAlloyB)
-            .input(spring, Periodicium)
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
-            .output(POWER_TRANSFORMER[UXV])
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UXV])
+            input(ELECTRIC_PUMP_ZPM)
+            input(cableGtOctal, Periodicium)
+            input(cableGtOctal, SuperheavyAlloyB, 2)
+            input(springSmall, SuperheavyAlloyB)
+            input(spring, Periodicium)
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
+            output(POWER_TRANSFORMER[UXV])
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
         // OpV Adjustable Transformer
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[OpV])
-            .input(ELECTRIC_PUMP_ZPM)
-            .input(cableGtOctal, RealizedQuantumFoamShard)
-            .input(cableGtOctal, Periodicium, 2)
-            .input(springSmall, Periodicium)
-            .input(spring, RealizedQuantumFoamShard)
-            .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
-            .output(POWER_TRANSFORMER[OpV])
-            .EUt(VA[OpV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[OpV])
+            input(ELECTRIC_PUMP_ZPM)
+            input(cableGtOctal, RealizedQuantumFoamShard)
+            input(cableGtOctal, Periodicium, 2)
+            input(springSmall, Periodicium)
+            input(spring, RealizedQuantumFoamShard)
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
+            output(POWER_TRANSFORMER[OpV])
+            EUt(VA[OpV])
+            duration(10 * SECOND)
+        }
 
         // 4A UEV Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_INPUT_HATCH[UEV])
-            .input(wireGtQuadruple, Seaborgium, 2)
-            .input(plate, Vibranium, 2)
-            .output(ENERGY_INPUT_HATCH_4A[UEV])
-            .EUt(VA[UHV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(ENERGY_INPUT_HATCH[UEV])
+            input(wireGtQuadruple, Seaborgium, 2)
+            input(plate, Vibranium, 2)
+            output(ENERGY_INPUT_HATCH_4A[UEV])
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+        }
 
         // 4A UIV Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_INPUT_HATCH[UIV])
-            .input(wireGtQuadruple, SuperheavyAlloyA, 2)
-            .input(plate, Shirabon, 2)
-            .output(ENERGY_INPUT_HATCH_4A[UIV])
-            .EUt(VA[UEV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(ENERGY_INPUT_HATCH[UIV])
+            input(wireGtQuadruple, SuperheavyAlloyA, 2)
+            input(plate, Shirabon, 2)
+            output(ENERGY_INPUT_HATCH_4A[UIV])
+            EUt(VA[UEV])
+            duration(5 * SECOND)
+        }
 
         // 4A UXV Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_INPUT_HATCH[UXV])
-            .input(wireGtQuadruple, SuperheavyAlloyB, 2)
-            .input(plate, Creon, 2)
-            .output(ENERGY_INPUT_HATCH_4A[UXV])
-            .EUt(VA[UIV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(ENERGY_INPUT_HATCH[UXV])
+            input(wireGtQuadruple, SuperheavyAlloyB, 2)
+            input(plate, Creon, 2)
+            output(ENERGY_INPUT_HATCH_4A[UXV])
+            EUt(VA[UIV])
+            duration(5 * SECOND)
+        }
 
         // 4A OpV Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_INPUT_HATCH[OpV])
-            .input(wireGtQuadruple, Periodicium, 2)
-            .input(plate, BlackDwarfMatter, 2)
-            .output(ENERGY_INPUT_HATCH_4A[OpV])
-            .EUt(VA[UXV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(ENERGY_INPUT_HATCH[OpV])
+            input(wireGtQuadruple, Periodicium, 2)
+            input(plate, BlackDwarfMatter, 2)
+            output(ENERGY_INPUT_HATCH_4A[OpV])
+            EUt(VA[UXV])
+            duration(5 * SECOND)
+        }
 
         // 16A UHV Energy Hatch
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-            *arrayOf(HI_AMP_TRANSFORMER[UV].stackForm, ENERGY_INPUT_HATCH_4A[UHV].getStackForm(2),
-                    OreDictUnifier.get(wireGtOctal, Europium, 2),
-                    OreDictUnifier.get(plate, Neutronium, 4)))
+        ASSEMBLER_RECIPES.removeRecipe(
+            HI_AMP_TRANSFORMER[UV].stackForm, ENERGY_INPUT_HATCH_4A[UHV].getStackForm(2),
+            OreDictUnifier.get(wireGtOctal, Europium, 2),
+            OreDictUnifier.get(plate, Neutronium, 4))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UHV])
-            .input(ENERGY_INPUT_HATCH_4A[UHV], 2)
-            .input(wireGtOctal, Europium, 2)
-            .input(plate, Neutronium, 4)
-            .output(ENERGY_INPUT_HATCH_16A[UHV])
-            .EUt(VA[UV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UHV])
+            input(ENERGY_INPUT_HATCH_4A[UHV], 2)
+            input(wireGtOctal, Europium, 2)
+            input(plate, Neutronium, 4)
+            output(ENERGY_INPUT_HATCH_16A[UHV])
+            EUt(VA[UV])
+            duration(10 * SECOND)
+        }
 
         // 16A UEV Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UEV])
-            .input(ENERGY_INPUT_HATCH_4A[UEV], 2)
-            .input(wireGtOctal, Seaborgium, 2)
-            .input(plate, Vibranium, 4)
-            .output(ENERGY_INPUT_HATCH_16A[UEV])
-            .EUt(VA[UHV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UEV])
+            input(ENERGY_INPUT_HATCH_4A[UEV], 2)
+            input(wireGtOctal, Seaborgium, 2)
+            input(plate, Vibranium, 4)
+            output(ENERGY_INPUT_HATCH_16A[UEV])
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+        }
 
         // 16A UIV Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UIV])
-            .input(ENERGY_INPUT_HATCH_4A[UIV], 2)
-            .input(wireGtOctal, SuperheavyAlloyA, 2)
-            .input(plate, Shirabon, 4)
-            .output(ENERGY_INPUT_HATCH_16A[UIV])
-            .EUt(VA[UEV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UIV])
+            input(ENERGY_INPUT_HATCH_4A[UIV], 2)
+            input(wireGtOctal, SuperheavyAlloyA, 2)
+            input(plate, Shirabon, 4)
+            output(ENERGY_INPUT_HATCH_16A[UIV])
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+        }
 
         // 16A UXV Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UXV])
-            .input(ENERGY_INPUT_HATCH_4A[UXV], 2)
-            .input(wireGtOctal, SuperheavyAlloyB, 2)
-            .input(plate, Creon, 4)
-            .output(ENERGY_INPUT_HATCH_16A[UXV])
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UXV])
+            input(ENERGY_INPUT_HATCH_4A[UXV], 2)
+            input(wireGtOctal, SuperheavyAlloyB, 2)
+            input(plate, Creon, 4)
+            output(ENERGY_INPUT_HATCH_16A[UXV])
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
         // 16A OpV Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[OpV])
-            .input(ENERGY_INPUT_HATCH_4A[OpV], 2)
-            .input(wireGtOctal, Periodicium, 2)
-            .input(plate, BlackDwarfMatter, 4)
-            .output(ENERGY_INPUT_HATCH_16A[OpV])
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[OpV])
+            input(ENERGY_INPUT_HATCH_4A[OpV], 2)
+            input(wireGtOctal, Periodicium, 2)
+            input(plate, BlackDwarfMatter, 4)
+            output(ENERGY_INPUT_HATCH_16A[OpV])
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
         // 64A UHV Substation Energy Hatch
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-            *arrayOf(POWER_TRANSFORMER[UV].stackForm, ENERGY_INPUT_HATCH_16A[UHV].stackForm,
-                     OreDictUnifier.get(wireGtHex, Europium, 2),
-                     OreDictUnifier.get(plate, Neutronium, 6)))
+        ASSEMBLER_RECIPES.removeRecipe(
+            POWER_TRANSFORMER[UV].stackForm, ENERGY_INPUT_HATCH_16A[UHV].stackForm,
+            OreDictUnifier.get(wireGtHex, Europium, 2),
+            OreDictUnifier.get(plate, Neutronium, 6))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[UHV])
-            .input(ENERGY_INPUT_HATCH_16A[UHV])
-            .input(wireGtHex, Europium, 2)
-            .input(plate, Neutronium, 6)
-            .output(SUBSTATION_ENERGY_INPUT_HATCH[UHV])
-            .EUt(VA[UV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(POWER_TRANSFORMER[UHV])
+            input(ENERGY_INPUT_HATCH_16A[UHV])
+            input(wireGtHex, Europium, 2)
+            input(plate, Neutronium, 6)
+            output(SUBSTATION_ENERGY_INPUT_HATCH[UHV])
+            EUt(VA[UV])
+            duration(20 * SECOND)
+        }
 
         // 64A UEV Substation Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[UEV])
-            .input(ENERGY_INPUT_HATCH_16A[UEV])
-            .input(wireGtHex, Seaborgium, 2)
-            .input(plate, Vibranium, 6)
-            .output(SUBSTATION_ENERGY_INPUT_HATCH[UEV])
-            .EUt(VA[UHV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(POWER_TRANSFORMER[UEV])
+            input(ENERGY_INPUT_HATCH_16A[UEV])
+            input(wireGtHex, Seaborgium, 2)
+            input(plate, Vibranium, 6)
+            output(SUBSTATION_ENERGY_INPUT_HATCH[UEV])
+            EUt(VA[UHV])
+            duration(20 * SECOND)
+        }
 
         // 64A UIV Substation Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[UIV])
-            .input(ENERGY_INPUT_HATCH_16A[UIV])
-            .input(wireGtHex, SuperheavyAlloyA, 2)
-            .input(plate, Shirabon, 6)
-            .output(SUBSTATION_ENERGY_INPUT_HATCH[UIV])
-            .EUt(VA[UEV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(POWER_TRANSFORMER[UIV])
+            input(ENERGY_INPUT_HATCH_16A[UIV])
+            input(wireGtHex, SuperheavyAlloyA, 2)
+            input(plate, Shirabon, 6)
+            output(SUBSTATION_ENERGY_INPUT_HATCH[UIV])
+            EUt(VA[UEV])
+            duration(20 * SECOND)
+        }
 
         // 64A UXV Substation Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[UXV])
-            .input(ENERGY_INPUT_HATCH_16A[UXV])
-            .input(wireGtHex, SuperheavyAlloyB, 2)
-            .input(plate, Creon, 6)
-            .output(SUBSTATION_ENERGY_INPUT_HATCH[UXV])
-            .EUt(VA[UIV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(POWER_TRANSFORMER[UXV])
+            input(ENERGY_INPUT_HATCH_16A[UXV])
+            input(wireGtHex, SuperheavyAlloyB, 2)
+            input(plate, Creon, 6)
+            output(SUBSTATION_ENERGY_INPUT_HATCH[UXV])
+            EUt(VA[UIV])
+            duration(20 * SECOND)
+        }
 
         // 64A OpV Substation Energy Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[OpV])
-            .input(ENERGY_INPUT_HATCH_16A[OpV])
-            .input(wireGtHex, Periodicium, 2)
-            .input(plate, BlackDwarfMatter, 6)
-            .output(SUBSTATION_ENERGY_INPUT_HATCH[OpV])
-            .EUt(VA[UXV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(POWER_TRANSFORMER[OpV])
+            input(ENERGY_INPUT_HATCH_16A[OpV])
+            input(wireGtHex, Periodicium, 2)
+            input(plate, BlackDwarfMatter, 6)
+            output(SUBSTATION_ENERGY_INPUT_HATCH[OpV])
+            EUt(VA[UXV])
+            duration(20 * SECOND)
+        }
 
         // 4A UEV Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_OUTPUT_HATCH[UEV])
-            .input(wireGtQuadruple, Seaborgium, 2)
-            .input(plate, Vibranium, 2)
-            .output(ENERGY_OUTPUT_HATCH_4A[UEV])
-            .EUt(VA[UHV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(ENERGY_OUTPUT_HATCH[UEV])
+            input(wireGtQuadruple, Seaborgium, 2)
+            input(plate, Vibranium, 2)
+            output(ENERGY_OUTPUT_HATCH_4A[UEV])
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+        }
 
         // 4A UIV Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_OUTPUT_HATCH[UIV])
-            .input(wireGtQuadruple, SuperheavyAlloyA, 2)
-            .input(plate, Shirabon, 2)
-            .output(ENERGY_OUTPUT_HATCH_4A[UIV])
-            .EUt(VA[UEV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(ENERGY_OUTPUT_HATCH[UIV])
+            input(wireGtQuadruple, SuperheavyAlloyA, 2)
+            input(plate, Shirabon, 2)
+            output(ENERGY_OUTPUT_HATCH_4A[UIV])
+            EUt(VA[UEV])
+            duration(5 * SECOND)
+        }
 
         // 4A UXV Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_OUTPUT_HATCH[UXV])
-            .input(wireGtQuadruple, SuperheavyAlloyB, 2)
-            .input(plate, Creon, 2)
-            .output(ENERGY_OUTPUT_HATCH_4A[UXV])
-            .EUt(VA[UIV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(ENERGY_OUTPUT_HATCH[UXV])
+            input(wireGtQuadruple, SuperheavyAlloyB, 2)
+            input(plate, Creon, 2)
+            output(ENERGY_OUTPUT_HATCH_4A[UXV])
+            EUt(VA[UIV])
+            duration(5 * SECOND)
+        }
 
         // 4A OpV Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENERGY_OUTPUT_HATCH[OpV])
-            .input(wireGtQuadruple, Periodicium, 2)
-            .input(plate, BlackDwarfMatter, 2)
-            .output(ENERGY_OUTPUT_HATCH_4A[OpV])
-            .EUt(VA[UXV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(ENERGY_OUTPUT_HATCH[OpV])
+            input(wireGtQuadruple, Periodicium, 2)
+            input(plate, BlackDwarfMatter, 2)
+            output(ENERGY_OUTPUT_HATCH_4A[OpV])
+            EUt(VA[UXV])
+            duration(5 * SECOND)
+        }
 
         // 16A UHV Dynamo Hatch
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-            *arrayOf(HI_AMP_TRANSFORMER[UV].stackForm, ENERGY_OUTPUT_HATCH_4A[UHV].stackForm,
-                     OreDictUnifier.get(wireGtOctal, Europium, 2),
-                     OreDictUnifier.get(plate, Neutronium, 4)))
+        ASSEMBLER_RECIPES.removeRecipe(
+            HI_AMP_TRANSFORMER[UV].stackForm, ENERGY_OUTPUT_HATCH_4A[UHV].stackForm,
+            OreDictUnifier.get(wireGtOctal, Europium, 2),
+            OreDictUnifier.get(plate, Neutronium, 4))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UHV])
-            .input(ENERGY_OUTPUT_HATCH_4A[UHV])
-            .input(wireGtOctal, Europium, 2)
-            .input(plate, Neutronium, 4)
-            .output(ENERGY_OUTPUT_HATCH_16A[UHV])
-            .EUt(VA[UV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UHV])
+            input(ENERGY_OUTPUT_HATCH_4A[UHV])
+            input(wireGtOctal, Europium, 2)
+            input(plate, Neutronium, 4)
+            output(ENERGY_OUTPUT_HATCH_16A[UHV])
+            EUt(VA[UV])
+            duration(10 * SECOND)
+        }
 
         // 16A UEV Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UEV])
-            .input(ENERGY_OUTPUT_HATCH_4A[UEV])
-            .input(wireGtOctal, Seaborgium, 2)
-            .input(plate, Vibranium, 4)
-            .output(ENERGY_OUTPUT_HATCH_16A[UEV])
-            .EUt(VA[UHV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UEV])
+            input(ENERGY_OUTPUT_HATCH_4A[UEV])
+            input(wireGtOctal, Seaborgium, 2)
+            input(plate, Vibranium, 4)
+            output(ENERGY_OUTPUT_HATCH_16A[UEV])
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+        }
 
         // 16A UIV Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UIV])
-            .input(ENERGY_OUTPUT_HATCH_4A[UIV])
-            .input(wireGtOctal, SuperheavyAlloyA, 2)
-            .input(plate, Shirabon, 4)
-            .output(ENERGY_OUTPUT_HATCH_16A[UIV])
-            .EUt(VA[UEV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UIV])
+            input(ENERGY_OUTPUT_HATCH_4A[UIV])
+            input(wireGtOctal, SuperheavyAlloyA, 2)
+            input(plate, Shirabon, 4)
+            output(ENERGY_OUTPUT_HATCH_16A[UIV])
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+        }
 
         // 16A UXV Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[UXV])
-            .input(ENERGY_OUTPUT_HATCH_4A[UXV])
-            .input(wireGtOctal, SuperheavyAlloyB, 2)
-            .input(plate, Creon, 4)
-            .output(ENERGY_OUTPUT_HATCH_16A[UXV])
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[UXV])
+            input(ENERGY_OUTPUT_HATCH_4A[UXV])
+            input(wireGtOctal, SuperheavyAlloyB, 2)
+            input(plate, Creon, 4)
+            output(ENERGY_OUTPUT_HATCH_16A[UXV])
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
 
         // 16A OpV Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(HI_AMP_TRANSFORMER[OpV])
-            .input(ENERGY_OUTPUT_HATCH_4A[OpV])
-            .input(wireGtOctal, Periodicium, 2)
-            .input(plate, BlackDwarfMatter, 4)
-            .output(ENERGY_OUTPUT_HATCH_16A[OpV])
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(HI_AMP_TRANSFORMER[OpV])
+            input(ENERGY_OUTPUT_HATCH_4A[OpV])
+            input(wireGtOctal, Periodicium, 2)
+            input(plate, BlackDwarfMatter, 4)
+            output(ENERGY_OUTPUT_HATCH_16A[OpV])
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
         // 64A UHV Substation Dynamo Hatch
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-            *arrayOf(POWER_TRANSFORMER[UV].stackForm, ENERGY_OUTPUT_HATCH_16A[UHV].stackForm,
-                     OreDictUnifier.get(wireGtHex, Europium, 2),
-                     OreDictUnifier.get(plate, Neutronium, 6)))
+        ASSEMBLER_RECIPES.removeRecipe(
+            POWER_TRANSFORMER[UV].stackForm, ENERGY_OUTPUT_HATCH_16A[UHV].stackForm,
+            OreDictUnifier.get(wireGtHex, Europium, 2),
+            OreDictUnifier.get(plate, Neutronium, 6))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[UHV])
-            .input(ENERGY_OUTPUT_HATCH_16A[UHV])
-            .input(wireGtHex, Europium, 2)
-            .input(plate, Neutronium, 6)
-            .output(SUBSTATION_ENERGY_OUTPUT_HATCH[UHV])
-            .EUt(VA[UV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(POWER_TRANSFORMER[UHV])
+            input(ENERGY_OUTPUT_HATCH_16A[UHV])
+            input(wireGtHex, Europium, 2)
+            input(plate, Neutronium, 6)
+            output(SUBSTATION_ENERGY_OUTPUT_HATCH[UHV])
+            EUt(VA[UV])
+            duration(20 * SECOND)
+        }
 
         // 64A UEV Substation Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[UEV])
-            .input(ENERGY_OUTPUT_HATCH_16A[UEV])
-            .input(wireGtHex, Seaborgium, 2)
-            .input(plate, Vibranium, 6)
-            .output(SUBSTATION_ENERGY_OUTPUT_HATCH[UEV])
-            .EUt(VA[UHV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(POWER_TRANSFORMER[UEV])
+            input(ENERGY_OUTPUT_HATCH_16A[UEV])
+            input(wireGtHex, Seaborgium, 2)
+            input(plate, Vibranium, 6)
+            output(SUBSTATION_ENERGY_OUTPUT_HATCH[UEV])
+            EUt(VA[UHV])
+            duration(20 * SECOND)
+        }
 
         // 64A UIV Substation Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[UIV])
-            .input(ENERGY_OUTPUT_HATCH_16A[UIV])
-            .input(wireGtHex, SuperheavyAlloyA, 2)
-            .input(plate, Shirabon, 6)
-            .output(SUBSTATION_ENERGY_OUTPUT_HATCH[UIV])
-            .EUt(VA[UEV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(POWER_TRANSFORMER[UIV])
+            input(ENERGY_OUTPUT_HATCH_16A[UIV])
+            input(wireGtHex, SuperheavyAlloyA, 2)
+            input(plate, Shirabon, 6)
+            output(SUBSTATION_ENERGY_OUTPUT_HATCH[UIV])
+            EUt(VA[UEV])
+            duration(20 * SECOND)
+        }
 
         // 64A UXV Substation Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[UXV])
-            .input(ENERGY_OUTPUT_HATCH_16A[UXV])
-            .input(wireGtHex, SuperheavyAlloyB, 2)
-            .input(plate, Creon, 6)
-            .output(SUBSTATION_ENERGY_OUTPUT_HATCH[UXV])
-            .EUt(VA[UIV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(POWER_TRANSFORMER[UXV])
+            input(ENERGY_OUTPUT_HATCH_16A[UXV])
+            input(wireGtHex, SuperheavyAlloyB, 2)
+            input(plate, Creon, 6)
+            output(SUBSTATION_ENERGY_OUTPUT_HATCH[UXV])
+            EUt(VA[UIV])
+            duration(20 * SECOND)
+        }
 
         // 64A OpV Substation Dynamo Hatch
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(POWER_TRANSFORMER[OpV])
-            .input(ENERGY_OUTPUT_HATCH_16A[OpV])
-            .input(wireGtHex, Periodicium, 2)
-            .input(plate, BlackDwarfMatter, 6)
-            .output(SUBSTATION_ENERGY_OUTPUT_HATCH[OpV])
-            .EUt(VA[UXV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(POWER_TRANSFORMER[OpV])
+            input(ENERGY_OUTPUT_HATCH_16A[OpV])
+            input(wireGtHex, Periodicium, 2)
+            input(plate, BlackDwarfMatter, 6)
+            output(SUBSTATION_ENERGY_OUTPUT_HATCH[OpV])
+            EUt(VA[UXV])
+            duration(20 * SECOND)
+        }
 
         // UHV Rotor Holder
         ModHandler.addShapedRecipe(true, "rotor_holder_uhv", ROTOR_HOLDER[UHV].stackForm,
@@ -1285,200 +1283,200 @@ internal object GTMetaTileEntityLoader
             'S', UnificationEntry(gearSmall, BlackDwarfMatter))
 
         // ULV Huge Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[ULV])
-            .input(QUANTUM_CHEST[ULV], 2) // Super Chest I
-            .input(FIELD_GENERATOR_LV, 4)
-            .input(plateDense, WroughtIron, 6)
-            .input(pipeHugeItem, Electrum, 16)
-            .fluidInputs(TinAlloy.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[ULV])
-            .EUt(VA[LV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[ULV])
+            input(QUANTUM_CHEST[ULV], 2) // Super Chest I
+            input(FIELD_GENERATOR_LV, 4)
+            input(plateDense, WroughtIron, 6)
+            input(pipeHugeItem, Electrum, 16)
+            fluidInputs(TinAlloy.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[ULV])
+            EUt(VA[LV])
+            duration(5 * MINUTE)
+        }
 
         // LV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[LV])
-            .input(QUANTUM_CHEST[LV], 2) // Super Chest II
-            .input(FIELD_GENERATOR_MV, 4)
-            .input(plateDense, Steel, 6)
-            .input(pipeHugeItem, SterlingSilver, 16)
-            .fluidInputs(TinAlloy.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[LV])
-            .EUt(VA[MV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[LV])
+            input(QUANTUM_CHEST[LV], 2) // Super Chest II
+            input(FIELD_GENERATOR_MV, 4)
+            input(plateDense, Steel, 6)
+            input(pipeHugeItem, SterlingSilver, 16)
+            fluidInputs(TinAlloy.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[LV])
+            EUt(VA[MV])
+            duration(5 * MINUTE)
+        }
 
         // MV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[MV])
-            .input(QUANTUM_CHEST[MV], 2) // Super Chest III
-            .input(FIELD_GENERATOR_HV, 4)
-            .input(plateDense, Aluminium, 6)
-            .input(pipeHugeItem, Ultimet, 16)
-            .fluidInputs(Kanthal.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[MV])
-            .EUt(VA[HV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[MV])
+            input(QUANTUM_CHEST[MV], 2) // Super Chest III
+            input(FIELD_GENERATOR_HV, 4)
+            input(plateDense, Aluminium, 6)
+            input(pipeHugeItem, Ultimet, 16)
+            fluidInputs(Kanthal.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[MV])
+            EUt(VA[HV])
+            duration(5 * MINUTE)
+        }
 
         // HV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[HV])
-            .input(QUANTUM_CHEST[HV], 2) // Super Chest IV
-            .input(FIELD_GENERATOR_EV, 4)
-            .input(plateDense, StainlessSteel, 6)
-            .input(pipeHugeItem, MaragingSteel250, 16)
-            .fluidInputs(Nichrome.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[HV])
-            .EUt(VA[EV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[HV])
+            input(QUANTUM_CHEST[HV], 2) // Super Chest IV
+            input(FIELD_GENERATOR_EV, 4)
+            input(plateDense, StainlessSteel, 6)
+            input(pipeHugeItem, MaragingSteel250, 16)
+            fluidInputs(Nichrome.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[HV])
+            EUt(VA[EV])
+            duration(5 * MINUTE)
+        }
 
         // EV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[EV])
-            .input(QUANTUM_CHEST[EV], 2) // Super Chest V
-            .input(FIELD_GENERATOR_IV, 4)
-            .input(plateDense, Titanium, 6)
-            .input(pipeHugeItem, Osmium, 16)
-            .fluidInputs(RTMAlloy.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[EV])
-            .EUt(VA[IV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[EV])
+            input(QUANTUM_CHEST[EV], 2) // Super Chest V
+            input(FIELD_GENERATOR_IV, 4)
+            input(plateDense, Titanium, 6)
+            input(pipeHugeItem, Osmium, 16)
+            fluidInputs(RTMAlloy.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[EV])
+            EUt(VA[IV])
+            duration(5 * MINUTE)
+        }
 
         // IV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[IV])
-            .input(QUANTUM_CHEST[IV], 2) // Quantum Chest I
-            .input(FIELD_GENERATOR_LuV, 4)
-            .input(plateDense, TungstenSteel, 6)
-            .input(pipeHugeItem, Osmiridium, 16)
-            .fluidInputs(HSSG.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[IV])
-            .EUt(VA[LuV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[IV])
+            input(QUANTUM_CHEST[IV], 2) // Quantum Chest I
+            input(FIELD_GENERATOR_LuV, 4)
+            input(plateDense, TungstenSteel, 6)
+            input(pipeHugeItem, Osmiridium, 16)
+            fluidInputs(HSSG.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[IV])
+            EUt(VA[LuV])
+            duration(5 * MINUTE)
+        }
 
         // LuV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[LuV])
-            .input(QUANTUM_CHEST[LuV], 2) // Quantum Chest II
-            .input(FIELD_GENERATOR_ZPM, 4)
-            .input(plateDense, RhodiumPlatedPalladium, 6)
-            .input(pipeHugeItem, Americium, 16)
-            .fluidInputs(HSSS.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[LuV])
-            .EUt(VA[ZPM])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[LuV])
+            input(QUANTUM_CHEST[LuV], 2) // Quantum Chest II
+            input(FIELD_GENERATOR_ZPM, 4)
+            input(plateDense, RhodiumPlatedPalladium, 6)
+            input(pipeHugeItem, Americium, 16)
+            fluidInputs(HSSS.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[LuV])
+            EUt(VA[ZPM])
+            duration(5 * MINUTE)
+        }
 
         // ZPM Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[ZPM])
-            .input(QUANTUM_CHEST[ZPM], 2) // Quantum Chest III
-            .input(FIELD_GENERATOR_UV, 4)
-            .input(plateDense, NaquadahAlloy, 6)
-            .input(pipeHugeItem, SeaborgiumCarbide, 16)
-            .fluidInputs(Tritanium.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[ZPM])
-            .EUt(VA[UV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[ZPM])
+            input(QUANTUM_CHEST[ZPM], 2) // Quantum Chest III
+            input(FIELD_GENERATOR_UV, 4)
+            input(plateDense, NaquadahAlloy, 6)
+            input(pipeHugeItem, SeaborgiumCarbide, 16)
+            fluidInputs(Tritanium.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[ZPM])
+            EUt(VA[UV])
+            duration(5 * MINUTE)
+        }
 
         // UV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[UV])
-            .input(QUANTUM_CHEST[UV], 2) // Quantum Chest IV
-            .input(FIELD_GENERATOR_UHV, 4)
-            .input(plateDense, Darmstadtium, 6)
-            .input(pipeHugeItem, TitanSteel, 16)
-            .fluidInputs(Adamantium.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[UV])
-            .EUt(VA[UHV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[UV])
+            input(QUANTUM_CHEST[UV], 2) // Quantum Chest IV
+            input(FIELD_GENERATOR_UHV, 4)
+            input(plateDense, Darmstadtium, 6)
+            input(pipeHugeItem, TitanSteel, 16)
+            fluidInputs(Adamantium.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[UV])
+            EUt(VA[UHV])
+            duration(5 * MINUTE)
+        }
 
         // UHV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[UHV])
-            .input(QUANTUM_CHEST[UHV], 2) // Quantum Chest V
-            .input(FIELD_GENERATOR_UEV, 4)
-            .input(plateDense, Neutronium, 6)
-            .input(pipeHugeItem, QuantumAlloy, 16)
-            .fluidInputs(Vibranium.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[UHV])
-            .EUt(VA[UEV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[UHV])
+            input(QUANTUM_CHEST[UHV], 2) // Quantum Chest V
+            input(FIELD_GENERATOR_UEV, 4)
+            input(plateDense, Neutronium, 6)
+            input(pipeHugeItem, QuantumAlloy, 16)
+            fluidInputs(Vibranium.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[UHV])
+            EUt(VA[UEV])
+            duration(5 * MINUTE)
+        }
 
         // UEV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[UEV])
-            .inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(2))
-            .input(FIELD_GENERATOR_UIV, 4)
-            .input(plateDense, Vibranium, 6)
-            .input(pipeHugeItem, MetastableHassium, 16)
-            .fluidInputs(CosmicNeutronium.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[UEV])
-            .EUt(VA[UIV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[UEV])
+            inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(2))
+            input(FIELD_GENERATOR_UIV, 4)
+            input(plateDense, Vibranium, 6)
+            input(pipeHugeItem, MetastableHassium, 16)
+            fluidInputs(CosmicNeutronium.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[UEV])
+            EUt(VA[UIV])
+            duration(5 * MINUTE)
+        }
 
         // UIV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[UIV])
-            .inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(4))
-            .input(FIELD_GENERATOR_UXV, 4)
-            .input(plateDense, Shirabon, 6)
-            .input(pipeHugeItem, Rhugnor, 16)
-            .fluidInputs(SpaceTime.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[UIV])
-            .EUt(VA[UXV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[UIV])
+            inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(4))
+            input(FIELD_GENERATOR_UXV, 4)
+            input(plateDense, Shirabon, 6)
+            input(pipeHugeItem, Rhugnor, 16)
+            fluidInputs(SpaceTime.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[UIV])
+            EUt(VA[UXV])
+            duration(5 * MINUTE)
+        }
 
         // UXV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[UXV])
-            .inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(8))
-            .input(FIELD_GENERATOR_OpV, 4)
-            .input(plateDense, Creon, 6)
-            .input(pipeHugeItem, Abyssalloy, 16)
-            .fluidInputs(WhiteDwarfMatter.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[UXV])
-            .EUt(VA[OpV])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[UXV])
+            inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(8))
+            input(FIELD_GENERATOR_OpV, 4)
+            input(plateDense, Creon, 6)
+            input(pipeHugeItem, Abyssalloy, 16)
+            fluidInputs(WhiteDwarfMatter.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[UXV])
+            EUt(VA[OpV])
+            duration(5 * MINUTE)
+        }
 
         // OpV Huge Item Import Bus
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(ITEM_IMPORT_BUS[OpV])
-            .inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(16))
-            .input(FIELD_GENERATOR_MAX, 4)
-            .input(plateDense, BlackDwarfMatter, 6)
-            .input(pipeHugeItem, Mellion, 16)
-            .fluidInputs(Universium.getFluid(L * 4))
-            .output(HUGE_ITEM_IMPORT_BUS[OpV])
-            .EUt(VA[MAX])
-            .duration(5 * MINUTE)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(ITEM_IMPORT_BUS[OpV])
+            inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(16))
+            input(FIELD_GENERATOR_MAX, 4)
+            input(plateDense, BlackDwarfMatter, 6)
+            input(pipeHugeItem, Mellion, 16)
+            fluidInputs(Universium.getFluid(L * 4))
+            output(HUGE_ITEM_IMPORT_BUS[OpV])
+            EUt(VA[MAX])
+            duration(5 * MINUTE)
+        }
 
         // Sterile Cleaning Maintenance Hatch
         ModHandler.addShapedRecipe(true, "sterile_cleaning_maintenance_hatch", STERILE_CLEANING_MAINTENANCE_HATCH.stackForm,
@@ -1520,7 +1518,7 @@ internal object GTMetaTileEntityLoader
             'R', UnificationEntry(rotor, NaquadahAlloy),
             'Q', UnificationEntry(pipeNormalFluid, Iridium))
 
-        // TODO Remove Dual I/O Hatches when GTCEu PR#2769 merged.
+        // TODO: Remove Dual I/O Hatches when GTCEu PR#2769 merged.
 
         // Dual Import/Export Hatch convert
         for (voltage in ULV..OpV)
@@ -1557,65 +1555,36 @@ internal object GTMetaTileEntityLoader
         {
             val (container, plateMaterial) = tieredDualHatchRecipeInputs.getValue(voltage)
             val nextTierCircuit = TierBridge.next(voltage)?.material
-            val adhesiveFluidStack = TieredAdhesiveFluid.fluidStackFromTier(voltage+1)
+            val adhesiveFluidStack = TieredAdhesiveFluid.fluidStackFromTier(voltage + 1)
 
             // Dual Import Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(18)
-                .input(ITEM_IMPORT_BUS[voltage])
-                .input(if (voltage <= HV) QUADRUPLE_FLUID_IMPORT_HATCH[voltage] else QUADRUPLE_IMPORT_HATCH[voltage])
-                .input(container)
-                .input(circuit, nextTierCircuit, 2)
-                .input(plate, plateMaterial, 4)
-                .fluidInputs(adhesiveFluidStack)
-                .output(DUAL_IMPORT_HATCH[voltage])
-                .EUt(VA[voltage])
-                .duration(20 * SECOND)
-                .buildAndRegister()
+            ASSEMBLER_RECIPES.addRecipe {
+                circuitMeta(18)
+                input(ITEM_IMPORT_BUS[voltage])
+                input(if (voltage <= HV) QUADRUPLE_FLUID_IMPORT_HATCH[voltage] else QUADRUPLE_IMPORT_HATCH[voltage])
+                input(container)
+                input(circuit, nextTierCircuit, 2)
+                input(plate, plateMaterial, 4)
+                fluidInputs(adhesiveFluidStack)
+                output(DUAL_IMPORT_HATCH[voltage])
+                EUt(VA[voltage])
+                duration(20 * SECOND)
+            }
 
             // Dual Export Hatch
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(19)
-                .input(ITEM_EXPORT_BUS[voltage])
-                .input(if (voltage <= HV) QUADRUPLE_FLUID_EXPORT_HATCH[voltage] else QUADRUPLE_EXPORT_HATCH[voltage])
-                .input(container)
-                .input(circuit, nextTierCircuit, 2)
-                .input(plate, plateMaterial, 4)
-                .fluidInputs(adhesiveFluidStack)
-                .output(DUAL_EXPORT_HATCH[voltage])
-                .EUt(VA[voltage])
-                .duration(20 * SECOND)
-                .buildAndRegister()
+            ASSEMBLER_RECIPES.addRecipe {
+                circuitMeta(19)
+                input(ITEM_EXPORT_BUS[voltage])
+                input(if (voltage <= HV) QUADRUPLE_FLUID_EXPORT_HATCH[voltage] else QUADRUPLE_EXPORT_HATCH[voltage])
+                input(container)
+                input(circuit, nextTierCircuit, 2)
+                input(plate, plateMaterial, 4)
+                fluidInputs(adhesiveFluidStack)
+                output(DUAL_EXPORT_HATCH[voltage])
+                EUt(VA[voltage])
+                duration(20 * SECOND)
+            }
         }
-
-        // modify UHV Quadruple/Nonuple Import/Export Hatch to use Kevlar to align the plastic requirement
-        // remove original UHV Quadruple/Nonuple Import/Export Hatch recipe
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-            arrayOf(FLUID_IMPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeQuadrupleFluid),
-                IntCircuitIngredient.getIntegratedCircuit(4)),
-            arrayOf(Polybenzimidazole.getFluid(L * 5)))
-
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-            arrayOf(FLUID_EXPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeQuadrupleFluid),
-                IntCircuitIngredient.getIntegratedCircuit(4)),
-            arrayOf(Polybenzimidazole.getFluid(L * 5)))
-
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-            arrayOf(FLUID_IMPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeNonupleFluid),
-                IntCircuitIngredient.getIntegratedCircuit(9)),
-            arrayOf(Polybenzimidazole.getFluid(L * 9)))
-
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
-            arrayOf(FLUID_EXPORT_HATCH[UHV].stackForm, Neutronium.getItemForm(pipeNonupleFluid),
-                IntCircuitIngredient.getIntegratedCircuit(9)),
-            arrayOf(Polybenzimidazole.getFluid(L * 9)))
-
-        addMultiFluidHatchRecipes(UHV, Europium)
-        addMultiFluidHatchRecipes(UEV, Duranium)
-        addMultiFluidHatchRecipes(UIV, Neutronium)
-        addMultiFluidHatchRecipes(UXV, HeavyQuarkDegenerateMatter)
-        addMultiFluidHatchRecipes(OpV, QuantumchromodynamicallyConfinedMatter)
-
     }
 
     // @formatter:on

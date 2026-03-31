@@ -9,6 +9,7 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bromobutane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butyllithium
@@ -24,24 +25,24 @@ internal object ButyllithiumChain
         // Anti-Markovnikov Reaction
 
         // C4H10O + HBr -> C4H9Br + H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(Butanol.getFluid(1000))
-            .fluidInputs(HydrobromicAcid.getFluid(1000))
-            .fluidOutputs(Bromobutane.getFluid(1000))
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Butanol.getFluid(1000))
+            fluidInputs(HydrobromicAcid.getFluid(1000))
+            fluidOutputs(Bromobutane.getFluid(1000))
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[EV])
+            duration(10 * SECOND)
+        }
 
         // Li + C4H9Br -> C4H9Li + Br
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Lithium)
-            .fluidInputs(Bromobutane.getFluid(1000))
-            .fluidOutputs(Butyllithium.getFluid(1000))
-            .fluidOutputs(Bromine.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Lithium)
+            fluidInputs(Bromobutane.getFluid(1000))
+            fluidOutputs(Butyllithium.getFluid(1000))
+            fluidOutputs(Bromine.getFluid(1000))
+            EUt(VA[EV])
+            duration(10 * SECOND)
+        }
     }
 
     // @formatter:on

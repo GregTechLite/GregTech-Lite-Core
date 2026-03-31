@@ -17,6 +17,7 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Octaazacubane
@@ -32,39 +33,38 @@ internal object OctaazacubaneChain
     fun init()
     {
         // Na + NH3 -> NaNH2 + H
-        CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, Sodium)
-            .fluidInputs(Ammonia.getFluid(1000))
-            .notConsumable(Iron3Chloride.getFluid(1))
-            .output(dust, SodiumAzanide, 4)
-            .fluidOutputs(Hydrogen.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CRYOGENIC_REACTOR_RECIPES.addRecipe {
+            input(dust, Sodium)
+            fluidInputs(Ammonia.getFluid(1000))
+            notConsumable(Iron3Chloride.getFluid(1))
+            output(dust, SodiumAzanide, 4)
+            fluidOutputs(Hydrogen.getFluid(1000))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
 
         // 2NaNH2 + NO2 -> NaN3 + NaOH + H2O + H (drop)
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, SodiumAzanide, 8)
-            .fluidInputs(NitrogenDioxide.getFluid(1000))
-            .output(dust, SodiumAzide, 4)
-            .output(dust, SodiumHydroxide, 3)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[ZPM])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, SodiumAzanide, 8)
+            fluidInputs(NitrogenDioxide.getFluid(1000))
+            output(dust, SodiumAzide, 4)
+            output(dust, SodiumHydroxide, 3)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[ZPM])
+            duration(5 * SECOND)
+        }
 
         // 2NaN3 + N2O4 -> N8 + Na2O + 3O
-        CVD_RECIPES.recipeBuilder()
-            .input(dust, SodiumAzide, 8)
-            .fluidInputs(DinitrogenTetroxide.getFluid(1000))
-            .output(dust, Octaazacubane, 8)
-            .output(dust, SodiumOxide, 3)
-            .fluidOutputs(Oxygen.getFluid(3000))
-            .EUt(VA[UHV])
-            .duration(10 * SECOND)
-            .temperature(1442)
-            .buildAndRegister()
-
+        CVD_RECIPES.addRecipe {
+            input(dust, SodiumAzide, 8)
+            fluidInputs(DinitrogenTetroxide.getFluid(1000))
+            output(dust, Octaazacubane, 8)
+            output(dust, SodiumOxide, 3)
+            fluidOutputs(Oxygen.getFluid(3000))
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+            temperature(1442)
+        }
     }
 
     // @formatter:on

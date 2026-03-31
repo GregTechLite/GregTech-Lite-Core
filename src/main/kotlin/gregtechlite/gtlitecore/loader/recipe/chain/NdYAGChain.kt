@@ -22,6 +22,7 @@ import gregtech.api.unification.ore.OrePrefix.gem
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
@@ -60,109 +61,108 @@ internal object NdYAGChain
     private fun carbamideProcess()
     {
         // 2KMnO4 + 5NH3 + 5HCN + 3H2SO4 -> 2MnSO4 + K2SO4 + 5NH4CNO + 3H2O
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, PotassiumPermanganate, 12)
-            .fluidInputs(Ammonia.getFluid(5000))
-            .fluidInputs(HydrogenCyanide.getFluid(5000))
-            .fluidInputs(SulfuricAcid.getFluid(3000))
-            .output(dust, ManganeseSulfate, 12)
-            .output(dust, PotassiumSulfate, 7)
-            .fluidOutputs(AmmoniumCyanate.getFluid(5000))
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VA[EV])
-            .duration(40 * SECOND)
-            .buildAndRegister()
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            input(dust, PotassiumPermanganate, 12)
+            fluidInputs(Ammonia.getFluid(5000))
+            fluidInputs(HydrogenCyanide.getFluid(5000))
+            fluidInputs(SulfuricAcid.getFluid(3000))
+            output(dust, ManganeseSulfate, 12)
+            output(dust, PotassiumSulfate, 7)
+            fluidOutputs(AmmoniumCyanate.getFluid(5000))
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VA[EV])
+            duration(40 * SECOND)
+        }
 
         // NH4CNO -> CH4N2O
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .fluidInputs(AmmoniumCyanate.getFluid(1000))
-            .output(dust, Carbamide, 8)
-            .EUt(VA[HV])
-            .duration(16 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+            fluidInputs(AmmoniumCyanate.getFluid(1000))
+            output(dust, Carbamide, 8)
+            EUt(VA[HV])
+            duration(16 * SECOND)
+        }
     }
 
     private fun tributylamineProcess()
     {
         // C4H8O + 2H -> C4H10O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(Butyraldehyde.getFluid(1000))
-            .fluidInputs(Hydrogen.getFluid(2000))
-            .fluidOutputs(Butanol.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Butyraldehyde.getFluid(1000))
+            fluidInputs(Hydrogen.getFluid(2000))
+            fluidOutputs(Butanol.getFluid(1000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // 3C4H10O + NH3 -> (C4H9)3N + 3H2O
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .notConsumable(dust, Zeolite)
-            .fluidInputs(Butanol.getFluid(3000))
-            .fluidInputs(Ammonia.getFluid(1000))
-            .fluidOutputs(Tributylamine.getFluid(1000))
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VA[HV])
-            .duration(7 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+            notConsumable(dust, Zeolite)
+            fluidInputs(Butanol.getFluid(3000))
+            fluidInputs(Ammonia.getFluid(1000))
+            fluidOutputs(Tributylamine.getFluid(1000))
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VA[HV])
+            duration(7 * SECOND)
+        }
     }
 
     private fun aluminaSolutionProcess()
     {
         // Al2O3 + HNO3 -> 2Al(NO3)3 + 3H2O
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Alumina, 5)
-            .fluidInputs(NitricAcid.getFluid(6000))
-            .output(dust, AluminiumNitrate, 26)
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VA[LV])
-            .duration(9 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, Alumina, 5)
+            fluidInputs(NitricAcid.getFluid(6000))
+            output(dust, AluminiumNitrate, 26)
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VA[LV])
+            duration(9 * SECOND + 10 * TICK)
+        }
 
         // 2Al(NO3)3 + CH2Cl2 + 2(C4H9)3N -> (Al2O3)(CH2Cl2)(C12H27N)2 + 2HNO3 (cycle) + NO2
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, AluminiumNitrate, 26)
-            .fluidInputs(Dichloromethane.getFluid(1000))
-            .fluidInputs(Tributylamine.getFluid(2000))
-            .fluidInputs(HydrogenPeroxide.getFluid(1000))
-            .fluidOutputs(AluminaSolution.getFluid(1000))
-            .fluidOutputs(NitricAcid.getFluid(2000))
-            .fluidOutputs(NitrogenDioxide.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(14 * SECOND)
-            .buildAndRegister()
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            input(dust, AluminiumNitrate, 26)
+            fluidInputs(Dichloromethane.getFluid(1000))
+            fluidInputs(Tributylamine.getFluid(2000))
+            fluidInputs(HydrogenPeroxide.getFluid(1000))
+            fluidOutputs(AluminaSolution.getFluid(1000))
+            fluidOutputs(NitricAcid.getFluid(2000))
+            fluidOutputs(NitrogenDioxide.getFluid(1000))
+            EUt(VA[HV])
+            duration(14 * SECOND)
+        }
     }
 
     private fun ndYAGProcess()
     {
         // Y2O3 + Nd2O3 -> (Y2O3)(Nd2O3)
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, YttriumOxide, 5)
-            .input(dust, NeodymiumOxide, 5)
-            .output(dust, NeodymiumDopedYttriumOxide, 10)
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            input(dust, YttriumOxide, 5)
+            input(dust, NeodymiumOxide, 5)
+            output(dust, NeodymiumDopedYttriumOxide, 10)
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
 
         // CH4N2O + (Y2O3)(Nd2O3) + (Al2O3)(CH2Cl2)(C12H27N)2 -> 2Nd:YAG? + 2(C4H9)3N (cycle)
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Carbamide, 8)
-            .input(dust, NeodymiumDopedYttriumOxide, 10)
-            .fluidInputs(AluminaSolution.getFluid(1000))
-            .fluidOutputs(UnprocessedNdYAGSolution.getFluid(2000))
-            .fluidOutputs(Tributylamine.getFluid(2000))
-            .EUt(VA[IV])
-            .duration(16 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Carbamide, 8)
+            input(dust, NeodymiumDopedYttriumOxide, 10)
+            fluidInputs(AluminaSolution.getFluid(1000))
+            fluidOutputs(UnprocessedNdYAGSolution.getFluid(2000))
+            fluidOutputs(Tributylamine.getFluid(2000))
+            EUt(VA[IV])
+            duration(16 * SECOND)
+        }
 
         // Nd:YAG? -> Nd:YAG + CH2Cl2 (cycle)
-        CVD_RECIPES.recipeBuilder()
-            .fluidInputs(UnprocessedNdYAGSolution.getFluid(1000))
-            .output(gem, NdYAG)
-            .fluidOutputs(Dichloromethane.getFluid(1000))
-            .EUt(VA[ZPM])
-            .duration(27 * SECOND + 10 * TICK)
-            .temperature(1884)
-            .buildAndRegister()
-
+        CVD_RECIPES.addRecipe {
+            fluidInputs(UnprocessedNdYAGSolution.getFluid(1000))
+            output(gem, NdYAG)
+            fluidOutputs(Dichloromethane.getFluid(1000))
+            EUt(VA[ZPM])
+            duration(27 * SECOND + 10 * TICK)
+            temperature(1884)
+        }
     }
 
     // @formatter:on

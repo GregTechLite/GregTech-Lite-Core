@@ -33,6 +33,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_GAS_COLLECTOR_RECIPES
 
 internal object GasCollectorRecipes
@@ -43,77 +44,76 @@ internal object GasCollectorRecipes
     fun init()
     {
         // Air
-        LARGE_GAS_COLLECTOR_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .notConsumable(ELECTRIC_PUMP_LV)
-            .fluidOutputs(Air.getFluid(2500))
-            .fluidOutputs(Nitrogen.getFluid(1600))
-            .fluidOutputs(CarbonDioxide.getFluid(1200))
-            .fluidOutputs(Helium.getFluid(450))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        LARGE_GAS_COLLECTOR_RECIPES.addRecipe {
+            circuitMeta(1)
+            notConsumable(ELECTRIC_PUMP_LV)
+            fluidOutputs(Air.getFluid(2500))
+            fluidOutputs(Nitrogen.getFluid(1600))
+            fluidOutputs(CarbonDioxide.getFluid(1200))
+            fluidOutputs(Helium.getFluid(450))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // Nether Air
-        LARGE_GAS_COLLECTOR_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .notConsumable(ELECTRIC_PUMP_MV)
-            .fluidOutputs(NetherAir.getFluid(3000))
-            .fluidOutputs(SulfurDioxide.getFluid(1800))
-            .fluidOutputs(HydrogenSulfide.getFluid(1400))
-            .fluidOutputs(Neon.getFluid(600))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        LARGE_GAS_COLLECTOR_RECIPES.addRecipe {
+            circuitMeta(2)
+            notConsumable(ELECTRIC_PUMP_MV)
+            fluidOutputs(NetherAir.getFluid(3000))
+            fluidOutputs(SulfurDioxide.getFluid(1800))
+            fluidOutputs(HydrogenSulfide.getFluid(1400))
+            fluidOutputs(Neon.getFluid(600))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // Ender Air
-        LARGE_GAS_COLLECTOR_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .notConsumable(ELECTRIC_PUMP_HV)
-            .fluidOutputs(EnderAir.getFluid(3500))
-            .fluidOutputs(NitrogenDioxide.getFluid(2200))
-            .fluidOutputs(Deuterium.getFluid(1600))
-            .fluidOutputs(Tritium.getFluid(1100))
-            .EUt(VA[EV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        LARGE_GAS_COLLECTOR_RECIPES.addRecipe {
+            circuitMeta(3)
+            notConsumable(ELECTRIC_PUMP_HV)
+            fluidOutputs(EnderAir.getFluid(3500))
+            fluidOutputs(NitrogenDioxide.getFluid(2200))
+            fluidOutputs(Deuterium.getFluid(1600))
+            fluidOutputs(Tritium.getFluid(1100))
+            EUt(VA[EV])
+            duration(5 * SECOND)
+        }
 
         // Liquid Air
-        LARGE_GAS_COLLECTOR_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .notConsumable(ELECTRIC_PUMP_HV)
-            .fluidOutputs(LiquidAir.getFluid(3400))
-            .fluidOutputs(Nitrogen.getFluid(2800))
-            .fluidOutputs(Helium.getFluid(1400))
-            .fluidOutputs(Argon.getFluid(700))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        LARGE_GAS_COLLECTOR_RECIPES.addRecipe {
+            circuitMeta(4)
+            notConsumable(ELECTRIC_PUMP_HV)
+            fluidOutputs(LiquidAir.getFluid(3400))
+            fluidOutputs(Nitrogen.getFluid(2800))
+            fluidOutputs(Helium.getFluid(1400))
+            fluidOutputs(Argon.getFluid(700))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // Liquid Nether Air
-        LARGE_GAS_COLLECTOR_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .notConsumable(ELECTRIC_PUMP_EV)
-            .fluidOutputs(LiquidNetherAir.getFluid(4800))
-            .fluidOutputs(SulfurTrioxide.getFluid(3500))
-            .fluidOutputs(Helium3.getFluid(2600))
-            .fluidOutputs(Krypton.getFluid(1200))
-            .EUt(VA[EV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        LARGE_GAS_COLLECTOR_RECIPES.addRecipe {
+            circuitMeta(5)
+            notConsumable(ELECTRIC_PUMP_EV)
+            fluidOutputs(LiquidNetherAir.getFluid(4800))
+            fluidOutputs(SulfurTrioxide.getFluid(3500))
+            fluidOutputs(Helium3.getFluid(2600))
+            fluidOutputs(Krypton.getFluid(1200))
+            EUt(VA[EV])
+            duration(5 * SECOND)
+        }
 
         // Liquid Ender Air
-        LARGE_GAS_COLLECTOR_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .notConsumable(ELECTRIC_PUMP_IV)
-            .fluidOutputs(LiquidEnderAir.getFluid(6400))
-            .fluidOutputs(Helium.getFluid(4000))
-            .fluidOutputs(Xenon.getFluid(2100))
-            .fluidOutputs(Radon.getFluid(1500))
-            .EUt(VA[IV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
+        LARGE_GAS_COLLECTOR_RECIPES.addRecipe {
+            circuitMeta(6)
+            notConsumable(ELECTRIC_PUMP_IV)
+            fluidOutputs(LiquidEnderAir.getFluid(6400))
+            fluidOutputs(Helium.getFluid(4000))
+            fluidOutputs(Xenon.getFluid(2100))
+            fluidOutputs(Radon.getFluid(1500))
+            EUt(VA[IV])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on

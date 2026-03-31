@@ -3,7 +3,8 @@ package gregtechlite.gtlitecore.loader.recipe.oreprocessing
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
-import gregtech.api.recipes.GTRecipeHandler
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
@@ -31,38 +32,36 @@ internal object UraniumPlutoniumProcessing
     fun init()
     {
         // Add several simplified recipes for U, U235, and U238.
-        GTRecipeHandler.removeRecipesByInputs(ELECTROLYZER_RECIPES,
-            UraniumHexafluoride.getFluid(1000))
+        ELECTROLYZER_RECIPES.removeRecipe(UraniumHexafluoride.getFluid(1000))
 
         // UO2 + 2Mg -> U + 2MgO
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, Uraninite, 3)
-            .input(dust, Magnesium, 2)
-            .output(dust, Uranium)
-            .output(dust, Magnesia, 4)
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            input(dust, Uraninite, 3)
+            input(dust, Magnesium, 2)
+            output(dust, Uranium)
+            output(dust, Magnesia, 4)
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // UO2 + C -> U + CO2
-        BLAST_RECIPES.recipeBuilder()
-            .input(dust, Uraninite, 3)
-            .input(dust, Carbon)
-            .output(ingot, Uranium)
-            .fluidOutputs(CarbonDioxide.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(15 * SECOND)
-            .blastFurnaceTemp(600)
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(dust, Uraninite, 3)
+            input(dust, Carbon)
+            output(ingot, Uranium)
+            fluidOutputs(CarbonDioxide.getFluid(1000))
+            EUt(VA[MV])
+            duration(15 * SECOND)
+            blastFurnaceTemp(600)
+        }
 
         // Pu239 -> Pu241
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(dust, Plutonium239)
-            .output(dust, Plutonium241)
-            .EUt(VA[MV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
-
+        CENTRIFUGE_RECIPES.addRecipe {
+            input(dust, Plutonium239)
+            output(dust, Plutonium241)
+            EUt(VA[MV])
+            duration(2 * SECOND + 10 * TICK)
+        }
     }
 
     // @formatter:on

@@ -11,6 +11,8 @@ import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CitricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonExtract
@@ -22,8 +24,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LIME
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ORANGE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ORANGE_JUICE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.ZEST_DUST
-import net.minecraft.init.Items
-import net.minecraft.item.ItemStack
+import net.minecraft.init.Items.GLASS_BOTTLE
 
 internal object OrangesProcessing
 {
@@ -37,64 +38,63 @@ internal object OrangesProcessing
             "mA ",
             'A', LEMON)
 
-        EXTRACTOR_RECIPES.recipeBuilder()
-            .input(LEMON)
-            .outputs(ZEST_DUST.stack())
-            .fluidOutputs(LemonExtract.getFluid(100))
-            .EUt(5) // ULV
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.addRecipe {
+            input(LEMON)
+            outputs(ZEST_DUST.stack())
+            fluidOutputs(LemonExtract.getFluid(100))
+            EUt(5) // ULV
+            duration(5 * SECOND)
+        }
 
         ModHandler.addShapedRecipe(false, "zest_dust_lime", ZEST_DUST.stack(),
             "mA ",
             'A', LIME)
 
-        EXTRACTOR_RECIPES.recipeBuilder()
-            .input(LIME)
-            .outputs(ZEST_DUST.stack())
-            .fluidOutputs(LimeExtract.getFluid(100))
-            .EUt(5) // ULV
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.addRecipe {
+            input(LIME)
+            outputs(ZEST_DUST.stack())
+            fluidOutputs(LimeExtract.getFluid(100))
+            EUt(5) // ULV
+            duration(5 * SECOND)
+        }
 
         ModHandler.addShapedRecipe(false, "zest_dust_orange", ZEST_DUST.stack(),
             "mA ",
             'A', ORANGE)
 
-        EXTRACTOR_RECIPES.recipeBuilder()
-            .input(ORANGE)
-            .outputs(ZEST_DUST.stack())
-            .fluidOutputs(OrangeExtract.getFluid(100))
-            .EUt(5) // ULV
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        EXTRACTOR_RECIPES.addRecipe {
+            input(ORANGE)
+            outputs(ZEST_DUST.stack())
+            fluidOutputs(OrangeExtract.getFluid(100))
+            EUt(5) // ULV
+            duration(5 * SECOND)
+        }
 
         // Orange Juice
-        CANNER_RECIPES.recipeBuilder()
-            .inputs(ItemStack(Items.GLASS_BOTTLE))
-            .fluidInputs(OrangeExtract.getFluid(250))
-            .output(ORANGE_JUICE)
-            .EUt(4) // ULV
-            .duration(10 * TICK)
-            .buildAndRegister()
+        CANNER_RECIPES.addRecipe {
+            inputs(GLASS_BOTTLE)
+            fluidInputs(OrangeExtract.getFluid(250))
+            output(ORANGE_JUICE)
+            EUt(4) // ULV
+            duration(10 * TICK)
+        }
 
         // Lemon Extract -> Citric Acid
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(LemonExtract.getFluid(1000))
-            .fluidOutputs(CitricAcid.getFluid(100))
-            .EUt(VA[MV])
-            .duration(4 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(LemonExtract.getFluid(1000))
+            fluidOutputs(CitricAcid.getFluid(100))
+            EUt(VA[MV])
+            duration(4 * SECOND + 10 * TICK)
+        }
 
         // Lemon Extract + Lime Extract -> Lemon-Lime Mixture
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(LemonExtract.getFluid(500))
-            .fluidInputs(LimeExtract.getFluid(500))
-            .fluidOutputs(LemonLimeMixture.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
+        MIXER_RECIPES.addRecipe {
+            fluidInputs(LemonExtract.getFluid(500))
+            fluidInputs(LimeExtract.getFluid(500))
+            fluidOutputs(LemonLimeMixture.getFluid(1000))
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on

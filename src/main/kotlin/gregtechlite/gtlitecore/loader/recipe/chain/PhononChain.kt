@@ -4,8 +4,6 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
-import gregtech.api.metatileentity.multiblock.CleanroomType
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
@@ -50,7 +48,10 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LAMINATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
@@ -81,452 +82,451 @@ internal object PhononChain
 
     fun init()
     {
-
         // Phononic Seed Crystal
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(nanite, TranscendentMetal)
-            .input(dust, Mellion, 32)
-            .fluidInputs(StableBaryonicMatter.getFluid(32000))
-            .output(PHONONIC_SEED_CRYSTAL)
-            .EUt(VA[UIV])
-            .duration(5 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(nanite, TranscendentMetal)
+            input(dust, Mellion, 32)
+            fluidInputs(StableBaryonicMatter.getFluid(32000))
+            output(PHONONIC_SEED_CRYSTAL)
+            EUt(VA[UIV])
+            duration(5 * SECOND)
+            cleanroom()
+        }
 
         // Advanced recipes for Phononic Seed Crystal when player completed all processing and get MagMatter.
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(round, MagMatter)
-            .fluidInputs(StableBaryonicMatter.getFluid(4000))
-            .output(PHONONIC_SEED_CRYSTAL, 5)
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(round, MagMatter)
+            fluidInputs(StableBaryonicMatter.getFluid(4000))
+            output(PHONONIC_SEED_CRYSTAL, 5)
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
 
         // The stable baryonic matter is cycle when player used advanced recipes.
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, HarmonicPhononMatter),
             IntCircuitIngredient.getIntegratedCircuit(1))
-
-        GTRecipeHandler.removeRecipesByInputs(BLAST_RECIPES,
+        BLAST_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, HarmonicPhononMatter),
-                IntCircuitIngredient.getIntegratedCircuit(2)),
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Krypton.getFluid(10)))
-
-        GTRecipeHandler.removeRecipesByInputs(TOPOLOGICAL_ORDER_CHANGING_RECIPES,
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, HarmonicPhononMatter),
             IntCircuitIngredient.getIntegratedCircuit(1))
-
-        GTRecipeHandler.removeRecipesByInputs(TOPOLOGICAL_ORDER_CHANGING_RECIPES,
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, HarmonicPhononMatter),
             IntCircuitIngredient.getIntegratedCircuit(2))
 
-        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(PHONONIC_SEED_CRYSTAL)
-            .input(nanite, Iron)
-            .input(dust, NetherStar, 16)
-            .fluidInputs(Mellion.getFluid(L * 16))
-            .output(ingot, HarmonicPhononMatter, 4)
-            .fluidOutputs(StableBaryonicMatter.getFluid(800))
-            .EUt(VA[UXV])
-            .duration(20 * SECOND)
-            .blastFurnaceTemp(26000)
-            .buildAndRegister()
+        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(PHONONIC_SEED_CRYSTAL)
+            input(nanite, Iron)
+            input(dust, NetherStar, 16)
+            fluidInputs(Mellion.getFluid(L * 16))
+            output(ingot, HarmonicPhononMatter, 4)
+            fluidOutputs(StableBaryonicMatter.getFluid(800))
+            EUt(VA[UXV])
+            duration(20 * SECOND)
+            blastFurnaceTemp(26000)
+        }
 
-        // MagMatter liquid.
-        LARGE_MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .fluidInputs(HarmonicPhononMatter.getFluid(L))
-            .fluidInputs(ResonantStrangeMeson.getFluid(8000))
-            .fluidInputs(NeutronProtonFermiSuperfluid.getFluid(6000))
-            .fluidInputs(Antimatter.getFluid(1000))
-            .fluidOutputs(MagMatter.getFluid(16000))
-            .EUt(VA[UXV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        // Liquid
+        LARGE_MIXER_RECIPES.addRecipe {
+            circuitMeta(4)
+            fluidInputs(HarmonicPhononMatter.getFluid(L))
+            fluidInputs(ResonantStrangeMeson.getFluid(8000))
+            fluidInputs(NeutronProtonFermiSuperfluid.getFluid(6000))
+            fluidInputs(Antimatter.getFluid(1000))
+            fluidOutputs(MagMatter.getFluid(16000))
+            EUt(VA[UXV])
+            duration(5 * SECOND)
+        }
 
-        // ingotMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(ingot, Magnetium)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(ingot, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Ingot
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(ingot, Magnetium)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(ingot, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // blockMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(block, Magnetium)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(block, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Block
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(block, Magnetium)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(block, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // plateMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(plate, Magnetium)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(plate, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Plate
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(plate, Magnetium)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(plate, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // plateDoubleMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(plateDouble, Magnetium)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(plateDouble, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Double Plate
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(plateDouble, Magnetium)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(plateDouble, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // plateDenseMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(plateDense, Magnetium)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(plateDense, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Dense Plate
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(plateDense, Magnetium)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(plateDense, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // foilMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(foil, Magnetium, 4)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(foil, MagMatter, 4)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Foil
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(foil, Magnetium, 4)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(foil, MagMatter, 4)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // stickMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(stick, Magnetium, 2)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(stick, MagMatter, 2)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Stick
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(stick, Magnetium, 2)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(stick, MagMatter, 2)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // stickLongMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(stickLong, Magnetium)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(stickLong, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Long Stick
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(stickLong, Magnetium)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(stickLong, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // boltMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(bolt, Magnetium, 8)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(bolt, MagMatter, 8)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Bolt
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(bolt, Magnetium, 8)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(bolt, MagMatter, 8)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // screwMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(screw, Magnetium, 8)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(screw, MagMatter, 8)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Screw
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(screw, Magnetium, 8)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(screw, MagMatter, 8)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // ringMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(ring, Magnetium, 4)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(ring, MagMatter, 4)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Ring
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(ring, Magnetium, 4)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(ring, MagMatter, 4)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // roundMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(round, Magnetium, 8)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(round, MagMatter, 8)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Round
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(round, Magnetium, 8)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(round, MagMatter, 8)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // gearMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(gear, Magnetium)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(gear, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Gear
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(gear, Magnetium)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(gear, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // gearSmallMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(gearSmall, Magnetium, 2)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(gearSmall, MagMatter, 2)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Small Gear
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(gearSmall, Magnetium, 2)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(gearSmall, MagMatter, 2)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // rotorMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(rotor, Magnetium)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(rotor, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Rotor
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(rotor, Magnetium)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(rotor, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // wireFineMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(wireFine, Magnetium, 8)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(wireFine, MagMatter, 8)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Fine Wire
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(wireFine, Magnetium, 8)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(wireFine, MagMatter, 8)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // wireGtSingleMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(wireFine, Magnetium, 8)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(wireGtSingle, MagMatter, 2)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // 1x Wire
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(wireFine, Magnetium, 8)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(wireGtSingle, MagMatter, 2)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // wireGtDoubleMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(wireFine, Magnetium, 16)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(wireGtDouble, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // 2x Wire
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(wireFine, Magnetium, 16)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(wireGtDouble, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // wireGtQuadrupleMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(wireFine, Magnetium, 32)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(wireGtQuadruple, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // 4x Wire
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(wireFine, Magnetium, 32)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(wireGtQuadruple, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // wireGtOctalMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(wireFine, Magnetium, 64)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(wireGtOctal, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // 8x Wire
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(wireFine, Magnetium, 64)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(wireGtOctal, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // wireGtHexMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(wireFine, Magnetium, 64)
-            .input(wireFine, Magnetium, 64)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(wireGtHex, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // 16x Wire
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(wireFine, Magnetium, 64)
+            input(wireFine, Magnetium, 64)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(wireGtHex, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // cableGtSingleMagMatter/cableGtDoubleMagMatter
-        for (rubber in arrayOf(PolytetramethyleneGlycolRubber.getFluid(L / 2),
+        // 1x Cable and 2x Cable
+        for (rubber in arrayOf(
+            PolytetramethyleneGlycolRubber.getFluid(L / 2),
             PolyphosphonitrileFluoroRubber.getFluid(L / 4)))
         {
-            LAMINATOR_RECIPES.recipeBuilder()
-                .input(wireGtSingle, MagMatter)
-                .input(foil, PolyvinylChloride)
-                .input(foil, PolyphenyleneSulfide)
-                .input(foil, Polyetheretherketone)
-                .input(foil, Zylon)
-                .fluidInputs(rubber)
-                .output(cableGtSingle, MagMatter)
-                .EUt(7) // ULV
-                .duration(5 * SECOND)
-                .buildAndRegister()
+            LAMINATOR_RECIPES.addRecipe {
+                input(wireGtSingle, MagMatter)
+                input(foil, PolyvinylChloride)
+                input(foil, PolyphenyleneSulfide)
+                input(foil, Polyetheretherketone)
+                input(foil, Zylon)
+                fluidInputs(rubber)
+                output(cableGtSingle, MagMatter)
+                EUt(7) // ULV
+                duration(5 * SECOND)
+            }
 
-            LAMINATOR_RECIPES.recipeBuilder()
-                .input(wireGtDouble, MagMatter)
-                .input(foil, PolyvinylChloride)
-                .input(foil, PolyphenyleneSulfide)
-                .input(foil, Polyetheretherketone)
-                .input(foil, Zylon)
-                .fluidInputs(rubber)
-                .output(cableGtDouble, MagMatter)
-                .EUt(7) // ULV
-                .duration(5 * SECOND)
-                .buildAndRegister()
+            LAMINATOR_RECIPES.addRecipe {
+                input(wireGtDouble, MagMatter)
+                input(foil, PolyvinylChloride)
+                input(foil, PolyphenyleneSulfide)
+                input(foil, Polyetheretherketone)
+                input(foil, Zylon)
+                fluidInputs(rubber)
+                output(cableGtDouble, MagMatter)
+                EUt(7) // ULV
+                duration(5 * SECOND)
+            }
         }
 
-        // cableGtQuadrupleMagMatter
-        for (rubber in arrayOf(PolytetramethyleneGlycolRubber.getFluid(L),
+        // 4x Cable
+        for (rubber in arrayOf(
+            PolytetramethyleneGlycolRubber.getFluid(L),
             PolyphosphonitrileFluoroRubber.getFluid(L / 2)))
         {
-            LAMINATOR_RECIPES.recipeBuilder()
-                .input(wireGtQuadruple, MagMatter)
-                .input(foil, PolyvinylChloride, 2)
-                .input(foil, PolyphenyleneSulfide, 2)
-                .input(foil, Polyetheretherketone, 2)
-                .input(foil, Zylon, 2)
-                .fluidInputs(rubber)
-                .output(cableGtQuadruple, MagMatter)
-                .EUt(7) // ULV
-                .duration(5 * SECOND)
-                .buildAndRegister()
+            LAMINATOR_RECIPES.addRecipe {
+                input(wireGtQuadruple, MagMatter)
+                input(foil, PolyvinylChloride, 2)
+                input(foil, PolyphenyleneSulfide, 2)
+                input(foil, Polyetheretherketone, 2)
+                input(foil, Zylon, 2)
+                fluidInputs(rubber)
+                output(cableGtQuadruple, MagMatter)
+                EUt(7) // ULV
+                duration(5 * SECOND)
+            }
         }
 
-        // cableGtOctalMagMatter
-        for (rubber in arrayOf(PolytetramethyleneGlycolRubber.getFluid(L + L / 2),
+        // 8x Cable
+        for (rubber in arrayOf(
+            PolytetramethyleneGlycolRubber.getFluid(L + L / 2),
             PolyphosphonitrileFluoroRubber.getFluid(L - L / 4)))
         {
-            LAMINATOR_RECIPES.recipeBuilder()
-                .input(wireGtOctal, MagMatter)
-                .input(foil, PolyvinylChloride, 3)
-                .input(foil, PolyphenyleneSulfide, 3)
-                .input(foil, Polyetheretherketone, 3)
-                .input(foil, Zylon, 3)
-                .fluidInputs(rubber)
-                .output(cableGtOctal, MagMatter)
-                .EUt(7) // ULV
-                .duration(5 * SECOND)
-                .buildAndRegister()
+            LAMINATOR_RECIPES.addRecipe {
+                input(wireGtOctal, MagMatter)
+                input(foil, PolyvinylChloride, 3)
+                input(foil, PolyphenyleneSulfide, 3)
+                input(foil, Polyetheretherketone, 3)
+                input(foil, Zylon, 3)
+                fluidInputs(rubber)
+                output(cableGtOctal, MagMatter)
+                EUt(7) // ULV
+                duration(5 * SECOND)
+            }
         }
 
-        // cableGtHexMagMatter
-        for (rubber in arrayOf(PolytetramethyleneGlycolRubber.getFluid(L * 2 + L / 2),
+        // 16x Cable
+        for (rubber in arrayOf(
+            PolytetramethyleneGlycolRubber.getFluid(L * 2 + L / 2),
             PolyphosphonitrileFluoroRubber.getFluid(L + L / 4)))
         {
-            LAMINATOR_RECIPES.recipeBuilder()
-                .input(wireGtHex, MagMatter)
-                .input(foil, PolyvinylChloride, 5)
-                .input(foil, PolyphenyleneSulfide, 5)
-                .input(foil, Polyetheretherketone, 5)
-                .input(foil, Zylon, 5)
-                .fluidInputs(rubber)
-                .output(cableGtHex, MagMatter)
-                .EUt(7) // ULV
-                .duration(5 * SECOND)
-                .buildAndRegister()
+            LAMINATOR_RECIPES.addRecipe {
+                input(wireGtHex, MagMatter)
+                input(foil, PolyvinylChloride, 5)
+                input(foil, PolyphenyleneSulfide, 5)
+                input(foil, Polyetheretherketone, 5)
+                input(foil, Zylon, 5)
+                fluidInputs(rubber)
+                output(cableGtHex, MagMatter)
+                EUt(7) // ULV
+                duration(5 * SECOND)
+            }
         }
 
-        // frameGtMagMatter
-        ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-            .input(nanite, Copper)
-            .input(NAQUADRIA_SUPERSOLID)
-            .input(TOPOLOGICAL_INSULATOR_TUBE)
-            .input(frameGt, Magnetium)
-            .fluidInputs(MagMatter.getFluid(1000))
-            .output(frameGt, MagMatter)
-            .EUt(VA[UXV])
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        // Frame
+        ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+            input(nanite, Copper)
+            input(NAQUADRIA_SUPERSOLID)
+            input(TOPOLOGICAL_INSULATOR_TUBE)
+            input(frameGt, Magnetium)
+            fluidInputs(MagMatter.getFluid(1000))
+            output(frameGt, MagMatter)
+            EUt(VA[UXV])
+            duration(1 * SECOND)
+        }
 
-        // wallGtMagMatter
+        // Wall
         ModHandler.addShapedRecipe(true, "mag_matter_wall_gt", GTLiteBlocks.METAL_WALLS[MagMatter]!!.getItem(MagMatter).copy(6),
             "hPS", "P P", "SPd",
             'P', UnificationEntry(plate, MagMatter),
             'S', UnificationEntry(screw, MagMatter))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(11)
-            .input(plate, MagMatter, 2)
-            .input(screw, MagMatter)
-            .outputs(GTLiteBlocks.METAL_WALLS[MagMatter]!!.getItem(MagMatter).copy(3))
-            .EUt(7)
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(11)
+            input(plate, MagMatter, 2)
+            input(screw, MagMatter)
+            outputs(GTLiteBlocks.METAL_WALLS[MagMatter]!!.getItem(MagMatter).copy(3))
+            EUt(7) // ULV
+            duration(2 * SECOND + 5 * TICK)
+        }
 
-        // Halkonite Steel Sheeted Frame
+        // Sheeted Frame
         ModHandler.addShapedRecipe(true, "mag_matter_sheeted_frame", GTLiteBlocks.SHEETED_FRAMES[MagMatter]!!.getItem(MagMatter).copy(12),
             "PFP", "PhP", "PFP",
             'P', UnificationEntry(plate, MagMatter),
             'F', UnificationEntry(frameGt, MagMatter))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(10)
-            .input(plate, MagMatter, 3)
-            .input(frameGt, MagMatter)
-            .outputs(GTLiteBlocks.SHEETED_FRAMES[MagMatter]!!.getItem(MagMatter).copy(6))
-            .EUt(7) // ULV
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
-
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(10)
+            input(plate, MagMatter, 3)
+            input(frameGt, MagMatter)
+            outputs(GTLiteBlocks.SHEETED_FRAMES[MagMatter]!!.getItem(MagMatter).copy(6))
+            EUt(7) // ULV
+            duration(2 * SECOND + 5 * TICK)
+        }
     }
 
     // @formatter:on

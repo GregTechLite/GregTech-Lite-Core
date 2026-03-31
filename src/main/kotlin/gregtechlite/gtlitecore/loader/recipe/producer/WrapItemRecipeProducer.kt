@@ -4,6 +4,7 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.ore.OrePrefix.circuit
@@ -35,157 +36,156 @@ internal object WrapItemRecipeProducer
 
     fun produce()
     {
-
         // Add all Wrap Items.
         wrapItems.forEach { item, wrapItem -> addRecipe(item, wrapItem) }
 
         // Circuits
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.ULV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_ULV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.ULV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_ULV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.LV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_LV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.LV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_LV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.MV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_MV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.MV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_MV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.HV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_HV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.HV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_HV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.EV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_EV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.EV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_EV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.IV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_IV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.IV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_IV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.LuV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_LuV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.LuV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_LuV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.ZPM, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_ZPM)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.ZPM, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_ZPM)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.UV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_UV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.UV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_UV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.UHV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_UHV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.UHV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_UHV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.UEV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_UEV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.UEV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_UEV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.UIV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_UIV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.UIV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_UIV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.UXV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_UXV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.UXV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_UXV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.OpV, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_OpV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.OpV, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_OpV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .input(circuit, Tier.MAX, 16)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(WRAP_CIRCUIT_MAX)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            input(circuit, Tier.MAX, 16)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(WRAP_CIRCUIT_MAX)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
     }
 
     private fun addRecipe(item: ItemStack, wrapItem: ItemStack)
     {
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(16)
-            .inputs(item.copy(16))
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .outputs(wrapItem)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(16)
+            inputs(item.copy(16))
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            outputs(wrapItem)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on

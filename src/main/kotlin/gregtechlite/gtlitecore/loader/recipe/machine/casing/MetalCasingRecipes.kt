@@ -27,6 +27,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumBronze
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EglinSteel
@@ -114,19 +115,19 @@ internal object MetalCasingRecipes
     private fun create(outputCasing: BlockVariant, material: Material)
     {
         ModHandler.addShapedRecipe(true, material.name.lowercase() + "_casing",
-                                   outputCasing.getStack(ConfigHolder.recipes.casingsPerCraft),
-                                   "PhP", "PFP", "PwP",
-                                   'P', UnificationEntry(plate, material),
-                                   'F', UnificationEntry(frameGt, material))
+            outputCasing.getStack(ConfigHolder.recipes.casingsPerCraft),
+            "PhP", "PFP", "PwP",
+            'P', UnificationEntry(plate, material),
+            'F', UnificationEntry(frameGt, material))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(plate, material, 6)
-            .input(frameGt, material)
-            .outputs(outputCasing.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(plate, material, 6)
+            input(frameGt, material)
+            outputs(outputCasing.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
     }
 
     // @formatter:on

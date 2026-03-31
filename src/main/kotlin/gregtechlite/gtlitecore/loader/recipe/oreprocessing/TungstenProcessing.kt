@@ -5,7 +5,8 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VHA
-import gregtech.api.recipes.GTRecipeHandler
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
@@ -34,17 +35,16 @@ internal object TungstenProcessing
     fun init()
     {
         // Remove original recipes of H2WO4.
-        GTRecipeHandler.removeRecipesByInputs(ELECTROLYZER_RECIPES,
-            OreDictUnifier.get(dust, TungsticAcid, 7))
+        ELECTROLYZER_RECIPES.removeRecipe(OreDictUnifier.get(dust, TungsticAcid, 7))
 
         // H2WO4/(WO3)·H2O -> WO3 + H2O
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .input(dust, TungsticAcid, 7)
-            .output(dust, TungstenTrioxide, 4)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VH[LV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+            input(dust, TungsticAcid, 7)
+            output(dust, TungstenTrioxide, 4)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VH[LV])
+            duration(8 * SECOND)
+        }
 
         // Choices of WO3 -> W process:
         // i)   Blasting it with Carbon dust and get Tungsten hot ingot.
@@ -52,36 +52,35 @@ internal object TungstenProcessing
         // iii) Chemistry processing it with Liquid Hydrogen and get Tungsten dust.
 
         // 2WO3 + 3C -> 2W + 3CO2
-        BLAST_RECIPES.recipeBuilder()
-            .input(dust, TungstenTrioxide, 8)
-            .input(dust, Carbon, 3)
-            .output(ingotHot, Tungsten, 2)
-            .fluidOutputs(CarbonDioxide.getFluid(3000))
-            .blastFurnaceTemp(Tungsten.blastTemperature)
-            .EUt(VA[EV])
-            .duration(2 * MINUTE)
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(dust, TungstenTrioxide, 8)
+            input(dust, Carbon, 3)
+            output(ingotHot, Tungsten, 2)
+            fluidOutputs(CarbonDioxide.getFluid(3000))
+            blastFurnaceTemp(Tungsten.blastTemperature)
+            EUt(VA[EV])
+            duration(2 * MINUTE)
+        }
 
         //  WO3 + 6H -> W + 3H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, TungstenTrioxide, 4)
-            .fluidInputs(Hydrogen.getFluid(6000))
-            .output(dust, Tungsten)
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VHA[EV])
-            .duration(10 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, TungstenTrioxide, 4)
+            fluidInputs(Hydrogen.getFluid(6000))
+            output(dust, Tungsten)
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VHA[EV])
+            duration(10 * SECOND + 10 * TICK)
+        }
 
         // 2WO3 + 3C -> 2W + 3CO2
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, TungstenTrioxide, 8)
-            .input(dust, Carbon, 3)
-            .output(dust, Tungsten, 2)
-            .fluidOutputs(CarbonDioxide.getFluid(3000))
-            .EUt(VA[EV])
-            .duration(30 * SECOND)
-            .buildAndRegister()
-
+        ROASTER_RECIPES.addRecipe {
+            input(dust, TungstenTrioxide, 8)
+            input(dust, Carbon, 3)
+            output(dust, Tungsten, 2)
+            fluidOutputs(CarbonDioxide.getFluid(3000))
+            EUt(VA[EV])
+            duration(30 * SECOND)
+        }
     }
 
     // @formatter:on

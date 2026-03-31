@@ -13,6 +13,7 @@ import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pikyonium64B
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -34,17 +35,17 @@ internal object CosmicRayDetectorCasingRecipes
             'Q', MetalCasing.TALONITE.stack,
             'S', UnificationEntry(screw, Pikyonium64B))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(frameGt, HDCS)
-            .inputs(MetalCasing.TALONITE.stack)
-            .input(EMITTER_UHV, 3)
-            .input(NEUTRON_REFLECTOR, 2)
-            .input(screw, Pikyonium64B, 2)
-            .outputs(MultiblockCasing.REFLECTIVE_SURFACE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft * 4))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(frameGt, HDCS)
+            inputs(MetalCasing.TALONITE.stack)
+            input(EMITTER_UHV, 3)
+            input(NEUTRON_REFLECTOR, 2)
+            input(screw, Pikyonium64B, 2)
+            outputs(MultiblockCasing.REFLECTIVE_SURFACE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft * 4))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
     }
 
     // @formatter:on

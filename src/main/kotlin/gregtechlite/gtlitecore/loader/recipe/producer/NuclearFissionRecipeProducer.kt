@@ -9,6 +9,7 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.THERMAL_CENTRIFUGE_RECIPES
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Actinium
 import gregtech.api.unification.material.Materials.Americium
@@ -229,73 +230,73 @@ internal object NuclearFissionRecipeProducer
 
         // Common Fuel Rod
         generateCoolants(coolantAmount).forEach { (coolant, hotCoolant) ->
-            NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRod, fissionElement)
-                .fluidInputs(coolant)
-                .output(fuelRodDepleted, fissionElement)
-                .fluidOutputs(hotCoolant)
-                .EUt(VA[baseVoltageTier])
-                .duration(baseDuration)
-                .buildAndRegister()
+            NUCLEAR_FUELS.addRecipe {
+                input(fuelRod, fissionElement)
+                fluidInputs(coolant)
+                output(fuelRodDepleted, fissionElement)
+                fluidOutputs(hotCoolant)
+                EUt(VA[baseVoltageTier])
+                duration(baseDuration)
+            }
         }
 
         // Enriched Fuel Rod
         generateCoolants(coolantAmount * 2).forEach { (coolant, hotCoolant) ->
-            NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodEnriched, fissionElement)
-                .fluidInputs(coolant)
-                .output(fuelRodEnrichedDepleted, fissionElement)
-                .fluidOutputs(hotCoolant)
-                .EUt(VA[baseVoltageTier] * 5)
-                .duration(baseDuration)
-                .buildAndRegister()
+            NUCLEAR_FUELS.addRecipe {
+                input(fuelRodEnriched, fissionElement)
+                fluidInputs(coolant)
+                output(fuelRodEnrichedDepleted, fissionElement)
+                fluidOutputs(hotCoolant)
+                EUt(VA[baseVoltageTier] * 5)
+                duration(baseDuration)
+            }
         }
 
         // High Density Fuel Rod
         generateCoolants(coolantAmount * 4).forEach { (coolant, hotCoolant) ->
-            NUCLEAR_FUELS.recipeBuilder()
-                .input(fuelRodHighDensity, fissionElement)
-                .fluidInputs(coolant)
-                .output(fuelRodHighDensityDepleted, fissionElement)
-                .fluidOutputs(hotCoolant)
-                .EUt(VA[baseVoltageTier] * 8)
-                .duration(baseDuration * 1.5)
-                .buildAndRegister()
+            NUCLEAR_FUELS.addRecipe {
+                input(fuelRodHighDensity, fissionElement)
+                fluidInputs(coolant)
+                output(fuelRodHighDensityDepleted, fissionElement)
+                fluidOutputs(hotCoolant)
+                EUt(VA[baseVoltageTier] * 8)
+                duration(baseDuration * 1.5)
+            }
         }
 
     }
 
     private fun depletedRodRecycling(fissionElement: Material, nextFissionElement: Material, byproductElement: Material)
     {
-        THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodDepleted, fissionElement)
-            .output(dust, Steel, 2)
-            .output(dust, fissionElement, 2)
-            .output(dust, byproductElement)
-            .output(dust, nextFissionElement)
-            .EUt(VA[LV])
-            .duration(1 * MINUTE)
-            .buildAndRegister()
+        THERMAL_CENTRIFUGE_RECIPES.addRecipe {
+            input(fuelRodDepleted, fissionElement)
+            output(dust, Steel, 2)
+            output(dust, fissionElement, 2)
+            output(dust, byproductElement)
+            output(dust, nextFissionElement)
+            EUt(VA[LV])
+            duration(1 * MINUTE)
+        }
 
-        THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodEnrichedDepleted, fissionElement)
-            .output(dust, Steel, 4)
-            .output(dust, fissionElement, 4)
-            .output(dust, byproductElement, 2)
-            .output(dust, nextFissionElement, 2)
-            .EUt(VA[LV])
-            .duration(1 * MINUTE)
-            .buildAndRegister()
+        THERMAL_CENTRIFUGE_RECIPES.addRecipe {
+            input(fuelRodEnrichedDepleted, fissionElement)
+            output(dust, Steel, 4)
+            output(dust, fissionElement, 4)
+            output(dust, byproductElement, 2)
+            output(dust, nextFissionElement, 2)
+            EUt(VA[LV])
+            duration(1 * MINUTE)
+        }
 
-        THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-            .input(fuelRodHighDensityDepleted, fissionElement)
-            .output(dust, Steel, 8)
-            .output(dust, fissionElement, 8)
-            .output(dust, byproductElement, 4)
-            .output(dust, nextFissionElement, 4)
-            .EUt(VA[LV])
-            .duration(1 * MINUTE)
-            .buildAndRegister()
+        THERMAL_CENTRIFUGE_RECIPES.addRecipe {
+            input(fuelRodHighDensityDepleted, fissionElement)
+            output(dust, Steel, 8)
+            output(dust, fissionElement, 8)
+            output(dust, byproductElement, 4)
+            output(dust, nextFissionElement, 4)
+            EUt(VA[LV])
+            duration(1 * MINUTE)
+        }
     }
 
     // @formatter:on

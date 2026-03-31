@@ -6,8 +6,6 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VHA
-import gregtech.api.metatileentity.multiblock.CleanroomType
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
@@ -68,6 +66,9 @@ import gregtech.common.items.MetaItems.WORKSTATION_EV
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
 
@@ -90,14 +91,14 @@ internal object ProcessorCircuits
             TetramethylammoniumHydroxide.getFluid(125),
             EthylenediaminePyrocatechol.getFluid(50)))
         {
-            CHEMICAL_RECIPES.recipeBuilder()
-                .input(PLASTIC_BOARD)
-                .input(foil, Copper, 6)
-                .fluidInputs(etchingLiquid)
-                .output(PLASTIC_CIRCUIT_BOARD)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            CHEMICAL_RECIPES.addRecipe {
+                input(PLASTIC_BOARD)
+                input(foil, Copper, 6)
+                fluidInputs(etchingLiquid)
+                output(PLASTIC_CIRCUIT_BOARD)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
         }
     }
 
@@ -106,435 +107,433 @@ internal object ProcessorCircuits
         // Add more advanced recipes for common SMDs.
 
         // SMD Transistor
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(foil, Gallium),
-                OreDictUnifier.get(wireFine, AnnealedCopper, 8)),
+                    OreDictUnifier.get(wireFine, AnnealedCopper, 8)),
             arrayOf(Polyethylene.getFluid(L)))
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(foil, Gallium),
-                OreDictUnifier.get(wireFine, Tantalum, 8)),
+                    OreDictUnifier.get(wireFine, Tantalum, 8)),
             arrayOf(Polyethylene.getFluid(L)))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(foil, Gallium)
-            .input(wireFine, AnnealedCopper, 8)
-            .fluidInputs(Polyethylene.getFluid(L))
-            .output(SMD_TRANSISTOR, 16)
-            .EUt(VA[HV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(foil, Gallium)
+            input(wireFine, AnnealedCopper, 8)
+            fluidInputs(Polyethylene.getFluid(L))
+            output(SMD_TRANSISTOR, 16)
+            EUt(VA[HV])
+            duration(8 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(foil, Gallium)
-            .input(wireFine, Tantalum, 4)
-            .fluidInputs(Polyethylene.getFluid(L))
-            .output(SMD_TRANSISTOR, 32)
-            .EUt(VA[HV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(foil, Gallium)
+            input(wireFine, Tantalum, 4)
+            fluidInputs(Polyethylene.getFluid(L))
+            output(SMD_TRANSISTOR, 32)
+            EUt(VA[HV])
+            duration(4 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(foil, Gallium)
-            .input(wireFine, Titanium, 2)
-            .fluidInputs(Polyethylene.getFluid(L))
-            .output(SMD_TRANSISTOR, 64)
-            .EUt(VA[HV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(foil, Gallium)
+            input(wireFine, Titanium, 2)
+            fluidInputs(Polyethylene.getFluid(L))
+            output(SMD_TRANSISTOR, 64)
+            EUt(VA[HV])
+            duration(2 * SECOND)
+        }
 
         // SMD Resistor
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, Carbon),
-                OreDictUnifier.get(wireFine, Electrum, 4)),
+                    OreDictUnifier.get(wireFine, Electrum, 4)),
             arrayOf(Polyethylene.getFluid(L * 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, Carbon),
-                OreDictUnifier.get(wireFine, Tantalum, 4)),
+                    OreDictUnifier.get(wireFine, Tantalum, 4)),
             arrayOf(Polyethylene.getFluid(L * 2)))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Carbon)
-            .input(wireFine, Electrum, 4)
-            .fluidInputs(Polyethylene.getFluid(L * 2))
-            .output(SMD_RESISTOR, 16)
-            .EUt(VA[HV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Carbon)
+            input(wireFine, Electrum, 4)
+            fluidInputs(Polyethylene.getFluid(L * 2))
+            output(SMD_RESISTOR, 16)
+            EUt(VA[HV])
+            duration(8 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Carbon)
-            .input(wireFine, Niobium, 4)
-            .fluidInputs(Polyethylene.getFluid(L * 2))
-            .output(SMD_RESISTOR, 32)
-            .EUt(VA[HV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Carbon)
+            input(wireFine, Niobium, 4)
+            fluidInputs(Polyethylene.getFluid(L * 2))
+            output(SMD_RESISTOR, 32)
+            EUt(VA[HV])
+            duration(4 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Carbon)
-            .input(wireFine, Tungsten, 4)
-            .fluidInputs(Polyethylene.getFluid(L * 2))
-            .output(SMD_RESISTOR, 64)
-            .EUt(VA[HV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Carbon)
+            input(wireFine, Tungsten, 4)
+            fluidInputs(Polyethylene.getFluid(L * 2))
+            output(SMD_RESISTOR, 64)
+            EUt(VA[HV])
+            duration(2 * SECOND)
+        }
 
         // SMD Capacitor
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(foil, SiliconeRubber),
-                OreDictUnifier.get(foil, Aluminium)),
+                    OreDictUnifier.get(foil, Aluminium)),
             arrayOf(Polyethylene.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(foil, PolyvinylChloride, 2),
-                OreDictUnifier.get(foil, Aluminium)),
+                    OreDictUnifier.get(foil, Aluminium)),
             arrayOf(Polyethylene.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(foil, SiliconeRubber),
-                OreDictUnifier.get(foil, Tantalum)),
+                    OreDictUnifier.get(foil, Tantalum)),
             arrayOf(Polyethylene.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(foil, PolyvinylChloride, 2),
-                OreDictUnifier.get(foil, Tantalum)),
+                    OreDictUnifier.get(foil, Tantalum)),
             arrayOf(Polyethylene.getFluid(L / 2)))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(foil, PolyvinylChloride)
-            .input(foil, Aluminium)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(SMD_CAPACITOR, 16)
-            .EUt(VA[HV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(foil, PolyvinylChloride)
+            input(foil, Aluminium)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(SMD_CAPACITOR, 16)
+            EUt(VA[HV])
+            duration(8 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(foil, PolyvinylChloride)
-            .input(foil, Tantalum)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(SMD_CAPACITOR, 32)
-            .EUt(VA[HV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(foil, PolyvinylChloride)
+            input(foil, Tantalum)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(SMD_CAPACITOR, 32)
+            EUt(VA[HV])
+            duration(4 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(foil, PolyvinylChloride)
-            .input(foil, Zirconium)
-            .fluidInputs(Polyethylene.getFluid(L / 2))
-            .output(SMD_CAPACITOR, 64)
-            .EUt(VA[HV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(foil, PolyvinylChloride)
+            input(foil, Zirconium)
+            fluidInputs(Polyethylene.getFluid(L / 2))
+            output(SMD_CAPACITOR, 64)
+            EUt(VA[HV])
+            duration(2 * SECOND)
+        }
 
         // SMD Diode
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, GalliumArsenide),
-                OreDictUnifier.get(wireFine, Platinum, 8)),
+                    OreDictUnifier.get(wireFine, Platinum, 8)),
             arrayOf(Polyethylene.getFluid(L * 2)))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, GalliumArsenide)
-            .input(wireFine, Platinum, 8)
-            .fluidInputs(Polyethylene.getFluid(L * 2))
-            .output(SMD_DIODE, 32)
-            .EUt(VA[HV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, GalliumArsenide)
+            input(wireFine, Platinum, 8)
+            fluidInputs(Polyethylene.getFluid(L * 2))
+            output(SMD_DIODE, 32)
+            EUt(VA[HV])
+            duration(8 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, GalliumArsenide)
-            .input(wireFine, Ruthenium, 8)
-            .fluidInputs(Polyethylene.getFluid(L * 2))
-            .output(SMD_DIODE, 64)
-            .EUt(VA[HV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, GalliumArsenide)
+            input(wireFine, Ruthenium, 8)
+            fluidInputs(Polyethylene.getFluid(L * 2))
+            output(SMD_DIODE, 64)
+            EUt(VA[HV])
+            duration(4 * SECOND)
+        }
 
         // SMD Inductor
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(ring, NickelZincFerrite),
-                OreDictUnifier.get(wireFine, Cupronickel, 4)),
+                    OreDictUnifier.get(wireFine, Cupronickel, 4)),
             arrayOf(Polyethylene.getFluid(L)))
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(ring, NickelZincFerrite),
-                OreDictUnifier.get(wireFine, Tantalum, 4)),
+                    OreDictUnifier.get(wireFine, Tantalum, 4)),
             arrayOf(Polyethylene.getFluid(L)))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(ring, NickelZincFerrite)
-            .input(wireFine, Cobalt, 4)
-            .fluidInputs(Polyethylene.getFluid(L))
-            .output(SMD_INDUCTOR, 16)
-            .EUt(VA[HV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(ring, NickelZincFerrite)
+            input(wireFine, Cobalt, 4)
+            fluidInputs(Polyethylene.getFluid(L))
+            output(SMD_INDUCTOR, 16)
+            EUt(VA[HV])
+            duration(8 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(ring, NickelZincFerrite)
-            .input(wireFine, Cupronickel, 4)
-            .fluidInputs(Polyethylene.getFluid(L))
-            .output(SMD_INDUCTOR, 32)
-            .EUt(VA[HV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(ring, NickelZincFerrite)
+            input(wireFine, Cupronickel, 4)
+            fluidInputs(Polyethylene.getFluid(L))
+            output(SMD_INDUCTOR, 32)
+            EUt(VA[HV])
+            duration(4 * SECOND)
+        }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(ring, NickelZincFerrite)
-            .input(wireFine, Hafnium, 4)
-            .fluidInputs(Polyethylene.getFluid(L))
-            .output(SMD_INDUCTOR, 64)
-            .EUt(VA[HV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
-
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(ring, NickelZincFerrite)
+            input(wireFine, Hafnium, 4)
+            fluidInputs(Polyethylene.getFluid(L))
+            output(SMD_INDUCTOR, 64)
+            EUt(VA[HV])
+            duration(2 * SECOND)
+        }
     }
 
     private fun circuitRecipes()
     {
         // ULV NAND Chip
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(GOOD_CIRCUIT_BOARD.stackForm,
-                SIMPLE_SYSTEM_ON_CHIP.stackForm,
-                OreDictUnifier.get(bolt, RedAlloy, 2),
-                OreDictUnifier.get(wireFine, Tin, 2)),
+                    SIMPLE_SYSTEM_ON_CHIP.stackForm,
+                    OreDictUnifier.get(bolt, RedAlloy, 2),
+                    OreDictUnifier.get(wireFine, Tin, 2)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(GOOD_CIRCUIT_BOARD.stackForm,
-                SIMPLE_SYSTEM_ON_CHIP.stackForm,
-                OreDictUnifier.get(bolt, RedAlloy, 2),
-                OreDictUnifier.get(wireFine, Tin, 2)),
+                    SIMPLE_SYSTEM_ON_CHIP.stackForm,
+                    OreDictUnifier.get(bolt, RedAlloy, 2),
+                    OreDictUnifier.get(wireFine, Tin, 2)),
             arrayOf(Tin.getFluid(L)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                SIMPLE_SYSTEM_ON_CHIP.stackForm,
-                OreDictUnifier.get(bolt, RedAlloy, 2),
-                OreDictUnifier.get(wireFine, Tin, 2)),
+                    SIMPLE_SYSTEM_ON_CHIP.stackForm,
+                    OreDictUnifier.get(bolt, RedAlloy, 2),
+                    OreDictUnifier.get(wireFine, Tin, 2)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                SIMPLE_SYSTEM_ON_CHIP.stackForm,
-                OreDictUnifier.get(bolt, RedAlloy, 2),
-                OreDictUnifier.get(wireFine, Tin, 2)),
+                    SIMPLE_SYSTEM_ON_CHIP.stackForm,
+                    OreDictUnifier.get(bolt, RedAlloy, 2),
+                    OreDictUnifier.get(wireFine, Tin, 2)),
             arrayOf(Tin.getFluid(L)))
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(GOOD_CIRCUIT_BOARD)
-            .input(SIMPLE_SYSTEM_ON_CHIP)
-            .input(wireFine, Tin, 2)
-            .input(bolt, RedAlloy, 2)
-            .output(NAND_CHIP_ULV, 8)
-            .EUt(VA[MV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(GOOD_CIRCUIT_BOARD)
+            input(SIMPLE_SYSTEM_ON_CHIP)
+            input(wireFine, Tin, 2)
+            input(bolt, RedAlloy, 2)
+            output(NAND_CHIP_ULV, 8)
+            EUt(VA[MV])
+            duration(15 * SECOND)
+        }
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(PLASTIC_CIRCUIT_BOARD)
-            .input(SIMPLE_SYSTEM_ON_CHIP)
-            .input(wireFine, Tin, 2)
-            .input(bolt, RedAlloy, 2)
-            .output(NAND_CHIP_ULV, 16)
-            .EUt(VA[MV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(PLASTIC_CIRCUIT_BOARD)
+            input(SIMPLE_SYSTEM_ON_CHIP)
+            input(wireFine, Tin, 2)
+            input(bolt, RedAlloy, 2)
+            output(NAND_CHIP_ULV, 16)
+            EUt(VA[MV])
+            duration(15 * SECOND)
+        }
 
         // LV Microprocessor
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                CENTRAL_PROCESSING_UNIT.stackForm,
-                OreDictUnifier.get(component, Resistor, 2),
-                OreDictUnifier.get(component, Capacitor, 2),
-                OreDictUnifier.get(component, Transistor, 2),
-                OreDictUnifier.get(wireFine, Copper, 2)),
+                    CENTRAL_PROCESSING_UNIT.stackForm,
+                    OreDictUnifier.get(component, Resistor, 2),
+                    OreDictUnifier.get(component, Capacitor, 2),
+                    OreDictUnifier.get(component, Transistor, 2),
+                    OreDictUnifier.get(wireFine, Copper, 2)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                CENTRAL_PROCESSING_UNIT.stackForm,
-                OreDictUnifier.get(component, Resistor, 2),
-                OreDictUnifier.get(component, Capacitor, 2),
-                OreDictUnifier.get(component, Transistor, 2),
-                OreDictUnifier.get(wireFine, Copper, 2)),
+                    CENTRAL_PROCESSING_UNIT.stackForm,
+                    OreDictUnifier.get(component, Resistor, 2),
+                    OreDictUnifier.get(component, Capacitor, 2),
+                    OreDictUnifier.get(component, Transistor, 2),
+                    OreDictUnifier.get(wireFine, Copper, 2)),
             arrayOf(Tin.getFluid(L)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                SYSTEM_ON_CHIP.stackForm,
-                OreDictUnifier.get(wireFine, Copper, 2),
-                OreDictUnifier.get(bolt, Tin, 2)),
+                    SYSTEM_ON_CHIP.stackForm,
+                    OreDictUnifier.get(wireFine, Copper, 2),
+                    OreDictUnifier.get(bolt, Tin, 2)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                SYSTEM_ON_CHIP.stackForm,
-                OreDictUnifier.get(wireFine, Copper, 2),
-                OreDictUnifier.get(bolt, Tin, 2)),
+                    SYSTEM_ON_CHIP.stackForm,
+                    OreDictUnifier.get(wireFine, Copper, 2),
+                    OreDictUnifier.get(bolt, Tin, 2)),
             arrayOf(Tin.getFluid(L)))
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(PLASTIC_CIRCUIT_BOARD)
-            .input(CENTRAL_PROCESSING_UNIT)
-            .input(component, Resistor, 2)
-            .input(component, Capacitor, 2)
-            .input(component, Transistor, 2)
-            .input(wireFine, Copper)
-            .output(MICROPROCESSOR_LV, 4)
-            .EUt(VHA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(PLASTIC_CIRCUIT_BOARD)
+            input(CENTRAL_PROCESSING_UNIT)
+            input(component, Resistor, 2)
+            input(component, Capacitor, 2)
+            input(component, Transistor, 2)
+            input(wireFine, Copper)
+            output(MICROPROCESSOR_LV, 4)
+            EUt(VHA[MV])
+            duration(10 * SECOND)
+        }
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(PLASTIC_CIRCUIT_BOARD)
-            .input(SYSTEM_ON_CHIP)
-            .input(wireFine, Copper, 2)
-            .input(bolt, Tin, 2)
-            .output(MICROPROCESSOR_LV, 8)
-            .EUt(600) // EV
-            .duration(2 * SECOND + 10 * TICK)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(PLASTIC_CIRCUIT_BOARD)
+            input(SYSTEM_ON_CHIP)
+            input(wireFine, Copper, 2)
+            input(bolt, Tin, 2)
+            output(MICROPROCESSOR_LV, 8)
+            EUt(600) // EV
+            duration(2 * SECOND + 10 * TICK)
+            cleanroom()
+        }
 
         // MV Processor
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                CENTRAL_PROCESSING_UNIT.stackForm,
-                OreDictUnifier.get(component, Resistor, 4),
-                OreDictUnifier.get(component, Capacitor, 4),
-                OreDictUnifier.get(component, Transistor, 4),
-                OreDictUnifier.get(wireFine, RedAlloy, 4)),
+                    CENTRAL_PROCESSING_UNIT.stackForm,
+                    OreDictUnifier.get(component, Resistor, 4),
+                    OreDictUnifier.get(component, Capacitor, 4),
+                    OreDictUnifier.get(component, Transistor, 4),
+                    OreDictUnifier.get(wireFine, RedAlloy, 4)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                CENTRAL_PROCESSING_UNIT.stackForm,
-                OreDictUnifier.get(component, Resistor, 4),
-                OreDictUnifier.get(component, Capacitor, 4),
-                OreDictUnifier.get(component, Transistor, 4),
-                OreDictUnifier.get(wireFine, RedAlloy, 4)),
+                    CENTRAL_PROCESSING_UNIT.stackForm,
+                    OreDictUnifier.get(component, Resistor, 4),
+                    OreDictUnifier.get(component, Capacitor, 4),
+                    OreDictUnifier.get(component, Transistor, 4),
+                    OreDictUnifier.get(wireFine, RedAlloy, 4)),
             arrayOf(Tin.getFluid(L)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                SYSTEM_ON_CHIP.stackForm,
-                OreDictUnifier.get(wireFine, RedAlloy, 4),
-                OreDictUnifier.get(bolt, AnnealedCopper, 4)),
+                    SYSTEM_ON_CHIP.stackForm,
+                    OreDictUnifier.get(wireFine, RedAlloy, 4),
+                    OreDictUnifier.get(bolt, AnnealedCopper, 4)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                SYSTEM_ON_CHIP.stackForm,
-                OreDictUnifier.get(wireFine, RedAlloy, 4),
-                OreDictUnifier.get(bolt, AnnealedCopper, 4)),
+                    SYSTEM_ON_CHIP.stackForm,
+                    OreDictUnifier.get(wireFine, RedAlloy, 4),
+                    OreDictUnifier.get(bolt, AnnealedCopper, 4)),
             arrayOf(Tin.getFluid(L)))
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(PLASTIC_CIRCUIT_BOARD)
-            .input(CENTRAL_PROCESSING_UNIT)
-            .input(component, Resistor, 4)
-            .input(component, Capacitor, 4)
-            .input(component, Transistor, 4)
-            .input(wireFine, RedAlloy, 4)
-            .output(PROCESSOR_MV, 4)
-            .EUt(VHA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(PLASTIC_CIRCUIT_BOARD)
+            input(CENTRAL_PROCESSING_UNIT)
+            input(component, Resistor, 4)
+            input(component, Capacitor, 4)
+            input(component, Transistor, 4)
+            input(wireFine, RedAlloy, 4)
+            output(PROCESSOR_MV, 4)
+            EUt(VHA[MV])
+            duration(10 * SECOND)
+        }
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(PLASTIC_CIRCUIT_BOARD)
-            .input(SYSTEM_ON_CHIP)
-            .input(wireFine, RedAlloy, 4)
-            .input(bolt, AnnealedCopper, 4)
-            .output(PROCESSOR_MV, 8)
-            .EUt(2400) // IV
-            .duration(2 * SECOND + 10 * TICK)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(PLASTIC_CIRCUIT_BOARD)
+            input(SYSTEM_ON_CHIP)
+            input(wireFine, RedAlloy, 4)
+            input(bolt, AnnealedCopper, 4)
+            output(PROCESSOR_MV, 8)
+            EUt(2400) // IV
+            duration(2 * SECOND + 10 * TICK)
+            cleanroom()
+        }
 
         // HV Processor Assembly
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                PROCESSOR_MV.getStackForm(2),
-                OreDictUnifier.get(component, Inductor, 4),
-                OreDictUnifier.get(component, Capacitor, 8),
-                RANDOM_ACCESS_MEMORY.getStackForm(4),
-                OreDictUnifier.get(wireFine, RedAlloy, 8)),
+                    PROCESSOR_MV.getStackForm(2),
+                    OreDictUnifier.get(component, Inductor, 4),
+                    OreDictUnifier.get(component, Capacitor, 8),
+                    RANDOM_ACCESS_MEMORY.getStackForm(4),
+                    OreDictUnifier.get(wireFine, RedAlloy, 8)),
             arrayOf(SolderingAlloy.getFluid(L)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                PROCESSOR_MV.getStackForm(2),
-                OreDictUnifier.get(component, Inductor, 4),
-                OreDictUnifier.get(component, Capacitor, 8),
-                RANDOM_ACCESS_MEMORY.getStackForm(4),
-                OreDictUnifier.get(wireFine, RedAlloy, 8)),
+                    PROCESSOR_MV.getStackForm(2),
+                    OreDictUnifier.get(component, Inductor, 4),
+                    OreDictUnifier.get(component, Capacitor, 8),
+                    RANDOM_ACCESS_MEMORY.getStackForm(4),
+                    OreDictUnifier.get(wireFine, RedAlloy, 8)),
             arrayOf(Tin.getFluid(L * 2)))
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(PLASTIC_CIRCUIT_BOARD)
-            .input(PROCESSOR_MV, 4)
-            .input(component, Inductor, 4)
-            .input(component, Capacitor, 8)
-            .input(RANDOM_ACCESS_MEMORY, 4)
-            .input(wireFine, RedAlloy, 8)
-            .output(PROCESSOR_ASSEMBLY_HV, 3)
-            .EUt(90) // MV
-            .duration(20 * SECOND)
-            .solderMultiplier(2)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(PLASTIC_CIRCUIT_BOARD)
+            input(PROCESSOR_MV, 4)
+            input(component, Inductor, 4)
+            input(component, Capacitor, 8)
+            input(RANDOM_ACCESS_MEMORY, 4)
+            input(wireFine, RedAlloy, 8)
+            output(PROCESSOR_ASSEMBLY_HV, 3)
+            EUt(90) // MV
+            duration(20 * SECOND)
+            solderMultiplier(2)
+        }
 
         // EV Workstation
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                PROCESSOR_ASSEMBLY_HV.getStackForm(2),
-                OreDictUnifier.get(component, Diode, 4),
-                RANDOM_ACCESS_MEMORY.getStackForm(4),
-                OreDictUnifier.get(wireFine, Electrum, 16),
-                OreDictUnifier.get(bolt, BlueAlloy, 16)),
+                    PROCESSOR_ASSEMBLY_HV.getStackForm(2),
+                    OreDictUnifier.get(component, Diode, 4),
+                    RANDOM_ACCESS_MEMORY.getStackForm(4),
+                    OreDictUnifier.get(wireFine, Electrum, 16),
+                    OreDictUnifier.get(bolt, BlueAlloy, 16)),
             arrayOf(SolderingAlloy.getFluid(L)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(PLASTIC_CIRCUIT_BOARD.stackForm,
-                PROCESSOR_ASSEMBLY_HV.getStackForm(2),
-                OreDictUnifier.get(component, Diode, 4),
-                RANDOM_ACCESS_MEMORY.getStackForm(4),
-                OreDictUnifier.get(wireFine, Electrum, 16),
-                OreDictUnifier.get(bolt, BlueAlloy, 16)),
+                    PROCESSOR_ASSEMBLY_HV.getStackForm(2),
+                    OreDictUnifier.get(component, Diode, 4),
+                    RANDOM_ACCESS_MEMORY.getStackForm(4),
+                    OreDictUnifier.get(wireFine, Electrum, 16),
+                    OreDictUnifier.get(bolt, BlueAlloy, 16)),
             arrayOf(Tin.getFluid(L * 2)))
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(PLASTIC_CIRCUIT_BOARD)
-            .input(PROCESSOR_ASSEMBLY_HV, 3)
-            .input(component, Diode, 4)
-            .input(RANDOM_ACCESS_MEMORY, 4)
-            .input(wireFine, Electrum, 16)
-            .input(bolt, BlueAlloy, 16)
-            .output(WORKSTATION_EV, 2)
-            .EUt(VA[MV])
-            .duration(20 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .solderMultiplier(2)
-            .buildAndRegister()
-
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(PLASTIC_CIRCUIT_BOARD)
+            input(PROCESSOR_ASSEMBLY_HV, 3)
+            input(component, Diode, 4)
+            input(RANDOM_ACCESS_MEMORY, 4)
+            input(wireFine, Electrum, 16)
+            input(bolt, BlueAlloy, 16)
+            output(WORKSTATION_EV, 2)
+            EUt(VA[MV])
+            duration(20 * SECOND)
+            cleanroom()
+            solderMultiplier(2)
+        }
     }
 
     // @formatter:on

@@ -28,6 +28,7 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SolarGradeSilicon
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HASSIUM_BOULE
@@ -40,75 +41,74 @@ internal object ElectricBlastFurnaceRecipes
     fun init()
     {
         // Monocrystalline Boule
-        BLAST_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, SolarGradeSilicon, 32)
-            .input(dustSmall, GalliumArsenide)
-            .output(SILICON_BOULE)
-            .EUt(VA[MV])
-            .duration(1 * MINUTE + 52 * SECOND + 10 * TICK) // 450sec / 4
-            .blastFurnaceTemp(1784) // Cupronickel
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, SolarGradeSilicon, 32)
+            input(dustSmall, GalliumArsenide)
+            output(SILICON_BOULE)
+            EUt(VA[MV])
+            duration(1 * MINUTE + 52 * SECOND + 10 * TICK) // 450sec / 4
+            blastFurnaceTemp(1784) // Cupronickel
+        }
 
         // Phosphorus-doped Monocrystalline Boule
-        BLAST_RECIPES.recipeBuilder()
-            .input(dust, SolarGradeSilicon, 64)
-            .input(dust, Phosphorus, 8)
-            .input(dustSmall, GalliumArsenide, 2)
-            .fluidInputs(Nitrogen.getFluid(8000))
-            .output(PHOSPHORUS_BOULE)
-            .EUt(VA[HV])
-            .duration(2 * MINUTE + 30 * SECOND) // 600sec / 4
-            .blastFurnaceTemp(2484) // Kanthal
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(dust, SolarGradeSilicon, 64)
+            input(dust, Phosphorus, 8)
+            input(dustSmall, GalliumArsenide, 2)
+            fluidInputs(Nitrogen.getFluid(8000))
+            output(PHOSPHORUS_BOULE)
+            EUt(VA[HV])
+            duration(2 * MINUTE + 30 * SECOND) // 600sec / 4
+            blastFurnaceTemp(2484) // Kanthal
+        }
 
         // Naquadah-doped Monocrystalline Boule
-        BLAST_RECIPES.recipeBuilder()
-            .input(block, SolarGradeSilicon, 16)
-            .input(ingot, Naquadah)
-            .input(dust, GalliumArsenide)
-            .fluidInputs(Argon.getFluid(8000))
-            .output(NAQUADAH_BOULE)
-            .EUt(VA[EV])
-            .duration(3 * MINUTE + 7 * SECOND + 10 * TICK) // 750sec / 4
-            .blastFurnaceTemp(5400) // HSS-G
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(block, SolarGradeSilicon, 16)
+            input(ingot, Naquadah)
+            input(dust, GalliumArsenide)
+            fluidInputs(Argon.getFluid(8000))
+            output(NAQUADAH_BOULE)
+            EUt(VA[EV])
+            duration(3 * MINUTE + 7 * SECOND + 10 * TICK) // 750sec / 4
+            blastFurnaceTemp(5400) // HSS-G
+        }
 
         // Neutronium-doped Monocrystalline Boule
-        BLAST_RECIPES.recipeBuilder()
-            .input(block, SolarGradeSilicon, 32)
-            .input(ingot, Neutronium, 4)
-            .input(dust, GalliumArsenide, 2)
-            .fluidInputs(Xenon.getFluid(8000))
-            .output(NEUTRONIUM_BOULE)
-            .EUt(VA[IV])
-            .duration(3 * MINUTE + 45 * SECOND) // 900sec / 4
-            .blastFurnaceTemp(6484) // Naquadah
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(block, SolarGradeSilicon, 32)
+            input(ingot, Neutronium, 4)
+            input(dust, GalliumArsenide, 2)
+            fluidInputs(Xenon.getFluid(8000))
+            output(NEUTRONIUM_BOULE)
+            EUt(VA[IV])
+            duration(3 * MINUTE + 45 * SECOND) // 900sec / 4
+            blastFurnaceTemp(6484) // Naquadah
+        }
 
         // Hassium-doped Monocrystalline Boule
-        BLAST_RECIPES.recipeBuilder()
-            .input(block, Silicon, 64)
-            .input(ingot, MetastableHassium, 8)
-            .input(dust, GalliumArsenide, 4)
-            .fluidInputs(Radon.getFluid(8000))
-            .output(HASSIUM_BOULE)
-            .EUt(VA[LuV])
-            .duration(17 * MINUTE + 30 * SECOND)
-            .blastFurnaceTemp(9400) // Tritanium
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(block, Silicon, 64)
+            input(ingot, MetastableHassium, 8)
+            input(dust, GalliumArsenide, 4)
+            fluidInputs(Radon.getFluid(8000))
+            output(HASSIUM_BOULE)
+            EUt(VA[LuV])
+            duration(17 * MINUTE + 30 * SECOND)
+            blastFurnaceTemp(9400) // Tritanium
+        }
 
-        BLAST_RECIPES.recipeBuilder()
-            .input(block, SolarGradeSilicon, 64)
-            .input(ingot, MetastableHassium, 8)
-            .input(dust, GalliumArsenide, 4)
-            .fluidInputs(Radon.getFluid(8000))
-            .output(HASSIUM_BOULE)
-            .EUt(VA[LuV])
-            .duration(4 * MINUTE + 22 * SECOND + 10 * TICK) // 1050sec / 4
-            .blastFurnaceTemp(9400) // Tritanium
-            .buildAndRegister()
-
+        BLAST_RECIPES.addRecipe {
+            input(block, SolarGradeSilicon, 64)
+            input(ingot, MetastableHassium, 8)
+            input(dust, GalliumArsenide, 4)
+            fluidInputs(Radon.getFluid(8000))
+            output(HASSIUM_BOULE)
+            EUt(VA[LuV])
+            duration(4 * MINUTE + 22 * SECOND + 10 * TICK) // 1050sec / 4
+            blastFurnaceTemp(9400) // Tritanium
+        }
     }
 
     // @formatter:on

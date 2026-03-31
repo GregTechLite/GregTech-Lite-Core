@@ -12,6 +12,7 @@ import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.item.GTLiteToolHelper
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOOL_CASTER_RECIPES
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_BUTCHERY_KNIFE
@@ -63,33 +64,32 @@ internal object DisposableToolRecipeProducer
         }
 
         // Soft Mallet recipes.
-        TOOL_CASTER_RECIPES.recipeBuilder()
-            .notConsumable(CASTING_MOLD_SOFT_MALLET)
-            .fluidInputs(Rubber.getFluid(L))
-            .output(DISPOSABLE_SOFT_MALLET, 42)
-            .EUt(VA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        TOOL_CASTER_RECIPES.addRecipe {
+            notConsumable(CASTING_MOLD_SOFT_MALLET)
+            fluidInputs(Rubber.getFluid(L))
+            output(DISPOSABLE_SOFT_MALLET, 42)
+            EUt(VA[MV])
+            duration(10 * SECOND)
+        }
 
-        TOOL_CASTER_RECIPES.recipeBuilder()
-            .notConsumable(CASTING_MOLD_SOFT_MALLET)
-            .fluidInputs(Polyethylene.getFluid(L))
-            .output(DISPOSABLE_SOFT_MALLET, 64)
-            .output(DISPOSABLE_SOFT_MALLET, 20)
-            .EUt(VA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        TOOL_CASTER_RECIPES.addRecipe {
+            notConsumable(CASTING_MOLD_SOFT_MALLET)
+            fluidInputs(Polyethylene.getFluid(L))
+            output(DISPOSABLE_SOFT_MALLET, 64)
+            output(DISPOSABLE_SOFT_MALLET, 20)
+            EUt(VA[MV])
+            duration(10 * SECOND)
+        }
 
-        TOOL_CASTER_RECIPES.recipeBuilder()
-            .notConsumable(CASTING_MOLD_SOFT_MALLET)
-            .fluidInputs(Polytetrafluoroethylene.getFluid(L))
-            .output(DISPOSABLE_SOFT_MALLET, 64)
-            .output(DISPOSABLE_SOFT_MALLET, 64)
-            .output(DISPOSABLE_SOFT_MALLET, 40)
-            .EUt(VA[MV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
+        TOOL_CASTER_RECIPES.addRecipe {
+            notConsumable(CASTING_MOLD_SOFT_MALLET)
+            fluidInputs(Polytetrafluoroethylene.getFluid(L))
+            output(DISPOSABLE_SOFT_MALLET, 64)
+            output(DISPOSABLE_SOFT_MALLET, 64)
+            output(DISPOSABLE_SOFT_MALLET, 40)
+            EUt(VA[MV])
+            duration(10 * SECOND)
+        }
     }
 
     private fun processHardToolRecipe(toolStack: MetaItem<*>.MetaValueItem, material: Material, cost: Int)
@@ -111,13 +111,13 @@ internal object DisposableToolRecipeProducer
             }
             outputStacks.add(toolStack.getStackForm(count))
 
-            TOOL_CASTER_RECIPES.recipeBuilder()
-                .notConsumable(getCastingMoldByToolStack(toolStack.stackForm))
-                .fluidInputs(material.getFluid(L))
-                .outputs(outputStacks)
-                .EUt(VA[MV])
-                .duration(10 * SECOND)
-                .buildAndRegister()
+            TOOL_CASTER_RECIPES.addRecipe {
+                notConsumable(getCastingMoldByToolStack(toolStack.stackForm))
+                fluidInputs(material.getFluid(L))
+                outputs(outputStacks)
+                EUt(VA[MV])
+                duration(10 * SECOND)
+            }
         }
     }
 

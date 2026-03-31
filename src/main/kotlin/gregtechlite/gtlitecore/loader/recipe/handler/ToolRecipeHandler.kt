@@ -124,9 +124,9 @@ object ToolRecipeHandler
         val toolId = tool.toolId
         val toolMaterial = tool[material]
         if (mirrored)
-            ModHandler.addMirroredShapedRecipe(String.format("%s_%s", toolId, material), toolMaterial, *recipe)
+            ModHandler.addMirroredShapedRecipe("${toolId}_$material", toolMaterial, *recipe)
         else
-            ModHandler.addShapedRecipe(String.format("%s_%s", toolId, material), toolMaterial, *recipe)
+            ModHandler.addShapedRecipe("${toolId}_$material", toolMaterial, *recipe)
     }
 
     // @formatter:on

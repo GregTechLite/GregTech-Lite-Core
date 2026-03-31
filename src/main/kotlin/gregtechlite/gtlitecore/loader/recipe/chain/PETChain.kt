@@ -14,6 +14,7 @@ import gregtech.api.unification.material.Materials.Water
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylTerephthalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneGlycol
@@ -30,43 +31,43 @@ internal object PETChain
     fun init()
     {
         // C6H4(CH3)2 + 2O -> C8H8O2 + 2H
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .fluidInputs(ParaXylene.getFluid(1000))
-            .fluidInputs(Oxygen.getFluid(2000))
-            .fluidOutputs(ParaToluicAcid.getFluid(1000))
-            .fluidOutputs(Hydrogen.getFluid(2000))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            fluidInputs(ParaXylene.getFluid(1000))
+            fluidInputs(Oxygen.getFluid(2000))
+            fluidOutputs(ParaToluicAcid.getFluid(1000))
+            fluidOutputs(Hydrogen.getFluid(2000))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // C8H8O2 + CH4O -> C9H10O2 + H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(ParaToluicAcid.getFluid(1000))
-            .fluidInputs(Methanol.getFluid(1000))
-            .fluidOutputs(Methylparatoluate.getFluid(1000))
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(ParaToluicAcid.getFluid(1000))
+            fluidInputs(Methanol.getFluid(1000))
+            fluidOutputs(Methylparatoluate.getFluid(1000))
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[HV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // C9H10O2 + CO2 -> C10H10O4
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .fluidInputs(Methylparatoluate.getFluid(1000))
-            .fluidInputs(CarbonDioxide.getFluid(1000))
-            .fluidOutputs(DimethylTerephthalate.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(7 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            fluidInputs(Methylparatoluate.getFluid(1000))
+            fluidInputs(CarbonDioxide.getFluid(1000))
+            fluidOutputs(DimethylTerephthalate.getFluid(1000))
+            EUt(VA[EV])
+            duration(7 * SECOND + 10 * TICK)
+        }
 
         // C10H10O4 + C2H6O2 -> 2C10H6O4 + 2H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(DimethylTerephthalate.getFluid(2592))
-            .fluidInputs(EthyleneGlycol.getFluid(1000))
-            .fluidOutputs(PolyethyleneTerephthalate.getFluid(1000))
-            .fluidOutputs(Water.getFluid(2000))
-            .EUt(VA[UV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(DimethylTerephthalate.getFluid(2592))
+            fluidInputs(EthyleneGlycol.getFluid(1000))
+            fluidOutputs(PolyethyleneTerephthalate.getFluid(1000))
+            fluidOutputs(Water.getFluid(2000))
+            EUt(VA[UV])
+            duration(4 * SECOND)
+        }
     }
 
     // @formatter:on

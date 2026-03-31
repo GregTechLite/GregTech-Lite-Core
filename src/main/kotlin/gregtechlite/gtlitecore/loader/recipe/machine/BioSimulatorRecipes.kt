@@ -42,6 +42,8 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_SIMULATOR_RECIPES
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BASE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BLAZE
@@ -71,7 +73,7 @@ internal object BioSimulatorRecipes
     fun init()
     {
         // Base
-        ModHandler.addShapedRecipe(true, "memory_card_base", MEMORY_CARD_BASE.stackForm,
+        ModHandler.addShapedRecipe(true, "memory_card_base", MEMORY_CARD_BASE.stack(),
             "wXd", "APA", "WSW",
             'X', UnificationEntry(circuit, Tier.LV),
             'P', UnificationEntry(plate, Steel),
@@ -79,143 +81,143 @@ internal object BioSimulatorRecipes
             'S', UnificationEntry(springSmall, Cupronickel),
             'W', UnificationEntry(wireFine, Silver))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(plate, Steel)
-            .input(plate, Lead, 2)
-            .input(circuit, Tier.LV)
-            .input(springSmall, Cupronickel)
-            .input(wireFine, Silver, 2)
-            .outputs(MEMORY_CARD_BASE.getStackForm(4))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(plate, Steel)
+            input(plate, Lead, 2)
+            input(circuit, Tier.LV)
+            input(springSmall, Cupronickel)
+            input(wireFine, Silver, 2)
+            outputs(MEMORY_CARD_BASE.getStackForm(4))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // Zombie
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.ROTTEN_FLESH)
-            .output(MEMORY_CARD_ZOMBIE)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.ROTTEN_FLESH)
+            output(MEMORY_CARD_ZOMBIE)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Skeleton
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.BONE)
-            .output(MEMORY_CARD_SKELETON)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.BONE)
+            output(MEMORY_CARD_SKELETON)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Creeper
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.GUNPOWDER)
-            .output(MEMORY_CARD_CREEPER)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.GUNPOWDER)
+            output(MEMORY_CARD_CREEPER)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Slime
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.SLIME_BALL)
-            .output(MEMORY_CARD_SLIME)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.SLIME_BALL)
+            output(MEMORY_CARD_SLIME)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Spider
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.SPIDER_EYE)
-            .output(MEMORY_CARD_SPIDER)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.SPIDER_EYE)
+            output(MEMORY_CARD_SPIDER)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Blaze
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.BLAZE_POWDER)
-            .output(MEMORY_CARD_BLAZE)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.BLAZE_POWDER)
+            output(MEMORY_CARD_BLAZE)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Ghast
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.GHAST_TEAR)
-            .output(MEMORY_CARD_GHAST)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.GHAST_TEAR)
+            output(MEMORY_CARD_GHAST)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Guardian
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.PRISMARINE_SHARD)
-            .output(MEMORY_CARD_GUARDIAN)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.PRISMARINE_SHARD)
+            output(MEMORY_CARD_GUARDIAN)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Wither Skeleton
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.SKULL, 1, 1)
-            .output(MEMORY_CARD_WITHER_SKELETON)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.SKULL, 1, 1)
+            output(MEMORY_CARD_WITHER_SKELETON)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Witch
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.GLASS_BOTTLE)
-            .output(MEMORY_CARD_WITCH)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.GLASS_BOTTLE)
+            output(MEMORY_CARD_WITCH)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Enderman
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.ENDER_EYE)
-            .output(MEMORY_CARD_ENDERMAN)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.ENDER_EYE)
+            output(MEMORY_CARD_ENDERMAN)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Shulker
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.SHULKER_SHELL)
-            .output(MEMORY_CARD_SHULKER)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.SHULKER_SHELL)
+            output(MEMORY_CARD_SHULKER)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Wither
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .input(Items.NETHER_STAR)
-            .output(MEMORY_CARD_WITHER)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            input(Items.NETHER_STAR)
+            output(MEMORY_CARD_WITHER)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // Ender Dragon
-        SCANNER_RECIPES.recipeBuilder()
-            .input(MEMORY_CARD_BASE)
-            .inputs(ItemStack(Blocks.DRAGON_EGG))
-            .output(MEMORY_CARD_ENDER_DRAGON)
-            .EUt(7) // ULV
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        SCANNER_RECIPES.addRecipe {
+            input(MEMORY_CARD_BASE)
+            inputs(ItemStack(Blocks.DRAGON_EGG))
+            output(MEMORY_CARD_ENDER_DRAGON)
+            EUt(7) // ULV
+            duration(1 * SECOND)
+        }
 
         // ---------------------------------------------------------------------------------------------------------
         // LV Simulations.
@@ -381,15 +383,15 @@ internal object BioSimulatorRecipes
                           outputs: ItemStack,
                           eut: Int)
     {
-        val builder = BIO_SIMULATOR_RECIPES.recipeBuilder()
-            .circuitMeta(circuitMeta)
-            .notConsumable(memoryCard)
-            .chancedOutput(outputs, 1000, 0)
-        if (Mods.EnderIO.isActive)
-            builder.fluidOutputs(FluidRegistry.getFluidStack("xpjuice", 250 * getTierByVoltage(eut.toLong())))
-        builder.EUt(eut)
-            .duration(1 * MINUTE)
-            .buildAndRegister()
+        BIO_SIMULATOR_RECIPES.addRecipe {
+            circuitMeta(circuitMeta)
+            notConsumable(memoryCard)
+            chancedOutput(outputs, 1000, 0)
+            if (Mods.EnderIO.isActive)
+                fluidOutputs(FluidRegistry.getFluidStack("xpjuice", 250 * getTierByVoltage(eut.toLong())))
+            EUt(eut)
+            duration(1 * MINUTE)
+        }
     }
 
     // @formatter:on

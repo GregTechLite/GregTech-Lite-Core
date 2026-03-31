@@ -12,9 +12,9 @@ import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VN
 import gregtech.api.GTValues.ZPM
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
@@ -132,11 +132,16 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.inputs
+import gregtechlite.gtlitecore.api.extension.outputs
+import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Plutonium244
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WoodsGlass
-import gregtechlite.gtlitecore.common.block.GTLiteBlocks
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.DUST_BLOCK
 import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_SMD_CAPACITOR
@@ -155,8 +160,13 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_WAFER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ULTIMATE_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteToolItems
 import gregtechlite.gtlitecore.loader.recipe.component.CraftingComponents
-import net.minecraft.init.Blocks
-import net.minecraft.init.Items
+import net.minecraft.init.Blocks.CLAY
+import net.minecraft.init.Blocks.SAND
+import net.minecraft.init.Items.BRICK
+import net.minecraft.init.Items.CLAY_BALL
+import net.minecraft.init.Items.PAPER
+import net.minecraft.init.Items.REEDS
+import net.minecraft.init.Items.SUGAR
 import net.minecraft.item.ItemStack
 
 internal object OverrideRecipeLoader
@@ -172,31 +182,31 @@ internal object OverrideRecipeLoader
         if (!ConfigHolder.recipes.nerfPaperCrafting)
         {
             ModHandler.removeRecipeByName("minecraft:paper")
-            ModHandler.addShapelessRecipe("paper", ItemStack(Items.PAPER),
-                GTLiteToolItems.ROLLING_PIN, ItemStack(Items.REEDS, 1, 0))
+            ModHandler.addShapelessRecipe("paper", PAPER.stack(),
+                GTLiteToolItems.ROLLING_PIN, REEDS.stack())
 
             ModHandler.addShapelessRecipe("paper_dust", OreDictUnifier.get(dust, Paper),
-                ToolItems.MORTAR, ItemStack(Items.PAPER, 1))
+                ToolItems.MORTAR, PAPER.stack())
         }
 
         // Let sugar used mortar.
         ModHandler.removeRecipeByName("minecraft:sugar")
-        ModHandler.addShapelessRecipe("sugar", ItemStack(Items.SUGAR, 1),
-            ToolItems.MORTAR, ItemStack(Items.REEDS, 1))
+        ModHandler.addShapelessRecipe("sugar", SUGAR.stack(),
+            ToolItems.MORTAR, REEDS.stack())
 
         // endregion
 
         // region Clay Bricks Processing
 
         // Modified bricks processing.
-        ModHandler.addShapedRecipe(true, "compressed_clay_brick", COMPRESSED_CLAY.getStackForm(8),
+        ModHandler.addShapedRecipe(true, "compressed_clay_brick", COMPRESSED_CLAY.getStack(8),
             "CCC", "CMC", "CCC",
-            'C', ItemStack(Items.CLAY_BALL),
+            'C', CLAY_BALL.stack(),
             'M', WOODEN_FORM_BRICK)
 
-        ModHandler.removeFurnaceSmelting(ItemStack(Items.CLAY_BALL))
-        ModHandler.addSmeltingRecipe(COMPRESSED_CLAY.stackForm,
-            ItemStack(Items.BRICK))
+        ModHandler.removeFurnaceSmelting(CLAY_BALL.stack())
+        ModHandler.addSmeltingRecipe(COMPRESSED_CLAY.stack(),
+            BRICK.stack())
 
         // endregion
 
@@ -217,33 +227,33 @@ internal object OverrideRecipeLoader
         // processing. With Dust Block, you can build an infinity Clay chain at LV stage.
 
         // Sand -> Dust Block
-        FORGE_HAMMER_RECIPES.recipeBuilder()
-            .inputs(ItemStack(Blocks.SAND))
-            .outputs(ItemStack(GTLiteBlocks.DUST_BLOCK))
-            .EUt(VH[LV])
-            .duration(10 * TICK)
-            .buildAndRegister()
+        FORGE_HAMMER_RECIPES.addRecipe {
+            inputs(SAND)
+            outputs(DUST_BLOCK)
+            EUt(VH[LV])
+            duration(10 * TICK)
+        }
 
         // Dust Block + H2O -> Clay
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .inputs(ItemStack(GTLiteBlocks.DUST_BLOCK))
-            .fluidInputs(Water.getFluid(1000))
-            .outputs(ItemStack(Blocks.CLAY))
-            .EUt(VA[LV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            inputs(DUST_BLOCK)
+            fluidInputs(Water.getFluid(1000))
+            outputs(CLAY)
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
 
         // Down-tier Clay electrolysis from MV stage to LV stage.
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .input(dust, Clay, 13)
-            .output(dust, Sodium, 2)
-            .output(dust, Lithium)
-            .output(dust, Aluminium, 2)
-            .output(dust, Silicon, 2)
-            .fluidOutputs(Water.getFluid(6000))
-            .EUt(VA[LV])
-            .duration(9 * SECOND + 2 * TICK)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            input(dust, Clay, 13)
+            output(dust, Sodium, 2)
+            output(dust, Lithium)
+            output(dust, Aluminium, 2)
+            output(dust, Silicon, 2)
+            fluidOutputs(Water.getFluid(6000))
+            EUt(VA[LV])
+            duration(9 * SECOND + 2 * TICK)
+        }
 
         // endregion
 
@@ -252,18 +262,17 @@ internal object OverrideRecipeLoader
         // Reduce time spent of Water electrolysis from 75s to 15s, and then player can get Hydrogen and Oxygen easier.
         // Another correspondenced recipes please see: AluminiumSodiumProcessing, this is a conflict resolved of these
         // recipes.
-        GTRecipeHandler.removeRecipesByInputs(ELECTROLYZER_RECIPES,
-            Water.getFluid(1000))
+        ELECTROLYZER_RECIPES.removeRecipe(Water.getFluid(1000))
 
         // H2O -> 2H + O
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(Hydrogen.getFluid(2000))
-            .fluidOutputs(Oxygen.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(Hydrogen.getFluid(2000))
+            fluidOutputs(Oxygen.getFluid(1000))
+            EUt(VA[LV])
+            duration(15 * SECOND)
+        }
 
         // endregion
 
@@ -271,20 +280,20 @@ internal object OverrideRecipeLoader
 
         // Down-tier Cleanroom Plascrete because Mining Drone Airport is at LV stage, player cannot get MV assembler in
         // LV stage.
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES,
+        ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(frameGt, Steel),
-                OreDictUnifier.get(plate, Polyethylene, 6)),
+                    OreDictUnifier.get(plate, Polyethylene, 6)),
             arrayOf(Concrete.getFluid(L)))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(frameGt, Steel)
-            .input(plate, Polyethylene, 6)
-            .fluidInputs(Concrete.getFluid(L))
-            .outputs(GTCleanroomCasing.PLASCRETE.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VA[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(frameGt, Steel)
+            input(plate, Polyethylene, 6)
+            fluidInputs(Concrete.getFluid(L))
+            outputs(GTCleanroomCasing.PLASCRETE.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VA[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // endregion
 
@@ -302,31 +311,35 @@ internal object OverrideRecipeLoader
                 "PPP", "MCM", "PPP",
                 'M', CraftingComponent.MOTOR.getIngredient(voltage),
                 'P', "plateAnyRubber",
-                'C', UnificationEntry(cableGtSingle, (CraftingComponents.CABLE_COMPONENT.getIngredient(voltage) as UnificationEntry).material))
+                'C', UnificationEntry(cableGtSingle, 
+                                      (CraftingComponents.CABLE_COMPONENT.getIngredient(voltage) 
+                                              as UnificationEntry).material))
 
             for (rubber in arrayOf(Rubber, SiliconeRubber, StyreneButadieneRubber))
             {
-                GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, arrayOf(
-                    (CraftingComponent.MOTOR.getIngredient(voltage) as ItemStack).copy(2),
-                    OreDictUnifier.get(cableGtSingle, (CraftingComponents.CABLE_COMPONENT.getIngredient(voltage) as UnificationEntry).material),
-                    IntCircuitIngredient.getIntegratedCircuit(1)),
-                arrayOf(rubber.getFluid(L * 6)))
+                ASSEMBLER_RECIPES.removeRecipe(
+                    arrayOf((CraftingComponent.MOTOR.getIngredient(voltage) as ItemStack).copy(2), 
+                            OreDictUnifier.get(cableGtSingle, 
+                                               (CraftingComponents.CABLE_COMPONENT.getIngredient(voltage) 
+                                                       as UnificationEntry).material), 
+                            IntCircuitIngredient.getIntegratedCircuit(1)), 
+                    arrayOf(rubber.getFluid(L * 6)))
             }
 
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(cableGtSingle, (CraftingComponents.CABLE_COMPONENT.getIngredient(voltage) as UnificationEntry).material)
-                .inputs((CraftingComponent.MOTOR.getIngredient(voltage) as ItemStack).copy(2))
-                .input("plateAnyRubber", 6)
-                .outputs(CraftingComponent.CONVEYOR.getIngredient(voltage) as ItemStack)
-                .EUt(VA[LV])
-                .duration(5 * SECOND)
-                .buildAndRegister()
+            ASSEMBLER_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(cableGtSingle, (CraftingComponents.CABLE_COMPONENT.getIngredient(voltage) as UnificationEntry).material)
+                inputs((CraftingComponent.MOTOR.getIngredient(voltage) as ItemStack).copy(2))
+                input("plateAnyRubber", 6)
+                outputs(CraftingComponent.CONVEYOR.getIngredient(voltage) as ItemStack)
+                EUt(VA[LV])
+                duration(5 * SECOND)
+            }
         }
 
         ModHandler.removeRecipeByName("gregtech:conveyor_module_iv_silicone_rubber")
         ModHandler.removeRecipeByName("gregtech:conveyor_module_iv_styrene_butadiene_rubber")
-        ModHandler.addShapedRecipe(true, "conveyor_module.iv", CONVEYOR_MODULE_IV.stackForm,
+        ModHandler.addShapedRecipe(true, "conveyor_module.iv", CONVEYOR_MODULE_IV.stack(),
             "PPP", "MCM", "PPP",
             'M', ELECTRIC_MOTOR_IV,
             'P', "plateAnySyntheticRubber",
@@ -334,22 +347,22 @@ internal object OverrideRecipeLoader
 
         for (rubber in arrayOf(SiliconeRubber, StyreneButadieneRubber))
         {
-            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, arrayOf(
-                ELECTRIC_MOTOR_IV.getStackForm(2),
-                OreDictUnifier.get(cableGtSingle, Tungsten),
-                IntCircuitIngredient.getIntegratedCircuit(1)),
-            arrayOf(rubber.getFluid(L * 6)))
+            ASSEMBLER_RECIPES.removeRecipe(
+                arrayOf(ELECTRIC_MOTOR_IV.getStack(2), 
+                        OreDictUnifier.get(cableGtSingle, Tungsten), 
+                        IntCircuitIngredient.getIntegratedCircuit(1)), 
+                arrayOf(rubber.getFluid(L * 6)))
         }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(cableGtSingle, Tungsten)
-            .input(ELECTRIC_MOTOR_IV, 2)
-            .input("plateAnySyntheticRubber", 6)
-            .output(CONVEYOR_MODULE_IV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(cableGtSingle, Tungsten)
+            input(ELECTRIC_MOTOR_IV, 2)
+            input("plateAnySyntheticRubber", 6)
+            output(CONVEYOR_MODULE_IV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
         // Override all electric pumps recipes with new ore dictionary to compatible with several synthetic rubbers.
         for (voltage in LV .. EV)
@@ -370,31 +383,31 @@ internal object OverrideRecipeLoader
 
             for (rubber in arrayOf(Rubber, SiliconeRubber, StyreneButadieneRubber))
             {
-                GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, *arrayOf(
+                ASSEMBLER_RECIPES.removeRecipe(
                     OreDictUnifier.get(cableGtSingle, (CraftingComponents.CABLE_COMPONENT.getIngredient(voltage) as UnificationEntry).material),
                     OreDictUnifier.get(pipeNormalFluid, (CraftingComponent.PIPE_NORMAL.getIngredient(voltage) as UnificationEntry).material),
                     OreDictUnifier.get(screw, (CraftingComponent.ROTOR.getIngredient(voltage) as UnificationEntry).material),
                     OreDictUnifier.get(rotor, (CraftingComponent.ROTOR.getIngredient(voltage) as UnificationEntry).material),
                     OreDictUnifier.get(ring, rubber, 2),
-                    CraftingComponent.MOTOR.getIngredient(voltage) as ItemStack))
+                    CraftingComponent.MOTOR.getIngredient(voltage) as ItemStack)
             }
 
-            ASSEMBLER_RECIPES.recipeBuilder()
-                .input(cableGtSingle, (CraftingComponents.CABLE_COMPONENT.getIngredient(voltage) as UnificationEntry).material)
-                .input(pipeNormalFluid, (CraftingComponent.PIPE_NORMAL.getIngredient(voltage) as UnificationEntry).material)
-                .input(screw, (CraftingComponent.ROTOR.getIngredient(voltage) as UnificationEntry).material)
-                .input(rotor, (CraftingComponent.ROTOR.getIngredient(voltage) as UnificationEntry).material)
-                .input("ringAnyRubber", 2)
-                .inputs(CraftingComponent.MOTOR.getIngredient(voltage) as ItemStack)
-                .outputs(CraftingComponent.PUMP.getIngredient(voltage) as ItemStack)
-                .EUt(VA[LV])
-                .duration(5 * SECOND)
-                .buildAndRegister()
+            ASSEMBLER_RECIPES.addRecipe {
+                input(cableGtSingle, (CraftingComponents.CABLE_COMPONENT.getIngredient(voltage) as UnificationEntry).material)
+                input(pipeNormalFluid, (CraftingComponent.PIPE_NORMAL.getIngredient(voltage) as UnificationEntry).material)
+                input(screw, (CraftingComponent.ROTOR.getIngredient(voltage) as UnificationEntry).material)
+                input(rotor, (CraftingComponent.ROTOR.getIngredient(voltage) as UnificationEntry).material)
+                input("ringAnyRubber", 2)
+                inputs(CraftingComponent.MOTOR.getIngredient(voltage) as ItemStack)
+                outputs(CraftingComponent.PUMP.getIngredient(voltage) as ItemStack)
+                EUt(VA[LV])
+                duration(5 * SECOND)
+            }
         }
 
         ModHandler.removeRecipeByName("gregtech:electric_pump_iv_silicone_rubber")
         ModHandler.removeRecipeByName("gregtech:electric_pump_iv_styrene_butadiene_rubber")
-        ModHandler.addShapedRecipe(true, "electric_pump.iv", ELECTRIC_PUMP_IV.stackForm,
+        ModHandler.addShapedRecipe(true, "electric_pump.iv", ELECTRIC_PUMP_IV.stack(),
             "STR", "hPw", "RMC",
             'S', UnificationEntry(screw, TungstenSteel),
             'T', UnificationEntry(rotor, TungstenSteel),
@@ -405,145 +418,146 @@ internal object OverrideRecipeLoader
 
         for (rubber in arrayOf(SiliconeRubber, StyreneButadieneRubber))
         {
-            GTRecipeHandler.removeRecipesByInputs(ASSEMBLER_RECIPES, *arrayOf(
+            ASSEMBLER_RECIPES.removeRecipe(
                 OreDictUnifier.get(cableGtSingle, Tungsten),
                 OreDictUnifier.get(pipeNormalFluid, TungstenSteel),
                 OreDictUnifier.get(screw, TungstenSteel),
                 OreDictUnifier.get(rotor, TungstenSteel),
                 OreDictUnifier.get(ring, rubber, 2),
-                ELECTRIC_MOTOR_IV.stackForm))
+                ELECTRIC_MOTOR_IV.stack())
         }
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .input(cableGtSingle, Tungsten)
-            .input(pipeNormalFluid, TungstenSteel)
-            .input(screw, TungstenSteel)
-            .input(rotor, TungstenSteel)
-            .input("ringAnySyntheticRubber", 2)
-            .input(ELECTRIC_MOTOR_IV)
-            .output(ELECTRIC_PUMP_IV)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            input(cableGtSingle, Tungsten)
+            input(pipeNormalFluid, TungstenSteel)
+            input(screw, TungstenSteel)
+            input(rotor, TungstenSteel)
+            input("ringAnySyntheticRubber", 2)
+            input(ELECTRIC_MOTOR_IV)
+            output(ELECTRIC_PUMP_IV)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
         // endregion
 
         // region Fusion Reactor Controller with Fission Products
 
         // Let fusion MK1 used Curium and other fission products.
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, arrayOf(
-            GTFusionCasing.SUPERCONDUCTOR_COIL.stack,
-            OreDictUnifier.get(circuit, Tier.ZPM, 4),
-            OreDictUnifier.get(plateDouble, Plutonium241),
-            OreDictUnifier.get(plateDouble, Osmiridium),
-            FIELD_GENERATOR_IV.getStackForm(2),
-            ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
-            OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)),
-            arrayOf(SolderingAlloy.getFluid(L * 8), NiobiumTitanium.getFluid(L * 8)))
+        ASSEMBLY_LINE_RECIPES.removeRecipe(
+            arrayOf(GTFusionCasing.SUPERCONDUCTOR_COIL.stack, 
+                    OreDictUnifier.get(circuit, Tier.ZPM, 4), 
+                    OreDictUnifier.get(plateDouble, Plutonium241), 
+                    OreDictUnifier.get(plateDouble, Osmiridium), 
+                    FIELD_GENERATOR_IV.getStack(2), 
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStack(64),
+                    OreDictUnifier.get(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)), 
+            arrayOf(SolderingAlloy.getFluid(L * 8),
+                    NiobiumTitanium.getFluid(L * 8)))
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.stack)
-            .input(circuit, Tier.ZPM, 4)
-            .input(plateDouble, Curium)
-            .input(plateDouble, Osmiridium)
-            .input(FIELD_GENERATOR_IV, 2)
-            .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
-            .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)
-            .fluidInputs(SolderingAlloy.getFluid(L * 8))
-            .fluidInputs(NiobiumTitanium.getFluid(L * 8))
-            .output(FUSION_REACTOR[0])
-            .EUt(VA[LuV])
-            .duration(30 * SECOND)
-            .scannerResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.stack)
+            input(circuit, Tier.ZPM, 4)
+            input(plateDouble, Curium)
+            input(plateDouble, Osmiridium)
+            input(FIELD_GENERATOR_IV, 2)
+            input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 64)
+            input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 32)
+            fluidInputs(SolderingAlloy.getFluid(L * 8))
+            fluidInputs(NiobiumTitanium.getFluid(L * 8))
+            output(FUSION_REACTOR[0])
+            EUt(VA[LuV])
+            duration(30 * SECOND)
+            scannerResearch {
                 it.researchStack(wireGtSingle, IndiumTinBariumTitaniumCuprate)
                     .EUt(VA[IV])
                     .duration(1 * MINUTE)
             }
-            .buildAndRegister()
+        }
 
         // Let fusion MK2 used Nano PIC, MK3 used Pico PIC.
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, arrayOf(
-            GTFusionCasing.FUSION_COIL.stack,
-            OreDictUnifier.get(circuit, Tier.UV, 4),
-            OreDictUnifier.get(plateDouble, Naquadria),
-            OreDictUnifier.get(plateDouble, Europium),
-            FIELD_GENERATOR_LuV.getStackForm(2),
-            ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
-            ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(32),
-            OreDictUnifier.get(wireGtSingle, UraniumRhodiumDinaquadide, 32)),
-            arrayOf(SolderingAlloy.getFluid(L * 8), VanadiumGallium.getFluid(L * 8)))
+        ASSEMBLY_LINE_RECIPES.removeRecipe(
+            arrayOf(GTFusionCasing.FUSION_COIL.stack, 
+                    OreDictUnifier.get(circuit, Tier.UV, 4), 
+                    OreDictUnifier.get(plateDouble, Naquadria), 
+                    OreDictUnifier.get(plateDouble, Europium), 
+                    FIELD_GENERATOR_LuV.getStack(2), 
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStack(64), 
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStack(32), 
+                    OreDictUnifier.get(wireGtSingle, UraniumRhodiumDinaquadide, 32)),
+            arrayOf(SolderingAlloy.getFluid(L * 8),
+                    VanadiumGallium.getFluid(L * 8)))
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(GTFusionCasing.FUSION_COIL.stack)
-            .input(circuit, Tier.UV, 4)
-            .input(plateDouble, Einsteinium)
-            .input(plateDouble, Naquadria)
-            .input(FIELD_GENERATOR_LuV, 2)
-            .input(NANO_PIC_CHIP, 64)
-            .input(wireGtSingle, UraniumRhodiumDinaquadide, 32)
-            .fluidInputs(SolderingAlloy.getFluid(L * 8))
-            .fluidInputs(VanadiumGallium.getFluid(L * 8))
-            .output(FUSION_REACTOR[1])
-            .EUt(61440) // ZPM
-            .duration(1 * MINUTE)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(GTFusionCasing.FUSION_COIL.stack)
+            input(circuit, Tier.UV, 4)
+            input(plateDouble, Einsteinium)
+            input(plateDouble, Naquadria)
+            input(FIELD_GENERATOR_LuV, 2)
+            input(NANO_PIC_CHIP, 64)
+            input(wireGtSingle, UraniumRhodiumDinaquadide, 32)
+            fluidInputs(SolderingAlloy.getFluid(L * 8))
+            fluidInputs(VanadiumGallium.getFluid(L * 8))
+            output(FUSION_REACTOR[1])
+            EUt(61440) // ZPM
+            duration(1 * MINUTE)
+            stationResearch {
                 it.researchStack(FUSION_REACTOR[0])
                     .EUt(VA[ZPM])
                     .CWUt(16)
             }
-            .buildAndRegister()
+        }
 
-        GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
-            TOOL_DATA_MODULE.stackForm, FUSION_REACTOR[1].stackForm)
+        RESEARCH_STATION_RECIPES.removeRecipe(TOOL_DATA_MODULE.stack(), FUSION_REACTOR[1].stack())
+        ASSEMBLY_LINE_RECIPES.removeRecipe(
+            arrayOf(GTFusionCasing.FUSION_COIL.stack,
+                    OreDictUnifier.get(circuit, Tier.UHV, 4),
+                    QUANTUM_STAR.stack(),
+                    OreDictUnifier.get(plateDouble, Americium),
+                    FIELD_GENERATOR_ZPM.getStack(2),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStack(64),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStack(64),
+                    OreDictUnifier.get(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 32)),
+            arrayOf(SolderingAlloy.getFluid(L * 8), 
+                    YttriumBariumCuprate.getFluid(L * 8)))
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, arrayOf(
-            GTFusionCasing.FUSION_COIL.stack,
-            OreDictUnifier.get(circuit, Tier.UHV, 4),
-            QUANTUM_STAR.stackForm,
-            OreDictUnifier.get(plateDouble, Americium),
-            FIELD_GENERATOR_ZPM.getStackForm(2),
-            ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
-            ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(64),
-            OreDictUnifier.get(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 32)),
-            arrayOf(SolderingAlloy.getFluid(L * 8), YttriumBariumCuprate.getFluid(L * 8)))
-
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(GTFusionCasing.FUSION_COIL.stack)
-            .input(circuit, Tier.UHV, 4)
-            .input(plateDouble, Mendelevium)
-            .input(plateDouble, Rutherfordium)
-            .input(FIELD_GENERATOR_ZPM, 2)
-            .input(PICO_PIC_CHIP, 64)
-            .input(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 32)
-            .fluidInputs(SolderingAlloy.getFluid(L * 8))
-            .fluidInputs(YttriumBariumCuprate.getFluid(L * 8))
-            .output(FUSION_REACTOR[2])
-            .EUt(VA[ZPM])
-            .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(GTFusionCasing.FUSION_COIL.stack)
+            input(circuit, Tier.UHV, 4)
+            input(plateDouble, Mendelevium)
+            input(plateDouble, Rutherfordium)
+            input(FIELD_GENERATOR_ZPM, 2)
+            input(PICO_PIC_CHIP, 64)
+            input(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 32)
+            fluidInputs(SolderingAlloy.getFluid(L * 8))
+            fluidInputs(YttriumBariumCuprate.getFluid(L * 8))
+            output(FUSION_REACTOR[2])
+            EUt(VA[ZPM])
+            duration(1 * MINUTE + 30 * SECOND)
+            stationResearch {
                 it.researchStack(FUSION_REACTOR[1])
                     .EUt(VA[UV])
                     .CWUt(32)
             }
-            .buildAndRegister()
+        }
 
         // endregion
 
         // region Easier Neutronium Fusion
 
         // Buff the neutronium fusion recipes.
-        GTRecipeHandler.removeRecipesByInputs(FUSION_RECIPES,
+        FUSION_RECIPES.removeRecipe(
             Americium.getFluid(128),
             Naquadria.getFluid(128))
 
-        FUSION_RECIPES.recipeBuilder()
-            .fluidInputs(Americium.getFluid(L))
-            .fluidInputs(Naquadria.getFluid(L))
-            .fluidOutputs(Neutronium.getFluid(L / 2))
-            .EUt(98304) // ZPM
-            .duration(10 * SECOND)
-            .EUToStart(600_000_000L) // 600M EU, MK3
-            .buildAndRegister()
+        FUSION_RECIPES.addRecipe {
+            fluidInputs(Americium.getFluid(L))
+            fluidInputs(Naquadria.getFluid(L))
+            fluidOutputs(Neutronium.getFluid(L / 2))
+            EUt(98304) // ZPM
+            duration(10 * SECOND)
+            EUToStart(600_000_000L) // 600M EU (MK3)
+        }
 
         // endregion
 
@@ -551,7 +565,7 @@ internal object OverrideRecipeLoader
 
         // Let blacklight used Woods Glass.
         ModHandler.removeRecipeByName("gregtech:blacklight")
-        ModHandler.addShapedRecipe(true, "blacklight", BLACKLIGHT.stackForm,
+        ModHandler.addShapedRecipe(true, "blacklight", BLACKLIGHT.stack(),
             "SPS", "QEQ", "XPW",
             'P', UnificationEntry(plate, TungstenCarbide),
             'Q', UnificationEntry(plate, WoodsGlass),
@@ -565,20 +579,20 @@ internal object OverrideRecipeLoader
         // region Radon with Fission Products
 
         // Let Radon be Pu244 + U238.
-        GTRecipeHandler.removeRecipesByInputs(LARGE_CHEMICAL_RECIPES, arrayOf(
-            OreDictUnifier.get(ingot, Plutonium239, 8),
-            OreDictUnifier.get(dust, Uranium238)),
+        LARGE_CHEMICAL_RECIPES.removeRecipe(
+            arrayOf(OreDictUnifier.get(ingot, Plutonium239, 8), 
+                    OreDictUnifier.get(dust, Uranium238)),
             arrayOf(Air.getFluid(10000)))
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
-            .input(ingot, Plutonium244, 8)
-            .input(dust, Uranium238)
-            .fluidInputs(Air.getFluid(10000))
-            .output(dust, Plutonium244, 8)
-            .fluidOutputs(Radon.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(3 * MINUTE + 20 * SECOND)
-            .buildAndRegister()
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            input(ingot, Plutonium244, 8)
+            input(dust, Uranium238)
+            fluidInputs(Air.getFluid(10000))
+            output(dust, Plutonium244, 8)
+            fluidOutputs(Radon.getFluid(1000))
+            EUt(VA[HV])
+            duration(3 * MINUTE + 20 * SECOND)
+        }
 
         // endregion
 
@@ -586,9 +600,9 @@ internal object OverrideRecipeLoader
 
         // Down-tier Large Plasma Turbine recipes hull requirement from LuV to IV.
         ModHandler.removeRecipeByName("gregtech:large_plasma_turbine")
-        ModHandler.addShapedRecipe(true, "large_plasma_turbine", LARGE_PLASMA_TURBINE.stackForm,
+        ModHandler.addShapedRecipe(true, "large_plasma_turbine", LARGE_PLASMA_TURBINE.stack(),
             "XGX", "GHG", "PGP",
-            'H', HULL[IV].stackForm,
+            'H', HULL[IV].stack(),
             'G', UnificationEntry(gear, TungstenSteel),
             'X', UnificationEntry(circuit, Tier.LuV),
             'P', UnificationEntry(pipeLargeFluid, TungstenSteel))
@@ -598,140 +612,139 @@ internal object OverrideRecipeLoader
         // region Ass Line Battery Recipes Overhaul
 
         // Adjust energy module recipes.
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, arrayOf(
-            ELITE_CIRCUIT_BOARD.stackForm,
-            OreDictUnifier.get(plateDouble, Europium, 8),
-            OreDictUnifier.get(circuit, Tier.ZPM, 4),
-            ENERGY_LAPOTRONIC_ORB_CLUSTER.stackForm,
-            FIELD_GENERATOR_LuV.stackForm,
-            HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(32),
-            ADVANCED_SMD_DIODE.getStackForm(12),
-            ADVANCED_SMD_CAPACITOR.getStackForm(12),
-            ADVANCED_SMD_RESISTOR.getStackForm(12),
-            ADVANCED_SMD_TRANSISTOR.getStackForm(12),
-            ADVANCED_SMD_INDUCTOR.getStackForm(12),
-            OreDictUnifier.get(wireFine, Ruridit, 64),
-            OreDictUnifier.get(bolt, Trinium, 16)),
+        ASSEMBLY_LINE_RECIPES.removeRecipe(
+            arrayOf(ELITE_CIRCUIT_BOARD.stack(),
+                    OreDictUnifier.get(plateDouble, Europium, 8),
+                    OreDictUnifier.get(circuit, Tier.ZPM, 4),
+                    ENERGY_LAPOTRONIC_ORB_CLUSTER.stack(),
+                    FIELD_GENERATOR_LuV.stack(),
+                    HIGH_POWER_INTEGRATED_CIRCUIT.getStack(32),
+                    ADVANCED_SMD_DIODE.getStack(12),
+                    ADVANCED_SMD_CAPACITOR.getStack(12),
+                    ADVANCED_SMD_RESISTOR.getStack(12),
+                    ADVANCED_SMD_TRANSISTOR.getStack(12),
+                    ADVANCED_SMD_INDUCTOR.getStack(12),
+                    OreDictUnifier.get(wireFine, Ruridit, 64),
+                    OreDictUnifier.get(bolt, Trinium, 16)),
             arrayOf(SolderingAlloy.getFluid(L * 10)))
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ELITE_CIRCUIT_BOARD)
-            .input(plate, Rutherfordium, 8)
-            .input(circuit, Tier.ZPM, 4)
-            .input(ENERGY_LAPOTRONIC_ORB_CLUSTER)
-            .input(FIELD_GENERATOR_LuV)
-            .input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 32)
-            .input(ADVANCED_SMD_DIODE, 16)
-            .input(ADVANCED_SMD_CAPACITOR, 16)
-            .input(ADVANCED_SMD_RESISTOR, 16)
-            .input(ADVANCED_SMD_TRANSISTOR, 16)
-            .input(ADVANCED_SMD_INDUCTOR, 16)
-            .input(wireFine, Ruridit, 64)
-            .input(bolt, Trinium, 16)
-            .fluidInputs(SolderingAlloy.getFluid(L * 10))
-            .output(ENERGY_MODULE)
-            .EUt(100_000) // ZPM
-            .duration(1 * MINUTE)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ELITE_CIRCUIT_BOARD)
+            input(plate, Rutherfordium, 8)
+            input(circuit, Tier.ZPM, 4)
+            input(ENERGY_LAPOTRONIC_ORB_CLUSTER)
+            input(FIELD_GENERATOR_LuV)
+            input(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, 32)
+            input(ADVANCED_SMD_DIODE, 16)
+            input(ADVANCED_SMD_CAPACITOR, 16)
+            input(ADVANCED_SMD_RESISTOR, 16)
+            input(ADVANCED_SMD_TRANSISTOR, 16)
+            input(ADVANCED_SMD_INDUCTOR, 16)
+            input(wireFine, Ruridit, 64)
+            input(bolt, Trinium, 16)
+            fluidInputs(SolderingAlloy.getFluid(L * 10))
+            output(ENERGY_MODULE)
+            EUt(100_000) // ZPM
+            duration(1 * MINUTE)
+            stationResearch {
                 it.researchStack(ENERGY_LAPOTRONIC_ORB_CLUSTER)
                     .EUt(VA[LuV])
                     .CWUt(16)
             }
-            .buildAndRegister()
+        }
 
         // Adjust energy cluster recipes, allowed it used all UV-tier circuits.
-        GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
-            TOOL_DATA_MODULE.stackForm, ENERGY_MODULE.stackForm)
+        RESEARCH_STATION_RECIPES.removeRecipe(TOOL_DATA_MODULE.stack(), ENERGY_MODULE.stack())
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, arrayOf(
-            WETWARE_CIRCUIT_BOARD.stackForm,
-            OreDictUnifier.get(plate, Americium, 16),
-            WETWARE_SUPER_COMPUTER_UV.getStackForm(4),
-            ENERGY_MODULE.stackForm,
-            FIELD_GENERATOR_ZPM.stackForm,
-            ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStackForm(32),
-            ADVANCED_SMD_DIODE.getStackForm(16),
-            ADVANCED_SMD_CAPACITOR.getStackForm(16),
-            ADVANCED_SMD_RESISTOR.getStackForm(16),
-            ADVANCED_SMD_TRANSISTOR.getStackForm(16),
-            ADVANCED_SMD_INDUCTOR.getStackForm(16),
-            OreDictUnifier.get(wireFine, Osmiridium, 64),
-            OreDictUnifier.get(bolt, Naquadria, 16)),
-            arrayOf(SolderingAlloy.getFluid(L * 20), Polybenzimidazole.getFluid(L * 4)))
+        ASSEMBLY_LINE_RECIPES.removeRecipe(
+            arrayOf(WETWARE_CIRCUIT_BOARD.stack(),
+                    OreDictUnifier.get(plate, Americium, 16),
+                    WETWARE_SUPER_COMPUTER_UV.getStack(4),
+                    ENERGY_MODULE.stack(),
+                    FIELD_GENERATOR_ZPM.stack(),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT.getStack(32),
+                    ADVANCED_SMD_DIODE.getStack(16),
+                    ADVANCED_SMD_CAPACITOR.getStack(16),
+                    ADVANCED_SMD_RESISTOR.getStack(16),
+                    ADVANCED_SMD_TRANSISTOR.getStack(16),
+                    ADVANCED_SMD_INDUCTOR.getStack(16),
+                    OreDictUnifier.get(wireFine, Osmiridium, 64),
+                    OreDictUnifier.get(bolt, Naquadria, 16)),
+            arrayOf(SolderingAlloy.getFluid(L * 20), 
+                    Polybenzimidazole.getFluid(L * 4)))
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(WETWARE_CIRCUIT_BOARD)
-            .input(plate, Dubnium, 8)
-            .input(circuit, Tier.UV, 4)
-            .input(ENERGY_MODULE)
-            .input(FIELD_GENERATOR_ZPM)
-            .input(NANO_PIC_CHIP, 32)
-            .input(GOOWARE_SMD_DIODE, 16)
-            .input(GOOWARE_SMD_CAPACITOR, 16)
-            .input(GOOWARE_SMD_RESISTOR, 16)
-            .input(GOOWARE_SMD_TRANSISTOR, 16)
-            .input(GOOWARE_SMD_INDUCTOR, 16)
-            .input(wireFine, Osmiridium, 64)
-            .input(bolt, Naquadria, 16)
-            .fluidInputs(SolderingAlloy.getFluid(L * 20))
-            .fluidInputs(Polybenzimidazole.getFluid(L * 4))
-            .output(ENERGY_CLUSTER)
-            .EUt(200_000) // UV
-            .duration(1 * MINUTE + 30 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(WETWARE_CIRCUIT_BOARD)
+            input(plate, Dubnium, 8)
+            input(circuit, Tier.UV, 4)
+            input(ENERGY_MODULE)
+            input(FIELD_GENERATOR_ZPM)
+            input(NANO_PIC_CHIP, 32)
+            input(GOOWARE_SMD_DIODE, 16)
+            input(GOOWARE_SMD_CAPACITOR, 16)
+            input(GOOWARE_SMD_RESISTOR, 16)
+            input(GOOWARE_SMD_TRANSISTOR, 16)
+            input(GOOWARE_SMD_INDUCTOR, 16)
+            input(wireFine, Osmiridium, 64)
+            input(bolt, Naquadria, 16)
+            fluidInputs(SolderingAlloy.getFluid(L * 20))
+            fluidInputs(Polybenzimidazole.getFluid(L * 4))
+            output(ENERGY_CLUSTER)
+            EUt(200_000) // UV
+            duration(1 * MINUTE + 30 * SECOND)
+            stationResearch {
                 it.researchStack(ENERGY_MODULE)
                     .EUt(VA[ZPM])
                     .CWUt(32)
             }
-            .buildAndRegister()
+        }
 
         // Ultimate Battery
-        GTRecipeHandler.removeRecipesByInputs(RESEARCH_STATION_RECIPES,
-            TOOL_DATA_MODULE.stackForm, ENERGY_CLUSTER.stackForm)
+        RESEARCH_STATION_RECIPES.removeRecipe(TOOL_DATA_MODULE.stack(), ENERGY_CLUSTER.stack())
+        ASSEMBLY_LINE_RECIPES.removeRecipe(
+            arrayOf(OreDictUnifier.get(plateDouble, Darmstadtium, 16),
+                    OreDictUnifier.get(circuit, Tier.UHV, 4),
+                    ENERGY_CLUSTER.getStack(16),
+                    FIELD_GENERATOR_UV.getStack(4),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER.getStack(64),
+                    ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER.getStack(64),
+                    ADVANCED_SMD_DIODE.getStack(64),
+                    ADVANCED_SMD_CAPACITOR.getStack(64),
+                    ADVANCED_SMD_RESISTOR.getStack(64),
+                    ADVANCED_SMD_TRANSISTOR.getStack(64),
+                    ADVANCED_SMD_INDUCTOR.getStack(64),
+                    OreDictUnifier.get(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 64),
+                    OreDictUnifier.get(bolt, Neutronium, 64)),
+            arrayOf(SolderingAlloy.getFluid(L * 40), 
+                    Polybenzimidazole.getFluid(L * 16), 
+                    Naquadria.getFluid(L * 18)))
 
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES, arrayOf(
-            OreDictUnifier.get(plateDouble, Darmstadtium, 16),
-            OreDictUnifier.get(circuit, Tier.UHV, 4),
-            ENERGY_CLUSTER.getStackForm(16),
-            FIELD_GENERATOR_UV.getStackForm(4),
-            ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER.getStackForm(64),
-            ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT_WAFER.getStackForm(64),
-            ADVANCED_SMD_DIODE.getStackForm(64),
-            ADVANCED_SMD_CAPACITOR.getStackForm(64),
-            ADVANCED_SMD_RESISTOR.getStackForm(64),
-            ADVANCED_SMD_TRANSISTOR.getStackForm(64),
-            ADVANCED_SMD_INDUCTOR.getStackForm(64),
-            OreDictUnifier.get(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 64),
-            OreDictUnifier.get(bolt, Neutronium, 64)),
-            arrayOf(SolderingAlloy.getFluid(L * 40), Polybenzimidazole.getFluid(L * 16),
-                Naquadria.getFluid(L * 18)))
-
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(ULTIMATE_CIRCUIT_BOARD)
-            .input(plateDouble, Bohrium, 16)
-            .input(circuit, Tier.UHV, 4)
-            .input(ENERGY_CLUSTER, 16)
-            .input(FIELD_GENERATOR_UV, 4)
-            .input(PICO_PIC_WAFER, 64)
-            .input(OPTICAL_SMD_DIODE, 32)
-            .input(OPTICAL_SMD_CAPACITOR, 32)
-            .input(OPTICAL_SMD_RESISTOR, 32)
-            .input(OPTICAL_SMD_TRANSISTOR, 32)
-            .input(OPTICAL_SMD_INDUCTOR, 32)
-            .input(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 64)
-            .input(bolt, Neutronium, 64)
-            .fluidInputs(SolderingAlloy.getFluid(L * 40))
-            .fluidInputs(Polyetheretherketone.getFluid(L * 16))
-            .fluidInputs(Vibranium.getFluid(L * 18))
-            .output(ULTIMATE_BATTERY)
-            .EUt(800_000) // UHV
-            .duration(2 * MINUTE)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ULTIMATE_CIRCUIT_BOARD)
+            input(plateDouble, Bohrium, 16)
+            input(circuit, Tier.UHV, 4)
+            input(ENERGY_CLUSTER, 16)
+            input(FIELD_GENERATOR_UV, 4)
+            input(PICO_PIC_WAFER, 64)
+            input(OPTICAL_SMD_DIODE, 32)
+            input(OPTICAL_SMD_CAPACITOR, 32)
+            input(OPTICAL_SMD_RESISTOR, 32)
+            input(OPTICAL_SMD_TRANSISTOR, 32)
+            input(OPTICAL_SMD_INDUCTOR, 32)
+            input(wireGtSingle, EnrichedNaquadahTriniumEuropiumDuranide, 64)
+            input(bolt, Neutronium, 64)
+            fluidInputs(SolderingAlloy.getFluid(L * 40))
+            fluidInputs(Polyetheretherketone.getFluid(L * 16))
+            fluidInputs(Vibranium.getFluid(L * 18))
+            output(ULTIMATE_BATTERY)
+            EUt(800_000) // UHV
+            duration(2 * MINUTE)
+            stationResearch {
                 it.researchStack(ENERGY_CLUSTER)
                     .EUt(VA[UHV])
                     .CWUt(48)
             }
-            .buildAndRegister()
+        }
 
         // endregion
 
@@ -739,10 +752,10 @@ internal object OverrideRecipeLoader
 
         // Cleaning Maintenance Hatch
         ModHandler.removeRecipeByName("gregtech:maintenance_hatch_cleaning")
-        ModHandler.addShapedRecipe(true, "cleaning_maintenance_hatch", CLEANING_MAINTENANCE_HATCH.stackForm,
+        ModHandler.addShapedRecipe(true, "cleaning_maintenance_hatch", CLEANING_MAINTENANCE_HATCH.stack(),
             "XAX", "RHR", "WXW",
-            'H', HULL[IV].stackForm,
-            'A', AUTO_MAINTENANCE_HATCH.stackForm,
+            'H', HULL[IV].stack(),
+            'A', AUTO_MAINTENANCE_HATCH.stack(),
             'R', ROBOT_ARM_IV,
             'W', UnificationEntry(cableGtSingle, Platinum),
             'X', UnificationEntry(circuit, Tier.IV))

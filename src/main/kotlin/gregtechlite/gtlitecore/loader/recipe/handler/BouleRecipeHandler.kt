@@ -17,6 +17,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.gemExquisite
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.DISABLE_CRYSTALLIZATION
@@ -118,21 +119,21 @@ object BouleRecipeHandler
 
         builder.buildAndRegister()
 
-        CUTTER_RECIPES.recipeBuilder()
-            .input(boule, material)
-            .output(gemExquisite, material)
-            .output(seedCrystal, material)
-            .EUt(VA[LV])
-            .duration(material.mass * 4)
-            .buildAndRegister()
+        CUTTER_RECIPES.addRecipe {
+            input(boule, material)
+            output(gemExquisite, material)
+            output(seedCrystal, material)
+            EUt(VA[LV])
+            duration(material.mass * 4)
+        }
 
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(gemExquisite, material)
-            .fluidInputs(DistilledWater.getFluid(8000))
-            .output(seedCrystal, material)
-            .EUt(VA[HV])
-            .duration(material.mass * 9)
-            .buildAndRegister()
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(gemExquisite, material)
+            fluidInputs(DistilledWater.getFluid(8000))
+            output(seedCrystal, material)
+            EUt(VA[HV])
+            duration(material.mass * 9)
+        }
     }
 
     // @formatter:on

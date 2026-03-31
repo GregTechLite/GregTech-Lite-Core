@@ -13,6 +13,7 @@ import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ACID_GENERATOR_FUELS
 
 internal object AcidGeneratorRecipes
@@ -22,37 +23,37 @@ internal object AcidGeneratorRecipes
 
     fun init()
     {
-        ACID_GENERATOR_FUELS.recipeBuilder()
-            .fluidInputs(Redstone.getFluid(L / 4))
-            .EUt(V[LV])
-            .duration(1 * SECOND + 15 * TICK)
-            .buildAndRegister()
+        ACID_GENERATOR_FUELS.addRecipe {
+            fluidInputs(Redstone.getFluid(L / 4))
+            EUt(V[LV])
+            duration(1 * SECOND + 15 * TICK)
+        }
 
-        ACID_GENERATOR_FUELS.recipeBuilder()
-            .fluidInputs(Mercury.getFluid(500))
-            .EUt(VA[MV])
-            .duration(3 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ACID_GENERATOR_FUELS.addRecipe {
+            fluidInputs(Mercury.getFluid(500))
+            EUt(VA[MV])
+            duration(3 * SECOND + 10 * TICK)
+        }
 
-        ACID_GENERATOR_FUELS.recipeBuilder()
-            .fluidInputs(SulfuricAcid.getFluid(250))
-            .EUt(VA[MV])
-            .duration(6 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ACID_GENERATOR_FUELS.addRecipe {
+            fluidInputs(SulfuricAcid.getFluid(250))
+            EUt(VA[MV])
+            duration(6 * SECOND + 10 * TICK)
+        }
 
-        ACID_GENERATOR_FUELS.recipeBuilder()
-            .fluidInputs(HydrochloricAcid.getFluid(500))
-            .EUt(VA[MV])
-            .duration(4 * SECOND + 15 * TICK)
-            .buildAndRegister()
+        ACID_GENERATOR_FUELS.addRecipe {
+            fluidInputs(HydrochloricAcid.getFluid(500))
+            EUt(VA[MV])
+            duration(4 * SECOND + 15 * TICK)
+        }
 
-        ACID_GENERATOR_FUELS.recipeBuilder()
-            .fluidInputs(NitricAcid.getFluid(125))
-            .EUt(VA[MV])
-            .duration(6 * SECOND + 15 * TICK)
-            .buildAndRegister()
+        ACID_GENERATOR_FUELS.addRecipe {
+            fluidInputs(NitricAcid.getFluid(125))
+            EUt(VA[MV])
+            duration(6 * SECOND + 15 * TICK)
+        }
 
-        // TODO Organic Acids and other recipes.
+        // TODO: Organic Acids and other recipes.
     }
 
     // @formatter:on

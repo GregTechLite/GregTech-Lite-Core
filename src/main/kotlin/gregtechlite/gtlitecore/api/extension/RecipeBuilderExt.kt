@@ -1,28 +1,95 @@
+@file:Suppress("FunctionName")
 package gregtechlite.gtlitecore.api.extension
 
+import gregtech.api.metatileentity.multiblock.CleanroomType
+import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeBuilder
+import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.builders.ResearchRecipeBuilder
+import net.minecraft.block.Block
+import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
+import net.minecraftforge.fluids.FluidStack
 
-// Short-circuit number converts for RecipeBuilder#EUt.
+// region DSL Context
 
-@Suppress("FunctionName")
-fun <T: RecipeBuilder<T>> RecipeBuilder<T>.EUt(eut: Int): T
-{
-    return EUt(eut.toLong())
-}
+/**
+ * Registers a recipe for the [RecipeMap].
+ *
+ * This method is Kotlin style DSL for GTCEu [RecipeBuilder] for recipe registries.
+ *
+ * @param builder The corresponding [RecipeBuilder] of the [RecipeMap].
+ */
+fun <T: RecipeBuilder<T>> RecipeMap<T>.addRecipe(builder: T.() -> Unit)
+    = recipeBuilder().apply(builder).buildAndRegister()
 
-@Suppress("FunctionName")
-fun <T: ResearchRecipeBuilder<T>> ResearchRecipeBuilder<T>.EUt(eut: Int): T
-{
-    return EUt(eut.toLong())
-}
+// endregion
+
+// region Recipe Input Shortcut
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(item: Item, amount: Int = 1, meta: Int = 0): T
+    = inputs(ItemStack(item, amount, meta))
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.inputs(block: Block, amount: Int = 1, meta: Int = 0): T
+    = inputs(ItemStack(block, amount, meta))
+
+// endregion
+
+// region Recipe Output Shortcut
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.outputs(item: Item, amount: Int = 1, meta: Int = 0): T
+    = outputs(ItemStack(item, amount, meta))
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.outputs(block: Block, amount: Int = 1, meta: Int = 0): T
+    = outputs(ItemStack(block, amount, meta))
+
+// endregion
+
+// region Recipe EUt Shortcut
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.EUt(eut: Int): T = EUt(eut.toLong())
+
+fun <T: ResearchRecipeBuilder<T>> ResearchRecipeBuilder<T>.EUt(eut: Int): T = EUt(eut.toLong())
+
+// endregion
+
+// region Recipe Duration Shortcut
 
 fun <T: RecipeBuilder<T>> RecipeBuilder<T>.duration(duration: Long): T
-{
-    return duration(duration.toInt())
-}
+    = duration(duration.toInt())
 
 fun <T: RecipeBuilder<T>> RecipeBuilder<T>.duration(duration: Double): T
+    = duration(duration.toInt())
+
+// endregion
+
+// region Recipe Condition Shortcut
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.cleanroom(): T
+    = cleanroom(CleanroomType.CLEANROOM)
+
+fun <T: RecipeBuilder<T>> RecipeBuilder<T>.sterileCleanroom(): T
+    = cleanroom(CleanroomType.STERILE_CLEANROOM)
+
+// endregion
+
+// region Recipe Removal Shortcut
+
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeRecipe(vararg itemInputs: ItemStack)
+    = GTRecipeHandler.removeRecipesByInputs(this, *itemInputs)
+
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeRecipe(vararg fluidInputs: FluidStack)
+    = GTRecipeHandler.removeRecipesByInputs(this, *fluidInputs)
+
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeRecipe(itemInputs: Array<ItemStack>, fluidInputs: Array<FluidStack>)
+    = GTRecipeHandler.removeRecipesByInputs(this, itemInputs, fluidInputs)
+
+fun <T: RecipeBuilder<T>> RecipeMap<T>.removeRecipe(vararg itemInputs: Item): Boolean
 {
-    return duration(duration.toInt())
+    val items = mutableListOf<ItemStack>()
+    for (itemInput in itemInputs)
+        items.add(ItemStack(itemInput))
+    return removeRecipe(*items.toTypedArray())
 }
+
+// endregion

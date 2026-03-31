@@ -11,7 +11,8 @@ import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.recipes.GTRecipeHandler
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
@@ -122,451 +123,450 @@ internal object NaquadahProcessing
     private fun removeVanillaRecipes()
     {
         // Remove Nq + H2SbF7 -> TiF3 + Impurified Nq+/Nq* Solutions.
-        GTRecipeHandler.removeRecipesByInputs(LARGE_CHEMICAL_RECIPES,
+        LARGE_CHEMICAL_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(dust, Naquadah, 6)),
             arrayOf(FluoroantimonicAcid.getFluid(1000)))
 
         // Remove Impurified Nq+ Solution -> Nq+ Solution Centrifuging.
-        GTRecipeHandler.removeRecipesByInputs(CENTRIFUGE_RECIPES, ImpureEnrichedNaquadahSolution.getFluid(2000))
+        CENTRIFUGE_RECIPES.removeRecipe(ImpureEnrichedNaquadahSolution.getFluid(2000))
         // Remove Impurified Nq* Solution -> Nq* Solution Centrifuging.
-        GTRecipeHandler.removeRecipesByInputs(CENTRIFUGE_RECIPES, ImpureNaquadriaSolution.getFluid(2000))
+        CENTRIFUGE_RECIPES.removeRecipe(ImpureNaquadriaSolution.getFluid(2000))
 
         // Remove Nq+ Solution -> Acidic Nq+ Solution Mixing.
         GTLiteRecipeHandler.removeMixerRecipes(
             arrayOf(EnrichedNaquadahSolution.getFluid(1000),
-                SulfuricAcid.getFluid(2000)))
+                    SulfuricAcid.getFluid(2000)))
         // Remove Nq* Solution -> Acidic Nq* Solution Mixing.
         GTLiteRecipeHandler.removeMixerRecipes(
             arrayOf(NaquadriaSolution.getFluid(1000),
-                SulfuricAcid.getFluid(2000)))
+                    SulfuricAcid.getFluid(2000)))
 
         // Remove Acidic Nq+ Solution -> Nq+SO4 Centrifuging.
-        GTRecipeHandler.removeRecipesByInputs(CENTRIFUGE_RECIPES,
+        CENTRIFUGE_RECIPES.removeRecipe(
             AcidicEnrichedNaquadahSolution.getFluid(3000))
         // Remove Acidic Nq* Solution -> Nq*SO4 Centrifuging.
-        GTRecipeHandler.removeRecipesByInputs(CENTRIFUGE_RECIPES,
+        CENTRIFUGE_RECIPES.removeRecipe(
             AcidicNaquadriaSolution.getFluid(3000))
 
         // Remove Nq+ Waste distillation recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(EnrichedNaquadahWaste.getFluid(200)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(EnrichedNaquadahWaste.getFluid(200)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(3)),
             arrayOf(EnrichedNaquadahWaste.getFluid(400)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             EnrichedNaquadahWaste.getFluid(2000))
 
         // Remove Nq* Waste distillation recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(NaquadriaWaste.getFluid(200)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(NaquadriaWaste.getFluid(200)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(3)),
             arrayOf(NaquadriaWaste.getFluid(400)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             NaquadriaWaste.getFluid(2000))
-
     }
 
     private fun naquadahProcess()
     {
         // Nq + H2SbF7 -> TiF3 + Low Purity Nq+/Nq* Emulsion
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, Naquadah, 6)
-            .fluidInputs(FluoroantimonicAcid.getFluid(1000))
-            .output(dust, TitaniumTrifluoride, 4)
-            .fluidOutputs(LowPurityEnrichedNaquadahEmulsion.getFluid(1000))
-            .fluidOutputs(LowPurityNaquadriaEmulsion.getFluid(1000))
-            .EUt(VA[LuV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            input(dust, Naquadah, 6)
+            fluidInputs(FluoroantimonicAcid.getFluid(1000))
+            output(dust, TitaniumTrifluoride, 4)
+            fluidOutputs(LowPurityEnrichedNaquadahEmulsion.getFluid(1000))
+            fluidOutputs(LowPurityNaquadriaEmulsion.getFluid(1000))
+            EUt(VA[LuV])
+            duration(20 * SECOND)
+        }
     }
 
     private fun naquadahEnrichedProcess()
     {
         // NaOH + Low Purity Nq+ Emulsion -> Ba(OH)2 + SbF3 + Impure Enriched Nq+ Solution
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, SodiumHydroxide, 3)
-            .fluidInputs(LowPurityEnrichedNaquadahEmulsion.getFluid(2000))
-            .output(dust, BariumHydroxide, 5)
-            .output(dust, AntimonyTrifluoride, 2)
-            .fluidOutputs(ImpureEnrichedNaquadahSolution.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, SodiumHydroxide, 3)
+            fluidInputs(LowPurityEnrichedNaquadahEmulsion.getFluid(2000))
+            output(dust, BariumHydroxide, 5)
+            output(dust, AntimonyTrifluoride, 2)
+            fluidOutputs(ImpureEnrichedNaquadahSolution.getFluid(1000))
+            EUt(VA[EV])
+            duration(10 * SECOND)
+        }
 
         // Ba(OH)2 -> BaO + H2O
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
-            .input(dust, BariumHydroxide, 5)
-            .output(dust, BariumOxide, 2)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(1 * SECOND + 12 * TICK)
-            .buildAndRegister()
+        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+            input(dust, BariumHydroxide, 5)
+            output(dust, BariumOxide, 2)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[MV])
+            duration(1 * SECOND + 12 * TICK)
+        }
 
         // Impure Nq+ Solution -> (Tc2O7) + Nq+ Solution + Nq+ Waste
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .fluidInputs(ImpureEnrichedNaquadahSolution.getFluid(2000))
-            .chancedOutput(dust, TechnetiumHeptaoxide, 3, 2000, 500)
-            .fluidOutputs(EnrichedNaquadahSolution.getFluid(1000))
-            .fluidOutputs(EnrichedNaquadahWaste.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CENTRIFUGE_RECIPES.addRecipe {
+            fluidInputs(ImpureEnrichedNaquadahSolution.getFluid(2000))
+            chancedOutput(dust, TechnetiumHeptaoxide, 3, 2000, 500)
+            fluidOutputs(EnrichedNaquadahSolution.getFluid(1000))
+            fluidOutputs(EnrichedNaquadahWaste.getFluid(1000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // Nq+ Solution + 2H2SO4 -> Ke2O3 + Acidic Nq+ Solution
-        CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
-            .fluidInputs(EnrichedNaquadahSolution.getFluid(1000))
-            .fluidInputs(SulfuricAcid.getFluid(2000))
-            .output(dust, TriniumTrioxide, 5)
-            .fluidOutputs(AcidicEnrichedNaquadahSolution.getFluid(1000))
-            .EUt(VA[LuV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CRYOGENIC_REACTOR_RECIPES.addRecipe {
+            fluidInputs(EnrichedNaquadahSolution.getFluid(1000))
+            fluidInputs(SulfuricAcid.getFluid(2000))
+            output(dust, TriniumTrioxide, 5)
+            fluidOutputs(AcidicEnrichedNaquadahSolution.getFluid(1000))
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+        }
 
         // Ke2O3 + 2H2S -> 2KeS + 2H2O + O (drop)
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, TriniumTrioxide, 5)
-            .fluidInputs(HydrogenSulfide.getFluid(2000))
-            .output(dust, TriniumSulfide, 2)
-            .fluidOutputs(Steam.getFluid(2 * SU))
-            .EUt(VA[HV])
-            .duration(2 * SECOND + 15 * TICK)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            input(dust, TriniumTrioxide, 5)
+            fluidInputs(HydrogenSulfide.getFluid(2000))
+            output(dust, TriniumSulfide, 2)
+            fluidOutputs(Steam.getFluid(2 * SU))
+            EUt(VA[HV])
+            duration(2 * SECOND + 15 * TICK)
+        }
 
         // KeS + Zn -> Ke + ZnS (EBF, 7200K) from original Gregtech Naquadah processing.
 
         // 2x Acidic Nq+ Solution -> Nq+SO4 + Na2S
-        AUTOCLAVE_RECIPES.recipeBuilder()
-            .input(dust, SodiumHydroxide, 6)
-            .fluidInputs(AcidicEnrichedNaquadahSolution.getFluid(2000))
-            .output(dust, EnrichedNaquadahSulfate, 6)
-            .output(dust, SodiumSulfide, 3)
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        AUTOCLAVE_RECIPES.addRecipe {
+            input(dust, SodiumHydroxide, 6)
+            fluidInputs(AcidicEnrichedNaquadahSolution.getFluid(2000))
+            output(dust, EnrichedNaquadahSulfate, 6)
+            output(dust, SodiumSulfide, 3)
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
 
         // Nq+SO4 + H -> Nq+ + H2SO4 from original Gregtech Naquadah processing.
 
         // Nq+ Waste -> (Nq) + 0.5HF + 0.3Nq+ Solution (raw cycling)
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(EnrichedNaquadahWaste.getFluid(2000))
-            .chancedOutput(dustSmall, Naquadah, 4000, 500)
-            .fluidOutputs(HydrofluoricAcid.getFluid(500))
-            .fluidOutputs(EnrichedNaquadahSolution.getFluid(350))
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(EnrichedNaquadahWaste.getFluid(2000))
+            chancedOutput(dustSmall, Naquadah, 4000, 500)
+            fluidOutputs(HydrofluoricAcid.getFluid(500))
+            fluidOutputs(EnrichedNaquadahSolution.getFluid(350))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
 
         // Addition recipe to Ba(OH)2 -> BaS (BaS is vanilla produce of Enriched Naquadah chain,
         // but in our chain, BaS is not a produce, but consider to usage of future, we add
         // a recipe for Ba(OH)2 -> BaS). Hint: Ba(OH)2 also can do Electrolyzer Decomposition.
 
         // Ba(OH)2 + Na2S -> BaS + 2NaOH
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, BariumHydroxide, 5)
-            .input(dust, SodiumSulfide, 3)
-            .output(dust, BariumSulfide, 2)
-            .output(dust, SodiumHydroxide, 6)
-            .EUt(VA[MV])
-            .duration(3 * SECOND + 4 * TICK)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, BariumHydroxide, 5)
+            input(dust, SodiumSulfide, 3)
+            output(dust, BariumSulfide, 2)
+            output(dust, SodiumHydroxide, 6)
+            EUt(VA[MV])
+            duration(3 * SECOND + 4 * TICK)
+        }
     }
 
     private fun naquadriaProcess()
     {
         // Low Purity Nq* Emulsion + 2H3PO4 -> Impure Nq* Solution + InPO4 + 0.5SbF3
-        CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
-            .fluidInputs(LowPurityNaquadriaEmulsion.getFluid(1000))
-            .fluidInputs(PhosphoricAcid.getFluid(2000))
-            .output(dust, IndiumPhosphate, 6)
-            .output(dust, AntimonyTrifluoride, 2)
-            .fluidOutputs(ImpureNaquadriaSolution.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CRYOGENIC_REACTOR_RECIPES.addRecipe {
+            fluidInputs(LowPurityNaquadriaEmulsion.getFluid(1000))
+            fluidInputs(PhosphoricAcid.getFluid(2000))
+            output(dust, IndiumPhosphate, 6)
+            output(dust, AntimonyTrifluoride, 2)
+            fluidOutputs(ImpureNaquadriaSolution.getFluid(1000))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
 
         // InPO4 + 8H -> InP + 4H2O
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, IndiumPhosphate, 6)
-            .fluidInputs(Hydrogen.getFluid(8000))
-            .output(dust, IndiumPhosphide, 2)
-            .fluidOutputs(Water.getFluid(4000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, IndiumPhosphate, 6)
+            fluidInputs(Hydrogen.getFluid(8000))
+            output(dust, IndiumPhosphide, 2)
+            fluidOutputs(Water.getFluid(4000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // Impure Nq* Solution -> (Tc2O7) + Nq* Solution + Nq* Waste
-        CENTRIFUGE_RECIPES.recipeBuilder()
-            .fluidInputs(ImpureNaquadriaSolution.getFluid(2000))
-            .chancedOutput(dust, TechnetiumHeptaoxide, 6, 2000, 500)
-            .fluidOutputs(NaquadriaSolution.getFluid(1000))
-            .fluidOutputs(NaquadriaWaste.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CENTRIFUGE_RECIPES.addRecipe {
+            fluidInputs(ImpureNaquadriaSolution.getFluid(2000))
+            chancedOutput(dust, TechnetiumHeptaoxide, 6, 2000, 500)
+            fluidOutputs(NaquadriaSolution.getFluid(1000))
+            fluidOutputs(NaquadriaWaste.getFluid(1000))
+            EUt(VA[EV])
+            duration(5 * SECOND)
+        }
 
         // Nq* Solution + H2SO4 -> Ga2O3 + Acidic Nq* Solution
-        SIFTER_RECIPES.recipeBuilder()
-            .fluidInputs(NaquadriaSolution.getFluid(1000))
-            .fluidInputs(SulfuricAcid.getFluid(2000))
-            .output(dust, GalliumDioxide, 3)
-            .fluidOutputs(AcidicNaquadriaSolution.getFluid(1000))
-            .EUt(VA[ZPM])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        SIFTER_RECIPES.addRecipe {
+            fluidInputs(NaquadriaSolution.getFluid(1000))
+            fluidInputs(SulfuricAcid.getFluid(2000))
+            output(dust, GalliumDioxide, 3)
+            fluidOutputs(AcidicNaquadriaSolution.getFluid(1000))
+            EUt(VA[ZPM])
+            duration(10 * SECOND)
+        }
 
         // Addition recipes for GaO2, GaS convert.
         // GaO2 + S -> GaS + 2O
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, GalliumDioxide, 3)
-            .input(dust, Sulfur)
-            .output(dust, GalliumSulfide, 2)
-            .fluidOutputs(Oxygen.getFluid(2000))
-            .EUt(VA[MV])
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            input(dust, GalliumDioxide, 3)
+            input(dust, Sulfur)
+            output(dust, GalliumSulfide, 2)
+            fluidOutputs(Oxygen.getFluid(2000))
+            EUt(VA[MV])
+            duration(2 * SECOND)
+        }
 
         // Acidic Nq* Solution + CaO -> Nq*SO4 + CaS
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Quicklime, 2)
-            .fluidInputs(AcidicNaquadriaSolution.getFluid(2000))
-            .output(dust, NaquadriaSulfate, 6)
-            .output(dust, CalciumSulfide, 2)
-            .EUt(VA[LuV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, Quicklime, 2)
+            fluidInputs(AcidicNaquadriaSolution.getFluid(2000))
+            output(dust, NaquadriaSulfate, 6)
+            output(dust, CalciumSulfide, 2)
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+        }
 
         // Nq*SO4 + 2H -> Nq* + H2SO4 by original processing.
 
         // Nq* Waste -> (Nq+) + 0.5HF + 0.35Nq* Solution
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(NaquadriaWaste.getFluid(2000))
-            .chancedOutput(dustSmall, NaquadahEnriched, 4000, 500)
-            .fluidOutputs(HydrofluoricAcid.getFluid(500))
-            .fluidOutputs(NaquadriaSolution.getFluid(350))
-            .EUt(VA[LuV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(NaquadriaWaste.getFluid(2000))
+            chancedOutput(dustSmall, NaquadahEnriched, 4000, 500)
+            fluidOutputs(HydrofluoricAcid.getFluid(500))
+            fluidOutputs(NaquadriaSolution.getFluid(350))
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+        }
 
         // Addition recipes for CaS-CaO recycling.
 
         // Ca + S -> CaS
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, Calcium)
-            .input(dust, Sulfur)
-            .output(dust, CalciumSulfide, 2)
-            .EUt(VA[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Calcium)
+            input(dust, Sulfur)
+            output(dust, CalciumSulfide, 2)
+            EUt(VA[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // CaS + 2O -> CaO + SO
-        ROASTER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, CalciumSulfide, 2)
-            .fluidInputs(Oxygen.getFluid(2000))
-            .output(dust, Quicklime, 2)
-            .fluidOutputs(SulfurDioxide.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, CalciumSulfide, 2)
+            fluidInputs(Oxygen.getFluid(2000))
+            output(dust, Quicklime, 2)
+            fluidOutputs(SulfurDioxide.getFluid(1000))
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
     }
 
     private fun naquadahFuelProcess()
     {
         // Nq + NH4NO3 -> Nq(NH4NO3)?
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Naquadah)
-            .input(dust, AmmoniumNitrate, 2)
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(CrudeNaquadahFuel.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Naquadah)
+            input(dust, AmmoniumNitrate, 2)
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(CrudeNaquadahFuel.getFluid(1000))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
 
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Naquadah)
-            .input(dust, AmmoniumNitrate, 2)
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .fluidOutputs(CrudeNaquadahFuel.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Naquadah)
+            input(dust, AmmoniumNitrate, 2)
+            fluidInputs(DistilledWater.getFluid(1000))
+            fluidOutputs(CrudeNaquadahFuel.getFluid(1000))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
 
         // Nq+ + NH4NO3 -> 3Nq(NH4NO3)?
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, NaquadahEnriched)
-            .input(dust, AmmoniumNitrate, 2)
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(CrudeNaquadahFuel.getFluid(3000))
-            .EUt(VA[LuV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, NaquadahEnriched)
+            input(dust, AmmoniumNitrate, 2)
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(CrudeNaquadahFuel.getFluid(3000))
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+        }
 
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, NaquadahEnriched)
-            .input(dust, AmmoniumNitrate, 2)
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .fluidOutputs(CrudeNaquadahFuel.getFluid(3000))
-            .EUt(VA[LuV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, NaquadahEnriched)
+            input(dust, AmmoniumNitrate, 2)
+            fluidInputs(DistilledWater.getFluid(1000))
+            fluidOutputs(CrudeNaquadahFuel.getFluid(3000))
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+        }
 
         // Nq* + NH4NO3 -> 6Nq(NH4NO3)?
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Naquadria)
-            .input(dust, AmmoniumNitrate, 2)
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(CrudeNaquadahFuel.getFluid(6000))
-            .EUt(VA[ZPM])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Naquadria)
+            input(dust, AmmoniumNitrate, 2)
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(CrudeNaquadahFuel.getFluid(6000))
+            EUt(VA[ZPM])
+            duration(10 * SECOND)
+        }
 
-        MIXER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Naquadria)
-            .input(dust, AmmoniumNitrate, 2)
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .fluidOutputs(CrudeNaquadahFuel.getFluid(6000))
-            .EUt(VA[ZPM])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Naquadria)
+            input(dust, AmmoniumNitrate, 2)
+            fluidInputs(DistilledWater.getFluid(1000))
+            fluidOutputs(CrudeNaquadahFuel.getFluid(6000))
+            EUt(VA[ZPM])
+            duration(10 * SECOND)
+        }
 
         // Crude Naquadah Fuel fraction.
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(CrudeNaquadahFuel.getFluid(9000))
-            .chancedOutput(dust, Naquadah, 1000, 500)
-            .fluidOutputs(HeavyNaquadahFuel.getFluid(1000))
-            .fluidOutputs(MediumNaquadahFuel.getFluid(2000))
-            .fluidOutputs(LightNaquadahFuel.getFluid(3000))
-            .fluidOutputs(NaquadahGas.getFluid(1000))
-            .fluidOutputs(NitricAcid.getFluid(800))
-            .fluidOutputs(Ammonia.getFluid(400))
-            .fluidOutputs(EnrichedNaquadahWaste.getFluid(400))
-            .fluidOutputs(NaquadriaWaste.getFluid(200))
-            .EUt(VA[IV])
-            .duration(1 * MINUTE)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(CrudeNaquadahFuel.getFluid(9000))
+            chancedOutput(dust, Naquadah, 1000, 500)
+            fluidOutputs(HeavyNaquadahFuel.getFluid(1000))
+            fluidOutputs(MediumNaquadahFuel.getFluid(2000))
+            fluidOutputs(LightNaquadahFuel.getFluid(3000))
+            fluidOutputs(NaquadahGas.getFluid(1000))
+            fluidOutputs(NitricAcid.getFluid(800))
+            fluidOutputs(Ammonia.getFluid(400))
+            fluidOutputs(EnrichedNaquadahWaste.getFluid(400))
+            fluidOutputs(NaquadriaWaste.getFluid(200))
+            EUt(VA[IV])
+            duration(1 * MINUTE)
+        }
 
         // Naquadah gas as gas turbine fuels.
-        GAS_TURBINE_FUELS.recipeBuilder()
-            .fluidInputs(NaquadahGas.getFluid(24))
-            .EUt(VA[MV])
-            .duration(12 * SECOND)
-            .buildAndRegister()
+        GAS_TURBINE_FUELS.addRecipe {
+            fluidInputs(NaquadahGas.getFluid(24))
+            EUt(VA[MV])
+            duration(12 * SECOND)
+        }
 
         // Advanced recipes for Naquadah Fuels.
 
         // Energetic Naquadria
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(dust, Naquadria)
-            .fluidInputs(NitrogenDioxide.getFluid(500))
-            .fluidInputs(SulfuricAcid.getFluid(500))
-            .output(dust, Lutetium)
-            .output(dust, Uranium238)
-            .output(dust, Plutonium241)
-            .output(dust, NaquadahEnriched)
-            .fluidOutputs(NaquadriaEnergetic.getFluid(1000))
-            .EUt(V[ZPM] / 2)
-            .duration(2 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(dust, Naquadria)
+            fluidInputs(NitrogenDioxide.getFluid(500))
+            fluidInputs(SulfuricAcid.getFluid(500))
+            output(dust, Lutetium)
+            output(dust, Uranium238)
+            output(dust, Plutonium241)
+            output(dust, NaquadahEnriched)
+            fluidOutputs(NaquadriaEnergetic.getFluid(1000))
+            EUt(V[ZPM] / 2)
+            duration(2 * SECOND)
+        }
 
         // Light Naquadah Fuel
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(dust, Naquadah)
-            .fluidInputs(Uranium235.getFluid(500))
-            .fluidInputs(Nitrogen.getFluid(500))
-            .fluidOutputs(LightNaquadahFuel.getFluid(6000))
-            .EUt(VA[UV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(dust, Naquadah)
+            fluidInputs(Uranium235.getFluid(500))
+            fluidInputs(Nitrogen.getFluid(500))
+            fluidOutputs(LightNaquadahFuel.getFluid(6000))
+            EUt(VA[UV])
+            duration(15 * SECOND)
+        }
 
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(dust, GalliumSulfide)
-            .fluidInputs(NaquadriaEnergetic.getFluid(1000))
-            .fluidInputs(Nitrogen.getPlasma(1000))
-            .fluidOutputs(LightNaquadahFuel.getFluid(12000))
-            .EUt(VA[UHV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(dust, GalliumSulfide)
+            fluidInputs(NaquadriaEnergetic.getFluid(1000))
+            fluidInputs(Nitrogen.getPlasma(1000))
+            fluidOutputs(LightNaquadahFuel.getFluid(12000))
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+        }
 
         // Medium Naquadah Fuel
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(dust, NaquadahEnriched)
-            .fluidInputs(Uranium235.getFluid(500))
-            .fluidInputs(Plutonium241.getFluid(500))
-            .output(dust, Plutonium239)
-            .fluidOutputs(MediumNaquadahFuel.getFluid(6000))
-            .EUt(VA[UV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(dust, NaquadahEnriched)
+            fluidInputs(Uranium235.getFluid(500))
+            fluidInputs(Plutonium241.getFluid(500))
+            output(dust, Plutonium239)
+            fluidOutputs(MediumNaquadahFuel.getFluid(6000))
+            EUt(VA[UV])
+            duration(15 * SECOND)
+        }
 
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(dust, IndiumPhosphide)
-            .fluidInputs(NaquadriaEnergetic.getFluid(1000))
-            .fluidInputs(Nitrogen.getPlasma(1000))
-            .fluidOutputs(MediumNaquadahFuel.getFluid(12000))
-            .EUt(VA[UHV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(dust, IndiumPhosphide)
+            fluidInputs(NaquadriaEnergetic.getFluid(1000))
+            fluidInputs(Nitrogen.getPlasma(1000))
+            fluidOutputs(MediumNaquadahFuel.getFluid(12000))
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+        }
 
         // Heavy Naquadah Fuel
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(dust, Naquadria)
-            .input(dust, Plutonium239)
-            .fluidInputs(Nitrogen.getPlasma(500))
-            .output(dust, NaquadahEnriched)
-            .fluidOutputs(HeavyNaquadahFuel.getFluid(6000))
-            .EUt(VA[UV])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(dust, Naquadria)
+            input(dust, Plutonium239)
+            fluidInputs(Nitrogen.getPlasma(500))
+            output(dust, NaquadahEnriched)
+            fluidOutputs(HeavyNaquadahFuel.getFluid(6000))
+            EUt(VA[UV])
+            duration(15 * SECOND)
+        }
 
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(dust, Trinium)
-            .fluidInputs(NaquadriaEnergetic.getFluid(1000))
-            .fluidInputs(Nitrogen.getPlasma(1000))
-            .fluidOutputs(HeavyNaquadahFuel.getFluid(12000))
-            .EUt(VA[UHV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(dust, Trinium)
+            fluidInputs(NaquadriaEnergetic.getFluid(1000))
+            fluidInputs(Nitrogen.getPlasma(1000))
+            fluidOutputs(HeavyNaquadahFuel.getFluid(12000))
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+        }
 
         // Naquadah fuels.
-        NAQUADAH_REACTOR_FUELS.recipeBuilder()
-            .fluidInputs(HeavyNaquadahFuel.getFluid(1))
-            .EUt(V[EV])
-            .duration(9 * SECOND)
-            .buildAndRegister()
+        NAQUADAH_REACTOR_FUELS.addRecipe {
+            fluidInputs(HeavyNaquadahFuel.getFluid(1))
+            EUt(V[EV])
+            duration(9 * SECOND)
+        }
 
-        NAQUADAH_REACTOR_FUELS.recipeBuilder()
-            .fluidInputs(MediumNaquadahFuel.getFluid(1))
-            .EUt(V[EV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        NAQUADAH_REACTOR_FUELS.addRecipe {
+            fluidInputs(MediumNaquadahFuel.getFluid(1))
+            EUt(V[EV])
+            duration(6 * SECOND)
+        }
 
-        NAQUADAH_REACTOR_FUELS.recipeBuilder()
-            .fluidInputs(LightNaquadahFuel.getFluid(1))
-            .EUt(V[EV])
-            .duration(3 * SECOND)
-            .buildAndRegister()
+        NAQUADAH_REACTOR_FUELS.addRecipe {
+            fluidInputs(LightNaquadahFuel.getFluid(1))
+            EUt(V[EV])
+            duration(3 * SECOND)
+        }
     }
 
     // @formatter:on

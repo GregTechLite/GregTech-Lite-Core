@@ -24,6 +24,7 @@ import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
 import gregtech.common.items.MetaItems.SENSOR_UHV
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
@@ -47,55 +48,55 @@ internal object StellarForgeCasingRecipes
     fun init()
     {
         // Stellar Containment Casing
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(frameGt, QuantumAlloy, 4)
-            .input(frameGt, Tairitsium, 4)
-            .input(frameGt, TitanSteel, 4)
-            .input(frameGt, EnrichedNaquadahAlloy, 4)
-            .input(plateDouble, HDCS, 8)
-            .input(plateDouble, Neutronium, 8)
-            .input(EMITTER_UHV, 2)
-            .input(SENSOR_UHV, 2)
-            .input(ELECTRIC_PUMP_UHV, 2)
-            .input(NEUTRON_REFLECTOR, 4)
-            .input(screw, TitanSteel, 6)
-            .fluidInputs(SolderingAlloy.getFluid(L * 32))
-            .fluidInputs(UUMatter.getFluid(4000))
-            .fluidInputs(Bedrockium.getFluid(L * 16))
-            .outputs(MultiblockCasing.STELLAR_CONTAINMENT_CASING.getStack(16))
-            .EUt(VA[UHV])
-            .duration(10 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(frameGt, QuantumAlloy, 4)
+            input(frameGt, Tairitsium, 4)
+            input(frameGt, TitanSteel, 4)
+            input(frameGt, EnrichedNaquadahAlloy, 4)
+            input(plateDouble, HDCS, 8)
+            input(plateDouble, Neutronium, 8)
+            input(EMITTER_UHV, 2)
+            input(SENSOR_UHV, 2)
+            input(ELECTRIC_PUMP_UHV, 2)
+            input(NEUTRON_REFLECTOR, 4)
+            input(screw, TitanSteel, 6)
+            fluidInputs(SolderingAlloy.getFluid(L * 32))
+            fluidInputs(UUMatter.getFluid(4000))
+            fluidInputs(Bedrockium.getFluid(L * 16))
+            outputs(MultiblockCasing.STELLAR_CONTAINMENT_CASING.getStack(16))
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+            stationResearch {
                 it.researchStack(MetalCasing.QUANTUM_ALLOY.stack)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
-            .buildAndRegister()
+        }
 
         // Thermal Energy Transmissive Casing
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .inputs(ScienceCasing.HOLLOW_CASING.getStack(4))
-            .input(frameGt, Bedrockium, 16)
-            .input(plateDouble, MetastableOganesson, 8)
-            .input(pipeLargeFluid, HastelloyX78, 2)
-            .input(gear, CosmicNeutronium, 3)
-            .input(gearSmall, CosmicNeutronium, 6)
-            .input(ELECTRIC_PUMP_UHV)
-            .input(VOLTAGE_COIL_UHV, 8)
-            .input(foil, Tairitsium, 12)
-            .input(bolt, HDCS, 4)
-            .fluidInputs(SolderingAlloy.getFluid(L * 40))
-            .fluidInputs(MercuryBariumCalciumCuprate.getFluid(L * 16))
-            .fluidInputs(StableBaryonicMatter.getFluid(4000))
-            .outputs(MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.getStack(32))
-            .EUt(VA[UHV])
-            .duration(10 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputs(ScienceCasing.HOLLOW_CASING.getStack(4))
+            input(frameGt, Bedrockium, 16)
+            input(plateDouble, MetastableOganesson, 8)
+            input(pipeLargeFluid, HastelloyX78, 2)
+            input(gear, CosmicNeutronium, 3)
+            input(gearSmall, CosmicNeutronium, 6)
+            input(ELECTRIC_PUMP_UHV)
+            input(VOLTAGE_COIL_UHV, 8)
+            input(foil, Tairitsium, 12)
+            input(bolt, HDCS, 4)
+            fluidInputs(SolderingAlloy.getFluid(L * 40))
+            fluidInputs(MercuryBariumCalciumCuprate.getFluid(L * 16))
+            fluidInputs(StableBaryonicMatter.getFluid(4000))
+            outputs(MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.getStack(32))
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+            stationResearch {
                 it.researchStack(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE))
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
-            .buildAndRegister()
+        }
     }
 
     // @formatter:on

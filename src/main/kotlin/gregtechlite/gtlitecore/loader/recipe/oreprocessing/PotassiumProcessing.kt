@@ -12,6 +12,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumHydroxide
 
 internal object PotassiumProcessing
@@ -22,26 +23,26 @@ internal object PotassiumProcessing
     fun init()
     {
         // Common rock salt decompose.
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, RockSalt, 2)
-            .output(dust, Potassium)
-            .fluidOutputs(Chlorine.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(3 * SECOND + 12 * TICK)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, RockSalt, 2)
+            output(dust, Potassium)
+            fluidOutputs(Chlorine.getFluid(1000))
+            EUt(VA[LV])
+            duration(3 * SECOND + 12 * TICK)
+        }
 
         // KCl + H2O -> KOH + Cl + H
-        ELECTROLYZER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, RockSalt, 2)
-            .fluidInputs(Water.getFluid(1000))
-            .output(dust, PotassiumHydroxide, 3)
-            .fluidOutputs(Chlorine.getFluid(1000))
-            .fluidOutputs(Hydrogen.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        ELECTROLYZER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, RockSalt, 2)
+            fluidInputs(Water.getFluid(1000))
+            output(dust, PotassiumHydroxide, 3)
+            fluidOutputs(Chlorine.getFluid(1000))
+            fluidOutputs(Hydrogen.getFluid(1000))
+            EUt(VA[LV])
+            duration(6 * SECOND)
+        }
     }
 
     // @formatter:on

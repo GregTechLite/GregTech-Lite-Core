@@ -6,7 +6,6 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VA
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.COMBUSTION_GENERATOR_FUELS
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLERY_RECIPES
@@ -60,6 +59,8 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CATALYTIC_REFORMER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
@@ -90,294 +91,280 @@ internal object OilsChain
         catalyticReforming()
 
         // Natural gas distillation addition.
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(NaturalGas.getFluid(1000))
-            .fluidOutputs(Methane.getFluid(650)) // CH4
-            .fluidOutputs(Ethane.getFluid(128)) // C2H6
-            .fluidOutputs(Propane.getFluid(128)) // C3H8
-            .fluidOutputs(Butane.getFluid(64)) // C4H10
-            .fluidOutputs(Helium.getFluid(24))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(NaturalGas.getFluid(1000))
+            fluidOutputs(Methane.getFluid(650)) // CH4
+            fluidOutputs(Ethane.getFluid(128))  // C2H6
+            fluidOutputs(Propane.getFluid(128)) // C3H8
+            fluidOutputs(Butane.getFluid(64))   // C4H10
+            fluidOutputs(Helium.getFluid(24))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
     }
 
     private fun ethaneCrackProcessing()
     {
         // Deleted vanilla hydrogen cracked ethane recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(HydroCrackedEthane.getFluid(40)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(HydroCrackedEthane.getFluid(40)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             HydroCrackedEthane.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(HydroCrackedEthane.getFluid(1000))
-            .fluidOutputs(Carbon5Fraction.getFluid(250))
-            .fluidOutputs(Methane.getFluid(1750)) // CH4
-            .fluidOutputs(Hydrogen.getFluid(2000)) // H
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(HydroCrackedEthane.getFluid(1000))
+            fluidOutputs(Carbon5Fraction.getFluid(250))
+            fluidOutputs(Methane.getFluid(1750)) // CH4
+            fluidOutputs(Hydrogen.getFluid(2000))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // Deleted vanilla steam cracked ethane recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(SteamCrackedEthane.getFluid(100)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(SteamCrackedEthane.getFluid(40)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             SteamCrackedEthane.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(SteamCrackedEthane.getFluid(1000))
-            .chancedOutput(dust, Carbon, 2500, 0)
-            .fluidOutputs(Carbon5Fraction.getFluid(125))
-            .fluidOutputs(Ethylene.getFluid(250)) // C2H4
-            .fluidOutputs(Methane.getFluid(1125)) // CH4
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(SteamCrackedEthane.getFluid(1000))
+            chancedOutput(dust, Carbon, 2500, 0)
+            fluidOutputs(Carbon5Fraction.getFluid(125))
+            fluidOutputs(Ethylene.getFluid(250)) // C2H4
+            fluidOutputs(Methane.getFluid(1125)) // CH4
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
     }
 
     private fun ethyleneCrackProcessing()
     {
         // Deleted vanilla hydrogen cracked ethylene recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(HydroCrackedEthylene.getFluid(40)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             HydroCrackedEthylene.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(HydroCrackedEthylene.getFluid(1000))
-            .fluidOutputs(Carbon5Fraction.getFluid(200))
-            .fluidOutputs(Ethane.getFluid(8000)) // C2H6
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(HydroCrackedEthylene.getFluid(1000))
+            fluidOutputs(Carbon5Fraction.getFluid(200))
+            fluidOutputs(Ethane.getFluid(8000)) // C2H6
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // Deleted vanilla steam cracked ethylene recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(SteamCrackedEthylene.getFluid(1000)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             SteamCrackedEthylene.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(SteamCrackedEthylene.getFluid(1000))
-            .output(dust, Carbon)
-            .fluidOutputs(Carbon5Fraction.getFluid(200))
-            .fluidOutputs(Methane.getFluid(800))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
-
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(SteamCrackedEthylene.getFluid(1000))
+            output(dust, Carbon)
+            fluidOutputs(Carbon5Fraction.getFluid(200))
+            fluidOutputs(Methane.getFluid(800)) // CH3
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
     }
 
     private fun propaneCrackProcessing()
     {
         // Deleted vanilla hydrogen cracked propane recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(HydroCrackedPropane.getFluid(40)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(HydroCrackedPropane.getFluid(40)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             HydroCrackedPropane.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(HydroCrackedPropane.getFluid(1000))
-            .fluidOutputs(Carbon5Fraction.getFluid(250))
-            .fluidOutputs(Ethane.getFluid(875)) // C2H6
-            .fluidOutputs(Methane.getFluid(875)) // CH4
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(HydroCrackedPropane.getFluid(1000))
+            fluidOutputs(Carbon5Fraction.getFluid(250))
+            fluidOutputs(Ethane.getFluid(875)) // C2H6
+            fluidOutputs(Methane.getFluid(875)) // CH4
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // Deleted vanilla steam cracked propane recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(SteamCrackedPropane.getFluid(40)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(SteamCrackedPropane.getFluid(40)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             SteamCrackedPropane.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(SteamCrackedPropane.getFluid(1000))
-            .chancedOutput(dust, Carbon, 2500, 0)
-            .fluidOutputs(Carbon5Fraction.getFluid(250))
-            .fluidOutputs(Ethylene.getFluid(750)) // C2H4
-            .fluidOutputs(Methane.getFluid(1000)) // CH4
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(SteamCrackedPropane.getFluid(1000))
+            chancedOutput(dust, Carbon, 2500, 0)
+            fluidOutputs(Carbon5Fraction.getFluid(250))
+            fluidOutputs(Ethylene.getFluid(750)) // C2H4
+            fluidOutputs(Methane.getFluid(1000)) // CH4
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
     }
 
     private fun propeneCrackProcessing()
     {
         // Deleted vanilla hydrogen cracked propene recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(HydroCrackedPropene.getFluid(100)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(HydroCrackedPropene.getFluid(100)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(3)),
             arrayOf(HydroCrackedPropene.getFluid(100)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             HydroCrackedPropene.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(HydroCrackedPropene.getFluid(1000))
-            .fluidOutputs(Carbon5Fraction.getFluid(250))
-            .fluidOutputs(Propane.getFluid(250)) // C3H8
-            .fluidOutputs(Ethylene.getFluid(250)) // C2H4
-            .fluidOutputs(Methane.getFluid(250)) // CH4
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(HydroCrackedPropene.getFluid(1000))
+            fluidOutputs(Carbon5Fraction.getFluid(250))
+            fluidOutputs(Propane.getFluid(250))  // C3H8
+            fluidOutputs(Ethylene.getFluid(250)) // C2H4
+            fluidOutputs(Methane.getFluid(250))  // CH4
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // Deleted vanilla steam cracked ethylene recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(SteamCrackedPropene.getFluid(40)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(SteamCrackedPropene.getFluid(100)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             SteamCrackedPropene.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(SteamCrackedPropene.getFluid(1000))
-            .chancedOutput(dust, Carbon, 5000, 0)
-            .fluidOutputs(Carbon5Fraction.getFluid(250))
-            .fluidOutputs(Ethylene.getFluid(1000))
-            .fluidOutputs(Methane.getFluid(250))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(SteamCrackedPropene.getFluid(1000))
+            chancedOutput(dust, Carbon, 5000, 0)
+            fluidOutputs(Carbon5Fraction.getFluid(250))
+            fluidOutputs(Ethylene.getFluid(1000)) // C2H4
+            fluidOutputs(Methane.getFluid(250))   // CH4
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
     }
 
     private fun butaneCrackProcessing()
     {
         // Deleted vanilla hydrogen cracked butane recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(HydroCrackedButane.getFluid(40)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(HydroCrackedButane.getFluid(40)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(3)),
             arrayOf(HydroCrackedButane.getFluid(100)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             HydroCrackedButane.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(HydroCrackedButane.getFluid(1000))
-            .fluidOutputs(Carbon5Fraction.getFluid(250))
-            .fluidOutputs(Propane.getFluid(750)) // C3H8
-            .fluidOutputs(Ethane.getFluid(750)) // C2H6
-            .fluidOutputs(Methane.getFluid(250)) // CH4
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(HydroCrackedButane.getFluid(1000))
+            fluidOutputs(Carbon5Fraction.getFluid(250))
+            fluidOutputs(Propane.getFluid(750)) // C3H8
+            fluidOutputs(Ethane.getFluid(750))  // C2H6
+            fluidOutputs(Methane.getFluid(250)) // CH4
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // Deleted vanilla steam cracked butane recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(SteamCrackedButane.getFluid(200)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(SteamCrackedButane.getFluid(40)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(3)),
             arrayOf(SteamCrackedButane.getFluid(40)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(4)),
             arrayOf(SteamCrackedButane.getFluid(100)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             SteamCrackedButane.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(SteamCrackedButane.getFluid(1000))
-            .chancedOutput(dust, Carbon, 2500, 0)
-            .fluidOutputs(Carbon5Fraction.getFluid(125))
-            .fluidOutputs(Propane.getFluid(250)) // C3H8
-            .fluidOutputs(Ethane.getFluid(750)) // C2H6
-            .fluidOutputs(Ethylene.getFluid(750)) // C2H4
-            .fluidOutputs(Methane.getFluid(250)) // CH4
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
-
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(SteamCrackedButane.getFluid(1000))
+            chancedOutput(dust, Carbon, 2500, 0)
+            fluidOutputs(Carbon5Fraction.getFluid(125))
+            fluidOutputs(Propane.getFluid(250))  // C3H8
+            fluidOutputs(Ethane.getFluid(750))   // C2H6
+            fluidOutputs(Ethylene.getFluid(750)) // C2H4
+            fluidOutputs(Methane.getFluid(250))  // CH4
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
     }
 
     private fun butadieneCrackProcessing()
     {
         // Deleted vanilla hydrogen cracked butadiene recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(HydroCrackedButadiene.getFluid(40)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(HydroCrackedButadiene.getFluid(100)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             HydroCrackedButadiene.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(HydroCrackedButadiene.getFluid(1000))
-            .fluidOutputs(Carbon5Fraction.getFluid(250))
-            .fluidOutputs(Butane.getFluid(500)) // C4H8
-            .fluidOutputs(Ethylene.getFluid(500)) // C2H4
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(HydroCrackedButadiene.getFluid(1000))
+            fluidOutputs(Carbon5Fraction.getFluid(250))
+            fluidOutputs(Butane.getFluid(500))   // C4H8
+            fluidOutputs(Ethylene.getFluid(500)) // C2H4
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // Deleted vanilla steam cracked butadiene recipes.
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(1)),
             arrayOf(SteamCrackedButadiene.getFluid(200)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(SteamCrackedButadiene.getFluid(100)))
-        GTRecipeHandler.removeRecipesByInputs(DISTILLERY_RECIPES,
+        DISTILLERY_RECIPES.removeRecipe(
             arrayOf(IntCircuitIngredient.getIntegratedCircuit(3)),
             arrayOf(SteamCrackedButadiene.getFluid(40)))
-
-        GTRecipeHandler.removeRecipesByInputs(DISTILLATION_RECIPES,
+        DISTILLATION_RECIPES.removeRecipe(
             SteamCrackedButadiene.getFluid(1000))
 
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(SteamCrackedButadiene.getFluid(1000))
-            .chancedOutput(dust, Carbon, 5000, 0)
-            .fluidOutputs(Carbon5Fraction.getFluid(125))
-            .fluidOutputs(Propene.getFluid(125))
-            .fluidOutputs(Ethylene.getFluid(250))
-            .fluidOutputs(Methane.getFluid(1000))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(SteamCrackedButadiene.getFluid(1000))
+            chancedOutput(dust, Carbon, 5000, 0)
+            fluidOutputs(Carbon5Fraction.getFluid(125))
+            fluidOutputs(Propene.getFluid(125))  // C3H6
+            fluidOutputs(Ethylene.getFluid(250)) // C2H4
+            fluidOutputs(Methane.getFluid(1000)) // CH4
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
     }
 
     // C5 Fraction is a petroleum fractionation products in reality world oil
@@ -395,225 +382,223 @@ internal object OilsChain
                     Propene.getFluid(1000)))
 
         // C5 Fraction -> Dimerized C5 Fraction.
-        FLUID_HEATER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .fluidInputs(Carbon5Fraction.getFluid(100))
-            .fluidOutputs(DimerizedCarbon5Fraction.getFluid(87))
-            .EUt(VA[LV])
-            .duration(15 * TICK)
-            .buildAndRegister()
+        FLUID_HEATER_RECIPES.addRecipe {
+            circuitMeta(2)
+            fluidInputs(Carbon5Fraction.getFluid(100))
+            fluidOutputs(DimerizedCarbon5Fraction.getFluid(87))
+            EUt(VA[LV])
+            duration(15 * TICK)
+        }
 
         // Dimerized C5 Fraction -> C10H12 + C5H12 + C5H8
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(DimerizedCarbon5Fraction.getFluid(870))
-            .fluidOutputs(Dicyclopentadiene.getFluid(130))
-            .fluidOutputs(Pentane.getFluid(380))
-            .fluidOutputs(Isoprene.getFluid(360))
-            .EUt(VA[LV])
-            .duration(3 * SECOND)
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(DimerizedCarbon5Fraction.getFluid(870))
+            fluidOutputs(Dicyclopentadiene.getFluid(130))
+            fluidOutputs(Pentane.getFluid(380))
+            fluidOutputs(Isoprene.getFluid(360))
+            EUt(VA[LV])
+            duration(3 * SECOND)
+        }
 
         // C10H12 -> 2C5H8
-        FLUID_HEATER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Dicyclopentadiene.getFluid(100))
-            .fluidOutputs(Isoprene.getFluid(200))
-            .EUt(VA[LV])
-            .duration(4 * TICK)
-            .buildAndRegister()
-
+        FLUID_HEATER_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Dicyclopentadiene.getFluid(100))
+            fluidOutputs(Isoprene.getFluid(200))
+            EUt(VA[LV])
+            duration(4 * TICK)
+        }
     }
 
     private fun oilFuelRecipes()
     {
-
         // Pentane
-        COMBUSTION_GENERATOR_FUELS.recipeBuilder()
-            .fluidInputs(Pentane.getFluid(1))
-            .EUt(V[LV])
-            .duration(2 * TICK)
-            .buildAndRegister()
-
+        COMBUSTION_GENERATOR_FUELS.addRecipe {
+            fluidInputs(Pentane.getFluid(1))
+            EUt(V[LV])
+            duration(2 * TICK)
+        }
     }
 
     private fun catalyticReforming()
     {
-        // ZSM5 processing.
+        // region ZSM5 Processing
 
         // 2Al + 3H2SO4 -> Al2(SO4)3 + 6H
-        ROASTER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Aluminium, 2)
-            .fluidInputs(SulfuricAcid.getFluid(3000))
-            .output(dust, AluminiumSulfate, 17)
-            .fluidOutputs(Hydrogen.getFluid(6000))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Aluminium, 2)
+            fluidInputs(SulfuricAcid.getFluid(3000))
+            output(dust, AluminiumSulfate, 17)
+            fluidOutputs(Hydrogen.getFluid(6000))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // 2Al + 3H2SO4 -> Al2(SO3)3 + 3H2O
-        ROASTER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Aluminium, 2)
-            .fluidInputs(SulfuricAcid.getFluid(3000))
-            .output(dust, AluminiumSulfite, 14)
-            .fluidOutputs(Steam.getFluid(3 * SU))
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Aluminium, 2)
+            fluidInputs(SulfuricAcid.getFluid(3000))
+            output(dust, AluminiumSulfite, 14)
+            fluidOutputs(Steam.getFluid(3 * SU))
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // NaOH + 3SiO2 + Al2(SO4)3 + H2O -> Na(Al2(SO4)3)(SiO2)2(H2O)2
-        VACUUM_CHAMBER_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_PLATE)
-            .input(dust, SodiumHydroxide, 2)
-            .input(dust, AluminiumSulfate, 17)
-            .input(dust, SiliconDioxide, 6)
-            .fluidInputs(Water.getFluid(1000))
-            .notConsumable(Ethanol.getFluid(1))
-            .output(plate, ZSM5) // Actually outputs 30, but this is only useful for some recipes.
-            .EUt(VA[IV])
-            .duration(30 * SECOND)
-            .buildAndRegister()
+        VACUUM_CHAMBER_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_PLATE)
+            input(dust, SodiumHydroxide, 2)
+            input(dust, AluminiumSulfate, 17)
+            input(dust, SiliconDioxide, 6)
+            fluidInputs(Water.getFluid(1000))
+            notConsumable(Ethanol.getFluid(1))
+            output(plate, ZSM5) // Actually outputs 30, but this is only useful for some recipes.
+            EUt(VA[IV])
+            duration(30 * SECOND)
+        }
+
+        // endregion
 
         // ZSM-5 is the highest catalyst of catalytic reforming process, this catalyst
         // can make catalytic reforming product 4x output materials.
 
         // Light Fuel
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, Platinum)
-            .fluidInputs(LightFuel.getFluid(1000))
-            .fluidOutputs(Toluene.getFluid(160))
-            .fluidOutputs(Benzene.getFluid(200))
-            .fluidOutputs(ParaXylene.getFluid(250))
-            .fluidOutputs(Dimethylbenzene.getFluid(300))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, Platinum)
+            fluidInputs(LightFuel.getFluid(1000))
+            fluidOutputs(Toluene.getFluid(160))
+            fluidOutputs(Benzene.getFluid(200))
+            fluidOutputs(ParaXylene.getFluid(250))
+            fluidOutputs(Dimethylbenzene.getFluid(300))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, Rhenium)
-            .fluidInputs(LightFuel.getFluid(1000))
-            .fluidOutputs(Toluene.getFluid(320))
-            .fluidOutputs(Benzene.getFluid(400))
-            .fluidOutputs(ParaXylene.getFluid(500))
-            .fluidOutputs(Dimethylbenzene.getFluid(600))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, Rhenium)
+            fluidInputs(LightFuel.getFluid(1000))
+            fluidOutputs(Toluene.getFluid(320))
+            fluidOutputs(Benzene.getFluid(400))
+            fluidOutputs(ParaXylene.getFluid(500))
+            fluidOutputs(Dimethylbenzene.getFluid(600))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, ZSM5)
-            .fluidInputs(LightFuel.getFluid(1000))
-            .fluidOutputs(Toluene.getFluid(640))
-            .fluidOutputs(Benzene.getFluid(800))
-            .fluidOutputs(ParaXylene.getFluid(1000))
-            .fluidOutputs(Dimethylbenzene.getFluid(1200))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, ZSM5)
+            fluidInputs(LightFuel.getFluid(1000))
+            fluidOutputs(Toluene.getFluid(640))
+            fluidOutputs(Benzene.getFluid(800))
+            fluidOutputs(ParaXylene.getFluid(1000))
+            fluidOutputs(Dimethylbenzene.getFluid(1200))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // Heavy Fuel
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, Platinum)
-            .fluidInputs(HeavyFuel.getFluid(1000))
-            .fluidOutputs(Toluene.getFluid(180))
-            .fluidOutputs(Benzene.getFluid(100))
-            .fluidOutputs(ParaXylene.getFluid(150))
-            .fluidOutputs(Dimethylbenzene.getFluid(400))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, Platinum)
+            fluidInputs(HeavyFuel.getFluid(1000))
+            fluidOutputs(Toluene.getFluid(180))
+            fluidOutputs(Benzene.getFluid(100))
+            fluidOutputs(ParaXylene.getFluid(150))
+            fluidOutputs(Dimethylbenzene.getFluid(400))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, Rhenium)
-            .fluidInputs(HeavyFuel.getFluid(1000))
-            .fluidOutputs(Toluene.getFluid(360))
-            .fluidOutputs(Benzene.getFluid(200))
-            .fluidOutputs(ParaXylene.getFluid(300))
-            .fluidOutputs(Dimethylbenzene.getFluid(800))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, Rhenium)
+            fluidInputs(HeavyFuel.getFluid(1000))
+            fluidOutputs(Toluene.getFluid(360))
+            fluidOutputs(Benzene.getFluid(200))
+            fluidOutputs(ParaXylene.getFluid(300))
+            fluidOutputs(Dimethylbenzene.getFluid(800))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, ZSM5)
-            .fluidInputs(HeavyFuel.getFluid(1000))
-            .fluidOutputs(Toluene.getFluid(720))
-            .fluidOutputs(Benzene.getFluid(400))
-            .fluidOutputs(ParaXylene.getFluid(600))
-            .fluidOutputs(Dimethylbenzene.getFluid(1600))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, ZSM5)
+            fluidInputs(HeavyFuel.getFluid(1000))
+            fluidOutputs(Toluene.getFluid(720))
+            fluidOutputs(Benzene.getFluid(400))
+            fluidOutputs(ParaXylene.getFluid(600))
+            fluidOutputs(Dimethylbenzene.getFluid(1600))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // Naphtha
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, Platinum)
-            .fluidInputs(Naphtha.getFluid(1000))
-            .fluidOutputs(Toluene.getFluid(60))
-            .fluidOutputs(Benzene.getFluid(200))
-            .fluidOutputs(ParaXylene.getFluid(350))
-            .fluidOutputs(Ethylbenzene.getFluid(200))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, Platinum)
+            fluidInputs(Naphtha.getFluid(1000))
+            fluidOutputs(Toluene.getFluid(60))
+            fluidOutputs(Benzene.getFluid(200))
+            fluidOutputs(ParaXylene.getFluid(350))
+            fluidOutputs(Ethylbenzene.getFluid(200))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, Rhenium)
-            .fluidInputs(Naphtha.getFluid(1000))
-            .fluidOutputs(Toluene.getFluid(120))
-            .fluidOutputs(Benzene.getFluid(400))
-            .fluidOutputs(ParaXylene.getFluid(700))
-            .fluidOutputs(Ethylbenzene.getFluid(400))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, Rhenium)
+            fluidInputs(Naphtha.getFluid(1000))
+            fluidOutputs(Toluene.getFluid(120))
+            fluidOutputs(Benzene.getFluid(400))
+            fluidOutputs(ParaXylene.getFluid(700))
+            fluidOutputs(Ethylbenzene.getFluid(400))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, ZSM5)
-            .fluidInputs(Naphtha.getFluid(1000))
-            .fluidOutputs(Toluene.getFluid(240))
-            .fluidOutputs(Benzene.getFluid(800))
-            .fluidOutputs(ParaXylene.getFluid(1400))
-            .fluidOutputs(Ethylbenzene.getFluid(800))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, ZSM5)
+            fluidInputs(Naphtha.getFluid(1000))
+            fluidOutputs(Toluene.getFluid(240))
+            fluidOutputs(Benzene.getFluid(800))
+            fluidOutputs(ParaXylene.getFluid(1400))
+            fluidOutputs(Ethylbenzene.getFluid(800))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
         // Refinery Gas
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, Platinum)
-            .fluidInputs(RefineryGas.getFluid(1000))
-            .fluidOutputs(Benzene.getFluid(50))
-            .fluidOutputs(Ethylbenzene.getFluid(250))
-            .fluidOutputs(ParaXylene.getFluid(250))
-            .fluidOutputs(Dimethylbenzene.getFluid(150))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, Platinum)
+            fluidInputs(RefineryGas.getFluid(1000))
+            fluidOutputs(Benzene.getFluid(50))
+            fluidOutputs(Ethylbenzene.getFluid(250))
+            fluidOutputs(ParaXylene.getFluid(250))
+            fluidOutputs(Dimethylbenzene.getFluid(150))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, Rhenium)
-            .fluidInputs(RefineryGas.getFluid(1000))
-            .fluidOutputs(Benzene.getFluid(100))
-            .fluidOutputs(Ethylbenzene.getFluid(500))
-            .fluidOutputs(ParaXylene.getFluid(500))
-            .fluidOutputs(Dimethylbenzene.getFluid(300))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, Rhenium)
+            fluidInputs(RefineryGas.getFluid(1000))
+            fluidOutputs(Benzene.getFluid(100))
+            fluidOutputs(Ethylbenzene.getFluid(500))
+            fluidOutputs(ParaXylene.getFluid(500))
+            fluidOutputs(Dimethylbenzene.getFluid(300))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
 
-        CATALYTIC_REFORMER_RECIPES.recipeBuilder()
-            .notConsumable(plate, ZSM5)
-            .fluidInputs(RefineryGas.getFluid(1000))
-            .fluidOutputs(Benzene.getFluid(200))
-            .fluidOutputs(Ethylbenzene.getFluid(1000))
-            .fluidOutputs(ParaXylene.getFluid(1000))
-            .fluidOutputs(Dimethylbenzene.getFluid(600))
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
-
+        CATALYTIC_REFORMER_RECIPES.addRecipe {
+            notConsumable(plate, ZSM5)
+            fluidInputs(RefineryGas.getFluid(1000))
+            fluidOutputs(Benzene.getFluid(200))
+            fluidOutputs(Ethylbenzene.getFluid(1000))
+            fluidOutputs(ParaXylene.getFluid(1000))
+            fluidOutputs(Dimethylbenzene.getFluid(600))
+            EUt(VA[MV])
+            duration(6 * SECOND)
+        }
     }
 
     // @formatter:on

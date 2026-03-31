@@ -19,6 +19,8 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
@@ -29,7 +31,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaborgiumDopedCa
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HIGHLY_DENSE_POLYMER_PLATE
-import net.minecraft.item.ItemStack
 
 internal object CosmicFabricChain
 {
@@ -39,110 +40,109 @@ internal object CosmicFabricChain
     fun init()
     {
         // Highly Dense Polymer Plate
-        FORMING_PRESS_RECIPES.recipeBuilder()
-            .input(plate, FullerenePolymerMatrix, 3)
-            .input(plate, TranscendentMetal, 3)
-            .input(plate, NeutroniumDopedCarbonNanotube, 3)
-            .input(plate, CosmicNeutronium, 3)
-            .input(plate, SeaborgiumDopedCarbonNanotube, 3)
-            .input(plate, LanthanumFullereneNanotube, 3)
-            .output(HIGHLY_DENSE_POLYMER_PLATE, 3)
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        FORMING_PRESS_RECIPES.addRecipe {
+            input(plate, FullerenePolymerMatrix, 3)
+            input(plate, TranscendentMetal, 3)
+            input(plate, NeutroniumDopedCarbonNanotube, 3)
+            input(plate, CosmicNeutronium, 3)
+            input(plate, SeaborgiumDopedCarbonNanotube, 3)
+            input(plate, LanthanumFullereneNanotube, 3)
+            output(HIGHLY_DENSE_POLYMER_PLATE, 3)
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
         // Highly Dense Polymer Plate -> Cosmic Fabric (plasma)
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(HIGHLY_DENSE_POLYMER_PLATE)
-            .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
-            .fluidOutputs(CosmicFabric.getPlasma(1000))
-            .EUt(VA[UXV])
-            .duration(30 * SECOND)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(HIGHLY_DENSE_POLYMER_PLATE)
+            inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
+            fluidOutputs(CosmicFabric.getPlasma(1000))
+            EUt(VA[UXV])
+            duration(30 * SECOND)
+        }
 
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(HIGHLY_DENSE_POLYMER_PLATE, 64)
-            .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
-            .fluidOutputs(CosmicFabric.getPlasma(64000))
-            .EUt(VA[OpV])
-            .duration(7 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(HIGHLY_DENSE_POLYMER_PLATE, 64)
+            inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
+            fluidOutputs(CosmicFabric.getPlasma(64000))
+            EUt(VA[OpV])
+            duration(7 * SECOND + 10 * TICK)
+        }
 
-        STELLAR_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(HIGHLY_DENSE_POLYMER_PLATE, 64)
-            .input(HIGHLY_DENSE_POLYMER_PLATE, 64)
-            .input(HIGHLY_DENSE_POLYMER_PLATE, 64)
-            .input(HIGHLY_DENSE_POLYMER_PLATE, 64)
-            .inputs(ItemStack(QUANTUM_CHROMODYNAMIC_CHARGE))
-            .fluidOutputs(CosmicFabric.getPlasma(256000))
-            .EUt(VA[MAX])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        STELLAR_FORGE_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(HIGHLY_DENSE_POLYMER_PLATE, 64)
+            input(HIGHLY_DENSE_POLYMER_PLATE, 64)
+            input(HIGHLY_DENSE_POLYMER_PLATE, 64)
+            input(HIGHLY_DENSE_POLYMER_PLATE, 64)
+            inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
+            fluidOutputs(CosmicFabric.getPlasma(256000))
+            EUt(VA[MAX])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // Cosmic Fabric (plasma) -> Cosmic Fabric (liquid)
-        VACUUM_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(CosmicFabric.getPlasma(1000))
-            .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
-            .fluidOutputs(CosmicFabric.getFluid(L))
-            .fluidOutputs(Helium.getFluid(500))
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        VACUUM_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(CosmicFabric.getPlasma(1000))
+            fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
+            fluidOutputs(CosmicFabric.getFluid(L))
+            fluidOutputs(Helium.getFluid(500))
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
-        VACUUM_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .fluidInputs(CosmicFabric.getPlasma(1000))
-            .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
-            .output(dust, CosmicFabric)
-            .fluidOutputs(Helium.getFluid(500))
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        VACUUM_RECIPES.addRecipe {
+            circuitMeta(2)
+            fluidInputs(CosmicFabric.getPlasma(1000))
+            fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
+            output(dust, CosmicFabric)
+            fluidOutputs(Helium.getFluid(500))
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
-        VACUUM_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(CosmicFabric.getPlasma(1000))
-            .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
-            .output(dustSmall, CosmicFabric, 4)
-            .fluidOutputs(Helium.getFluid(500))
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        VACUUM_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(CosmicFabric.getPlasma(1000))
+            fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
+            output(dustSmall, CosmicFabric, 4)
+            fluidOutputs(Helium.getFluid(500))
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
-        VACUUM_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .fluidInputs(CosmicFabric.getPlasma(1000))
-            .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
-            .output(dustTiny, CosmicFabric, 9)
-            .fluidOutputs(Helium.getFluid(500))
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        VACUUM_RECIPES.addRecipe {
+            circuitMeta(4)
+            fluidInputs(CosmicFabric.getPlasma(1000))
+            fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
+            output(dustTiny, CosmicFabric, 9)
+            fluidOutputs(Helium.getFluid(500))
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
-        VACUUM_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_INGOT)
-            .fluidInputs(CosmicFabric.getPlasma(1000))
-            .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
-            .output(ingot, CosmicFabric)
-            .fluidOutputs(Helium.getFluid(500))
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        VACUUM_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_INGOT)
+            fluidInputs(CosmicFabric.getPlasma(1000))
+            fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
+            output(ingot, CosmicFabric)
+            fluidOutputs(Helium.getFluid(500))
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
 
-        VACUUM_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_PLATE)
-            .fluidInputs(CosmicFabric.getPlasma(1000))
-            .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
-            .output(plate, CosmicFabric)
-            .fluidOutputs(Helium.getFluid(500))
-            .EUt(VA[UXV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
-
+        VACUUM_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_PLATE)
+            fluidInputs(CosmicFabric.getPlasma(1000))
+            fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
+            output(plate, CosmicFabric)
+            fluidOutputs(Helium.getFluid(500))
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
     }
 
     // @formatter:on

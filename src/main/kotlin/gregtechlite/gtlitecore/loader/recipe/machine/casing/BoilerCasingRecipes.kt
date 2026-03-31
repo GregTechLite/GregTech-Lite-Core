@@ -18,6 +18,7 @@ import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 
@@ -28,60 +29,60 @@ internal object BoilerCasingRecipes
 
     fun init()
     {
-        // Bronze pipe casing
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(plate, Bronze, 4)
-            .input(pipeNormalFluid, Bronze, 4)
-            .input(frameGt, Bronze)
-            .outputs(GTBoilerCasing.BRONZE_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        // Bronze Pipe Casing
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(plate, Bronze, 4)
+            input(pipeNormalFluid, Bronze, 4)
+            input(frameGt, Bronze)
+            outputs(GTBoilerCasing.BRONZE_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
-        // Steel pipe casing
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(plate, Steel, 4)
-            .input(pipeNormalFluid, Steel, 4)
-            .input(frameGt, Steel)
-            .outputs(GTBoilerCasing.STEEL_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        // Steel Pipe Casing
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(plate, Steel, 4)
+            input(pipeNormalFluid, Steel, 4)
+            input(frameGt, Steel)
+            outputs(GTBoilerCasing.STEEL_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
-        // Titanium pipe casing
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(plate, Titanium, 4)
-            .input(pipeNormalFluid, Titanium, 4)
-            .input(frameGt, Titanium)
-            .outputs(GTBoilerCasing.TITANIUM_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        // Titanium Pipe Casing
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(plate, Titanium, 4)
+            input(pipeNormalFluid, Titanium, 4)
+            input(frameGt, Titanium)
+            outputs(GTBoilerCasing.TITANIUM_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
-        // Tungsten Steel pipe casing
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(plate, TungstenSteel, 4)
-            .input(pipeNormalFluid, TungstenSteel, 4)
-            .input(frameGt, TungstenSteel)
-            .outputs(GTBoilerCasing.TUNGSTENSTEEL_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        // Tungsten Steel Pipe Casing
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(plate, TungstenSteel, 4)
+            input(pipeNormalFluid, TungstenSteel, 4)
+            input(frameGt, TungstenSteel)
+            outputs(GTBoilerCasing.TUNGSTENSTEEL_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
-        // Polytetrafluoroethylene pipe casing
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(plate, Polytetrafluoroethylene, 4)
-            .input(pipeNormalFluid, Polytetrafluoroethylene, 4)
-            .input(frameGt, Polytetrafluoroethylene)
-            .outputs(GTBoilerCasing.POLYTETRAFLUOROETHYLENE_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        // Polytetrafluoroethylene Pipe Casing
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(plate, Polytetrafluoroethylene, 4)
+            input(pipeNormalFluid, Polytetrafluoroethylene, 4)
+            input(frameGt, Polytetrafluoroethylene)
+            outputs(GTBoilerCasing.POLYTETRAFLUOROETHYLENE_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // Polybenzimidazole Pipe Casing
         ModHandler.addShapedRecipe(true, "polybenzimidazole_pipe_casing", BoilerCasing.POLYBENZIMIDAZOLE.getStack(ConfigHolder.recipes.casingsPerCraft),
@@ -90,16 +91,15 @@ internal object BoilerCasingRecipes
             'Q', UnificationEntry(pipeNormalFluid, Polybenzimidazole),
             'F', UnificationEntry(frameGt, Polybenzimidazole))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .input(plate, Polybenzimidazole, 4)
-            .input(pipeNormalFluid, Polybenzimidazole, 4)
-            .input(frameGt, Polybenzimidazole)
-            .outputs(BoilerCasing.POLYBENZIMIDAZOLE.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
-
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(plate, Polybenzimidazole, 4)
+            input(pipeNormalFluid, Polybenzimidazole, 4)
+            input(frameGt, Polybenzimidazole)
+            outputs(BoilerCasing.POLYBENZIMIDAZOLE.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
     }
 
     // @formatter:on

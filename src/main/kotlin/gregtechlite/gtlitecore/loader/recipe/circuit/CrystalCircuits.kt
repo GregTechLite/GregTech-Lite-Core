@@ -7,8 +7,6 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.metatileentity.multiblock.CleanroomType
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
@@ -17,7 +15,7 @@ import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.OreDictUnifier
-import gregtech.api.unification.material.MarkerMaterials
+import gregtech.api.unification.material.MarkerMaterials.Color
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.Helium
@@ -66,6 +64,9 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
@@ -118,12 +119,12 @@ internal object CrystalCircuits
         // other circuit boards.
         GTLiteRecipeHandler.removeChemicalRecipes(
             arrayOf(MULTILAYER_FIBER_BOARD.stackForm,
-                OreDictUnifier.get(foil, Platinum, 8)),
+                    OreDictUnifier.get(foil, Platinum, 8)),
             arrayOf(SodiumPersulfate.getFluid(4000)))
 
         GTLiteRecipeHandler.removeChemicalRecipes(
             arrayOf(MULTILAYER_FIBER_BOARD.stackForm,
-                OreDictUnifier.get(foil, Platinum, 8)),
+                    OreDictUnifier.get(foil, Platinum, 8)),
             arrayOf(Iron3Chloride.getFluid(2000)))
 
         // Advanced etching liquids recipe addition.
@@ -133,358 +134,357 @@ internal object CrystalCircuits
             TetramethylammoniumHydroxide.getFluid(1000),
             EthylenediaminePyrocatechol.getFluid(500)))
         {
-            CHEMICAL_RECIPES.recipeBuilder()
-                .input(MULTILAYER_FIBER_BOARD)
-                .input(foil, Platinum, 16)
-                .fluidInputs(etchingLiquid)
-                .output(ELITE_CIRCUIT_BOARD)
-                .EUt(VA[MV])
-                .duration(1 * MINUTE + 15 * SECOND)
-                .cleanroom(CleanroomType.CLEANROOM)
-                .buildAndRegister()
+            CHEMICAL_RECIPES.addRecipe {
+                input(MULTILAYER_FIBER_BOARD)
+                input(foil, Platinum, 16)
+                fluidInputs(etchingLiquid)
+                output(ELITE_CIRCUIT_BOARD)
+                EUt(VA[MV])
+                duration(1 * MINUTE + 15 * SECOND)
+                cleanroom()
+            }
         }
     }
 
     private fun circuitComponentsRecipes()
     {
         // Gem addition of engraved crystal chip.
-        BLAST_RECIPES.recipeBuilder()
-            .input(plate, Forsterite)
-            .input(RAW_CRYSTAL_CHIP)
-            .fluidInputs(Helium.getFluid(1000))
-            .output(ENGRAVED_CRYSTAL_CHIP)
-            .EUt(VA[HV])
-            .duration(45 * SECOND)
-            .blastFurnaceTemp(5000) // HSSG
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(plate, Forsterite)
+            input(RAW_CRYSTAL_CHIP)
+            fluidInputs(Helium.getFluid(1000))
+            output(ENGRAVED_CRYSTAL_CHIP)
+            EUt(VA[HV])
+            duration(45 * SECOND)
+            blastFurnaceTemp(5000) // HSSG
+        }
 
-        BLAST_RECIPES.recipeBuilder()
-            .input(plate, Aegirine)
-            .input(RAW_CRYSTAL_CHIP)
-            .fluidInputs(Helium.getFluid(1000))
-            .output(ENGRAVED_CRYSTAL_CHIP)
-            .EUt(VA[HV])
-            .duration(45 * SECOND)
-            .blastFurnaceTemp(5000) // HSSG
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(plate, Aegirine)
+            input(RAW_CRYSTAL_CHIP)
+            fluidInputs(Helium.getFluid(1000))
+            output(ENGRAVED_CRYSTAL_CHIP)
+            EUt(VA[HV])
+            duration(45 * SECOND)
+            blastFurnaceTemp(5000) // HSSG
+        }
 
-        BLAST_RECIPES.recipeBuilder()
-            .input(plate, Jade)
-            .input(RAW_CRYSTAL_CHIP)
-            .fluidInputs(Helium.getFluid(1000))
-            .output(ENGRAVED_CRYSTAL_CHIP)
-            .EUt(VA[HV])
-            .duration(45 * SECOND)
-            .blastFurnaceTemp(5000) // HSSG
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(plate, Jade)
+            input(RAW_CRYSTAL_CHIP)
+            fluidInputs(Helium.getFluid(1000))
+            output(ENGRAVED_CRYSTAL_CHIP)
+            EUt(VA[HV])
+            duration(45 * SECOND)
+            blastFurnaceTemp(5000) // HSSG
+        }
 
-        BLAST_RECIPES.recipeBuilder()
-            .input(plate, Prasiolite)
-            .input(RAW_CRYSTAL_CHIP)
-            .fluidInputs(Helium.getFluid(1000))
-            .output(ENGRAVED_CRYSTAL_CHIP)
-            .EUt(VA[HV])
-            .duration(45 * SECOND)
-            .blastFurnaceTemp(5000) // HSSG
-            .buildAndRegister()
+        BLAST_RECIPES.addRecipe {
+            input(plate, Prasiolite)
+            input(RAW_CRYSTAL_CHIP)
+            fluidInputs(Helium.getFluid(1000))
+            output(ENGRAVED_CRYSTAL_CHIP)
+            EUt(VA[HV])
+            duration(45 * SECOND)
+            blastFurnaceTemp(5000) // HSSG
+        }
 
         // Dielectric Mirror
-        MOLECULAR_BEAM_RECIPES.recipeBuilder()
-            .input(foil, PolyvinylButyral)
-            .input(dust, ErbiumDopedZBLANGlass, 2)
-            .input(dust, PraseodymiumDopedZBLANGlass, 2)
-            .input(dust, TantalumPentoxide, 7)
-            .output(DIELECTRIC_MIRROR)
-            .EUt(VA[LuV])
-            .duration(30 * SECOND)
-            .temperature(2820)
-            .buildAndRegister()
+        MOLECULAR_BEAM_RECIPES.addRecipe {
+            input(foil, PolyvinylButyral)
+            input(dust, ErbiumDopedZBLANGlass, 2)
+            input(dust, PraseodymiumDopedZBLANGlass, 2)
+            input(dust, TantalumPentoxide, 7)
+            output(DIELECTRIC_MIRROR)
+            EUt(VA[LuV])
+            duration(30 * SECOND)
+            temperature(2820)
+        }
 
         // Crystal Central Processing Unit (Crystal CPU)
-        GTRecipeHandler.removeRecipesByInputs(LASER_ENGRAVER_RECIPES,
-            OreDictUnifier.get(craftingLens, MarkerMaterials.Color.Lime),
+        LASER_ENGRAVER_RECIPES.removeRecipe(
+            OreDictUnifier.get(craftingLens, Color.Lime),
             ENGRAVED_CRYSTAL_CHIP.stackForm)
 
-        LASER_ENGRAVER_RECIPES.recipeBuilder()
-            .notConsumable(DIELECTRIC_MIRROR)
-            .notConsumable(craftingLens, MarkerMaterials.Color.Lime)
-            .input(ENGRAVED_CRYSTAL_CHIP)
-            .output(CRYSTAL_CENTRAL_PROCESSING_UNIT)
-            .EUt(10000) // LuV
-            .duration(5 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        LASER_ENGRAVER_RECIPES.addRecipe {
+            notConsumable(DIELECTRIC_MIRROR)
+            notConsumable(craftingLens, Color.Lime)
+            input(ENGRAVED_CRYSTAL_CHIP)
+            output(CRYSTAL_CENTRAL_PROCESSING_UNIT)
+            EUt(10000) // LuV
+            duration(5 * SECOND)
+            cleanroom()
+        }
     }
 
     private fun systemOnChipRecipes()
     {
         // Deleted original SoC recipes.
-        GTRecipeHandler.removeRecipesByInputs(LASER_ENGRAVER_RECIPES,
+        LASER_ENGRAVER_RECIPES.removeRecipe(
             CRYSTAL_CENTRAL_PROCESSING_UNIT.stackForm,
-            OreDictUnifier.get(craftingLens, MarkerMaterials.Color.Blue))
+            OreDictUnifier.get(craftingLens, Color.Blue))
 
         // c-ZrO2 + Eu -> Eu-doped c-ZrO2 Boule
-        CRYSTALLIZATION_RECIPES.recipeBuilder()
-            .input(dust, CubicZirconia, 64)
-            .input(dust, Europium, 8)
-            .output(EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE)
-            .EUt(VA[MV])
-            .duration(6 * SECOND)
-            .blastFurnaceTemp(3000) // Nichrome
-            .buildAndRegister()
+        CRYSTALLIZATION_RECIPES.addRecipe {
+            input(dust, CubicZirconia, 64)
+            input(dust, Europium, 8)
+            output(EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE)
+            EUt(VA[MV])
+            duration(6 * SECOND)
+            blastFurnaceTemp(3000) // Nichrome
+        }
 
         // Eu-doped c-ZrO2 Boule -> Eu-doped c-ZrO2 Wafer
-        CUTTER_RECIPES.recipeBuilder()
-            .input(EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE)
-            .fluidInputs(Lubricant.getFluid(100))
-            .output(EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER, 8)
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CUTTER_RECIPES.addRecipe {
+            input(EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE)
+            fluidInputs(Lubricant.getFluid(100))
+            output(EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER, 8)
+            EUt(VA[HV])
+            duration(5 * SECOND)
+            cleanroom()
+        }
 
         // Eu-doped c-ZrO2 Wafer -> Crystal Interface Wafer
-        LASER_ENGRAVER_RECIPES.recipeBuilder()
-            .notConsumable(lens, NetherStar)
-            .input(EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER)
-            .output(CRYSTAL_INTERFACE_WAFER)
-            .EUt(VA[LuV])
-            .duration(1 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        LASER_ENGRAVER_RECIPES.addRecipe {
+            notConsumable(lens, NetherStar)
+            input(EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER)
+            output(CRYSTAL_INTERFACE_WAFER)
+            EUt(VA[LuV])
+            duration(1 * SECOND)
+            cleanroom()
+        }
 
         // Crystal Interface Wafer -> Crystal Interface Chip
-        CUTTER_RECIPES.recipeBuilder()
-            .input(CRYSTAL_INTERFACE_WAFER)
-            .fluidInputs(Lubricant.getFluid(100))
-            .output(CRYSTAL_INTERFACE_CHIP, 8)
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CUTTER_RECIPES.addRecipe {
+            input(CRYSTAL_INTERFACE_WAFER)
+            fluidInputs(Lubricant.getFluid(100))
+            output(CRYSTAL_INTERFACE_CHIP, 8)
+            EUt(VA[HV])
+            duration(5 * SECOND)
+            cleanroom()
+        }
 
         // Diamond Modulator
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENGRAVED_DIAMOND_CHIP)
-            .input(PLASTIC_CIRCUIT_BOARD)
-            .input(wireFine, Palladium, 8)
-            .input(bolt, Platinum, 4)
-            .output(DIAMOND_MODULATOR, 8)
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .solderMultiplier(1)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(ENGRAVED_DIAMOND_CHIP)
+            input(PLASTIC_CIRCUIT_BOARD)
+            input(wireFine, Palladium, 8)
+            input(bolt, Platinum, 4)
+            output(DIAMOND_MODULATOR, 8)
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            solderMultiplier(1)
+            cleanroom()
+        }
 
         // Ruby Modulator
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENGRAVED_RUBY_CHIP)
-            .input(PLASTIC_CIRCUIT_BOARD)
-            .input(wireFine, Palladium, 8)
-            .input(bolt, Platinum, 4)
-            .output(RUBY_MODULATOR, 8)
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .solderMultiplier(1)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(ENGRAVED_RUBY_CHIP)
+            input(PLASTIC_CIRCUIT_BOARD)
+            input(wireFine, Palladium, 8)
+            input(bolt, Platinum, 4)
+            output(RUBY_MODULATOR, 8)
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            solderMultiplier(1)
+            cleanroom()
+        }
 
         // Sapphire Modulator
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ENGRAVED_SAPPHIRE_CHIP)
-            .input(PLASTIC_CIRCUIT_BOARD)
-            .input(wireFine, Palladium, 8)
-            .input(bolt, Platinum, 4)
-            .output(SAPPHIRE_MODULATOR, 8)
-            .EUt(VA[IV])
-            .duration(10 * SECOND)
-            .solderMultiplier(1)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(ENGRAVED_SAPPHIRE_CHIP)
+            input(PLASTIC_CIRCUIT_BOARD)
+            input(wireFine, Palladium, 8)
+            input(bolt, Platinum, 4)
+            output(SAPPHIRE_MODULATOR, 8)
+            EUt(VA[IV])
+            duration(10 * SECOND)
+            solderMultiplier(1)
+            cleanroom()
+        }
 
         // Crystal SoC Socket
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(CRYSTAL_INTERFACE_CHIP)
-            .input(DIAMOND_MODULATOR)
-            .input(RUBY_MODULATOR)
-            .input(SAPPHIRE_MODULATOR)
-            .input(wireFine, Europium, 4)
-            .output(CRYSTAL_SOC_SOCKET)
-            .EUt(VA[LuV])
-            .duration(5 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(CRYSTAL_INTERFACE_CHIP)
+            input(DIAMOND_MODULATOR)
+            input(RUBY_MODULATOR)
+            input(SAPPHIRE_MODULATOR)
+            input(wireFine, Europium, 4)
+            output(CRYSTAL_SOC_SOCKET)
+            EUt(VA[LuV])
+            duration(5 * SECOND)
+            cleanroom()
+        }
 
         // Crystal SoC
-        FORMING_PRESS_RECIPES.recipeBuilder()
-            .input(CRYSTAL_SOC_SOCKET)
-            .input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
-            .output(CRYSTAL_SYSTEM_ON_CHIP)
-            .EUt(VA[ZPM])
-            .duration(5 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
-
+        FORMING_PRESS_RECIPES.addRecipe {
+            input(CRYSTAL_SOC_SOCKET)
+            input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
+            output(CRYSTAL_SYSTEM_ON_CHIP)
+            EUt(VA[ZPM])
+            duration(5 * SECOND)
+            cleanroom()
+        }
     }
 
     private fun circuitRecipes()
     {
 
         // IV Crystal Processor
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(ELITE_CIRCUIT_BOARD.stackForm,
-                CRYSTAL_CENTRAL_PROCESSING_UNIT.stackForm,
-                NANO_CENTRAL_PROCESSING_UNIT.getStackForm(2),
-                ADVANCED_SMD_CAPACITOR.getStackForm(6),
-                ADVANCED_SMD_TRANSISTOR.getStackForm(6),
-                OreDictUnifier.get(wireFine, NiobiumTitanium, 8)),
+                    CRYSTAL_CENTRAL_PROCESSING_UNIT.stackForm,
+                    NANO_CENTRAL_PROCESSING_UNIT.getStackForm(2),
+                    ADVANCED_SMD_CAPACITOR.getStackForm(6),
+                    ADVANCED_SMD_TRANSISTOR.getStackForm(6),
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 8)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(ELITE_CIRCUIT_BOARD.stackForm,
-                CRYSTAL_CENTRAL_PROCESSING_UNIT.stackForm,
-                NANO_CENTRAL_PROCESSING_UNIT.getStackForm(2),
-                ADVANCED_SMD_CAPACITOR.getStackForm(6),
-                ADVANCED_SMD_TRANSISTOR.getStackForm(6),
-                OreDictUnifier.get(wireFine, NiobiumTitanium, 8)),
+                    CRYSTAL_CENTRAL_PROCESSING_UNIT.stackForm,
+                    NANO_CENTRAL_PROCESSING_UNIT.getStackForm(2),
+                    ADVANCED_SMD_CAPACITOR.getStackForm(6),
+                    ADVANCED_SMD_TRANSISTOR.getStackForm(6),
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 8)),
             arrayOf(Tin.getFluid(L)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(ELITE_CIRCUIT_BOARD.stackForm,
-                CRYSTAL_SYSTEM_ON_CHIP.stackForm,
-                OreDictUnifier.get(wireFine, NiobiumTitanium, 8),
-                OreDictUnifier.get(bolt, YttriumBariumCuprate, 8)),
+                    CRYSTAL_SYSTEM_ON_CHIP.stackForm,
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 8),
+                    OreDictUnifier.get(bolt, YttriumBariumCuprate, 8)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(ELITE_CIRCUIT_BOARD.stackForm,
-                CRYSTAL_SYSTEM_ON_CHIP.stackForm,
-                OreDictUnifier.get(wireFine, NiobiumTitanium, 8),
-                OreDictUnifier.get(bolt, YttriumBariumCuprate, 8)),
+                    CRYSTAL_SYSTEM_ON_CHIP.stackForm,
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 8),
+                    OreDictUnifier.get(bolt, YttriumBariumCuprate, 8)),
             arrayOf(Tin.getFluid(L)))
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ELITE_CIRCUIT_BOARD)
-            .input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
-            .input(NANO_CENTRAL_PROCESSING_UNIT, 2)
-            .input(ADVANCED_SMD_CAPACITOR, 4)
-            .input(ADVANCED_SMD_TRANSISTOR, 4)
-            .input(wireFine, NiobiumTitanium, 8)
-            .output(CRYSTAL_PROCESSOR_IV, 4)
-            .EUt(9600) // LuV
-            .duration(10 * SECOND)
-            .solderMultiplier(1)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(ELITE_CIRCUIT_BOARD)
+            input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
+            input(NANO_CENTRAL_PROCESSING_UNIT, 2)
+            input(ADVANCED_SMD_CAPACITOR, 4)
+            input(ADVANCED_SMD_TRANSISTOR, 4)
+            input(wireFine, NiobiumTitanium, 8)
+            output(CRYSTAL_PROCESSOR_IV, 4)
+            EUt(9600) // LuV
+            duration(10 * SECOND)
+            solderMultiplier(1)
+            cleanroom()
+        }
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ELITE_CIRCUIT_BOARD)
-            .input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
-            .input(NANO_CENTRAL_PROCESSING_UNIT, 2)
-            .input(GOOWARE_SMD_CAPACITOR)
-            .input(GOOWARE_SMD_TRANSISTOR)
-            .input(wireFine, NiobiumTitanium, 8)
-            .output(CRYSTAL_PROCESSOR_IV, 4)
-            .EUt(9600) // LuV
-            .duration(5 * SECOND)
-            .solderMultiplier(1)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(ELITE_CIRCUIT_BOARD)
+            input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
+            input(NANO_CENTRAL_PROCESSING_UNIT, 2)
+            input(GOOWARE_SMD_CAPACITOR)
+            input(GOOWARE_SMD_TRANSISTOR)
+            input(wireFine, NiobiumTitanium, 8)
+            output(CRYSTAL_PROCESSOR_IV, 4)
+            EUt(9600) // LuV
+            duration(5 * SECOND)
+            solderMultiplier(1)
+            cleanroom()
+        }
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ELITE_CIRCUIT_BOARD)
-            .input(CRYSTAL_SYSTEM_ON_CHIP)
-            .input(wireFine, NiobiumTitanium, 8)
-            .input(bolt, YttriumBariumCuprate, 8)
-            .output(CRYSTAL_PROCESSOR_IV, 8)
-            .EUt(86000) // ZPM
-            .duration(2 * SECOND + 10 * TICK)
-            .solderMultiplier(1)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(ELITE_CIRCUIT_BOARD)
+            input(CRYSTAL_SYSTEM_ON_CHIP)
+            input(wireFine, NiobiumTitanium, 8)
+            input(bolt, YttriumBariumCuprate, 8)
+            output(CRYSTAL_PROCESSOR_IV, 8)
+            EUt(86000) // ZPM
+            duration(2 * SECOND + 10 * TICK)
+            solderMultiplier(1)
+            cleanroom()
+        }
 
         // LuV Crystal Processor Assembly
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(ELITE_CIRCUIT_BOARD.stackForm,
-                CRYSTAL_PROCESSOR_IV.getStackForm(2),
-                ADVANCED_SMD_INDUCTOR.getStackForm(4),
-                ADVANCED_SMD_CAPACITOR.getStackForm(8),
-                RANDOM_ACCESS_MEMORY.getStackForm(24),
-                OreDictUnifier.get(wireFine, NiobiumTitanium, 16)),
+                    CRYSTAL_PROCESSOR_IV.getStackForm(2),
+                    ADVANCED_SMD_INDUCTOR.getStackForm(4),
+                    ADVANCED_SMD_CAPACITOR.getStackForm(8),
+                    RANDOM_ACCESS_MEMORY.getStackForm(24),
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 16)),
             arrayOf(SolderingAlloy.getFluid(L)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(ELITE_CIRCUIT_BOARD.stackForm,
-                CRYSTAL_PROCESSOR_IV.getStackForm(2),
-                ADVANCED_SMD_INDUCTOR.getStackForm(4),
-                ADVANCED_SMD_CAPACITOR.getStackForm(8),
-                RANDOM_ACCESS_MEMORY.getStackForm(24),
-                OreDictUnifier.get(wireFine, NiobiumTitanium, 16)),
+                    CRYSTAL_PROCESSOR_IV.getStackForm(2),
+                    ADVANCED_SMD_INDUCTOR.getStackForm(4),
+                    ADVANCED_SMD_CAPACITOR.getStackForm(8),
+                    RANDOM_ACCESS_MEMORY.getStackForm(24),
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 16)),
             arrayOf(Tin.getFluid(L * 2)))
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ELITE_CIRCUIT_BOARD)
-            .input(CRYSTAL_PROCESSOR_IV, 4)
-            .input(ADVANCED_SMD_INDUCTOR, 4)
-            .input(ADVANCED_SMD_CAPACITOR, 8)
-            .input(RANDOM_ACCESS_MEMORY, 24)
-            .input(wireFine, NiobiumTitanium, 16)
-            .output(CRYSTAL_ASSEMBLY_LUV, 3)
-            .EUt(9600) // LuV
-            .duration(20 * SECOND)
-            .solderMultiplier(2)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(ELITE_CIRCUIT_BOARD)
+            input(CRYSTAL_PROCESSOR_IV, 4)
+            input(ADVANCED_SMD_INDUCTOR, 4)
+            input(ADVANCED_SMD_CAPACITOR, 8)
+            input(RANDOM_ACCESS_MEMORY, 24)
+            input(wireFine, NiobiumTitanium, 16)
+            output(CRYSTAL_ASSEMBLY_LUV, 3)
+            EUt(9600) // LuV
+            duration(20 * SECOND)
+            solderMultiplier(2)
+            cleanroom()
+        }
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ELITE_CIRCUIT_BOARD)
-            .input(CRYSTAL_PROCESSOR_IV, 4)
-            .input(GOOWARE_SMD_INDUCTOR)
-            .input(GOOWARE_SMD_CAPACITOR, 2)
-            .input(RANDOM_ACCESS_MEMORY, 24)
-            .input(wireFine, NiobiumTitanium, 16)
-            .output(CRYSTAL_ASSEMBLY_LUV, 3)
-            .EUt(9600) // LuV
-            .duration(10 * SECOND)
-            .solderMultiplier(2)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(ELITE_CIRCUIT_BOARD)
+            input(CRYSTAL_PROCESSOR_IV, 4)
+            input(GOOWARE_SMD_INDUCTOR)
+            input(GOOWARE_SMD_CAPACITOR, 2)
+            input(RANDOM_ACCESS_MEMORY, 24)
+            input(wireFine, NiobiumTitanium, 16)
+            output(CRYSTAL_ASSEMBLY_LUV, 3)
+            EUt(9600) // LuV
+            duration(10 * SECOND)
+            solderMultiplier(2)
+            cleanroom()
+        }
 
         // ZPM Crystal Supercomputer
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(ELITE_CIRCUIT_BOARD.stackForm,
-                CRYSTAL_ASSEMBLY_LUV.getStackForm(2),
-                RANDOM_ACCESS_MEMORY.getStackForm(4),
-                NOR_MEMORY_CHIP.getStackForm(32),
-                NAND_MEMORY_CHIP.getStackForm(64),
-                OreDictUnifier.get(wireFine, NiobiumTitanium, 32)),
+                    CRYSTAL_ASSEMBLY_LUV.getStackForm(2),
+                    RANDOM_ACCESS_MEMORY.getStackForm(4),
+                    NOR_MEMORY_CHIP.getStackForm(32),
+                    NAND_MEMORY_CHIP.getStackForm(64),
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 32)),
             arrayOf(SolderingAlloy.getFluid(L)))
 
-        GTRecipeHandler.removeRecipesByInputs(CIRCUIT_ASSEMBLER_RECIPES,
+        CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(ELITE_CIRCUIT_BOARD.stackForm,
-                CRYSTAL_ASSEMBLY_LUV.getStackForm(2),
-                RANDOM_ACCESS_MEMORY.getStackForm(4),
-                NOR_MEMORY_CHIP.getStackForm(32),
-                NAND_MEMORY_CHIP.getStackForm(64),
-                OreDictUnifier.get(wireFine, NiobiumTitanium, 32)),
+                    CRYSTAL_ASSEMBLY_LUV.getStackForm(2),
+                    RANDOM_ACCESS_MEMORY.getStackForm(4),
+                    NOR_MEMORY_CHIP.getStackForm(32),
+                    NAND_MEMORY_CHIP.getStackForm(64),
+                    OreDictUnifier.get(wireFine, NiobiumTitanium, 32)),
             arrayOf(Tin.getFluid(L * 2)))
 
-        CIRCUIT_ASSEMBLER_RECIPES.recipeBuilder()
-            .input(ELITE_CIRCUIT_BOARD)
-            .input(CRYSTAL_ASSEMBLY_LUV, 3)
-            .input(RANDOM_ACCESS_MEMORY, 4)
-            .input(NOR_MEMORY_CHIP, 32)
-            .input(NAND_MEMORY_CHIP, 64)
-            .input(wireFine, NiobiumTitanium, 32)
-            .output(CRYSTAL_COMPUTER_ZPM, 2)
-            .EUt(9600) // LuV
-            .duration(20 * SECOND)
-            .solderMultiplier(2)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
+            input(ELITE_CIRCUIT_BOARD)
+            input(CRYSTAL_ASSEMBLY_LUV, 3)
+            input(RANDOM_ACCESS_MEMORY, 4)
+            input(NOR_MEMORY_CHIP, 32)
+            input(NAND_MEMORY_CHIP, 64)
+            input(wireFine, NiobiumTitanium, 32)
+            output(CRYSTAL_COMPUTER_ZPM, 2)
+            EUt(9600) // LuV
+            duration(20 * SECOND)
+            solderMultiplier(2)
+            cleanroom()
+        }
 
         // UV Crystal Mainframe
-        GTRecipeHandler.removeRecipesByInputs(ASSEMBLY_LINE_RECIPES,
+        ASSEMBLY_LINE_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(frameGt, HSSE, 2),
                 CRYSTAL_COMPUTER_ZPM.getStackForm(2),
                 RANDOM_ACCESS_MEMORY.getStackForm(32),
@@ -495,66 +495,65 @@ internal object CrystalCircuits
                 ADVANCED_SMD_DIODE.getStackForm(8)),
             arrayOf(SolderingAlloy.getFluid(L * 10)))
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(frameGt, HSSE)
-            .input(CRYSTAL_COMPUTER_ZPM, 2)
-            .input(ADVANCED_SMD_INDUCTOR, 16)
-            .input(ADVANCED_SMD_CAPACITOR, 16)
-            .input(ADVANCED_SMD_DIODE, 16)
-            .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
-            .input(RANDOM_ACCESS_MEMORY, 32)
-            .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
-            .fluidInputs(SolderingAlloy.getFluid(L * 10))
-            .output(CRYSTAL_MAINFRAME_UV)
-            .EUt(VA[LuV])
-            .duration(40 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(frameGt, HSSE)
+            input(CRYSTAL_COMPUTER_ZPM, 2)
+            input(ADVANCED_SMD_INDUCTOR, 16)
+            input(ADVANCED_SMD_CAPACITOR, 16)
+            input(ADVANCED_SMD_DIODE, 16)
+            input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+            input(RANDOM_ACCESS_MEMORY, 32)
+            input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
+            fluidInputs(SolderingAlloy.getFluid(L * 10))
+            output(CRYSTAL_MAINFRAME_UV)
+            EUt(VA[LuV])
+            duration(40 * SECOND)
+            stationResearch {
                 it.researchStack(CRYSTAL_COMPUTER_ZPM)
                     .EUt(VA[LuV])
                     .CWUt(16)
             }
-            .buildAndRegister()
+        }
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(frameGt, HSSE)
-            .input(CRYSTAL_COMPUTER_ZPM, 2)
-            .input(GOOWARE_SMD_INDUCTOR, 4)
-            .input(GOOWARE_SMD_CAPACITOR, 4)
-            .input(GOOWARE_SMD_DIODE, 4)
-            .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
-            .input(RANDOM_ACCESS_MEMORY, 32)
-            .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
-            .fluidInputs(SolderingAlloy.getFluid(L * 10))
-            .output(CRYSTAL_MAINFRAME_UV)
-            .EUt(VA[LuV])
-            .duration(20 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(frameGt, HSSE)
+            input(CRYSTAL_COMPUTER_ZPM, 2)
+            input(GOOWARE_SMD_INDUCTOR, 4)
+            input(GOOWARE_SMD_CAPACITOR, 4)
+            input(GOOWARE_SMD_DIODE, 4)
+            input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+            input(RANDOM_ACCESS_MEMORY, 32)
+            input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
+            fluidInputs(SolderingAlloy.getFluid(L * 10))
+            output(CRYSTAL_MAINFRAME_UV)
+            EUt(VA[LuV])
+            duration(20 * SECOND)
+            stationResearch {
                 it.researchStack(CRYSTAL_COMPUTER_ZPM)
                     .EUt(VA[LuV])
                     .CWUt(16)
             }
-            .buildAndRegister()
+        }
 
-        ASSEMBLY_LINE_RECIPES.recipeBuilder()
-            .input(frameGt, HSSE)
-            .input(CRYSTAL_COMPUTER_ZPM, 2)
-            .input(OPTICAL_SMD_INDUCTOR)
-            .input(OPTICAL_SMD_CAPACITOR)
-            .input(OPTICAL_SMD_DIODE)
-            .input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
-            .input(RANDOM_ACCESS_MEMORY, 32)
-            .input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
-            .fluidInputs(SolderingAlloy.getFluid(L * 10))
-            .output(CRYSTAL_MAINFRAME_UV)
-            .EUt(VA[LuV])
-            .duration(10 * SECOND)
-            .stationResearch {
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(frameGt, HSSE)
+            input(CRYSTAL_COMPUTER_ZPM, 2)
+            input(OPTICAL_SMD_INDUCTOR)
+            input(OPTICAL_SMD_CAPACITOR)
+            input(OPTICAL_SMD_DIODE)
+            input(HIGH_POWER_INTEGRATED_CIRCUIT, 2)
+            input(RANDOM_ACCESS_MEMORY, 32)
+            input(wireGtSingle, IndiumTinBariumTitaniumCuprate, 8)
+            fluidInputs(SolderingAlloy.getFluid(L * 10))
+            output(CRYSTAL_MAINFRAME_UV)
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+            stationResearch {
                 it.researchStack(CRYSTAL_COMPUTER_ZPM)
                     .EUt(VA[LuV])
                     .CWUt(16)
             }
-            .buildAndRegister()
-
+        }
     }
 
     // @formatter:on

@@ -12,6 +12,7 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.common.block.variant.PrimitiveCasing
 
 internal object PrimitiveCasingRecipes
@@ -28,15 +29,15 @@ internal object PrimitiveCasingRecipes
             'Q', UnificationEntry(plate, Steel),
             'F', UnificationEntry(frameGt, TreatedWood))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .input(plate, TreatedWood, 4)
-            .input(plate, Steel, 2)
-            .input(frameGt, TreatedWood)
-            .outputs(PrimitiveCasing.REINFORCED_TREATED_WOOD_WALL.getStack(2))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(6)
+            input(plate, TreatedWood, 4)
+            input(plate, Steel, 2)
+            input(frameGt, TreatedWood)
+            outputs(PrimitiveCasing.REINFORCED_TREATED_WOOD_WALL.getStack(2))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
     }
 
     // @formatter:on

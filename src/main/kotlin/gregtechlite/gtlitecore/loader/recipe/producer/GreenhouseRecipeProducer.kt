@@ -13,6 +13,7 @@ import gregtech.common.items.MetaItems.STICKY_RESIN
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.GREENHOUSE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenhouseGas
@@ -109,19 +110,18 @@ internal object GreenhouseRecipeProducer
         data object GreenhouseGasBasic      : RecipeFrontend(GreenhouseGas.getFluid(1000), 0, 6, 12, 2, 6)
         data object AirFertilized           : RecipeFrontend(Air.getFluid(1000), 4, 6, 12, 2, 6)
         data object GreenhouseGasFertilized : RecipeFrontend(GreenhouseGas.getFluid(1000), 4, 8, 16, 4, 3)
-
     }
 
     fun produce()
     {
         // Greenhouse Gas
-        FLUID_HEATER_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Air.getFluid(100))
-            .fluidOutputs(GreenhouseGas.getFluid(100))
-            .EUt(VA[MV])
-            .duration(1 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        FLUID_HEATER_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Air.getFluid(100))
+            fluidOutputs(GreenhouseGas.getFluid(100))
+            EUt(VA[MV])
+            duration(1 * SECOND + 5 * TICK)
+        }
 
         // region Vanilla Trees Recipes
         addGreenhouseRecipes(ItemStack(Blocks.SAPLING, 1, 0), // Oak Sapling
@@ -379,7 +379,6 @@ internal object GreenhouseRecipeProducer
             CRANBERRY.getStackForm(6))
 
         // endregion
-
     }
 
     private fun addGreenhouseRecipes(saplingStack: ItemStack,

@@ -4,7 +4,6 @@ import gregtech.api.GTValues.L
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UIV
 import gregtech.api.GTValues.VA
-import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.COMPRESSOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.material.Materials.Americium
@@ -29,6 +28,8 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_GENERATOR_FUELS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
@@ -49,167 +50,168 @@ internal object AntimatterChain
     fun init()
     {
         // Protomatter
-        LASER_ENGRAVER_RECIPES.recipeBuilder()
-            .notConsumable(QUANTUM_ANOMALY)
-            .fluidInputs(QuarkGluonPlasma.getFluid(1000))
-            .fluidOutputs(Protomatter.getFluid(1000))
-            .EUt(VA[UEV])
-            .duration(30 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        LASER_ENGRAVER_RECIPES.addRecipe {
+            notConsumable(QUANTUM_ANOMALY)
+            fluidInputs(QuarkGluonPlasma.getFluid(1000))
+            fluidOutputs(Protomatter.getFluid(1000))
+            EUt(VA[UEV])
+            duration(30 * SECOND)
+            cleanroom()
+        }
 
-        LASER_ENGRAVER_RECIPES.recipeBuilder()
-            .notConsumable(QUANTUM_ANOMALY)
-            .fluidInputs(HighEnergyQuarkGluonPlasma.getFluid(1000))
-            .fluidOutputs(Protomatter.getFluid(10000))
-            .EUt(VA[UIV])
-            .duration(10 * SECOND)
-            .cleanroom(CleanroomType.CLEANROOM)
-            .buildAndRegister()
+        LASER_ENGRAVER_RECIPES.addRecipe {
+            notConsumable(QUANTUM_ANOMALY)
+            fluidInputs(HighEnergyQuarkGluonPlasma.getFluid(1000))
+            fluidOutputs(Protomatter.getFluid(10000))
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
 
         // Protomatter -> Semistable Antimatter
-        ANTIMATTER_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Protomatter.getFluid(1000)) // 100 : 1
-            .fluidInputs(Helium.getPlasma(1000))
-            .fluidInputs(Iron.getPlasma(1000))
-            .fluidInputs(Calcium.getPlasma(1000))
-            .fluidInputs(Niobium.getPlasma(1000)) // 1
-            .fluidOutputs(SemistableAntimatter.getFluid(10))
-            .EUt(145_149_830) // OpV
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ANTIMATTER_FORGE_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Protomatter.getFluid(1000)) // 100 : 1
+            fluidInputs(Helium.getPlasma(1000))
+            fluidInputs(Iron.getPlasma(1000))
+            fluidInputs(Calcium.getPlasma(1000))
+            fluidInputs(Niobium.getPlasma(1000)) // MK1
+            fluidOutputs(SemistableAntimatter.getFluid(10))
+            EUt(145_149_830) // OpV
+            duration(5 * SECOND)
+        }
 
-        ANTIMATTER_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .fluidInputs(Protomatter.getFluid(10000)) // 10 : 1
-            .fluidInputs(Helium.getPlasma(1000))
-            .fluidInputs(Iron.getPlasma(1000))
-            .fluidInputs(Calcium.getPlasma(1000))
-            .fluidInputs(Niobium.getPlasma(1000)) // 1
-            .fluidInputs(Radon.getPlasma(1000))
-            .fluidInputs(Nickel.getPlasma(1000))
-            .fluidInputs(Boron.getPlasma(1000))
-            .fluidInputs(Sulfur.getPlasma(1000)) // 2
-            .fluidOutputs(SemistableAntimatter.getFluid(1000))
-            .EUt(667_684_600) // MAX
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ANTIMATTER_FORGE_RECIPES.addRecipe {
+            circuitMeta(2)
+            fluidInputs(Protomatter.getFluid(10000)) // 10 : 1
+            fluidInputs(Helium.getPlasma(1000))
+            fluidInputs(Iron.getPlasma(1000))
+            fluidInputs(Calcium.getPlasma(1000))
+            fluidInputs(Niobium.getPlasma(1000)) // MK1
+            fluidInputs(Radon.getPlasma(1000))
+            fluidInputs(Nickel.getPlasma(1000))
+            fluidInputs(Boron.getPlasma(1000))
+            fluidInputs(Sulfur.getPlasma(1000))  // MK2
+            fluidOutputs(SemistableAntimatter.getFluid(1000))
+            EUt(667_684_600) // MAX
+            duration(5 * SECOND)
+        }
 
-        ANTIMATTER_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Protomatter.getFluid(100_000)) // 1 : 1
-            .fluidInputs(Helium.getPlasma(1000))
-            .fluidInputs(Iron.getPlasma(1000))
-            .fluidInputs(Calcium.getPlasma(1000))
-            .fluidInputs(Niobium.getPlasma(1000)) // 1
-            .fluidInputs(Radon.getPlasma(1000))
-            .fluidInputs(Nickel.getPlasma(1000))
-            .fluidInputs(Boron.getPlasma(1000))
-            .fluidInputs(Sulfur.getPlasma(1000)) // 2
-            .fluidInputs(Nitrogen.getPlasma(1000))
-            .fluidInputs(Zinc.getPlasma(1000))
-            .fluidInputs(Silver.getPlasma(1000))
-            .fluidInputs(Titanium.getPlasma(1000)) // 3
-            .fluidOutputs(SemistableAntimatter.getFluid(100_000))
-            .EUt(2_693_264_510) // MAX+
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ANTIMATTER_FORGE_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Protomatter.getFluid(100_000)) // 1 : 1
+            fluidInputs(Helium.getPlasma(1000))
+            fluidInputs(Iron.getPlasma(1000))
+            fluidInputs(Calcium.getPlasma(1000))
+            fluidInputs(Niobium.getPlasma(1000))  // MK1
+            fluidInputs(Radon.getPlasma(1000))
+            fluidInputs(Nickel.getPlasma(1000))
+            fluidInputs(Boron.getPlasma(1000))
+            fluidInputs(Sulfur.getPlasma(1000))   // MK2
+            fluidInputs(Nitrogen.getPlasma(1000))
+            fluidInputs(Zinc.getPlasma(1000))
+            fluidInputs(Silver.getPlasma(1000))
+            fluidInputs(Titanium.getPlasma(1000)) // MK3
+            fluidOutputs(SemistableAntimatter.getFluid(100_000))
+            EUt(2_693_264_510) // MAX+
+            duration(5 * SECOND)
+        }
 
-        ANTIMATTER_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .fluidInputs(Protomatter.getFluid(1_000_000)) // 1 : 10
-            .fluidInputs(Helium.getPlasma(1000))
-            .fluidInputs(Iron.getPlasma(1000))
-            .fluidInputs(Calcium.getPlasma(1000))
-            .fluidInputs(Niobium.getPlasma(1000)) // 1
-            .fluidInputs(Radon.getPlasma(1000))
-            .fluidInputs(Nickel.getPlasma(1000))
-            .fluidInputs(Boron.getPlasma(1000))
-            .fluidInputs(Sulfur.getPlasma(1000)) // 2
-            .fluidInputs(Nitrogen.getPlasma(1000))
-            .fluidInputs(Zinc.getPlasma(1000))
-            .fluidInputs(Silver.getPlasma(1000))
-            .fluidInputs(Titanium.getPlasma(1000)) // 3
-            .fluidInputs(Americium.getPlasma(1000))
-            .fluidInputs(Bismuth.getPlasma(1000))
-            .fluidInputs(Oxygen.getPlasma(1000))
-            .fluidInputs(Tin.getPlasma(1000)) // 4
-            .fluidOutputs(SemistableAntimatter.getFluid(10_000_000))
-            .EUt(10_730_073_930) // MAX+
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ANTIMATTER_FORGE_RECIPES.addRecipe {
+            circuitMeta(4)
+            fluidInputs(Protomatter.getFluid(1_000_000)) // 1 : 10
+            fluidInputs(Helium.getPlasma(1000))
+            fluidInputs(Iron.getPlasma(1000))
+            fluidInputs(Calcium.getPlasma(1000))
+            fluidInputs(Niobium.getPlasma(1000))  // MK1
+            fluidInputs(Radon.getPlasma(1000))
+            fluidInputs(Nickel.getPlasma(1000))
+            fluidInputs(Boron.getPlasma(1000))
+            fluidInputs(Sulfur.getPlasma(1000))   // MK2
+            fluidInputs(Nitrogen.getPlasma(1000))
+            fluidInputs(Zinc.getPlasma(1000))
+            fluidInputs(Silver.getPlasma(1000))
+            fluidInputs(Titanium.getPlasma(1000)) // MK3
+            fluidInputs(Americium.getPlasma(1000))
+            fluidInputs(Bismuth.getPlasma(1000))
+            fluidInputs(Oxygen.getPlasma(1000))
+            fluidInputs(Tin.getPlasma(1000))      // MK4
+            fluidOutputs(SemistableAntimatter.getFluid(10_000_000))
+            EUt(10_730_073_930) // MAX+
+            duration(5 * SECOND)
+        }
 
-        ANTIMATTER_FORGE_RECIPES.recipeBuilder()
-            .circuitMeta(5)
-            .fluidInputs(Protomatter.getFluid(10_000_000)) // 1 : 100
-            .fluidInputs(Helium.getPlasma(1000))
-            .fluidInputs(Iron.getPlasma(1000))
-            .fluidInputs(Calcium.getPlasma(1000))
-            .fluidInputs(Niobium.getPlasma(1000)) // 1
-            .fluidInputs(Radon.getPlasma(1000))
-            .fluidInputs(Nickel.getPlasma(1000))
-            .fluidInputs(Boron.getPlasma(1000))
-            .fluidInputs(Sulfur.getPlasma(1000)) // 2
-            .fluidInputs(Nitrogen.getPlasma(1000))
-            .fluidInputs(Zinc.getPlasma(1000))
-            .fluidInputs(Silver.getPlasma(1000))
-            .fluidInputs(Titanium.getPlasma(1000)) // 3
-            .fluidInputs(Americium.getPlasma(1000))
-            .fluidInputs(Bismuth.getPlasma(1000))
-            .fluidInputs(Oxygen.getPlasma(1000))
-            .fluidInputs(Tin.getPlasma(1000)) // 4
-            .fluidInputs(Thorium.getPlasma(1000))
-            .fluidInputs(Lead.getPlasma(1000))
-            .fluidInputs(Neptunium.getPlasma(1000))
-            .fluidInputs(Fermium.getPlasma(1000)) // 5
-            .fluidOutputs(SemistableAntimatter.getFluid(1_000_000_000))
-            .EUt(42_767_675_200) // MAX+
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ANTIMATTER_FORGE_RECIPES.addRecipe {
+            circuitMeta(5)
+            fluidInputs(Protomatter.getFluid(10_000_000)) // 1 : 100
+            fluidInputs(Helium.getPlasma(1000))
+            fluidInputs(Iron.getPlasma(1000))
+            fluidInputs(Calcium.getPlasma(1000))
+            fluidInputs(Niobium.getPlasma(1000))  // MK1
+            fluidInputs(Radon.getPlasma(1000))
+            fluidInputs(Nickel.getPlasma(1000))
+            fluidInputs(Boron.getPlasma(1000))
+            fluidInputs(Sulfur.getPlasma(1000))   // MK2
+            fluidInputs(Nitrogen.getPlasma(1000))
+            fluidInputs(Zinc.getPlasma(1000))
+            fluidInputs(Silver.getPlasma(1000))
+            fluidInputs(Titanium.getPlasma(1000)) // MK3
+            fluidInputs(Americium.getPlasma(1000))
+            fluidInputs(Bismuth.getPlasma(1000))
+            fluidInputs(Oxygen.getPlasma(1000))
+            fluidInputs(Tin.getPlasma(1000))      // MK4
+            fluidInputs(Thorium.getPlasma(1000))
+            fluidInputs(Lead.getPlasma(1000))
+            fluidInputs(Neptunium.getPlasma(1000))
+            fluidInputs(Fermium.getPlasma(1000))  // MK5
+            fluidOutputs(SemistableAntimatter.getFluid(1_000_000_000))
+            EUt(42_767_675_200) // MAX+
+            duration(5 * SECOND)
+        }
 
         // Semistable Antimatter -> Antimatter
-        COMPRESSOR_RECIPES.recipeBuilder()
-            .fluidInputs(SemistableAntimatter.getFluid(1000))
-            .fluidOutputs(Antimatter.getFluid(100))
-            .EUt(VA[UEV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        COMPRESSOR_RECIPES.addRecipe {
+            fluidInputs(SemistableAntimatter.getFluid(1000))
+            fluidOutputs(Antimatter.getFluid(100))
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+        }
 
-        // Antimatter annihilation.
+        // region Antimatter Annihilation
 
         // 1.0
-        ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
-            .fluidInputs(Antimatter.getFluid(1))
-            .fluidInputs(Lead.getPlasma(1000))
-            .EUt(1_000_000_000_000)
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ANTIMATTER_GENERATOR_FUELS.addRecipe {
+            fluidInputs(Antimatter.getFluid(1))
+            fluidInputs(Lead.getPlasma(1000))
+            EUt(1_000_000_000_000)
+            duration(10 * SECOND)
+        }
 
         // 1.5
-        ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
-            .fluidInputs(Antimatter.getFluid(1))
-            .fluidInputs(Infinity.getFluid(L * 4))
-            .EUt(1_500_000_000_000)
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ANTIMATTER_GENERATOR_FUELS.addRecipe {
+            fluidInputs(Antimatter.getFluid(1))
+            fluidInputs(Infinity.getFluid(L * 4))
+            EUt(1_500_000_000_000)
+            duration(10 * SECOND)
+        }
 
         // 2.0
-        ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
-            .fluidInputs(Antimatter.getFluid(1))
-            .fluidInputs(Shirabon.getFluid(L * 4))
-            .EUt(2_000_000_000_000)
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ANTIMATTER_GENERATOR_FUELS.addRecipe {
+            fluidInputs(Antimatter.getFluid(1))
+            fluidInputs(Shirabon.getFluid(L * 4))
+            EUt(2_000_000_000_000)
+            duration(10 * SECOND)
+        }
 
         // 4.0
-        ANTIMATTER_GENERATOR_FUELS.recipeBuilder()
-            .fluidInputs(Antimatter.getFluid(1))
-            .fluidInputs(RawStarMatter.getFluid(L * 4))
-            .EUt(4_000_000_000_000)
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ANTIMATTER_GENERATOR_FUELS.addRecipe {
+            fluidInputs(Antimatter.getFluid(1))
+            fluidInputs(RawStarMatter.getFluid(L * 4))
+            EUt(4_000_000_000_000)
+            duration(10 * SECOND)
+        }
 
+        // endregion
     }
 
     // @formatter:on

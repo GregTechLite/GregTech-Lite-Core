@@ -6,6 +6,7 @@ import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SAP_COLLECTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RainbowSap
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resin
@@ -20,30 +21,30 @@ internal object SapCollectorRecipes
 
     fun init()
     {
-        // Vanilla logs.
-        SAP_COLLECTOR_RECIPES.recipeBuilder()
-            .notConsumable(DistilledWater.getFluid(10))
-            .fluidOutputs(Resin.getFluid(100))
-            .EUt(VA[ULV].toLong())
-            .duration(1 * SECOND)
-            .blockStates("common", arrayListOf(
+        // Vanilla Logs
+        SAP_COLLECTOR_RECIPES.addRecipe {
+            notConsumable(DistilledWater.getFluid(10))
+            fluidOutputs(Resin.getFluid(100))
+            EUt(VA[ULV].toLong())
+            duration(1 * SECOND)
+            blockStates("common", arrayListOf(
                 Blocks.LOG.getStateFromMeta(0),
                 Blocks.LOG.getStateFromMeta(1),
                 Blocks.LOG.getStateFromMeta(2),
                 Blocks.LOG.getStateFromMeta(3),
                 Blocks.LOG2.getStateFromMeta(0),
                 Blocks.LOG2.getStateFromMeta(1)))
-            .buildAndRegister()
+        }
 
-        // Rainbow logs.
-        SAP_COLLECTOR_RECIPES.recipeBuilder()
-            .notConsumable(Lubricant.getFluid(10))
-            .fluidOutputs(RainbowSap.getFluid(100))
-            .EUt(VA[ULV])
-            .duration(1 * SECOND)
-            .blockStates("rainbow", arrayListOf(
+        // Rainbow Log
+        SAP_COLLECTOR_RECIPES.addRecipe {
+            notConsumable(Lubricant.getFluid(10))
+            fluidOutputs(RainbowSap.getFluid(100))
+            EUt(VA[ULV])
+            duration(1 * SECOND)
+            blockStates("rainbow", arrayListOf(
                 GTLiteBlocks.LOGS[2].getStateFromMeta(5)))
-            .buildAndRegister()
+        }
     }
 
     // @formatter:on

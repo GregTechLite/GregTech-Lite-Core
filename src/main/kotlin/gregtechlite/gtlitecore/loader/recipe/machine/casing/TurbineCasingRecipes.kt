@@ -13,6 +13,7 @@ import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.TurbineCasing
 
@@ -29,14 +30,14 @@ internal object TurbineCasingRecipes
             'C', GTTurbineCasing.STEEL_TURBINE_CASING.stack,
             'P', UnificationEntry(plate, RhodiumPlatedPalladium))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(6)
-            .inputs(GTTurbineCasing.STEEL_TURBINE_CASING.stack)
-            .input(plate, RhodiumPlatedPalladium, 6)
-            .outputs(TurbineCasing.RHODIUM_PLATED_PALLADIUM_TURBINE.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(6)
+            inputs(GTTurbineCasing.STEEL_TURBINE_CASING.stack)
+            input(plate, RhodiumPlatedPalladium, 6)
+            outputs(TurbineCasing.RHODIUM_PLATED_PALLADIUM_TURBINE.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // Rhodium Plated Palladium Gearbox Casing
         ModHandler.addShapedRecipe(true, "rhodium_plated_palladium_gearbox_casing", TurbineCasing.RHODIUM_PLATED_PALLADIUM_GEARBOX.getStack(ConfigHolder.recipes.casingsPerCraft),
@@ -45,15 +46,15 @@ internal object TurbineCasingRecipes
             'G', UnificationEntry(gear, RhodiumPlatedPalladium),
             'F', UnificationEntry(frameGt, RhodiumPlatedPalladium))
 
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(plate, RhodiumPlatedPalladium, 4)
-            .input(gear, RhodiumPlatedPalladium, 2)
-            .input(frameGt, RhodiumPlatedPalladium)
-            .outputs(TurbineCasing.RHODIUM_PLATED_PALLADIUM_GEARBOX.getStack(ConfigHolder.recipes.casingsPerCraft))
-            .EUt(VH[LV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(plate, RhodiumPlatedPalladium, 4)
+            input(gear, RhodiumPlatedPalladium, 2)
+            input(frameGt, RhodiumPlatedPalladium)
+            outputs(TurbineCasing.RHODIUM_PLATED_PALLADIUM_GEARBOX.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
     }
 
     // @formatter:on

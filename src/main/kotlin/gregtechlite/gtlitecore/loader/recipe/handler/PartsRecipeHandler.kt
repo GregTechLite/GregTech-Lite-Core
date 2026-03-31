@@ -29,8 +29,9 @@ import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.Uvarovite
-import gregtech.api.unification.material.info.MaterialFlags
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.GemProperty
@@ -209,7 +210,7 @@ object PartsRecipeHandler
 
             if (workingTier <= HV)
             {
-                ModHandler.addShapedRecipe(String.format("bolt_saw_%s", material), boltStack.copy(2),
+                ModHandler.addShapedRecipe("bolt_saw_$material", boltStack.copy(2),
                     "s ", " X",
                     'X', UnificationEntry(stick, material))
             }
@@ -419,10 +420,10 @@ object PartsRecipeHandler
     fun processSheetedFrame(sheetedFramePrefix: OrePrefix, material: Material, property: DustProperty)
     {
 
-        if (!material.hasFlag(MaterialFlags.GENERATE_FRAME))
+        if (!material.hasFlag(GENERATE_FRAME))
             return
 
-        ModHandler.addShapedRecipe(String.format("%s_sheeted_frame", material), OreDictUnifier.get(sheetedFramePrefix, material, 12),
+        ModHandler.addShapedRecipe("${material}_sheeted_frame", OreDictUnifier.get(sheetedFramePrefix, material, 12),
             "PFP", "PhP", "PFP",
             'P', UnificationEntry(plate, material),
             'F', UnificationEntry(frameGt, material))
@@ -440,10 +441,10 @@ object PartsRecipeHandler
 
     fun processWall(wallGtPrefix: OrePrefix, material: Material, property: DustProperty)
     {
-        if (!material.hasFlag(MaterialFlags.GENERATE_PLATE) || !material.hasFlag(MaterialFlags.GENERATE_BOLT_SCREW))
+        if (!material.hasFlag(GENERATE_PLATE) || !material.hasFlag(GENERATE_BOLT_SCREW))
             return
 
-        ModHandler.addShapedRecipe(String.format("%s_wall_gt", material), OreDictUnifier.get(wallGtPrefix, material, 6),
+        ModHandler.addShapedRecipe("${material}_wall_gt", OreDictUnifier.get(wallGtPrefix, material, 6),
             "hPS", "P P", "SPd",
             'P', UnificationEntry(plate, material),
             'S', UnificationEntry(screw, material))

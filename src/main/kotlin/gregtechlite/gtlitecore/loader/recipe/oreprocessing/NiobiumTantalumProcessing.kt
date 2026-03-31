@@ -10,6 +10,7 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumDifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ManganeseDifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NiobiumPentoxide
@@ -41,31 +42,31 @@ internal object NiobiumTantalumProcessing
     private fun niobiumProcess()
     {
         // Ca2Nb2O7 + 4HF -> Nb2O5 + 2CaF2 + 2H2O
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Pyrochlore, 11)
-            .fluidInputs(HydrofluoricAcid.getFluid(4000))
-            .output(dust, NiobiumPentoxide, 7)
-            .output(dust, TantalumPentoxide, 1)
-            .output(dust, CalciumDifluoride, 6)
-            .fluidOutputs(Water.getFluid(2000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, Pyrochlore, 11)
+            fluidInputs(HydrofluoricAcid.getFluid(4000))
+            output(dust, NiobiumPentoxide, 7)
+            output(dust, TantalumPentoxide, 1)
+            output(dust, CalciumDifluoride, 6)
+            fluidOutputs(Water.getFluid(2000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
     }
 
     private fun tantalumProcess()
     {
         // MnTa2O6 + 2HF -> Ta2O5 + MnF2 + H2O
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Tantalite, 9)
-            .fluidInputs(HydrofluoricAcid.getFluid(2000))
-            .output(dust, TantalumPentoxide, 7)
-            .output(dust, NiobiumPentoxide, 1)
-            .output(dust, ManganeseDifluoride, 3)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, Tantalite, 9)
+            fluidInputs(HydrofluoricAcid.getFluid(2000))
+            output(dust, TantalumPentoxide, 7)
+            output(dust, NiobiumPentoxide, 1)
+            output(dust, ManganeseDifluoride, 3)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
     }
 
     // @formatter:on

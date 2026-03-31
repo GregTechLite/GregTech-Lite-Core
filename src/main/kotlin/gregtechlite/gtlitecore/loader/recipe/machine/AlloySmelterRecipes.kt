@@ -25,6 +25,7 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
@@ -41,152 +42,151 @@ internal object AlloySmelterRecipes
     fun init()
     {
         // Er-doped ZBLAN Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .input(ingot, ZBLANGlass)
-            .input(ingot, Erbium)
-            .output(ingot, ErbiumDopedZBLANGlass, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            input(ingot, ZBLANGlass)
+            input(ingot, Erbium)
+            output(ingot, ErbiumDopedZBLANGlass, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .input(ingot, ZBLANGlass)
-            .input(dust, Erbium)
-            .output(ingot, ErbiumDopedZBLANGlass, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            input(ingot, ZBLANGlass)
+            input(dust, Erbium)
+            output(ingot, ErbiumDopedZBLANGlass, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .input(dust, ZBLANGlass)
-            .input(ingot, Erbium)
-            .output(ingot, ErbiumDopedZBLANGlass, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            input(dust, ZBLANGlass)
+            input(ingot, Erbium)
+            output(ingot, ErbiumDopedZBLANGlass, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .input(dust, ZBLANGlass)
-            .input(dust, Erbium)
-            .output(ingot, ErbiumDopedZBLANGlass, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            input(dust, ZBLANGlass)
+            input(dust, Erbium)
+            output(ingot, ErbiumDopedZBLANGlass, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // Pr-doped ZBLAN Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .input(ingot, ZBLANGlass)
-            .input(ingot, Praseodymium)
-            .output(ingot, PraseodymiumDopedZBLANGlass, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            input(ingot, ZBLANGlass)
+            input(ingot, Praseodymium)
+            output(ingot, PraseodymiumDopedZBLANGlass, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .input(ingot, ZBLANGlass)
-            .input(dust, Praseodymium)
-            .output(ingot, PraseodymiumDopedZBLANGlass, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            input(ingot, ZBLANGlass)
+            input(dust, Praseodymium)
+            output(ingot, PraseodymiumDopedZBLANGlass, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .input(dust, ZBLANGlass)
-            .input(ingot, Praseodymium)
-            .output(ingot, PraseodymiumDopedZBLANGlass, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            input(dust, ZBLANGlass)
+            input(ingot, Praseodymium)
+            output(ingot, PraseodymiumDopedZBLANGlass, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .input(dust, ZBLANGlass)
-            .input(dust, Praseodymium)
-            .output(ingot, PraseodymiumDopedZBLANGlass, 2)
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            input(dust, ZBLANGlass)
+            input(dust, Praseodymium)
+            output(ingot, PraseodymiumDopedZBLANGlass, 2)
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // Titanium reinforced Borosilicate Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .inputs(GlassCasing.BOROSILICATE.stack)
-            .input(plate, Titanium, 4)
-            .outputs(GlassCasing.TITANIUM_BOROSILICATE.stack)
-            .EUt(VA[EV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, Titanium, 4)
+            outputs(GlassCasing.TITANIUM_BOROSILICATE.stack)
+            EUt(VA[EV])
+            duration(5 * SECOND)
+        }
 
         // Tungsten Steel reinforced Borosilicate Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .inputs(GlassCasing.BOROSILICATE.stack)
-            .input(plate, TungstenSteel, 4)
-            .outputs(GlassCasing.TUNGSTEN_STEEL_BOROSILICATE.stack)
-            .EUt(VA[IV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, TungstenSteel, 4)
+            outputs(GlassCasing.TUNGSTEN_STEEL_BOROSILICATE.stack)
+            EUt(VA[IV])
+            duration(5 * SECOND)
+        }
 
         // Rhodium Plated Palladium reinforced Borosilicate Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .inputs(GlassCasing.BOROSILICATE.stack)
-            .input(plate, RhodiumPlatedPalladium, 4)
-            .outputs(GlassCasing.RHODIUM_PLATED_PALLADIUM_BOROSILICATE.stack)
-            .EUt(VA[LuV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, RhodiumPlatedPalladium, 4)
+            outputs(GlassCasing.RHODIUM_PLATED_PALLADIUM_BOROSILICATE.stack)
+            EUt(VA[LuV])
+            duration(5 * SECOND)
+        }
 
         // Osmiridium reinforced Borosilicate Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .inputs(GlassCasing.BOROSILICATE.stack)
-            .input(plate, Osmiridium, 4)
-            .outputs(GlassCasing.OSMIRIDIUM_BOROSILICATE.stack)
-            .EUt(VA[ZPM])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, Osmiridium, 4)
+            outputs(GlassCasing.OSMIRIDIUM_BOROSILICATE.stack)
+            EUt(VA[ZPM])
+            duration(5 * SECOND)
+        }
 
         // Tritanium reinforced Borosilicate Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .inputs(GlassCasing.BOROSILICATE.stack)
-            .input(plate, Tritanium, 4)
-            .outputs(GlassCasing.TRITANIUM_BOROSILICATE.stack)
-            .EUt(VA[UV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, Tritanium, 4)
+            outputs(GlassCasing.TRITANIUM_BOROSILICATE.stack)
+            EUt(VA[UV])
+            duration(5 * SECOND)
+        }
 
         // Neutronium reinforced Borosilicate Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .inputs(GlassCasing.BOROSILICATE.stack)
-            .input(plate, Neutronium, 4)
-            .outputs(GlassCasing.NEUTRONIUM_BOROSILICATE.stack)
-            .EUt(VA[UHV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, Neutronium, 4)
+            outputs(GlassCasing.NEUTRONIUM_BOROSILICATE.stack)
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+        }
 
         // Cosmic Neutronium reinforced Borosilicate Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .inputs(GlassCasing.BOROSILICATE.stack)
-            .input(plate, CosmicNeutronium, 4)
-            .outputs(GlassCasing.COSMIC_NEUTRONIUM_BOROSILICATE.stack)
-            .EUt(VA[UEV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, CosmicNeutronium, 4)
+            outputs(GlassCasing.COSMIC_NEUTRONIUM_BOROSILICATE.stack)
+            EUt(VA[UEV])
+            duration(5 * SECOND)
+        }
 
         // Infinity reinforced Borosilicate Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .inputs(GlassCasing.BOROSILICATE.stack)
-            .input(plate, Infinity, 4)
-            .outputs(GlassCasing.INFINITY_BOROSILICATE.stack)
-            .EUt(VA[UIV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, Infinity, 4)
+            outputs(GlassCasing.INFINITY_BOROSILICATE.stack)
+            EUt(VA[UIV])
+            duration(5 * SECOND)
+        }
 
         // Transcendent Metal reinforced Borosilicate Glass
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .inputs(GlassCasing.BOROSILICATE.stack)
-            .input(plate, TranscendentMetal, 4)
-            .outputs(GlassCasing.TRANSCENDENT_METAL_BOROSILICATE.stack)
-            .EUt(VA[UXV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, TranscendentMetal, 4)
+            outputs(GlassCasing.TRANSCENDENT_METAL_BOROSILICATE.stack)
+            EUt(VA[UXV])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on

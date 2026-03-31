@@ -21,6 +21,7 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
@@ -40,93 +41,91 @@ internal object MethylamineChain
 
     fun init()
     {
+        MIXER_RECIPES.addRecipe {
+            input(dust, Kyanite)
+            fluidInputs(Methanol.getFluid(2000))
+            fluidInputs(Ammonia.getFluid(1000))
+            fluidOutputs(MethylamineMixture.getFluid(3000))
+            EUt(VA[HV])
+            duration(50 * SECOND)
+        }
 
-        MIXER_RECIPES.recipeBuilder()
-            .input(dust, Kyanite)
-            .fluidInputs(Methanol.getFluid(2000))
-            .fluidInputs(Ammonia.getFluid(1000))
-            .fluidOutputs(MethylamineMixture.getFluid(3000))
-            .EUt(VA[HV])
-            .duration(50 * SECOND)
-            .buildAndRegister()
-
-        MIXER_RECIPES.recipeBuilder()
-            .input(dust, Alumina)
-            .input(dust, SiliconDioxide)
-            .fluidInputs(Methanol.getFluid(2000))
-            .fluidInputs(Ammonia.getFluid(1000))
-            .fluidOutputs(MethylamineMixture.getFluid(3000))
-            .EUt(VA[HV])
-            .duration(50 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            input(dust, Alumina)
+            input(dust, SiliconDioxide)
+            fluidInputs(Methanol.getFluid(2000))
+            fluidInputs(Ammonia.getFluid(1000))
+            fluidOutputs(MethylamineMixture.getFluid(3000))
+            EUt(VA[HV])
+            duration(50 * SECOND)
+        }
 
         // 6CH3OH + 3NH3 -> CH3NH2 + (CH3)2NH2 + (CH3)3NH2 + 3H2O
-        DISTILLATION_RECIPES.recipeBuilder()
-            .fluidInputs(MethylamineMixture.getFluid(9000))
-            .fluidOutputs(Methylamine.getFluid(1000))
-            .fluidOutputs(Dimethylamine.getFluid(1000))
-            .fluidOutputs(Trimethylamine.getFluid(1000))
-            .fluidOutputs(Water.getFluid(3000))
-            .EUt(VA[LuV])
-            .duration(50 * SECOND)
-            .disableDistilleryRecipes()
-            .buildAndRegister()
+        DISTILLATION_RECIPES.addRecipe {
+            fluidInputs(MethylamineMixture.getFluid(9000))
+            fluidOutputs(Methylamine.getFluid(1000))
+            fluidOutputs(Dimethylamine.getFluid(1000))
+            fluidOutputs(Trimethylamine.getFluid(1000))
+            fluidOutputs(Water.getFluid(3000))
+            EUt(VA[LuV])
+            duration(50 * SECOND)
+            disableDistilleryRecipes()
+        }
 
         // DMF process.
 
         // KCl + CH4O -> CH3OK + HCl
-        ROASTER_RECIPES.recipeBuilder()
-            .input(dust, RockSalt, 2)
-            .fluidInputs(Methanol.getFluid(1000))
-            .output(dust, PotassiumFormate, 6)
-            .fluidOutputs(HydrochloricAcid.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(12 * SECOND)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            input(dust, RockSalt, 2)
+            fluidInputs(Methanol.getFluid(1000))
+            output(dust, PotassiumFormate, 6)
+            fluidOutputs(HydrochloricAcid.getFluid(1000))
+            EUt(VA[HV])
+            duration(12 * SECOND)
+        }
 
         // (CH3)2NH + HCl -> C2H8NCl
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(Dimethylamine.getFluid(1000))
-            .fluidInputs(HydrochloricAcid.getFluid(1000))
-            .fluidOutputs(DimethylamineHydrochloride.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(3 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            fluidInputs(Dimethylamine.getFluid(1000))
+            fluidInputs(HydrochloricAcid.getFluid(1000))
+            fluidOutputs(DimethylamineHydrochloride.getFluid(1000))
+            EUt(VA[EV])
+            duration(3 * SECOND)
+        }
 
         // CH3OK + C2H8NCl -> KCl + (CH3)2NC(O)H + H + Cl (lost)
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, PotassiumFormate, 6)
-            .fluidInputs(DimethylamineHydrochloride.getFluid(1000))
-            .output(dust, RockSalt, 2)
-            .fluidOutputs(Dimethylformamide.getFluid(1000))
-            .fluidOutputs(Hydrogen.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(6 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            input(dust, PotassiumFormate, 6)
+            fluidInputs(DimethylamineHydrochloride.getFluid(1000))
+            output(dust, RockSalt, 2)
+            fluidOutputs(Dimethylformamide.getFluid(1000))
+            fluidOutputs(Hydrogen.getFluid(1000))
+            EUt(VA[EV])
+            duration(6 * SECOND)
+        }
 
         // Advanced recipe for (CH3)2NC(O)H and (CH3)2NC(O)CH3.
 
         // C2H7N + CO -> (CH3)2NC(O)H
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Dimethylamine.getFluid(1000))
-            .fluidInputs(CarbonMonoxide.getFluid(1000))
-            .fluidOutputs(Dimethylformamide.getFluid(1000))
-            .EUt(VA[IV])
-            .duration(12 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Dimethylamine.getFluid(1000))
+            fluidInputs(CarbonMonoxide.getFluid(1000))
+            fluidOutputs(Dimethylformamide.getFluid(1000))
+            EUt(VA[IV])
+            duration(12 * SECOND)
+        }
 
         // C2H7N + C2H4O2 -> (CH3)2NC(O)CH3 + H2O
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .fluidInputs(Dimethylamine.getFluid(1000))
-            .fluidInputs(AceticAcid.getFluid(1000))
-            .fluidOutputs(Dimethylacetamide.getFluid(1000))
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[LuV])
-            .duration(12 * SECOND)
-            .buildAndRegister()
-
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            circuitMeta(2)
+            fluidInputs(Dimethylamine.getFluid(1000))
+            fluidInputs(AceticAcid.getFluid(1000))
+            fluidOutputs(Dimethylacetamide.getFluid(1000))
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[LuV])
+            duration(12 * SECOND)
+        }
     }
 
     // @formatter:on

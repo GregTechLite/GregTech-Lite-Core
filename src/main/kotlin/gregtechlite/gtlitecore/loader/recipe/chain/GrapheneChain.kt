@@ -17,6 +17,7 @@ import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GrapheneOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydrazine
@@ -29,47 +30,46 @@ internal object GrapheneChain
 
     fun init()
     {
-        // Remove original recipes.
+        // Remove original graphene mixing recipes.
         GTLiteRecipeHandler.removeMixerRecipes(
-            arrayOf(OreDictUnifier.get(dust, Graphite),
-                OreDictUnifier.get(dust, Carbon, 4),
-                OreDictUnifier.get(dust, Silicon),
-                IntCircuitIngredient.getIntegratedCircuit(1)))
+            OreDictUnifier.get(dust, Graphite),
+            OreDictUnifier.get(dust, Carbon, 4),
+            OreDictUnifier.get(dust, Silicon),
+            IntCircuitIngredient.getIntegratedCircuit(1))
 
         // C8 + 2(HNO3)(H2SO4) -> C8O + (H2SO4)2(H2O) + HNO3
-        CHEMICAL_RECIPES.recipeBuilder()
-            .notConsumable(dust, SodiumHydroxide)
-            .input(dust, Graphite)
-            .fluidInputs(NitrationMixture.getFluid(2000))
-            .output(dust, GrapheneOxide)
-            .fluidOutputs(DilutedSulfuricAcid.getFluid(1000))
-            .fluidOutputs(NitricAcid.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            notConsumable(dust, SodiumHydroxide)
+            input(dust, Graphite)
+            fluidInputs(NitrationMixture.getFluid(2000))
+            output(dust, GrapheneOxide)
+            fluidOutputs(DilutedSulfuricAcid.getFluid(1000))
+            fluidOutputs(NitricAcid.getFluid(1000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // C8O + N2H + Ar -> C8
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, GrapheneOxide, 1)
-            .fluidInputs(Hydrazine.getFluid(100))
-            .fluidInputs(Argon.getFluid(50))
-            .output(dust, Graphene, 1)
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, GrapheneOxide)
+            fluidInputs(Hydrazine.getFluid(100))
+            fluidInputs(Argon.getFluid(50))
+            output(dust, Graphene)
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
 
         // One-step recipe from Graphite to Graphene.
-        CHEMICAL_RECIPES.recipeBuilder()
-            .notConsumable(MAGNETRON)
-            .input(dust, Graphite, 1)
-            .fluidInputs(NitrationMixture.getFluid(2000))
-            .output(dust, Graphene, 1)
-            .fluidOutputs(DilutedSulfuricAcid.getFluid(1000))
-            .fluidOutputs(NitricAcid.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
+        CHEMICAL_RECIPES.addRecipe {
+            notConsumable(MAGNETRON)
+            input(dust, Graphite)
+            fluidInputs(NitrationMixture.getFluid(2000))
+            output(dust, Graphene)
+            fluidOutputs(DilutedSulfuricAcid.getFluid(1000))
+            fluidOutputs(NitricAcid.getFluid(1000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on

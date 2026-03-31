@@ -10,7 +10,6 @@ import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
-import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.RecipeMaps.ALLOY_SMELTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
@@ -72,6 +71,8 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
@@ -115,54 +116,53 @@ internal object RubbersChain
     private fun rubberProcess()
     {
         // Extraction latex from a rubber planks, used sap collector with water.
-        SAP_COLLECTOR_RECIPES.recipeBuilder()
-            .notConsumable(Water.getFluid(10))
-            .fluidOutputs(Latex.getFluid(100))
-            .EUt(VA[ULV])
-            .duration(1 * SECOND)
-            .blockStates("rubber", arrayListOf((MetaBlocks.RUBBER_LOG as? BlockLog)!!.defaultState))
-            .buildAndRegister()
+        SAP_COLLECTOR_RECIPES.addRecipe {
+            notConsumable(Water.getFluid(10))
+            fluidOutputs(Latex.getFluid(100))
+            EUt(VA[ULV])
+            duration(1 * SECOND)
+            blockStates("rubber", arrayListOf((MetaBlocks.RUBBER_LOG as? BlockLog)!!.defaultState))
+        }
 
         // Coagulation processing of liquid latex.
-        GTRecipeHandler.removeRecipesByInputs(EXTRACTOR_RECIPES,
-            OreDictUnifier.get(dust, Latex))
+        EXTRACTOR_RECIPES.removeRecipe(OreDictUnifier.get(dust, Latex))
 
-        COAGULATION_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .notConsumable(stick, Iron)
-            .fluidInputs(Latex.getFluid(1000))
-            .output(dust, Latex)
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        COAGULATION_RECIPES.addRecipe {
+            circuitMeta(1)
+            notConsumable(stick, Iron)
+            fluidInputs(Latex.getFluid(1000))
+            output(dust, Latex)
+            duration(5 * SECOND)
+        }
 
-        COAGULATION_RECIPES.recipeBuilder()
-            .notConsumable(stick, Iron)
-            .notConsumable(dust, CalciumChloride)
-            .fluidInputs(Latex.getFluid(1000))
-            .output(dust, Latex)
-            .duration(2 * SECOND + 5 * TICK)
-            .buildAndRegister()
+        COAGULATION_RECIPES.addRecipe {
+            notConsumable(stick, Iron)
+            notConsumable(dust, CalciumChloride)
+            fluidInputs(Latex.getFluid(1000))
+            output(dust, Latex)
+            duration(2 * SECOND + 5 * TICK)
+        }
 
-        COAGULATION_RECIPES.recipeBuilder()
-            .notConsumable(stick, Iron)
-            .notConsumable(SulfuricAcid.getFluid(1))
-            .fluidInputs(Latex.getFluid(1000))
-            .output(dust, Latex)
-            .duration(1 * SECOND)
-            .buildAndRegister()
+        COAGULATION_RECIPES.addRecipe {
+            notConsumable(stick, Iron)
+            notConsumable(SulfuricAcid.getFluid(1))
+            fluidInputs(Latex.getFluid(1000))
+            output(dust, Latex)
+            duration(1 * SECOND)
+        }
 
-        COAGULATION_RECIPES.recipeBuilder()
-            .notConsumable(stick, Iron)
-            .notConsumable(AceticAcid.getFluid(1))
-            .fluidInputs(Latex.getFluid(1000))
-            .output(dust, Latex)
-            .duration(5 * TICK)
-            .buildAndRegister()
+        COAGULATION_RECIPES.addRecipe {
+            notConsumable(stick, Iron)
+            notConsumable(AceticAcid.getFluid(1))
+            fluidInputs(Latex.getFluid(1000))
+            output(dust, Latex)
+            duration(5 * TICK)
+        }
 
         // Disabled vanilla Alloy Smelter recipes of Rubber ingot, only allowed used
         // vulcanization processing to get rubbers, same as this, chemical reactor is
         // also not allowed yet.
-        GTRecipeHandler.removeRecipesByInputs(ALLOY_SMELTER_RECIPES,
+        ALLOY_SMELTER_RECIPES.removeRecipe(
             OreDictUnifier.get(dust, Sulfur),
             OreDictUnifier.get(dust, RawRubber, 3))
         GTLiteRecipeHandler.removeChemicalRecipes(arrayOf(
@@ -174,152 +174,152 @@ internal object RubbersChain
         // Add rubber component recipes.
         for (catalyst in arrayOf(Zincite, Magnesia))
         {
-            // Rubber Ingot
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_INGOT)
-                .input(dust, Latex, 4)
-                .input(dust, Sulfur)
-                .output(ingot, Rubber, 4)
-                .EUt(VA[ULV])
-                .duration(20 * SECOND)
-                .buildAndRegister()
+            // Ingot
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_INGOT)
+                input(dust, Latex, 4)
+                input(dust, Sulfur)
+                output(ingot, Rubber, 4)
+                EUt(VA[ULV])
+                duration(20 * SECOND)
+            }
 
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_INGOT)
-                .input(dust, Polyisoprene, 2)
-                .input(dust, Sulfur)
-                .output(ingot, Rubber, 8)
-                .EUt(VA[ULV])
-                .duration(10 * SECOND)
-                .buildAndRegister()
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_INGOT)
+                input(dust, Polyisoprene, 2)
+                input(dust, Sulfur)
+                output(ingot, Rubber, 8)
+                EUt(VA[ULV])
+                duration(10 * SECOND)
+            }
 
-            // Rubber Plate
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_PLATE)
-                .input(dust, Latex, 4)
-                .input(dust, Sulfur)
-                .output(plate, Rubber, 4)
-                .EUt(VA[ULV])
-                .duration(20 * SECOND)
-                .buildAndRegister()
+            // Plate
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_PLATE)
+                input(dust, Latex, 4)
+                input(dust, Sulfur)
+                output(plate, Rubber, 4)
+                EUt(VA[ULV])
+                duration(20 * SECOND)
+            }
 
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_PLATE)
-                .input(dust, Polyisoprene, 2)
-                .input(dust, Sulfur)
-                .output(plate, Rubber, 8)
-                .EUt(VA[ULV])
-                .duration(10 * SECOND)
-                .buildAndRegister()
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_PLATE)
+                input(dust, Polyisoprene, 2)
+                input(dust, Sulfur)
+                output(plate, Rubber, 8)
+                EUt(VA[ULV])
+                duration(10 * SECOND)
+            }
 
-            // Rubber Rod
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_ROD)
-                .input(dust, Latex, 4)
-                .input(dust, Sulfur)
-                .output(stick, Rubber, 8)
-                .EUt(VA[ULV])
-                .duration(20 * SECOND)
-                .buildAndRegister()
+            // Stick
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_ROD)
+                input(dust, Latex, 4)
+                input(dust, Sulfur)
+                output(stick, Rubber, 8)
+                EUt(VA[ULV])
+                duration(20 * SECOND)
+            }
 
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_ROD)
-                .input(dust, Polyisoprene, 2)
-                .input(dust, Sulfur)
-                .output(stick, Rubber, 16)
-                .EUt(VA[ULV])
-                .duration(10 * SECOND)
-                .buildAndRegister()
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_ROD)
+                input(dust, Polyisoprene, 2)
+                input(dust, Sulfur)
+                output(stick, Rubber, 16)
+                EUt(VA[ULV])
+                duration(10 * SECOND)
+            }
 
-            // Rubber Ring
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_RING)
-                .input(dust, Latex, 4)
-                .input(dust, Sulfur)
-                .output(ring, Rubber, 16)
-                .EUt(VA[ULV])
-                .duration(20 * SECOND)
-                .buildAndRegister()
+            // Ring
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_RING)
+                input(dust, Latex, 4)
+                input(dust, Sulfur)
+                output(ring, Rubber, 16)
+                EUt(VA[ULV])
+                duration(20 * SECOND)
+            }
 
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_RING)
-                .input(dust, Polyisoprene, 2)
-                .input(dust, Sulfur)
-                .output(ring, Rubber, 32)
-                .EUt(VA[ULV])
-                .duration(10 * SECOND)
-                .buildAndRegister()
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_RING)
+                input(dust, Polyisoprene, 2)
+                input(dust, Sulfur)
+                output(ring, Rubber, 32)
+                EUt(VA[ULV])
+                duration(10 * SECOND)
+            }
 
-            // Rubber Foil
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_FOIL)
-                .input(dust, Latex, 4)
-                .input(dust, Sulfur)
-                .output(foil, Rubber, 16)
-                .EUt(VA[ULV])
-                .duration(20 * SECOND)
-                .buildAndRegister()
+            // Foil
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_FOIL)
+                input(dust, Latex, 4)
+                input(dust, Sulfur)
+                output(foil, Rubber, 16)
+                EUt(VA[ULV])
+                duration(20 * SECOND)
+            }
 
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_FOIL)
-                .input(dust, Polyisoprene, 2)
-                .input(dust, Sulfur)
-                .output(foil, Rubber, 32)
-                .EUt(VA[ULV])
-                .duration(10 * SECOND)
-                .buildAndRegister()
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_FOIL)
+                input(dust, Polyisoprene, 2)
+                input(dust, Sulfur)
+                output(foil, Rubber, 32)
+                EUt(VA[ULV])
+                duration(10 * SECOND)
+            }
 
-            // Rubber Bolt
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_BOLT)
-                .input(dust, Latex, 4)
-                .input(dust, Sulfur)
-                .output(bolt, Rubber, 32)
-                .EUt(VA[ULV])
-                .duration(20 * SECOND)
-                .buildAndRegister()
+            // Bolt
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_BOLT)
+                input(dust, Latex, 4)
+                input(dust, Sulfur)
+                output(bolt, Rubber, 32)
+                EUt(VA[ULV])
+                duration(20 * SECOND)
+            }
 
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_BOLT)
-                .input(dust, Polyisoprene, 2)
-                .input(dust, Sulfur)
-                .output(bolt, Rubber, 64)
-                .EUt(VA[ULV])
-                .duration(10 * SECOND)
-                .buildAndRegister()
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_BOLT)
+                input(dust, Polyisoprene, 2)
+                input(dust, Sulfur)
+                output(bolt, Rubber, 64)
+                EUt(VA[ULV])
+                duration(10 * SECOND)
+            }
 
-            // Rubber Gear
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_GEAR)
-                .input(dust, Latex, 4)
-                .input(dust, Sulfur)
-                .output(gear, Rubber, 4)
-                .EUt(VA[ULV])
-                .duration(20 * SECOND)
-                .buildAndRegister()
+            // Gear
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_GEAR)
+                input(dust, Latex, 4)
+                input(dust, Sulfur)
+                output(gear, Rubber, 4)
+                EUt(VA[ULV])
+                duration(20 * SECOND)
+            }
 
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_GEAR)
-                .input(dust, Polyisoprene, 2)
-                .input(dust, Sulfur)
-                .output(gear, Rubber, 8)
-                .EUt(VA[ULV])
-                .duration(10 * SECOND)
-                .buildAndRegister()
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_GEAR)
+                input(dust, Polyisoprene, 2)
+                input(dust, Sulfur)
+                output(gear, Rubber, 8)
+                EUt(VA[ULV])
+                duration(10 * SECOND)
+            }
         }
 
     }
@@ -329,435 +329,437 @@ internal object RubbersChain
         // Deleted raw styrene butadiene rubber to styrene butadiene rubber chemistry reaction recipes.
         GTLiteRecipeHandler.removeChemicalRecipes(
             arrayOf(OreDictUnifier.get(dust, RawStyreneButadieneRubber, 9),
-                OreDictUnifier.get(dust, Sulfur)))
+                    OreDictUnifier.get(dust, Sulfur)))
 
         // Add styrene butadiene rubber component recipes.
         for (catalyst in arrayOf(Zincite, Magnesia))
         {
-            // Styrene Butadiene Rubber Ingot
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_INGOT)
-                .input(dust, RawStyreneButadieneRubber, 4)
-                .input(dust, Sulfur)
-                .output(ingot, StyreneButadieneRubber, 4)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Ingot
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_INGOT)
+                input(dust, RawStyreneButadieneRubber, 4)
+                input(dust, Sulfur)
+                output(ingot, StyreneButadieneRubber, 4)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
 
-            // Styrene Butadiene Rubber Plate
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_PLATE)
-                .input(dust, RawStyreneButadieneRubber, 4)
-                .input(dust, Sulfur)
-                .output(plate, StyreneButadieneRubber, 4)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Plate
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_PLATE)
+                input(dust, RawStyreneButadieneRubber, 4)
+                input(dust, Sulfur)
+                output(plate, StyreneButadieneRubber, 4)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
 
-            // Styrene Butadiene Rubber Rod
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_ROD)
-                .input(dust, RawStyreneButadieneRubber, 4)
-                .input(dust, Sulfur)
-                .output(stick, StyreneButadieneRubber, 8)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Stick
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_ROD)
+                input(dust, RawStyreneButadieneRubber, 4)
+                input(dust, Sulfur)
+                output(stick, StyreneButadieneRubber, 8)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
 
-            // Styrene Butadiene Rubber Ring
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_RING)
-                .input(dust, RawStyreneButadieneRubber, 4)
-                .input(dust, Sulfur)
-                .output(ring, StyreneButadieneRubber, 16)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Ring
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_RING)
+                input(dust, RawStyreneButadieneRubber, 4)
+                input(dust, Sulfur)
+                output(ring, StyreneButadieneRubber, 16)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
 
-            // Styrene Butadiene Rubber Foil
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_FOIL)
-                .input(dust, RawStyreneButadieneRubber, 4)
-                .input(dust, Sulfur)
-                .output(foil, StyreneButadieneRubber, 16)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Foil
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_FOIL)
+                input(dust, RawStyreneButadieneRubber, 4)
+                input(dust, Sulfur)
+                output(foil, StyreneButadieneRubber, 16)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
         }
 
         // Deleted raw silicone rubber (polydimethylsiloxane) to silicone rubber chemistry reaction recipes.
         GTLiteRecipeHandler.removeChemicalRecipes(
             arrayOf(OreDictUnifier.get(dust, Polydimethylsiloxane, 9),
-                OreDictUnifier.get(dust, Sulfur)))
+                    OreDictUnifier.get(dust, Sulfur)))
 
         // Add silicone rubber component recipes.
         for (catalyst in arrayOf(Zincite, Magnesia))
         {
-            // Silicone Rubber Ingot
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_INGOT)
-                .input(dust, Polydimethylsiloxane, 4)
-                .input(dust, Sulfur)
-                .output(ingot, SiliconeRubber, 4)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Ingot
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_INGOT)
+                input(dust, Polydimethylsiloxane, 4)
+                input(dust, Sulfur)
+                output(ingot, SiliconeRubber, 4)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
 
-            // Silicone Rubber Plate
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_PLATE)
-                .input(dust, Polydimethylsiloxane, 4)
-                .input(dust, Sulfur)
-                .output(plate, SiliconeRubber, 4)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Plate
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_PLATE)
+                input(dust, Polydimethylsiloxane, 4)
+                input(dust, Sulfur)
+                output(plate, SiliconeRubber, 4)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
 
-            // Silicone Rubber Rod
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_ROD)
-                .input(dust, Polydimethylsiloxane, 4)
-                .input(dust, Sulfur)
-                .output(stick, SiliconeRubber, 8)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Stick
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_ROD)
+                input(dust, Polydimethylsiloxane, 4)
+                input(dust, Sulfur)
+                output(stick, SiliconeRubber, 8)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
 
-            // Silicone Rubber Ring
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_RING)
-                .input(dust, Polydimethylsiloxane, 4)
-                .input(dust, Sulfur)
-                .output(ring, SiliconeRubber, 16)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Ring
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_RING)
+                input(dust, Polydimethylsiloxane, 4)
+                input(dust, Sulfur)
+                output(ring, SiliconeRubber, 16)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
 
-            // Silicone Rubber Foil
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_FOIL)
-                .input(dust, Polydimethylsiloxane, 4)
-                .input(dust, Sulfur)
-                .output(foil, SiliconeRubber, 16)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Foil
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_FOIL)
+                input(dust, Polydimethylsiloxane, 4)
+                input(dust, Sulfur)
+                output(foil, SiliconeRubber, 16)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
 
-            // Silicone Rubber Gear
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_GEAR)
-                .input(dust, Polydimethylsiloxane, 4)
-                .input(dust, Sulfur)
-                .output(gear, SiliconeRubber, 4)
-                .EUt(VA[LV])
-                .duration(30 * SECOND)
-                .buildAndRegister()
+            // Gear
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_GEAR)
+                input(dust, Polydimethylsiloxane, 4)
+                input(dust, Sulfur)
+                output(gear, SiliconeRubber, 4)
+                EUt(VA[LV])
+                duration(30 * SECOND)
+            }
         }
 
     }
 
     private fun advancedSyntheticRubberProcess()
     {
-        // PPF Rubber chain.
+        // region PPF Rubber Processing
 
         // 6C + 3POCl3 + 3NH4Cl -> Cl6N3P3 + 6HCl + 3H2O
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, Carbon, 6)
-            .input(dust, AmmoniumChloride, 6) // Special chemistry which with x2 as 1x amount, not 6 as 1x amount.
-            .fluidInputs(PhosphorylChloride.getFluid(3000))
-            .fluidOutputs(PhosphonitrilicChlorideTrimer.getFluid(1000))
-            .fluidOutputs(HydrochloricAcid.getFluid(6000))
-            .fluidOutputs(Steam.getFluid(3 * SU))
-            .EUt(VA[EV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            input(dust, Carbon, 6)
+            input(dust, AmmoniumChloride, 6)
+            fluidInputs(PhosphorylChloride.getFluid(3000))
+            fluidOutputs(PhosphonitrilicChlorideTrimer.getFluid(1000))
+            fluidOutputs(HydrochloricAcid.getFluid(6000))
+            fluidOutputs(Steam.getFluid(3 * SU))
+            EUt(VA[EV])
+            duration(4 * SECOND)
+        }
 
         // Na + F -> NaF
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Sodium)
-            .fluidInputs(Fluorine.getFluid(1000))
-            .output(dust, SodiumFluoride, 2)
-            .EUt(VA[LV])
-            .duration(4 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Sodium)
+            fluidInputs(Fluorine.getFluid(1000))
+            output(dust, SodiumFluoride, 2)
+            EUt(VA[LV])
+            duration(4 * SECOND)
+        }
 
         // NaF + C2H6O + 2F -> NaC2H4OF3 + 2H
-        CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, SodiumFluoride, 2)
-            .fluidInputs(Ethanol.getFluid(1000))
-            .fluidInputs(Fluorine.getFluid(2000))
-            .output(dust, SodiumTrifluoroethanolate, 11)
-            .fluidOutputs(Hydrogen.getFluid(2000))
-            .EUt(VA[EV])
-            .duration(8 * SECOND)
-            .buildAndRegister()
+        CRYOGENIC_REACTOR_RECIPES.addRecipe {
+            input(dust, SodiumFluoride, 2)
+            fluidInputs(Ethanol.getFluid(1000))
+            fluidInputs(Fluorine.getFluid(2000))
+            output(dust, SodiumTrifluoroethanolate, 11)
+            fluidOutputs(Hydrogen.getFluid(2000))
+            EUt(VA[EV])
+            duration(8 * SECOND)
+        }
 
         // C6H6 + 2F -> C6H5F + HF
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .fluidInputs(Benzene.getFluid(1000))
-            .fluidInputs(Fluorine.getFluid(2000))
-            .fluidOutputs(Fluorobenzene.getFluid(1000))
-            .fluidOutputs(HydrofluoricAcid.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(3 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Benzene.getFluid(1000))
+            fluidInputs(Fluorine.getFluid(2000))
+            fluidOutputs(Fluorobenzene.getFluid(1000))
+            fluidOutputs(HydrofluoricAcid.getFluid(1000))
+            EUt(VA[HV])
+            duration(3 * SECOND)
+        }
 
         // 2C6H5F + 6HF + O -> C5H4F8O + 2C3H6
-        CHEMICAL_RECIPES.recipeBuilder()
-            .notConsumable(BLACKLIGHT)
-            .fluidInputs(Fluorobenzene.getFluid(2000))
-            .fluidInputs(HydrofluoricAcid.getFluid(6000))
-            .fluidInputs(Oxygen.getFluid(1000))
-            .fluidOutputs(OctafluoroPentanol.getFluid(1000))
-            .fluidOutputs(Propene.getFluid(2000))
-            .EUt(VA[ZPM])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            notConsumable(BLACKLIGHT)
+            fluidInputs(Fluorobenzene.getFluid(2000))
+            fluidInputs(HydrofluoricAcid.getFluid(6000))
+            fluidInputs(Oxygen.getFluid(1000))
+            fluidOutputs(OctafluoroPentanol.getFluid(1000))
+            fluidOutputs(Propene.getFluid(2000))
+            EUt(VA[ZPM])
+            duration(15 * SECOND)
+        }
 
         // NaC2H4OF3 + Cl6N3P3 + 4C5H4F8O -> (CH2CF3)6(CH2C3F7)2(C2F4)2(NPO)4O4 + NaF (cycle) + 3POCl3 (cycle)
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, SodiumTrifluoroethanolate, 11)
-            .fluidInputs(PhosphonitrilicChlorideTrimer.getFluid(1000))
-            .fluidInputs(OctafluoroPentanol.getFluid(4000))
-            .output(dust, RawPolyphosphonitrileFluoroRubber, 64)
-            .output(dust, RawPolyphosphonitrileFluoroRubber, 32)
-            .output(dust, SodiumFluoride, 2)
-            .fluidOutputs(PhosphorylChloride.getFluid(3000))
-            .EUt(VA[UV])
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            input(dust, SodiumTrifluoroethanolate, 11)
+            fluidInputs(PhosphonitrilicChlorideTrimer.getFluid(1000))
+            fluidInputs(OctafluoroPentanol.getFluid(4000))
+            output(dust, RawPolyphosphonitrileFluoroRubber, 64)
+            output(dust, RawPolyphosphonitrileFluoroRubber, 32)
+            output(dust, SodiumFluoride, 2)
+            fluidOutputs(PhosphorylChloride.getFluid(3000))
+            EUt(VA[UV])
+            duration(20 * SECOND)
+        }
 
         // Add polyphosphonitrile fluoro rubber component recipes.
         for (catalyst in arrayOf(Zincite, Magnesia))
         {
-            // Polyphosphonitrile Fluoro Rubber Ingot
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_INGOT)
-                .input(dust, RawPolyphosphonitrileFluoroRubber, 4)
-                .input(dust, Sulfur)
-                .output(ingot, PolyphosphonitrileFluoroRubber, 4)
-                .EUt(VA[HV])
-                .duration(40 * SECOND)
-                .buildAndRegister()
+            // Ingot
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_INGOT)
+                input(dust, RawPolyphosphonitrileFluoroRubber, 4)
+                input(dust, Sulfur)
+                output(ingot, PolyphosphonitrileFluoroRubber, 4)
+                EUt(VA[HV])
+                duration(40 * SECOND)
+            }
 
-            // Polyphosphonitrile Fluoro Rubber Plate
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_PLATE)
-                .input(dust, RawPolyphosphonitrileFluoroRubber, 4)
-                .input(dust, Sulfur)
-                .output(plate, PolyphosphonitrileFluoroRubber, 4)
-                .EUt(VA[HV])
-                .duration(40 * SECOND)
-                .buildAndRegister()
+            // Plate
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_PLATE)
+                input(dust, RawPolyphosphonitrileFluoroRubber, 4)
+                input(dust, Sulfur)
+                output(plate, PolyphosphonitrileFluoroRubber, 4)
+                EUt(VA[HV])
+                duration(40 * SECOND)
+            }
 
-            // Polyphosphonitrile Fluoro Rubber Rod
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_ROD)
-                .input(dust, RawPolyphosphonitrileFluoroRubber, 4)
-                .input(dust, Sulfur)
-                .output(stick, PolyphosphonitrileFluoroRubber, 8)
-                .EUt(VA[HV])
-                .duration(40 * SECOND)
-                .buildAndRegister()
+            // Stick
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_ROD)
+                input(dust, RawPolyphosphonitrileFluoroRubber, 4)
+                input(dust, Sulfur)
+                output(stick, PolyphosphonitrileFluoroRubber, 8)
+                EUt(VA[HV])
+                duration(40 * SECOND)
+            }
 
-            // Polyphosphonitrile Fluoro Rubber Ring
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_RING)
-                .input(dust, RawPolyphosphonitrileFluoroRubber, 4)
-                .input(dust, Sulfur)
-                .output(ring, PolyphosphonitrileFluoroRubber, 16)
-                .EUt(VA[HV])
-                .duration(40 * SECOND)
-                .buildAndRegister()
+            // Ring
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_RING)
+                input(dust, RawPolyphosphonitrileFluoroRubber, 4)
+                input(dust, Sulfur)
+                output(ring, PolyphosphonitrileFluoroRubber, 16)
+                EUt(VA[HV])
+                duration(40 * SECOND)
+            }
 
-            // Polyphosphonitrile Fluoro Rubber Foil
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_FOIL)
-                .input(dust, RawPolyphosphonitrileFluoroRubber, 4)
-                .input(dust, Sulfur)
-                .output(foil, PolyphosphonitrileFluoroRubber, 16)
-                .EUt(VA[HV])
-                .duration(40 * SECOND)
-                .buildAndRegister()
+            // Foil
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_FOIL)
+                input(dust, RawPolyphosphonitrileFluoroRubber, 4)
+                input(dust, Sulfur)
+                output(foil, PolyphosphonitrileFluoroRubber, 16)
+                EUt(VA[HV])
+                duration(40 * SECOND)
+            }
         }
 
-        // PTMEG rubber chain.
+        // endregion
+
+        // region PTMEG Rubber Processing
 
         // C7H8 + 2HNO3 -> C7H6N2O4
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(Toluene.getFluid(1000))
-            .fluidInputs(NitricAcid.getFluid(2000))
-            .fluidOutputs(Dinitrotoluene.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(25 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Toluene.getFluid(1000))
+            fluidInputs(NitricAcid.getFluid(2000))
+            fluidOutputs(Dinitrotoluene.getFluid(1000))
+            EUt(VA[HV])
+            duration(25 * SECOND)
+        }
 
         // C7H6N2O4 + 4H -> C6H3(NH2)2CH3
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(Dinitrotoluene.getFluid(1000))
-            .fluidInputs(Hydrogen.getFluid(4000))
-            .fluidOutputs(Diaminotoluene.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            fluidInputs(Dinitrotoluene.getFluid(1000))
+            fluidInputs(Hydrogen.getFluid(4000))
+            fluidOutputs(Diaminotoluene.getFluid(1000))
+            EUt(VA[EV])
+            duration(5 * SECOND)
+        }
 
         // CO + 2Cl -> COCl2
-        MIXER_RECIPES.recipeBuilder()
-            .fluidInputs(CarbonMonoxide.getFluid(1000))
-            .fluidInputs(Chlorine.getFluid(2000))
-            .fluidOutputs(Phosgene.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        MIXER_RECIPES.addRecipe {
+            fluidInputs(CarbonMonoxide.getFluid(1000))
+            fluidInputs(Chlorine.getFluid(2000))
+            fluidOutputs(Phosgene.getFluid(1000))
+            EUt(VA[HV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // C6H3(NH2)2CH3 + 2COCl2 -> CH3C6H3(NCO)2
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .fluidInputs(Diaminotoluene.getFluid(1000))
-            .fluidInputs(Phosgene.getFluid(2000))
-            .fluidOutputs(TolueneDiisocyanate.getFluid(1000))
-            .fluidOutputs(HydrochloricAcid.getFluid(4000))
-            .EUt(VA[HV])
-            .duration(45 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            fluidInputs(Diaminotoluene.getFluid(1000))
+            fluidInputs(Phosgene.getFluid(2000))
+            fluidOutputs(TolueneDiisocyanate.getFluid(1000))
+            fluidOutputs(HydrochloricAcid.getFluid(4000))
+            EUt(VA[HV])
+            duration(45 * SECOND)
+        }
 
         // (CH2)4O + H2O -> (C4H8O)OH2
-        CHEMICAL_RECIPES.recipeBuilder()
-            .notConsumable(dust, SodiumBisulfate) // as initiator.
-            .fluidInputs(Tetrahydrofuran.getFluid(L))
-            .fluidInputs(Water.getFluid(1000))
-            .fluidOutputs(Polytetrahydrofuran.getFluid(L))
-            .EUt(VA[MV])
-            .duration(16 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            notConsumable(dust, SodiumBisulfate) // as initiator.
+            fluidInputs(Tetrahydrofuran.getFluid(L))
+            fluidInputs(Water.getFluid(1000))
+            fluidOutputs(Polytetrahydrofuran.getFluid(L))
+            EUt(VA[MV])
+            duration(16 * SECOND)
+        }
 
-        CHEMICAL_RECIPES.recipeBuilder()
-            .notConsumable(dust, SodiumBisulfate) // as initiator.
-            .fluidInputs(Tetrahydrofuran.getFluid(L))
-            .fluidInputs(DistilledWater.getFluid(1000))
-            .fluidOutputs(Polytetrahydrofuran.getFluid(216)) // 1.5L
-            .EUt(VA[MV])
-            .duration(16 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            notConsumable(dust, SodiumBisulfate) // as initiator.
+            fluidInputs(Tetrahydrofuran.getFluid(L))
+            fluidInputs(DistilledWater.getFluid(1000))
+            fluidOutputs(Polytetrahydrofuran.getFluid(216)) // 1.5L
+            EUt(VA[MV])
+            duration(16 * SECOND)
+        }
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .notConsumable(dust, SodiumBisulfate)
-            .fluidInputs(Tetrahydrofuran.getFluid(2160))
-            .fluidInputs(Water.getFluid(7500))
-            .fluidInputs(TitaniumTetrachloride.getFluid(100))
-            .fluidOutputs(Polytetrahydrofuran.getFluid(3240))
-            .EUt(VA[MV])
-            .duration(1 * MINUTE + 20 * SECOND)
-            .buildAndRegister()
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(24)
+            notConsumable(dust, SodiumBisulfate)
+            fluidInputs(Tetrahydrofuran.getFluid(2160))
+            fluidInputs(Water.getFluid(7500))
+            fluidInputs(TitaniumTetrachloride.getFluid(100))
+            fluidOutputs(Polytetrahydrofuran.getFluid(3240))
+            EUt(VA[MV])
+            duration(1 * MINUTE + 20 * SECOND)
+        }
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .notConsumable(dust, SodiumBisulfate)
-            .fluidInputs(Tetrahydrofuran.getFluid(2160))
-            .fluidInputs(DistilledWater.getFluid(7500))
-            .fluidInputs(TitaniumTetrachloride.getFluid(100))
-            .fluidOutputs(Polytetrahydrofuran.getFluid(4320))
-            .EUt(VA[MV])
-            .duration(1 * MINUTE + 20 * SECOND)
-            .buildAndRegister()
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(24)
+            notConsumable(dust, SodiumBisulfate)
+            fluidInputs(Tetrahydrofuran.getFluid(2160))
+            fluidInputs(DistilledWater.getFluid(7500))
+            fluidInputs(TitaniumTetrachloride.getFluid(100))
+            fluidOutputs(Polytetrahydrofuran.getFluid(4320))
+            EUt(VA[MV])
+            duration(1 * MINUTE + 20 * SECOND)
+        }
 
         // (C4H8O)OH2 + 3CH3C6H3(NCO)2 + 2H -> (CONH)2(C6H4)2CH2(C4O)
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(Polytetrahydrofuran.getFluid(1000))
-            .fluidInputs(TolueneDiisocyanate.getFluid(3000))
-            .fluidInputs(Hydrogen.getFluid(2000))
-            .fluidOutputs(TolueneTetramethylDiisocyanate.getFluid(2000))
-            .EUt(VA[IV])
-            .duration(1 * MINUTE)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Polytetrahydrofuran.getFluid(1000))
+            fluidInputs(TolueneDiisocyanate.getFluid(3000))
+            fluidInputs(Hydrogen.getFluid(2000))
+            fluidOutputs(TolueneTetramethylDiisocyanate.getFluid(2000))
+            EUt(VA[IV])
+            duration(1 * MINUTE)
+        }
 
         // (CONH)2(C6H4)2CH2(C4O) + C4H8(OH)2 -> (CONH)2(C6H4)2CH2(C4O)HO(CH2)4OH
-        CHEMICAL_RECIPES.recipeBuilder()
-            .fluidInputs(TolueneTetramethylDiisocyanate.getFluid(4000))
-            .fluidInputs(Butanediol.getFluid(1000))
-            .output(dust, RawPolytetramethyleneGlycolRubber, 53)
-            .EUt(VA[UV])
-            .duration(30 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(TolueneTetramethylDiisocyanate.getFluid(4000))
+            fluidInputs(Butanediol.getFluid(1000))
+            output(dust, RawPolytetramethyleneGlycolRubber, 53)
+            EUt(VA[UV])
+            duration(30 * SECOND)
+        }
 
         // Add polytetramethylene glycol rubber component recipes.
         for (catalyst in arrayOf(Zincite, Magnesia))
         {
-            // Polytetramethylene Glycol Rubber Ingot
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_INGOT)
-                .input(dust, RawPolytetramethyleneGlycolRubber, 4)
-                .input(dust, Sulfur)
-                .output(ingot, PolytetramethyleneGlycolRubber, 4)
-                .EUt(VA[HV])
-                .duration(40 * SECOND)
-                .buildAndRegister()
+            // Ingot
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_INGOT)
+                input(dust, RawPolytetramethyleneGlycolRubber, 4)
+                input(dust, Sulfur)
+                output(ingot, PolytetramethyleneGlycolRubber, 4)
+                EUt(VA[HV])
+                duration(40 * SECOND)
+            }
 
-            // Polytetramethylene Glycol Rubber Plate
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_PLATE)
-                .input(dust, RawPolytetramethyleneGlycolRubber, 4)
-                .input(dust, Sulfur)
-                .output(plate, PolytetramethyleneGlycolRubber, 4)
-                .EUt(VA[HV])
-                .duration(40 * SECOND)
-                .buildAndRegister()
+            // Plate
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_PLATE)
+                input(dust, RawPolytetramethyleneGlycolRubber, 4)
+                input(dust, Sulfur)
+                output(plate, PolytetramethyleneGlycolRubber, 4)
+                EUt(VA[HV])
+                duration(40 * SECOND)
+            }
 
-            // Polytetramethylene Glycol Rubber Rod
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_ROD)
-                .input(dust, RawPolytetramethyleneGlycolRubber, 4)
-                .input(dust, Sulfur)
-                .output(stick, PolytetramethyleneGlycolRubber, 8)
-                .EUt(VA[HV])
-                .duration(40 * SECOND)
-                .buildAndRegister()
+            // Stick
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_ROD)
+                input(dust, RawPolytetramethyleneGlycolRubber, 4)
+                input(dust, Sulfur)
+                output(stick, PolytetramethyleneGlycolRubber, 8)
+                EUt(VA[HV])
+                duration(40 * SECOND)
+            }
 
-            // Polytetramethylene Glycol Rubber Ring
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_RING)
-                .input(dust, RawPolytetramethyleneGlycolRubber, 4)
-                .input(dust, Sulfur)
-                .output(ring, PolytetramethyleneGlycolRubber, 16)
-                .EUt(VA[HV])
-                .duration(40 * SECOND)
-                .buildAndRegister()
+            // Ring
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_RING)
+                input(dust, RawPolytetramethyleneGlycolRubber, 4)
+                input(dust, Sulfur)
+                output(ring, PolytetramethyleneGlycolRubber, 16)
+                EUt(VA[HV])
+                duration(40 * SECOND)
+            }
 
-            // Polytetramethylene Glycol Rubber Foil
-            VULCANIZATION_RECIPES.recipeBuilder()
-                .notConsumable(dust, catalyst)
-                .notConsumable(SHAPE_EXTRUDER_FOIL)
-                .input(dust, RawPolytetramethyleneGlycolRubber, 4)
-                .input(dust, Sulfur)
-                .output(foil, PolytetramethyleneGlycolRubber, 16)
-                .EUt(VA[HV])
-                .duration(40 * SECOND)
-                .buildAndRegister()
-
+            // Foil
+            VULCANIZATION_RECIPES.addRecipe {
+                notConsumable(dust, catalyst)
+                notConsumable(SHAPE_EXTRUDER_FOIL)
+                input(dust, RawPolytetramethyleneGlycolRubber, 4)
+                input(dust, Sulfur)
+                output(foil, PolytetramethyleneGlycolRubber, 16)
+                EUt(VA[HV])
+                duration(40 * SECOND)
+            }
         }
 
+        // endregion
     }
 
     // @formatter:on

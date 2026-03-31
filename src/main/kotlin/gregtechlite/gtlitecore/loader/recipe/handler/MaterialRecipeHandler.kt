@@ -63,6 +63,7 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
@@ -141,24 +142,24 @@ object MaterialRecipeHandler
             if (!material.hasFlag(NO_WORKING))
             {
                 // Confirm extruder can process any materials.
-                EXTRUDER_RECIPES.recipeBuilder()
-                    .notConsumable(SHAPE_EXTRUDER_ROD)
-                    .input(ingotPrefix, material)
-                    .output(stick, material, 2)
-                    .EUt(scaleVoltage(6 * getVoltageMultiplier(material), workingTier))
-                    .duration(material.mass * 2)
-                    .buildAndRegister()
+                EXTRUDER_RECIPES.addRecipe {
+                    notConsumable(SHAPE_EXTRUDER_ROD)
+                    input(ingotPrefix, material)
+                    output(stick, material, 2)
+                    EUt(scaleVoltage(6 * getVoltageMultiplier(material), workingTier))
+                    duration(material.mass * 2)
+                }
 
                 // ingotX -> stickX (soft: slicer, hard: cutting machine).
                 if (material.hasFlag(NO_SMASHING))
                 {
-                    SLICER_RECIPES.recipeBuilder()
-                        .notConsumable(SLICER_BLADE_STRIPES)
-                        .input(ingotPrefix, material)
-                        .output(stick, material, 2)
-                        .EUt(scaleVoltage(6 * getVoltageMultiplier(material), workingTier))
-                        .duration(material.mass * 2)
-                        .buildAndRegister()
+                    SLICER_RECIPES.addRecipe {
+                        notConsumable(SLICER_BLADE_STRIPES)
+                        input(ingotPrefix, material)
+                        output(stick, material, 2)
+                        EUt(scaleVoltage(6 * getVoltageMultiplier(material), workingTier))
+                        duration(material.mass * 2)
+                    }
                 }
             }
         }
@@ -166,51 +167,51 @@ object MaterialRecipeHandler
         // Fluid solidification.
         if (material.hasFluid() && !((material.getProperty(PropertyKey.FLUID).solidifiesFrom())!!.equals(null)))
         {
-            FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_INGOT)
-                .fluidInputs(material.getProperty(PropertyKey.FLUID).solidifiesFrom(L))
-                .output(ingotPrefix, material)
-                .EUt(scaleVoltage(VA[ULV], workingTier))
-                .duration(1 * SECOND)
-                .buildAndRegister()
+            FLUID_SOLIDFICATION_RECIPES.addRecipe {
+                notConsumable(SHAPE_MOLD_INGOT)
+                fluidInputs(material.getProperty(PropertyKey.FLUID).solidifiesFrom(L))
+                output(ingotPrefix, material)
+                EUt(scaleVoltage(VA[ULV], workingTier))
+                duration(1 * SECOND)
+            }
         }
 
         // Plastic extruding dustX -> ingotX.
         if (material.hasFlag(NO_SMASHING))
         {
-            EXTRUDER_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_EXTRUDER_INGOT)
-                .input(dust, material)
-                .output(ingotPrefix, material)
-                .EUt(scaleVoltage(4 * getVoltageMultiplier(material), workingTier))
-                .duration(10 * TICK)
-                .buildAndRegister()
+            EXTRUDER_RECIPES.addRecipe {
+                notConsumable(SHAPE_EXTRUDER_INGOT)
+                input(dust, material)
+                output(ingotPrefix, material)
+                EUt(scaleVoltage(4 * getVoltageMultiplier(material), workingTier))
+                duration(10 * TICK)
+            }
         }
 
         // Universal ingotX -> nuggetX alloy smelting.
-        ALLOY_SMELTER_RECIPES.recipeBuilder()
-            .notConsumable(SHAPE_MOLD_NUGGET)
-            .input(ingotPrefix, material)
-            .output(nugget, material, 9)
-            .EUt(scaleVoltage(VA[ULV], workingTier))
-            .duration(material.mass)
-            .buildAndRegister()
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_NUGGET)
+            input(ingotPrefix, material)
+            output(nugget, material, 9)
+            EUt(scaleVoltage(VA[ULV], workingTier))
+            duration(material.mass)
+        }
 
         // Universal blockX <-> ingotX converts.
         if (!(OreDictUnifier.get(block, material))!!.isEmpty)
         {
-            ALLOY_SMELTER_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_INGOT)
-                .input(block, material)
-                .output(ingotPrefix, material, 9)
-                .EUt(scaleVoltage(VA[ULV], workingTier))
-                .duration(material.mass * 9)
-                .buildAndRegister()
+            ALLOY_SMELTER_RECIPES.addRecipe {
+                notConsumable(SHAPE_MOLD_INGOT)
+                input(block, material)
+                output(ingotPrefix, material, 9)
+                EUt(scaleVoltage(VA[ULV], workingTier))
+                duration(material.mass * 9)
+            }
 
-            COMPRESSOR_RECIPES.recipeBuilder()
-                .input(ingotPrefix, material, (block.getMaterialAmount(material) / M).toInt())
-                .output(block, material)
-                .buildAndRegister()
+            COMPRESSOR_RECIPES.addRecipe {
+                input(ingotPrefix, material, (block.getMaterialAmount(material) / M).toInt())
+                output(block, material)
+            }
         }
 
         // Bending ingotX -> plateX.
@@ -225,27 +226,27 @@ object MaterialRecipeHandler
                     // Default hand-crafting recipes.
                     if (workingTier <= HV)
                     {
-                        ModHandler.addShapedRecipe(String.format("plate_%s", material), plateStack,
+                        ModHandler.addShapedRecipe("plate_$material", plateStack,
                             "h", "I", "I",
                             'I', UnificationEntry(ingotPrefix, material))
                     }
 
                     // 1:1 Bending.
-                    BENDER_RECIPES.recipeBuilder()
-                        .circuitMeta(1)
-                        .input(ingotPrefix, material)
-                        .outputs(plateStack)
-                        .EUt(scaleVoltage(24, workingTier))
-                        .duration(material.mass)
-                        .buildAndRegister()
+                    BENDER_RECIPES.addRecipe {
+                        circuitMeta(1)
+                        input(ingotPrefix, material)
+                        outputs(plateStack)
+                        EUt(scaleVoltage(24, workingTier))
+                        duration(material.mass)
+                    }
 
                     // 3:2 Hamming.
-                    FORGE_HAMMER_RECIPES.recipeBuilder()
-                        .input(ingotPrefix, material, 3)
-                        .outputs(copyFirst(2, plateStack))
-                        .EUt(scaleVoltage(VH[LV], workingTier))
-                        .duration(material.mass)
-                        .buildAndRegister()
+                    FORGE_HAMMER_RECIPES.addRecipe {
+                        input(ingotPrefix, material, 3)
+                        outputs(copyFirst(2, plateStack))
+                        EUt(scaleVoltage(VH[LV], workingTier))
+                        duration(material.mass)
+                    }
                 }
             }
 
@@ -255,33 +256,33 @@ object MaterialRecipeHandler
                 if (material.hasFlag(NO_SMASHING))
                 {
                     // Slicing ingotX -> plateX.
-                    SLICER_RECIPES.recipeBuilder()
-                        .notConsumable(SLICER_BLADE_FLAT)
-                        .input(ingotPrefix, material)
-                        .output(plate, material)
-                        .EUt(scaleVoltage(8 * getVoltageMultiplier(material), workingTier))
-                        .duration(material.mass)
-                        .buildAndRegister()
+                    SLICER_RECIPES.addRecipe {
+                        notConsumable(SLICER_BLADE_FLAT)
+                        input(ingotPrefix, material)
+                        output(plate, material)
+                        EUt(scaleVoltage(8 * getVoltageMultiplier(material), workingTier))
+                        duration(material.mass)
+                    }
 
                     // Special extruding dustX -> plateX.
-                    EXTRUDER_RECIPES.recipeBuilder()
-                        .notConsumable(SHAPE_EXTRUDER_PLATE)
-                        .input(dust, material)
-                        .output(plate, material)
-                        .EUt(scaleVoltage(8 * getVoltageMultiplier(material), workingTier))
-                        .duration(material.mass)
-                        .buildAndRegister()
+                    EXTRUDER_RECIPES.addRecipe {
+                        notConsumable(SHAPE_EXTRUDER_PLATE)
+                        input(dust, material)
+                        output(plate, material)
+                        EUt(scaleVoltage(8 * getVoltageMultiplier(material), workingTier))
+                        duration(material.mass)
+                    }
                 }
                 else
                 {
                     // Hard extruding.
-                    EXTRUDER_RECIPES.recipeBuilder()
-                        .notConsumable(SHAPE_EXTRUDER_PLATE)
-                        .input(ingotPrefix, material)
-                        .output(plate, material)
-                        .EUt(scaleVoltage(8 * getVoltageMultiplier(material), workingTier))
-                        .duration(material.mass)
-                        .buildAndRegister()
+                    EXTRUDER_RECIPES.addRecipe {
+                        notConsumable(SHAPE_EXTRUDER_PLATE)
+                        input(ingotPrefix, material)
+                        output(plate, material)
+                        EUt(scaleVoltage(8 * getVoltageMultiplier(material), workingTier))
+                        duration(material.mass)
+                    }
                 }
             }
         }
@@ -299,13 +300,14 @@ object MaterialRecipeHandler
         // Fluid solidification.
         if (material.hasFluid() && !(material.getProperty(PropertyKey.FLUID).solidifiesFrom())!!.equals(null))
         {
-            FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_MOLD_BLOCK)
-                .fluidInputs(material.getProperty(PropertyKey.FLUID).solidifiesFrom((materialAmount * L / M).toInt()))
-                .outputs(blockStack)
-                .EUt(scaleVoltage(VA[ULV], workingTier))
-                .duration(material.mass)
-                .buildAndRegister()
+            FLUID_SOLIDFICATION_RECIPES.addRecipe {
+                notConsumable(SHAPE_MOLD_BLOCK)
+                fluidInputs(material.getProperty(PropertyKey.FLUID).solidifiesFrom((materialAmount * L / M).toInt()))
+                outputs(blockStack)
+                EUt(scaleVoltage(VA[ULV], workingTier))
+                duration(material.mass)
+                buildAndRegister()
+            }
         }
 
         // blockX -> plateX.
@@ -317,22 +319,22 @@ object MaterialRecipeHandler
                 // Plastic blockX -> plateX.
                 if (material.hasFlag(NO_SMASHING) && !material.hasProperty(PropertyKey.GEM))
                 {
-                    SLICER_RECIPES.recipeBuilder()
-                        .notConsumable(SLICER_BLADE_OCTAGONAL)
-                        .input(blockPrefix, material)
-                        .outputs(copyFirst((materialAmount / M).toInt(), plateStack))
-                        .EUt(scaleVoltage(VA[LV], workingTier))
-                        .duration(material.mass * 8)
-                        .buildAndRegister()
+                    SLICER_RECIPES.addRecipe {
+                        notConsumable(SLICER_BLADE_OCTAGONAL)
+                        input(blockPrefix, material)
+                        outputs(copyFirst((materialAmount / M).toInt(), plateStack))
+                        EUt(scaleVoltage(VA[LV], workingTier))
+                        duration(material.mass * 8)
+                    }
                 }
                 else // Common cutting.
                 {
-                    CUTTER_RECIPES.recipeBuilder()
-                        .input(blockPrefix, material)
-                        .outputs(copyFirst((materialAmount / M).toInt(), plateStack))
-                        .EUt(scaleVoltage(VA[LV], workingTier))
-                        .duration(material.mass * 8)
-                        .buildAndRegister()
+                    CUTTER_RECIPES.addRecipe {
+                        input(blockPrefix, material)
+                        outputs(copyFirst((materialAmount / M).toInt(), plateStack))
+                        EUt(scaleVoltage(VA[LV], workingTier))
+                        duration(material.mass * 8)
+                    }
                 }
             }
         }
@@ -357,10 +359,10 @@ object MaterialRecipeHandler
             if (!material.hasFlag(EXCLUDE_BLOCK_CRAFTING_BY_HAND_RECIPES)
                     && !ConfigHolder.recipes.disableManualCompression)
             {
-                ModHandler.addShapelessRecipe(String.format("block_compress_%s", material), blockStack,
+                ModHandler.addShapelessRecipe("block_compress_$material", blockStack,
                     *result.toTypedArray())
 
-                ModHandler.addShapelessRecipe(String.format("block_decompress_%s", material),
+                ModHandler.addShapelessRecipe("block_decompress_$material",
                     copyFirst((materialAmount / M).toInt(), OreDictUnifier.get(blockEntry)),
                     UnificationEntry(blockPrefix, material))
             }
@@ -368,40 +370,38 @@ object MaterialRecipeHandler
             // Ingot converts.
             if (material.hasProperty(PropertyKey.INGOT))
             {
-                EXTRUDER_RECIPES.recipeBuilder()
-                    .notConsumable(SHAPE_EXTRUDER_BLOCK)
-                    .input(ingot, material, (materialAmount / M).toInt())
-                    .outputs(blockStack)
-                    .EUt(scaleVoltage(8 * getVoltageMultiplier(material), workingTier))
-                    .duration(10 * TICK)
-                    .buildAndRegister()
+                EXTRUDER_RECIPES.addRecipe {
+                    notConsumable(SHAPE_EXTRUDER_BLOCK)
+                    input(ingot, material, (materialAmount / M).toInt())
+                    outputs(blockStack)
+                    EUt(scaleVoltage(8 * getVoltageMultiplier(material), workingTier))
+                    duration(10 * TICK)
+                }
 
-                ALLOY_SMELTER_RECIPES.recipeBuilder()
-                    .notConsumable(SHAPE_MOLD_BLOCK)
-                    .input(ingot, material, (materialAmount / M).toInt())
-                    .outputs(blockStack)
-                    .EUt(scaleVoltage(4 * getVoltageMultiplier(material), workingTier))
-                    .duration(5 * TICK)
-                    .buildAndRegister()
+                ALLOY_SMELTER_RECIPES.addRecipe {
+                    notConsumable(SHAPE_MOLD_BLOCK)
+                    input(ingot, material, (materialAmount / M).toInt())
+                    outputs(blockStack)
+                    EUt(scaleVoltage(4 * getVoltageMultiplier(material), workingTier))
+                    duration(5 * TICK)
+                }
             }
             else if (material.hasProperty(PropertyKey.GEM))
             {
-                COMPRESSOR_RECIPES.recipeBuilder()
-                    .input(gem, material, (block.getMaterialAmount(material) / M).toInt())
-                    .outputs(blockStack)
-                    .EUt(scaleVoltage(2, workingTier)) // ULV
-                    .duration(15 * SECOND)
-                    .buildAndRegister()
+                COMPRESSOR_RECIPES.addRecipe {
+                    input(gem, material, (block.getMaterialAmount(material) / M).toInt())
+                    outputs(blockStack)
+                    EUt(scaleVoltage(2, workingTier)) // ULV
+                    duration(15 * SECOND)
+                }
 
-                FORGE_HAMMER_RECIPES.recipeBuilder()
-                    .input(blockPrefix, material)
-                    .output(gem, material, (block.getMaterialAmount(material) / M).toInt())
-                    .EUt(scaleVoltage(24, workingTier)) // LV
-                    .duration(5 * SECOND)
-                    .buildAndRegister()
-
+                FORGE_HAMMER_RECIPES.addRecipe {
+                    input(blockPrefix, material)
+                    output(gem, material, (block.getMaterialAmount(material) / M).toInt())
+                    EUt(scaleVoltage(24, workingTier)) // LV
+                    duration(5 * SECOND)
+                }
             }
-
         }
     }
 
@@ -417,7 +417,7 @@ object MaterialRecipeHandler
         // Hand-craft gem grinding.
         if (material.hasFlag(MORTAR_GRINDABLE) && workingTier <= HV)
         {
-            ModHandler.addShapedRecipe(String.format("gem_to_dust_%s_%s", material, gemPrefix), crushedStack,
+            ModHandler.addShapedRecipe("gem_to_dust_${material}_$gemPrefix", crushedStack,
                 "X", "m",
                 'X', UnificationEntry(gemPrefix, material))
         }
@@ -425,25 +425,24 @@ object MaterialRecipeHandler
         val prevStack = if (prevPrefix == null) ItemStack.EMPTY else OreDictUnifier.get(prevPrefix, material, 2)
         if (!prevStack.isEmpty)
         {
-            ModHandler.addShapelessRecipe(String.format("gem_to_gem_%s_%s", prevPrefix, material), prevStack,
+            ModHandler.addShapelessRecipe("gem_to_gem_${prevPrefix}_$material", prevStack,
                 "h", UnificationEntry(gemPrefix, material))
 
-            CUTTER_RECIPES.recipeBuilder()
-                .input(gemPrefix, material)
-                .outputs(prevStack)
-                .EUt(VH[LV])
-                .duration(1 * SECOND)
-                .buildAndRegister()
+            CUTTER_RECIPES.addRecipe {
+                input(gemPrefix, material)
+                outputs(prevStack)
+                EUt(VH[LV])
+                duration(1 * SECOND)
+            }
 
-            LASER_ENGRAVER_RECIPES.recipeBuilder()
-                .notConsumable(craftingLens, Color.White)
-                .inputs(prevStack)
-                .output(gemPrefix, material)
-                .EUt(scaleVoltage(VHA[HV], workingTier))
-                .duration(15 * SECOND)
-                .buildAndRegister()
+            LASER_ENGRAVER_RECIPES.addRecipe {
+                notConsumable(craftingLens, Color.White)
+                inputs(prevStack)
+                output(gemPrefix, material)
+                EUt(scaleVoltage(VHA[HV], workingTier))
+                duration(15 * SECOND)
+            }
         }
-
     }
 
     private fun generateImplosionRecipes(dustPrefix: OrePrefix, material: Material, property: DustProperty)
@@ -456,13 +455,13 @@ object MaterialRecipeHandler
             val gemStack = OreDictUnifier.get(gem, material)
             if (!material.hasFlag(EXPLOSIVE) && !material.hasFlag(FLAMMABLE))
             {
-                ELECTRIC_IMPLOSION_RECIPES.recipeBuilder()
-                    .inputs(dustStack.copy(4))
-                    .outputs(gemStack.copy(3))
-                    .chancedOutput(dust, DarkAsh, 2500, 0)
-                    .EUt(scaleVoltage(VA[LV], workingTier))
-                    .duration(1 * SECOND)
-                    .buildAndRegister()
+                ELECTRIC_IMPLOSION_RECIPES.addRecipe {
+                    inputs(dustStack.copy(4))
+                    outputs(gemStack.copy(3))
+                    chancedOutput(dust, DarkAsh, 2500, 0)
+                    EUt(scaleVoltage(VA[LV], workingTier))
+                    duration(1 * SECOND)
+                }
             }
         }
     }
@@ -499,67 +498,65 @@ object MaterialRecipeHandler
                         if (eut <= 0) eut = VA[MV]
 
                         // Still output ingotStack now, otherwise ingot has or not ingotHot.
-                        TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-                           .circuitMeta(1)
-                           .input(dustPrefix, material)
-                           .outputs(ingotStack)
-                           .EUt(eut)
-                           .duration(duration * 0.5)
-                           .blastFurnaceTemp(blastTemp)
-                           .buildAndRegister()
+                        TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+                            circuitMeta(1)
+                            input(dustPrefix, material)
+                            outputs(ingotStack)
+                            EUt(eut)
+                            duration(duration * 0.5)
+                            blastFurnaceTemp(blastTemp)
+                        }
 
                         if (material.hasFluid())
                         {
                             // If material has fluid, then allowed to get molten fluid.
-                            TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-                                .circuitMeta(2)
-                                .input(dustPrefix, material)
-                                .fluidOutputs(material.getFluid(L))
-                                .EUt(eut)
-                                .duration(duration * 0.5)
-                                .blastFurnaceTemp(blastTemp)
-                                .buildAndRegister()
+                            TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+                                circuitMeta(2)
+                                input(dustPrefix, material)
+                                fluidOutputs(material.getFluid(L))
+                                EUt(eut)
+                                duration(duration * 0.5)
+                                blastFurnaceTemp(blastTemp)
+                            }
 
                             // Another choice, if player has too many ingotStacks, then MBF can blast material like fluid
                             // extractor, i.e. ingotStack -> fluidStack.
-                            TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-                                .circuitMeta(4)
-                                .inputs(ingotStack)
-                                .fluidOutputs(material.getFluid(L))
-                                .EUt(eut)
-                                .duration(duration * 0.5)
-                                .blastFurnaceTemp(blastTemp)
-                                .buildAndRegister()
+                            TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+                                circuitMeta(4)
+                                inputs(ingotStack)
+                                fluidOutputs(material.getFluid(L))
+                                EUt(eut)
+                                duration(duration * 0.5)
+                                blastFurnaceTemp(blastTemp)
+                            }
 
                             // If material has plasma, then plasma is also.
                             if (material.getFluid(FluidStorageKeys.PLASMA) != null)
                             {
-                                TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-                                    .circuitMeta(3)
-                                    .input(dustPrefix, material)
-                                    .fluidOutputs(material.getPlasma(L))
-                                    .EUt(eut)
-                                    .duration(duration * 0.5)
-                                    .blastFurnaceTemp(blastTemp)
-                                    .buildAndRegister()
+                                TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+                                    circuitMeta(3)
+                                    input(dustPrefix, material)
+                                    fluidOutputs(material.getPlasma(L))
+                                    EUt(eut)
+                                    duration(duration * 0.5)
+                                    blastFurnaceTemp(blastTemp)
+                                }
 
                                 // Just like fluid secondary choice, plasma is also.
-                                TOPOLOGICAL_ORDER_CHANGING_RECIPES.recipeBuilder()
-                                    .circuitMeta(5)
-                                    .inputs(ingotStack)
-                                    .fluidOutputs(material.getPlasma(L))
-                                    .EUt(eut)
-                                    .duration(duration * 0.5)
-                                    .blastFurnaceTemp(blastTemp)
-                                    .buildAndRegister()
-
+                                TOPOLOGICAL_ORDER_CHANGING_RECIPES.addRecipe {
+                                    circuitMeta(5)
+                                    inputs(ingotStack)
+                                    fluidOutputs(material.getPlasma(L))
+                                    EUt(eut)
+                                    duration(duration * 0.5)
+                                    blastFurnaceTemp(blastTemp)
+                                }
                             }
                         }
                     }
                 }
             }
         }
-
     }
 
     private fun getVoltageMultiplier(material: Material): Long = if (material.blastTemperature >= 2800) VA[LV].toLong() else VA[ULV].toLong()

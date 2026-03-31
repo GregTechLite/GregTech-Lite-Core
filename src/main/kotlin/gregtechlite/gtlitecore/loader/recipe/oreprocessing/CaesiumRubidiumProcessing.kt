@@ -17,6 +17,7 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
@@ -46,68 +47,67 @@ internal object CaesiumRubidiumProcessing
         // player can extract caesium and other part of components by this processing.
 
         // Cs2Al2Si4(H2O)2O12 + 3HCl -> (RbCl)(CsCl)2(H2O)2 + 0.25Al2O3 + 1.6SiO2 + O (lost)
-        CHEMICAL_BATH_RECIPES.recipeBuilder()
-            .input(dust, Pollucite, 11)
-            .fluidInputs(HydrochloricAcid.getFluid(3000))
-            .output(dust, Alumina)
-            .output(dust, SiliconDioxide, 4)
-            .fluidOutputs(HeavyAlkaliChloridesSolution.getFluid(1000))
-            .EUt(VA[EV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(dust, Pollucite, 11)
+            fluidInputs(HydrochloricAcid.getFluid(3000))
+            output(dust, Alumina)
+            output(dust, SiliconDioxide, 4)
+            fluidOutputs(HeavyAlkaliChloridesSolution.getFluid(1000))
+            EUt(VA[EV])
+            duration(10 * SECOND)
+        }
 
         // 2(RbCl)(CsCl)2(H2O)2 + 3SnCl4 -> Rb2SnCl6 + 2Cs2SnCl6 + 4H2O
-        CRYOGENIC_REACTOR_RECIPES.recipeBuilder()
-            .input(dust, TinTetrachloride, 15)
-            .fluidInputs(HeavyAlkaliChloridesSolution.getFluid(2000))
-            .output(dust, RubidiumHexachlorotinate, 9)
-            .output(dust, CaesiumHexachlorotinate, 18)
-            .fluidOutputs(Ice.getFluid(4000))
-            .EUt(VA[EV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CRYOGENIC_REACTOR_RECIPES.addRecipe {
+            input(dust, TinTetrachloride, 15)
+            fluidInputs(HeavyAlkaliChloridesSolution.getFluid(2000))
+            output(dust, RubidiumHexachlorotinate, 9)
+            output(dust, CaesiumHexachlorotinate, 18)
+            fluidOutputs(Ice.getFluid(4000))
+            EUt(VA[EV])
+            duration(10 * SECOND)
+        }
 
         // SnCl2 and SnCl4 recipes and convert recipes.
 
         // Sn + 2Cl -> SnCl2
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Tin)
-            .fluidInputs(Chlorine.getFluid(2000))
-            .output(dust, TinDichloride, 3)
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Tin)
+            fluidInputs(Chlorine.getFluid(2000))
+            output(dust, TinDichloride, 3)
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
 
         // Sn + 4Cl -> SnCl4
-        BURNER_REACTOR_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(dust, Tin)
-            .fluidInputs(Chlorine.getFluid(4000))
-            .output(dust, TinTetrachloride, 5)
-            .EUt(VA[MV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        BURNER_REACTOR_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(dust, Tin)
+            fluidInputs(Chlorine.getFluid(4000))
+            output(dust, TinTetrachloride, 5)
+            EUt(VA[MV])
+            duration(5 * SECOND)
+        }
 
         // SnCl2 + 2Cl -> SnCl4
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, TinDichloride, 3)
-            .fluidInputs(Chlorine.getFluid(2000))
-            .output(dust, TinTetrachloride, 5)
-            .EUt(VA[HV])
-            .duration(15 * TICK)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, TinDichloride, 3)
+            fluidInputs(Chlorine.getFluid(2000))
+            output(dust, TinTetrachloride, 5)
+            EUt(VA[HV])
+            duration(15 * TICK)
+        }
 
         // SnCl4 + 2H -> SnCl2 + 2HCl
-        CHEMICAL_RECIPES.recipeBuilder()
-            .input(dust, TinTetrachloride, 5)
-            .fluidInputs(Hydrogen.getFluid(2000))
-            .output(dust, TinDichloride, 3)
-            .fluidOutputs(HydrochloricAcid.getFluid(2000))
-            .EUt(VA[HV])
-            .duration(15 * TICK)
-            .buildAndRegister()
-
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, TinTetrachloride, 5)
+            fluidInputs(Hydrogen.getFluid(2000))
+            output(dust, TinDichloride, 3)
+            fluidOutputs(HydrochloricAcid.getFluid(2000))
+            EUt(VA[HV])
+            duration(15 * TICK)
+        }
     }
 
     // @formatter:on
