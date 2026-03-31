@@ -8,6 +8,7 @@ import gregtech.api.recipes.RecipeMaps.MACERATOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.ORE_WASHER_RECIPES
 import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.THERMAL_CENTRIFUGE_RECIPES
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Stone
@@ -77,33 +78,33 @@ object OreRecipeHandler
         val byproductStack = OreDictUnifier.get(dust, byproductMaterial)
 
         // Hamming crushedPurifiedX -> dustPureX.
-        FORGE_HAMMER_RECIPES.recipeBuilder()
-            .input(purifiedPrefix, material)
-            .outputs(dustStack)
-            .EUt(VH[LV])
-            .duration(10 * TICK)
-            .buildAndRegister()
+        FORGE_HAMMER_RECIPES.addRecipe {
+            input(purifiedPrefix, material)
+            outputs(dustStack)
+            EUt(VH[LV])
+            duration(10 * TICK)
+        }
 
         // Macerating crushedPurifiedX -> dustPureX + (dustX: byproduct).
-        MACERATOR_RECIPES.recipeBuilder()
-            .input(purifiedPrefix, material)
-            .outputs(dustStack)
-            .chancedOutput(byproductStack, 1400, 850)
-            .duration(20 * SECOND)
-            .buildAndRegister()
+        MACERATOR_RECIPES.addRecipe {
+            input(purifiedPrefix, material)
+            outputs(dustStack)
+            chancedOutput(byproductStack, 1400, 850)
+            duration(20 * SECOND)
+        }
 
         // Hand-hamming crushedPurifiedX -> dustPureX.
-        ModHandler.addShapelessRecipe(String.format("purified_ore_to_dust_%s", material), dustStack,
+        ModHandler.addShapelessRecipe("purified_ore_to_dust_$material", dustStack,
             'h', UnificationEntry(purifiedPrefix, material))
 
         // Thermal centrifuging crushedPurifiedX -> crushedCentrifugedX + (dustX: byproduct).
         if (!crushedCentrifugedStack.isEmpty)
         {
-            THERMAL_CENTRIFUGE_RECIPES.recipeBuilder()
-                .input(purifiedPrefix, material)
-                .outputs(crushedCentrifugedStack)
-                .chancedOutput(dust, byproductMaterial, 3333, 0)
-                .buildAndRegister()
+            THERMAL_CENTRIFUGE_RECIPES.addRecipe {
+                input(purifiedPrefix, material)
+                outputs(crushedCentrifugedStack)
+                chancedOutput(dust, byproductMaterial, 3333, 0)
+            }
         }
 
         // Gem sifting, we merged gemSolitary and sort it at this stage.
@@ -118,65 +119,65 @@ object OreRecipeHandler
 
             if (material.hasFlag(HIGH_SIFTER_OUTPUT))
             {
-                SIFTER_RECIPES.recipeBuilder()
-                    .circuitMeta(1)
-                    .input(purifiedPrefix, material)
-                    .chancedOutput(solitaryStack, 100, 50)
-                    .chancedOutput(exquisiteStack, 500, 150)
-                    .chancedOutput(flawlessStack, 1500, 200)
-                    .chancedOutput(gemStack, 5000, 1000)
-                    .chancedOutput(flawedStack, 2000, 500)
-                    .chancedOutput(chippedStack, 3000, 350)
-                    .chancedOutput(dustStack, 2500, 500)
-                    .EUt(VH[LV])
-                    .duration(20 * SECOND)
-                    .buildAndRegister()
+                SIFTER_RECIPES.addRecipe {
+                    circuitMeta(1)
+                    input(purifiedPrefix, material)
+                    chancedOutput(solitaryStack, 100, 50)
+                    chancedOutput(exquisiteStack, 500, 150)
+                    chancedOutput(flawlessStack, 1500, 200)
+                    chancedOutput(gemStack, 5000, 1000)
+                    chancedOutput(flawedStack, 2000, 500)
+                    chancedOutput(chippedStack, 3000, 350)
+                    chancedOutput(dustStack, 2500, 500)
+                    EUt(VH[LV])
+                    duration(20 * SECOND)
+                }
 
-                SIFTER_RECIPES.recipeBuilder()
-                    .circuitMeta(2)
-                    .input(purifiedPrefix, material)
-                    .fluidInputs(ZephyreanAerotheum.getFluid(250))
-                    .chancedOutput(solitaryStack, 200, 100)
-                    .chancedOutput(exquisiteStack, 1000, 300)
-                    .chancedOutput(flawlessStack, 3000, 400)
-                    .outputs(gemStack)
-                    .chancedOutput(flawedStack, 4000, 1000)
-                    .chancedOutput(chippedStack, 6000, 700)
-                    .chancedOutput(dustStack, 5000, 1000)
-                    .EUt(VH[LV])
-                    .duration(10 * SECOND)
-                    .buildAndRegister()
+                SIFTER_RECIPES.addRecipe {
+                    circuitMeta(2)
+                    input(purifiedPrefix, material)
+                    fluidInputs(ZephyreanAerotheum.getFluid(250))
+                    chancedOutput(solitaryStack, 200, 100)
+                    chancedOutput(exquisiteStack, 1000, 300)
+                    chancedOutput(flawlessStack, 3000, 400)
+                    outputs(gemStack)
+                    chancedOutput(flawedStack, 4000, 1000)
+                    chancedOutput(chippedStack, 6000, 700)
+                    chancedOutput(dustStack, 5000, 1000)
+                    EUt(VH[LV])
+                    duration(10 * SECOND)
+                }
             }
             else
             {
-                SIFTER_RECIPES.recipeBuilder()
-                    .circuitMeta(1)
-                    .input(purifiedPrefix, material)
-                    .chancedOutput(solitaryStack, 50, 25)
-                    .chancedOutput(exquisiteStack, 300, 100)
-                    .chancedOutput(flawlessStack, 1000, 150)
-                    .chancedOutput(gemStack, 3500, 500)
-                    .chancedOutput(flawedStack, 2500, 300)
-                    .chancedOutput(chippedStack, 3500, 400)
-                    .chancedOutput(dustStack, 5000, 750)
-                    .EUt(VH[LV])
-                    .duration(20 * SECOND)
-                    .buildAndRegister()
+                SIFTER_RECIPES.addRecipe {
+                    circuitMeta(1)
+                    input(purifiedPrefix, material)
+                    chancedOutput(solitaryStack, 50, 25)
+                    chancedOutput(exquisiteStack, 300, 100)
+                    chancedOutput(flawlessStack, 1000, 150)
+                    chancedOutput(gemStack, 3500, 500)
+                    chancedOutput(flawedStack, 2500, 300)
+                    chancedOutput(chippedStack, 3500, 400)
+                    chancedOutput(dustStack, 5000, 750)
+                    EUt(VH[LV])
+                    duration(20 * SECOND)
+                }
 
-                SIFTER_RECIPES.recipeBuilder()
-                    .circuitMeta(2)
-                    .input(purifiedPrefix, material)
-                    .fluidInputs(ZephyreanAerotheum.getFluid(250))
-                    .chancedOutput(solitaryStack, 100, 50)
-                    .chancedOutput(exquisiteStack, 600, 200)
-                    .chancedOutput(flawlessStack, 2000, 300)
-                    .chancedOutput(gemStack, 7000, 1000)
-                    .chancedOutput(flawedStack, 5000, 600)
-                    .chancedOutput(chippedStack, 7000, 800)
-                    .outputs(dustStack)
-                    .EUt(VH[LV])
-                    .duration(10 * SECOND)
-                    .buildAndRegister()
+                SIFTER_RECIPES.addRecipe {
+                    circuitMeta(2)
+                    input(purifiedPrefix, material)
+                    fluidInputs(ZephyreanAerotheum.getFluid(250))
+                    chancedOutput(solitaryStack, 100, 50)
+                    chancedOutput(exquisiteStack, 600, 200)
+                    chancedOutput(flawlessStack, 2000, 300)
+                    chancedOutput(gemStack, 7000, 1000)
+                    chancedOutput(flawedStack, 5000, 600)
+                    chancedOutput(chippedStack, 7000, 800)
+                    outputs(dustStack)
+                    EUt(VH[LV])
+                    duration(10 * SECOND)
+                }
             }
         }
 
@@ -189,15 +190,15 @@ object OreRecipeHandler
         val crushedPurifiedOre = copyFirst(OreDictUnifier.get(crushedPurified, material),
                                                         OreDictUnifier.get(dust, material))
 
-        ORE_WASHER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(crushedPrefix, material)
-            .fluidInputs(TectonicPetrotheum.getFluid(100))
-            .outputs(crushedPurifiedOre)
-            .output(dust, Stone)
-            .chancedOutput(dust, byproductMaterial, 6666, 0)
-            .duration(5 * SECOND)
-            .buildAndRegister()
+        ORE_WASHER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(crushedPrefix, material)
+            fluidInputs(TectonicPetrotheum.getFluid(100))
+            outputs(crushedPurifiedOre)
+            output(dust, Stone)
+            chancedOutput(dust, byproductMaterial, 6666, 0)
+            duration(5 * SECOND)
+        }
     }
 
     /**

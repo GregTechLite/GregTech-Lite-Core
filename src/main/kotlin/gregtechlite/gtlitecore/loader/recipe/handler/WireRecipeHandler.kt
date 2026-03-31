@@ -221,7 +221,6 @@ object WireRecipeHandler
                 .duration(5 * SECOND)
                 .buildAndRegister()
         }
-
     }
 
     // @formatter:on
