@@ -44,6 +44,8 @@ fun VariantBlockFactory.makeWireCoilBlock() : VariantActiveBlock<WireCoil>
 
         override fun getRenderLayer(): BlockRenderLayer = BlockRenderLayer.SOLID
 
+        override fun getRenderLayer(value: WireCoil): BlockRenderLayer = BlockRenderLayer.SOLID
+
         override fun isBloomEnabled(value: WireCoil): Boolean
         {
             return ConfigHolder.client.coilsActiveEmissiveTextures
