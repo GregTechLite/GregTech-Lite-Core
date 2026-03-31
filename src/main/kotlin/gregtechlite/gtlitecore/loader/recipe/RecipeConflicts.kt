@@ -4,6 +4,7 @@ import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
@@ -40,23 +41,23 @@ internal object RecipeConflicts
         // Conflict between Polydimethylsiloxane (C2H6OSi) and Carbon Tetrachloride (CCl4).
         GTLiteRecipeHandler.removeChemicalRecipes(
             arrayOf(OreDictUnifier.get(dust, Silicon),
-                IntCircuitIngredient.getIntegratedCircuit(2)),
+                    IntCircuitIngredient.getIntegratedCircuit(2)),
             arrayOf(Water.getFluid(1000),
-                Chlorine.getFluid(4000),
-                Methane.getFluid(2000)))
+                    Chlorine.getFluid(4000),
+                    Methane.getFluid(2000)))
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(24)
-            .input(dust, Silicon, 3)
-            .fluidInputs(Water.getFluid(3000))
-            .fluidInputs(Methane.getFluid(6000))
-            .fluidInputs(Chlorine.getFluid(12000))
-            .output(dust, Polydimethylsiloxane, 9)
-            .fluidOutputs(HydrochloricAcid.getFluid(6000))
-            .fluidOutputs(DilutedHydrochloricAcid.getFluid(6000))
-            .EUt(96) // MV
-            .duration(2 * MINUTE + 24 * SECOND)
-            .buildAndRegister()
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(dust, Silicon, 3)
+            fluidInputs(Water.getFluid(3000))
+            fluidInputs(Methane.getFluid(6000))
+            fluidInputs(Chlorine.getFluid(12000))
+            output(dust, Polydimethylsiloxane, 9)
+            fluidOutputs(HydrochloricAcid.getFluid(6000))
+            fluidOutputs(DilutedHydrochloricAcid.getFluid(6000))
+            EUt(96) // MV
+            duration(2 * MINUTE + 24 * SECOND)
+        }
 
         // Conflict between Methyltrichlorosilane (Si(CH3)Cl3) and Dimethyldichlorosilane (Si(CH3)2Cl2)
         GTLiteRecipeHandler.removeChemicalRecipes(
@@ -64,46 +65,45 @@ internal object RecipeConflicts
             arrayOf(Chloromethane.getFluid(2000)))
 
         // Si + 2CH3Cl -> Si(CH3)2Cl2
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, Silicon)
-            .fluidInputs(Chloromethane.getFluid(2000))
-            .fluidOutputs(Dimethyldichlorosilane.getFluid(1000))
-            .EUt(96) // MV
-            .duration(12 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, Silicon)
+            fluidInputs(Chloromethane.getFluid(2000))
+            fluidOutputs(Dimethyldichlorosilane.getFluid(1000))
+            EUt(96) // MV
+            duration(12 * SECOND)
+        }
 
         // Add an int circuit to C4H8O recipe.
         GTLiteRecipeHandler.removeChemicalRecipes(
-            arrayOf(Propene.getFluid(1000),
-                Hydrogen.getFluid(2000),
-                CarbonMonoxide.getFluid(1000)))
+            Propene.getFluid(1000),
+            Hydrogen.getFluid(2000),
+            CarbonMonoxide.getFluid(1000))
 
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .fluidInputs(Propene.getFluid(1000))
-            .fluidInputs(Hydrogen.getFluid(2000))
-            .fluidInputs(CarbonMonoxide.getFluid(1000))
-            .fluidOutputs(Butyraldehyde.getFluid(1000))
-            .EUt(VA[HV])
-            .duration(10 * SECOND)
-            .buildAndRegister()
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(3)
+            fluidInputs(Propene.getFluid(1000))
+            fluidInputs(Hydrogen.getFluid(2000))
+            fluidInputs(CarbonMonoxide.getFluid(1000))
+            fluidOutputs(Butyraldehyde.getFluid(1000))
+            EUt(VA[HV])
+            duration(10 * SECOND)
+        }
 
         // Conflicts between NaHSO4 and C6H6NNaO3S.
         GTLiteRecipeHandler.removeChemicalRecipes(
             arrayOf(OreDictUnifier.get(dust, SodiumHydroxide, 3)),
             arrayOf(SulfuricAcid.getFluid(1000)))
 
-        CHEMICAL_RECIPES.recipeBuilder()
-            .circuitMeta(1)
-            .input(dust, SodiumHydroxide, 3)
-            .fluidInputs(SulfuricAcid.getFluid(1000))
-            .output(dust, SodiumBisulfate, 7)
-            .fluidOutputs(Water.getFluid(1000))
-            .EUt(VA[LV])
-            .duration(5 * SECOND)
-            .buildAndRegister()
-
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            input(dust, SodiumHydroxide, 3)
+            fluidInputs(SulfuricAcid.getFluid(1000))
+            output(dust, SodiumBisulfate, 7)
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[LV])
+            duration(5 * SECOND)
+        }
     }
 
     // @formatter:on
