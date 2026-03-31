@@ -7,6 +7,7 @@ import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VHA
 import gregtech.api.recipes.ModHandler
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRUDER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
@@ -23,7 +24,7 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock
 
-// TODO Rebuild to StoneTypeEntry + StoneRecipeLoader?
+// TODO: Rebuild to StoneTypeEntry + StoneRecipeLoader?
 internal object StoneVariantRecipeProducer
 {
 
@@ -53,138 +54,138 @@ internal object StoneVariantRecipeProducer
             ModHandler.addSmeltingRecipe(cobblestone, stoneSmooth)
 
             // Cobblestone extruding to smooth stone.
-            EXTRUDER_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_EXTRUDER_BLOCK)
-                .inputs(cobblestone)
-                .outputs(stoneSmooth)
-                .EUt(V[ULV])
-                .duration(1 * SECOND + 4 * TICK)
-                .buildAndRegister()
+            EXTRUDER_RECIPES.addRecipe {
+                notConsumable(SHAPE_EXTRUDER_BLOCK)
+                inputs(cobblestone)
+                outputs(stoneSmooth)
+                EUt(V[ULV])
+                duration(1 * SECOND + 4 * TICK)
+            }
 
             // Rock Breaker make smooth stone.
-            ROCK_BREAKER_RECIPES.recipeBuilder()
-                .notConsumable(stoneSmooth)
-                .outputs(stoneSmooth)
-                .EUt(VHA[HV])
-                .duration(16 * TICK)
-                .buildAndRegister()
+            ROCK_BREAKER_RECIPES.addRecipe {
+                notConsumable(stoneSmooth)
+                outputs(stoneSmooth)
+                EUt(VHA[HV])
+                duration(16 * TICK)
+            }
 
             // Smooth stone hamming to cobblestone.
-            FORGE_HAMMER_RECIPES.recipeBuilder()
-                .inputs(stoneSmooth)
-                .outputs(cobblestone)
-                .EUt(VH[ULV])
-                .duration(12 * TICK)
-                .buildAndRegister()
+            FORGE_HAMMER_RECIPES.addRecipe {
+                inputs(stoneSmooth)
+                outputs(cobblestone)
+                EUt(VH[ULV])
+                duration(12 * TICK)
+            }
 
             // Cobblestone -> Mossy Cobblestone
-            CHEMICAL_BATH_RECIPES.recipeBuilder()
-                .inputs(cobblestone)
-                .fluidInputs(Water.getFluid(100))
-                .outputs(cobblestoneMossy)
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            CHEMICAL_BATH_RECIPES.addRecipe {
+                inputs(cobblestone)
+                fluidInputs(Water.getFluid(100))
+                outputs(cobblestoneMossy)
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
 
             // Smooth stone polishing to polished stone, see: PolisherRecipes#init().
 
             // Smooth stone extruding to bricks.
-            EXTRUDER_RECIPES.recipeBuilder()
-                .notConsumable(SHAPE_EXTRUDER_INGOT)
-                .inputs(stoneSmooth)
-                .outputs(bricks)
-                .EUt(V[ULV])
-                .duration(SECOND + 4 * TICK)
-                .buildAndRegister()
+            EXTRUDER_RECIPES.addRecipe {
+                notConsumable(SHAPE_EXTRUDER_INGOT)
+                inputs(stoneSmooth)
+                outputs(bricks)
+                EUt(V[ULV])
+                duration(SECOND + 4 * TICK)
+            }
 
             // Polished stone laser engraving to bricks.
-            LASER_ENGRAVER_RECIPES.recipeBuilder()
-                .notConsumable(craftingLens, Color.LightBlue)
-                .inputs(stonePolished)
-                .outputs(bricks)
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            LASER_ENGRAVER_RECIPES.addRecipe {
+                notConsumable(craftingLens, Color.LightBlue)
+                inputs(stonePolished)
+                outputs(bricks)
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
 
             // Bricks hamming to cracked bricks.
-            FORGE_HAMMER_RECIPES.recipeBuilder()
-                .inputs(bricks)
-                .outputs(bricksCracked)
-                .EUt(VH[ULV])
-                .duration(12 * TICK)
-                .buildAndRegister()
+            FORGE_HAMMER_RECIPES.addRecipe {
+                inputs(bricks)
+                outputs(bricksCracked)
+                EUt(VH[ULV])
+                duration(12 * TICK)
+            }
 
             // Bricks -> Mossy Bricks
-            CHEMICAL_BATH_RECIPES.recipeBuilder()
-                .inputs(bricks)
-                .fluidInputs(Water.getFluid(100))
-                .outputs(bricksMossy)
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            CHEMICAL_BATH_RECIPES.addRecipe {
+                inputs(bricks)
+                fluidInputs(Water.getFluid(100))
+                outputs(bricksMossy)
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
 
             // Polished stone laser engraving to chiseled stone.
-            LASER_ENGRAVER_RECIPES.recipeBuilder()
-                .notConsumable(craftingLens, Color.White)
-                .inputs(stonePolished)
-                .outputs(stoneChiseled)
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            LASER_ENGRAVER_RECIPES.addRecipe {
+                notConsumable(craftingLens, Color.White)
+                inputs(stonePolished)
+                outputs(stoneChiseled)
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
 
             // Polished stone laser engraving to tiles.
-            LASER_ENGRAVER_RECIPES.recipeBuilder()
-                .notConsumable(craftingLens, Color.Red)
-                .inputs(stonePolished)
-                .outputs(tiles)
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            LASER_ENGRAVER_RECIPES.addRecipe {
+                notConsumable(craftingLens, Color.Red)
+                inputs(stonePolished)
+                outputs(tiles)
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
 
             // Tiles laser engraving to small tiles
-            LASER_ENGRAVER_RECIPES.recipeBuilder()
-                .notConsumable(craftingLens, Color.Red)
-                .inputs(tiles)
-                .outputs(tilesSmall)
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            LASER_ENGRAVER_RECIPES.addRecipe {
+                notConsumable(craftingLens, Color.Red)
+                inputs(tiles)
+                outputs(tilesSmall)
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
 
             // Polished stone laser engraving to small bricks.
-            LASER_ENGRAVER_RECIPES.recipeBuilder()
-                .notConsumable(craftingLens, Color.Pink)
-                .inputs(stonePolished)
-                .outputs(bricksSmall)
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            LASER_ENGRAVER_RECIPES.addRecipe {
+                notConsumable(craftingLens, Color.Pink)
+                inputs(stonePolished)
+                outputs(bricksSmall)
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
 
             // Polished stone laser engraving to windmill tiles A.
-            LASER_ENGRAVER_RECIPES.recipeBuilder()
-                .notConsumable(craftingLens, Color.Blue)
-                .inputs(stonePolished)
-                .outputs(tilesWindmillA)
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            LASER_ENGRAVER_RECIPES.addRecipe {
+                notConsumable(craftingLens, Color.Blue)
+                inputs(stonePolished)
+                outputs(tilesWindmillA)
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
 
             // Polished stone laser engraving to windmill tiles B.
-            LASER_ENGRAVER_RECIPES.recipeBuilder()
-                .notConsumable(craftingLens, Color.Yellow)
-                .inputs(stonePolished)
-                .outputs(tilesWindmillB)
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            LASER_ENGRAVER_RECIPES.addRecipe {
+                notConsumable(craftingLens, Color.Yellow)
+                inputs(stonePolished)
+                outputs(tilesWindmillB)
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
 
             // Polished stone laser engraving to square bricks.
-            LASER_ENGRAVER_RECIPES.recipeBuilder()
-                .notConsumable(craftingLens, Color.Green)
-                .inputs(stonePolished)
-                .outputs(bricksSquare)
-                .EUt(VH[LV])
-                .duration(2 * SECOND + 10 * TICK)
-                .buildAndRegister()
+            LASER_ENGRAVER_RECIPES.addRecipe {
+                notConsumable(craftingLens, Color.Green)
+                inputs(stonePolished)
+                outputs(bricksSquare)
+                EUt(VH[LV])
+                duration(2 * SECOND + 10 * TICK)
+            }
         }
     }
 

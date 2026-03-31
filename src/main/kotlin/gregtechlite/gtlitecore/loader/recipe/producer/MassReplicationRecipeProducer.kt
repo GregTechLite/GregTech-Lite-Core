@@ -5,6 +5,7 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.V
 import gregtech.api.recipes.RecipeMaps.MASS_FABRICATOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.REPLICATOR_RECIPES
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -48,66 +49,64 @@ internal object MassReplicationRecipeProducer
                 val amount = if (material.hasProperty(PropertyKey.INGOT)) L else 1000
 
                 // Element -> UU Matter + Free Electron Gas
-                MASS_FABRICATOR_RECIPES.recipeBuilder()
-                    .fluidInputs(material.getFluid(amount))
-                    .fluidOutputs(uuMatter)
-                    .fluidOutputs(FreeElectronGas.getFluid(mass))
-                    .EUt(V[LV])
-                    .duration(mass * t)
-                    .buildAndRegister()
+                MASS_FABRICATOR_RECIPES.addRecipe {
+                    fluidInputs(material.getFluid(amount))
+                    fluidOutputs(uuMatter)
+                    fluidOutputs(FreeElectronGas.getFluid(mass))
+                    EUt(V[LV])
+                    duration(mass * t)
+                }
 
                 // UU Matter + Free Electron Gas -> Element
-                REPLICATOR_RECIPES.recipeBuilder()
-                    .notConsumable(material.getFluid(amount))
-                    .fluidInputs(uuMatter)
-                    .fluidInputs(FreeElectronGas.getFluid(mass))
-                    .fluidOutputs(material.getFluid(amount))
-                    .EUt(V[LV])
-                    .duration(mass * t)
-                    .buildAndRegister()
+                REPLICATOR_RECIPES.addRecipe {
+                    notConsumable(material.getFluid(amount))
+                    fluidInputs(uuMatter)
+                    fluidInputs(FreeElectronGas.getFluid(mass))
+                    fluidOutputs(material.getFluid(amount))
+                    EUt(V[LV])
+                    duration(mass * t)
+                }
 
-                REPLICATOR_RECIPES.recipeBuilder()
-                    .notConsumable(material.getFluid(amount))
-                    .fluidInputs(UUMatter.getFluid(mass))
-                    .fluidOutputs(material.getFluid(amount))
-                    .EUt(V[LV])
-                    .duration(mass * t)
-                    .buildAndRegister()
-
+                REPLICATOR_RECIPES.addRecipe {
+                    notConsumable(material.getFluid(amount))
+                    fluidInputs(UUMatter.getFluid(mass))
+                    fluidOutputs(material.getFluid(amount))
+                    EUt(V[LV])
+                    duration(mass * t)
+                }
             }
             else
             {
                 if (material.hasProperty(PropertyKey.DUST))
                 {
                     // Element -> UU Matter + Free Electron Gas
-                    MASS_FABRICATOR_RECIPES.recipeBuilder()
-                        .input(dust, material)
-                        .fluidOutputs(uuMatter)
-                        .fluidOutputs(FreeElectronGas.getFluid(mass))
-                        .EUt(V[LV])
-                        .duration(mass * t)
-                        .buildAndRegister()
+                    MASS_FABRICATOR_RECIPES.addRecipe {
+                        input(dust, material)
+                        fluidOutputs(uuMatter)
+                        fluidOutputs(FreeElectronGas.getFluid(mass))
+                        EUt(V[LV])
+                        duration(mass * t)
+                    }
 
                     // UU Matter + Free Electron Gas -> Element
-                    REPLICATOR_RECIPES.recipeBuilder()
-                        .notConsumable(dust, material)
-                        .fluidInputs(uuMatter)
-                        .fluidInputs(FreeElectronGas.getFluid(mass))
-                        .output(dust, material)
-                        .EUt(V[LV])
-                        .duration(mass * t)
-                        .buildAndRegister()
+                    REPLICATOR_RECIPES.addRecipe {
+                        notConsumable(dust, material)
+                        fluidInputs(uuMatter)
+                        fluidInputs(FreeElectronGas.getFluid(mass))
+                        output(dust, material)
+                        EUt(V[LV])
+                        duration(mass * t)
+                    }
 
-                    REPLICATOR_RECIPES.recipeBuilder()
-                        .notConsumable(dust, material)
-                        .fluidInputs(UUMatter.getFluid(mass))
-                        .output(dust, material)
-                        .EUt(V[LV])
-                        .duration(mass * t)
-                        .buildAndRegister()
+                    REPLICATOR_RECIPES.addRecipe {
+                        notConsumable(dust, material)
+                        fluidInputs(UUMatter.getFluid(mass))
+                        output(dust, material)
+                        EUt(V[LV])
+                        duration(mass * t)
+                    }
                 }
             }
-
         }
     }
 

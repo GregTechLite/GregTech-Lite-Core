@@ -1,6 +1,8 @@
 package gregtechlite.gtlitecore.loader.recipe.producer
 
-import gregtech.api.GTValues
+import gregtech.api.GTValues.L
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.builders.BlastRecipeBuilder
 import gregtech.api.unification.material.Material
@@ -36,11 +38,11 @@ open class AlloyBlastRecipeProducer
 
         val builder: RecipeBuilder<BlastRecipeBuilder> = createBuilder(property, material)
 
-        val outputAmount: Int = this.addInputs(material, builder)
+        val outputAmount: Int = addInputs(material, builder)
         if (outputAmount <= 0)
             return
 
-        this.buildRecipes(property, output, outputAmount, componentAmount, builder)
+        buildRecipes(property, output, outputAmount, componentAmount, builder)
     }
 
     open fun createBuilder(property: BlastProperty, material: Material): BlastRecipeBuilder
@@ -54,7 +56,7 @@ open class AlloyBlastRecipeProducer
         builder.duration(duration)
 
         var eUt = property.eUtOverride
-        if (eUt < 0) eUt = GTValues.VA[GTValues.MV]
+        if (eUt < 0) eUt = VA[MV]
         builder.EUt(eUt.toLong())
 
         return builder.blastFurnaceTemp(property.blastTemperature)
@@ -95,7 +97,7 @@ open class AlloyBlastRecipeProducer
                              builder: RecipeBuilder<BlastRecipeBuilder>)
     {
         // Add the fluid output with the correct amount.
-        builder.fluidOutputs(FluidStack(output, GTValues.L * outputAmount))
+        builder.fluidOutputs(FluidStack(output, L * outputAmount))
         // Apply ABS duration reduction: 3/4.
         val duration = builder.duration * outputAmount * 3 / 4
         // Build the Gas recipe if it exists.
@@ -103,13 +105,13 @@ open class AlloyBlastRecipeProducer
         {
             val builderGas: RecipeBuilder<BlastRecipeBuilder> = builder.copy()
             val gas = CraftingComponent.EBF_GASES[property.gasTier]
-            builderGas.circuitMeta(this.getGasCircuitNumber(componentAmount))
+            builderGas.circuitMeta(getGasCircuitNumber(componentAmount))
                 .fluidInputs(FluidStack(gas, (gas as FluidStack).amount * outputAmount))
                 .duration((duration * 0.67).toInt())
                 .buildAndRegister()
         }
         // Build the non-gas recipe.
-        builder.circuitMeta(this.getCircuitNumber(componentAmount))
+        builder.circuitMeta(getCircuitNumber(componentAmount))
             .duration(duration)
             .buildAndRegister()
     }

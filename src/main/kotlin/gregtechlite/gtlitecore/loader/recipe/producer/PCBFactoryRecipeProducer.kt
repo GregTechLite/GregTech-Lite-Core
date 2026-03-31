@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.loader.recipe.producer
 
 import com.google.common.collect.HashBiMap
 import gregtech.api.GTValues.VA
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
@@ -77,8 +78,9 @@ internal object PCBFactoryRecipeProducer
         addPlasticTier(CarbonNanotube, 11)
         addPlasticTier(FullerenePolymerMatrix, 12)
 
-        // ---------------------------------------------------------------------------------------------------------
-        // T1: Plastic Circuit Board
+        // region Plastic Circuit Board
+
+        // T1
         for (tier in 1..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 1))).toInt()
@@ -91,21 +93,21 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(PLASTIC_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, AnnealedCopper, (16 * (sqrt(tier.toDouble()))).toInt())
-                .input(foil, Copper, (16 * sqrt(tier.toDouble())).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * sqrt(tier.toDouble())).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((250 * sqrt(tier.toDouble())).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier] * 3 / 4L)
-                .duration(ceil(600 / sqrt(1.5.pow(tier - 1.5))).toInt())
-                .tier(1)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, AnnealedCopper, (16 * (sqrt(tier.toDouble()))).toInt())
+                input(foil, Copper, (16 * sqrt(tier.toDouble())).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * sqrt(tier.toDouble())).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((250 * sqrt(tier.toDouble())).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier] * 3 / 4L)
+                duration(ceil(600 / sqrt(1.5.pow(tier - 1.5))).toInt())
+                tier(1)
+            }
         }
 
-        // T2: Plastic Circuit Board
+        // T2
         for (tier in 1..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 0.5))).toInt()
@@ -118,22 +120,22 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(PLASTIC_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(2)
-                .notConsumable(nanite, Silver)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, AnnealedCopper, (16 * (sqrt(tier.toDouble()))).toInt())
-                .input(foil, Copper, (16 * sqrt(tier.toDouble())).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * sqrt(tier.toDouble())).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((250 * sqrt(tier.toDouble())).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(600 / sqrt(1.5.pow(tier - 1.5))).toInt())
-                .tier(2)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(2)
+                notConsumable(nanite, Silver)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, AnnealedCopper, (16 * (sqrt(tier.toDouble()))).toInt())
+                input(foil, Copper, (16 * sqrt(tier.toDouble())).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * sqrt(tier.toDouble())).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((250 * sqrt(tier.toDouble())).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(600 / sqrt(1.5.pow(tier - 1.5))).toInt())
+                tier(2)
+            }
         }
 
-        // T3: Plastic Circuit Board
+        // T3
         for (tier in 1..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier))).toInt()
@@ -146,23 +148,26 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(PLASTIC_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .notConsumable(nanite, Gold)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, AnnealedCopper, (16 * (sqrt(tier.toDouble()))).toInt())
-                .input(foil, Copper, (16 * sqrt(tier.toDouble())).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * sqrt(tier.toDouble())).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((250 * sqrt(tier.toDouble())).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(600 / sqrt(1.5.pow(tier - 1.5))).toInt())
-                .tier(3)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(3)
+                notConsumable(nanite, Gold)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, AnnealedCopper, (16 * (sqrt(tier.toDouble()))).toInt())
+                input(foil, Copper, (16 * sqrt(tier.toDouble())).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * sqrt(tier.toDouble())).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((250 * sqrt(tier.toDouble())).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(600 / sqrt(1.5.pow(tier - 1.5))).toInt())
+                tier(3)
+            }
         }
 
-        // ---------------------------------------------------------------------------------------------------------
-        // T1: Advanced Circuit Board
+        // endregion
+
+        // region Advanced Circuit Board
+
+        // T1
         for (tier in 2..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 2))).toInt()
@@ -175,21 +180,21 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(ADVANCED_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Gold, (16 * (sqrt((tier - 1).toDouble()))).toInt())
-                .input(foil, Electrum, (16 * (sqrt((tier - 1).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier] * 3 / 4L)
-                .duration(ceil(600 / sqrt(1.5.pow(tier - 2.5))).toInt())
-                .tier(1)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Gold, (16 * (sqrt((tier - 1).toDouble()))).toInt())
+                input(foil, Electrum, (16 * (sqrt((tier - 1).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier] * 3 / 4L)
+                duration(ceil(600 / sqrt(1.5.pow(tier - 2.5))).toInt())
+                tier(1)
+            }
         }
 
-        // T2: Advanced Circuit Board
+        // T2
         for (tier in 2..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 1.5))).toInt()
@@ -202,22 +207,22 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(ADVANCED_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(2)
-                .notConsumable(nanite, Silver)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Gold, (16 * (sqrt((tier - 1).toDouble()))).toInt())
-                .input(foil, Electrum, (16 * (sqrt((tier - 1).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(500 / sqrt(1.5.pow(tier - 2.5))).toInt())
-                .tier(2)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(2)
+                notConsumable(nanite, Silver)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Gold, (16 * (sqrt((tier - 1).toDouble()))).toInt())
+                input(foil, Electrum, (16 * (sqrt((tier - 1).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(500 / sqrt(1.5.pow(tier - 2.5))).toInt())
+                tier(2)
+            }
         }
 
-        // T3: Advanced Circuit Board
+        // T3
         for (tier in 2..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 1))).toInt()
@@ -230,23 +235,26 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(ADVANCED_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .notConsumable(nanite, Gold)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Gold, (16 * (sqrt((tier - 1).toDouble()))).toInt())
-                .input(foil, Electrum, (16 * sqrt((tier - 1).toDouble())).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(400 / sqrt(1.5.pow(tier - 2.5))).toInt())
-                .tier(3)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(3)
+                notConsumable(nanite, Gold)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Gold, (16 * (sqrt((tier - 1).toDouble()))).toInt())
+                input(foil, Electrum, (16 * sqrt((tier - 1).toDouble())).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((500 * (sqrt((tier - 1).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(400 / sqrt(1.5.pow(tier - 2.5))).toInt())
+                tier(3)
+            }
         }
 
-        // ---------------------------------------------------------------------------------------------------------
-        // T1: Extreme Circuit Board
+        // endregion
+
+        // region Extreme Circuit Board
+
+        // T1
         for (tier in 3..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 3))).toInt()
@@ -259,21 +267,21 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(EXTREME_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Aluminium, (16 * (sqrt((tier - 2).toDouble()))).toInt())
-                .input(foil, Bronze, (16 * (sqrt((tier - 2).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 2).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((1000 * (sqrt((tier - 2).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier] * 3 / 4L)
-                .duration(ceil(600 / sqrt(1.5.pow(tier - 3.5))).toInt())
-                .tier(1)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Aluminium, (16 * (sqrt((tier - 2).toDouble()))).toInt())
+                input(foil, Bronze, (16 * (sqrt((tier - 2).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 2).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((1000 * (sqrt((tier - 2).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier] * 3 / 4L)
+                duration(ceil(600 / sqrt(1.5.pow(tier - 3.5))).toInt())
+                tier(1)
+            }
         }
 
-        // T2: Extreme Circuit Board
+        // T2
         for (tier in 3..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 2.5))).toInt()
@@ -286,22 +294,22 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(EXTREME_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(2)
-                .notConsumable(nanite, Silver)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Aluminium, (16 * (sqrt((tier - 2).toDouble()))).toInt())
-                .input(foil, Bronze, (16 * (sqrt((tier - 2).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 2).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((1000 * (sqrt((tier - 2).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(500 / sqrt(1.5.pow(tier - 3.5))).toInt())
-                .tier(2)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(2)
+                notConsumable(nanite, Silver)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Aluminium, (16 * (sqrt((tier - 2).toDouble()))).toInt())
+                input(foil, Bronze, (16 * (sqrt((tier - 2).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 2).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((1000 * (sqrt((tier - 2).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(500 / sqrt(1.5.pow(tier - 3.5))).toInt())
+                tier(2)
+            }
         }
 
-        // T3: Extreme Circuit Board
+        // T3
         for (tier in 3..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 2))).toInt()
@@ -314,23 +322,26 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(EXTREME_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .notConsumable(nanite, Gold)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Aluminium, (16 * (sqrt((tier - 2).toDouble()))).toInt())
-                .input(foil, Bronze, (16 * (sqrt((tier - 2).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 2).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((1000 * (sqrt((tier - 2).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(400 / sqrt(1.5.pow(tier - 3.5))).toInt())
-                .tier(3)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(3)
+                notConsumable(nanite, Gold)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Aluminium, (16 * (sqrt((tier - 2).toDouble()))).toInt())
+                input(foil, Bronze, (16 * (sqrt((tier - 2).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 2).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((1000 * (sqrt((tier - 2).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(400 / sqrt(1.5.pow(tier - 3.5))).toInt())
+                tier(3)
+            }
         }
 
-        // ---------------------------------------------------------------------------------------------------------
-        // T1: Elite Circuit Board
+        // endregion
+
+        // region Elite Circuit Board
+
+        // T1
         for (tier in 4..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 4))).toInt()
@@ -343,21 +354,21 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(ELITE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Palladium, (16 * (sqrt((tier - 3).toDouble()))).toInt())
-                .input(foil, Platinum, (16 * (sqrt((tier - 3).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 3).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((2000 * (sqrt((tier - 3).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier] * 3 / 4L)
-                .duration(ceil(600 / sqrt(1.5.pow(tier - 4.5))).toInt())
-                .tier(1)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Palladium, (16 * (sqrt((tier - 3).toDouble()))).toInt())
+                input(foil, Platinum, (16 * (sqrt((tier - 3).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 3).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((2000 * (sqrt((tier - 3).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier] * 3 / 4L)
+                duration(ceil(600 / sqrt(1.5.pow(tier - 4.5))).toInt())
+                tier(1)
+            }
         }
 
-        // T2: Elite Circuit Board
+        // T2
         for (tier in 4..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 3.5))).toInt()
@@ -370,22 +381,22 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(ELITE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(2)
-                .notConsumable(nanite, Silver)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Palladium, (16 * (sqrt((tier - 3).toDouble()))).toInt())
-                .input(foil, Platinum, (16 * (sqrt((tier - 3).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 3).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((2000 * (sqrt((tier - 3).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(500 / sqrt(1.5.pow(tier - 4.5))).toInt())
-                .tier(2)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(2)
+                notConsumable(nanite, Silver)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Palladium, (16 * (sqrt((tier - 3).toDouble()))).toInt())
+                input(foil, Platinum, (16 * (sqrt((tier - 3).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 3).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((2000 * (sqrt((tier - 3).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(500 / sqrt(1.5.pow(tier - 4.5))).toInt())
+                tier(2)
+            }
         }
 
-        // T3: Elite Circuit Board
+        // T3
         for (tier in 4..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 3))).toInt()
@@ -398,23 +409,26 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(ELITE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .notConsumable(nanite, Gold)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Palladium, (16 * (sqrt((tier - 3).toDouble()))).toInt())
-                .input(foil, Platinum, (16 * (sqrt((tier - 3).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 3).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((2000 * (sqrt((tier - 3).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(400 / sqrt(1.5.pow(tier - 4.5))).toInt())
-                .tier(3)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(3)
+                notConsumable(nanite, Gold)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Palladium, (16 * (sqrt((tier - 3).toDouble()))).toInt())
+                input(foil, Platinum, (16 * (sqrt((tier - 3).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 3).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((2000 * (sqrt((tier - 3).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(400 / sqrt(1.5.pow(tier - 4.5))).toInt())
+                tier(3)
+            }
         }
 
-        // ---------------------------------------------------------------------------------------------------------
-        // T1: Wetware Circuit Board
+        // endregion
+
+        // region Wetware Circuit Board
+
+        // T1
         for (tier in 5..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 5))).toInt()
@@ -427,23 +441,23 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(WETWARE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, NiobiumTitanium, (16 * sqrt((tier - 4).toDouble())).toInt())
-                .input(foil, VanadiumGallium, (16 * sqrt((tier - 4).toDouble())).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * sqrt((tier - 4).toDouble())).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((4000 * sqrt((tier - 4).toDouble())).toInt()))
-                .fluidInputs(SterileGrowthMedium.getFluid((2000 * sqrt((tier - 4).toDouble())).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier] * 3 / 4L)
-                .duration(ceil(600 / sqrt(1.5.pow(tier - 5.5))).toInt())
-                .tier(1)
-                .upgradeTier(1)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, NiobiumTitanium, (16 * sqrt((tier - 4).toDouble())).toInt())
+                input(foil, VanadiumGallium, (16 * sqrt((tier - 4).toDouble())).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * sqrt((tier - 4).toDouble())).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((4000 * sqrt((tier - 4).toDouble())).toInt()))
+                fluidInputs(SterileGrowthMedium.getFluid((2000 * sqrt((tier - 4).toDouble())).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier] * 3 / 4L)
+                duration(ceil(600 / sqrt(1.5.pow(tier - 5.5))).toInt())
+                tier(1)
+                upgradeTier(1)
+            }
         }
 
-        // T2: Wetware Circuit Board
+        // T2
         for (tier in 5..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 4.5))).toInt()
@@ -456,24 +470,24 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(WETWARE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(2)
-                .notConsumable(nanite, Silver)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, NiobiumTitanium, (16 * (sqrt((tier - 4).toDouble()))).toInt())
-                .input(foil, VanadiumGallium, (16 * (sqrt((tier - 4).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 4).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((4000 * (sqrt((tier - 4).toDouble()))).toInt()))
-                .fluidInputs(SterileGrowthMedium.getFluid((2000 * sqrt((tier - 4).toDouble())).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(500 / sqrt(1.5.pow(tier - 5.5))).toInt())
-                .tier(2)
-                .upgradeTier(1)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(2)
+                notConsumable(nanite, Silver)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, NiobiumTitanium, (16 * (sqrt((tier - 4).toDouble()))).toInt())
+                input(foil, VanadiumGallium, (16 * (sqrt((tier - 4).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 4).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((4000 * (sqrt((tier - 4).toDouble()))).toInt()))
+                fluidInputs(SterileGrowthMedium.getFluid((2000 * sqrt((tier - 4).toDouble())).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(500 / sqrt(1.5.pow(tier - 5.5))).toInt())
+                tier(2)
+                upgradeTier(1)
+            }
         }
 
-        // T3: Wetware Circuit Board
+        // T3
         for (tier in 5..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 4))).toInt()
@@ -485,25 +499,28 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(WETWARE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .notConsumable(nanite, Gold)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, NiobiumTitanium, (16 * (sqrt((tier - 4).toDouble()))).toInt())
-                .input(foil, VanadiumGallium, (16 * (sqrt((tier - 4).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 4).toDouble()))).toInt()))
-                .fluidInputs(Iron3Chloride.getFluid((4000 * (sqrt((tier - 4).toDouble()))).toInt()))
-                .fluidInputs(SterileGrowthMedium.getFluid((2000 * (sqrt((tier - 4).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(400 / sqrt(1.5.pow(tier - 5.5))).toInt())
-                .tier(3)
-                .upgradeTier(1)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(3)
+                notConsumable(nanite, Gold)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, NiobiumTitanium, (16 * (sqrt((tier - 4).toDouble()))).toInt())
+                input(foil, VanadiumGallium, (16 * (sqrt((tier - 4).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 4).toDouble()))).toInt()))
+                fluidInputs(Iron3Chloride.getFluid((4000 * (sqrt((tier - 4).toDouble()))).toInt()))
+                fluidInputs(SterileGrowthMedium.getFluid((2000 * (sqrt((tier - 4).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(400 / sqrt(1.5.pow(tier - 5.5))).toInt())
+                tier(3)
+                upgradeTier(1)
+            }
         }
 
-        // ---------------------------------------------------------------------------------------------------------
-        // T1: Ultimate Circuit Board
+        // endregion
+
+        // region Ultimate Circuit Board
+
+        // T1
         for (tier in 6..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 6))).toInt()
@@ -516,22 +533,22 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(ULTIMATE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Europium, (16 * (sqrt((tier - 5).toDouble()))).toInt())
-                .input(foil, YttriumBariumCuprate, (16 * (sqrt((tier - 5).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 5).toDouble()))).toInt()))
-                .fluidInputs(EthylenediaminePyrocatechol.getFluid((6000 * (sqrt((tier - 5).toDouble()))).toInt()))
-                .fluidInputs(FluorinatedEthylenePropylene.getFluid((144 * (sqrt((tier - 5).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier] * 3 / 4L)
-                .duration(ceil(600 / sqrt(1.5.pow(tier - 5.5))).toInt())
-                .tier(1)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Europium, (16 * (sqrt((tier - 5).toDouble()))).toInt())
+                input(foil, YttriumBariumCuprate, (16 * (sqrt((tier - 5).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 5).toDouble()))).toInt()))
+                fluidInputs(EthylenediaminePyrocatechol.getFluid((6000 * (sqrt((tier - 5).toDouble()))).toInt()))
+                fluidInputs(FluorinatedEthylenePropylene.getFluid((144 * (sqrt((tier - 5).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier] * 3 / 4L)
+                duration(ceil(600 / sqrt(1.5.pow(tier - 5.5))).toInt())
+                tier(1)
+            }
         }
 
-        // T2: Ultimate Circuit Board
+        // T2
         for (tier in 6..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 5.5))).toInt()
@@ -544,23 +561,23 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(ULTIMATE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(2)
-                .notConsumable(nanite, Silver)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Europium, (16 * (sqrt((tier - 5).toDouble()))).toInt())
-                .input(foil, YttriumBariumCuprate, (16 * (sqrt((tier - 5).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 5).toDouble()))).toInt()))
-                .fluidInputs(EthylenediaminePyrocatechol.getFluid((6000 * (sqrt((tier - 5).toDouble()))).toInt()))
-                .fluidInputs(FluorinatedEthylenePropylene.getFluid((144 * (sqrt((tier - 5).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(500 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                .tier(2)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(2)
+                notConsumable(nanite, Silver)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Europium, (16 * (sqrt((tier - 5).toDouble()))).toInt())
+                input(foil, YttriumBariumCuprate, (16 * (sqrt((tier - 5).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 5).toDouble()))).toInt()))
+                fluidInputs(EthylenediaminePyrocatechol.getFluid((6000 * (sqrt((tier - 5).toDouble()))).toInt()))
+                fluidInputs(FluorinatedEthylenePropylene.getFluid((144 * (sqrt((tier - 5).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(500 / sqrt(1.5.pow(tier - 6.5))).toInt())
+                tier(2)
+            }
         }
 
-        // T3: Ultimate Circuit Board
+        // T3
         for (tier in 6..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 5))).toInt()
@@ -573,24 +590,27 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(ULTIMATE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .notConsumable(nanite, Gold)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Europium, (16 * (sqrt((tier - 5).toDouble()))).toInt())
-                .input(foil, YttriumBariumCuprate, (16 * (sqrt((tier - 5).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 5).toDouble()))).toInt()))
-                .fluidInputs(EthylenediaminePyrocatechol.getFluid((6000 * (sqrt((tier - 5).toDouble()))).toInt()))
-                .fluidInputs(FluorinatedEthylenePropylene.getFluid((144 * (sqrt((tier - 5).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(400 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                .tier(3)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(3)
+                notConsumable(nanite, Gold)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Europium, (16 * (sqrt((tier - 5).toDouble()))).toInt())
+                input(foil, YttriumBariumCuprate, (16 * (sqrt((tier - 5).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 5).toDouble()))).toInt()))
+                fluidInputs(EthylenediaminePyrocatechol.getFluid((6000 * (sqrt((tier - 5).toDouble()))).toInt()))
+                fluidInputs(FluorinatedEthylenePropylene.getFluid((144 * (sqrt((tier - 5).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(400 / sqrt(1.5.pow(tier - 6.5))).toInt())
+                tier(3)
+            }
         }
 
-        // ---------------------------------------------------------------------------------------------------------
-        // T1: Perfect Circuit Board
+        // endregion
+
+        // region Perfect Circuit Board
+
+        // T1
         for (tier in 7..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 7))).toInt()
@@ -603,22 +623,22 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(PERFECT_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Americium, (16 * (sqrt((tier - 6).toDouble()))).toInt())
-                .input(foil, ThalliumBariumCalciumCuprate, (16 * (sqrt((tier - 6).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 6).toDouble()))).toInt()))
-                .fluidInputs(EthylenediaminePyrocatechol.getFluid((8000 * (sqrt((tier - 6).toDouble()))).toInt()))
-                .fluidInputs(PolyethyleneTerephthalate.getFluid((288 * (sqrt((tier - 6).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier] * 3 / 4L)
-                .duration(ceil(600 / sqrt(1.5.pow(tier - 5.5))).toInt())
-                .tier(1)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Americium, (16 * (sqrt((tier - 6).toDouble()))).toInt())
+                input(foil, ThalliumBariumCalciumCuprate, (16 * (sqrt((tier - 6).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 6).toDouble()))).toInt()))
+                fluidInputs(EthylenediaminePyrocatechol.getFluid((8000 * (sqrt((tier - 6).toDouble()))).toInt()))
+                fluidInputs(PolyethyleneTerephthalate.getFluid((288 * (sqrt((tier - 6).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier] * 3 / 4L)
+                duration(ceil(600 / sqrt(1.5.pow(tier - 5.5))).toInt())
+                tier(1)
+            }
         }
 
-        // T2: Perfect Circuit Board
+        // T2
         for (tier in 7..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 6.5))).toInt()
@@ -631,23 +651,23 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(PERFECT_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(2)
-                .notConsumable(nanite, Silver)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Americium, (16 * (sqrt((tier - 6).toDouble()))).toInt())
-                .input(foil, ThalliumBariumCalciumCuprate, (16 * (sqrt((tier - 6).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 6).toDouble()))).toInt()))
-                .fluidInputs(EthylenediaminePyrocatechol.getFluid((8000 * (sqrt((tier - 6).toDouble()))).toInt()))
-                .fluidInputs(PolyethyleneTerephthalate.getFluid((288 * (sqrt((tier - 6).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(500 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                .tier(2)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(2)
+                notConsumable(nanite, Silver)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Americium, (16 * (sqrt((tier - 6).toDouble()))).toInt())
+                input(foil, ThalliumBariumCalciumCuprate, (16 * (sqrt((tier - 6).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * (sqrt((tier - 6).toDouble()))).toInt()))
+                fluidInputs(EthylenediaminePyrocatechol.getFluid((8000 * (sqrt((tier - 6).toDouble()))).toInt()))
+                fluidInputs(PolyethyleneTerephthalate.getFluid((288 * (sqrt((tier - 6).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(500 / sqrt(1.5.pow(tier - 6.5))).toInt())
+                tier(2)
+            }
         }
 
-        // T3: Perfect Circuit Board
+        // T3
         for (tier in 7..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 6))).toInt()
@@ -660,24 +680,27 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(PERFECT_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .notConsumable(nanite, Gold)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Americium, (16 * (sqrt((tier - 6).toDouble()))).toInt())
-                .input(foil, ThalliumBariumCalciumCuprate, (16 * (sqrt((tier - 6).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * sqrt((tier - 6).toDouble())).toInt()))
-                .fluidInputs(EthylenediaminePyrocatechol.getFluid((8000 * (sqrt((tier - 6).toDouble()))).toInt()))
-                .fluidInputs(PolyethyleneTerephthalate.getFluid((288 * (sqrt((tier - 6).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(400 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                .tier(3)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(3)
+                notConsumable(nanite, Gold)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Americium, (16 * (sqrt((tier - 6).toDouble()))).toInt())
+                input(foil, ThalliumBariumCalciumCuprate, (16 * (sqrt((tier - 6).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * sqrt((tier - 6).toDouble())).toInt()))
+                fluidInputs(EthylenediaminePyrocatechol.getFluid((8000 * (sqrt((tier - 6).toDouble()))).toInt()))
+                fluidInputs(PolyethyleneTerephthalate.getFluid((288 * (sqrt((tier - 6).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(400 / sqrt(1.5.pow(tier - 6.5))).toInt())
+                tier(3)
+            }
         }
 
-        // ---------------------------------------------------------------------------------------------------------
-        // T1: Infinite Circuit Board
+        // endregion
+
+        // region Infinite Circuit Board
+
+        // T1
         for (tier in 8..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 8))).toInt()
@@ -690,22 +713,22 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(INFINITE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(1)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Fullerene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
-                .input(foil, Phosphorene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * sqrt((tier - 7).toDouble())).toInt()))
-                .fluidInputs(EthylenediaminePyrocatechol.getFluid((10000 * (sqrt((tier - 7).toDouble()))).toInt()))
-                .fluidInputs(FullerenePolymerMatrix.getFluid((576 * (sqrt((tier - 7).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier] * 3 / 4L)
-                .duration(ceil(600 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                .tier(1)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Fullerene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
+                input(foil, Phosphorene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * sqrt((tier - 7).toDouble())).toInt()))
+                fluidInputs(EthylenediaminePyrocatechol.getFluid((10000 * (sqrt((tier - 7).toDouble()))).toInt()))
+                fluidInputs(FullerenePolymerMatrix.getFluid((576 * (sqrt((tier - 7).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier] * 3 / 4L)
+                duration(ceil(600 / sqrt(1.5.pow(tier - 6.5))).toInt())
+                tier(1)
+            }
         }
 
-        // T2: Infinite Circuit Board
+        // T2
         for (tier in 8..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 7.5))).toInt()
@@ -718,23 +741,23 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(INFINITE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(2)
-                .notConsumable(nanite, Silver)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Fullerene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
-                .input(foil, Phosphorene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * sqrt((tier - 7).toDouble())).toInt()))
-                .fluidInputs(EthylenediaminePyrocatechol.getFluid((10000 * sqrt((tier - 7).toDouble())).toInt()))
-                .fluidInputs(FullerenePolymerMatrix.getFluid((576 * (sqrt((tier - 7).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(500 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                .tier(2)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(2)
+                notConsumable(nanite, Silver)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Fullerene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
+                input(foil, Phosphorene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * sqrt((tier - 7).toDouble())).toInt()))
+                fluidInputs(EthylenediaminePyrocatechol.getFluid((10000 * sqrt((tier - 7).toDouble())).toInt()))
+                fluidInputs(FullerenePolymerMatrix.getFluid((576 * (sqrt((tier - 7).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(500 / sqrt(1.5.pow(tier - 6.5))).toInt())
+                tier(2)
+            }
         }
 
-        // T3: Infinite Circuit Board
+        // T3
         for (tier in 8..plasticTier)
         {
             var boardAmount = ceil(8 * sqrt(2.0.pow(tier - 7))).toInt()
@@ -747,22 +770,23 @@ internal object PCBFactoryRecipeProducer
                 i -= 64
             }
             boards.add(INFINITE_CIRCUIT_BOARD.getStackForm(boardAmount))
-            PCB_FACTORY_RECIPES.recipeBuilder()
-                .circuitMeta(3)
-                .notConsumable(nanite, Gold)
-                .input(plate, plasticTiers.inverse()[tier])
-                .input(foil, Fullerene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
-                .input(foil, Phosphorene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
-                .fluidInputs(SulfuricAcid.getFluid((500 * sqrt((tier - 7).toDouble())).toInt()))
-                .fluidInputs(EthylenediaminePyrocatechol.getFluid((10000 * sqrt((tier - 7).toDouble())).toInt()))
-                .fluidInputs(FullerenePolymerMatrix.getFluid((576 * (sqrt((tier - 7).toDouble()))).toInt()))
-                .outputs(*boards.toTypedArray())
-                .EUt(VA[tier + 1] * 3 / 4L)
-                .duration(ceil(400 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                .tier(3)
-                .buildAndRegister()
+            PCB_FACTORY_RECIPES.addRecipe {
+                circuitMeta(3)
+                notConsumable(nanite, Gold)
+                input(plate, plasticTiers.inverse()[tier])
+                input(foil, Fullerene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
+                input(foil, Phosphorene, (16 * (sqrt((tier - 7).toDouble()))).toInt())
+                fluidInputs(SulfuricAcid.getFluid((500 * sqrt((tier - 7).toDouble())).toInt()))
+                fluidInputs(EthylenediaminePyrocatechol.getFluid((10000 * sqrt((tier - 7).toDouble())).toInt()))
+                fluidInputs(FullerenePolymerMatrix.getFluid((576 * (sqrt((tier - 7).toDouble()))).toInt()))
+                outputs(*boards.toTypedArray())
+                EUt(VA[tier + 1] * 3 / 4L)
+                duration(ceil(400 / sqrt(1.5.pow(tier - 6.5))).toInt())
+                tier(3)
+            }
         }
 
+        // endregion
     }
 
     private fun addPlasticTier(material: Material, tier: Int)

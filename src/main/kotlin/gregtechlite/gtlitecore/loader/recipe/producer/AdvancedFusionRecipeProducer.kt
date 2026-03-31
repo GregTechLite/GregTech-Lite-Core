@@ -5,6 +5,7 @@ import gregtech.api.GTValues.V
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
 import gregtech.api.recipes.properties.impl.FusionEUToStartProperty
 import gregtech.api.unification.material.Materials.Steam
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ADVANCED_FUSION_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadBismuthEutatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
@@ -34,7 +35,6 @@ object AdvancedFusionRecipeProducer
 
     fun produce()
     {
-
         FUSION_RECIPES.recipeList
             .filter { it.fluidInputs.size <= 2 && it.fluidOutputs.size <= 1 }
             .forEach { recipe ->
@@ -59,15 +59,15 @@ object AdvancedFusionRecipeProducer
 
                 COOLANTS.forEach { (inputFluid, outputFluid) ->
                     val amount = max((euCost / (V[EV] * 10000)) * inputFluid.amount, 1).toInt()
-                    ADVANCED_FUSION_RECIPES.recipeBuilder()
-                        .fluidInputs(inputs)
-                        .fluidInputs(FluidStack(inputFluid, amount))
-                        .fluidOutputs(outputs)
-                        .fluidOutputs(FluidStack(outputFluid, amount))
-                        .EUt(eut)
-                        .tier(tier)
-                        .duration(duration)
-                        .buildAndRegister()
+                    ADVANCED_FUSION_RECIPES.addRecipe {
+                        fluidInputs(inputs)
+                        fluidInputs(FluidStack(inputFluid, amount))
+                        fluidOutputs(outputs)
+                        fluidOutputs(FluidStack(outputFluid, amount))
+                        EUt(eut)
+                        duration(duration)
+                        tier(tier)
+                    }
                 }
 
             }
