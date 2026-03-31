@@ -31,7 +31,8 @@ public abstract class MixinItemHandlerList implements MultipleNotifiableHandler
         {
             if (handler instanceof INotifiableHandler)
             {
-                notifiableHandlers.add((INotifiableHandler) handler);
+                INotifiableHandler notifiableHandler = (INotifiableHandler) handler;
+                notifiableHandlers.add(notifiableHandler);
             }
         }
 
