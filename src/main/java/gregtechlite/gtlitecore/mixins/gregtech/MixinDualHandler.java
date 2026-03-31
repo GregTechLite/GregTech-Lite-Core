@@ -119,6 +119,8 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
     {
         ImmutableList.Builder<INotifiableHandler> handlerList = ImmutableList.builder();
 
+        handlerList.add(this);
+
         if (itemDelegate instanceof MultipleNotifiableHandler)
         {
             MultipleNotifiableHandler multipleNotifiableHandler = (MultipleNotifiableHandler) itemDelegate;
