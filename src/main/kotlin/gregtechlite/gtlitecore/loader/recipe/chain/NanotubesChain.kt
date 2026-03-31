@@ -550,18 +550,18 @@ internal object NanotubesChain
     private fun neutroniumCNTProcess()
     {
         // Nt + 3C2H2 + 7C6H4 + 10N -> C48C60Nt
-        PLASMA_CVD_RECIPES.recipeBuilder()
-            .notConsumable(plate, Moscovium)
-            .notConsumable(SHAPE_MOLD_INGOT)
-            .input(dust, Neutronium)
-            .fluidInputs(Acetylene.getFluid(3000))
-            .fluidInputs(Cycloparaphenylene.getFluid(7000))
-            .fluidInputs(Nitrogen.getPlasma(10000))
-            .output(ingot, NeutroniumDopedCarbonNanotube)
-            .EUt(VA[UXV])
-            .duration(5 * SECOND)
-            .temperature(3302)
-            .buildAndRegister()
+        PLASMA_CVD_RECIPES.addRecipe {
+            notConsumable(plate, Moscovium)
+            notConsumable(SHAPE_MOLD_INGOT)
+            input(dust, Neutronium)
+            fluidInputs(Acetylene.getFluid(3000))
+            fluidInputs(Cycloparaphenylene.getFluid(7000))
+            fluidInputs(Nitrogen.getPlasma(10000))
+            output(ingot, NeutroniumDopedCarbonNanotube)
+            EUt(VA[UXV])
+            duration(5 * SECOND)
+            temperature(3302)
+        }
 
         // Nt + 12C2H2 + 28C6H4 + 40N -> 4C48C60Nt + 40NH3
         PLASMA_CVD_RECIPES.addRecipe {

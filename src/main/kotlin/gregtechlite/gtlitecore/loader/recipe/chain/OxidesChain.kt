@@ -650,14 +650,14 @@ internal object OxidesChain
         }
 
         // 2Lu + 3O -> Lu2O3
-        ROASTER_RECIPES.recipeBuilder()
-            .circuitMeta(3)
-            .input(dust, Lutetium, 2)
-            .fluidInputs(Oxygen.getFluid(3000))
-            .output(dust, LutetiumOxide, 5)
-            .EUt(VA[MV])
-            .duration(2 * SECOND + 10 * TICK)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            circuitMeta(3)
+            input(dust, Lutetium, 2)
+            fluidInputs(Oxygen.getFluid(3000))
+            output(dust, LutetiumOxide, 5)
+            EUt(VA[MV])
+            duration(2 * SECOND + 10 * TICK)
+        }
 
         // endregion
 

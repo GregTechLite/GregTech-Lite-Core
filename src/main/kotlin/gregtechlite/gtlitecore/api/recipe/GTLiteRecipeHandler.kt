@@ -7,6 +7,7 @@ import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.recipes.GTRecipeHandler
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.*
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.recipes.ingredients.GTRecipeInput
 import gregtech.api.recipes.ingredients.GTRecipeItemInput
 import gregtech.api.recipes.ingredients.GTRecipeOreInput
@@ -182,25 +183,25 @@ object GTLiteRecipeHandler
 
         TieredAdhesiveFluid.generateRecipeFluidStacks(tier)
             .forEach {
-                ASSEMBLER_RECIPES.recipeBuilder()
-                    .circuitMeta(1)
-                    .input(HULL[tier])
-                    .inputs(extra)
-                    .fluidInputs(it)
-                    .output(input)
-                    .EUt(VA[tier])
-                    .duration(15 * SECOND)
-                    .buildAndRegister()
+                ASSEMBLER_RECIPES.addRecipe {
+                    circuitMeta(1)
+                    input(HULL[tier])
+                    inputs(extra)
+                    fluidInputs(it)
+                    output(input)
+                    EUt(VA[tier])
+                    duration(15 * SECOND)
+                }
 
-                ASSEMBLER_RECIPES.recipeBuilder()
-                    .circuitMeta(2)
-                    .input(HULL[tier])
-                    .inputs(extra)
-                    .fluidInputs(it)
-                    .output(output)
-                    .EUt(VA[tier])
-                    .duration(15 * SECOND)
-                    .buildAndRegister()
+                ASSEMBLER_RECIPES.addRecipe {
+                    circuitMeta(2)
+                    input(HULL[tier])
+                    inputs(extra)
+                    fluidInputs(it)
+                    output(output)
+                    EUt(VA[tier])
+                    duration(15 * SECOND)
+                }
             }
     }
 
@@ -219,48 +220,48 @@ object GTLiteRecipeHandler
         val adhesiveFluid = TieredAdhesiveFluid.materialFromTier(tier)
 
         // add Quadruple Import Hatch recipe
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(FLUID_IMPORT_HATCH[tier])
-            .input(pipeQuadrupleFluid, pipeMaterial)
-            .fluidInputs(adhesiveFluid.getFluid(L * 4))
-            .output(QUADRUPLE_IMPORT_HATCH[tier])
-            .EUt(VA[tier])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(FLUID_IMPORT_HATCH[tier])
+            input(pipeQuadrupleFluid, pipeMaterial)
+            fluidInputs(adhesiveFluid.getFluid(L * 4))
+            output(QUADRUPLE_IMPORT_HATCH[tier])
+            EUt(VA[tier])
+            duration(15 * SECOND)
+        }
 
         // add Quadruple Export Hatch recipe
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(4)
-            .input(FLUID_EXPORT_HATCH[tier])
-            .input(pipeQuadrupleFluid, pipeMaterial)
-            .fluidInputs(adhesiveFluid.getFluid(L * 4))
-            .output(QUADRUPLE_EXPORT_HATCH[tier])
-            .EUt(VA[tier])
-            .duration(15 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(4)
+            input(FLUID_EXPORT_HATCH[tier])
+            input(pipeQuadrupleFluid, pipeMaterial)
+            fluidInputs(adhesiveFluid.getFluid(L * 4))
+            output(QUADRUPLE_EXPORT_HATCH[tier])
+            EUt(VA[tier])
+            duration(15 * SECOND)
+        }
 
         // add Nonuple Import Hatch recipe
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(FLUID_IMPORT_HATCH[tier])
-            .input(pipeNonupleFluid, pipeMaterial)
-            .fluidInputs(adhesiveFluid.getFluid(L * 9))
-            .output(NONUPLE_IMPORT_HATCH[tier])
-            .EUt(VA[tier])
-            .duration(30 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(FLUID_IMPORT_HATCH[tier])
+            input(pipeNonupleFluid, pipeMaterial)
+            fluidInputs(adhesiveFluid.getFluid(L * 9))
+            output(NONUPLE_IMPORT_HATCH[tier])
+            EUt(VA[tier])
+            duration(30 * SECOND)
+        }
 
         // add Nonuple Export Hatch recipe
-        ASSEMBLER_RECIPES.recipeBuilder()
-            .circuitMeta(9)
-            .input(FLUID_EXPORT_HATCH[tier])
-            .input(pipeNonupleFluid, pipeMaterial)
-            .fluidInputs(adhesiveFluid.getFluid(L * 9))
-            .output(NONUPLE_EXPORT_HATCH[tier])
-            .EUt(VA[tier])
-            .duration(30 * SECOND)
-            .buildAndRegister()
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(9)
+            input(FLUID_EXPORT_HATCH[tier])
+            input(pipeNonupleFluid, pipeMaterial)
+            fluidInputs(adhesiveFluid.getFluid(L * 9))
+            output(NONUPLE_EXPORT_HATCH[tier])
+            EUt(VA[tier])
+            duration(30 * SECOND)
+        }
     }
 
     /**

@@ -564,7 +564,6 @@ object GTLiteRecipeMaps
                 .EUt(builder.eUt)
                 .buildAndRegister()
 
-
             // Mode 2: 64x base buff with original CAL recipes (the original buff is 16, so it is actual 1024x buff).
             val inputs = builder.inputs
                 .filterNotNull()

@@ -49,14 +49,14 @@ internal object AlloysChain
         ELECTROLYZER_RECIPES.removeRecipe(OreDictUnifier.get(dust, SiliconDioxide, 3))
 
         // Si + 2O -> SiO2
-        ROASTER_RECIPES.recipeBuilder()
-            .circuitMeta(2)
-            .input(dust, Silicon)
-            .fluidInputs(Oxygen.getFluid(2000))
-            .output(dust, SiliconDioxide, 3)
-            .EUt(VA[LV])
-            .duration(10 * TICK)
-            .buildAndRegister()
+        ROASTER_RECIPES.addRecipe {
+            circuitMeta(2)
+            input(dust, Silicon)
+            fluidInputs(Oxygen.getFluid(2000))
+            output(dust, SiliconDioxide, 3)
+            EUt(VA[LV])
+            duration(10 * TICK)
+        }
 
         // SiO2 -> Si + 2O
         ARC_FURNACE_RECIPES.addRecipe {
