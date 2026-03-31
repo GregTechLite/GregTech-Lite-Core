@@ -27,6 +27,7 @@ public abstract class MixinItemHandlerList implements MultipleNotifiableHandler
     public Collection<INotifiableHandler> getBackingNotifiers() {
         ImmutableList.Builder<INotifiableHandler> notifiableHandlers = ImmutableList.builder();
 
+        notifiableHandlers.add((INotifiableHandler) this);
         for (IItemHandler handler : getBackingHandlers())
         {
             if (handler instanceof INotifiableHandler)
