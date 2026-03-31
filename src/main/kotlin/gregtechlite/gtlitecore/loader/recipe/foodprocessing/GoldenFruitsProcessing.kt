@@ -51,7 +51,6 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RAINBOW_BERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SILVER_APPLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SILVER_STRAWBERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.STRAWBERRY
-import net.minecraft.init.Items
 import net.minecraft.init.Items.APPLE
 import net.minecraft.init.Items.CARROT
 import net.minecraft.init.Items.GOLDEN_APPLE
@@ -122,7 +121,7 @@ internal object GoldenFruitsProcessing
         POLARIZER_RECIPES.addRecipe {
             inputs(GOLDEN_APPLE)
             fluidInputs(ChloroauricAcid.getFluid(4000))
-            outputs(GOLDEN_APPLE, metadata = 1)
+            outputs(GOLDEN_APPLE, meta = 1)
             EUt(VA[HV])
             duration(5 * SECOND)
         }
