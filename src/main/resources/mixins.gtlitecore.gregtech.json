@@ -23,6 +23,7 @@
     "MixinMetaTileEntityMEInputBus",
     "MixinMetaTileEntityMultiblockNotifiablePart",
     "MixinMetaTileEntityNetworkSwitch",
+    "MixinMetaTileEntityLargeBoiler",
     "MixinMultiblockControllerBase",
     "MixinMultiblockRecipeLogic",
     "MixinMultiMapMultiblockController",
