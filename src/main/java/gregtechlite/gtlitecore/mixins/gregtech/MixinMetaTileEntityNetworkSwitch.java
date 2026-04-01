@@ -24,13 +24,26 @@ public abstract class MixinMetaTileEntityNetworkSwitch extends MetaTileEntityDat
     }
 
     /**
+     * The original structure of QoS Network Switch is:
+     * <pre>{@code
+     *      .aisle("XXX", "XXX", "XXX")
+     *      .aisle("XXX", "XAX", "XXX")
+     *      .aisle("XXX", "XSX", "XXX")
+     * }</pre>
+     * For simplification, we expand the structure to scaleable situation, it means the central layer can scale:
+     * <pre>{@code
+     *      .aisle("XXX", "XXX", "XXX")
+     *      .aisle("XXX", "XAX", "XXX").setRepeatable(1, 16)
+     *      .aisle("XXX", "XSX", "XXX")
+     * }</pre>
+     * Now player can put more hatches on the QoS Network Switch.
+     *
      * @author Magic_Sweepy
      * @reason Let QoS Network switch be scaleable.
      */
     @Overwrite
-    @NotNull
     @Override
-    protected BlockPattern createStructurePattern()
+    protected @NotNull BlockPattern createStructurePattern()
     {
         return FactoryBlockPattern.start()
                 .aisle("XXX", "XXX", "XXX")
@@ -51,15 +64,13 @@ public abstract class MixinMetaTileEntityNetworkSwitch extends MetaTileEntityDat
     }
 
     @Unique
-    @NotNull
-    private static IBlockState gtlitecore$getCasingState()
+    private static @NotNull IBlockState gtlitecore$getCasingState()
     {
         return MetaBlocks.COMPUTER_CASING.getState(BlockComputerCasing.CasingType.COMPUTER_CASING);
     }
 
     @Unique
-    @NotNull
-    private static IBlockState gtlitecore$getAdvancedState()
+    private static @NotNull IBlockState gtlitecore$getAdvancedState()
     {
         return MetaBlocks.COMPUTER_CASING.getState(BlockComputerCasing.CasingType.ADVANCED_COMPUTER_CASING);
     }

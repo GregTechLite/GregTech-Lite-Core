@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2873")
@@ -18,12 +19,34 @@ import org.spongepowered.asm.mixin.Shadow;
 public abstract class MixinMetaTileEntityLargeBoiler extends MultiblockWithDisplayBase
 {
 
-    @Shadow @Final public BoilerType boilerType;
+    @Shadow
+    public @Final BoilerType boilerType;
 
     public MixinMetaTileEntityLargeBoiler(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);
     }
 
+    /**
+     * In original code, the import items and fluids not constrict its count and preview count:
+     * <pre>{@code
+     *      .or(abilities(MultiblockAbility.IMPORT_FLUIDS)
+     *          .setMinGlobalLimited(1))
+     *      .or(abilities(MultiblockAbility.IMPORT_ITEMS)
+     *          .setMaxGlobalLimited(1))
+     * }</pre>
+     * This mixins change the maximum global limit of import items to <tt>2</tt>, and constrict it preview count:
+     * <pre>{@code
+     *      .or(abilities(MultiblockAbility.IMPORT_FLUIDS)
+     *          .setMinGlobalLimited(1, 1))
+     *      .or(abilities(MultiblockAbility.IMPORT_ITEMS)
+     *          .setMaxGlobalLimited(2, 1))
+     * }</pre>
+     * Now the large boiler can preview in JEI page with correct structure normally.
+     *
+     * @author Magic_Sweepy
+     * @reason Fix incorrect structure ability of firebox casing part.
+     */
+    @Overwrite
     @Override
     protected @NotNull BlockPattern createStructurePattern()
     {
