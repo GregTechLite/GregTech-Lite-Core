@@ -16,6 +16,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.OUTPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_OUTPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
@@ -134,7 +135,7 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
     {
         return super.createUIFactory()
             .createFlexButton { guiData, guiSyncManager ->
-                val excessMode = BooleanSyncValue(::voidExcessEnergy, ::setVoidExcessEnergy)
+                val excessMode = BooleanSyncValue(::isVoidExcessEnergy, ::setVoidExcessEnergy)
                 return@createFlexButton ToggleButton()
                     .size(18)
                     .disableHoverBackground()
@@ -144,6 +145,13 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
                     .addTooltip(true, IKey.lang("gtlitecore.tooltip.gui.excess_mode.enabled"))
                     .value(excessMode)
             }
+    }
+
+    override fun configureDisplayText(builder: MultiblockUIBuilder)
+    {
+        builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
+        builder.addEnergyProductionLine(recipeMapWorkable.maxVoltage, recipeMapWorkable.recipeEUt)
+        builder.addWorkingStatusLine()
     }
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
@@ -205,6 +213,8 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
         (12) -> 3.2 // Md
         else -> 1.0 // No boost without a valid reactor core
     }
+
+    private fun isVoidExcessEnergy() = voidExcessEnergy
 
     private fun setVoidExcessEnergy(voidExcess: Boolean)
     {
