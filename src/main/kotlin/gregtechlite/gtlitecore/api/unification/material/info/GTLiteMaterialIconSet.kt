@@ -10,6 +10,7 @@ import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.item.behavior.HaloRenderItemBehavior
+import gregtechlite.gtlitecore.common.item.behavior.TranscendentRenderItemBehavior
 
 object GTLiteMaterialIconSet
 {
@@ -118,6 +119,10 @@ object GTLiteMaterialIconSet
     @JvmField
     val ETERNITY = MaterialIconSetWithRenderer("eternity", null, true,
         HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
+
+    @JvmField
+    val TRANSCENDENT = MaterialIconSetWithRenderer("transcendent", MaterialIconSet.METALLIC, false,
+        TranscendentRenderItemBehavior())
 
     // endregion
 
