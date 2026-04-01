@@ -45,7 +45,7 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
 {
 
     private var coreTier = 0
-    private var voidExcessEnergy = true
+    private var isExcessMode = false
 
     init
     {
@@ -135,7 +135,7 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
     {
         return super.createUIFactory()
             .createFlexButton { guiData, guiSyncManager ->
-                val excessMode = BooleanSyncValue(::isVoidExcessEnergy, ::setVoidExcessEnergy)
+                val excessMode = BooleanSyncValue(::getExcessMode, ::setExcessMode)
                 return@createFlexButton ToggleButton()
                     .size(18)
                     .disableHoverBackground()
@@ -157,26 +157,26 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
     {
         super.writeToNBT(data)
-        data.setBoolean("voidExcessEnergy", voidExcessEnergy)
+        data.setBoolean("excessMode", isExcessMode)
         return data
     }
 
     override fun readFromNBT(data: NBTTagCompound)
     {
         super.readFromNBT(data)
-        voidExcessEnergy = data.getBoolean("voidExcessEnergy")
+        isExcessMode = data.getBoolean("excessMode")
     }
 
     override fun writeInitialSyncData(buf: PacketBuffer)
     {
         super.writeInitialSyncData(buf)
-        buf.writeBoolean(voidExcessEnergy)
+        buf.writeBoolean(isExcessMode)
     }
 
     override fun receiveInitialSyncData(buf: PacketBuffer)
     {
         super.receiveInitialSyncData(buf)
-        voidExcessEnergy = buf.readBoolean()
+        isExcessMode = buf.readBoolean()
     }
 
     /**
@@ -214,11 +214,11 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
         else -> 1.0 // No boost without a valid reactor core
     }
 
-    private fun isVoidExcessEnergy() = voidExcessEnergy
+    private fun getExcessMode() = isExcessMode
 
-    private fun setVoidExcessEnergy(voidExcess: Boolean)
+    private fun setExcessMode(excessMode: Boolean)
     {
-        voidExcessEnergy = voidExcess
+        isExcessMode = excessMode
     }
 
     private inner class NuclearReactorWorkableHandler(mte: RecipeMapMultiblockController)
@@ -229,7 +229,7 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
             = (production * getBoostedFromCoreTier(coreTier)).toLong()
 
         override fun drawEnergy(recipeEUt: Long, simulate: Boolean): Boolean
-            = if (voidExcessEnergy) true else super.drawEnergy(recipeEUt, simulate)
+            = if (isExcessMode) true else super.drawEnergy(recipeEUt, simulate)
 
     }
 
