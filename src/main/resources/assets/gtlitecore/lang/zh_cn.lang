@@ -3951,6 +3951,10 @@ gtlitecore.tooltip.machine.energy_mode.fusion_coil=§6-%s%%/聚变线圈等级
 gtlitecore.tooltip.machine.laser_hatch=激光仓：§9允许
 gtlitecore.tooltip.machine.special_max_voltage=最大配方等级判定：§3禁用
 
+gtlitecore.tooltip.machine.excess_mode=可以在机器界面中切换§b溢能模式§7来选择是否销毁多余能量。
+gtlitecore.tooltip.gui.excess_mode.enabled=溢能模式：启用
+gtlitecore.tooltip.gui.excess_mode.disabled=溢能模式：禁用
+
 # Creative Tabs
 itemGroup.gtlite.main=格雷科技精简版
 itemGroup.gtlite.machine=格雷科技精简版 | 机器

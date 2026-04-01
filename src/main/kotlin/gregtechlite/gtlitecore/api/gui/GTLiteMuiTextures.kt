@@ -94,6 +94,14 @@ object GTLiteMuiTextures
     val BUTTON_DISABLE_MODULE = texture("textures/gui/widget/button_disable_module.png")
 
     /**
+     * Multiblock Button for Generator Excess Mode.
+     * - 0: false
+     * - 1: true
+     */
+    @JvmField
+    val BUTTON_EXCESS_MODE = texture("textures/gui/widget/button_excess_mode.png", 16, 32, 16, 16)
+
+    /**
      * Space Elevator Logo.
      */
     @JvmField

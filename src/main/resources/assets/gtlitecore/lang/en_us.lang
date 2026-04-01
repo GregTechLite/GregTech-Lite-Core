@@ -3947,6 +3947,10 @@ gtlitecore.tooltip.machine.energy_mode.fusion_coil=§6-%s%%/Fusion Coil Tier
 gtlitecore.tooltip.machine.laser_hatch=Laser Hatch Support: §9Enabled
 gtlitecore.tooltip.machine.special_max_voltage=Max Recipe Tier Predicate: §3Disabled
 
+gtlitecore.tooltip.machine.excess_mode=Switch the §bExcess Mode§7 to choose whether to destroy excess energy
+gtlitecore.tooltip.gui.excess_mode.enabled=Excess Mode: Enabled
+gtlitecore.tooltip.gui.excess_mode.disabled=Excess Mode: Disabled
+
 # Creative Tabs
 itemGroup.gtlite.main=GregTech Lite
 itemGroup.gtlite.machine=GregTech Lite | Machines

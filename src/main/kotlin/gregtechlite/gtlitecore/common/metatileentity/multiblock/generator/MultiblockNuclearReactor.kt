@@ -1,5 +1,8 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.generator
 
+import com.cleanroommc.modularui.api.drawable.IKey
+import com.cleanroommc.modularui.value.sync.BooleanSyncValue
+import com.cleanroommc.modularui.widgets.ToggleButton
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.V
@@ -13,11 +16,13 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.OUTPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_OUTPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.NUCLEAR_REACTOR_CORE_TIER
+import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.nuclearReactorCores
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NUCLEAR_FUELS
@@ -27,6 +32,8 @@ import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NBTTagCompound
+import net.minecraft.network.PacketBuffer
 import net.minecraft.util.EnumParticleTypes
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -37,6 +44,7 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
 {
 
     private var coreTier = 0
+    private var voidExcessEnergy = true
 
     init
     {
@@ -113,6 +121,7 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
         tooltip.add(I18n.format("gtlitecore.machine.nuclear_reactor.tooltip.5"))
         tooltip.add(I18n.format("gtlitecore.machine.nuclear_reactor.tooltip.6"))
         tooltip.add(I18n.format("gtlitecore.machine.nuclear_reactor.tooltip.7"))
+        tooltip.add(I18n.format("gtlitecore.tooltip.machine.excess_mode"))
     }
 
     override fun canBeDistinct() = false
@@ -120,6 +129,47 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
     override fun hasMufflerMechanics() = true
 
     override fun getMufflerParticle(): EnumParticleTypes = EnumParticleTypes.CLOUD
+
+    override fun createUIFactory(): MultiblockUIFactory
+    {
+        return super.createUIFactory()
+            .createFlexButton { guiData, guiSyncManager ->
+                val excessMode = BooleanSyncValue(::voidExcessEnergy, ::setVoidExcessEnergy)
+                return@createFlexButton ToggleButton()
+                    .size(18)
+                    .disableHoverBackground()
+                    .overlay(false, GTLiteMuiTextures.BUTTON_EXCESS_MODE[0])
+                    .overlay(true, GTLiteMuiTextures.BUTTON_EXCESS_MODE[1])
+                    .addTooltip(false, IKey.lang("gtlitecore.tooltip.gui.excess_mode.disabled"))
+                    .addTooltip(true, IKey.lang("gtlitecore.tooltip.gui.excess_mode.enabled"))
+                    .value(excessMode)
+            }
+    }
+
+    override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
+    {
+        super.writeToNBT(data)
+        data.setBoolean("voidExcessEnergy", voidExcessEnergy)
+        return data
+    }
+
+    override fun readFromNBT(data: NBTTagCompound)
+    {
+        super.readFromNBT(data)
+        voidExcessEnergy = data.getBoolean("voidExcessEnergy")
+    }
+
+    override fun writeInitialSyncData(buf: PacketBuffer)
+    {
+        super.writeInitialSyncData(buf)
+        buf.writeBoolean(voidExcessEnergy)
+    }
+
+    override fun receiveInitialSyncData(buf: PacketBuffer)
+    {
+        super.receiveInitialSyncData(buf)
+        voidExcessEnergy = buf.readBoolean()
+    }
 
     /**
      * Get boosted factor from [coreTier] to give reactor production a boost.
@@ -156,12 +206,20 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
         else -> 1.0 // No boost without a valid reactor core
     }
 
+    private fun setVoidExcessEnergy(voidExcess: Boolean)
+    {
+        voidExcessEnergy = voidExcess
+    }
+
     private inner class NuclearReactorWorkableHandler(mte: RecipeMapMultiblockController)
         : MultiblockFuelRecipeLogic(mte)
     {
 
-        override fun boostProduction(production: Long): Long =
-            (production * getBoostedFromCoreTier(coreTier)).toLong()
+        override fun boostProduction(production: Long): Long
+            = (production * getBoostedFromCoreTier(coreTier)).toLong()
+
+        override fun drawEnergy(recipeEUt: Long, simulate: Boolean): Boolean
+            = if (voidExcessEnergy) true else super.drawEnergy(recipeEUt, simulate)
 
     }
 
