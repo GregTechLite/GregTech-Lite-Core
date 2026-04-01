@@ -16,6 +16,7 @@
     "MixinFuelRecipeLogic",
     "MixinItemHandlerList",
     "MixinMaterialProperties",
+    "MixinBaseFilterContainer",
     "MixinMaterialRecipeHandler",
     "MixinMetaTileEntityCleaningMaintenanceHatch",
     "MixinMetaTileEntityFluidHatch",
