@@ -32,25 +32,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.max
 
-/**
- * Reactor Core buff factors:
- * - Thorium 1.05x
- * - Protactinium 1.1x
- * - Uranium 1.3x
- * - Neptunium 1.4x
- * - Plutonium 1.5x
- * - Americium 1.8x
- * - Curium 1.85x
- * - Berkelium 1.9x
- * - Californium 2.0x
- * - Einsteinium 2.5x
- * - Fermium 3x
- * - Mendelevium 3.2x
- *
- * TODO: FIXME: Seems reactor core buff not effect.
- */
 class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(id, NUCLEAR_FUELS, EV)
 {
 
@@ -141,32 +123,45 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
 
     /**
      * Get boosted factor from [coreTier] to give reactor production a boost.
+     *
+     * | Reactor Core | Boosted Factor |
+     * |--------------|----------------|
+     * | Thorium      | 1.05x          |
+     * | Protactinium | 1.1x           |
+     * | Uranium      | 1.3x           |
+     * | Neptunium    | 1.4x           |
+     * | Plutonium    | 1.5x           |
+     * | Americium    | 1.8x           |
+     * | Curium       | 1.85x          |
+     * | Berkelium    | 1.9x           |
+     * | Californium  | 2.0x           |
+     * | Einsteinium  | 2.5x           |
+     * | Fermium      | 3x             |
+     * | Mendelevium  | 3.2x           |
      */
-    fun getBoostedFromCoreTier(tier: Int): Double = when (tier)
+    private fun getBoostedFromCoreTier(tier: Int): Double = when (tier)
     {
         (1) -> 1.05 // Th
-        (2) -> 1.1 // Pa
-        (3) -> 1.3 // U
-        (4) -> 1.4 // Np
-        (5) -> 1.5 // Pu
-        (6) -> 1.8 // Am
+        (2) -> 1.1  // Pa
+        (3) -> 1.3  // U
+        (4) -> 1.4  // Np
+        (5) -> 1.5  // Pu
+        (6) -> 1.8  // Am
         (7) -> 1.85 // Cm
-        (8) -> 1.9 // Bk
-        (9) -> 2.0 // Cf
+        (8) -> 1.9  // Bk
+        (9) -> 2.0  // Cf
         (10) -> 2.5 // Es
         (11) -> 3.0 // Fm
         (12) -> 3.2 // Md
-        else -> 0.0 // Ensure it not cause problem for workableHandler progress max value.
+        else -> 1.0 // No boost without a valid reactor core
     }
 
     private inner class NuclearReactorWorkableHandler(mte: RecipeMapMultiblockController)
         : MultiblockFuelRecipeLogic(mte)
     {
 
-        override fun getMaxVoltage(): Long = max(super.getMaxVoltage().toDouble(),
-                                                 super.getMaxVoltage() * getBoostedFromCoreTier(coreTier)).toLong()
-
-        override fun getParallelLimit() = Int.MAX_VALUE
+        override fun boostProduction(production: Long): Long =
+            (production * getBoostedFromCoreTier(coreTier)).toLong()
 
     }
 
