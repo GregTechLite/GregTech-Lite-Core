@@ -31,8 +31,7 @@ class TranscendentRenderItemBehavior(
     @SideOnly(Side.CLIENT)
     override fun onRendererRegistry(location: ResourceLocation)
     {
-        ModelRegistryHelper.register(
-            ModelResourceLocation(location, "inventory"),
+        ModelRegistryHelper.register(ModelResourceLocation(location, "inventory"),
             TranscendentItemRenderer(TransformUtils.DEFAULT_ITEM) { modelRegistry ->
                 modelRegistry.getObject(ModelResourceLocation(location, "inventory"))
             })
