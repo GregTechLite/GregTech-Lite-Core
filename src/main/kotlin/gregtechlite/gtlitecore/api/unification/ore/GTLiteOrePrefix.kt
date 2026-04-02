@@ -339,7 +339,6 @@ object GTLiteOrePrefix
         MetaItems.addOrePrefix(fuelRodHighDensityDepleted)
         MetaItems.addOrePrefix(nanite)
     }
-
 }
 
 /**
@@ -370,12 +369,16 @@ private fun OrePrefix.removeSecondaryMaterial(material: Material, amount: Long)
 }
 
 /**
- * Modifies `materialAmount` field of the `OrePrefix`.
+ * Modifies material amount of the existed prefix.
  *
- * This method is used to adjust recycling recipe outputs for specific prefixes.
+ * This method is used to adjust recycling recipe outputs for specific prefixes, and it is unsafe
+ * for common material amount modification, please see the safe methods in original prefix operations.
  *
  * @param prefix    The prefix to modified.
  * @param newAmount The new material amount value.
+ *
+ * @see OrePrefix.modifyMaterialAmount
+ * @see OrePrefix.isAmountModified
  */
 @Suppress("SameParameterValue")
 private fun setMaterialAmount(prefix: OrePrefix, newAmount: Long) = runCatching {
