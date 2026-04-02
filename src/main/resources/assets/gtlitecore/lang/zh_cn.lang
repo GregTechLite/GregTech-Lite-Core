@@ -581,7 +581,7 @@ tile.gtlitecore.acceleration_track.mk5.tooltip=解锁更多模块槽位与等级
 
 tile.gtlitecore.wire_coil.adamantium.name=精金线圈方块
 tile.gtlitecore.wire_coil.infinity.name=无尽线圈方块
-tile.gtlitecore.wire_coil.halkonite_steel.name=赫利孔钢线圈方块
+tile.gtlitecore.wire_coil.halkonite_steel.name=星脊钢线圈方块
 tile.gtlitecore.wire_coil.space_time.name=时空线圈方块
 tile.gtlitecore.wire_coil.eternity.name=永恒线圈方块
 
@@ -1094,7 +1094,7 @@ metaitem.mining_drone.max.name=§c§lMAX§f 采矿无人机
 metaitem.mining_drone.max.tooltip=行星带资源提取器
 
 metaitem.tool.component.grinder.boron_nitride.name=氮化硼磨头
-metaitem.tool.component.grinder.halkonite_steel.name=赫利孔钢磨头
+metaitem.tool.component.grinder.halkonite_steel.name=星脊钢磨头
 
 metaitem.tool.disposable.saw.name=一次性锯
 metaitem.tool.disposable.saw.tooltip=仅用于合成的一次性工具
@@ -3361,7 +3361,7 @@ gtlitecore.material.quantum_alloy=量子合金
 gtlitecore.material.hdcs=高强度复合钢（HDCS）
 gtlitecore.material.titan_steel=泰坦精钢
 gtlitecore.material.tairitsium=对立合金
-gtlitecore.material.halkonite_steel=赫利孔钢
+gtlitecore.material.halkonite_steel=星脊钢
 gtlitecore.material.hastelloy_x_78=哈斯特洛伊合金-X78
 gtlitecore.material.hastelloy_k_243=哈斯特洛伊合金-K243
 gtlitecore.material.pikyonium_64_b=皮卡优合金64B
