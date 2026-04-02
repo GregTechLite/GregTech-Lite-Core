@@ -1,16 +1,20 @@
 package gregtechlite.gtlitecore.api.unification.ore
 
 import gregtech.api.GTValues.M
+import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
+import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.nugget
+import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems
@@ -249,15 +253,17 @@ object GTLiteOrePrefix
 
         if (ConfigHolder.worldgen.allUniqueStoneTypes)
         {
-            oreLimestone.addSecondaryMaterial(MaterialStack(Limestone, M))
-            oreKomatiite.addSecondaryMaterial(MaterialStack(Komatiite, M))
-            oreGreenSchist.addSecondaryMaterial(MaterialStack(GreenSchist, M))
-            oreBlueSchist.addSecondaryMaterial(MaterialStack(BlueSchist, M))
-            oreKimberlite.addSecondaryMaterial(MaterialStack(Kimberlite, M))
-            oreQuartzite.addSecondaryMaterial(MaterialStack(Quartzite, M))
-            oreSlate.addSecondaryMaterial(MaterialStack(Slate, M))
-            oreShale.addSecondaryMaterial(MaterialStack(Shale, M))
+            oreLimestone.addSecondaryMaterial(Limestone, M)
+            oreKomatiite.addSecondaryMaterial(Komatiite, M)
+            oreGreenSchist.addSecondaryMaterial(GreenSchist, M)
+            oreBlueSchist.addSecondaryMaterial(BlueSchist, M)
+            oreKimberlite.addSecondaryMaterial(Kimberlite, M)
+            oreQuartzite.addSecondaryMaterial(Quartzite, M)
+            oreSlate.addSecondaryMaterial(Slate, M)
+            oreShale.addSecondaryMaterial(Shale, M)
         }
+
+        toolHeadDrill.removeSecondaryMaterial(Steel, M * 4)
 
         // endregion
 
@@ -325,4 +331,31 @@ object GTLiteOrePrefix
         MetaItems.addOrePrefix(nanite)
     }
 
+}
+
+/**
+ * Adds secondary materials for the prefix.
+ *
+ * @param material The material of the material stack for the secondary material.
+ * @param amount   The material amount of the material stack for the secondary material, use magic number.
+ */
+private fun OrePrefix.addSecondaryMaterial(material: Material, amount: Long)
+{
+    val ms = MaterialStack(material, amount)
+    if (!secondaryMaterials.contains(ms))
+        secondaryMaterials.add(ms)
+}
+
+/**
+ * Removes existed secondary material for the prefix.
+ *
+ * @param material The material of the material stack in the secondary material.
+ * @param amount   The material amount of the material stack in the secondary material, use magic number.
+ */
+private fun OrePrefix.removeSecondaryMaterial(material: Material, amount: Long)
+{
+    val ms = MaterialStack(material, amount)
+    if (secondaryMaterials.contains(ms)) {
+        secondaryMaterials.remove(ms)
+    }
 }
