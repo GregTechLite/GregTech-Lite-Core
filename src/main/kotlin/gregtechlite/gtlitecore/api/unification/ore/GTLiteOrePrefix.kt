@@ -15,9 +15,11 @@ import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.nugget
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
+import gregtech.api.unification.ore.OrePrefix.turbineBlade
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems
+import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlazingPyrotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
@@ -239,6 +241,12 @@ object GTLiteOrePrefix
 
     fun setOrePrefixInfos()
     {
+        // region Material Amount
+
+        setMaterialAmount(turbineBlade, M * 6)
+
+        // endregion
+
         // region Stack Size
 
         gemSolitary.maxStackSize = 8
@@ -268,6 +276,7 @@ object GTLiteOrePrefix
         // endregion
 
         // region Ignored Prefix
+
         dust.setIgnored(ZSM5)
         dust.setIgnored(HalkoniteSteel)
         dust.setIgnored(Magnetium)
@@ -359,3 +368,19 @@ private fun OrePrefix.removeSecondaryMaterial(material: Material, amount: Long)
         secondaryMaterials.remove(ms)
     }
 }
+
+/**
+ * Modifies `materialAmount` field of the `OrePrefix`.
+ *
+ * This method is used to adjust recycling recipe outputs for specific prefixes.
+ *
+ * @param prefix    The prefix to modified.
+ * @param newAmount The new material amount value.
+ */
+@Suppress("SameParameterValue")
+private fun setMaterialAmount(prefix: OrePrefix, newAmount: Long) = runCatching {
+    OrePrefix::class.java.getDeclaredField("materialAmount").apply {
+        isAccessible = true
+        setLong(prefix, newAmount)
+    }
+}.onFailure { GTLiteLog.logger.error("Cannot set materialAmount for the OrePrefix $prefix with new amount $newAmount") }
