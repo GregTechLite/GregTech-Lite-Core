@@ -14,6 +14,7 @@ import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Chloromethane
 import gregtech.api.unification.material.Materials.DilutedHydrochloricAcid
 import gregtech.api.unification.material.Materials.Dimethyldichlorosilane
+import gregtech.api.unification.material.Materials.Ethylbenzene
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Methane
@@ -22,13 +23,16 @@ import gregtech.api.unification.material.Materials.Propene
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SodiumBisulfate
 import gregtech.api.unification.material.Materials.SodiumHydroxide
+import gregtech.api.unification.material.Materials.Styrene
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 
 internal object RecipeConflicts
 {
@@ -103,6 +107,18 @@ internal object RecipeConflicts
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[LV])
             duration(5 * SECOND)
+        }
+
+        // Conflicts between C8H8 and C6H4(CO)2C6H3Et.
+        GTLiteRecipeHandler.removeChemicalRecipes(Ethylbenzene.getFluid(1000))
+
+        // C8H10 -> C8H8 + 2H
+        BURNER_REACTOR_RECIPES.addRecipe {
+            fluidInputs(Ethylbenzene.getFluid(1000))
+            fluidOutputs(Styrene.getFluid(1000))
+            fluidOutputs(Hydrogen.getFluid(2000))
+            EUt(VA[LV])
+            duration(1 * SECOND + 10 * TICK)
         }
     }
 
