@@ -2521,8 +2521,6 @@ gtlitecore.machine.integrated_ore_processor.tooltip.13=Max Parallel:
 gtlitecore.machine.integrated_ore_processor.tooltip.14=- Voltage Tier >= §1IV§7: §e1,024§7
 gtlitecore.machine.integrated_ore_processor.tooltip.15=- Voltage Tier >= §dLuV§7: §e[1024×(Current 'EU/t'/8,192)]^(log4(1.5))§7
 
-gtlitecore.machine.integrated_ore_processor.name=Integrated Ore Processor
-
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_bender.name=Large Bender
 gtlitecore.machine.large_cutter.name=Large Cutter
@@ -2999,6 +2997,7 @@ gtlitecore.material.heavy_alkali_chlorides_solution=Heavy Alkali Chlorides Solut
 gtlitecore.material.tin_dichloride=Tin Dichloride
 gtlitecore.material.tin_tetrachloride=Tin Tetrachloride
 gtlitecore.material.caesium_hexachlorotinate=Caesium Hexachlorotinate
+gtlitecore.material.rubidium_hexachlorotinate=Rubidium Hexachlorotinate
 gtlitecore.material.cryolite=Cryolite
 gtlitecore.material.aluminium_hydroxide=Aluminium Hydroxide
 gtlitecore.material.sodium_aluminate=Sodium Aluminate
@@ -3030,6 +3029,9 @@ gtlitecore.material.lithium_titanate=Lithium Titanate
 gtlitecore.material.palladium_nitrate=Palladium Nitrate
 gtlitecore.material.palladium_acetate=Palladium Acetate
 gtlitecore.material.palladium_loaded_rutile_nanoparticles=Palladium Loaded Rutile Nanoparticles
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dust=Palladium Loaded Rutile Nanoparticles Dust
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustSmall=Small Palladium Loaded Rutile Nanoparticles Dust
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustTiny=Tiny Palladium Loaded Rutile Nanoparticles Dust
 gtlitecore.material.lithium_oxide=Lithium Oxide
 gtlitecore.material.lithium_carbonate=Lithium Carbonate
 gtlitecore.material.blue_vitriol=Blue Vitriol
@@ -3664,6 +3666,7 @@ gtlitecore.material.azafullerene=Azafullerene
 gtlitecore.material.fulvic_acid=Fulvic Acid
 gtlitecore.material.mauveine=Mauveine
 gtlitecore.material.diketopyrrolopyrrole=Diketopyrrolopyrrole
+gtlitecore.material.isopropyl_succinate=Isopropyl Succinate
 gtlitecore.material.eosin_y=Eosin Y
 gtlitecore.material.phenylenedioxydiacetic_acid=Phenylenedioxydiacetic Acid
 gtlitecore.material.ethylamine=Ethylamine
