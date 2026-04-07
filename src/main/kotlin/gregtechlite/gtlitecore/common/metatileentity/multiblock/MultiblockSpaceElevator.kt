@@ -16,14 +16,7 @@ import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.COMPUTATION_DATA_RECEPTION
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.*
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
@@ -33,11 +26,8 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.pattern.TraceabilityPredicate
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.util.KeyUtil
-import gregtech.api.util.RelativeDirection.DOWN
-import gregtech.api.util.RelativeDirection.FRONT
-import gregtech.api.util.RelativeDirection.RIGHT
+import gregtech.api.util.RelativeDirection.*
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.GTLiteAPI.ACCELERATION_TRACK_TIER
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.capability.ModuleProvider
@@ -56,7 +46,6 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(id), ModuleProvider
@@ -82,8 +71,8 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         private val fourthCasingState = AerospaceCasing.HIGH_STRENGTH_CONCRETE.state
     }
 
-    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
-        = MultiblockSpaceElevator(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity =
+        MultiblockSpaceElevator(metaTileEntityId)
 
     override fun update()
     {
@@ -328,7 +317,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
         this.frontOverlay.renderOrientedState(renderState, translation, pipeline,
-            getFrontFacing(), true, true)
+                                              getFrontFacing(), true, true)
     }
 
     override fun hasMaintenanceMechanics() = false
@@ -361,73 +350,47 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
     {
         // TODO: replace logo to space elevator logo and add warning/error indicators if necessary.
         return SpaceElevatorUIFactory(this)
-                .configureDisplayText(::configureDisplayText)
-                .createFlexButton { _, guiSyncManager ->
-                    guiSyncManager.registerSyncedAction("refresh_structure_pattern") { reinitializeStructurePattern() }
-                    return@createFlexButton ButtonWidget()
-                            .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
-                            .disableHoverBackground()
-                            .onMousePressed {
-                                guiSyncManager.callSyncedAction("refresh_structure_pattern")
-                                true
-                            }
-                            .tooltip { tooltip ->
-                                tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
-                            }
-                }
+            .configureDisplayText(::configureDisplayText)
+            .createFlexButton { _, guiSyncManager ->
+                guiSyncManager.registerSyncedAction("refresh_structure_pattern") { reinitializeStructurePattern() }
+                return@createFlexButton ButtonWidget()
+                    .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
+                    .disableHoverBackground()
+                    .onMousePressed {
+                        guiSyncManager.callSyncedAction("refresh_structure_pattern")
+                        true
+                    }
+                    .tooltip { tooltip ->
+                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
+                    }
+            }
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)
     {
         builder.setWorkingStatus(true, isActive)
-                .addEnergyUsageLine(energyContainer)
-                .addCustom { keyManager, syncer ->
-                    // TODO: Space Elevator UI is unsynced the second time we open the panel
-                    //  due to isStructureFormed in client being False value.
-                    if (isStructureFormed)
-                    {
-                        val casingTier = syncer.syncInt(::casingTier)
-                        val isExtended = syncer.syncBoolean(::isExtended)
-                        val maxModules = syncer.syncInt(::maxModules)
-                        keyManager.add(
+            .addEnergyUsageLine(energyContainer)
+            .addCustom { keyManager, syncer ->
+                if (isStructureFormed)
+                {
+                    val casingTier = syncer.syncInt(::casingTier)
+                    val isExtended = syncer.syncBoolean(::isExtended)
+                    val maxModules = syncer.syncInt(::maxModules)
+                    keyManager.add(
                             KeyUtil.lang(
-                                TextFormatting.GRAY,
-                                "gtlitecore.machine.space_elevator.acceleration_track_tier", casingTier
+                                    TextFormatting.GRAY,
+                                    "gtlitecore.machine.space_elevator.acceleration_track_tier", casingTier
                             )
-                        )
-                        keyManager.add(
+                    )
+                    keyManager.add(
                             KeyUtil.lang(
-                                TextFormatting.GRAY,
-                                "gtlitecore.machine.space_elevator.max_module_count", maxModules
+                                    TextFormatting.GRAY,
+                                    "gtlitecore.machine.space_elevator.max_module_count", maxModules
                             )
-                        )
-
-                        // Only for debug mode to test extended structure pattern checking module and
-                        // other module checking situation.
-                        if (!this.moduleReceivers.isEmpty() && ConfigHolder.misc.debug)
-                        {
-                            val moduleNames = arrayListOf<String>()
-                            val uniqueNames = arrayListOf<String>()
-                            this.moduleReceivers.forEach { moduleReceiver ->
-                                moduleNames.add(moduleReceiver.displayCountName)
-                                if (!uniqueNames.contains(moduleNames[moduleNames.indexOf(moduleReceiver.displayCountName)]))
-                                {
-                                    uniqueNames.add(moduleReceiver.displayCountName)
-                                }
-                                uniqueNames.forEach { receiverName ->
-                                    keyManager.add(
-                                        KeyUtil.lang(
-                                            TextFormatting.GRAY,
-                                            receiverName,
-                                            Collections.frequency(moduleNames, receiverName)
-                                        )
-                                    )
-                                }
-                            }
-                        }
-                    }
-
+                    )
                 }
+
+            }
     }
 
     @SideOnly(Side.CLIENT)
@@ -477,9 +440,12 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
 
     private fun setExtended(extended: Boolean)
     {
-        isExtended = extended
-        invalidateStructure()
-        reinitializeStructurePattern()
+        if (isExtended != extended)
+        {
+            isExtended = extended
+            invalidateStructure()
+            reinitializeStructurePattern()
+        }
     }
 
     override fun isModule(receiver: ModuleReceiver): Boolean = moduleReceivers.contains(receiver)
@@ -496,15 +462,15 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
             panelSyncManager.registerSyncedAction("enable_modules") { mte.enabledAllModules() }
 
             return ButtonWidget()
-                    .disableHoverBackground()
-                    .overlay(GTLiteMuiTextures.BUTTON_ENABLE_MODULE)
-                    .tooltip { tooltip ->
-                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.enable_module"))
-                    }
-                    .onMousePressed {
-                        panelSyncManager.callSyncedAction("enable_modules")
-                        true
-                    }
+                .disableHoverBackground()
+                .overlay(GTLiteMuiTextures.BUTTON_ENABLE_MODULE)
+                .tooltip { tooltip ->
+                    tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.enable_module"))
+                }
+                .onMousePressed {
+                    panelSyncManager.callSyncedAction("enable_modules")
+                    true
+                }
         }
 
         override fun createVoidingButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): IWidget
@@ -512,14 +478,14 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
             panelSyncManager.registerSyncedAction("disable_modules") { mte.disabledAllModules() }
 
             return ButtonWidget()
-                    .disableHoverBackground()
-                    .overlay(GTLiteMuiTextures.BUTTON_DISABLE_MODULE)
-                    .tooltip { tooltip ->
-                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.disable_module"))
-                    }.onMousePressed {
-                        panelSyncManager.callSyncedAction("disable_modules")
-                        true
-                    }
+                .disableHoverBackground()
+                .overlay(GTLiteMuiTextures.BUTTON_DISABLE_MODULE)
+                .tooltip { tooltip ->
+                    tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.disable_module"))
+                }.onMousePressed {
+                    panelSyncManager.callSyncedAction("disable_modules")
+                    true
+                }
 
         }
 
@@ -527,12 +493,12 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         {
             val state = BooleanSyncValue(mte::getIsExtended, mte::setExtended)
             return ToggleButton()
-                    .disableHoverBackground()
-                    .overlay(false, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[0])
-                    .overlay(true, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[1])
-                    .addTooltip(false, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.disabled"))
-                    .addTooltip(true, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.enabled"))
-                    .value(state)
+                .disableHoverBackground()
+                .overlay(false, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[0])
+                .overlay(true, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[1])
+                .addTooltip(false, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.disabled"))
+                .addTooltip(true, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.enabled"))
+                .value(state)
         }
 
     }
