@@ -454,12 +454,11 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
      * The UI Factory for Space Elevator
      * Used to create buttons for enabling modules and disabling modules.
      */
-    private class SpaceElevatorUIFactory(controller: MultiblockSpaceElevator) : MultiblockUIFactory(controller)
+    private class SpaceElevatorUIFactory(val controller: MultiblockSpaceElevator) : MultiblockUIFactory(controller)
     {
-        private val mte = controller
         override fun createDistinctButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): IWidget
         {
-            panelSyncManager.registerSyncedAction("enable_modules") { mte.enabledAllModules() }
+            panelSyncManager.registerSyncedAction("enable_modules") { controller.enabledAllModules() }
 
             return ButtonWidget()
                 .disableHoverBackground()
@@ -475,7 +474,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
 
         override fun createVoidingButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): IWidget
         {
-            panelSyncManager.registerSyncedAction("disable_modules") { mte.disabledAllModules() }
+            panelSyncManager.registerSyncedAction("disable_modules") { controller.disabledAllModules() }
 
             return ButtonWidget()
                 .disableHoverBackground()
@@ -491,7 +490,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
 
         override fun createPowerButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): Widget<*>
         {
-            val state = BooleanSyncValue(mte::getIsExtended, mte::setExtended)
+            val state = BooleanSyncValue(controller::getIsExtended, controller::setExtended)
             return ToggleButton()
                 .disableHoverBackground()
                 .overlay(false, GTLiteMuiTextures.BUTTON_ELEVATOR_EXTENSION[0])
