@@ -687,18 +687,22 @@ tile.gtlitecore.glass_casing_03.nano_shielding_frame.tooltip=绝对领域力场
 tile.gtlitecore.naquadria_charge.name=超能硅岩爆弹
 tile.gtlitecore.naquadria_charge.tooltip.1=以高能爆炸物诱导超能硅岩释放巨量的能量。
 tile.gtlitecore.naquadria_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.naquadria_charge.name=超能硅岩爆弹
 
 tile.gtlitecore.taranium_charge.name=塔兰金属爆弹
 tile.gtlitecore.taranium_charge.tooltip.1=驱役已知宇宙中能量密度最高的物质塔兰金属产生爆炸。
 tile.gtlitecore.taranium_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.taranium_charge.name=塔兰金属爆弹
 
 tile.gtlitecore.leptonic_charge.name=轻子爆弹
 tile.gtlitecore.leptonic_charge.tooltip.1=在微观层面上彻底撕裂强相互作用以带来实质性的毁灭。
 tile.gtlitecore.leptonic_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.leptonic_charge.name=轻子爆弹
 
 tile.gtlitecore.quantum_chromodynamic_charge.name=量子色动力学爆弹
 tile.gtlitecore.quantum_chromodynamic_charge.tooltip.1=将夸克禁闭爆破以破坏原子核的基本结构来彻底抹杀物质。
 tile.gtlitecore.quantum_chromodynamic_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.quantum_chromodynamic_charge.name=量子色动力学爆弹
 
 # Items
 metaitem.shape.mold.screw.name=模具（螺丝）
@@ -3028,7 +3032,7 @@ gtlitecore.material.titanium_nitrate=硝酸钛
 gtlitecore.material.lithium_titanate=钛酸锂
 gtlitecore.material.palladium_nitrate=硝酸钯
 gtlitecore.material.palladium_acetate=乙酸钯
-gtlitecore.material.palladium_loaded_rutile_nanoparticles=钯负载金红石纳米粒子
+gtlitecore.material.palladium_loaded_rutile_nanoparticles=钯负载金红石纳米颗粒
 item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dust=钯负载金红石纳米颗粒
 item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustSmall=小堆钯负载金红石纳米颗粒
 item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustTiny=小撮钯负载金红石纳米颗粒
@@ -3306,7 +3310,10 @@ gtlitecore.material.hydromoscovic_acid=氢镆酸
 gtlitecore.material.strontium_europium_nihonate=钅尔酸锶铕
 gtlitecore.material.neutronium_doped_carbon_nanotube=中子掺杂的碳纳米管
 gtlitecore.material.cosmic_fabric=寰宇织网
-gtlitecore.material.silicon_nanoparticles=硅纳米粒子
+gtlitecore.material.silicon_nanoparticles=硅纳米颗粒
+item.gtlitecore.material.silicon_nanoparticles.dust=硅纳米颗粒
+item.gtlitecore.material.silicon_nanoparticles.dustSmall=小堆硅纳米颗粒
+item.gtlitecore.material.silicon_nanoparticles.dustTiny=小撮硅纳米颗粒
 gtlitecore.material.sodium_alginate=海藻酸钠
 gtlitecore.material.calcium_alginate=海藻酸钙
 gtlitecore.material.chromatic_glass=彩色玻璃

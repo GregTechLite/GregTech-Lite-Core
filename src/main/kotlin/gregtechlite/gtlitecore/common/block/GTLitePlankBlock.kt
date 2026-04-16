@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.block
 
+import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
@@ -19,54 +20,46 @@ class GTLitePlankBlock(private val offset: Int) : Block(Material.WOOD), Translat
 
     companion object
     {
-
         val VARIANT: PropertyInteger = PropertyInteger.create("variant", 0, 15)
-
     }
 
     init
     {
-        this.setTranslationKey("gtlitecore.planks_$offset")
-        this.setHardness(2.0f)
-        this.setResistance(5.0f)
-        this.setHarvestLevel("axe", 0)
-        this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
-        // Add to PLANKS pool.
+        setTranslationKey("gtlitecore.planks_$offset")
+        setHardness(2.0f)
+        setResistance(5.0f)
+        setHarvestLevel("axe", 0)
+        setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
+
         GTLiteBlocks.PLANKS.add(this)
     }
 
     fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
-    {
-        return WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (this.offset * 16)]!!
-    }
+        = WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (offset * 16)]
 
     override fun getMetaFromState(blockState: IBlockState): Int = blockState.getValue(VARIANT)
 
     @Deprecated("Deprecated in Java")
-    override fun getStateFromMeta(meta: Int): IBlockState = this.defaultState.withProperty(VARIANT, meta)
+    override fun getStateFromMeta(meta: Int): IBlockState = defaultState.withProperty(VARIANT, meta)
 
     override fun createBlockState(): BlockStateContainer = BlockStateContainer(this, VARIANT)
 
-    override fun getSubBlocks(itemIn: CreativeTabs,
-                              items: NonNullList<ItemStack>)
+    override fun getSubBlocks(itemIn: CreativeTabs, items: NonNullList<ItemStack>)
     {
         for (i in 0..15)
         {
-            if (WorldGeneratorTreeRegistry.generators.size <= i + this.offset * 16)
+            if (WorldGeneratorTreeRegistry.generators.size <= i + offset * 16)
                 break
             items.add(ItemStack(this, 1, i))
         }
     }
 
-    override fun damageDropped(blockState: IBlockState): Int = this.getMetaFromState(blockState)
+    override fun damageDropped(blockState: IBlockState): Int = getMetaFromState(blockState)
 
-    override fun getTranslation(blockState: IBlockState): String = try
-    {
-        "${MOD_ID}.planks." + getTreeFromState(blockState).name
-    }
-    catch (_: IndexOutOfBoundsException)
-    {
+    override fun getTranslation(blockState: IBlockState): String = runCatching {
+        "${MOD_ID}.planks.${getTreeFromState(blockState).name}"
+    }.getOrElse {
+        GTLiteLog.logger.warn("Found some incorrect plank block state '$blockState'")
         "${MOD_ID}.planks.error"
     }
-
 }

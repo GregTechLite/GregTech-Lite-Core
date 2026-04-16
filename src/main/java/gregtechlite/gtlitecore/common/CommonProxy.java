@@ -75,14 +75,13 @@ public class CommonProxy
         for (GTLiteStoneVariantBlock stone : GTLiteBlocks.STONES.values())
             registry.register(stone);
 
-        // Register all tree components.
+        // Register all tree and crop components.
         GTLiteBlocks.LEAVES.forEach(registry::register);
         GTLiteBlocks.LOGS.forEach(registry::register);
         GTLiteBlocks.PLANKS.forEach(registry::register);
         GTLiteBlocks.SAPLINGS.forEach(registry::register);
-        // Register all crops.
-        GTLiteCropBlock.CROPS.forEach(registry::register);
-        // TODO berries registrate?
+        GTLiteBlocks.CROPS.forEach(registry::register);
+
         // Wooden slabs.
         registry.register(GTLiteBlocks.WOOD_SLABS);
         registry.register(GTLiteBlocks.DOUBLE_WOOD_SLABS);

@@ -23,20 +23,18 @@ abstract class GTLiteWoodSlabBlock : BlockSlab(Material.WOOD)
 
     companion object
     {
-
         val VARIANT: PropertyEnum<WoodType> = PropertyEnum.create("variant", WoodType::class.java)
-
     }
 
     init
     {
-        this.setTranslationKey("gtlitecore.wood_slab")
-        this.setHardness(2.0F)
-        this.setResistance(5.0F)
-        this.setSoundType(SoundType.WOOD)
-        this.setHarvestLevel("axe", 0)
-        this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
-        this.useNeighborBrightness = true
+        setTranslationKey("gtlitecore.wood_slab")
+        setHardness(2.0F)
+        setResistance(5.0F)
+        setSoundType(SoundType.WOOD)
+        setHarvestLevel("axe", 0)
+        setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
+        useNeighborBrightness = true
     }
 
     override fun getVariantProperty(): IProperty<*> = VARIANT
@@ -53,34 +51,30 @@ abstract class GTLiteWoodSlabBlock : BlockSlab(Material.WOOD)
         = getTypeFromMeta(stack.metadata)
 
     fun getTypeFromMeta(meta: Int): WoodType
-        = WoodType.entries.toTypedArray()
-            .getOrElse(meta and 0xF) { WoodType.BANANA }
+        = WoodType.entries.toTypedArray().getOrElse(meta and 0xF) { WoodType.BANANA }
 
     override fun getSubBlocks(itemIn: CreativeTabs, items: NonNullList<ItemStack>)
-        = WoodType.entries.forEach { t ->
-            items.add(ItemStack(this, 1, t.ordinal)) }
+        = WoodType.entries.forEach { items.add(ItemStack(this, 1, it.ordinal)) }
 
     class Double : GTLiteWoodSlabBlock()
     {
 
         init
         {
-            this.defaultState = blockState.baseState
-                .withProperty(VARIANT, WoodType.BANANA)
+            defaultState = blockState.baseState.withProperty(VARIANT, WoodType.BANANA)
         }
 
         override fun isDouble(): Boolean = true
 
         @Deprecated("Deprecated in Java")
         override fun getStateFromMeta(meta: Int): IBlockState
-            = this.defaultState.withProperty(VARIANT, getTypeFromMeta(meta))
+            = defaultState.withProperty(VARIANT, getTypeFromMeta(meta))
 
         override fun getMetaFromState(state: IBlockState)
             = state.getValue(VARIANT).ordinal
 
         override fun createBlockState(): BlockStateContainer
             = BlockStateContainer(this, VARIANT)
-
     }
 
     class Half : GTLiteWoodSlabBlock()
@@ -88,8 +82,7 @@ abstract class GTLiteWoodSlabBlock : BlockSlab(Material.WOOD)
 
         init
         {
-            this.defaultState = blockState.baseState
-                .withProperty(HALF, EnumBlockHalf.BOTTOM)
+            defaultState = blockState.baseState.withProperty(HALF, EnumBlockHalf.BOTTOM)
                 .withProperty(VARIANT, WoodType.BANANA)
         }
 
@@ -97,8 +90,8 @@ abstract class GTLiteWoodSlabBlock : BlockSlab(Material.WOOD)
 
         @Deprecated("Deprecated in Java")
         override fun getStateFromMeta(meta: Int): IBlockState
-            = this.defaultState.withProperty(VARIANT, getTypeFromMeta(meta))
-                    .withProperty(HALF, if (meta and 8 == 0) EnumBlockHalf.BOTTOM else EnumBlockHalf.TOP)
+            = defaultState.withProperty(VARIANT, getTypeFromMeta(meta))
+                .withProperty(HALF, if (meta and 8 == 0) EnumBlockHalf.BOTTOM else EnumBlockHalf.TOP)
 
         override fun getMetaFromState(state: IBlockState): Int
         {
@@ -115,5 +108,4 @@ abstract class GTLiteWoodSlabBlock : BlockSlab(Material.WOOD)
                                                pos: BlockPos, side: EnumFacing): Boolean = false
 
     }
-
 }

@@ -83,13 +83,15 @@ object GTLiteBlocks
 
     // Tree related blocks.
     @JvmField
-    val LEAVES = ArrayList<GTLiteLeaveBlock>()
+    val LEAVES = arrayListOf<GTLiteLeaveBlock>()
     @JvmField
-    val LOGS = ArrayList<GTLiteLogBlock>()
+    val LOGS = arrayListOf<GTLiteLogBlock>()
     @JvmField
-    val PLANKS = ArrayList<GTLitePlankBlock>()
+    val PLANKS = arrayListOf<GTLitePlankBlock>()
     @JvmField
-    val SAPLINGS = ArrayList<GTLiteSaplingBlock>()
+    val SAPLINGS = arrayListOf<GTLiteSaplingBlock>()
+    @JvmField
+    var CROPS = arrayListOf<GTLiteCropBlock>()
 
     // Wooden slabs.
     lateinit var WOOD_SLABS: GTLiteWoodSlabBlock

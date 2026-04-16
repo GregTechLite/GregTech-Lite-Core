@@ -1,6 +1,8 @@
 package gregtechlite.gtlitecore.common.block
 
+import gregtech.api.GTValues.RNG
 import gregtechlite.gtlitecore.api.MOD_ID
+import gregtechlite.gtlitecore.api.extension.copy
 import net.minecraft.block.BlockCrops
 import net.minecraft.block.properties.PropertyInteger
 import net.minecraft.block.state.BlockStateContainer
@@ -13,7 +15,6 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
 import net.minecraftforge.common.EnumPlantType
-import java.util.*
 
 open class GTLiteCropBlock protected constructor(name: String) : BlockCrops()
 {
@@ -23,11 +24,11 @@ open class GTLiteCropBlock protected constructor(name: String) : BlockCrops()
 
     init
     {
-        this.setRegistryName(MOD_ID, "crop_$name")
-        this.setTranslationKey("gtlitecore.crop_$name")
-        this.defaultState = this.blockState.baseState
-            .withProperty<Int, Int>(this.ageProperty, 0)
-        CROPS.add(this)
+        setRegistryName(MOD_ID, "crop_$name")
+        setTranslationKey("gtlitecore.crop_$name")
+        defaultState = blockState.baseState.withProperty(ageProperty, 0)
+
+        GTLiteBlocks.CROPS.add(this)
     }
 
     companion object
@@ -36,11 +37,7 @@ open class GTLiteCropBlock protected constructor(name: String) : BlockCrops()
 
         private val CROPS_AABB = AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.25, 1.0)
 
-        @JvmField
-        var CROPS = ArrayList<GTLiteCropBlock?>()
-
         fun create(name: String) = GTLiteCropBlock(name)
-
     }
 
     @Deprecated("Deprecated in Java")
@@ -50,19 +47,17 @@ open class GTLiteCropBlock protected constructor(name: String) : BlockCrops()
 
     override fun getMaxAge() = 5
 
-    override fun getDrops(drops: NonNullList<ItemStack?>,
-                          worldIn: IBlockAccess,
-                          pos: BlockPos,
-                          state: IBlockState, fortune: Int)
+    override fun getDrops(drops: NonNullList<ItemStack>, worldIn: IBlockAccess,
+                          pos: BlockPos, state: IBlockState, fortune: Int)
     {
-        val random = if (worldIn is World) worldIn.rand else Random()
+        val random = if (worldIn is World) worldIn.rand else RNG
 
-        val age = this.getAge(state)
-        if (age >= this.maxAge)
+        val age = getAge(state)
+        if (age >= maxAge)
         {
-            if (!this.seedStack.isEmpty)
+            if (!seedStack.isEmpty)
             {
-                val seedStack = this.seedStack.copy()
+                val seedStack = seedStack.copy()
                 if (random.nextInt(9) == 0)
                     seedStack.setCount(seedStack.count + 1)
                 drops.add(seedStack)
@@ -71,13 +66,12 @@ open class GTLiteCropBlock protected constructor(name: String) : BlockCrops()
             var cropCount = 0
             repeat(3 + fortune)
             {
-                if (random.nextInt(2 * this.maxAge) <= age)
+                if (random.nextInt(2 * maxAge) <= age)
                     cropCount++
             }
             if (cropCount > 0)
             {
-                val cropStack = this.cropStack.copy()
-                cropStack.setCount(cropCount)
+                val cropStack = cropStack.copy(cropCount)
                 drops.add(cropStack)
             }
         }
@@ -90,10 +84,9 @@ open class GTLiteCropBlock protected constructor(name: String) : BlockCrops()
 
     override fun getAgeProperty(): PropertyInteger = DEFAULT_AGE
 
-    override fun createBlockState() = BlockStateContainer(this, this.ageProperty)
+    override fun createBlockState() = BlockStateContainer(this, ageProperty)
 
-    public override fun getSeed(): Item = this.seedStack.item
+    override fun getSeed(): Item = seedStack.item
 
-    public override fun getCrop(): Item = this.cropStack.item
-
+    override fun getCrop(): Item = cropStack.item
 }

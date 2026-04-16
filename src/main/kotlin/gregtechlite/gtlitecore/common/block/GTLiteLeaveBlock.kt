@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.block
 
-import com.google.common.collect.Lists
 import com.morphismmc.morphismlib.client.Games
 import com.morphismmc.morphismlib.util.LeafDecayUpdate
 import gregtech.core.CoreModule
@@ -34,29 +33,25 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
 
     companion object
     {
-
         val VARIANT: PropertyInteger = PropertyInteger.create("variant", 0, 3)
-
     }
 
     init
     {
-        this.setTranslationKey("gtlitecore.leaves_$offset")
-        this.setHardness(0.2f)
-        this.setLightOpacity(1)
-        this.defaultState = blockState.baseState
+        setTranslationKey("gtlitecore.leaves_$offset")
+        setHardness(0.2f)
+        setLightOpacity(1)
+        defaultState = blockState.baseState
             .withProperty(CHECK_DECAY, true)
             .withProperty(DECAYABLE, true)
             .withProperty(VARIANT, 0)
-        this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
-        // Add to LEAVES pool.
+        setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
+
         GTLiteBlocks.LEAVES.add(this)
     }
 
     fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
-    {
-        return WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (this.offset * 4)]
-    }
+        = WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (offset * 4)]
 
     @SideOnly(Side.CLIENT)
     fun registerColors()
@@ -70,7 +65,7 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
     }
 
     @Deprecated("Deprecated in Java")
-    override fun getStateFromMeta(meta: Int): IBlockState = this.defaultState
+    override fun getStateFromMeta(meta: Int): IBlockState = defaultState
         .withProperty(DECAYABLE, (meta and 1) == 1)
         .withProperty(CHECK_DECAY, (meta and 2) == 2)
         .withProperty(VARIANT, (meta and 12) shr 2)
@@ -86,14 +81,11 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
         return meta
     }
 
-    override fun getSubBlocks(
-        itemIn: CreativeTabs,
-        items: NonNullList<ItemStack>
-    )
+    override fun getSubBlocks(itemIn: CreativeTabs, items: NonNullList<ItemStack>)
     {
         for (i in 0..3)
         {
-            if (WorldGeneratorTreeRegistry.generators.size <= i + this.offset * 4)
+            if (WorldGeneratorTreeRegistry.generators.size <= i + offset * 4)
                 break
             items.add(ItemStack(this, 1, i shl 2))
         }
@@ -102,27 +94,13 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
     @Suppress("WRONG_NULLABILITY_FOR_JAVA_OVERRIDE")
     override fun getWoodType(meta: Int): BlockPlanks.EnumType? = null
 
-    override fun getItemDropped(blockState: IBlockState, random: Random, fortune: Int): Item =
-        Item.getItemFromBlock(getTreeFromState(blockState).saplingState!!.block)
+    override fun getItemDropped(blockState: IBlockState, random: Random, fortune: Int): Item
+        = Item.getItemFromBlock(getTreeFromState(blockState).saplingState!!.block)
 
-    override fun onSheared(
-        stack: ItemStack, worldIn: IBlockAccess,
-        blockPos: BlockPos, fortune: Int
-    ): List<ItemStack> = Lists.newArrayList(ItemStack(this, 1, getMetaFromState(worldIn.getBlockState(blockPos))))
+    override fun onSheared(stack: ItemStack, worldIn: IBlockAccess, blockPos: BlockPos, fortune: Int): List<ItemStack>
+        = arrayListOf(ItemStack(this, 1, getMetaFromState(worldIn.getBlockState(blockPos))))
 
     override fun createBlockState(): BlockStateContainer = BlockStateContainer(this, DECAYABLE, CHECK_DECAY, VARIANT)
-
-    override fun getTranslation(blockState: IBlockState): String
-    {
-        try
-        {
-            return "${MOD_ID}.leaves." + getTreeFromState(blockState).name
-        } catch (exception: IndexOutOfBoundsException)
-        {
-            GTLiteLog.logger.debug(exception)
-            return "${MOD_ID}.leaves.error"
-        }
-    }
 
     override fun getRenderLayer(): BlockRenderLayer
     {
@@ -139,43 +117,37 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
         return false
     }
 
-
     @Deprecated("Deprecated in Java")
-    override fun shouldSideBeRendered(blockState: IBlockState,
-                                      blockAccess: IBlockAccess,
-                                      blockPos: BlockPos,
-                                      side: EnumFacing
-    ): Boolean
+    override fun shouldSideBeRendered(blockState: IBlockState, blockAccess: IBlockAccess, blockPos: BlockPos,
+                                      side: EnumFacing): Boolean
     {
         if (!isFancyGraphics())
             return super.shouldSideBeRendered(blockState, blockAccess, blockPos, side)
         return true
     }
 
-    override fun dropApple(worldIn: World,
-                           blockPos: BlockPos,
-                           blockState: IBlockState,
-                           chance: Int)
+    override fun dropApple(worldIn: World, blockPos: BlockPos, blockState: IBlockState, chance: Int)
     {
         return spawnAsEntity(worldIn, blockPos, (blockState.block as GTLiteLeaveBlock)
             .getTreeFromState(blockState).getFruitDrop(chance)!!)
     }
 
-    override fun damageDropped(blockState: IBlockState): Int =
-        (blockState.getValue(VARIANT) shl 1) + ((this.offset % 2) * 8)
+    override fun damageDropped(blockState: IBlockState): Int
+        = (blockState.getValue(VARIANT) shl 1) + ((offset % 2) * 8)
 
     @Deprecated("Deprecated in Java")
-    override fun getItem(worldIn: World,
-                         blockPos: BlockPos,
-                         blockState: IBlockState): ItemStack = ItemStack(
-        Item.getItemFromBlock(this), 1,
-        blockState.getValue(VARIANT) shl 2)
+    override fun getItem(worldIn: World, blockPos: BlockPos, blockState: IBlockState): ItemStack
+        = ItemStack(Item.getItemFromBlock(this), 1, blockState.getValue(VARIANT) shl 2)
 
-    override fun updateTick(
-        worldIn: World, blockPos: BlockPos,
-        blockState: IBlockState, random: Random
-    ) = LeafDecayUpdate.leafDecay(this, worldIn, blockPos)
+    override fun updateTick(worldIn: World, blockPos: BlockPos, blockState: IBlockState, random: Random)
+        = LeafDecayUpdate.leafDecay(this, worldIn, blockPos)
+
+    override fun getTranslation(blockState: IBlockState): String = runCatching {
+        "${MOD_ID}.leaves.${getTreeFromState(blockState).name}"
+    }.getOrElse {
+        GTLiteLog.logger.warn("Found some incorrect leave block state '$blockState'")
+        "${MOD_ID}.leaves.error"
+    }
 
     private fun isFancyGraphics(): Boolean = CoreModule.proxy.isFancyGraphics
-
 }
