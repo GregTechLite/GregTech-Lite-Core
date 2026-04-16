@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.extension.copy
 import net.minecraft.block.Block
 import net.minecraft.block.properties.PropertyInteger
 import net.minecraft.block.state.BlockStateContainer
@@ -31,8 +32,8 @@ open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCrop
 
     init
     {
-        this.setTranslationKey("gtlitecore.berry_bush_$name")
-        this.setHardness(1f)
+        setTranslationKey("gtlitecore.berry_bush_$name")
+        setHardness(1f)
     }
 
     companion object
@@ -50,14 +51,9 @@ open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCrop
     override fun createBlockState() = BlockStateContainer(this, ageProperty, EFFICIENCY)
 
     override fun canSustainBush(state: IBlockState): Boolean
-    {
-        return state.getBlock() === Blocks.DIRT || super.canSustainBush(state)
-    }
+        = state.getBlock() === Blocks.DIRT || super.canSustainBush(state)
 
-    override fun getDrops(drops: NonNullList<ItemStack?>,
-                          worldIn: IBlockAccess,
-                          pos: BlockPos,
-                          state: IBlockState,
+    override fun getDrops(drops: NonNullList<ItemStack>, worldIn: IBlockAccess, pos: BlockPos, state: IBlockState,
                           fortune: Int)
     {
         super.getDrops(drops, worldIn, pos, state, fortune)
@@ -73,9 +69,7 @@ open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCrop
                 if (rand.nextInt(2) == 0)
                     cropCount++
             }
-
-            val crop = this.cropStack.copy()
-            crop.setCount(cropCount)
+            val crop = cropStack.copy(cropCount)
             drops.add(crop)
         }
     }
@@ -95,7 +89,7 @@ open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCrop
     fun getEfficiencyByPos(worldIn: World, pos: BlockPos): Int
     {
         val maxEfficiency = EFFICIENCY.allowedValues.max() ?: 0
-        val efficiencies = IntArray(maxEfficiency + 1)
+        val efficiencies = intArrayOf(maxEfficiency + 1)
 
         BlockPos.getAllInBox(pos.east().north(), pos.west().south())
             .forEach { blockPos ->
@@ -137,10 +131,7 @@ open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCrop
 
     override fun getPlantType(worldIn: IBlockAccess, pos: BlockPos) = EnumPlantType.Plains
 
-    override fun onEntityCollision(worldIn: World,
-                                   pos: BlockPos,
-                                   state: IBlockState,
-                                   entityIn: Entity)
+    override fun onEntityCollision(worldIn: World, pos: BlockPos, state: IBlockState, entityIn: Entity)
     {
         if (isThorny && entityIn is EntityLiving)
             entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0f)
@@ -154,22 +145,16 @@ open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCrop
     }
 
     @Deprecated("Deprecated in Java")
-    override fun getCollisionBoundingBox(blockState: IBlockState,
-                                         worldIn: IBlockAccess,
-                                         pos: BlockPos): AxisAlignedBB? = STEM_AABB
+    override fun getCollisionBoundingBox(blockState: IBlockState, worldIn: IBlockAccess, pos: BlockPos): AxisAlignedBB = STEM_AABB
 
     @Deprecated("Deprecated in Java")
     override fun getBoundingBox(state: IBlockState, worldIn: IBlockAccess, pos: BlockPos): AxisAlignedBB
-    {
-        return if (getAge(state) == 0) SMALL_AABB else LARGE_AABB
-    }
+        = if (getAge(state) == 0) SMALL_AABB else LARGE_AABB
 
     override fun getMaxAge() = 2
 
-    override fun onBlockActivated(worldIn: World,
-                                  pos: BlockPos, state: IBlockState,
-                                  playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing,
-                                  hitX: Float, hitY: Float, hitZ: Float): Boolean
+    override fun onBlockActivated(worldIn: World, pos: BlockPos, state: IBlockState, playerIn: EntityPlayer,
+                                  hand: EnumHand, facing: EnumFacing, hitX: Float, hitY: Float, hitZ: Float): Boolean
     {
         if (isMaxAge(state))
         {
@@ -180,26 +165,21 @@ open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCrop
                     berries++
             }
 
-            val berryStack = this.cropStack.copy()
-            berryStack.setCount(berries)
+            val berryStack = cropStack.copy(berries)
             if (!playerIn.addItemStackToInventory(berryStack))
                 playerIn.dropItem(berryStack, false)
 
-            worldIn.setBlockState(pos, state.withProperty(ageProperty, this.maxAge - 1), 3)
+            worldIn.setBlockState(pos, state.withProperty(ageProperty, maxAge - 1), 3)
             return true
         }
         return false
     }
 
     override fun getStateFromMeta(meta: Int): IBlockState
-    {
-        return withAge(meta % 3).withProperty(EFFICIENCY, meta / 3)
-    }
+        = withAge(meta % 3).withProperty(EFFICIENCY, meta / 3)
 
     override fun getMetaFromState(state: IBlockState): Int
-    {
-        return getEfficiency(state) * 3 + getAge(state)
-    }
+        = getEfficiency(state) * 3 + getAge(state)
 
     override fun neighborChanged(state: IBlockState, worldIn: World, pos: BlockPos, blockIn: Block, fromPos: BlockPos)
     {
@@ -212,17 +192,14 @@ open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCrop
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos)
     }
 
-    public override fun getAgeProperty(): PropertyInteger = DEFAULT_AGE
+    override fun getAgeProperty(): PropertyInteger = DEFAULT_AGE
 
     fun getEfficiency(state: IBlockState): Int
-    {
-        return if (state.getProperties().get(EFFICIENCY) != null) state.getValue(EFFICIENCY) else -1
-    }
+        = if (state.getProperties().get(EFFICIENCY) != null) state.getValue(EFFICIENCY) else -1
 
     fun setThorny(thorny: Boolean): GTLiteBerryBushBlock
     {
         isThorny = thorny
         return this
     }
-
 }

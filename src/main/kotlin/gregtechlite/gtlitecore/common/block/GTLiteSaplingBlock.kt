@@ -26,38 +26,34 @@ import java.util.*
 
 class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), IGrowable, TranslatableBlock
 {
+
     companion object
     {
-
         private val SAPLING_AABB = AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 0.8, 0.9)
 
         val VARIANT: PropertyInteger = PropertyInteger.create("variant", 0, 7)
-
     }
 
     init
     {
-        this.setTranslationKey("gtlitecore.sapling_$offset")
-        this.setTickRandomly(true)
-        this.setHardness(0.0f)
-        this.setLightOpacity(1)
-        this.setSoundType(SoundType.PLANT)
-        this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
-        // Add to SAPLINGS pool.
+        setTranslationKey("gtlitecore.sapling_$offset")
+        setTickRandomly(true)
+        setHardness(0.0f)
+        setLightOpacity(1)
+        setSoundType(SoundType.PLANT)
+        setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
+
         GTLiteBlocks.SAPLINGS.add(this)
     }
 
     fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
-    {
-        return WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (this.offset * 8)]
-    }
+        = WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (offset * 8)]
 
     override fun createBlockState(): BlockStateContainer = BlockStateContainer(this, BlockSapling.STAGE, VARIANT)
 
     @Deprecated("Deprecated in Java")
-    override fun getStateFromMeta(meta: Int): IBlockState =
-        this.defaultState.withProperty(BlockSapling.STAGE, (meta and 1))
-            .withProperty(VARIANT, (meta and 14) shr 1)
+    override fun getStateFromMeta(meta: Int): IBlockState
+        = defaultState.withProperty(BlockSapling.STAGE, (meta and 1)).withProperty(VARIANT, (meta and 14) shr 1)
 
     override fun getMetaFromState(blockState: IBlockState): Int
     {
@@ -67,28 +63,13 @@ class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), 
         return meta
     }
 
-    override fun getSubBlocks(
-        itemIn: CreativeTabs,
-        items: NonNullList<ItemStack>
-    )
+    override fun getSubBlocks(itemIn: CreativeTabs, items: NonNullList<ItemStack>)
     {
         for (i in 0..7)
         {
-            if (WorldGeneratorTreeRegistry.generators.size <= i + this.offset * 8)
+            if (WorldGeneratorTreeRegistry.generators.size <= i + offset * 8)
                 break
             items.add(ItemStack(this, 1, i * 2))
-        }
-    }
-
-    override fun getTranslation(blockState: IBlockState): String
-    {
-        try
-        {
-            return "${MOD_ID}.sapling." + getTreeFromState(blockState).name
-        } catch (exception: IndexOutOfBoundsException)
-        {
-            GTLiteLog.logger.debug(exception)
-            return "${MOD_ID}.sapling.error"
         }
     }
 
@@ -101,10 +82,7 @@ class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), 
 
     override fun canBeReplacedByLeaves(blockState: IBlockState, worldIn: IBlockAccess, blockPos: BlockPos): Boolean = true
 
-    override fun grow(worldIn: World,
-                      random: Random,
-                      blockPos: BlockPos,
-                      blockState: IBlockState)
+    override fun grow(worldIn: World, random: Random, blockPos: BlockPos, blockState: IBlockState)
     {
         getTreeFromState(blockState).outerGenerator?.generate(worldIn, random, blockPos)
     }
@@ -113,25 +91,24 @@ class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), 
 
     override fun damageDropped(blockState: IBlockState): Int = blockState.getValue(VARIANT) shl 1
 
-    override fun updateTick(
-        worldIn: World, blockPos: BlockPos, blockState: IBlockState,
-        random: Random
-    )
+    override fun updateTick(worldIn: World, blockPos: BlockPos, blockState: IBlockState, random: Random)
     {
         if (!worldIn.isRemote)
         {
             super.updateTick(worldIn, blockPos, blockState, random)
-            // Short-circuit the rest of this (BlockSapling).
-            if (random.nextInt(7) != 0)
+            if (random.nextInt(7) != 0) // Short-circuit the rest of this (BlockSapling).
                 return
-            // Forge: prevent loading unloaded chunks when checking neighbor's light.
-            if (!worldIn.isAreaLoaded(blockPos, 1))
+            if (!worldIn.isAreaLoaded(blockPos, 1)) // Forge: prevent loading unloaded chunks when checking neighbor's light.
                 return
             if (worldIn.getLightFromNeighbors(blockPos.up()) >= 9)
-            {
-                this.grow(worldIn, random, blockPos, blockState)
-            }
+                grow(worldIn, random, blockPos, blockState)
         }
     }
 
+    override fun getTranslation(blockState: IBlockState): String = runCatching {
+        "${MOD_ID}.sapling.${getTreeFromState(blockState).name}"
+    }.getOrElse {
+        GTLiteLog.logger.warn("Found some incorrect sapling block state '$blockState")
+        "${MOD_ID}.sapling.error"
+    }
 }

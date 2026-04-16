@@ -11,11 +11,11 @@ class GTLiteWoodFenceBlock() : BlockFence(Material.WOOD, MapColor.WOOD)
 
     init
     {
-        this.setHardness(2.0F)
-        this.setResistance(5.0F)
-        this.setSoundType(SoundType.WOOD)
-        this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
-        this.setHarvestLevel("axe", 0)
+        setHardness(2.0F)
+        setResistance(5.0F)
+        setSoundType(SoundType.WOOD)
+        setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
+        setHarvestLevel("axe", 0)
     }
 
 }
