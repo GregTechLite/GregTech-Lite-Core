@@ -71,6 +71,20 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/glass/transcendent_metal_borosilicate"
         }
+      },
+      "space_time_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/space_time_borosilicate"
+        }
+      },
+      "red_matter_borosilicate": {
+        "model": "minecraft:cube_all",
+        "ambientocclusion": false,
+        "textures": {
+          "all": "gtlitecore:blocks/casings/glass/red_matter_borosilicate"
+        }
       }
     }
   }

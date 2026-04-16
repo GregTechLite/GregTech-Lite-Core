@@ -646,7 +646,9 @@ tile.gtlitecore.glass_casing_01.tritanium_borosilicate.name=Tritanium reinforced
 tile.gtlitecore.glass_casing_01.neutronium_borosilicate.name=Neutronium reinforced Borosilicate Glass
 tile.gtlitecore.glass_casing_01.cosmic_neutronium_borosilicate.name=Cosmic Neutronium reinforced Borosilicate Glass
 tile.gtlitecore.glass_casing_01.infinity_borosilicate.name=Infinity reinforced Borosilicate Glass
-tile.gtlitecore.glass_casing_01.transcendent_metal_borosilicate.name=Transcendent Metal Borosilicate Glass
+tile.gtlitecore.glass_casing_01.transcendent_metal_borosilicate.name=Transcendent Metal reinforced Borosilicate Glass
+tile.gtlitecore.glass_casing_01.space_time_borosilicate.name=Space Time reinforced Borosilicate Glass
+tile.gtlitecore.glass_casing_01.red_matter_borosilicate.name=Red Matter reinforced Borosilicate Glass
 
 tile.gtlitecore.glass_casing_02.pmma.name=PMMA Glass
 tile.gtlitecore.glass_casing_02.pmma.tooltip=Acrylic Glass
