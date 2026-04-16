@@ -687,18 +687,22 @@ tile.gtlitecore.glass_casing_03.nano_shielding_frame.tooltip=绝对领域力场
 tile.gtlitecore.naquadria_charge.name=超能硅岩爆弹
 tile.gtlitecore.naquadria_charge.tooltip.1=以高能爆炸物诱导超能硅岩释放巨量的能量。
 tile.gtlitecore.naquadria_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.naquadria_charge.name=超能硅岩爆弹
 
 tile.gtlitecore.taranium_charge.name=塔兰金属爆弹
 tile.gtlitecore.taranium_charge.tooltip.1=驱役已知宇宙中能量密度最高的物质塔兰金属产生爆炸。
 tile.gtlitecore.taranium_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.taranium_charge.name=塔兰金属爆弹
 
 tile.gtlitecore.leptonic_charge.name=轻子爆弹
 tile.gtlitecore.leptonic_charge.tooltip.1=在微观层面上彻底撕裂强相互作用以带来实质性的毁灭。
 tile.gtlitecore.leptonic_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.leptonic_charge.name=轻子爆弹
 
 tile.gtlitecore.quantum_chromodynamic_charge.name=量子色动力学爆弹
 tile.gtlitecore.quantum_chromodynamic_charge.tooltip.1=将夸克禁闭爆破以破坏原子核的基本结构来彻底抹杀物质。
 tile.gtlitecore.quantum_chromodynamic_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.quantum_chromodynamic_charge.name=量子色动力学爆弹
 
 # Items
 metaitem.shape.mold.screw.name=模具（螺丝）

@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.entity
 import gregtech.client.renderer.handler.GTExplosiveRenderer
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.GTLiteAPI
+import gregtechlite.gtlitecore.api.MOD_ID
 import net.minecraft.entity.Entity
 import net.minecraftforge.fml.client.registry.IRenderFactory
 import net.minecraftforge.fml.client.registry.RenderingRegistry
@@ -16,13 +17,13 @@ object GTLiteMetaEntities
 
     internal fun init()
     {
-        registerEntity(1, "naquadria_charge", "NaquadriaCharge",
+        registerEntity(1, "naquadria_charge", "${MOD_ID}.naquadria_charge",
                        EntityNaquadriaCharge::class)
-        registerEntity(2, "taranium_charge", "TaraniumCharge",
+        registerEntity(2, "taranium_charge", "${MOD_ID}.taranium_charge",
                        EntityTaraniumCharge::class)
-        registerEntity(3, "leptonic_charge", "LeptonicCharge",
+        registerEntity(3, "leptonic_charge", "${MOD_ID}.leptonic_charge",
                        EntityLeptonicCharge::class)
-        registerEntity(4, "quantum_chromodynamic_charge", "QuantumChromodynamicCharge",
+        registerEntity(4, "quantum_chromodynamic_charge", "${MOD_ID}.quantum_chromodynamic_charge",
                        EntityQuantumChromodynamicCharge::class)
     }
 
