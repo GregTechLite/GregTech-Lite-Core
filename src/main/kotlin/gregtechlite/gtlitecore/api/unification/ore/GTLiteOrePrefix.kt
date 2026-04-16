@@ -2,9 +2,16 @@ package gregtechlite.gtlitecore.api.unification.ore
 
 import gregtech.api.GTValues.M
 import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Materials.Charcoal
+import gregtech.api.unification.material.Materials.EnderEye
+import gregtech.api.unification.material.Materials.EnderPearl
+import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Graphite
+import gregtech.api.unification.material.Materials.Lapotron
+import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
@@ -322,6 +329,14 @@ object GTLiteOrePrefix
         fuelRodEnrichedDepleted.setIgnored(Graphite)
 
         fuelRodHighDensityDepleted.setIgnored(Graphite)
+
+        gemSolitary.setIgnored(Charcoal)
+        gemSolitary.setIgnored(EnderPearl)
+        gemSolitary.setIgnored(EnderEye)
+        gemSolitary.setIgnored(Flint)
+        gemSolitary.setIgnored(Lapotron)
+        gemSolitary.setIgnored(NetherStar)
+        gemSolitary.setIgnored(Sugar)
 
         // endregion
     }

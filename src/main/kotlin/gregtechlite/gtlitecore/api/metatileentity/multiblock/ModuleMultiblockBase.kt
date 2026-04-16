@@ -1,11 +1,8 @@
 package gregtechlite.gtlitecore.api.metatileentity.multiblock
 
-import gregtech.api.capability.GregtechDataCodes
-import gregtech.api.capability.GregtechTileCapabilities
-import gregtech.api.capability.IControllable
-import gregtech.api.capability.IEnergyContainer
-import gregtech.api.capability.IWorkable
+import gregtech.api.capability.*
 import gregtech.api.capability.impl.EnergyContainerHandler
+import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import gregtech.api.pattern.BlockPattern
@@ -27,7 +24,8 @@ import kotlin.math.pow
 abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
                                     protected val tier: Int,
                                     protected val moduleTier: Int,
-                                    protected val minCasingTier: Int) : MultiblockWithDisplayBase(metaTileEntityId), ModuleReceiver, IWorkable, IControllable
+                                    protected val minCasingTier: Int) : MultiblockWithDisplayBase(metaTileEntityId),
+    ModuleReceiver, IWorkable, IControllable
 {
 
     override var moduleProvider: ModuleProvider? = null
@@ -41,8 +39,10 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
 
     @JvmField
     protected var isActive: Boolean = false
+
     @JvmField
     protected var maxProgress: Int = 0
+
     @JvmField
     protected var progress: Int = 0
 
@@ -61,9 +61,9 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
     init
     {
         this.energyContainer = EnergyContainerHandler(
-            this,
-            (160008000 * 4.0.pow((this.tier - 9).toDouble())).toLong(), this.energyConsumed,
-            1, 0, 0
+                this,
+                (160008000L * 4.0.pow((this.tier - 9).toDouble())).toLong(), this.energyConsumed,
+                1, 0, 0
         )
     }
 
@@ -127,13 +127,30 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
         }
     }
 
+    fun getCombinedEnergyContainer(): IEnergyContainer
+    {
+        return if (moduleProvider?.subEnergyContainer == null)
+        {
+            EnergyContainerHandler(this, 0, 0, 0, 0, 0)
+        }
+        else
+        {
+            EnergyContainerList(
+                    listOf(
+                            this.moduleProvider!!.subEnergyContainer,
+                            this.energyContainer
+                    )
+            )
+        }
+    }
+
     override fun <T : Any> getCapability(capability: Capability<T>, side: EnumFacing?): T?
     {
         if (capability === GregtechTileCapabilities.CAPABILITY_WORKABLE) return GregtechTileCapabilities.CAPABILITY_WORKABLE.cast(
-            this
+                this
         )
         if (capability === GregtechTileCapabilities.CAPABILITY_CONTROLLABLE) return GregtechTileCapabilities.CAPABILITY_CONTROLLABLE.cast(
-            this
+                this
         )
         return super.getCapability<T>(capability, side)
     }
@@ -202,7 +219,7 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
             isActive = active
             markDirty()
             if (world != null && !world.isRemote) writeCustomData(
-                GregtechDataCodes.WORKABLE_ACTIVE
+                    GregtechDataCodes.WORKABLE_ACTIVE
             ) { buf: PacketBuffer? -> buf!!.writeBoolean(active) }
         }
     }
@@ -214,10 +231,11 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
 
     protected fun drainEnergy(simulate: Boolean, energy: Long): Boolean
     {
-        val result = energyContainer.energyStored - energy
-        if (result >= 0L && result <= energyContainer.energyCapacity)
+        val container = getCombinedEnergyContainer()
+        val result = container.energyStored - energy
+        if (result >= 0L && result <= container.energyCapacity)
         {
-            if (!simulate) energyContainer.changeEnergy(-energy)
+            if (!simulate) container.changeEnergy(-energy)
             return true
         }
         return false
@@ -225,13 +243,7 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
 
     protected fun drainEnergy(simulate: Boolean): Boolean
     {
-        val result = energyContainer.energyStored - energyContainer.inputVoltage
-        if (result >= 0L && result <= energyContainer.energyCapacity)
-        {
-            if (!simulate) energyContainer.changeEnergy(-energyContainer.inputVoltage)
-            return true
-        }
-        return false
+        return drainEnergy(simulate, energyContainer.inputVoltage)
     }
 
     @SideOnly(Side.CLIENT)
