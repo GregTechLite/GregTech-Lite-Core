@@ -3108,6 +3108,7 @@ gtlitecore.material.copper_nitrate=硝酸铜
 gtlitecore.material.yttrium_barium_copper_oxides_mixture=钇钡铜氧混合物
 gtlitecore.material.gst_glass=GST玻璃
 item.gtlitecore.material.gst_glass.ingot=GST玻璃条
+item.gtlitecore.material.gst_glass.wireFine=GST玻璃纤维
 gtlitecore.material.germanium_dioxide=二氧化锗
 gtlitecore.material.roasted_sphalerite=焙烧闪锌矿
 gtlitecore.material.zinc_rich_sphalerite=富锌闪锌矿

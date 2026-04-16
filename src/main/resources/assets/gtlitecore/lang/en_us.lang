@@ -3108,6 +3108,7 @@ gtlitecore.material.copper_nitrate=Copper Nitrate
 gtlitecore.material.yttrium_barium_copper_oxides_mixture=Yttrium Barium Copper Oxides Mixture
 gtlitecore.material.gst_glass=GST Glass
 item.gtlitecore.material.gst_glass.ingot=GST Glass Bar
+item.gtlitecore.material.gst_glass.wireFine=GST Glass Fiber
 gtlitecore.material.germanium_dioxide=Germanium Dioxide
 gtlitecore.material.roasted_sphalerite=Roasted Sphalerite
 gtlitecore.material.zinc_rich_sphalerite=Zinc-rich Sphalerite

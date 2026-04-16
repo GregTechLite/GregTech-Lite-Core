@@ -1792,7 +1792,8 @@ object GTLiteFirstDegreeMaterials
             fluid()
             color(0xCFFFFF).iconSet(SHINY)
             components(Germanium, 2, Antimony, 2, Tellurium, 5)
-            flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_LENS)
+            flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_FOIL,
+                  GENERATE_LENS, GENERATE_FINE_WIRE)
             blastProp(873, GasTier.MID)
         }
 
@@ -3688,6 +3689,7 @@ object GTLiteFirstDegreeMaterials
         ChromaticGlass = addMaterial(2333, "chromatic_glass")
         {
             ingot()
+            liquid()
             iconSet(CHROMATIC)
             components(Glass, 64)
             flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_LENS, GENERATE_FRAME)

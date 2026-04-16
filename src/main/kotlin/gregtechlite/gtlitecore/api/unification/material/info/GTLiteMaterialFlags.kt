@@ -309,6 +309,7 @@ object GTLiteMaterialFlags
         Cadmium.addFlags(GENERATE_FOIL)
         Rhenium.addFlags(GENERATE_FOIL)
         Californium.addFlags(GENERATE_FOIL)
+        SterlingSilver.addFlags(GENERATE_FOIL)
 
         // frameGt
         Potin.addFlags(GENERATE_FRAME)

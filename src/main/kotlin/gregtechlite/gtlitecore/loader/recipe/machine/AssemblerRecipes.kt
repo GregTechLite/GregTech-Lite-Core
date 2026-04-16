@@ -28,10 +28,12 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Osmiridium
@@ -42,6 +44,7 @@ import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.SterlingSilver
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
@@ -55,6 +58,7 @@ import gregtech.api.unification.ore.OrePrefix.cableGtOctal
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
+import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.pipeNonupleFluid
@@ -68,6 +72,7 @@ import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.stack.UnificationEntry
+import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_HV
 import gregtech.common.items.MetaItems.EMITTER_IV
@@ -112,14 +117,19 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addIOHatchRecipes
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addMultiFluidHatchRecipes
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BerylliumOxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromiumGermaniumTellurideMagnetic
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GSTGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
@@ -128,6 +138,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pikyonium64B
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polymethylmethacrylate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumHafniumSeaborgiumCarbide
@@ -135,6 +146,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumTungstenCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
+import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETRON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_EV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_HV
@@ -865,6 +877,58 @@ internal object AssemblerRecipes
             output(NEUTRON_REFLECTOR, 64)
             EUt(VA[UV])
             duration(10 * SECOND)
+        }
+
+        // Advanced recipes for Optical Pipe.
+        ASSEMBLER_RECIPES.addRecipe {
+            input(wireFine, GSTGlass, 8)
+            input(foil, SterlingSilver, 8)
+            fluidInputs(Polybenzimidazole.getFluid(L))
+            outputs(MetaBlocks.OPTICAL_PIPES[0].getStack(16))
+            EUt(VA[ZPM])
+            duration(5 * SECOND)
+            cleanroom()
+        }
+
+        ASSEMBLER_RECIPES.addRecipe {
+            input(wireFine, Polymethylmethacrylate, 8)
+            input(foil, Germanium, 8)
+            fluidInputs(ChromaticGlass.getFluid(L))
+            outputs(MetaBlocks.OPTICAL_PIPES[0].getStack(64))
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+            cleanroom()
+        }
+
+        // Advanced recipes for Laser Pipe.
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GlassCasing.ZBLAN.stack)
+            input(foil, NaquadahAlloy, 2)
+            fluidInputs(Polybenzimidazole.getFluid(L))
+            outputs(MetaBlocks.LASER_PIPES[0].getStack(16))
+            EUt(VA[ZPM])
+            duration(5 * SECOND)
+            cleanroom()
+        }
+
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GlassCasing.ERBIUM_ZBLAN.stack)
+            input(foil, EnrichedNaquadahAlloy, 2)
+            fluidInputs(ChromaticGlass.getFluid(L))
+            outputs(MetaBlocks.LASER_PIPES[0].getStack(64))
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+            cleanroom()
+        }
+
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GlassCasing.PRASEODYMIUM_ZBLAN.stack)
+            input(foil, EnrichedNaquadahAlloy, 2)
+            fluidInputs(ChromaticGlass.getFluid(L))
+            outputs(MetaBlocks.LASER_PIPES[0].getStack(64))
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+            cleanroom()
         }
     }
 
