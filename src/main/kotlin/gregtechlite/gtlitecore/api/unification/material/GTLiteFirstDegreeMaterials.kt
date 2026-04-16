@@ -1363,8 +1363,9 @@ object GTLiteFirstDegreeMaterials
         {
             dust()
             liquid()
-            color(0x983034).iconSet(METALLIC)
+            color(0x983034).iconSet(NANOPARTICLES)
             components(Cadmium, 1, Selenium, 1)
+            flags(DISABLE_DECOMPOSITION)
         }
 
         // 2086 Prasiolite
