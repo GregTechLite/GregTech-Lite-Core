@@ -51,6 +51,7 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
+import gregtech.api.unification.material.Materials.Wood
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtHex
@@ -58,8 +59,10 @@ import gregtech.api.unification.ore.OrePrefix.cableGtOctal
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
+import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.pipeNonupleFluid
 import gregtech.api.unification.ore.OrePrefix.pipeQuadrupleFluid
@@ -134,6 +137,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lafium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
@@ -171,6 +175,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NONU
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_EXPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_IMPORT_HATCH
 import net.minecraft.init.Blocks
+import net.minecraft.init.Blocks.TORCH
 import net.minecraft.init.Items.ELYTRA
 import net.minecraft.item.ItemStack
 
@@ -943,6 +948,23 @@ internal object AssemblerRecipes
             outputs(ELYTRA)
             EUt(VH[HV])
             duration(10 * SECOND)
+        }
+
+        // Torch
+        ASSEMBLER_RECIPES.addRecipe {
+            input(gem, Lignite)
+            input(stick, Wood)
+            outputs(TORCH.getStack(4))
+            EUt(1)
+            duration(5 * SECOND)
+        }
+
+        ASSEMBLER_RECIPES.addRecipe {
+            input(dust, Lignite)
+            input(stick, Wood)
+            outputs(TORCH.getStack(4))
+            EUt(1)
+            duration(5 * SECOND)
         }
     }
 

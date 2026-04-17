@@ -16,6 +16,7 @@ import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.material.Materials.VanadiumSteel
+import gregtech.api.unification.material.Materials.Wood
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircaloy4
 import gregtech.api.unification.ore.OrePrefix.circuit
@@ -64,6 +65,7 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROUND
 import gregtech.common.items.MetaItems.SMART_FILTER
 import gregtech.common.items.ToolItems
+import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aegirine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
@@ -74,6 +76,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Forsterite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kovar
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetoResonatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Prasiolite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
@@ -116,6 +119,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUAD
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_IMPORT_HATCH
 import gregtechlite.gtlitecore.loader.recipe.handler.ToolRecipeHandler
 import net.minecraft.init.Blocks
+import net.minecraft.init.Blocks.TORCH
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 
@@ -556,6 +560,16 @@ internal object CraftingRecipeLoader
             'S', UnificationEntry(screw, Zircaloy4),
             'X', UnificationEntry(circuit, Tier.IV))
 
+        // Torch recipes by lignite
+        ModHandler.addShapedRecipe(true, "torch_lignite", TORCH.getStack(4),
+            " A ", " S ", "   ",
+            'A', UnificationEntry(gem, Lignite),
+            'S', UnificationEntry(stick, Wood))
+
+        ModHandler.addShapedRecipe(true, "torch_lignite_dust", TORCH.getStack(4),
+            " A ", " S ", "   ",
+            'A', UnificationEntry(dust, Lignite),
+            'S', UnificationEntry(stick, Wood))
     }
 
     // @formatter:on
