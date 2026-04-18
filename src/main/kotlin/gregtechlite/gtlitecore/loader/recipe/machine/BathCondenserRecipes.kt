@@ -11,6 +11,7 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Air
 import gregtech.api.unification.material.Materials.BlackSteel
+import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.EnderAir
 import gregtech.api.unification.material.Materials.Helium
@@ -21,6 +22,7 @@ import gregtech.api.unification.material.Materials.LiquidEnderAir
 import gregtech.api.unification.material.Materials.LiquidNetherAir
 import gregtech.api.unification.material.Materials.NetherAir
 import gregtech.api.unification.material.Materials.Oxygen
+import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.ingot
@@ -101,7 +103,7 @@ internal object BathCondenserRecipes
             }
         }
 
-        // Hot Silicon, Kanthal and Black Steel ingot coolant.
+        // Hot Silicon, Kanthal and Black/Red/Blue Steel ingot coolant.
         CHEMICAL_BATH_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(ingotHot, Silicon)),
             arrayOf(Water.getFluid(100)))
@@ -121,6 +123,22 @@ internal object BathCondenserRecipes
             arrayOf(Water.getFluid(100)))
         CHEMICAL_BATH_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(ingotHot, BlackSteel)),
+            arrayOf(DistilledWater.getFluid(100)))
+
+        CHEMICAL_BATH_RECIPES.removeRecipe(
+            arrayOf(OreDictUnifier.get(ingotHot, RedSteel)),
+            arrayOf(Water.getFluid(100)))
+
+        CHEMICAL_BATH_RECIPES.removeRecipe(
+            arrayOf(OreDictUnifier.get(ingotHot, RedSteel)),
+            arrayOf(DistilledWater.getFluid(100)))
+
+        CHEMICAL_BATH_RECIPES.removeRecipe(
+            arrayOf(OreDictUnifier.get(ingotHot, BlueSteel)),
+            arrayOf(Water.getFluid(100)))
+
+        CHEMICAL_BATH_RECIPES.removeRecipe(
+            arrayOf(OreDictUnifier.get(ingotHot, BlueSteel)),
             arrayOf(DistilledWater.getFluid(100)))
 
         for (fluid in arrayOf(
@@ -147,9 +165,25 @@ internal object BathCondenserRecipes
             }
 
             BATH_CONDENSER_RECIPES.addRecipe {
-                input(ingotHot,BlackSteel)
+                input(ingotHot, BlackSteel)
                 fluidInputs(fluid)
-                output(ingot,BlackSteel)
+                output(ingot, BlackSteel)
+                EUt(VA[MV])
+                duration(10 * SECOND)
+            }
+
+            BATH_CONDENSER_RECIPES.addRecipe {
+                input(ingotHot, RedSteel)
+                fluidInputs(fluid)
+                output(ingot, RedSteel)
+                EUt(VA[MV])
+                duration(10 * SECOND)
+            }
+
+            BATH_CONDENSER_RECIPES.addRecipe {
+                input(ingotHot, BlueSteel)
+                fluidInputs(fluid)
+                output(ingot, BlueSteel)
                 EUt(VA[MV])
                 duration(10 * SECOND)
             }
