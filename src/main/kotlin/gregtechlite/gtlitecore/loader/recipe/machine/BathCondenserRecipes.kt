@@ -20,6 +20,7 @@ import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.LiquidAir
 import gregtech.api.unification.material.Materials.LiquidEnderAir
 import gregtech.api.unification.material.Materials.LiquidNetherAir
+import gregtech.api.unification.material.Materials.MagnesiumDiboride
 import gregtech.api.unification.material.Materials.NetherAir
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.RedSteel
@@ -103,7 +104,9 @@ internal object BathCondenserRecipes
             }
         }
 
-        // Hot Silicon, Kanthal and Black/Red/Blue Steel ingot coolant.
+        // All ingots which has kanthal coil temperature require and will use at
+        // stages before Vacuum Freezer should have its cooling recipes.
+
         CHEMICAL_BATH_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(ingotHot, Silicon)),
             arrayOf(Water.getFluid(100)))
@@ -184,6 +187,14 @@ internal object BathCondenserRecipes
                 input(ingotHot, BlueSteel)
                 fluidInputs(fluid)
                 output(ingot, BlueSteel)
+                EUt(VA[MV])
+                duration(10 * SECOND)
+            }
+
+            BATH_CONDENSER_RECIPES.addRecipe {
+                input(ingotHot, MagnesiumDiboride)
+                fluidInputs(fluid)
+                output(ingot, MagnesiumDiboride)
                 EUt(VA[MV])
                 duration(10 * SECOND)
             }
