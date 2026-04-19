@@ -11,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayerMP
 import net.minecraft.init.Blocks
 import net.minecraft.init.Enchantments
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.play.server.SPacketBlockChange
 import net.minecraft.util.ActionResult
 import net.minecraft.util.EnumActionResult
@@ -26,16 +27,22 @@ class LaserDestroyerBehavior : IItemBehaviour
     {
         private const val NBT_SILK_MODE = "silk_mode"
 
-        fun toggleSilkMode(item: ItemStack): Boolean
+        fun setSilkMode(item: ItemStack, silkMode: Boolean)
         {
-            val nbt = item.getOrCreateSubCompound(NBT_SILK_MODE)
-            val newMode = !nbt.getBoolean(NBT_SILK_MODE)
-            nbt.setBoolean(NBT_SILK_MODE, newMode)
-            return newMode
+            var tagCompound = item.tagCompound
+            if (tagCompound == null)
+            {
+                tagCompound = NBTTagCompound()
+                item.tagCompound = tagCompound
+            }
+            tagCompound.setBoolean(NBT_SILK_MODE, silkMode)
         }
 
         fun isSilkMode(item: ItemStack): Boolean
-                = item.tagCompound?.getBoolean(NBT_SILK_MODE) ?: false
+        {
+            val tagCompound = item.tagCompound
+            return tagCompound != null && tagCompound.getBoolean(NBT_SILK_MODE)
+        }
 
         @Suppress("Deprecation")
         fun breakBlock(item: ItemStack, player: EntityPlayer, world: World, pos: BlockPos,
@@ -51,15 +58,13 @@ class LaserDestroyerBehavior : IItemBehaviour
 
             // When the tool in silk mode, it will have Silk Touch enchantment.
             val silkLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.heldItemMainhand)
-
-            var drops: List<ItemStack>
-            if (silkLevel != 0)
+            val drops: List<ItemStack> = if (silkLevel != 0)
             {
-                drops = if (mte != null) listOf(mte.stackForm) else listOf(getSilkDrops(state))
+                if (mte != null) listOf(mte.stackForm) else listOf(getSilkDrops(state))
             }
             else
             {
-                drops = if (mte != null) listOf(mte.stackForm) else block.getDrops(world, pos, state, 0)
+                if (mte != null) listOf(mte.stackForm) else block.getDrops(world, pos, state, 0)
             }
 
             val soundType = block.getSoundType(state, world, pos, player)
@@ -123,27 +128,33 @@ class LaserDestroyerBehavior : IItemBehaviour
     override fun onItemRightClick(world: World, player: EntityPlayer, hand: EnumHand): ActionResult<ItemStack>
     {
         val item = player.getHeldItem(hand)
-        if (!world.isRemote && player.isSneaking)
+        if (player.isSneaking)
         {
-            toggleSilkMode(item)
-            if (!isSilkMode(item))
+            if (isSilkMode(item))
             {
-                item.addEnchantment(Enchantments.SILK_TOUCH, 1)
-                player.sendMessage(TextComponentTranslation("metaitem.tool.laser_destroyer.silk_mode.enabled"))
+                setSilkMode(item, false)
+                item.tagCompound?.removeTag("ench")
+                if (!world.isRemote)
+                {
+                    player.sendMessage(TextComponentTranslation("metaitem.tool.laser_destroyer.silk_mode.disabled"))
+                }
             }
             else
             {
-                // Try to remove tag from addEnchantment.
-                val enchantments = item.tagCompound?.getTagList("ench", 10)
-                repeat (enchantments?.tagList!!.size) {
-                    item.tagCompound?.getTagList("ench", 10)?.removeTag(it)
+                setSilkMode(item, true)
+                item.addEnchantment(Enchantments.SILK_TOUCH, 1)
+                if (!world.isRemote)
+                {
+                    player.sendMessage(TextComponentTranslation("metaitem.tool.laser_destroyer.silk_mode.enabled"))
                 }
-
-                player.sendMessage(TextComponentTranslation("metaitem.tool.laser_destroyer.silk_mode.disabled"))
             }
-            return ActionResult.newResult(EnumActionResult.SUCCESS, item)
         }
         return ActionResult.newResult(EnumActionResult.PASS, item)
+    }
+
+    override fun addInformation(itemStack: ItemStack, lines: MutableList<String>)
+    {
+        super.addInformation(itemStack, lines)
     }
 
 }
