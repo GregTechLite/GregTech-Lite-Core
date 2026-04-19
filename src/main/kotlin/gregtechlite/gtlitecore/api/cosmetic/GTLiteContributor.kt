@@ -12,14 +12,17 @@ import java.util.UUID
  */
 enum class GTLiteContributor(name: String, internal val uuid: UUID, internal val isDeveloper: Boolean = true)
 {
-
     // Developers
-    MAGIC_SWEEPY(    "Magic_Sweepy",   UUID.fromString("aaed705b-8e08-47fa-b8e0-d0024e3c75bc")),
+    MAGIC_SWEEPY(    "Magic_Sweepy",   "aaed705b-8e08-47fa-b8e0-d0024e3c75bc"),
+    RAINY_CHEN(      "rainy_chen",     "f24d70bb-2393-4939-933d-6966b372543d"),
 
     // Contributors
-    LLAMA_WEI(       "llama_wei",      UUID.fromString("b0fbc8fe-269a-47a8-9105-70246759eeae"), false),
-    MINATO_AQUKINNE( "MinatoAqukinne", UUID.fromString("99405735-a590-459f-90bf-8b3e39aee7d0"), false),
-    YIYU_QAQ(        "YIYU_QAQ",       UUID.fromString("d5482dd2-8894-4916-b347-50eff773d2f3"), false);
+    LLAMA_WEI(       "llama_wei",      "b0fbc8fe-269a-47a8-9105-70246759eeae", false),
+    MINATO_AQUKINNE( "MinatoAqukinne", "99405735-a590-459f-90bf-8b3e39aee7d0", false),
+    YIYU_QAQ(        "YIYU_QAQ",       "d5482dd2-8894-4916-b347-50eff773d2f3", false);
+
+    constructor(name: String, uuid: String, isDeveloper: Boolean = true)
+            : this(name, UUID.fromString(uuid), isDeveloper)
 
     companion object
     {
