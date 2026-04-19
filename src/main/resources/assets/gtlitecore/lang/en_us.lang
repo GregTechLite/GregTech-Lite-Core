@@ -3974,6 +3974,9 @@ gtlitecore.tooltip.machine.excess_mode=Switch the §bExcess Mode§7 to choose wh
 gtlitecore.tooltip.gui.excess_mode.enabled=Excess Mode: §aEnabled§r\nWhen Dynamo Hatch is full, continues working and destroys excess energy.
 gtlitecore.tooltip.gui.excess_mode.disabled=Excess Mode: §cDisabled§r\nWhen Dynamo Hatch is full, stop recipe working and maintain progress time.
 
+gtlitecore.tooltip.contributor_item=§a§lContributor Item
+gtlitecore.tooltip.contributor_item.owner=This item is exclusively owned by §lContributor§r§6%s§7, thank your contribution for modpack!
+
 # Creative Tabs
 itemGroup.gtlite.main=GregTech Lite
 itemGroup.gtlite.machine=GregTech Lite | Machines

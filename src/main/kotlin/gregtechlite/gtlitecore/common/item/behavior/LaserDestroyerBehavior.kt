@@ -3,6 +3,8 @@ package gregtechlite.gtlitecore.common.item.behavior
 import gregtech.api.capability.GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM
 import gregtech.api.items.metaitem.stats.IItemBehaviour
 import gregtech.api.util.GTUtility
+import gregtech.client.utils.TooltipHelper
+import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
 import net.minecraft.block.state.IBlockState
 import net.minecraft.client.resources.I18n
 import net.minecraft.enchantment.EnchantmentHelper
@@ -156,6 +158,10 @@ class LaserDestroyerBehavior : IItemBehaviour
     override fun addInformation(itemStack: ItemStack, lines: MutableList<String>)
     {
         super.addInformation(itemStack, lines)
+        if (TooltipHelper.isShiftDown())
+            lines.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.YIYU_QAQ.name))
+        else
+            lines.add(I18n.format("gtlitecore.tooltip.contributor_item"))
         lines.add(I18n.format("metaitem.tool.laser_destroyer.mode"))
         lines.add(I18n.format("metaitem.tool.laser_destroyer.energy_cost", 4))
     }
