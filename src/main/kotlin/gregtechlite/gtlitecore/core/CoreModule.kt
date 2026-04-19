@@ -4,6 +4,7 @@ import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.MOD_NAME
+import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
 import gregtechlite.gtlitecore.api.entity.GTLiteDamageSources
 import gregtechlite.gtlitecore.api.module.CustomModule
 import gregtechlite.gtlitecore.api.module.Module
@@ -78,6 +79,9 @@ internal class CoreModule : CustomModule
 
         logger.debug("Adding custom CreativeTabs of the mod to GregTech machines")
         GTLiteMetaTileEntities.preInit()
+
+        logger.debug("Initializing contributors for cosmetics")
+        GTLiteContributor.init()
     }
     
     override fun preInit(event: FMLPreInitializationEvent)
