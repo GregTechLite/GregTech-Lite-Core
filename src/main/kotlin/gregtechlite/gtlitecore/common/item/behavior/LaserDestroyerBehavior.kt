@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.item.behavior
 
 import gregtech.api.capability.GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM
 import gregtech.api.items.metaitem.stats.IItemBehaviour
+import gregtech.api.util.GTUtility
 import net.minecraft.block.state.IBlockState
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.item.EntityItem
@@ -44,6 +45,7 @@ class LaserDestroyerBehavior : IItemBehaviour
 
             val state = world.getBlockState(pos)
             val block = state.block
+            val mte = GTUtility.getMetaTileEntity(world, pos)
 
             if (block === Blocks.AIR) return false
 
@@ -53,11 +55,11 @@ class LaserDestroyerBehavior : IItemBehaviour
             var drops: List<ItemStack>
             if (silkLevel != 0)
             {
-                drops = listOf(getSilkDrops(state))
+                drops = if (mte != null) listOf(mte.stackForm) else listOf(getSilkDrops(state))
             }
             else
             {
-                drops = block.getDrops(world, pos, state, 0)
+                drops = if (mte != null) listOf(mte.stackForm) else block.getDrops(world, pos, state, 0)
             }
 
             val soundType = block.getSoundType(state, world, pos, player)
