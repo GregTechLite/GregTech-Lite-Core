@@ -153,6 +153,7 @@ object GTLiteMetaItems
 
     lateinit var CIRCUIT_PATTERN: MetaItem<*>.MetaValueItem
     lateinit var MAGNETRON: MetaItem<*>.MetaValueItem
+    lateinit var LASER_DESTROYER: MetaItem<*>.MetaValueItem
 
     lateinit var DIRTY_PETRI_DISH: MetaItem<*>.MetaValueItem
     lateinit var BREVIBACTERIUM_FLAVUM_PETRI_DISH: MetaItem<*>.MetaValueItem

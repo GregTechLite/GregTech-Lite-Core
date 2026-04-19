@@ -868,6 +868,12 @@ metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell6
 
 metaitem.tool.magnetron.name=Magnetron
 
+metaitem.tool.laser_destroyer.name=Laser Destroyer
+metaitem.tool.laser_destroyer.mode=Use while sneaking to toggle §fSilk Mode§7, will enabled Silk Touch when in §fSilk Mode§7
+metaitem.tool.laser_destroyer.energy_cost=Consume §e%s EU§7 for each block breaking, consume twice when in §fSilk Mode§7
+metaitem.tool.laser_destroyer.silk_mode.disabled=Silk Mode: §cDisabled§f
+metaitem.tool.laser_destroyer.silk_mode.enabled=Silk Mode: §aEnabled§f
+
 metaitem.tool.petri_dish.dirty.name=Dirty Petri Dish
 metaitem.tool.petri_dish.brevibacterium_flavum.name=Brevibacterium Flavum Petri Dish
 metaitem.tool.petri_dish.cupriavidus_necator.name=Cupriavidus Necator Petri Dish

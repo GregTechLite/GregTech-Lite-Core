@@ -20,7 +20,7 @@ object ToolEventHandlers
         {
             val pos = event.pos
             val isSilkMode = LaserDestroyerBehavior.isSilkMode(item)
-            val energyCost = if (isSilkMode) 64L else 16L
+            val energyCost = if (isSilkMode) 8L else 4L
 
             event.isCanceled = true
             LaserDestroyerBehavior.breakBlock(item, player, world, pos, isSilkMode, energyCost)

@@ -868,6 +868,12 @@ metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell6
 
 metaitem.tool.magnetron.name=磁控管
 
+metaitem.tool.laser_destroyer.name=激光拆解器
+metaitem.tool.laser_destroyer.mode=潜行右击以切换§f精准模式§7，在§f精准模式§7下自动启用精准采集
+metaitem.tool.laser_destroyer.energy_cost=挖掘方块时消耗§e%s EU§7，处于§f精准模式§7下消耗双倍
+metaitem.tool.laser_destroyer.silk_mode.disabled=精准模式：§c禁用§f
+metaitem.tool.laser_destroyer.silk_mode.enabled=精准模式：§a启用§f
+
 metaitem.tool.petri_dish.dirty.name=污浊的培养皿
 metaitem.tool.petri_dish.brevibacterium_flavum.name=黄色短杆菌培养皿
 metaitem.tool.petri_dish.cupriavidus_necator.name=贪铜钩虫菌培养皿

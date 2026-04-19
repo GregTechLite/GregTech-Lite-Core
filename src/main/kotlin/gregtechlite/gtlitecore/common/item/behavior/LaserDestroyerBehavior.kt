@@ -4,6 +4,7 @@ import gregtech.api.capability.GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM
 import gregtech.api.items.metaitem.stats.IItemBehaviour
 import gregtech.api.util.GTUtility
 import net.minecraft.block.state.IBlockState
+import net.minecraft.client.resources.I18n
 import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
@@ -155,6 +156,7 @@ class LaserDestroyerBehavior : IItemBehaviour
     override fun addInformation(itemStack: ItemStack, lines: MutableList<String>)
     {
         super.addInformation(itemStack, lines)
+        lines.add(I18n.format("metaitem.tool.laser_destroyer.mode"))
+        lines.add(I18n.format("metaitem.tool.laser_destroyer.energy_cost", 4))
     }
-
 }
