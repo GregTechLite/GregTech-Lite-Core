@@ -16,6 +16,7 @@ import gregtechlite.gtlitecore.common.cover.GTLiteCoverBehaviors
 import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems
+import gregtechlite.gtlitecore.common.item.ToolEventHandlers
 import gregtechlite.gtlitecore.common.item.behavior.GTLiteBehaviors
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.core.advancement.AdvancementManagerImpl
@@ -70,6 +71,7 @@ internal class CoreModule : CustomModule
     {
         logger.debug("Starting to construct EventHandlers of the mod")
         MinecraftForge.EVENT_BUS.register(EventHandlers)
+        MinecraftForge.EVENT_BUS.register(ToolEventHandlers)
 
         logger.debug("Modifying configurations of GregTech mod")
         GTLiteConfigModifier.init()
