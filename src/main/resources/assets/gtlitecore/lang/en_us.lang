@@ -2518,6 +2518,8 @@ gtlitecore.machine.space_miner_module.tooltip.2=Requires input §fComputation§7
 gtlitecore.machine.space_miner_module.max_parallel=Workable Voltage: %s§7, Max Parallel: §e%s§7
 gtlitecore.machine.space_miner_module.track_tier=Needs §f%s§7 or higher tier Acceleration Track.
 
+gtlitecore.tooltip.ore_space_miner_only=Only can produce in §6Space Miner§7
+
 gtlitecore.machine.energy_infuser.name=Energy Infuser
 gtlitecore.machine.energy_infuser.tooltip.1=Charging rechargeable items with energy, §fFE/EU/RF§7 format electric items is also supported.
 gtlitecore.machine.energy_infuser.tooltip.2=Items that have lost durability can be repaired using §dUU Matter§7.

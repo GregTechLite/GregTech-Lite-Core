@@ -126,8 +126,7 @@ class MultiblockSpaceMiner(id: ResourceLocation, tier: Int, moduleTier: Int, min
         : ComputationRecipeLogic(mte, ComputationType.STEADY)
     {
 
-        override fun getMetaTileEntity(): MetaTileEntity
-            = (super.getMetaTileEntity() as MultiblockSpaceMiner)
+        override fun getMetaTileEntity(): MetaTileEntity = (super.getMetaTileEntity() as MultiblockSpaceMiner)
 
         override fun checkRecipe(recipe: Recipe): Boolean
         {

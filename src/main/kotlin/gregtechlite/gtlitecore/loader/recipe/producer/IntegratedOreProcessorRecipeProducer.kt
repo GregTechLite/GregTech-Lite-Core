@@ -46,6 +46,7 @@ import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreLimestone
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreQuartzite
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreShale
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreSlate
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteStoneTypes
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.FluidStack
 import net.minecraftforge.oredict.OreDictionary
@@ -54,19 +55,6 @@ internal object IntegratedOreProcessorRecipeProducer
 {
 
     // @formatter:off
-
-    val orePrefixes = mutableListOf(ore, oreNetherrack, oreEndstone)
-
-    init
-    {
-        // Only register stoneTypes ore processing when the unique stoneTypes config enabled.
-        if (ConfigHolder.worldgen.allUniqueStoneTypes)
-        {
-            orePrefixes.addAll(listOf(oreGranite, oreDiorite, oreAndesite, oreBlackgranite, oreRedgranite, oreMarble,
-                                      oreBasalt, oreSand, oreRedSand, oreLimestone, oreKomatiite, oreGreenSchist,
-                                      oreBlueSchist, oreKimberlite, oreQuartzite, oreSlate, oreShale))
-        }
-    }
 
     fun produce()
     {
@@ -173,7 +161,7 @@ internal object IntegratedOreProcessorRecipeProducer
 
             val material = OreDictUnifier.getMaterial(item)?.material
 
-            for (prefix in orePrefixes)
+            for (prefix in GTLiteStoneTypes.stoneTypes)
             {
                 val itemStack = OreDictUnifier.get(prefix, material)
                 if (itemStack.isEmpty)

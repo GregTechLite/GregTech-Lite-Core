@@ -138,9 +138,14 @@ object MaterialInfoCache
 
     // @formatter:off
 
+    @JvmStatic
     val periodicTableMaterials = arrayListOf<Material>()
+    @JvmStatic
     val radioactiveMaterials = arrayListOf<Material>()
+    @JvmStatic
     val bacterialMaterials = arrayListOf<Material>()
+    @JvmStatic
+    val spaceMinerOres = arrayListOf<Material>()
 
     fun build()
     {
@@ -172,6 +177,9 @@ object MaterialInfoCache
         // All biological materials for bacterial reactions.
         bacterialMaterials.addAll(arrayListOf(BrevibacteriumFlavum, CupriavidusNecator, StreptococcusPyogenes,
                 EscherichiaColi))
+
+        // All space miner produce only ores.
+
     }
 
     // @formatter:on

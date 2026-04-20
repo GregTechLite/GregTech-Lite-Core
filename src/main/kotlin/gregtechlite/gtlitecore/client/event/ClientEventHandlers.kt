@@ -3,6 +3,8 @@ package gregtechlite.gtlitecore.client.event
 import com.morphismmc.morphismlib.util.ItemUtil
 import gregtech.api.GTValues.VOCNF
 import gregtech.api.unification.OreDictUnifier
+import gregtechlite.gtlitecore.api.unification.material.info.MaterialInfoCache
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteStoneTypes
 import gregtechlite.gtlitecore.client.renderer.handler.StructureSelectRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
@@ -67,6 +69,18 @@ object ClientEventHandlers
             .forEach { glass ->
                 tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[glass.tier]))
             }
+
+        // Added space miner only ore tooltips.
+        for (stoneType in GTLiteStoneTypes.stoneTypes)
+        {
+            for (spaceMinerOre in MaterialInfoCache.spaceMinerOres)
+            {
+                if (ItemUtil.areItemTypeEqual(OreDictUnifier.get(stoneType, spaceMinerOre), stack))
+                {
+                    tooltip.add(I18n.format("gtlitecore.tooltip.ore_space_miner_only"))
+                }
+            }
+        }
     }
 
     @SubscribeEvent

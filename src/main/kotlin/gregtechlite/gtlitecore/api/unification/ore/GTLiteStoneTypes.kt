@@ -1,9 +1,18 @@
 package gregtechlite.gtlitecore.api.unification.ore
 
 import gregtech.api.unification.material.Materials
+import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.ore.StoneType
 import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreBlueSchist
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreGreenSchist
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreKimberlite
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreKomatiite
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreLimestone
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreQuartzite
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreShale
+import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreSlate
 import gregtechlite.gtlitecore.api.unification.ore.StoneTypeBuilder.Companion.addStoneType
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock
@@ -13,6 +22,9 @@ import net.minecraft.block.state.IBlockState
 object GTLiteStoneTypes
 {
 
+    @JvmStatic
+    val stoneTypes = mutableListOf(OrePrefix.ore, OrePrefix.oreNetherrack, OrePrefix.oreEndstone)
+
     lateinit var LIMESTONE: StoneType
     lateinit var KOMATIITE: StoneType
     lateinit var GREEN_SCHIST: StoneType
@@ -21,6 +33,18 @@ object GTLiteStoneTypes
     lateinit var QUARTZITE: StoneType
     lateinit var SLATE: StoneType
     lateinit var SHALE: StoneType
+
+    init
+    {
+        // Only register stoneTypes ore processing when the unique stoneTypes config enabled.
+        if (ConfigHolder.worldgen.allUniqueStoneTypes)
+        {
+            stoneTypes.addAll(listOf(OrePrefix.oreGranite, OrePrefix.oreDiorite, OrePrefix.oreAndesite,
+                OrePrefix.oreBlackgranite, OrePrefix.oreRedgranite, OrePrefix.oreMarble, OrePrefix.oreBasalt,
+                OrePrefix.oreSand, OrePrefix.oreRedSand, oreLimestone, oreKomatiite, oreGreenSchist,
+                oreBlueSchist, oreKimberlite, oreQuartzite, oreSlate, oreShale))
+        }
+    }
 
     fun init()
     {
