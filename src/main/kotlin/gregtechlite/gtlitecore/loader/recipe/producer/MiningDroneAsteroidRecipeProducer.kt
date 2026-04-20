@@ -446,7 +446,7 @@ internal object MiningDroneAsteroidRecipeProducer
                     // Rank 2 Asteroid Mining 16x
                     val builder2x16 = MINING_DRONE_RECIPES.recipeBuilder()
                         .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_HV.getStackForm(16))
+                        .notConsumable(MINING_DRONE_MV.getStackForm(16))
                         .notConsumable(toolHeadDrill, Diamond, 4)
                         .notConsumable(stick, Diamond, 4)
                         .fluidInputs(fuel)
