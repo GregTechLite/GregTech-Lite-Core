@@ -37,6 +37,7 @@ import gregtechlite.gtlitecore.api.recipe.ui.MiningDroneAirportUI
 import gregtechlite.gtlitecore.api.recipe.ui.NanoAssemblyMatrixUI
 import gregtechlite.gtlitecore.api.recipe.ui.SingularityAssemblyUnitUI
 import gregtechlite.gtlitecore.api.recipe.ui.SpaceAssemblerUI
+import gregtechlite.gtlitecore.api.recipe.ui.SpaceMinerUI
 import gregtechlite.gtlitecore.api.recipe.ui.StellarForgeUI
 import gregtechlite.gtlitecore.core.sound.GTLiteSoundEvents
 import net.minecraft.init.SoundEvents
@@ -965,8 +966,9 @@ object GTLiteRecipeMaps
     @ZenProperty
     @JvmField
     val SPACE_MINER_RECIPES = RecipeMapBuilder("space_miner", AccelerationTrackRecipeBuilder())
-        .itemInputs(1)
-        .itemOutputs(1)
+        .ui { SpaceMinerUI(it) }
+        .itemInputs(2)
+        .itemOutputs(16)
         .build()
 
     // endregion
