@@ -64,6 +64,7 @@ import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HeavyFuel
 import gregtech.api.unification.material.Materials.HighOctaneGasoline
 import gregtech.api.unification.material.Materials.Ilmenite
+import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kyanite
@@ -81,6 +82,7 @@ import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.NetherQuartz
 import gregtech.api.unification.material.Materials.Neutronium
@@ -101,6 +103,7 @@ import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.Pyrope
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Realgar
 import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.RockSalt
@@ -117,6 +120,7 @@ import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.Sphalerite
 import gregtech.api.unification.material.Materials.Spodumene
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Stibnite
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Talc
@@ -129,6 +133,7 @@ import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.TricalciumPhosphate
 import gregtech.api.unification.material.Materials.Trona
 import gregtech.api.unification.material.Materials.Tungstate
+import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.Uraninite
@@ -150,8 +155,8 @@ import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.getStack
-import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MINING_DRONE_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aegirine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Albite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Anorthite
@@ -175,6 +180,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jasper
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kaolinite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Labradorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lizardite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Muscovite
@@ -275,14 +281,14 @@ internal object MiningDroneAsteroidRecipeProducer
      *                      - Rank 1: 3000 (30%)
      *                      - Rank 2: 6000 (60%)
      *                      - Rank 3: 9000 (90%)
-     * @param multiplier    The output multiplier for the asteroid mining recipes (1x, 4x, 16x).
-     * @param drillMaterial The drill material usage in the asteroid mining recipes.
-     * @param stickMaterial The stick material usage in the asteroid mining recipes.
-     * @param orePrefix     The ore variant for output ores for the asteroid mining recipes.
+     * @param multiplier      The output multiplier for the asteroid mining recipes (1x, 4x, 16x).
+     * @param drillMaterials  The drill materials for 1x, 4x, 16x variants.
+     * @param stickMaterials  The stick materials for 1x, 4x, 16x variants.
+     * @param orePrefix       The ore variant for output ores for the asteroid mining recipes.
      */
     private data class AsteroidRank(val droneTier: Int, val voltageTier: Int,
                                     val duration: Int, val baseChance: Int, val multiplier: IntArray,
-                                    val drillMaterial: Material, val stickMaterial: Material,
+                                    val drillMaterials: Array<Material>, val stickMaterials: Array<Material>,
                                     val orePrefix: OrePrefix)
     {
         override fun equals(other: Any?): Boolean
@@ -304,9 +310,9 @@ internal object MiningDroneAsteroidRecipeProducer
                 return false
             if (!multiplier.contentEquals(other.multiplier))
                 return false
-            if (drillMaterial != other.drillMaterial)
+            if (!drillMaterials.contentEquals(other.drillMaterials))
                 return false
-            if (stickMaterial != other.stickMaterial)
+            if (!stickMaterials.contentEquals(other.stickMaterials))
                 return false
             if (orePrefix != other.orePrefix)
                 return false
@@ -321,8 +327,8 @@ internal object MiningDroneAsteroidRecipeProducer
             result = 31 * result + duration
             result = 31 * result + baseChance
             result = 31 * result + multiplier.contentHashCode()
-            result = 31 * result + drillMaterial.hashCode()
-            result = 31 * result + stickMaterial.hashCode()
+            result = 31 * result + drillMaterials.contentHashCode()
+            result = 31 * result + stickMaterials.contentHashCode()
             result = 31 * result + orePrefix.hashCode()
             return result
         }
@@ -365,39 +371,39 @@ internal object MiningDroneAsteroidRecipeProducer
     private val asteroidTiers = arrayOf(
         // Tier 1 (Basic) LV-HV
         arrayOf(
-            AsteroidRank(1, 1, 2 * MINUTE, 3000, multipliers[0], Iron, Bronze, ore),
-            AsteroidRank(2, 2, 1 * MINUTE, 6000, multipliers[1], WroughtIron, Steel, ore),
-            AsteroidRank(3, 3, 30 * SECOND, 9000, multipliers[2], Aluminium, CobaltBrass, ore)),
+            AsteroidRank(1, 1, 2 * MINUTE, 3000, multipliers[0], arrayOf(Iron, Bronze, Invar), arrayOf(Iron, Bronze, Invar), ore),
+            AsteroidRank(2, 2, 1 * MINUTE, 6000, multipliers[1], arrayOf(WroughtIron, Steel, Diamond), arrayOf(WroughtIron, Steel, Diamond), ore),
+            AsteroidRank(3, 3, 30 * SECOND, 9000, multipliers[2], arrayOf(Aluminium, CobaltBrass, StainlessSteel), arrayOf(Aluminium, CobaltBrass, StainlessSteel), ore)),
 
         // Tier 2 (Advanced) MV-EV
         arrayOf(
-            AsteroidRank(2, 2, 2 * MINUTE, 3000, multipliers[0], WroughtIron, Steel, ore),
-            AsteroidRank(3, 3, 1 * MINUTE, 6000, multipliers[1], Aluminium, CobaltBrass, ore),
-            AsteroidRank(4, 4, 30 * SECOND, 9000, multipliers[2], VanadiumSteel, BlueSteel, oreNetherrack)),
+            AsteroidRank(2, 2, 2 * MINUTE, 3000, multipliers[0], arrayOf(WroughtIron, Steel, Diamond), arrayOf(WroughtIron, Steel, Diamond), ore),
+            AsteroidRank(3, 3, 1 * MINUTE, 6000, multipliers[1], arrayOf(Aluminium, CobaltBrass, StainlessSteel), arrayOf(Aluminium, CobaltBrass, StainlessSteel), ore),
+            AsteroidRank(4, 4, 30 * SECOND, 9000, multipliers[2], arrayOf(VanadiumSteel, BlueSteel, RedSteel), arrayOf(VanadiumSteel, BlueSteel, RedSteel), oreNetherrack)),
 
         // Tier 3 (Elite) HV-IV
         arrayOf(
-            AsteroidRank(3, 3, 2 * MINUTE, 3000, multipliers[0], Aluminium, CobaltBrass, ore),
-            AsteroidRank(4, 4, 1 * MINUTE, 6000, multipliers[1], VanadiumSteel, BlueSteel, oreNetherrack),
-            AsteroidRank(5, 5, 30 * SECOND, 9000, multipliers[2], Titanium, Ultimet, oreNetherrack)),
+            AsteroidRank(3, 3, 2 * MINUTE, 3000, multipliers[0], arrayOf(Aluminium, CobaltBrass, StainlessSteel), arrayOf(Aluminium, CobaltBrass, StainlessSteel), ore),
+            AsteroidRank(4, 4, 1 * MINUTE, 6000, multipliers[1], arrayOf(VanadiumSteel, BlueSteel, RedSteel), arrayOf(VanadiumSteel, BlueSteel, RedSteel), oreNetherrack),
+            AsteroidRank(5, 5, 30 * SECOND, 9000, multipliers[2], arrayOf(Titanium, Ultimet, TungstenCarbide), arrayOf(Titanium, Ultimet, TungstenCarbide), oreNetherrack)),
 
         // Tier 4 (Ultimate) EV-LuV
         arrayOf(
-            AsteroidRank(4, 4, 2 * MINUTE, 3000, multipliers[0], VanadiumSteel, BlueSteel, oreNetherrack),
-            AsteroidRank(5, 5, 1 * MINUTE, 6000, multipliers[1], Titanium, Ultimet, oreNetherrack),
-            AsteroidRank(6, 6, 30 * SECOND, 9000, multipliers[2], TungstenSteel, Naquadah, oreEndstone)),
+            AsteroidRank(4, 4, 2 * MINUTE, 3000, multipliers[0], arrayOf(VanadiumSteel, BlueSteel, RedSteel), arrayOf(VanadiumSteel, BlueSteel, RedSteel), oreNetherrack),
+            AsteroidRank(5, 5, 1 * MINUTE, 6000, multipliers[1], arrayOf(Titanium, Ultimet, TungstenCarbide), arrayOf(Titanium, Ultimet, TungstenCarbide), oreNetherrack),
+            AsteroidRank(6, 6, 30 * SECOND, 9000, multipliers[2], arrayOf(TungstenSteel, Naquadah, LithiumTitanate), arrayOf(TungstenSteel, Naquadah, LithiumTitanate), oreEndstone)),
 
         // Tier 5 (Epic) IV-ZPM
         arrayOf(
-            AsteroidRank(5, 5, 2 * MINUTE, 3000, multipliers[0], Titanium, Ultimet, oreNetherrack),
-            AsteroidRank(6, 6, 1 * MINUTE, 6000, multipliers[1], TungstenSteel, Naquadah, oreEndstone),
-            AsteroidRank(7, 7, 30 * SECOND, 9000, multipliers[2], Iridium, HSSE, oreEndstone)),
+            AsteroidRank(5, 5, 2 * MINUTE, 3000, multipliers[0], arrayOf(Titanium, Ultimet, TungstenCarbide), arrayOf(Titanium, Ultimet, TungstenCarbide), oreNetherrack),
+            AsteroidRank(6, 6, 1 * MINUTE, 6000, multipliers[1], arrayOf(TungstenSteel, Naquadah, LithiumTitanate), arrayOf(TungstenSteel, Naquadah, LithiumTitanate), oreEndstone),
+            AsteroidRank(7, 7, 30 * SECOND, 9000, multipliers[2], arrayOf(Iridium, HSSE, NaquadahAlloy), arrayOf(Iridium, HSSE, NaquadahAlloy), oreEndstone)),
 
         // Tier 6 (Legendary) LuV-UV
         arrayOf(
-            AsteroidRank(6, 6, 2 * MINUTE, 3000, multipliers[0], TungstenSteel, Naquadah, oreEndstone),
-            AsteroidRank(7, 7, 1 * MINUTE, 6000, multipliers[1], Iridium, HSSE, oreEndstone),
-            AsteroidRank(8, 8, 30 * SECOND, 9000, multipliers[2], Duranium, Neutronium, oreEndstone)))
+            AsteroidRank(6, 6, 2 * MINUTE, 3000, multipliers[0], arrayOf(TungstenSteel, Naquadah, LithiumTitanate), arrayOf(TungstenSteel, Naquadah, LithiumTitanate), oreEndstone),
+            AsteroidRank(7, 7, 1 * MINUTE, 6000, multipliers[1], arrayOf(Iridium, HSSE, NaquadahAlloy), arrayOf(Iridium, HSSE, NaquadahAlloy), oreEndstone),
+            AsteroidRank(8, 8, 30 * SECOND, 9000, multipliers[2], arrayOf(Duranium, Neutronium, Adamantium), arrayOf(Duranium, Neutronium, Adamantium), oreEndstone)))
 
     // Fuel arrays indexed by asteroid tier (1-6)
     private val tierFuels = arrayOf(null, fuelBasic, fuelAdvanced, fuelElite, fuelUltimate, fuelEpic, fuelLegendary)
@@ -515,13 +521,13 @@ internal object MiningDroneAsteroidRecipeProducer
                 for ((variantIndex, variant) in variants.withIndex())
                 {
                     val multiplier = rankConfig.multiplier[variantIndex]
-                    val droneStackForm = if (variant.count == 1) droneItem.stack() else droneItem.getStack(variant.count)
+                    val droneStackForm = droneItem.getStack(variant.count)
 
                     val builder = MINING_DRONE_RECIPES.recipeBuilder()
                         .circuitMeta(circuitMeta)
                         .notConsumable(droneStackForm)
-                        .notConsumable(toolHeadDrill, rankConfig.drillMaterial, 4)
-                        .notConsumable(stick, rankConfig.stickMaterial, 4)
+                        .notConsumable(toolHeadDrill, rankConfig.drillMaterials[variantIndex], 4)
+                        .notConsumable(stick, rankConfig.stickMaterials[variantIndex], 4)
                         .fluidInputs(fuel)
 
                     for (output in outputs)
