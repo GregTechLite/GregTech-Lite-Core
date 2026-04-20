@@ -1,14 +1,6 @@
 package gregtechlite.gtlitecore.loader.recipe.producer
 
-import gregtech.api.GTValues.EV
-import gregtech.api.GTValues.HV
-import gregtech.api.GTValues.IV
-import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.LuV
-import gregtech.api.GTValues.MV
-import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
-import gregtech.api.GTValues.ZPM
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Almandine
 import gregtech.api.unification.material.Materials.Aluminium
@@ -72,7 +64,6 @@ import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HeavyFuel
 import gregtech.api.unification.material.Materials.HighOctaneGasoline
 import gregtech.api.unification.material.Materials.Ilmenite
-import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Kyanite
@@ -90,7 +81,6 @@ import gregtech.api.unification.material.Materials.Molybdenite
 import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.Naquadah
-import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.NetherQuartz
 import gregtech.api.unification.material.Materials.Neutronium
@@ -112,7 +102,6 @@ import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.Pyrope
 import gregtech.api.unification.material.Materials.Quartzite
 import gregtech.api.unification.material.Materials.Realgar
-import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.RocketFuel
@@ -127,7 +116,6 @@ import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.Sphalerite
 import gregtech.api.unification.material.Materials.Spodumene
-import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Stibnite
 import gregtech.api.unification.material.Materials.Sulfur
@@ -141,7 +129,6 @@ import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.TricalciumPhosphate
 import gregtech.api.unification.material.Materials.Trona
 import gregtech.api.unification.material.Materials.Tungstate
-import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.Uraninite
@@ -154,6 +141,7 @@ import gregtech.api.unification.material.Materials.Wulfenite
 import gregtech.api.unification.material.Materials.YellowLimonite
 import gregtech.api.unification.material.Materials.Zeolite
 import gregtech.api.unification.material.Materials.Zircon
+import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.ore.OrePrefix.ore
 import gregtech.api.unification.ore.OrePrefix.oreEndstone
 import gregtech.api.unification.ore.OrePrefix.oreNetherrack
@@ -161,8 +149,9 @@ import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MINING_DRONE_RECIPES
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aegirine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Albite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Anorthite
@@ -186,7 +175,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jasper
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kaolinite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Labradorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lizardite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Muscovite
@@ -218,23 +206,25 @@ internal object MiningDroneAsteroidRecipeProducer
     // region Mining Drone Fuels
 
     // LV-HV
-    private var fuelBasic = arrayOf(
+    private val fuelBasic = arrayOf(
         LightFuel.getFluid(16000), HeavyFuel.getFluid(14000),
         Diesel.getFluid(12000), BioDiesel.getFluid(12000),
         Gasoline.getFluid(10000),
         CetaneBoostedDiesel.getFluid(8000),
         HighOctaneGasoline.getFluid(6000), RocketFuel.getFluid(6000), RP1RocketFuel.getFluid(6000),
         DenseHydrazineRocketFuel.getFluid(2000), MethylhydrazineNitrateRocketFuel.getFluid(2000))
+
     // MV-EV
-    private var fuelAdvanced = arrayOf( // +8000
+    private val fuelAdvanced = arrayOf( // +8000
         // LightFuel.getFluid(24000), HeavyFuel.getFluid(22000),
         Diesel.getFluid(20000), BioDiesel.getFluid(20000),
         Gasoline.getFluid(18000),
         CetaneBoostedDiesel.getFluid(16000),
         HighOctaneGasoline.getFluid(14000), RocketFuel.getFluid(14000), RP1RocketFuel.getFluid(14000),
         DenseHydrazineRocketFuel.getFluid(10000), MethylhydrazineNitrateRocketFuel.getFluid(10000))
+
     // HV-IV
-    private var fuelElite = arrayOf( // +8000
+    private val fuelElite = arrayOf( // +8000
         // LightFuel.getFluid(32000), HeavyFuel.getFluid(30000),
         // Diesel.getFluid(28000), BioDiesel.getFluid(28000),
         Gasoline.getFluid(26000),
@@ -243,7 +233,7 @@ internal object MiningDroneAsteroidRecipeProducer
         DenseHydrazineRocketFuel.getFluid(18000), MethylhydrazineNitrateRocketFuel.getFluid(18000))
 
     // EV-LuV
-    private var fuelUltimate = arrayOf( // +8000
+    private val fuelUltimate = arrayOf( // +8000
         // LightFuel.getFluid(40000), HeavyFuel.getFluid(38000),
         // Diesel.getFluid(36000), BioDiesel.getFluid(36000),
         // Gasoline.getFluid(34000),
@@ -252,7 +242,7 @@ internal object MiningDroneAsteroidRecipeProducer
         DenseHydrazineRocketFuel.getFluid(26000), MethylhydrazineNitrateRocketFuel.getFluid(26000))
 
     // IV-ZPM
-    private var fuelEpic = arrayOf( // +8000
+    private val fuelEpic = arrayOf( // +8000
         // LightFuel.getFluid(48000), HeavyFuel.getFluid(46000),
         // Diesel.getFluid(44000), BioDiesel.getFluid(44000),
         // Gasoline.getFluid(42000),
@@ -261,13 +251,156 @@ internal object MiningDroneAsteroidRecipeProducer
         DenseHydrazineRocketFuel.getFluid(32000), MethylhydrazineNitrateRocketFuel.getFluid(32000))
 
     // LuV-UV
-    private var fuelLegendary = arrayOf( // +8000
+    private val fuelLegendary = arrayOf( // +8000
         // LightFuel.getFluid(56000), HeavyFuel.getFluid(54000),
         // Diesel.getFluid(52000), BioDiesel.getFluid(52000),
         // Gasoline.getFluid(50000),
         // CetaneBoostedDiesel.getFluid(48000),
         // HighOctaneGasoline.getFluid(46000), RocketFuel.getFluid(46000), RP1RocketFuel.getFluid(46000),
         DenseHydrazineRocketFuel.getFluid(40000), MethylhydrazineNitrateRocketFuel.getFluid(40000))
+
+    // endregion
+
+    // region Asteroid Tier Configuration
+
+    /**
+     * Configuration for a single rank within an asteroid tier.
+     *
+     * Each asteroid tier (1-6) has 3 ranks, each rank defines drone, EUt, duration, chance and materials.
+     *
+     * @param droneTier     The tier for the mining drone, used `(tier + rank - 1)` as default.
+     * @param voltageTier   The voltage tier in EUt usage for the asteroid mining recipes.
+     * @param duration      The duration for the asteroid mining recipes.
+     * @param baseChance    The base output chance.
+     *                      - Rank 1: 3000 (30%)
+     *                      - Rank 2: 6000 (60%)
+     *                      - Rank 3: 9000 (90%)
+     * @param multiplier    The output multiplier for the asteroid mining recipes (1x, 4x, 16x).
+     * @param drillMaterial The drill material usage in the asteroid mining recipes.
+     * @param stickMaterial The stick material usage in the asteroid mining recipes.
+     * @param orePrefix     The ore variant for output ores for the asteroid mining recipes.
+     */
+    private data class AsteroidRank(val droneTier: Int, val voltageTier: Int,
+                                    val duration: Int, val baseChance: Int, val multiplier: IntArray,
+                                    val drillMaterial: Material, val stickMaterial: Material,
+                                    val orePrefix: OrePrefix)
+    {
+        override fun equals(other: Any?): Boolean
+        {
+            if (this === other)
+                return true
+            if (javaClass != other?.javaClass)
+                return false
+
+            other as AsteroidRank
+
+            if (droneTier != other.droneTier)
+                return false
+            if (voltageTier != other.voltageTier)
+                return false
+            if (duration != other.duration)
+                return false
+            if (baseChance != other.baseChance)
+                return false
+            if (!multiplier.contentEquals(other.multiplier))
+                return false
+            if (drillMaterial != other.drillMaterial)
+                return false
+            if (stickMaterial != other.stickMaterial)
+                return false
+            if (orePrefix != other.orePrefix)
+                return false
+
+            return true
+        }
+
+        override fun hashCode(): Int
+        {
+            var result = droneTier
+            result = 31 * result + voltageTier
+            result = 31 * result + duration
+            result = 31 * result + baseChance
+            result = 31 * result + multiplier.contentHashCode()
+            result = 31 * result + drillMaterial.hashCode()
+            result = 31 * result + stickMaterial.hashCode()
+            result = 31 * result + orePrefix.hashCode()
+            return result
+        }
+    }
+
+    /**
+     * Variant configurations for 1x, 4x, and 16x stack sizes.
+     *
+     * Each variant specifies the stack size and corresponding drone form.
+     *
+     * @param count      The count of mining drone usage in the asteroid mining recipes (1, 4, 16).
+     * @param multiplier The output multiplier for the asteroid mining recipes (1x, 4x, 16x).
+     */
+    private data class DroneVariant(val count: Int, val multiplier: Int)
+
+    private val droneTiers = arrayOf(MINING_DRONE_LV, MINING_DRONE_MV, MINING_DRONE_HV, MINING_DRONE_EV,
+        MINING_DRONE_IV, MINING_DRONE_LuV, MINING_DRONE_ZPM, MINING_DRONE_UV)
+
+    private val variants = arrayOf(DroneVariant(1, 1), DroneVariant(4, 4), DroneVariant(16, 16))
+
+    /**
+     * | Rank Tier | 1x | 4x | 16x |
+     * |-----------|----|----|-----|
+     * | Rank 0    | 1  | 4  | 16  |
+     * | Rank 1    | 4  | 16 | 64  |
+     * | Rank 2    | 16 | 64 | 256 |
+     */
+    private val multipliers = arrayOf(intArrayOf(1, 4, 16), intArrayOf(4, 16, 64), intArrayOf(16, 64, 256))
+
+    /**
+     * | Drone Tier         | 1x  | 4x  | 16x |
+     * |--------------------|-----|-----|-----|
+     * | Tier 1 (Basic)     | LV  | MV  | HV  |
+     * | Tier 2 (Advanced)  | MV  | HV  | EV  |
+     * | Tier 3 (Elite)     | HV  | EV  | IV  |
+     * | Tier 4 (Ultimate)  | EV  | IV  | LuV |
+     * | Tier 5 (Epic)      | IV  | LuV | ZPM |
+     * | Tier 6 (Legendary) | LuV | ZPM | UV  |
+     */
+    private val asteroidTiers = arrayOf(
+        // Tier 1 (Basic) LV-HV
+        arrayOf(
+            AsteroidRank(1, 1, 2 * MINUTE, 3000, multipliers[0], Iron, Bronze, ore),
+            AsteroidRank(2, 2, 1 * MINUTE, 6000, multipliers[1], WroughtIron, Steel, ore),
+            AsteroidRank(3, 3, 30 * SECOND, 9000, multipliers[2], Aluminium, CobaltBrass, ore)),
+
+        // Tier 2 (Advanced) MV-EV
+        arrayOf(
+            AsteroidRank(2, 2, 2 * MINUTE, 3000, multipliers[0], WroughtIron, Steel, ore),
+            AsteroidRank(3, 3, 1 * MINUTE, 6000, multipliers[1], Aluminium, CobaltBrass, ore),
+            AsteroidRank(4, 4, 30 * SECOND, 9000, multipliers[2], VanadiumSteel, BlueSteel, oreNetherrack)),
+
+        // Tier 3 (Elite) HV-IV
+        arrayOf(
+            AsteroidRank(3, 3, 2 * MINUTE, 3000, multipliers[0], Aluminium, CobaltBrass, ore),
+            AsteroidRank(4, 4, 1 * MINUTE, 6000, multipliers[1], VanadiumSteel, BlueSteel, oreNetherrack),
+            AsteroidRank(5, 5, 30 * SECOND, 9000, multipliers[2], Titanium, Ultimet, oreNetherrack)),
+
+        // Tier 4 (Ultimate) EV-LuV
+        arrayOf(
+            AsteroidRank(4, 4, 2 * MINUTE, 3000, multipliers[0], VanadiumSteel, BlueSteel, oreNetherrack),
+            AsteroidRank(5, 5, 1 * MINUTE, 6000, multipliers[1], Titanium, Ultimet, oreNetherrack),
+            AsteroidRank(6, 6, 30 * SECOND, 9000, multipliers[2], TungstenSteel, Naquadah, oreEndstone)),
+
+        // Tier 5 (Epic) IV-ZPM
+        arrayOf(
+            AsteroidRank(5, 5, 2 * MINUTE, 3000, multipliers[0], Titanium, Ultimet, oreNetherrack),
+            AsteroidRank(6, 6, 1 * MINUTE, 6000, multipliers[1], TungstenSteel, Naquadah, oreEndstone),
+            AsteroidRank(7, 7, 30 * SECOND, 9000, multipliers[2], Iridium, HSSE, oreEndstone)),
+
+        // Tier 6 (Legendary) LuV-UV
+        arrayOf(
+            AsteroidRank(6, 6, 2 * MINUTE, 3000, multipliers[0], TungstenSteel, Naquadah, oreEndstone),
+            AsteroidRank(7, 7, 1 * MINUTE, 6000, multipliers[1], Iridium, HSSE, oreEndstone),
+            AsteroidRank(8, 8, 30 * SECOND, 9000, multipliers[2], Duranium, Neutronium, oreEndstone)))
+
+    // Fuel arrays indexed by asteroid tier (1-6)
+    private val tierFuels = arrayOf(null, fuelBasic, fuelAdvanced, fuelElite, fuelUltimate, fuelEpic, fuelLegendary)
 
     // endregion
 
@@ -362,764 +495,44 @@ internal object MiningDroneAsteroidRecipeProducer
      */
     private fun addAsteroid(tier: Int, circuitMeta: Int, vararg outputs: Material)
     {
-        // 1: basic, 2: advanced, 3: elite, 4: ultimate, 5: epic, 6: legendary
         if (!arrayOf(1, 2, 3, 4, 5, 6).contains(tier))
             throw IllegalArgumentException("Incorrect tier value!")
-        // Extends from IntCircuitIngredient exception (from RecipeBuilder#circuitMeta).
         if (circuitMeta < 0 || circuitMeta > 32)
             throw IndexOutOfBoundsException("Integrated Circuit Number cannot be less than 0 and more than 32")
-        // Extends from RecipeBuilder#input().
         if (outputs.size > 16)
             throw IndexOutOfBoundsException("Asteroid cannot has more than 16 components")
 
-        when (tier)
+        val rankConfigs = asteroidTiers[tier - 1]
+        val fuels = tierFuels[tier]
+
+        for (fuel in fuels!!)
         {
-            1 -> { // Basic
-                for (fuel in fuelBasic)
+            for ((_, rankConfig) in rankConfigs.withIndex())
+            {
+                val droneTierIndex = rankConfig.droneTier
+                val droneItem = droneTiers[droneTierIndex - 1]
+
+                for ((variantIndex, variant) in variants.withIndex())
                 {
-                    // Rank 1 Asteroid Mining
-                    val builder1 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LV)
-                        .notConsumable(toolHeadDrill, Iron, 4)
-                        .notConsumable(stick, Iron, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1.chancedOutput(ore, output, 3000, 0)
-                    builder1.EUt(VA[LV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
+                    val multiplier = rankConfig.multiplier[variantIndex]
+                    val droneStackForm = if (variant.count == 1) droneItem.stack() else droneItem.getStack(variant.count)
 
-                    // Rank 1 Asteroid Mining 4x
-                    val builder1x4 = MINING_DRONE_RECIPES.recipeBuilder()
+                    val builder = MINING_DRONE_RECIPES.recipeBuilder()
                         .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, Bronze, 4)
-                        .notConsumable(stick, Bronze, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x4.chancedOutput(ore, output, 4, 3000, 0)
-                    builder1x4.EUt(VA[LV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 16x
-                    val builder1x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, Invar, 4)
-                        .notConsumable(stick, Invar, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x16.chancedOutput(ore, output, 16, 3000, 0)
-                    builder1x16.EUt(VA[LV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 2 Asteroid Mining
-                    val builder2 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_MV)
-                        .notConsumable(toolHeadDrill, WroughtIron, 4)
-                        .notConsumable(stick, WroughtIron, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2.chancedOutput(ore, output, 4, 6000, 0)
-                    builder2.EUt(VA[MV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 4x
-                    val builder2x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_MV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, Steel, 4)
-                        .notConsumable(stick, Steel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x4.chancedOutput(ore, output, 16, 6000, 0)
-                    builder2x4.EUt(VA[MV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 16x
-                    val builder2x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_MV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, Diamond, 4)
-                        .notConsumable(stick, Diamond, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x16.chancedOutput(ore, output, 64, 6000, 0)
-                    builder2x16.EUt(VA[MV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 3 Asteroid Mining
-                    val builder3 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_HV)
-                        .notConsumable(toolHeadDrill, Aluminium, 4)
-                        .notConsumable(stick, Aluminium, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3.chancedOutput(ore, output, 16, 9000, 0)
-                    builder3.EUt(VA[HV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 4x
-                    val builder3x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_HV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, CobaltBrass, 4)
-                        .notConsumable(stick, CobaltBrass, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3x4.chancedOutput(ore, output, 64, 9000, 0)
-                    builder3x4.EUt(VA[HV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 16x
-                    val builder3x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_HV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, StainlessSteel, 4)
-                        .notConsumable(stick, StainlessSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3x16.chancedOutput(ore, output, 256, 9000, 0)
-                    builder3x16.EUt(VA[HV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-                }
-            }
-            2 -> { // Advanced
-                for (fuel in fuelAdvanced)
-                {
-                    // Rank 1 Asteroid Mining
-                    val builder1 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_MV)
-                        .notConsumable(toolHeadDrill, WroughtIron, 4)
-                        .notConsumable(stick, WroughtIron, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1.chancedOutput(ore, output, 3000, 0)
-                    builder1.EUt(VA[MV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 4x
-                    val builder1x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_MV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, Steel, 4)
-                        .notConsumable(stick, Steel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x4.chancedOutput(ore, output, 4, 3000, 0)
-                    builder1x4.EUt(VA[MV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 16x
-                    val builder1x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_MV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, Diamond, 4)
-                        .notConsumable(stick, Diamond, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x16.chancedOutput(ore, output, 16, 3000, 0)
-                    builder1x16.EUt(VA[MV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 2 Asteroid Mining
-                    val builder2 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_HV)
-                        .notConsumable(toolHeadDrill, Aluminium, 4)
-                        .notConsumable(stick, Aluminium, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2.chancedOutput(ore, output, 4, 6000, 0)
-                    builder2.EUt(VA[HV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 4x
-                    val builder2x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_HV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, CobaltBrass, 4)
-                        .notConsumable(stick, CobaltBrass, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x4.chancedOutput(ore, output, 16, 6000, 0)
-                    builder2x4.EUt(VA[HV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 16x
-                    val builder2x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_HV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, StainlessSteel, 4)
-                        .notConsumable(stick, StainlessSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x16.chancedOutput(ore, output, 64, 6000, 0)
-                    builder2x16.EUt(VA[HV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 3 Asteroid Mining
-                    val builder3 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_EV)
-                        .notConsumable(toolHeadDrill, VanadiumSteel, 4)
-                        .notConsumable(stick, VanadiumSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3.chancedOutput(oreNetherrack, output, 16, 9000, 0)
-                    builder3.EUt(VA[EV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 4x
-                    val builder3x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_EV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, BlueSteel, 4)
-                        .notConsumable(stick, BlueSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3x4.chancedOutput(oreNetherrack, output, 64, 9000, 0)
-                    builder3x4.EUt(VA[EV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 16x
-                    val builder3x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_EV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, RedSteel, 4)
-                        .notConsumable(stick, RedSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3x16.chancedOutput(oreNetherrack, output, 256, 9000, 0)
-                    builder3x16.EUt(VA[EV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-                }
-            }
-            3 -> { // Elite
-                for (fuel in fuelElite)
-                {
-                    // Rank 1 Asteroid Mining
-                    val builder1 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_HV)
-                        .notConsumable(toolHeadDrill, Aluminium, 4)
-                        .notConsumable(stick, Aluminium, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1.chancedOutput(ore, output, 3000, 0)
-                    builder1.EUt(VA[HV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 4x
-                    val builder1x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_HV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, CobaltBrass, 4)
-                        .notConsumable(stick, CobaltBrass, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x4.chancedOutput(ore, output, 4, 3000, 0)
-                    builder1x4.EUt(VA[HV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 16x
-                    val builder1x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_HV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, StainlessSteel, 4)
-                        .notConsumable(stick, StainlessSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x16.chancedOutput(ore, output, 16, 3000, 0)
-                    builder1x16.EUt(VA[HV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 2 Asteroid Mining
-                    val builder2 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_EV)
-                        .notConsumable(toolHeadDrill, VanadiumSteel, 4)
-                        .notConsumable(stick, VanadiumSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2.chancedOutput(oreNetherrack, output, 4, 6000, 0)
-                    builder2.EUt(VA[EV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 4x
-                    val builder2x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_EV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, BlueSteel, 4)
-                        .notConsumable(stick, BlueSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x4.chancedOutput(oreNetherrack, output, 16, 6000, 0)
-                    builder2x4.EUt(VA[EV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 16x
-                    val builder2x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_EV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, RedSteel, 4)
-                        .notConsumable(stick, RedSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x16.chancedOutput(oreNetherrack, output, 64, 6000, 0)
-                    builder2x16.EUt(VA[EV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 3 Asteroid Mining
-                    val builder3 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_IV)
-                        .notConsumable(toolHeadDrill, Titanium, 4)
-                        .notConsumable(stick, Titanium, 4)
+                        .notConsumable(droneStackForm)
+                        .notConsumable(toolHeadDrill, rankConfig.drillMaterial, 4)
+                        .notConsumable(stick, rankConfig.stickMaterial, 4)
                         .fluidInputs(fuel)
 
                     for (output in outputs)
-                        builder3.chancedOutput(oreNetherrack, output, 16, 9000, 0)
+                        builder.chancedOutput(rankConfig.orePrefix, output, multiplier, rankConfig.baseChance, 0)
 
-                    builder3.EUt(VA[IV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 4x
-                    val builder3x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_IV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, Ultimet, 4)
-                        .notConsumable(stick, Ultimet, 4)
-                        .fluidInputs(fuel)
-
-                    for (output in outputs)
-                        builder3x4.chancedOutput(oreNetherrack, output, 64, 9000, 0)
-
-                    builder3x4.EUt(VA[IV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 16x
-                    val builder3x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_IV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, TungstenCarbide, 4)
-                        .notConsumable(stick, TungstenCarbide, 4)
-                        .fluidInputs(fuel)
-
-                    for (output in outputs)
-                        builder3x16.chancedOutput(oreNetherrack, output, 256, 9000, 0)
-
-                    builder3x16.EUt(VA[IV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-                }
-            }
-            4 -> { // Ultimate
-                for (fuel in fuelUltimate)
-                {
-                    // Rank 1 Asteroid Mining
-                    val builder1 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_EV)
-                        .notConsumable(toolHeadDrill, VanadiumSteel, 4)
-                        .notConsumable(stick, VanadiumSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1.chancedOutput(oreNetherrack, output, 3000, 0)
-                    builder1.EUt(VA[EV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 4x
-                    val builder1x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_EV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, BlueSteel, 4)
-                        .notConsumable(stick, BlueSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x4.chancedOutput(oreNetherrack, output, 4, 3000, 0)
-                    builder1x4.EUt(VA[EV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 16x
-                    val builder1x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_EV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, RedSteel, 4)
-                        .notConsumable(stick, RedSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x16.chancedOutput(oreNetherrack, output, 16, 3000, 0)
-                    builder1x16.EUt(VA[EV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 2 Asteroid Mining
-                    val builder2 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_IV)
-                        .notConsumable(toolHeadDrill, Titanium, 4)
-                        .notConsumable(stick, Titanium, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2.chancedOutput(oreNetherrack, output, 4, 6000, 0)
-                    builder2.EUt(VA[IV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 4x
-                    val builder2x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_IV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, Ultimet, 4)
-                        .notConsumable(stick, Ultimet, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x4.chancedOutput(oreNetherrack, output, 16, 6000, 0)
-                    builder2x4.EUt(VA[IV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 16x
-                    val builder2x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_IV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, TungstenCarbide, 4)
-                        .notConsumable(stick, TungstenCarbide, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x16.chancedOutput(oreNetherrack, output, 64, 6000, 0)
-                    builder2x16.EUt(VA[IV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 3 Asteroid Mining
-                    val builder3 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LuV)
-                        .notConsumable(toolHeadDrill, TungstenSteel, 4)
-                        .notConsumable(stick, TungstenSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3.chancedOutput(oreEndstone, output, 16, 9000, 0)
-                    builder3.EUt(VA[LuV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 4x
-                    val builder3x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LuV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, Naquadah, 4)
-                        .notConsumable(stick, Naquadah, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3x4.chancedOutput(oreEndstone, output, 64, 9000, 0)
-                    builder3x4.EUt(VA[LuV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 16x
-                    val builder3x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LuV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, LithiumTitanate, 4)
-                        .notConsumable(stick, LithiumTitanate, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3x16.chancedOutput(oreEndstone, output, 256, 9000, 0)
-                    builder3x16.EUt(VA[LuV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-                }
-            }
-            5 -> { // Epic
-                for (fuel in fuelEpic)
-                {
-                    // Rank 1 Asteroid Mining
-                    val builder1 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_IV)
-                        .notConsumable(toolHeadDrill, Titanium, 4)
-                        .notConsumable(stick, Titanium, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1.chancedOutput(oreNetherrack, output, 3000, 0)
-                    builder1.EUt(VA[IV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 4x
-                    val builder1x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_IV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, Ultimet, 4)
-                        .notConsumable(stick, Ultimet, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x4.chancedOutput(oreNetherrack, output, 4, 3000, 0)
-                    builder1x4.EUt(VA[IV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 16x
-                    val builder1x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_IV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, TungstenCarbide, 4)
-                        .notConsumable(stick, TungstenCarbide, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x16.chancedOutput(oreNetherrack, output, 16, 3000, 0)
-                    builder1x16.EUt(VA[IV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 2 Asteroid Mining
-                    val builder2 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LuV)
-                        .notConsumable(toolHeadDrill, TungstenSteel, 4)
-                        .notConsumable(stick, TungstenSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2.chancedOutput(oreEndstone, output, 4, 6000, 0)
-                    builder2.EUt(VA[LuV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 4x
-                    val builder2x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LuV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, Naquadah, 4)
-                        .notConsumable(stick, Naquadah, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x4.chancedOutput(oreEndstone, output, 16, 6000, 0)
-                    builder2x4.EUt(VA[LuV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 16x
-                    val builder2x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LuV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, LithiumTitanate, 4)
-                        .notConsumable(stick, LithiumTitanate, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x16.chancedOutput(oreEndstone, output, 64, 6000, 0)
-                    builder2x16.EUt(VA[LuV].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 3 Asteroid Mining
-                    val builder3 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_ZPM)
-                        .notConsumable(toolHeadDrill, Iridium, 4)
-                        .notConsumable(stick, Iridium, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3.chancedOutput(oreEndstone, output, 16, 9000, 0)
-                    builder3.EUt(VA[ZPM].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 4x
-                    val builder3x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_ZPM.getStackForm(4))
-                        .notConsumable(toolHeadDrill, HSSE, 4)
-                        .notConsumable(stick, HSSE, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3x4.chancedOutput(oreEndstone, output, 64, 9000, 0)
-                    builder3x4.EUt(VA[ZPM].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 16x
-                    val builder3x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_ZPM.getStackForm(16))
-                        .notConsumable(toolHeadDrill, NaquadahAlloy, 4)
-                        .notConsumable(stick, NaquadahAlloy, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3x16.chancedOutput(oreEndstone, output, 256, 9000, 0)
-                    builder3x16.EUt(VA[ZPM].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-                }
-            }
-            else -> { // Legendary
-                for (fuel in fuelLegendary)
-                {
-                    // Rank 1 Asteroid Mining
-                    val builder1 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LuV)
-                        .notConsumable(toolHeadDrill, TungstenSteel, 4)
-                        .notConsumable(stick, TungstenSteel, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1.chancedOutput(oreEndstone, output, 3000, 0)
-                    builder1.EUt(VA[LuV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 4x
-                    val builder1x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LuV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, Naquadah, 4)
-                        .notConsumable(stick, Naquadah, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x4.chancedOutput(oreEndstone, output, 4, 3000, 0)
-                    builder1x4.EUt(VA[LuV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 1 Asteroid Mining 16x
-                    val builder1x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_LuV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, LithiumTitanate, 4)
-                        .notConsumable(stick, LithiumTitanate, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder1x16.chancedOutput(oreEndstone, output, 16, 3000, 0)
-                    builder1x16.EUt(VA[LuV].toLong())
-                        .duration(2 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 2 Asteroid Mining
-                    val builder2 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_ZPM)
-                        .notConsumable(toolHeadDrill, Iridium, 4)
-                        .notConsumable(stick, Iridium, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2.chancedOutput(oreEndstone, output, 4, 6000, 0)
-                    builder2.EUt(VA[ZPM].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 4x
-                    val builder2x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_ZPM.getStackForm(4))
-                        .notConsumable(toolHeadDrill, HSSE, 4)
-                        .notConsumable(stick, HSSE, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x4.chancedOutput(oreEndstone, output, 16, 6000, 0)
-                    builder2x4.EUt(VA[ZPM].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // Rank 2 Asteroid Mining 16x
-                    val builder2x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_ZPM.getStackForm(16))
-                        .notConsumable(toolHeadDrill, NaquadahAlloy, 4)
-                        .notConsumable(stick, NaquadahAlloy, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder2x16.chancedOutput(oreEndstone, output, 64, 6000, 0)
-                    builder2x16.EUt(VA[ZPM].toLong())
-                        .duration(1 * MINUTE)
-                        .buildAndRegister()
-
-                    // ---------------------------------------------------------------------------------------------
-                    // Rank 3 Asteroid Mining
-                    val builder3 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_UV)
-                        .notConsumable(toolHeadDrill, Duranium, 4)
-                        .notConsumable(stick, Duranium, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3.chancedOutput(oreEndstone, output, 16, 9000, 0)
-                    builder3.EUt(VA[UV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 4x
-                    val builder3x4 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_UV.getStackForm(4))
-                        .notConsumable(toolHeadDrill, Neutronium, 4)
-                        .notConsumable(stick, Neutronium, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3x4.chancedOutput(oreEndstone, output, 64, 9000, 0)
-                    builder3x4.EUt(VA[UV].toLong())
-                        .duration(30 * SECOND)
-                        .buildAndRegister()
-
-                    // Rank 3 Asteroid Mining 16x
-                    val builder3x16 = MINING_DRONE_RECIPES.recipeBuilder()
-                        .circuitMeta(circuitMeta)
-                        .notConsumable(MINING_DRONE_UV.getStackForm(16))
-                        .notConsumable(toolHeadDrill, Adamantium, 4)
-                        .notConsumable(stick, Adamantium, 4)
-                        .fluidInputs(fuel)
-                    for (output in outputs)
-                        builder3x16.chancedOutput(oreEndstone, output, 256, 9000, 0)
-                    builder3x16.EUt(VA[UV].toLong())
-                        .duration(30 * SECOND)
+                    builder.EUt(VA[rankConfig.voltageTier].toLong())
+                        .duration(rankConfig.duration)
                         .buildAndRegister()
                 }
             }
         }
-
     }
 
     // @formatter:on
