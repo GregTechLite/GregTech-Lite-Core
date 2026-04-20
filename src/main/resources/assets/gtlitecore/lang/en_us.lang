@@ -1653,6 +1653,7 @@ recipemap.integrated_ore_processor.name=Integrated Ore Processor
 recipemap.matter_reshaping_framework.name=Matter Reshaping
 recipemap.solidification_submodule.name=Forging Solidification Submodule
 recipemap.recombination_submodule.name=Separating Recombination Submodule
+recipemap.space_miner.name=Space Miner Module
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -2504,6 +2505,18 @@ gtlitecore.machine.space_pump_module.fluid_row.3=Space Pump will extract the flu
 gtlitecore.machine.space_pump_module.fluid=Fluid %d:
 gtlitecore.machine.space_pump_module.fluid.empty=Invalid Planet ID or Fluid ID! please check JEI for correct IDs.
 gtlitecore.machine.space_pump_module.fluid.efficient=§a%sL/s §7per parallel
+
+gtlitecore.machine.space_miner_module.mk1.name=Space Miner MK1
+gtlitecore.machine.space_miner_module.mk1.tooltip=§d§lGreat Treasure ahead, beyond your imagination!§7
+gtlitecore.machine.space_miner_module.mk2.name=Space Miner MK2
+gtlitecore.machine.space_miner_module.mk2.tooltip=§d§lDoes it infringe upon the rights of Mining Drones?§7
+gtlitecore.machine.space_miner_module.mk3.name=Space Miner MK3
+gtlitecore.machine.space_miner_module.mk3.tooltip=§d§lSpace Resource Plundering§7
+
+gtlitecore.machine.space_miner_module.tooltip.1=Add Space Miner functionality to the Space Elevator.
+gtlitecore.machine.space_miner_module.tooltip.2=Requires input §fComputation§7 to work.
+gtlitecore.machine.space_miner_module.max_parallel=Workable Voltage: %s§7, Max Parallel: §e%s§7
+gtlitecore.machine.space_miner_module.track_tier=Needs §f%s§7 or higher tier Acceleration Track.
 
 gtlitecore.machine.energy_infuser.name=Energy Infuser
 gtlitecore.machine.energy_infuser.tooltip.1=Charging rechargeable items with energy, §fFE/EU/RF§7 format electric items is also supported.

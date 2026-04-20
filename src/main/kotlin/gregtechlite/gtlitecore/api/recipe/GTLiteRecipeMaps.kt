@@ -962,6 +962,11 @@ object GTLiteRecipeMaps
         .fluidOutputs(1)
         .build()
 
+    @ZenProperty
+    @JvmField
+    val SPACE_MINER_RECIPES = RecipeMapBuilder("space_miner", AccelerationTrackRecipeBuilder())
+        .build()
+
     // endregion
 
     // region Generator Fuel RecipeMaps

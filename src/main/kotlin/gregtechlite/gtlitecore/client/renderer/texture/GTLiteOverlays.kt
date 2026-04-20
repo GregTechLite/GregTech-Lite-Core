@@ -143,6 +143,8 @@ object GTLiteOverlays
     @JvmField
     val SPACE_PUMP_OVERLAY = partId("space_pump_overlay")
     @JvmField
+    val SPACE_MINER_OVERLAY = partId("space_miner_overlay")
+    @JvmField
     val STERILE_CLEANING_MAINTENANCE_OVERLAY = partId("sterile_cleaning_maintenance_hatch_overlay")
 
     // endregion

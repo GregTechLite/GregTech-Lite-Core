@@ -129,6 +129,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockM
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockNanoAssemblyComplex
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockPlasmaArcTransmitter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpaceAssembler
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpaceMiner
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpacePump
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive.MultiblockAdvancedPrimitiveBlastFurnace
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive.MultiblockCoagulationTank
@@ -299,7 +300,9 @@ object GTLiteMetaTileEntities
     lateinit var SPACE_ASSEMBLER_MK1: MultiblockSpaceAssembler
     lateinit var SPACE_ASSEMBLER_MK2: MultiblockSpaceAssembler
     lateinit var SPACE_ASSEMBLER_MK3: MultiblockSpaceAssembler
-
+    lateinit var SPACE_MINER_MK1: MultiblockSpaceMiner
+    lateinit var SPACE_MINER_MK2: MultiblockSpaceMiner
+    lateinit var SPACE_MINER_MK3: MultiblockSpaceMiner
     lateinit var SPACE_PUMP_MK1: MultiblockSpacePump
     lateinit var SPACE_PUMP_MK2: MultiblockSpacePump
     lateinit var SPACE_PUMP_MK3: MultiblockSpacePump
@@ -801,11 +804,9 @@ object GTLiteMetaTileEntities
         SPACE_ASSEMBLER_MK1 = register(10031, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk1"), UHV, 1, 1))
         SPACE_ASSEMBLER_MK2 = register(10032, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk2"), UEV, 2, 3))
         SPACE_ASSEMBLER_MK3 = register(10033, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk3"), UIV, 3, 5))
-
-        // 10034 TODO SPACE_MINER_MK1
-        // 10035 TODO SPACE_MINER_MK2
-        // 10036 TODO SPACE_MINER_MK3
-
+        SPACE_MINER_MK1 = register(10034, MultiblockSpaceMiner(GTLiteMod.id("space_miner_module.mk1"), ZPM, 1, 1))
+        SPACE_MINER_MK2 = register(10035, MultiblockSpaceMiner(GTLiteMod.id("space_miner_module.mk2"), UV, 2, 2))
+        SPACE_MINER_MK3 = register(10036, MultiblockSpaceMiner(GTLiteMod.id("space_miner_module.mk3"), UHV, 3, 3))
         SPACE_PUMP_MK1 = register(10037, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk1"), UV, 1, 1))
         SPACE_PUMP_MK2 = register(10038, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk2"), UHV, 2, 2))
         SPACE_PUMP_MK3 = register(10039, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk3"), UEV, 3, 4))
