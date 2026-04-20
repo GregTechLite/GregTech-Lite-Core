@@ -3,7 +3,9 @@ package gregtechlite.gtlitecore.api.recipe.builder
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
+import gregtech.api.recipes.properties.impl.ComputationProperty
 import gregtech.api.util.EnumValidationResult
+import gregtech.api.util.GTLog
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import org.apache.commons.lang3.builder.ToStringBuilder
@@ -35,6 +37,11 @@ class AccelerationTrackRecipeBuilder : RecipeBuilder<AccelerationTrackRecipeBuil
             this.tier((value as Number).toInt())
             return true
         }
+        if (key == ComputationProperty.KEY)
+        {
+            this.CWUt((value as Number).toInt())
+            return true
+        }
         return super.applyPropertyCT(key, value)
     }
 
@@ -46,6 +53,17 @@ class AccelerationTrackRecipeBuilder : RecipeBuilder<AccelerationTrackRecipeBuil
             this.recipeStatus = EnumValidationResult.INVALID
         }
         this.applyProperty(GTLiteRecipeProperties.ACCELERATION_TRACK_TIER, tier)
+        return this
+    }
+
+    fun CWUt(cwut: Int): AccelerationTrackRecipeBuilder
+    {
+        if (cwut < 0)
+        {
+            GTLog.logger.error("CWU/t cannot be less than 0", IllegalArgumentException())
+            this.recipeStatus = EnumValidationResult.INVALID
+        }
+        this.applyProperty(ComputationProperty.getInstance(), cwut)
         return this
     }
 

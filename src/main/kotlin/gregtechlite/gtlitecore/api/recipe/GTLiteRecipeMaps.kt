@@ -965,6 +965,8 @@ object GTLiteRecipeMaps
     @ZenProperty
     @JvmField
     val SPACE_MINER_RECIPES = RecipeMapBuilder("space_miner", AccelerationTrackRecipeBuilder())
+        .itemInputs(1)
+        .itemOutputs(1)
         .build()
 
     // endregion

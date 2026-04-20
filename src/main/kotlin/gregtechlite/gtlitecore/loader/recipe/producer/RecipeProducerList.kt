@@ -27,6 +27,7 @@ internal object RecipeProducerList
         NuclearFissionRecipeProducer.produce()
         PCBFactoryRecipeProducer.produce()
         IntegratedOreProcessorRecipeProducer.produce()
+        SpaceMinerAsteroidRecipeProducer.produce()
     }
 
     fun postInit()

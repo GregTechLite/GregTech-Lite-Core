@@ -12,6 +12,7 @@ import com.cleanroommc.modularui.widgets.ButtonWidget
 import com.cleanroommc.modularui.widgets.ToggleButton
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.capability.IOpticalComputationProvider
+import gregtech.api.capability.IOpticalComputationReceiver
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -127,7 +128,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         energyContainer = EnergyContainerList(inputEnergy)
 
         val inputComputation = getAbilities(COMPUTATION_DATA_RECEPTION)
-        if (inputComputation != null && !inputComputation.isEmpty())
+        if (inputComputation != null && inputComputation.isNotEmpty())
             computationProvider = inputComputation[0]
     }
 
