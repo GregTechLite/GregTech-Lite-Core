@@ -101,13 +101,13 @@ class MultiblockSpaceMiner(id: ResourceLocation, tier: Int, moduleTier: Int, min
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.space_miner_module.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.space_miner_module.tooltip.2"))
         when (moduleTier)
         {
             1 -> tooltip.add(I18n.format("gtlitecore.machine.space_miner_module.mk1.tooltip.1"))
             2 -> tooltip.add(I18n.format("gtlitecore.machine.space_miner_module.mk2.tooltip.1"))
             else -> tooltip.add(I18n.format("gtlitecore.machine.space_miner_module.mk3.tooltip.1"))
         }
+        tooltip.add(I18n.format("gtlitecore.machine.space_miner_module.tooltip.2"))
         tooltip.add(I18n.format("gtlitecore.machine.space_miner_module.max_parallel", VNF[tier], recipeMapWorkable.parallelLimit))
         tooltip.add(I18n.format("gtlitecore.machine.space_miner_module.track_tier", getTrackTier(moduleTier)))
     }

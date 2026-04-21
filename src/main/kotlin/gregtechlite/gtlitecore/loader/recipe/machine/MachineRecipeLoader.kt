@@ -52,6 +52,7 @@ import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Meitnerium
 import gregtech.api.unification.material.Materials.Mendelevium
 import gregtech.api.unification.material.Materials.Naquadah
+import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.NeodymiumMagnetic
@@ -71,6 +72,7 @@ import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
+import gregtech.api.unification.material.Materials.Rutherfordium
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
@@ -112,6 +114,8 @@ import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.spring
+import gregtech.api.unification.ore.OrePrefix.stick
+import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
@@ -189,6 +193,7 @@ import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
 import gregtech.common.metatileentities.MetaTileEntities.ACTIVE_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.ADVANCED_FLUID_DRILLING_RIG
+import gregtech.common.metatileentities.MetaTileEntities.ADVANCED_LARGE_MINER
 import gregtech.common.metatileentities.MetaTileEntities.ALLOY_SMELTER
 import gregtech.common.metatileentities.MetaTileEntities.ARC_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.ASSEMBLER
@@ -255,6 +260,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CinobiteA243
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DenseHydrazineRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EglinSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
@@ -268,6 +274,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HarmonicPhononMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyN
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyX78
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hypogen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA956
@@ -281,6 +288,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableFlerovium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MolybdenumDisilicide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitinol60
@@ -324,6 +332,9 @@ import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_LV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_UHV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_UV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_ZPM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.QUANTUM_ANOMALY
@@ -416,6 +427,9 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SPAC
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SPACE_ASSEMBLER_MK2
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SPACE_ASSEMBLER_MK3
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SPACE_ELEVATOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SPACE_MINER_MK1
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SPACE_MINER_MK2
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SPACE_MINER_MK3
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SPACE_PUMP_MK1
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SPACE_PUMP_MK2
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SPACE_PUMP_MK3
@@ -1478,6 +1492,72 @@ internal object MachineRecipeLoader
                 it.researchStack(SPACE_PUMP_MK2.stack())
                     .EUt(VA[UEV])
                     .CWUt(32)
+            }
+        }
+
+        // Space Miner Module MK1
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ADVANCED_LARGE_MINER)
+            input(MINING_DRONE_AIRPORT, 4)
+            input(circuit, Tier.UV, 4)
+            input(ROBOT_ARM_ZPM, 2)
+            input(MINING_DRONE_ZPM)
+            input(toolHeadDrill, NaquadahAlloy, 8)
+            input(stick, Rutherfordium, 8)
+            fluidInputs(SolderingAlloy.getFluid(L * 9))
+            fluidInputs(DenseHydrazineRocketFuel.getFluid(16000))
+            fluidInputs(MethylhydrazineNitrateRocketFuel.getFluid(L * 16000))
+            output(SPACE_MINER_MK1)
+            EUt(VA[ZPM])
+            duration(45 * SECOND)
+            stationResearch {
+                it.researchStack(ADVANCED_LARGE_MINER.stack())
+                    .EUt(VA[ZPM])
+                    .CWUt(4)
+            }
+        }
+
+        // Space Miner Module MK2
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ADVANCED_LARGE_MINER, 4)
+            input(MINING_DRONE_AIRPORT, 16)
+            input(circuit, Tier.UHV, 4)
+            input(ROBOT_ARM_UV, 2)
+            input(MINING_DRONE_UV)
+            input(toolHeadDrill, Neutronium, 16)
+            input(stick, TitanSteel, 16)
+            fluidInputs(SolderingAlloy.getFluid(L * 32))
+            fluidInputs(DenseHydrazineRocketFuel.getFluid(64000))
+            fluidInputs(MethylhydrazineNitrateRocketFuel.getFluid(L * 64000))
+            output(SPACE_MINER_MK2)
+            EUt(VA[UV])
+            duration(1 * MINUTE + 30 * SECOND)
+            stationResearch {
+                it.researchStack(SPACE_MINER_MK1.stack())
+                    .EUt(VA[UV])
+                    .CWUt(12)
+            }
+        }
+
+        // Space Miner Module MK3
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ADVANCED_LARGE_MINER, 16)
+            input(MINING_DRONE_AIRPORT, 64)
+            input(circuit, Tier.UEV, 4)
+            input(ROBOT_ARM_UHV, 2)
+            input(MINING_DRONE_UHV)
+            input(toolHeadDrill, Tairitsium, 32)
+            input(stick, HastelloyX78, 32)
+            fluidInputs(SolderingAlloy.getFluid(L * 64))
+            fluidInputs(DenseHydrazineRocketFuel.getFluid(256000))
+            fluidInputs(MethylhydrazineNitrateRocketFuel.getFluid(L * 256000))
+            output(SPACE_MINER_MK3)
+            EUt(VA[UHV])
+            duration(3 * MINUTE)
+            stationResearch {
+                it.researchStack(SPACE_MINER_MK2.stack())
+                    .EUt(VA[UHV])
+                    .CWUt(16)
             }
         }
 

@@ -2127,7 +2127,7 @@ object GTLiteFirstDegreeMaterials
         {
             ingot()
             fluid()
-            color(0xD880D8)
+            color(0xD880D8).iconSet(METALLIC)
             components(BismuthTrioxide, 1, Strontianite, 2, Calcite, 1, Tenorite, 2)
             flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
             blastProp(7000, GasTier.HIGHER, // Naquadah
