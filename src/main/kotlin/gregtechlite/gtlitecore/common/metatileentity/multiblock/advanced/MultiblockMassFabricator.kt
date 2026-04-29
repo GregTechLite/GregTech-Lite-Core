@@ -135,7 +135,7 @@ class MultiblockMassFabricator(id: ResourceLocation) : RecipeMapMultiblockContro
         }
     }
 
-    override fun canBeDistinct() = false
+    override fun canBeDistinct() = true
 
     private inner class LargeMassFabricatorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
