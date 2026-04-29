@@ -31,6 +31,7 @@ internal object MachineRecipeList
         PackerRecipes.init()
         PrimitiveBlastFurnaceRecipes.init()
         SifterRecipes.init()
+        VacuumFreezerRecipes.init()
         WiremillRecipes.init()
 
         AcidGeneratorRecipes.init()
