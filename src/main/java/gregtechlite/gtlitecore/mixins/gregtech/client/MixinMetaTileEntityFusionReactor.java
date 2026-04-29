@@ -21,6 +21,7 @@ import java.util.List;
 
 import static gregtech.api.GTValues.VNF;
 
+@Deprecated
 @Mixin(value = MetaTileEntityFusionReactor.class, remap = false)
 public abstract class MixinMetaTileEntityFusionReactor extends RecipeMapMultiblockController implements IFastRenderMetaTileEntity, IBloomEffect
 {

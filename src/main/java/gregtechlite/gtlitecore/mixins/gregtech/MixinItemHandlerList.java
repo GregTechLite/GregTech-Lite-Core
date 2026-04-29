@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Collection;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = ItemHandlerList.class, remap = false)
 public abstract class MixinItemHandlerList implements MultipleNotifiableHandler

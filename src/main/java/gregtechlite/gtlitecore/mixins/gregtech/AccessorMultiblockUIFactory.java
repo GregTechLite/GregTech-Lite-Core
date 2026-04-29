@@ -6,6 +6,10 @@ import gregtechlite.gtlitecore.mixins.Implemented;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2900")
 @Mixin(value = MultiblockUIFactory.class, remap = false)
 public interface AccessorMultiblockUIFactory

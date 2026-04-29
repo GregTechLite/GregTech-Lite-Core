@@ -9,6 +9,10 @@ import net.minecraftforge.fluids.FluidStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2913")
 @Mixin(value = MultiblockUIBuilder.class, remap = false)
 public abstract class MixinMultiblockUIBuilder

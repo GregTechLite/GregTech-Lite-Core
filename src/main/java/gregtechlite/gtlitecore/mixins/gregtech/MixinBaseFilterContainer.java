@@ -9,6 +9,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 @Compat(modId = { "gregtech", "modularui" })
 @Mixin(value = BaseFilterContainer.class, remap = false)
 public abstract class MixinBaseFilterContainer {
