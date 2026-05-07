@@ -32,6 +32,7 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.outputs
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
@@ -55,7 +56,6 @@ import net.minecraft.init.Items.APPLE
 import net.minecraft.init.Items.CARROT
 import net.minecraft.init.Items.GOLDEN_APPLE
 import net.minecraft.init.Items.GOLDEN_CARROT
-import net.minecraft.item.ItemStack
 
 internal object GoldenFruitsProcessing
 {
@@ -77,10 +77,8 @@ internal object GoldenFruitsProcessing
         }
 
         // Golden Carrot
-        ModHandler.removeRecipeByOutput(ItemStack(GOLDEN_CARROT))
-        GTLiteRecipeHandler.removeChemicalRecipes(
-            arrayOf(ItemStack(CARROT),
-                    OreDictUnifier.get(nugget, Gold, 8)))
+        ModHandler.removeRecipeByOutput(GOLDEN_CARROT.stack())
+        GTLiteRecipeHandler.removeChemicalRecipes(arrayOf(CARROT.stack(), OreDictUnifier.get(nugget, Gold, 8)))
 
         CHEMICAL_BATH_RECIPES.addRecipe {
             inputs(CARROT)
@@ -100,10 +98,8 @@ internal object GoldenFruitsProcessing
         }
 
         // Golden Apple
-        ModHandler.removeRecipeByOutput(ItemStack(GOLDEN_APPLE, 1, 0))
-        GTLiteRecipeHandler.removeChemicalRecipes(
-            arrayOf(ItemStack(APPLE),
-                    OreDictUnifier.get(ingot, Gold, 8)))
+        ModHandler.removeRecipeByOutput(GOLDEN_APPLE.stack())
+        GTLiteRecipeHandler.removeChemicalRecipes(arrayOf(APPLE.stack(), OreDictUnifier.get(ingot, Gold, 8)))
 
         CHEMICAL_BATH_RECIPES.addRecipe {
             inputs(APPLE)
@@ -114,10 +110,7 @@ internal object GoldenFruitsProcessing
         }
 
         // Enchanted Golden Apple
-        GTLiteRecipeHandler.removeChemicalRecipes(
-            arrayOf(ItemStack(APPLE),
-                    OreDictUnifier.get(block, Gold, 8)))
-
+        GTLiteRecipeHandler.removeChemicalRecipes(arrayOf(APPLE.stack(), OreDictUnifier.get(block, Gold, 8)))
         POLARIZER_RECIPES.addRecipe {
             inputs(GOLDEN_APPLE)
             fluidInputs(ChloroauricAcid.getFluid(4000))
