@@ -25,6 +25,7 @@
     "MixinMetaTileEntityMultiblockNotifiablePart",
     "MixinMetaTileEntityNetworkSwitch",
     "MixinMetaTileEntityLargeBoiler",
+    "MixinMetaTileEntityLargeChemicalReactor",
     "MixinMultiblockControllerBase",
     "MixinMultiblockRecipeLogic",
     "MixinMultiMapMultiblockController",

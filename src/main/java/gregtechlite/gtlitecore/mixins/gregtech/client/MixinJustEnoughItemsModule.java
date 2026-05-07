@@ -353,6 +353,7 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
      * @return Total {@code MTERegistry} and it contained MetaTileEntities.
      */
     @Unique
+    @Deprecated
     private List<MetaTileEntity> gtlitecore$getSortedMTEs()
     {
         List<MetaTileEntity> sortedMTEs = new ArrayList<>();

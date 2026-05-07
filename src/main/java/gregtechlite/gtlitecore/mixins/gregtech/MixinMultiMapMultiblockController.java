@@ -14,6 +14,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 // TODO FIXME Remove this mixins when CEu fixes this problem.
+/**
+ * @deprecated
+ */
+@Deprecated
 @Mixin(value = MultiMapMultiblockController.class, remap = false)
 public abstract class MixinMultiMapMultiblockController extends RecipeMapMultiblockController
 {
