@@ -43,9 +43,7 @@ class MobProximityRecipeBuilder : RecipeBuilder<MobProximityRecipeBuilder>
         applyProperty(MobOnTopProperty, EntityList.getKey(entityClazz)!!)
     }
 
-    fun mob(entityClazz: KClass<out Entity>): MobProximityRecipeBuilder = apply {
-        applyProperty(MobOnTopProperty, EntityList.getKey(entityClazz.javaObjectType)!!)
-    }
+    fun mob(entityClazz: KClass<out Entity>): MobProximityRecipeBuilder = mob(entityClazz.javaObjectType)
 
     override fun toString(): String = buildToString(this) {
         appendSuper(super.toString())

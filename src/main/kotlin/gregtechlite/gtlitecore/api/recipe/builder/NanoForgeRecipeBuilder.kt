@@ -6,55 +6,42 @@ import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.EnumValidationResult
 import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import org.apache.commons.lang3.builder.ToStringBuilder
+import gregtechlite.gtlitecore.api.util.buildToString
 
 class NanoForgeRecipeBuilder : RecipeBuilder<NanoForgeRecipeBuilder>
 {
-
-    val tier: Int
-        get() = (if (this.recipePropertyStorage == null) 0
-            else this.recipePropertyStorage.get(GTLiteRecipeProperties.NANO_FORGE_TIER, 0))!!
+    val tier = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.NANO_FORGE_TIER, 0) } ?: 0
 
     constructor()
 
     @Suppress("unused")
-    constructor(recipe: Recipe,
-                recipeMap: RecipeMap<NanoForgeRecipeBuilder>) : super(recipe, recipeMap)
+    constructor(recipe: Recipe, recipeMap: RecipeMap<NanoForgeRecipeBuilder>) : super(recipe, recipeMap)
 
     constructor(recipeBuilder: RecipeBuilder<NanoForgeRecipeBuilder>) : super(recipeBuilder)
 
-    override fun copy(): NanoForgeRecipeBuilder
-    {
-        return NanoForgeRecipeBuilder(this)
-    }
+    override fun copy(): NanoForgeRecipeBuilder = NanoForgeRecipeBuilder(this)
 
     override fun applyPropertyCT(key: String, value: Any): Boolean
     {
         if (key == GTLiteRecipeProperties.NANO_FORGE_TIER.key)
         {
-            this.tier((value as Number).toInt())
+            tier((value as Number).toInt())
             return true
         }
         return super.applyPropertyCT(key, value)
     }
 
-    fun tier(tier: Int): NanoForgeRecipeBuilder
-    {
+    fun tier(tier: Int): NanoForgeRecipeBuilder = apply {
         if (tier <= 0)
         {
             GTLiteLog.logger.error("Tier cannot be less than or equal to 0", IllegalArgumentException())
-            this.recipeStatus = EnumValidationResult.INVALID
+            recipeStatus = EnumValidationResult.INVALID
         }
-        this.applyProperty(GTLiteRecipeProperties.NANO_FORGE_TIER, tier)
-        return this
+        applyProperty(GTLiteRecipeProperties.NANO_FORGE_TIER, tier)
     }
 
-    override fun toString(): String
-    {
-        return ToStringBuilder(this)
-            .appendSuper(super.toString())
-            .append(GTLiteRecipeProperties.NANO_FORGE_TIER.key, this.tier)
-            .toString()
+    override fun toString(): String = buildToString(this) {
+        appendSuper(super.toString())
+        append(GTLiteRecipeProperties.NANO_FORGE_TIER.key, tier)
     }
-
 }

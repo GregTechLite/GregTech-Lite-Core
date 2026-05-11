@@ -31,15 +31,13 @@ class AccelerationTrackRecipeBuilder : RecipeBuilder<AccelerationTrackRecipeBuil
         return super.applyPropertyCT(key, value)
     }
 
-    fun tier(tier: Int): AccelerationTrackRecipeBuilder
-    {
+    fun tier(tier: Int): AccelerationTrackRecipeBuilder = apply {
         if (tier <= 0)
         {
             GTLiteLog.logger.error("Tier cannot be less than or equal to 0", IllegalArgumentException())
             recipeStatus = EnumValidationResult.INVALID
         }
         applyProperty(GTLiteRecipeProperties.ACCELERATION_TRACK_TIER, tier)
-        return this
     }
 
     override fun toString(): String = buildToString(this) {
