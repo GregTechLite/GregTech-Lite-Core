@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSet
 import com.google.gson.internal.LinkedTreeMap
+import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import java.util.TreeMap
@@ -125,8 +126,23 @@ fun <K, V> openHashMapOf(): Object2ObjectMap<K, V> = Object2ObjectOpenHashMap()
 fun <K, V> openHashMapOf(map: Map<K, V>): Object2ObjectMap<K, V> = Object2ObjectOpenHashMap(map)
 
 fun <K, V> openHashMapOf(vararg pairs: Pair<K, V>): Object2ObjectMap<K, V> = Object2ObjectOpenHashMap<K, V>().apply {
-    pairs.forEach { put(it.first, it.second) } }
+    pairs.forEach { put(it.first, it.second) }
+}
 
 fun <K, V> Map<K, V>.toOpenHashMap(): Object2ObjectMap<K, V> = Object2ObjectOpenHashMap(this)
+
+// endregion
+
+// region FastUtil: Object2ObjectMap & Object2ObjectArrayMap
+
+fun <K, V> openArrayMapOf(): Object2ObjectMap<K, V> = Object2ObjectArrayMap()
+
+fun <K, V> openArrayMapOf(map: Map<K, V>): Object2ObjectMap<K, V> = Object2ObjectArrayMap(map)
+
+fun <K, V> openArrayMapOf(vararg pairs: Pair<K, V>): Object2ObjectMap<K, V> = Object2ObjectArrayMap<K, V>().apply {
+    pairs.forEach { put(it.first, it.second) }
+}
+
+fun <K, V> Map<K, V>.toOpenArrayMap(): Object2ObjectMap<K, V> = Object2ObjectArrayMap<K, V>(this)
 
 // endregion
