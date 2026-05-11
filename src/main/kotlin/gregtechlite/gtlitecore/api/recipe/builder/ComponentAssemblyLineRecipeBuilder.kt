@@ -5,12 +5,13 @@ import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.EnumValidationResult
 import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.api.util.buildToString
 
 class ComponentAssemblyLineRecipeBuilder : RecipeBuilder<ComponentAssemblyLineRecipeBuilder>
 {
-    val tier = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.COMPONENT_ASSEMBLY_LINE_TIER, 0) } ?: 0
+    val tier
+        get() = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.COMPONENT_ASSEMBLY_LINE_TIER, 0) } ?: 0
 
     constructor()
 
@@ -40,7 +41,7 @@ class ComponentAssemblyLineRecipeBuilder : RecipeBuilder<ComponentAssemblyLineRe
         applyProperty(GTLiteRecipeProperties.COMPONENT_ASSEMBLY_LINE_TIER, tier)
     }
 
-    override fun toString(): String = buildToString(this) {
+    override fun toString(): String = buildToString {
         appendSuper(super.toString())
         append(GTLiteRecipeProperties.COMPONENT_ASSEMBLY_LINE_TIER.key, tier)
     }

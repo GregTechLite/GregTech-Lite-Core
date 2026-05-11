@@ -3,8 +3,8 @@ package gregtechlite.gtlitecore.api.recipe.builder
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
+import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.property.MobOnTopProperty
-import gregtechlite.gtlitecore.api.util.buildToString
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityList
 import net.minecraft.util.ResourceLocation
@@ -12,7 +12,8 @@ import kotlin.reflect.KClass
 
 class MobProximityRecipeBuilder : RecipeBuilder<MobProximityRecipeBuilder>
 {
-    val entityId = recipePropertyStorage?.let { recipePropertyStorage.get(MobOnTopProperty, ResourceLocation("lightning_bolt")) } ?: ResourceLocation("lightning_bolt")
+    val entityId
+        get() = recipePropertyStorage?.let { recipePropertyStorage.get(MobOnTopProperty, ResourceLocation("lightning_bolt")) } ?: ResourceLocation("lightning_bolt")
 
     constructor()
 
@@ -45,7 +46,7 @@ class MobProximityRecipeBuilder : RecipeBuilder<MobProximityRecipeBuilder>
 
     fun mob(entityClazz: KClass<out Entity>): MobProximityRecipeBuilder = mob(entityClazz.javaObjectType)
 
-    override fun toString(): String = buildToString(this) {
+    override fun toString(): String = buildToString {
         appendSuper(super.toString())
         append(MobOnTopProperty.key, entityId)
     }

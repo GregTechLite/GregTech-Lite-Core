@@ -5,12 +5,13 @@ import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.EnumValidationResult
 import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.api.util.buildToString
 
 class QuantumForceTransformerRecipeBuilder : RecipeBuilder<QuantumForceTransformerRecipeBuilder>
 {
-    val tier = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.QUANTUM_FORCE_TRANSFORMER_TIER, 0) } ?: 0
+    val tier
+        get() = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.QUANTUM_FORCE_TRANSFORMER_TIER, 0) } ?: 0
 
     constructor()
 
@@ -40,7 +41,7 @@ class QuantumForceTransformerRecipeBuilder : RecipeBuilder<QuantumForceTransform
         applyProperty(GTLiteRecipeProperties.QUANTUM_FORCE_TRANSFORMER_TIER, tier)
     }
 
-    override fun toString(): String = buildToString(this) {
+    override fun toString(): String = buildToString {
         appendSuper(super.toString())
         append(GTLiteRecipeProperties.QUANTUM_FORCE_TRANSFORMER_TIER.key, tier)
     }

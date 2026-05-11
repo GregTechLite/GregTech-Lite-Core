@@ -5,12 +5,13 @@ import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.EnumValidationResult
 import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.api.util.buildToString
 
 class MinimumHeightRecipeBuilder : RecipeBuilder<MinimumHeightRecipeBuilder>
 {
-    val minHeight = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.MINIMUM_HEIGHT, 0) } ?: 0
+    val minHeight
+        get() = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.MINIMUM_HEIGHT, 0) } ?: 0
 
     constructor()
 
@@ -40,7 +41,7 @@ class MinimumHeightRecipeBuilder : RecipeBuilder<MinimumHeightRecipeBuilder>
         applyProperty(GTLiteRecipeProperties.MINIMUM_HEIGHT, height)
     }
 
-    override fun toString(): String = buildToString(this) {
+    override fun toString(): String = buildToString {
         appendSuper(super.toString())
         append(GTLiteRecipeProperties.MINIMUM_HEIGHT.key, minHeight)
     }

@@ -5,13 +5,15 @@ import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.EnumValidationResult
 import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.api.util.buildToString
 
 class PCBFactoryRecipeBuilder : RecipeBuilder<PCBFactoryRecipeBuilder>
 {
-    val tier = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.PCB_FACTORY_TIER, 0) } ?: 0
-    val upgradeTier = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, 0) } ?: 0
+    val tier
+        get() = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.PCB_FACTORY_TIER, 0) } ?: 0
+    val upgradeTier
+        get() = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, 0) } ?: 0
 
     constructor()
 
@@ -55,7 +57,7 @@ class PCBFactoryRecipeBuilder : RecipeBuilder<PCBFactoryRecipeBuilder>
         applyProperty(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, tier)
     }
 
-    override fun toString(): String = buildToString(this) {
+    override fun toString(): String = buildToString {
         appendSuper(super.toString())
         append(GTLiteRecipeProperties.PCB_FACTORY_TIER.key, tier)
         append(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE.key, upgradeTier)

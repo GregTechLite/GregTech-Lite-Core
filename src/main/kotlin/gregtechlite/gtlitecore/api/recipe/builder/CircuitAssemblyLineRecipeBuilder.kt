@@ -3,13 +3,14 @@ package gregtechlite.gtlitecore.api.recipe.builder
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
+import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.property.CircuitPatternProperty
-import gregtechlite.gtlitecore.api.util.buildToString
 import net.minecraft.item.ItemStack
 
 class CircuitAssemblyLineRecipeBuilder : RecipeBuilder<CircuitAssemblyLineRecipeBuilder>
 {
-    val circuit = recipePropertyStorage?.let { recipePropertyStorage.get(CircuitPatternProperty, null) }
+    val circuitType
+        get() = recipePropertyStorage?.let { recipePropertyStorage.get(CircuitPatternProperty, null) }
 
     constructor()
 
@@ -34,8 +35,8 @@ class CircuitAssemblyLineRecipeBuilder : RecipeBuilder<CircuitAssemblyLineRecipe
         applyProperty(CircuitPatternProperty, stack)
     }
 
-    override fun toString() = buildToString(this) {
+    override fun toString() = buildToString {
         appendSuper(super.toString())
-        append(CircuitPatternProperty.key, circuit)
+        append(CircuitPatternProperty.key, circuitType)
     }
 }

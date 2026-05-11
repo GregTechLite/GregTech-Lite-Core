@@ -5,12 +5,13 @@ import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.EnumValidationResult
 import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import gregtechlite.gtlitecore.api.util.buildToString
 
 class NoCoilTemperatureRecipeBuilder : RecipeBuilder<NoCoilTemperatureRecipeBuilder>
 {
-    val temperature = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.NO_COIL_TEMPERATURE, 0) } ?: 0
+    val temperature
+        get() = recipePropertyStorage?.let { recipePropertyStorage.get(GTLiteRecipeProperties.NO_COIL_TEMPERATURE, 0) } ?: 0
 
     constructor()
 
@@ -40,8 +41,7 @@ class NoCoilTemperatureRecipeBuilder : RecipeBuilder<NoCoilTemperatureRecipeBuil
         applyProperty(GTLiteRecipeProperties.NO_COIL_TEMPERATURE, temp)
     }
 
-    override fun toString(): String = buildToString(this)
-    {
+    override fun toString(): String = buildToString {
         appendToString(super.toString())
         append(GTLiteRecipeProperties.NO_COIL_TEMPERATURE.key, temperature)
     }
