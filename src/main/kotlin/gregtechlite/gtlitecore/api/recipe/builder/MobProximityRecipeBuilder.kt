@@ -4,56 +4,51 @@ import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtechlite.gtlitecore.api.recipe.property.MobOnTopProperty
+import gregtechlite.gtlitecore.api.util.buildToString
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityList
 import net.minecraft.util.ResourceLocation
-import org.apache.commons.lang3.builder.ToStringBuilder
+import kotlin.reflect.KClass
 
 class MobProximityRecipeBuilder : RecipeBuilder<MobProximityRecipeBuilder>
 {
+    val entityId = recipePropertyStorage?.let { recipePropertyStorage.get(MobOnTopProperty, ResourceLocation("lightning_bolt")) } ?: ResourceLocation("lightning_bolt")
 
     constructor()
 
     @Suppress("unused")
-    constructor(recipe: Recipe,
-                recipeMap: RecipeMap<MobProximityRecipeBuilder>) : super(recipe, recipeMap)
+    constructor(recipe: Recipe, recipeMap: RecipeMap<MobProximityRecipeBuilder>) : super(recipe, recipeMap)
 
     constructor(recipeBuilder: RecipeBuilder<MobProximityRecipeBuilder>) : super(recipeBuilder)
 
-    override fun copy() = MobProximityRecipeBuilder(this)
+    override fun copy(): MobProximityRecipeBuilder = MobProximityRecipeBuilder(this)
 
     override fun applyPropertyCT(key: String, value: Any): Boolean
     {
         if (key == MobOnTopProperty.key)
         {
-            this.mob(value as ResourceLocation)
+            mob(value as ResourceLocation)
             return true
         }
         return true
     }
 
-    fun mob(entityId: ResourceLocation): MobProximityRecipeBuilder
-    {
-        this.applyProperty(MobOnTopProperty, entityId)
-        return this
+    fun mob(entityName: String): MobProximityRecipeBuilder = mob(ResourceLocation(entityName))
+
+    fun mob(entityId: ResourceLocation): MobProximityRecipeBuilder = apply {
+        applyProperty(MobOnTopProperty, entityId)
     }
 
-    // TODO: KClass support?
-    fun mob(entityClazz: Class<out Entity>): MobProximityRecipeBuilder
-    {
-        this.applyProperty(MobOnTopProperty, EntityList.getKey(entityClazz)!!)
-        return this
+    fun mob(entityClazz: Class<out Entity>): MobProximityRecipeBuilder = apply {
+        applyProperty(MobOnTopProperty, EntityList.getKey(entityClazz)!!)
     }
 
-    override fun toString() = ToStringBuilder(this)
-        .appendSuper(super.toString())
-        .append(MobOnTopProperty.key, getEntityId())
-        .toString()
+    fun mob(entityClazz: KClass<out Entity>): MobProximityRecipeBuilder = apply {
+        applyProperty(MobOnTopProperty, EntityList.getKey(entityClazz.javaObjectType)!!)
+    }
 
-    fun getEntityId(): ResourceLocation =
-        if (this.recipePropertyStorage == null) ResourceLocation("lightning_bolt") else this.recipePropertyStorage.get(
-            MobOnTopProperty,
-            ResourceLocation("lightning_bolt")
-        )!!
-
+    override fun toString(): String = buildToString(this) {
+        appendSuper(super.toString())
+        append(MobOnTopProperty.key, entityId)
+    }
 }
