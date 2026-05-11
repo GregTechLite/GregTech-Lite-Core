@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.core.network;
 
+import gregtechlite.gtlitecore.api.GTLiteValues;
 import io.netty.buffer.Unpooled;
 import gregtechlite.gtlitecore.api.GTLiteAPI;
 import gregtechlite.gtlitecore.api.module.ModuleStage;
@@ -7,7 +8,6 @@ import gregtechlite.gtlitecore.api.network.ClientExecutor;
 import gregtechlite.gtlitecore.api.network.NetworkHandler;
 import gregtechlite.gtlitecore.api.network.NetworkPacket;
 import gregtechlite.gtlitecore.api.network.ServerExecutor;
-import gregtechlite.gtlitecore.api.GTLiteLog;
 import gregtechlite.gtlitecore.core.CoreModule;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.entity.Entity;
@@ -182,7 +182,7 @@ public final class NetworkHandlerImpl implements NetworkHandler
         packet.decode(payload);
         if (payload.readableBytes() != 0)
         {
-            GTLiteLog.logger.error("NetworkHandler failed to finish reading packet with class {} and {} bytes remaining",
+            GTLiteValues.LOGGER.error("NetworkHandler failed to finish reading packet with class {} and {} bytes remaining",
                     clazz.getName(), payload.readableBytes());
         }
         return packet;

@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.common.block
 import com.morphismmc.morphismlib.client.Games
 import com.morphismmc.morphismlib.util.LeafDecayUpdate
 import gregtech.core.CoreModule
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
@@ -145,7 +145,7 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
     override fun getTranslation(blockState: IBlockState): String = runCatching {
         "${MOD_ID}.leaves.${getTreeFromState(blockState).name}"
     }.getOrElse {
-        GTLiteLog.logger.warn("Found some incorrect leave block state '$blockState'")
+        LOGGER.warn("Found some incorrect leave block state '$blockState'")
         "${MOD_ID}.leaves.error"
     }
 

@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.client;
 
-import gregtechlite.gtlitecore.api.GTLiteLog;
+import gregtechlite.gtlitecore.api.GTLiteValues;
 import gregtechlite.gtlitecore.client.event.ClientEventHandlers;
 import gregtechlite.gtlitecore.client.event.GTLiteTooltips;
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures;
@@ -37,7 +37,7 @@ public class ClientProxy extends CommonProxy
     public void onInit()
     {
         super.onInit();
-        GTLiteLog.logger.debug("Registering Block(Item)ColorHandler for Meta(Item)Blocks");
+        GTLiteValues.LOGGER.debug("Registering Block(Item)ColorHandler for Meta(Item)Blocks");
         GTLiteBlocks.registerColors();
     }
 

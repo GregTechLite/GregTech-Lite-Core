@@ -121,7 +121,7 @@ internal object RubbersChain
             fluidOutputs(Latex.getFluid(100))
             EUt(VA[ULV])
             duration(1 * SECOND)
-            blockStates("rubber", arrayListOf((MetaBlocks.RUBBER_LOG as? BlockLog)!!.defaultState))
+            blockStates("rubber", listOf((MetaBlocks.RUBBER_LOG as? BlockLog)!!.defaultState))
         }
 
         // Coagulation processing of liquid latex.

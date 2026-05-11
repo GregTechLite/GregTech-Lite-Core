@@ -2,13 +2,12 @@ package gregtechlite.gtlitecore.common;
 
 import gregtech.api.block.VariantItemBlock;
 import gregtech.common.blocks.MaterialItemBlock;
+import gregtechlite.gtlitecore.api.GTLiteValues;
 import gregtechlite.gtlitecore.api.block.TranslatableVariantItemBlock;
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeBackends;
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix;
-import gregtechlite.gtlitecore.api.GTLiteLog;
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks;
-import gregtechlite.gtlitecore.common.block.GTLiteCropBlock;
 import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock;
 import gregtechlite.gtlitecore.common.item.DimensionDisplayItemBlock;
 import gregtechlite.gtlitecore.common.item.SheetedFrameItemBlock;
@@ -69,7 +68,7 @@ public class CommonProxy
     public static void registerBlocks(@NotNull RegistryEvent.Register<Block> event)
     {
         IForgeRegistry<Block> registry = event.getRegistry();
-        GTLiteLog.logger.info("Registering Blocks...");
+        GTLiteValues.LOGGER.info("Registering Blocks...");
 
         // Register all stones in GTLiteStoneVariant.
         for (GTLiteStoneVariantBlock stone : GTLiteBlocks.STONES.values())
@@ -192,7 +191,7 @@ public class CommonProxy
     public static void registerItems(@NotNull RegistryEvent.Register<Item> event)
     {
         IForgeRegistry<Item> registry = event.getRegistry();
-        GTLiteLog.logger.info("Registering Items...");
+        GTLiteValues.LOGGER.info("Registering Items...");
         // Register all items.
         GTLiteMetaItems.register();
         // Register all item blocks.
