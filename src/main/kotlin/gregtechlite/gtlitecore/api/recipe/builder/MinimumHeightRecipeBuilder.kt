@@ -4,7 +4,7 @@ import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.EnumValidationResult
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 
@@ -35,7 +35,7 @@ class MinimumHeightRecipeBuilder : RecipeBuilder<MinimumHeightRecipeBuilder>
     fun minHeight(height: Int): MinimumHeightRecipeBuilder = apply {
         if (height <= -64 || height >= 256)
         {
-            GTLiteLog.logger.error("Minimum Height cannot be less than -64 or greater than 256", IllegalArgumentException())
+            LOGGER.error("Minimum Height cannot be less than -64 or greater than 256", IllegalArgumentException())
             recipeStatus = EnumValidationResult.INVALID
         }
         applyProperty(GTLiteRecipeProperties.MINIMUM_HEIGHT, height)

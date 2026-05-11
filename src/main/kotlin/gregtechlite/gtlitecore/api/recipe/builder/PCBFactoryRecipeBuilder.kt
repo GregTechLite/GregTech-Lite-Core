@@ -4,7 +4,7 @@ import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.EnumValidationResult
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 
@@ -42,7 +42,7 @@ class PCBFactoryRecipeBuilder : RecipeBuilder<PCBFactoryRecipeBuilder>
     fun tier(tier: Int): PCBFactoryRecipeBuilder = apply {
         if (tier <= 0)
         {
-            GTLiteLog.logger.error("PCB Factory Tier cannot be less than 0", IllegalArgumentException())
+            LOGGER.error("PCB Factory Tier cannot be less than 0", IllegalArgumentException())
             recipeStatus = EnumValidationResult.INVALID
         }
         applyProperty(GTLiteRecipeProperties.PCB_FACTORY_TIER, tier)
@@ -51,7 +51,7 @@ class PCBFactoryRecipeBuilder : RecipeBuilder<PCBFactoryRecipeBuilder>
     fun upgradeTier(tier: Int): PCBFactoryRecipeBuilder = apply {
         if (tier <= 0)
         {
-            GTLiteLog.logger.error("PCB Factory Auxiliary Tier cannot be less than 0", IllegalArgumentException())
+            LOGGER.error("PCB Factory Auxiliary Tier cannot be less than 0", IllegalArgumentException())
             recipeStatus = EnumValidationResult.INVALID
         }
         applyProperty(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, tier)

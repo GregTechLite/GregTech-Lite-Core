@@ -4,7 +4,7 @@ import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.EnumValidationResult
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 
@@ -35,7 +35,7 @@ class ComponentAssemblyLineRecipeBuilder : RecipeBuilder<ComponentAssemblyLineRe
     fun tier(tier: Int): ComponentAssemblyLineRecipeBuilder = apply {
         if (tier <= 0)
         {
-            GTLiteLog.logger.error("Tier cannot be less than or equal to 0", IllegalArgumentException())
+            LOGGER.error("Tier cannot be less than or equal to 0", IllegalArgumentException())
             recipeStatus = EnumValidationResult.INVALID
         }
         applyProperty(GTLiteRecipeProperties.COMPONENT_ASSEMBLY_LINE_TIER, tier)

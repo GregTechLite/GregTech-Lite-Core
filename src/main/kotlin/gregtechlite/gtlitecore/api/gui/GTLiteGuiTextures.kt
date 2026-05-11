@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.api.gui
 import gregtech.api.gui.resources.SteamTexture
 import gregtech.api.gui.resources.TextureArea
 import gregtechlite.gtlitecore.GTLiteMod
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import kotlin.reflect.jvm.isAccessible
 
 /**
@@ -341,7 +341,7 @@ object GTLiteGuiTextures
         return@runCatching constructor.call(bronzeTexture, steelTexture)
     }
     .getOrElse {
-        GTLiteLog.logger.warn("Cannot invoke constructor of SteamTexture, moving search namespace of the texture in path '$path' to the mod 'gregtech'")
+        LOGGER.warn("Cannot invoke constructor of SteamTexture, moving search namespace of the texture in path '$path' to the mod 'gregtech'")
         return@getOrElse SteamTexture.fullImage(path)
     }
 

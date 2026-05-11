@@ -4,7 +4,7 @@ import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.EnumValidationResult
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.extension.buildToString
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 
@@ -35,7 +35,7 @@ class NoCoilTemperatureRecipeBuilder : RecipeBuilder<NoCoilTemperatureRecipeBuil
     fun temperature(temp: Int): NoCoilTemperatureRecipeBuilder = apply {
         if (temp <= 0)
         {
-            GTLiteLog.logger.error("Temperature cannot be less than or equal to 0", IllegalArgumentException())
+            LOGGER.error("Temperature cannot be less than or equal to 0", IllegalArgumentException())
             recipeStatus = EnumValidationResult.INVALID
         }
         applyProperty(GTLiteRecipeProperties.NO_COIL_TEMPERATURE, temp)

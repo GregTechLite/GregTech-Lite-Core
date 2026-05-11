@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.common.block
 
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.extension.copy
 import net.minecraft.block.Block
 import net.minecraft.block.properties.PropertyInteger
@@ -112,7 +112,7 @@ open class GTLiteBerryBushBlock protected constructor(name: String) : GTLiteCrop
         if (efficiency > 4)
         {
             efficiency = 4
-            GTLiteLog.logger.warn("The efficiency of a Berry Bush cannot large than 4!")
+            LOGGER.warn("The efficiency of a Berry Bush cannot large than 4!")
         }
         return state.withProperty(EFFICIENCY, efficiency)
     }

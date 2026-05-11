@@ -19,7 +19,7 @@ import gregtech.api.mui.GTGuis
 import gregtech.api.mui.factory.MetaItemGuiFactory
 import gregtech.api.util.KeyUtil
 import gregtech.common.mui.widget.ScrollableTextWidget
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.pattern.JsonBlockPattern
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
@@ -201,7 +201,7 @@ object StructureWriterBehavior : IItemBehaviour, ItemUIFactory
                 }
                 builder.append(")\n")
             }
-            GTLiteLog.logger.info(builder.toString())
+            LOGGER.info(builder.toString())
             return true
         }
         return false

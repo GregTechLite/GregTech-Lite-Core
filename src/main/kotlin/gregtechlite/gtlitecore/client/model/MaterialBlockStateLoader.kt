@@ -6,7 +6,7 @@ import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.util.GTUtility
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.collection.hashTableOf
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
@@ -128,7 +128,7 @@ object MaterialBlockStateLoader {
                 it.textures.forEach { texture -> event.map.registerSprite(texture) }
             }
         }
-        .onFailure { GTLiteLog.logger.error("Failed to load material model {}:", modelEntry, it) }
+        .onFailure { LOGGER.error("Failed to load material model {}:", modelEntry, it) }
         .getOrNull()
 
     private fun bakeAndRegister(registry: IRegistry<ModelResourceLocation?, IBakedModel?>,
