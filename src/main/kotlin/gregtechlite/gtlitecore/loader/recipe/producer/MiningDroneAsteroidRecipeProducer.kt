@@ -503,8 +503,8 @@ internal object MiningDroneAsteroidRecipeProducer
     private fun addAsteroid(tier: Int, circuitMeta: Int, vararg outputs: Material)
     {
         check(tier in 1..6) { "Incorrect tier value!" }
-        check(circuitMeta in 1..32) { "Integrated Circuit value cannot be less than 0 or more than 32" }
-        check(outputs.size > 16) { "Asteroid cannot has more than 16 components" }
+        check(circuitMeta in 0..32) { "Integrated Circuit value cannot be less than 0 or more than 32" }
+        check(outputs.size <= 16) { "Asteroid cannot has more than 16 components" }
 
         val rankConfigs = asteroidTiers[tier - 1]
         val fuels = tierFuels[tier]
