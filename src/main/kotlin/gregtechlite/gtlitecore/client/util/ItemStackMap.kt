@@ -12,7 +12,8 @@
  */
 package gregtechlite.gtlitecore.client.util
 
-import com.google.common.collect.Iterators
+import gregtechlite.gtlitecore.api.collection.concat
+import gregtechlite.gtlitecore.api.collection.transform
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.getWildcardStack
 import net.minecraft.item.Item
@@ -388,14 +389,15 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean = false) : AbstractMutab
     private inner class SetView : AbstractMutableSet<MutableMap.MutableEntry<ItemStack, T>>()
     {
 
-        override fun iterator(): MutableIterator<MutableMap.MutableEntry<ItemStack, T>> = Iterators.concat(
-            Iterators.transform(itemMap.entries.iterator()) { DetailIterator(it!!) })
+        override fun iterator(): MutableIterator<MutableMap.MutableEntry<ItemStack, T>> =
+            itemMap.entries.iterator().transform { DetailIterator(it!!) }.concat()
 
         override val size: Int = this@ItemStackMap.size
 
         override fun contains(element: MutableMap.MutableEntry<ItemStack, T>) = get(element.key) == element.value
 
-        override fun add(element: MutableMap.MutableEntry<ItemStack, T>): Boolean {
+        override fun add(element: MutableMap.MutableEntry<ItemStack, T>): Boolean
+        {
             return element.value != null && put(element.key, element.value) == null
         }
 
