@@ -2,6 +2,8 @@
 
 package gregtechlite.gtlitecore.api
 
+import com.morphismmc.morphismlib.util.SidedLogger
+
 /**
  * The unique id of the mod, should be used every usage in the mod.
  */
@@ -16,6 +18,12 @@ const val MOD_NAME = GTLiteTags.MOD_NAME
  * The internal version number of the mod, it is unmodifiable as default.
  */
 const val MOD_VERSION = GTLiteTags.MOD_VERSION
+
+/**
+ * The logger for the global mod level, for module, please use its corresponding logger.
+ */
+@JvmField
+val LOGGER = SidedLogger(MOD_ID)
 
 /**
  * Regular time units in the game, used in recipes by default and tickable checks.

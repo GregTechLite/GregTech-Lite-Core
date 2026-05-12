@@ -26,7 +26,7 @@ import gregtech.api.unification.ore.OrePrefix.turbineBlade
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlazingPyrotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
@@ -401,4 +401,4 @@ private fun setMaterialAmount(prefix: OrePrefix, newAmount: Long) = runCatching 
         isAccessible = true
         setLong(prefix, newAmount)
     }
-}.onFailure { GTLiteLog.logger.error("Cannot set materialAmount for the OrePrefix $prefix with new amount $newAmount") }
+}.onFailure { LOGGER.error("Cannot set materialAmount for the OrePrefix $prefix with new amount $newAmount") }

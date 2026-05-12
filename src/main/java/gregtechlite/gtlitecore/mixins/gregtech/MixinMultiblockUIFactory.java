@@ -21,6 +21,10 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2900")
 @Compat(modId = { "gregtech", "modularui" })
 @Mixin(value = MultiblockUIFactory.class, remap = false)

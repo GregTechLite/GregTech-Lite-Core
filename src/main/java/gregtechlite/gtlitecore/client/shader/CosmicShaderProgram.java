@@ -1,9 +1,8 @@
 package gregtechlite.gtlitecore.client.shader;
 
-import gregtechlite.gtlitecore.api.GTLiteLog;
 import com.morphismmc.morphismlib.client.Games;
+import gregtechlite.gtlitecore.api.GTLiteValues;
 import net.minecraft.client.renderer.OpenGlHelper;
-import org.apache.logging.log4j.Level;
 import org.lwjgl.opengl.ARBFragmentShader;
 import org.lwjgl.opengl.ARBShaderObjects;
 import org.lwjgl.opengl.ARBVertexShader;
@@ -103,14 +102,14 @@ public class CosmicShaderProgram
         ARBShaderObjects.glLinkProgramARB(program);
         if (ARBShaderObjects.glGetObjectParameteriARB(program, ARBShaderObjects.GL_OBJECT_LINK_STATUS_ARB) == GL11.GL_FALSE)
         {
-            GTLiteLog.logger.log(Level.ERROR, getLogInfo(program));
+            GTLiteValues.LOGGER.error(getLogInfo(program));
             return 0;
         }
 
         ARBShaderObjects.glValidateProgramARB(program);
         if (ARBShaderObjects.glGetObjectParameteriARB(program, ARBShaderObjects.GL_OBJECT_VALIDATE_STATUS_ARB) == GL11.GL_FALSE)
         {
-            GTLiteLog.logger.log(Level.ERROR, getLogInfo(program));
+            GTLiteValues.LOGGER.error(getLogInfo(program));
             return 0;
         }
 
@@ -139,7 +138,7 @@ public class CosmicShaderProgram
         catch (Exception exception)
         {
             ARBShaderObjects.glDeleteObjectARB(shader);
-            GTLiteLog.logger.error("Cannot create ShaderProgram \"" + filename + "\"", exception);
+            GTLiteValues.LOGGER.error("Cannot create ShaderProgram \"" + filename + "\"", exception);
             return -1;
         }
     }

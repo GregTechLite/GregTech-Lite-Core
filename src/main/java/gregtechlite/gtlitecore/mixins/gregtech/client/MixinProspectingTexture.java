@@ -29,6 +29,7 @@ import java.awt.image.WritableRaster;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 @Mixin(value = ProspectingTexture.class, remap = false)
 public abstract class MixinProspectingTexture extends AbstractTexture
 {

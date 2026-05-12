@@ -21,7 +21,6 @@ import net.minecraft.entity.passive.EntityVillager
 import net.minecraft.init.Blocks.WOOL
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
-import net.minecraft.util.ResourceLocation
 
 internal object MobExtractorRecipes
 {
@@ -36,7 +35,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Milk.getFluid(10))
             EUt(VA[LV])
             duration(10 * TICK)
-            mob(EntityCow::class.java)
+            mob(EntityCow::class)
         }
 
         MOB_EXTRACTOR_RECIPES.addRecipe {
@@ -44,7 +43,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(10))
             EUt(VA[LV])
             duration(10 * TICK)
-            mob(EntityCow::class.java)
+            mob(EntityCow::class)
         }
 
         // Sheep
@@ -53,7 +52,7 @@ internal object MobExtractorRecipes
             outputs(WOOL)
             EUt(VA[MV])
             duration(10 * TICK)
-            mob(EntitySheep::class.java)
+            mob(EntitySheep::class)
         }
 
         MOB_EXTRACTOR_RECIPES.addRecipe {
@@ -61,7 +60,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(5))
             EUt(VA[LV])
             duration(10 * TICK)
-            mob(EntitySheep::class.java)
+            mob(EntitySheep::class)
         }
 
         // Pig
@@ -70,7 +69,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(8))
             EUt(VA[LV])
             duration(10 * TICK)
-            mob(EntityPig::class.java)
+            mob(EntityPig::class)
         }
 
         // Chicken
@@ -79,7 +78,7 @@ internal object MobExtractorRecipes
             outputs(ItemStack(Items.EGG))
             EUt(VA[LV])
             duration(10 * TICK)
-            mob(EntityChicken::class.java)
+            mob(EntityChicken::class)
         }
 
         MOB_EXTRACTOR_RECIPES.addRecipe {
@@ -87,7 +86,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(3))
             EUt(VA[LV])
             duration(10 * TICK)
-            mob(EntityChicken::class.java)
+            mob(EntityChicken::class)
         }
 
         // Horse
@@ -96,7 +95,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(80))
             EUt(VA[MV])
             duration(10 * TICK)
-            mob(EntityHorse::class.java)
+            mob(EntityHorse::class)
         }
 
         // Villager
@@ -105,7 +104,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(100))
             EUt(VA[HV])
             duration(10 * TICK)
-            mob(EntityVillager::class.java)
+            mob(EntityVillager::class)
         }
 
         // Player
@@ -114,7 +113,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(200))
             EUt(VA[EV])
             duration(10 * TICK)
-            mob(ResourceLocation("player"))
+            mob("player")
         }
 
         // TODO: Zombie, Skeleton, Mooshroom, e.t.c.?

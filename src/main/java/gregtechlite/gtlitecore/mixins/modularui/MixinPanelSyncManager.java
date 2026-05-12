@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
+@Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2900")
 @Compat(modId = { "gregtech", "modularui" })
 @Mixin(value = PanelSyncManager.class, remap = false)

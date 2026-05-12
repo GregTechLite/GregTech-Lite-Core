@@ -132,7 +132,7 @@ class MultiblockReplicator(id: ResourceLocation) : RecipeMapMultiblockController
         }
     }
 
-    override fun canBeDistinct() = false
+    override fun canBeDistinct() = true
 
     private inner class LargeReplicatorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
