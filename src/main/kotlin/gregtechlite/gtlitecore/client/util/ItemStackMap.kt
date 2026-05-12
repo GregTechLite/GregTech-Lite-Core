@@ -12,7 +12,10 @@
  */
 package gregtechlite.gtlitecore.client.util
 
-import com.google.common.collect.Iterators
+import gregtechlite.gtlitecore.api.collection.concat
+import gregtechlite.gtlitecore.api.collection.transform
+import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.extension.getWildcardStack
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -29,12 +32,8 @@ import net.minecraftforge.oredict.OreDictionary
  *
  * @author CodeChicken, glee8e, mitchej123
  */
-@Suppress("unused", "SameParameterValue")
-class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack, T>()
+class ItemStackMap<T>(private val nbtSensitive: Boolean = false) : AbstractMutableMap<ItemStack, T>()
 {
-
-    constructor() : this(false)
-
     companion object
     {
         val WILDCARD_TAG = NBTTagCompound().apply { setBoolean("*", true) }
@@ -44,21 +43,12 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
 
         private fun actualDamage(key: ItemStack) = if (isWildcard(key.itemDamage))
             OreDictionary.WILDCARD_VALUE else key.itemDamage
-
-        private fun wildcard(item: Item, nbtSensitive: Boolean): ItemStack
-        {
-            return newItemStack(item, 1, OreDictionary.WILDCARD_VALUE, if (nbtSensitive) WILDCARD_TAG else null)
-        }
-
-        private fun newItemStack(item: Item, count: Int, damage: Int, tag: NBTTagCompound?): ItemStack
-        {
-            return ItemStack(item, count, damage).apply { tagCompound = tag }
-        }
     }
 
-    private val itemMap = HashMap<Item, DetailMap>()
+    private val itemMap: MutableMap<Item, DetailMap> = hashMapOf()
+
     override var size = 0
-    override val entries: AbstractSet<MutableMap.MutableEntry<ItemStack, T>> = SetView()
+    override val entries: AbstractMutableSet<MutableMap.MutableEntry<ItemStack, T>> = SetView()
 
     override fun get(key: ItemStack): T?
     {
@@ -66,7 +56,7 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
         return detailMap.get(key)
     }
 
-    fun put(key: ItemStack, value: T): T?
+    override fun put(key: ItemStack, value: T): T?
     {
         if (key.isEmpty || value == null) return null
         val detailMap = itemMap.computeIfAbsent(key.item) { DetailMap(nbtSensitive) }
@@ -75,9 +65,8 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
         return oldValue
     }
 
-    fun remove(key: Any?): T?
+    override fun remove(key: ItemStack): T?
     {
-        if (key !is ItemStack) return null
         val detailMap = itemMap[key.item] ?: return null
         val oldValue = detailMap.remove(key)
         if (oldValue != null) size--
@@ -111,7 +100,7 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
         return result
     }
 
-    fun clear()
+    override fun clear()
     {
         itemMap.clear()
         size = 0
@@ -220,7 +209,6 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
             }
         }
 
-
         fun merge(key: ItemStack, value: T,
                   remapper: (T, T) -> T) = when (getKeyType(actualDamage(key), key.tagCompound))
         {
@@ -259,7 +247,6 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
                 i = i.withWildcardTag()
             return i
         }
-
     }
 
     private class DetailIterator<T>(private val owner: Item,
@@ -270,8 +257,10 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
         : MutableIterator<MutableMap.MutableEntry<ItemStack, T>>
     {
 
-        constructor(input: Map.Entry<Item, ItemStackMap<T>.DetailMap>) : this(input.key, input.value,
-                                                                              input.value.damageMap?.entries?.iterator(), input.value.tagMap?.entries?.iterator(),
+        constructor(input: Map.Entry<Item, ItemStackMap<T>.DetailMap>) : this(input.key,
+                                                                              input.value,
+                                                                              input.value.damageMap?.entries?.iterator(),
+                                                                              input.value.tagMap?.entries?.iterator(),
                                                                               input.value.metaMap?.entries?.iterator())
 
         private var state = State.NOT_STARTED
@@ -298,37 +287,31 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
         private fun nextState() = when (state)
         {
             State.NOT_STARTED -> if (backing.hasWildcard) State.WILDCARD else State.DAMAGE
-            State.WILDCARD -> State.DAMAGE
-            State.DAMAGE -> if (damageIterator?.hasNext() == true) State.DAMAGE else State.TAG
-            State.TAG -> if (tagIterator?.hasNext() == true) State.TAG else State.META
-            State.META -> if (metaIterator?.hasNext() == true) State.META else State.DONE
-            State.DONE -> State.DONE
+            State.WILDCARD    -> State.DAMAGE
+            State.DAMAGE      -> if (damageIterator?.hasNext() == true) State.DAMAGE else State.TAG
+            State.TAG         -> if (tagIterator?.hasNext() == true) State.TAG else State.META
+            State.META        -> if (metaIterator?.hasNext() == true) State.META else State.DONE
+            State.DONE        -> State.DONE
         }
 
         private enum class State
         {
             NOT_STARTED {
-
                 override fun <T> get(iterator: DetailIterator<T>): MutableMap.MutableEntry<ItemStack, T>
                 {
                     throw AssertionError("Should not call get on NOT_STARTED")
                 }
-
                 override fun <T> remove(iterator: DetailIterator<T>)
                 {
                     throw AssertionError("Should not call remove on NOT_STARTED")
                 }
-
             },
             WILDCARD {
-
                 override fun <T> get(iterator: DetailIterator<T>): MutableMap.MutableEntry<ItemStack, T>
                 {
                     return object : MutableMap.MutableEntry<ItemStack, T>
                     {
-
-                        override val key: ItemStack = wildcard(iterator.owner,
-                                                               iterator.backing.nbtSensitive)
+                        override val key: ItemStack = iterator.owner.getWildcardStack(iterator.backing.nbtSensitive)
 
                         override var value: T = iterator.backing.wildcard!!
 
@@ -338,7 +321,6 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
                             value = newValue
                             return newValue
                         }
-
                     }
                 }
 
@@ -348,62 +330,45 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
                     iterator.backing.wildcard = null
                     iterator.backing.hasWildcard = false
                 }
-
             },
             DAMAGE {
-
                 override fun <T> get(iterator: DetailIterator<T>): MutableMap.MutableEntry<ItemStack, T>
                 {
                     val entry = checkNotNull(iterator.damageIterator).next()
-                    return java.util.AbstractMap.SimpleEntry(newItemStack(iterator.owner,
-                                                                          1,
-                                                                          entry.key,
-                                                                          if (iterator.backing.nbtSensitive) WILDCARD_TAG else null),
-                                                             entry.value)
+                    return SimpleEntry(iterator.owner.getStack(1, entry.key,
+                         if (iterator.backing.nbtSensitive) WILDCARD_TAG else null), entry.value)
                 }
 
                 override fun <T> remove(iterator: DetailIterator<T>)
                 {
                     checkNotNull(iterator.damageIterator).remove()
                 }
-
             },
             TAG {
-
                 override fun <T> get(iterator: DetailIterator<T>): MutableMap.MutableEntry<ItemStack, T>
                 {
                     val entry = checkNotNull(iterator.tagIterator).next()
-                    return java.util.AbstractMap.SimpleEntry(newItemStack(iterator.owner,
-                                                                          1,
-                                                                          OreDictionary.WILDCARD_VALUE,
-                                                                          entry.key), entry.value)
+                    return SimpleEntry(iterator.owner.getStack(1, OreDictionary.WILDCARD_VALUE, entry.key), entry.value)
                 }
 
                 override fun <T> remove(iterator: DetailIterator<T>)
                 {
                     checkNotNull(iterator.tagIterator).remove()
                 }
-
             },
             META {
-
                 override fun <T> get(iterator: DetailIterator<T>): MutableMap.MutableEntry<ItemStack, T>
                 {
                     val entry = checkNotNull(iterator.metaIterator).next()
-                    return java.util.AbstractMap.SimpleEntry(newItemStack(iterator.owner,
-                                                                          1,
-                                                                          entry.key.damage,
-                                                                          entry.key.tag), entry.value)
+                    return SimpleEntry(iterator.owner.getStack(1, entry.key.damage, entry.key.tag), entry.value)
                 }
 
                 override fun <T> remove(iterator: DetailIterator<T>)
                 {
                     checkNotNull(iterator.metaIterator).remove()
                 }
-
             },
             DONE {
-
                 override fun <T> get(iterator: DetailIterator<T>): MutableMap.MutableEntry<ItemStack, T>
                 {
                     throw AssertionError("Should not call get on DONE")
@@ -413,44 +378,37 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
                 {
                     throw AssertionError("Should not call remove on DONE")
                 }
-
             };
 
             abstract fun <T> get(iterator: DetailIterator<T>): MutableMap.MutableEntry<ItemStack, T>
 
             abstract fun <T> remove(iterator: DetailIterator<T>)
-
         }
-
     }
 
-    private inner class SetView : AbstractSet<MutableMap.MutableEntry<ItemStack, T>>()
+    private inner class SetView : AbstractMutableSet<MutableMap.MutableEntry<ItemStack, T>>()
     {
 
-        override fun iterator(): Iterator<MutableMap.MutableEntry<ItemStack, T>> = Iterators.concat(
-            Iterators.transform(itemMap.entries.iterator()) { input ->
-                DetailIterator(input!!) })
+        override fun iterator(): MutableIterator<MutableMap.MutableEntry<ItemStack, T>> =
+            itemMap.entries.iterator().transform { DetailIterator(it!!) }.concat()
 
-        override val size: Int
-            get() = this@ItemStackMap.size
+        override val size: Int = this@ItemStackMap.size
 
         override fun contains(element: MutableMap.MutableEntry<ItemStack, T>) = get(element.key) == element.value
 
-        fun add(element: MutableMap.MutableEntry<ItemStack, T>): Boolean {
+        override fun add(element: MutableMap.MutableEntry<ItemStack, T>): Boolean
+        {
             return element.value != null && put(element.key, element.value) == null
         }
 
-        fun remove(element: Any?): Boolean
+        override fun remove(element: MutableMap.MutableEntry<ItemStack, T>): Boolean
         {
-            if (element !is Map.Entry<*, *>) return false
             return this@ItemStackMap.remove(element.key) as Boolean
         }
-
     }
 
     private class StackMetaKey(val damage: Int, val tag: NBTTagCompound?)
     {
-
         constructor(key: ItemStack) : this(actualDamage(key), key.tagCompound)
 
         override fun hashCode(): Int
@@ -466,7 +424,6 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
             if (other !is StackMetaKey) return false
             return damage == other.damage && tag == other.tag
         }
-
     }
 
     private enum class KeyType
@@ -479,5 +436,4 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean) : AbstractMap<ItemStack
         fun withWildcardMeta() = entries[ordinal or 1]
         fun withWildcardTag() = entries[ordinal or 2]
     }
-
 }

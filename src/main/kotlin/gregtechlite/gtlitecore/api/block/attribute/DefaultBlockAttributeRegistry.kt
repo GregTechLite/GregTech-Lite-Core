@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.api.block.attribute
 
+import gregtechlite.gtlitecore.api.collection.LazyValue
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import gregtechlite.gtlitecore.api.collection.treeMapOf
 import net.minecraft.block.state.IBlockState

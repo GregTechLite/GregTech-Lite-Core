@@ -14,6 +14,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2873")
 @Mixin(value = MetaTileEntityLargeBoiler.class, remap = false)
 public abstract class MixinMetaTileEntityLargeBoiler extends MultiblockWithDisplayBase

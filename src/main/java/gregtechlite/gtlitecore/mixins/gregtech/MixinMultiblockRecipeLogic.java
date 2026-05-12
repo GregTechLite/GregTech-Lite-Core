@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = MultiblockRecipeLogic.class, remap = false)
 public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic

@@ -22,6 +22,10 @@ import org.spongepowered.asm.mixin.Unique;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = MetaTileEntityMultiblockNotifiablePart.class, remap = false)
 public abstract class MixinMetaTileEntityMultiblockNotifiablePart extends MetaTileEntityMultiblockPart

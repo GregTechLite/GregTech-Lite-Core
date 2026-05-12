@@ -154,6 +154,7 @@ import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MINING_DRONE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
@@ -274,17 +275,17 @@ internal object MiningDroneAsteroidRecipeProducer
      *
      * Each asteroid tier (1-6) has 3 ranks, each rank defines drone, EUt, duration, chance and materials.
      *
-     * @param droneTier     The tier for the mining drone, used `(tier + rank - 1)` as default.
-     * @param voltageTier   The voltage tier in EUt usage for the asteroid mining recipes.
-     * @param duration      The duration for the asteroid mining recipes.
-     * @param baseChance    The base output chance.
-     *                      - Rank 1: 3000 (30%)
-     *                      - Rank 2: 6000 (60%)
-     *                      - Rank 3: 9000 (90%)
-     * @param multiplier      The output multiplier for the asteroid mining recipes (1x, 4x, 16x).
-     * @param drillMaterials  The drill materials for 1x, 4x, 16x variants.
-     * @param stickMaterials  The stick materials for 1x, 4x, 16x variants.
-     * @param orePrefix       The ore variant for output ores for the asteroid mining recipes.
+     * @param droneTier      The tier for the mining drone, used `(tier + rank - 1)` as default.
+     * @param voltageTier    The voltage tier in EUt usage for the asteroid mining recipes.
+     * @param duration       The duration for the asteroid mining recipes.
+     * @param baseChance     The base output chance.
+     *                       - Rank 1: 3000 (30%)
+     *                       - Rank 2: 6000 (60%)
+     *                       - Rank 3: 9000 (90%)
+     * @param multiplier     The output multiplier for the asteroid mining recipes (1x, 4x, 16x).
+     * @param drillMaterials The drill materials for 1x, 4x, 16x variants.
+     * @param stickMaterials The stick materials for 1x, 4x, 16x variants.
+     * @param orePrefix      The ore variant for output ores for the asteroid mining recipes.
      */
     private data class AsteroidRank(val droneTier: Int, val voltageTier: Int,
                                     val duration: Int, val baseChance: Int, val multiplier: IntArray,
@@ -501,12 +502,9 @@ internal object MiningDroneAsteroidRecipeProducer
      */
     private fun addAsteroid(tier: Int, circuitMeta: Int, vararg outputs: Material)
     {
-        if (!arrayOf(1, 2, 3, 4, 5, 6).contains(tier))
-            throw IllegalArgumentException("Incorrect tier value!")
-        if (circuitMeta < 0 || circuitMeta > 32)
-            throw IndexOutOfBoundsException("Integrated Circuit Number cannot be less than 0 and more than 32")
-        if (outputs.size > 16)
-            throw IndexOutOfBoundsException("Asteroid cannot has more than 16 components")
+        check(tier in 1..6) { "Incorrect tier value!" }
+        check(circuitMeta in 0..32) { "Integrated Circuit value cannot be less than 0 or more than 32" }
+        check(outputs.size <= 16) { "Asteroid cannot has more than 16 components" }
 
         val rankConfigs = asteroidTiers[tier - 1]
         val fuels = tierFuels[tier]
@@ -533,7 +531,7 @@ internal object MiningDroneAsteroidRecipeProducer
                     for (output in outputs)
                         builder.chancedOutput(rankConfig.orePrefix, output, multiplier, rankConfig.baseChance, 0)
 
-                    builder.EUt(VA[rankConfig.voltageTier].toLong())
+                    builder.EUt(VA[rankConfig.voltageTier])
                         .duration(rankConfig.duration)
                         .buildAndRegister()
                 }

@@ -14,6 +14,7 @@ import gregtech.api.metatileentity.MetaTileEntityHolder
 import gregtech.api.util.GTUtility.convertRGBtoOpaqueRGBA_CL
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.capability.Delegator
+import gregtechlite.gtlitecore.api.collection.to
 import gregtechlite.gtlitecore.api.extension.add
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
@@ -93,9 +94,7 @@ abstract class MetaTileEntityDelegator(metaTileEntityId: ResourceLocation,
 
     @SideOnly(Side.CLIENT)
     override fun getParticleTexture(): Pair<TextureAtlasSprite?, Int?>
-    {
-        return Pair.of(this.baseTexture, paintingColorForRendering)
-    }
+        = baseTexture to paintingColorForRendering
 
     override fun getDefaultPaintingColor(): Int = this.baseColor
 

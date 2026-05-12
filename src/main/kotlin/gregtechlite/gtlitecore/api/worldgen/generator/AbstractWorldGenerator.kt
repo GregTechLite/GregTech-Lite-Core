@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.api.worldgen.generator
 
 import gregtech.api.util.random.XoShiRo256PlusPlusRandom
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.worldgen.CustomWorldGenerator
 import gregtechlite.gtlitecore.api.worldgen.condition.GenerateCondition
 import gregtechlite.gtlitecore.common.worldgen.generator.WorldGeneratorRegistry
@@ -56,7 +56,7 @@ abstract class AbstractWorldGenerator(private val seed: Int) : CustomWorldGenera
 
         if (this.chunkCounter % 1000 == 0)
         {
-            GTLiteLog.logger.info("The World Generator '$this' has been placed successfully in chunk '$chunkPercent'" +
+            LOGGER.info("The World Generator '$this' has been placed successfully in chunk '$chunkPercent'" +
                                   " percent of time out of '$chunkCounter' chunks checked")
         }
 

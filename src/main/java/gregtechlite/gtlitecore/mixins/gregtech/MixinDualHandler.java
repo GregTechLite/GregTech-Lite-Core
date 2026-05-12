@@ -19,6 +19,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = DualHandler.class, remap = false)
 public abstract class MixinDualHandler implements INotifiableHandler, MultipleNotifiableHandler

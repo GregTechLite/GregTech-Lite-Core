@@ -7,6 +7,10 @@ import gregtechlite.gtlitecore.mixins.Implemented;
 import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * @deprecated
+ */
+@Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = MetaTileEntityFluidHatch.class, remap = false)
 public abstract class MixinMetaTileEntityFluidHatch extends MetaTileEntityMultiblockNotifiablePart
