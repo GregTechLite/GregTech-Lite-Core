@@ -11,6 +11,11 @@ import com.google.gson.internal.LinkedTreeMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import it.unimi.dsi.fastutil.objects.ObjectList
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import it.unimi.dsi.fastutil.objects.ObjectSet
+import net.minecraft.util.IntIdentityHashBiMap
 import java.util.TreeMap
 
 // region Guava: ImmutableSet
@@ -25,6 +30,18 @@ fun <E> Iterable<E>.toImmutableSet(): ImmutableSet<E> = ImmutableSet.copyOf(this
 
 // endregion
 
+// region FastUtil: ObjectSet & ObjectOpenHashSet
+
+fun <E> openHashSetOf(): ObjectSet<E> = ObjectOpenHashSet()
+
+fun <E> openHashSetOf(vararg elements: E): ObjectSet<E> = ObjectOpenHashSet(elements)
+
+fun <E> Collection<E>.toOpenHashSet(): ObjectSet<E> = ObjectOpenHashSet(this)
+
+fun <E> Iterator<E>.toOpenHashSet(): ObjectSet<E> = ObjectOpenHashSet(this)
+
+// endregion
+
 // region Guava: ImmutableList
 
 fun <E> immutableListOf(): ImmutableList<E> = ImmutableList.of()
@@ -34,6 +51,18 @@ fun <E> immutableListOf(vararg elements: E): ImmutableList<E> = ImmutableList.co
 fun <E> Collection<E>.toImmutableList(): ImmutableList<E> = ImmutableList.copyOf(this)
 
 fun <E> Iterable<E>.toImmutableList(): ImmutableList<E> = ImmutableList.copyOf(this)
+
+// endregion
+
+// region FastUtil: ObjectList & ObjectArrayList
+
+fun <E> openArrayListOf(): ObjectList<E> = ObjectArrayList()
+
+fun <E> openArrayListOf(vararg elements: E): ObjectList<E> = ObjectArrayList(elements)
+
+fun <E> Collection<E>.toOpenArrayList(): ObjectList<E> = ObjectArrayList(this)
+
+fun <E> Iterator<E>.toOpenArrayList(): ObjectList<E> = ObjectArrayList(this)
 
 // endregion
 
@@ -98,6 +127,16 @@ fun <K, V> Map<K, V>.toBiMap(): HashBiMap<K, V> = HashBiMap.create<K, V>().apply
 fun <K, V> Iterable<Pair<K, V>>.toBiMap(): HashBiMap<K, V> = HashBiMap.create<K, V>().apply {
     forEach { put(it.key, it.value) }
 }
+
+// endregion
+
+// region Minecraft: IntIdentityHashBiMap
+
+fun <K> intIdHashBiMapOf(initialCapacity: Int = Short.MAX_VALUE.toInt()): IntIdentityHashBiMap<K>
+    = IntIdentityHashBiMap(initialCapacity)
+
+fun <K> intIdHashBiMapOf(initialCapacity: Int = Short.MAX_VALUE.toInt(), vararg pairs: Pair<K, Int>): IntIdentityHashBiMap<K>
+    = IntIdentityHashBiMap<K>(initialCapacity).apply { pairs.forEach { put(it.first!!, it.second) } }
 
 // endregion
 
