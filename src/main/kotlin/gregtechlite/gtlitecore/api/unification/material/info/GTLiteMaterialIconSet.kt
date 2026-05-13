@@ -10,6 +10,7 @@ import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.item.behavior.HaloRenderItemBehavior
+import gregtechlite.gtlitecore.common.item.behavior.UniversiumRenderItemBehavior
 
 object GTLiteMaterialIconSet
 {
@@ -68,7 +69,8 @@ object GTLiteMaterialIconSet
     val WHITE_DWARF = iconSet("white_dwarf")
 
     @JvmField
-    val UNIVERSIUM = iconSet("universium")
+    val UNIVERSIUM = MaterialIconSetWithRenderer("universium", null, true,
+        UniversiumRenderItemBehavior())
 
     @JvmField
     val CHROMATIC = iconSet("chromatic")
