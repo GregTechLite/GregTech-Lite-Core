@@ -15,6 +15,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import it.unimi.dsi.fastutil.objects.ObjectSet
+import net.minecraft.util.IntIdentityHashBiMap
 import java.util.TreeMap
 
 // region Guava: ImmutableSet
@@ -126,6 +127,16 @@ fun <K, V> Map<K, V>.toBiMap(): HashBiMap<K, V> = HashBiMap.create<K, V>().apply
 fun <K, V> Iterable<Pair<K, V>>.toBiMap(): HashBiMap<K, V> = HashBiMap.create<K, V>().apply {
     forEach { put(it.key, it.value) }
 }
+
+// endregion
+
+// region Minecraft: IntIdentityHashBiMap
+
+fun <K> intIdHashBiMapOf(initialCapacity: Int = Short.MAX_VALUE.toInt()): IntIdentityHashBiMap<K>
+    = IntIdentityHashBiMap(initialCapacity)
+
+fun <K> intIdHashBiMapOf(initialCapacity: Int = Short.MAX_VALUE.toInt(), vararg pairs: Pair<K, Int>): IntIdentityHashBiMap<K>
+    = IntIdentityHashBiMap<K>(initialCapacity).apply { pairs.forEach { put(it.first!!, it.second) } }
 
 // endregion
 
