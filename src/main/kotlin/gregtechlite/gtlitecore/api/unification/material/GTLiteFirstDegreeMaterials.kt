@@ -21,6 +21,7 @@ import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Antimony
 import gregtech.api.unification.material.Materials.Arsenic
 import gregtech.api.unification.material.Materials.Astatine
+import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.Beryllium
 import gregtech.api.unification.material.Materials.Bismuth
@@ -76,6 +77,7 @@ import gregtech.api.unification.material.Materials.Moscovium
 import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Neon
 import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Nihonium
 import gregtech.api.unification.material.Materials.Niobium
 import gregtech.api.unification.material.Materials.NitricAcid
@@ -271,6 +273,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumDifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumSulfide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Canfieldite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonTetrachloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Celestine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CeriumCarbonate
@@ -296,6 +299,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cuprite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DeepIron
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DeuteriumSuperheavyMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DielectricFormationMixture
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Digenite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylcadmium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dolomite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DysprosiumOxide
@@ -455,6 +459,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RedPhosphorus
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RheniumPentachloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RhodiumTrioxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichHematite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RoastedSphalerite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RubidiumChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RubidiumHexachlorotinate
@@ -477,6 +482,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilverChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilverOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilverPerchlorate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilverTetrafluoroborate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Skutterudite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAlginate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAluminate
@@ -511,6 +517,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumFerrite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SulfurDichloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sylvanite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumPentoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tanzanite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TechnetiumDioxide
@@ -531,6 +538,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TinDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TinTetrachloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TraceRheniumFlue
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trevorite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TrichlorocyclopentadienylTitanium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TriniumTrioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TungstenTrioxide
@@ -3844,6 +3852,60 @@ object GTLiteFirstDegreeMaterials
             arcSmeltInto(Silicon)
         }
 
+        // 2351 Rich Hematite
+        RichHematite = addMaterial(2351, "rich_hematite")
+        {
+            dust()
+            ore(4, 4)
+            color(0x9E2222).iconSet(ROUGH)
+            components(BandedIron, 4, Iron3Sulfate, 6)
+        }
+
+        // 2352 Sylvanite
+        Sylvanite = addMaterial(2352, "sylvanite")
+        {
+            dust()
+            ore(2, 4)
+            color(0xE4EBDC).iconSet(METALLIC)
+            components(Gold, 1, Silver, 1, Tellurium, 4)
+        }
+
+        // 2353 Digenite
+        Digenite = addMaterial(2353, "digenite")
+        {
+            dust()
+            ore(6, 3)
+            color(0x185EFF).iconSet(SHINY)
+            components(Copper, 9, Sulfur, 5)
+        }
+
+        // 2354 Canfieldite
+        Canfieldite = addMaterial(2354, "canfieldite")
+        {
+            dust()
+            ore(5, 3)
+            color(0x2F3946)
+            components(Silver, 2, Tin, 8, Sulfur, 6)
+        }
+
+        // 2355 Trevorite
+        Trevorite = addMaterial(2355, "trevorite")
+        {
+            gem()
+            ore(5, 5)
+            color(0x302A03).iconSet(RUBY)
+            components(Nickel, 1, Iron, 2, Oxygen, 4)
+            flags(STD_METAL, GENERATE_LENS)
+        }
+
+        // 2356 Skutterudite
+        Skutterudite = addMaterial(2356, "skutterudite")
+        {
+            dust()
+            ore(6, 4)
+            color(0x15818D).iconSet(METALLIC)
+            components(Cobalt, 1, Arsenic, 3)
+        }
     }
 
     // @formatter:on

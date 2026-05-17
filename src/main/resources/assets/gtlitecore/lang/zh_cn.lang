@@ -3354,6 +3354,12 @@ gtlitecore.material.hexafluorophosphoric_acid=六氟磷酸
 gtlitecore.material.sodium_thiocyanate=硫氰酸钠
 gtlitecore.material.rhenium_hassium_thallium_isophtaloylbisdiethylthiourea_hexafluorophosphate=间苯二甲酰双(二乙硫脲)六氟磷酸铼钅黑铊（RHTIH）
 gtlitecore.material.solar_grade_silicon=太阳能级多晶硅
+gtlitecore.material.rich_hematite=富赤铁矿
+gtlitecore.material.sylvanite=针碲金矿
+gtlitecore.material.digenite=蓝辉铜矿
+gtlitecore.material.canfieldite=黑硫银锡矿
+gtlitecore.material.trevorite=镍尖晶石
+gtlitecore.material.skutterudite=方钴矿
 
 gtlitecore.material.kovar=柯伐合金
 gtlitecore.material.maraging_steel_250=马氏体时效钢250

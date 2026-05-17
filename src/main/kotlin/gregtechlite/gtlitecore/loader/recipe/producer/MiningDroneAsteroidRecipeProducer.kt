@@ -478,11 +478,6 @@ internal object MiningDroneAsteroidRecipeProducer
         addAsteroid(4, 22, Iron, Iron, Gold, Gold, Silver, Silver, Lead, Lead, Nickel, Nickel, Diamond, Diamond, Redstone, Redstone, Emerald, Emerald)
 
         // endregion
-
-        // TODO: Epic Asteroid (.) IV-ZPM
-
-        // TODO: Legendary Asteroid (.) LuV-UV, Rhenium? Advanced Platinum Group Asteroid?
-
     }
 
     /**

@@ -391,6 +391,12 @@ object GTLiteMaterials
     lateinit var SodiumThiocyanate: Material
     lateinit var RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate: Material
     lateinit var SolarGradeSilicon: Material
+    lateinit var RichHematite: Material
+    lateinit var Sylvanite: Material
+    lateinit var Digenite: Material
+    lateinit var Canfieldite: Material
+    lateinit var Trevorite: Material
+    lateinit var Skutterudite: Material
 
     // endregion
 

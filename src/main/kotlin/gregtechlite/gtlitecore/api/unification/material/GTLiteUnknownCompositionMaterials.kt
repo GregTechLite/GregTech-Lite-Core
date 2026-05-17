@@ -12,6 +12,7 @@ import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION
 import gregtech.api.unification.material.info.MaterialFlags.FLAMMABLE
+import gregtech.api.unification.material.info.MaterialFlags.FORCE_GENERATE_BLOCK
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_DOUBLE_PLATE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
@@ -273,7 +274,7 @@ object GTLiteUnknownCompositionMaterials
         {
             dust(0, 40 * SECOND)
             color(0xD2D2FA).iconSet(WAX)
-            flags(FLAMMABLE)
+            flags(FLAMMABLE, FORCE_GENERATE_BLOCK)
         }
 
         // 12029 Bitumen

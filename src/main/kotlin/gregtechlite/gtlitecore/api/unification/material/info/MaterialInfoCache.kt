@@ -124,14 +124,20 @@ import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BrevibacteriumFlavum
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Canfieldite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CupriavidusNecator
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Digenite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EscherichiaColi
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableFlerovium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Plutonium244
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichHematite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Skutterudite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StreptococcusPyogenes
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sylvanite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trevorite
 
 object MaterialInfoCache
 {
@@ -179,7 +185,7 @@ object MaterialInfoCache
                 EscherichiaColi))
 
         // All space miner produce only ores.
-
+        spaceMinerOres.addAll(listOf(RichHematite, Sylvanite, Digenite, Canfieldite, Trevorite, Skutterudite))
     }
 
     // @formatter:on
