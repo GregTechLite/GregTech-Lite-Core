@@ -1633,7 +1633,7 @@ internal object MachineRecipeLoader
             input(circuit, Tier.UV, 2)
             input(ROBOT_ARM_ZPM, 8)
             input(plateDouble, HastelloyN, 16)
-            input(rotor, VanadiumGallium, 32)
+            input(rotor, VanadiumGallium, 16)
             input(pipeNormalItem, Osmiridium, 8)
             fluidInputs(SolderingAlloy.getFluid(L * 40))
             fluidInputs(WatertightSteel.getFluid(L * 20))
