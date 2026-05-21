@@ -410,6 +410,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NitrosoniumTetraf
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Oligoclase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Orpiment
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OsmiumTetrachloride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Otavite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ozone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumBisdibenzylidieneacetone
@@ -511,6 +512,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumTrifluoroethanolate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumVanadate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SolarGradeSilicon
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Stibiconite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Strontianite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumEuropiumNihonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumFerrite
@@ -545,6 +547,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TungstenTrioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylChlorideSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrateSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vanadinite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VanadiumPentoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumUnstable
@@ -3905,6 +3908,35 @@ object GTLiteFirstDegreeMaterials
             ore(6, 4)
             color(0x15818D).iconSet(METALLIC)
             components(Cobalt, 1, Arsenic, 3)
+        }
+
+        // 2357 Vanadinite
+        Vanadinite = addMaterial(2357, "vanadinite")
+        {
+            gem()
+            ore(5, 5)
+            color(0xB26421).iconSet(LAPIS)
+            components(Lead, 5, Vanadium, 3, Oxygen, 12, Chlorine, 1)
+            flags(STD_METAL, GENERATE_LENS)
+        }
+
+        // 2358 Stibiconite
+        Stibiconite = addMaterial(2358, "stibiconite")
+        {
+            gem()
+            ore(6, 7)
+            color(0xE8F001).iconSet(GEM_VERTICAL)
+            components(Antimony, 3, Oxygen, 7, Hydrogen, 1)
+            flags(STD_METAL, GENERATE_LENS)
+        }
+
+        // 2359 Otavite
+        Otavite = addMaterial(2359, "otavite")
+        {
+            dust()
+            ore(4, 6)
+            color(0xEF5050).iconSet(ROUGH)
+            components(Cadmium, 1, Carbon, 1, Oxygen, 3)
         }
     }
 

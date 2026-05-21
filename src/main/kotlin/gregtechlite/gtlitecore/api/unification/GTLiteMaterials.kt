@@ -397,6 +397,9 @@ object GTLiteMaterials
     lateinit var Canfieldite: Material
     lateinit var Trevorite: Material
     lateinit var Skutterudite: Material
+    lateinit var Vanadinite: Material
+    lateinit var Stibiconite: Material
+    lateinit var Otavite: Material
 
     // endregion
 

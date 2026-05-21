@@ -16,6 +16,8 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
 import gregtech.api.unification.material.Materials.Andradite
 import gregtech.api.unification.material.Materials.Antimony
+import gregtech.api.unification.material.Materials.AntimonyTrifluoride
+import gregtech.api.unification.material.Materials.AntimonyTrioxide
 import gregtech.api.unification.material.Materials.Apatite
 import gregtech.api.unification.material.Materials.Astatine
 import gregtech.api.unification.material.Materials.BandedIron
@@ -195,6 +197,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butyllithium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bytownite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CAT
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CadmiumBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumAlginate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Canfieldite
@@ -300,6 +303,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitroaniline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitrotoluene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Oligoclase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Orpiment
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Otavite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Oxydianiline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumFullereneMatrix
@@ -345,6 +349,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAlginate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumFormate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPolonate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Stibiconite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Strontianite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAnhydride
@@ -377,6 +382,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trisaminoethylami
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UnprocessedNdYAGSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrateSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vanadinite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VanadiumPentoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumUnstable
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WaelzOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WaelzSlag
@@ -539,6 +546,8 @@ object GTLiteMaterialProperties
         Chrome.setProperty(PropertyKey.ORE, OreProperty())
         Cadmium.setProperty(PropertyKey.ORE, OreProperty())
 
+        Antimony.setProperty(PropertyKey.ORE, OreProperty())
+
         // Set Ore Byproducts.
         var oreProp = Andradite.getProperty(PropertyKey.ORE)
         oreProp.setOreByProducts(Andradite, Andradite, Calcium)
@@ -671,6 +680,15 @@ object GTLiteMaterialProperties
 
         oreProp = Skutterudite.getProperty(PropertyKey.ORE)
         oreProp.setOreByProducts(Cobalt, CobaltAluminate, CopperArsenite)
+
+        oreProp = Vanadinite.getProperty(PropertyKey.ORE)
+        oreProp.setOreByProducts(Lead, VanadiumPentoxide, LeadNitrate)
+
+        oreProp = Stibiconite.getProperty(PropertyKey.ORE)
+        oreProp.setOreByProducts(Antimony, AntimonyTrifluoride, AntimonyTrioxide)
+
+        oreProp = Otavite.getProperty(PropertyKey.ORE)
+        oreProp.setOreByProducts(Cadmium, Cadmium, CadmiumBromide)
     }
 
     fun setMaterialColors()
@@ -802,6 +820,8 @@ object GTLiteMaterialProperties
         ChromaticGlass.setFormula("(SiO2)64", true)
         PlutoniumDioxide.setFormula("PuO2", true)
         MOX.setFormula("(PuO2)(UO2)2", true)
+        Vanadinite.setFormula("Pb5(VO4)3Cl", true)
+        Stibiconite.setFormula("Sb3O6(OH)", true)
         // endregion
 
         // region Second Degree Materials

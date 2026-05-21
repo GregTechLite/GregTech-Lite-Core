@@ -131,13 +131,16 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EscherichiaColi
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableFlerovium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Otavite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Plutonium244
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichHematite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Skutterudite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Stibiconite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StreptococcusPyogenes
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sylvanite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trevorite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vanadinite
 
 object MaterialInfoCache
 {
@@ -185,7 +188,8 @@ object MaterialInfoCache
                 EscherichiaColi))
 
         // All space miner produce only ores.
-        spaceMinerOres.addAll(listOf(RichHematite, Sylvanite, Digenite, Canfieldite, Trevorite, Skutterudite))
+        spaceMinerOres.addAll(listOf(RichHematite, Sylvanite, Digenite, Canfieldite, Trevorite, Skutterudite,
+                Vanadinite, Antimony, Stibiconite, Otavite))
     }
 
     // @formatter:on

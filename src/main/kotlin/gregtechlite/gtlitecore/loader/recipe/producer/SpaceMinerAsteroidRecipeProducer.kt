@@ -2,6 +2,8 @@ package gregtechlite.gtlitecore.loader.recipe.producer
 
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.VA
+import gregtech.api.unification.material.Materials.Antimony
+import gregtech.api.unification.material.Materials.Cadmium
 import gregtech.api.unification.material.Materials.Charcoal
 import gregtech.api.unification.material.Materials.Coal
 import gregtech.api.unification.material.Materials.Cobaltite
@@ -11,6 +13,7 @@ import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Tin
@@ -24,11 +27,14 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Canfieldite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Digenite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Firestone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Otavite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Paraffin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichHematite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Skutterudite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Stibiconite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sylvanite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trevorite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vanadinite
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_IV
 
 object SpaceMinerAsteroidRecipeProducer
@@ -116,7 +122,30 @@ object SpaceMinerAsteroidRecipeProducer
             tier(1)
         }
 
-        // Lead-Antimony-Cadmium Asteroid TODO
+        // Lead-Antimony-Cadmium Asteroid
+        SPACE_MINER_RECIPES.addRecipe {
+            circuitMeta(5)
+            notConsumable(MINING_DRONE_IV)
+            output(oreEndstone, Lead, 1024)
+            output(oreEndstone, Antimony, 1024)
+            output(oreEndstone, Cadmium, 1024)
+            output(oreEndstone, Vanadinite, 256)
+            output(oreEndstone, Vanadinite, 256)
+            output(oreEndstone, Vanadinite, 256)
+            output(oreEndstone, Vanadinite, 256)
+            output(oreEndstone, Stibiconite, 256)
+            output(oreEndstone, Stibiconite, 256)
+            output(oreEndstone, Stibiconite, 256)
+            output(oreEndstone, Stibiconite, 256)
+            output(oreEndstone, Otavite, 256)
+            output(oreEndstone, Otavite, 256)
+            output(oreEndstone, Otavite, 256)
+            output(oreEndstone, Otavite, 256)
+            EUt(VA[IV])
+            duration(20 * SECOND)
+            CWUt(10)
+            tier(1)
+        }
 
         // endregion
 
