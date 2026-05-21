@@ -65,6 +65,7 @@ import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.STEM_CELLS
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
+import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import gregtech.common.items.MetaItems.WETWARE_BOARD
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.WETWARE_MAINFRAME_UHV
@@ -76,6 +77,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
@@ -112,9 +114,9 @@ internal object WetwareCircuits
         // Wetware Circuit Board
         CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
             arrayOf(MULTILAYER_FIBER_BOARD.getStackForm(16),
-                    PETRI_DISH.stackForm,
-                    ELECTRIC_PUMP_LuV.stackForm,
-                    SENSOR_IV.stackForm,
+                    PETRI_DISH.stack(),
+                    ELECTRIC_PUMP_LuV.stack(),
+                    SENSOR_IV.stack(),
                     OreDictUnifier.get(circuit, Tier.IV),
                     OreDictUnifier.get(foil, NiobiumTitanium, 16)),
             arrayOf(SterileGrowthMedium.getFluid(4000)))
@@ -147,12 +149,12 @@ internal object WetwareCircuits
 
         // Down consumed of etching liquids and foils.
         GTLiteRecipeHandler.removeChemicalRecipes(
-            arrayOf(WETWARE_BOARD.stackForm,
+            arrayOf(WETWARE_BOARD.stack(),
                     OreDictUnifier.get(foil, NiobiumTitanium, 32)),
             arrayOf(SodiumPersulfate.getFluid(10000)))
 
         GTLiteRecipeHandler.removeChemicalRecipes(
-            arrayOf(WETWARE_BOARD.stackForm,
+            arrayOf(WETWARE_BOARD.stack(),
                     OreDictUnifier.get(foil, NiobiumTitanium, 32)),
             arrayOf(Iron3Chloride.getFluid(5000)))
 
@@ -196,7 +198,7 @@ internal object WetwareCircuits
 
         // Neuro Process
         CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
-            arrayOf(WETWARE_CIRCUIT_BOARD.stackForm,
+            arrayOf(WETWARE_CIRCUIT_BOARD.stack(),
                     STEM_CELLS.getStackForm(16),
                     OreDictUnifier.get(pipeSmallFluid, Polybenzimidazole, 8),
                     OreDictUnifier.get(plate, Electrum, 8),
@@ -223,33 +225,33 @@ internal object WetwareCircuits
     {
         // LuV Wetware Processor
         CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
-            arrayOf(NEURO_PROCESSOR.stackForm,
-                    CRYSTAL_CENTRAL_PROCESSING_UNIT.stackForm,
-                    NANO_CENTRAL_PROCESSING_UNIT.stackForm,
+            arrayOf(NEURO_PROCESSOR.stack(),
+                    CRYSTAL_CENTRAL_PROCESSING_UNIT.stack(),
+                    NANO_CENTRAL_PROCESSING_UNIT.stack(),
                     ADVANCED_SMD_CAPACITOR.getStackForm(8),
                     ADVANCED_SMD_TRANSISTOR.getStackForm(8),
                     OreDictUnifier.get(wireFine, YttriumBariumCuprate, 8)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
         CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
-            arrayOf(NEURO_PROCESSOR.stackForm,
-                    CRYSTAL_CENTRAL_PROCESSING_UNIT.stackForm,
-                    NANO_CENTRAL_PROCESSING_UNIT.stackForm,
+            arrayOf(NEURO_PROCESSOR.stack(),
+                    CRYSTAL_CENTRAL_PROCESSING_UNIT.stack(),
+                    NANO_CENTRAL_PROCESSING_UNIT.stack(),
                     ADVANCED_SMD_CAPACITOR.getStackForm(8),
                     ADVANCED_SMD_TRANSISTOR.getStackForm(8),
                     OreDictUnifier.get(wireFine, YttriumBariumCuprate, 8)),
             arrayOf(Tin.getFluid(L)))
 
         CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
-            arrayOf(NEURO_PROCESSOR.stackForm,
-                    HIGHLY_ADVANCED_SOC.stackForm,
+            arrayOf(NEURO_PROCESSOR.stack(),
+                    HIGHLY_ADVANCED_SOC.stack(),
                     OreDictUnifier.get(wireFine, YttriumBariumCuprate, 8),
                     OreDictUnifier.get(bolt, Naquadah, 8)),
             arrayOf(SolderingAlloy.getFluid(L / 2)))
 
         CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
-            arrayOf(NEURO_PROCESSOR.stackForm,
-                    HIGHLY_ADVANCED_SOC.stackForm,
+            arrayOf(NEURO_PROCESSOR.stack(),
+                    HIGHLY_ADVANCED_SOC.stack(),
                     OreDictUnifier.get(wireFine, YttriumBariumCuprate, 8),
                     OreDictUnifier.get(bolt, Naquadah, 8)),
             arrayOf(Tin.getFluid(L)))
@@ -296,7 +298,7 @@ internal object WetwareCircuits
 
         // ZPM Wetware Assembler
         CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
-            arrayOf(WETWARE_CIRCUIT_BOARD.stackForm,
+            arrayOf(WETWARE_CIRCUIT_BOARD.stack(),
                     WETWARE_PROCESSOR_LUV.getStackForm(2),
                     ADVANCED_SMD_INDUCTOR.getStackForm(6),
                     ADVANCED_SMD_CAPACITOR.getStackForm(12),
@@ -305,7 +307,7 @@ internal object WetwareCircuits
             arrayOf(SolderingAlloy.getFluid(L)))
 
         CIRCUIT_ASSEMBLER_RECIPES.removeRecipe(
-            arrayOf(WETWARE_CIRCUIT_BOARD.stackForm,
+            arrayOf(WETWARE_CIRCUIT_BOARD.stack(),
                     WETWARE_PROCESSOR_LUV.getStackForm(2),
                     ADVANCED_SMD_INDUCTOR.getStackForm(6),
                     ADVANCED_SMD_CAPACITOR.getStackForm(12),
@@ -342,8 +344,10 @@ internal object WetwareCircuits
         }
 
         // UV Wetware Computer
+        RESEARCH_STATION_RECIPES.removeRecipe(TOOL_DATA_ORB.stack(), WETWARE_PROCESSOR_ASSEMBLY_ZPM.stack())
+        
         ASSEMBLY_LINE_RECIPES.removeRecipe(
-            arrayOf(WETWARE_CIRCUIT_BOARD.stackForm,
+            arrayOf(WETWARE_CIRCUIT_BOARD.stack(),
                     WETWARE_PROCESSOR_ASSEMBLY_ZPM.getStackForm(2),
                     ADVANCED_SMD_DIODE.getStackForm(8),
                     NOR_MEMORY_CHIP.getStackForm(16),
@@ -368,7 +372,7 @@ internal object WetwareCircuits
         }
 
         // UHV Wetware Mainframe
-        RESEARCH_STATION_RECIPES.removeRecipe(TOOL_DATA_MODULE.stackForm, WETWARE_SUPER_COMPUTER_UV.stackForm)
+        RESEARCH_STATION_RECIPES.removeRecipe(TOOL_DATA_MODULE.stack(), WETWARE_SUPER_COMPUTER_UV.stack())
 
         ASSEMBLY_LINE_RECIPES.removeRecipe(
             arrayOf(OreDictUnifier.get(frameGt, Tritanium, 2),
