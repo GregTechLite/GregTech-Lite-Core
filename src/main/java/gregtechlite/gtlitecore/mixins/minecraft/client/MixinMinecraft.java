@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.mixins.minecraft.client;
 
 import gregtechlite.gtlitecore.GTLiteMod;
-import gregtechlite.gtlitecore.api.GTLiteValues;
 import gregtechlite.gtlitecore.client.util.IconLoader;
 import gregtechlite.gtlitecore.mixins.Texts;
 import net.minecraft.client.Minecraft;
@@ -115,7 +114,7 @@ public abstract class MixinMinecraft
             }
             catch (IOException exception)
             {
-                GTLiteValues.LOGGER.error("Cannot set icons with invalid input stream assets", exception);
+                throw new IllegalArgumentException("Cannot set icons with invalid input stream assets", exception);
             }
             finally {
                 IOUtils.closeQuietly(inputStream);
