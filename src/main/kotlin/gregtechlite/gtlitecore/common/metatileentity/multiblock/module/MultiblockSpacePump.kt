@@ -224,7 +224,7 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
                         if (curOutput.value == null || curParallel.value == 0)
                             return@dynamic ""
                         val fluidStack: FluidStack = curOutput.value!!
-                        return@dynamic NumberFormat.format(fluidStack.amount.toDouble() * curParallel.value,
+                        return@dynamic NumberFormat.format(fluidStack.amount.toDouble() / maxProgress * curParallel.value,
                                                            NumberFormat.DEFAULT) + "L/s"
                     }.asWidget()
                         .marginLeft(5)
