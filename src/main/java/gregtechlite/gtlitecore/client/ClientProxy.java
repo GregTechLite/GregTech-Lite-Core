@@ -9,6 +9,9 @@ import gregtechlite.gtlitecore.client.shader.CosmicShaderProgram;
 import gregtechlite.gtlitecore.common.CommonProxy;
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks;
 import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities;
+import gregtechlite.gtlitecore.core.network.ClientNetworkHandler;
+import gregtechlite.gtlitecore.core.network.NetworkHandlerImpl;
+import gregtechlite.gtlitecore.core.network.PacketHandler;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -31,6 +34,8 @@ public class ClientProxy extends CommonProxy
         MinecraftForge.EVENT_BUS.register(ClientEventHandlers.INSTANCE);
         CosmicShaderProgram.initShaders();
         GTLiteMetaEntities.initRenderers();
+        NetworkHandlerImpl.Companion.getInstance().registerEventListener(
+                new ClientNetworkHandler(PacketHandler.Companion.getInstance()));
     }
 
     @Override

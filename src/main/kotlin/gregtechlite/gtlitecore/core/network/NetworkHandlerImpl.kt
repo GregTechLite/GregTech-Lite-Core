@@ -9,7 +9,6 @@ import gregtechlite.gtlitecore.api.network.NetworkPacket
 import gregtechlite.gtlitecore.api.network.ServerExecutor
 import gregtechlite.gtlitecore.core.CoreModule
 import io.netty.buffer.Unpooled
-import net.minecraft.client.network.NetHandlerPlayClient
 import net.minecraft.entity.Entity
 import net.minecraft.entity.player.EntityPlayerMP
 import net.minecraft.network.NetHandlerPlayServer
@@ -20,9 +19,6 @@ import net.minecraftforge.fml.common.network.FMLEventChannel
 import net.minecraftforge.fml.common.network.FMLNetworkEvent
 import net.minecraftforge.fml.common.network.NetworkRegistry
 import net.minecraftforge.fml.common.network.internal.FMLProxyPacket
-import net.minecraftforge.fml.relauncher.Side
-import net.minecraftforge.fml.relauncher.SideOnly
-
 class NetworkHandlerImpl : NetworkHandler
 {
     private var channel: FMLEventChannel? = null
@@ -100,24 +96,9 @@ class NetworkHandlerImpl : NetworkHandler
         channel?.sendToServer(toFMLPacket(packet))
     }
 
-    // TODO: Should we subscribe this class for kotlin format? In original Java code, may this can auto-searching,
-    //       but I cannot confirm the kotlin format.
-
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    fun onClientPacket(event: FMLNetworkEvent.ClientCustomPacketEvent)
+    fun registerEventListener(target: Any)
     {
-        val packet = toModPacket(event.packet)
-        if (ClientExecutor::class.java.isAssignableFrom(packet::class.java))
-        {
-            val executor = packet as ClientExecutor
-            val handler = event.handler as NetHandlerPlayClient
-            val threadListener = FMLCommonHandler.instance().getWorldThread(handler)
-            if (threadListener.isCallingFromMinecraftThread)
-                executor.executeClient(handler)
-            else
-                threadListener.addScheduledTask { executor.executeClient(handler) }
-        }
+        channel?.register(target)
     }
 
     @SubscribeEvent
