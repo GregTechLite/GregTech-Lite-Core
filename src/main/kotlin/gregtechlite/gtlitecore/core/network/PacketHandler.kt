@@ -12,7 +12,7 @@ class PacketHandler(initialCapacity: Int = 10)
     {
         private val instance = PacketHandler()
 
-        internal fun getInstance(): PacketHandler = instance
+        fun getInstance(): PacketHandler = instance
     }
 
     fun registerPacket(packetClass: Class<out NetworkPacket>)
