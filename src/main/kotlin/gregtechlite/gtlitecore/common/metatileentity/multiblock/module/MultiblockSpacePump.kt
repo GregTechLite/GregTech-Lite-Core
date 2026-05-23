@@ -73,10 +73,11 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
     private val planets = intArrayOf(0, 0, 0, 0)
     private val fluids = intArrayOf(0, 0, 0, 0)
     private val parallels = intArrayOf(0, 0, 0, 0)
+    private val baseRecipeTime = 4 * SECOND
 
     init
     {
-        maxProgress = if (moduleTier == 3) SECOND else 4 * SECOND
+        maxProgress = baseRecipeTime / getRecipeBoostFactor(moduleTier)
     }
 
     companion object
@@ -153,7 +154,9 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
         else tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.4"))
         if (moduleTier == 3) tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.tooltip.5"))
 
-        tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.max_parallel", GTValues.VNF[tier]))
+        tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.max_parallel",
+                                GTValues.VNF[tier],
+                                getParallelLimit()))
         tooltip.add(I18n.format("gtlitecore.machine.space_pump_module.track_tier", getTrackTier(moduleTier)))
     }
 
@@ -162,6 +165,14 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
         1    -> "MK1"
         2    -> "MK2"
         else -> "MK4"
+    }
+
+    private fun getRecipeBoostFactor(moduleTier: Int) = when (moduleTier)
+    {
+        1    -> 1
+        2    -> 1
+        3    -> 4
+        else -> 1
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)
@@ -224,8 +235,8 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
                         if (curOutput.value == null || curParallel.value == 0)
                             return@dynamic ""
                         val fluidStack: FluidStack = curOutput.value!!
-                        return@dynamic NumberFormat.format(fluidStack.amount.toDouble() / maxProgress * curParallel.value,
-                                                           NumberFormat.DEFAULT) + "L/s"
+                        return@dynamic NumberFormat.format(fluidStack.amount.toDouble() * getRecipeBoostFactor(
+                                moduleTier) * curParallel.value, NumberFormat.DEFAULT) + "L/s"
                     }.asWidget()
                         .marginLeft(5)
                         .color(Color.ORANGE.main))
