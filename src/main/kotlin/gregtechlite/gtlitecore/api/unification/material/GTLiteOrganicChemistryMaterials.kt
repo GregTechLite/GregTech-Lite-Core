@@ -329,7 +329,9 @@ object GTLiteOrganicChemistryMaterials
         Polyisoprene = addMaterial(8003, "polyisoprene")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(423)
+            }
             color(0x575757).iconSet(SHINY)
             components(Carbon, 5, Hydrogen, 8)
             flags(NO_SMASHING, NO_SMELTING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
@@ -555,7 +557,9 @@ object GTLiteOrganicChemistryMaterials
         KaptonK = addMaterial(8030, "kapton_k")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(673)
+            }
             color(0xFFCE52)
             components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -589,7 +593,9 @@ object GTLiteOrganicChemistryMaterials
         KaptonE = addMaterial(8034, "kapton_e")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(873)
+            }
             color(0xFFDF8C)
             components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
             flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, NO_SMASHING, NO_SMELTING, GENERATE_FOIL)
@@ -623,7 +629,9 @@ object GTLiteOrganicChemistryMaterials
         Polymethylmethacrylate = addMaterial(8038, "polymethylmethacrylate")
         {
             ingot()
-            liquid()
+            liquid {
+                temperature(473)
+            }
             color(0x91CAE1)
             components(Carbon, 5, Hydrogen, 8, Oxygen, 2)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE,
@@ -666,7 +674,9 @@ object GTLiteOrganicChemistryMaterials
         Polystyrene = addMaterial(8043, "polystyrene")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(423)
+            }
             color(0xE1C2C2)
             components(Carbon, 8, Hydrogen, 8)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -676,7 +686,9 @@ object GTLiteOrganicChemistryMaterials
         PolystyreneSulfonate = addMaterial(8044, "polystyrene_sulfonate")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(293)
+            }
             color(0xE17C72)
             components(Carbon, 8, Hydrogen, 8, Sulfur, 1, Oxygen, 3)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -886,7 +898,9 @@ object GTLiteOrganicChemistryMaterials
         PolyphosphonitrileFluoroRubber = addMaterial(8068, "polyphosphonitrile_fluoro_rubber")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(593)
+            }
             color(0x372B28)
             components(Carbon, 24, Hydrogen, 16, Oxygen, 8, Nitrogen, 4, Phosphorus, 4, Fluorine, 40)
             flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_FOIL)
@@ -956,7 +970,9 @@ object GTLiteOrganicChemistryMaterials
         PolytetramethyleneGlycolRubber = addMaterial(8076, "polytetramethylene_glycol_rubber")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(423)
+            }
             color(0xFFFFFF)
             components(Carbon, 23, Hydrogen, 23, Oxygen, 5, Nitrogen, 2)
             flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_FOIL)
@@ -1024,7 +1040,9 @@ object GTLiteOrganicChemistryMaterials
         Polyetheretherketone = addMaterial(8084, "polyetheretherketone")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(673)
+            }
             color(0x45433D)
             components(Carbon, 20, Hydrogen, 12, Oxygen, 3)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -1237,7 +1255,9 @@ object GTLiteOrganicChemistryMaterials
         PolyethyleneTerephthalate = addMaterial(8108, "polyethylene_terephthalate")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(523)
+            }
             color(0x1E5C58)
             components(Carbon, 10, Hydrogen, 6, Oxygen, 4)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)

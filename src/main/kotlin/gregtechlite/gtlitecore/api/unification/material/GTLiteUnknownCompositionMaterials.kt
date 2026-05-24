@@ -190,7 +190,9 @@ object GTLiteUnknownCompositionMaterials
         Latex = addMaterial(12001, "latex")
         {
             dust()
-            liquid()
+            liquid {
+                temperature(350)
+            }
             color(0xFFFADA)
         }
 
@@ -414,7 +416,9 @@ object GTLiteUnknownCompositionMaterials
         // 12053 Fat
         Fat = addMaterial(12053, "fat")
         {
-            liquid()
+            liquid {
+                temperature(353)
+            }
             color(0xFFF200)
         }
 
