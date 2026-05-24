@@ -2053,6 +2053,7 @@ object GTLiteFirstDegreeMaterials
             }
             color(0xCC3300)
             flags(DISABLE_DECOMPOSITION)
+            components(Hydrogen, 1, Technetium, 1, Oxygen, 4)
         }
 
         // 2163 Ammonium Nitrate
