@@ -399,8 +399,10 @@ tile.gtlitecore.metal_casing_03.inconel_718.name=Radiation Protective Inconel-71
 tile.gtlitecore.metal_casing_03.nitinol_60.name=Superelastic Nitinol 60 Machine Casing
 tile.gtlitecore.metal_casing_03.lafium.name=High Energy Protective Lafium Machine Casing
 tile.gtlitecore.metal_casing_03.vanadium_gallium.name=Anti-Swelling Vanadium Gallium Machine Casing
+tile.gtlitecore.metal_casing_03.ultimet.name=Heartproof Ultimet Machine Casing
 
 tile.gtlitecore.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
+tile.gtlitecore.boiler_casing_01.ultimet.name=Ultimet Pipe Casing
 
 tile.gtlitecore.multiblock_casing_01.substrate_casing.name=Substrate Casing
 tile.gtlitecore.multiblock_casing_01.advanced_substrate_casing.name=Advanced Substrate Casing

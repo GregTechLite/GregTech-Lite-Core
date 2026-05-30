@@ -18,6 +18,7 @@ import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.RedSteel
+import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.material.Materials.VanadiumGallium
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plate
@@ -109,7 +110,7 @@ internal object MetalCasingRecipes
         create(MetalCasing.NITINOL_60, Nitinol60)
         create(MetalCasing.LAFIUM, Lafium)
         create(MetalCasing.VANADIUM_GALLIUM, VanadiumGallium)
-
+        create(MetalCasing.ULTIMET, Ultimet)
     }
 
     private fun create(outputCasing: BlockVariant, material: Material)

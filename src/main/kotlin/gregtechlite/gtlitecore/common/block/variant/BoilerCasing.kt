@@ -11,7 +11,8 @@ enum class BoilerCasing(private val serializedName: String,
                         private val harvestLevel: Int = 2) : BlockVariant, IStringSerializable, IStateHarvestLevel
 {
 
-    POLYBENZIMIDAZOLE("polybenzimidazole");
+    POLYBENZIMIDAZOLE("polybenzimidazole"),
+    ULTIMET("ultimet");
 
     override val state: IBlockState
         get() = GTLiteBlocks.BOILER_CASING_01.getState(this)

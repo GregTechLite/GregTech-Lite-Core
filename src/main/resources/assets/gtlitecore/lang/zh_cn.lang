@@ -399,8 +399,10 @@ tile.gtlitecore.metal_casing_03.inconel_718.name=防辐射镍铬基合金-718机
 tile.gtlitecore.metal_casing_03.nitinol_60.name=高弹性镍钛诺60机器外壳
 tile.gtlitecore.metal_casing_03.lafium.name=高能防护路菲恩合金机器外壳
 tile.gtlitecore.metal_casing_03.vanadium_gallium.name=抗肿胀钒镓合金机器外壳
+tile.gtlitecore.metal_casing_03.ultimet.name=耐热哈氏合金机器外壳
 
 tile.gtlitecore.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
+tile.gtlitecore.boiler_casing_01.ultimet.name=哈氏合金管道外壳
 
 tile.gtlitecore.multiblock_casing_01.substrate_casing.name=基板机械方块
 tile.gtlitecore.multiblock_casing_01.advanced_substrate_casing.name=高级基板机械方块

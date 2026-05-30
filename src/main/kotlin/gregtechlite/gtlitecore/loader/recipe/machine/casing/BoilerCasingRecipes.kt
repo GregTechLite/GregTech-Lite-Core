@@ -10,8 +10,10 @@ import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TungstenSteel
+import gregtech.api.unification.material.Materials.Ultimet
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
+import gregtech.api.unification.ore.OrePrefix.pipeNormalItem
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
@@ -97,6 +99,23 @@ internal object BoilerCasingRecipes
             input(pipeNormalFluid, Polybenzimidazole, 4)
             input(frameGt, Polybenzimidazole)
             outputs(BoilerCasing.POLYBENZIMIDAZOLE.getStack(ConfigHolder.recipes.casingsPerCraft))
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
+
+        // Ultimet Pipe Casing
+        ModHandler.addShapedRecipe(true, "ultimet_pipe_casing", BoilerCasing.ULTIMET.getStack(ConfigHolder.recipes.casingsPerCraft),
+            "PQP", "QFQ", "PQP",
+            'P', UnificationEntry(plate, Ultimet),
+            'Q', UnificationEntry(pipeNormalItem, Ultimet),
+            'F', UnificationEntry(frameGt, Ultimet))
+
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(5)
+            input(plate, Ultimet, 4)
+            input(pipeNormalItem, Ultimet, 4)
+            input(frameGt, Ultimet)
+            outputs(BoilerCasing.ULTIMET.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
             duration(2 * SECOND + 10 * TICK)
         }

@@ -7,6 +7,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/pipe/polybenzimidazole"
         }
+      },
+      "ultimet": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/pipe/ultimet"
+        }
       }
     }
   }
