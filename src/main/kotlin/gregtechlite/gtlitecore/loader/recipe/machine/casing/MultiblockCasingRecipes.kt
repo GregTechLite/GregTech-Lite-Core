@@ -101,9 +101,9 @@ internal object MultiblockCasingRecipes
             "PGP", "MHM", "SSS",
             'P', ELECTRIC_PISTON_UV.stack(),
             'G', UnificationEntry(gear, Tritanium),
-            'M', ELECTRIC_MOTOR_UV.stackForm,
-            'H', HULL[UV].stackForm,
-            'S', COMPONENT_GRINDER_TUNGSTEN.stack())
+            'M', ELECTRIC_MOTOR_UV,
+            'H', HULL[UV].stack(),
+            'S', COMPONENT_GRINDER_TUNGSTEN)
 
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(8)
