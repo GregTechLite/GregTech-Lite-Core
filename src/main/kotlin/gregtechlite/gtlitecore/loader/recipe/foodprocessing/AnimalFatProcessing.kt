@@ -6,6 +6,7 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
+import gregtech.api.recipes.RecipeMaps.BREWING_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
@@ -13,6 +14,7 @@ import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MACERATOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
+import gregtech.api.unification.material.Materials.BioDiesel
 import gregtech.api.unification.material.Materials.Biomass
 import gregtech.api.unification.material.Materials.Bone
 import gregtech.api.unification.material.Materials.Chloroform
@@ -21,9 +23,12 @@ import gregtech.api.unification.material.Materials.Glycerol
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Meat
 import gregtech.api.unification.material.Materials.Methanol
+import gregtech.api.unification.material.Materials.Redstone
+import gregtech.api.unification.material.Materials.Soapstone
 import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.TricalciumPhosphate
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -35,7 +40,6 @@ import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
-import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.outputs
@@ -297,6 +301,37 @@ internal object AnimalFatProcessing
             fluidOutputs(Steam.getFluid(1 * SU))
             EUt(VA[MV])
             duration(2 * SECOND + 10 * TICK)
+        }
+
+        // Stearic Acid -> Lubricant
+        for (lubricant in arrayOf(Talc, Soapstone, Redstone))
+        {
+            BREWING_RECIPES.addRecipe {
+                input(dust, lubricant)
+                fluidInputs(StearicAcid.getFluid(1000))
+                fluidOutputs(Lubricant.getFluid(1000))
+                EUt(4) // ULV
+                duration(6 * SECOND + 8 * TICK)
+            }
+        }
+
+        // Stearic Acid -> Bio Diesel
+        MIXER_RECIPES.addRecipe {
+            input(dustTiny, SodiumHydroxide)
+            fluidInputs(StearicAcid.getFluid(3000))
+            fluidInputs(Glycerol.getFluid(1000))
+            fluidOutputs(BioDiesel.getFluid(4000))
+            EUt(VA[MV])
+            duration(1 * SECOND + 12 * TICK)
+        }
+
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            input(dust, SodiumHydroxide)
+            fluidInputs(StearicAcid.getFluid(12000))
+            fluidInputs(Glycerol.getFluid(4000))
+            fluidOutputs(BioDiesel.getFluid(16000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
         }
     }
 

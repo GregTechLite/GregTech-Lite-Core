@@ -204,6 +204,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MalonicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mauveine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methoxycreosol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylFormate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylhydrazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
@@ -2388,6 +2389,15 @@ object GTLiteOrganicChemistryMaterials
             liquid()
             color(0xFFF5F5)
             components(Carbon, 18, Hydrogen, 35, Oxygen, 2, Sodium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8237 Methyl Stearate
+        MethylStearate = addMaterial(8237, "methyl_stearate")
+        {
+            liquid()
+            color(0xF6E2E2)
+            components(Carbon, 19, Hydrogen, 38, Oxygen, 2)
             flags(DISABLE_DECOMPOSITION)
         }
     }
