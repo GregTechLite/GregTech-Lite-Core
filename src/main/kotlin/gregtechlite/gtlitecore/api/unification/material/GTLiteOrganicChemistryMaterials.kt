@@ -260,6 +260,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RhodamineB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SacchariaAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sarcosine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Silane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumSulfanilate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sorbose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StearicAcid
@@ -2378,6 +2379,15 @@ object GTLiteOrganicChemistryMaterials
             liquid()
             color(0xF5E8E8)
             components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8236 Sodium Stearate
+        SodiumStearate = addMaterial(8236, "sodium_stearate")
+        {
+            liquid()
+            color(0xFFF5F5)
+            components(Carbon, 18, Hydrogen, 35, Oxygen, 2, Sodium, 1)
             flags(DISABLE_DECOMPOSITION)
         }
     }

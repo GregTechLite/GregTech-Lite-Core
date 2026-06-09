@@ -738,6 +738,7 @@ object GTLiteMaterials
     lateinit var Silane: Material
     lateinit var EthyleneVinylAcetatePolymer: Material
     lateinit var StearicAcid: Material
+    lateinit var SodiumStearate: Material
 
     // endregion
 
