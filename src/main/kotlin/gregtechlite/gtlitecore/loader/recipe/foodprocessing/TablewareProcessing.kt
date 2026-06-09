@@ -19,6 +19,8 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PiranhaSolution
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_BOWL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_CUP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CLAY_BOWL
@@ -56,6 +58,22 @@ internal object TablewareProcessing
         CHEMICAL_BATH_RECIPES.addRecipe {
             input(DIRTY_CERAMIC_BOWL)
             fluidInputs(Water.getFluid(100))
+            output(CERAMIC_BOWL)
+            EUt(VA[LV])
+            duration(1 * SECOND + 5 * TICK)
+        }
+
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(DIRTY_CERAMIC_BOWL)
+            fluidInputs(PiranhaSolution.getFluid(100))
+            output(CERAMIC_BOWL)
+            EUt(VA[LV])
+            duration(1 * SECOND + 5 * TICK)
+        }
+
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(DIRTY_CERAMIC_BOWL)
+            fluidInputs(SodiumStearate.getFluid(100))
             output(CERAMIC_BOWL)
             EUt(VA[LV])
             duration(1 * SECOND + 5 * TICK)

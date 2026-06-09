@@ -204,6 +204,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MalonicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mauveine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methoxycreosol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylFormate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylhydrazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
@@ -260,8 +261,10 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RhodamineB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SacchariaAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sarcosine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Silane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumSulfanilate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sorbose
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StearicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Succinimide
@@ -2371,6 +2374,32 @@ object GTLiteOrganicChemistryMaterials
             flags(DISABLE_DECOMPOSITION)
         }
 
+        // 8235 Stearic Acid
+        StearicAcid = addMaterial(8235, "stearic_acid")
+        {
+            liquid()
+            color(0xF5E8E8)
+            components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8236 Sodium Stearate
+        SodiumStearate = addMaterial(8236, "sodium_stearate")
+        {
+            liquid()
+            color(0xFFF5F5)
+            components(Carbon, 18, Hydrogen, 35, Oxygen, 2, Sodium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8237 Methyl Stearate
+        MethylStearate = addMaterial(8237, "methyl_stearate")
+        {
+            liquid()
+            color(0xF6E2E2)
+            components(Carbon, 19, Hydrogen, 38, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
     }
 
     // @formatter:on
