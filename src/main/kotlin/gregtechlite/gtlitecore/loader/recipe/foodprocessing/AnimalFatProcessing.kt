@@ -5,6 +5,7 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
@@ -15,6 +16,7 @@ import gregtech.api.unification.material.Materials.Biomass
 import gregtech.api.unification.material.Materials.Bone
 import gregtech.api.unification.material.Materials.Chloroform
 import gregtech.api.unification.material.Materials.DistilledWater
+import gregtech.api.unification.material.Materials.Glycerol
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Meat
 import gregtech.api.unification.material.Materials.Methanol
@@ -29,14 +31,17 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mud
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StearicAcid
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OLIVE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.ANIMAL_FAT
@@ -53,6 +58,13 @@ internal object AnimalFatProcessing
     // @formatter:off
 
     fun init()
+    {
+        oilFatProcess()
+        meatProcess()
+        stearicAcidProcess()
+    }
+
+    private fun oilFatProcess()
     {
         // Olive oil
         EXTRACTOR_RECIPES.addRecipe {
@@ -93,10 +105,12 @@ internal object AnimalFatProcessing
             EUt(VA[LV])
             duration(8 * SECOND)
         }
+    }
 
+    private fun meatProcess()
+    {
         // Redo all meats macerating, add animal fats to outputs.
         MACERATOR_RECIPES.removeRecipe(PORKCHOP)
-
         MACERATOR_RECIPES.addRecipe {
             inputs(PORKCHOP)
             output(dust, Meat, 2)
@@ -107,7 +121,6 @@ internal object AnimalFatProcessing
         }
 
         MACERATOR_RECIPES.removeRecipe(BEEF)
-
         MACERATOR_RECIPES.addRecipe {
             inputs(BEEF)
             output(dust, Meat, 2)
@@ -119,7 +132,6 @@ internal object AnimalFatProcessing
         }
 
         MACERATOR_RECIPES.removeRecipe(CHICKEN)
-
         MACERATOR_RECIPES.addRecipe {
             inputs(CHICKEN)
             output(dust, Meat)
@@ -130,7 +142,6 @@ internal object AnimalFatProcessing
         }
 
         MACERATOR_RECIPES.removeRecipe(RABBIT)
-
         MACERATOR_RECIPES.addRecipe {
             inputs(RABBIT)
             output(dust, Meat)
@@ -142,7 +153,6 @@ internal object AnimalFatProcessing
         }
 
         MACERATOR_RECIPES.removeRecipe(MUTTON)
-
         MACERATOR_RECIPES.addRecipe {
             inputs(MUTTON)
             output(dust, Meat, 2)
@@ -259,6 +269,19 @@ internal object AnimalFatProcessing
             fluidOutputs(Mud.getFluid(100))
             EUt(7) // ULV
             duration(2 * SECOND + 10 * TICK)
+        }
+    }
+
+    private fun stearicAcidProcess()
+    {
+        // C57H110O6 + 3H2O -> C3H8O3 + 3C18H36O2
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Fat.getFluid(1000))
+            fluidInputs(Water.getFluid(3000))
+            fluidOutputs(Glycerol.getFluid(1000))
+            fluidOutputs(StearicAcid.getFluid(3000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
         }
     }
 

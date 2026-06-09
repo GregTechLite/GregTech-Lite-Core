@@ -262,6 +262,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sarcosine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Silane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumSulfanilate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sorbose
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StearicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Succinimide
@@ -2371,6 +2372,14 @@ object GTLiteOrganicChemistryMaterials
             flags(DISABLE_DECOMPOSITION)
         }
 
+        // 8235 Stearic Acid
+        StearicAcid = addMaterial(8235, "stearic_acid")
+        {
+            liquid()
+            color(0xF5E8E8)
+            components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
     }
 
     // @formatter:on
