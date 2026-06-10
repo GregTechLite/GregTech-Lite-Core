@@ -2647,6 +2647,16 @@ gtlitecore.machine.large_transformer.tooltip.2=Must both use §aEnergy Hatch§7 
 
 gtlitecore.machine.large_slaughter.name=Large Slaughter
 
+gtlitecore.machine.large_fisher.name=Large Fisher
+gtlitecore.machine.large_fisher.tooltip.1=Require §9fill water§7 in multiblock to maintain environment
+gtlitecore.machine.large_fisher.tooltip.2=Use §fScrewdriver§7 click to change fishing mode (§bFish§7/§8Jerk§7/§6Treasure§7)
+gtlitecore.machine.large_fisher.tooltip.3=Maximum Parallel: §eBasic Output Count + 8 * (Voltage Tier + 1)§7
+gtlitecore.machine.large_fisher.tooltip.4=Basic Output Count in different mode will be §b§l8§r§7/§8§l4§r§7/§6§l2
+gtlitecore.machine.large_fisher.mode.0=Current Mode: §bFish§7
+gtlitecore.machine.large_fisher.mode.1=Current Mode: §8Jerk§7
+gtlitecore.machine.large_fisher.mode.2=Current Mode: §6Treasure§7
+gtlitecore.machine.large_fisher.error=Output Full
+
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§f最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。
