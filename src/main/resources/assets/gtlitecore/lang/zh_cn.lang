@@ -436,6 +436,7 @@ tile.gtlitecore.active_unique_casing_01.heat_vent.name=散热片
 tile.gtlitecore.active_unique_casing_01.temperature_controller.name=反应堆温度控制器
 tile.gtlitecore.active_unique_casing_01.nano_precise_assembly_unit.name=纳米精密装配单元
 tile.gtlitecore.active_unique_casing_01.nanite_control_casing.name=纳米蜂群控制机械方块
+tile.gtlitecore.active_unique_casing_01.crushing_wheel.name=粉碎轮
 
 tile.gtlitecore.turbine_casing_01.rhodium_plated_palladium_turbine.name=镀铑钯涡轮机器外壳
 
@@ -2222,26 +2223,6 @@ gtlitecore.machine.mob_extractor.mv.name=§b优良§f生物资源提取器
 gtlitecore.machine.mob_extractor.mv.tooltip=鸡蛋收集器
 gtlitecore.machine.mob_extractor.hv.name=§6高级§f生物资源提取器
 gtlitecore.machine.mob_extractor.hv.tooltip=鸡蛋收集器
-gtlitecore.machine.mob_extractor.ev.name=§5数字化§f生物资源提取器
-gtlitecore.machine.mob_extractor.ev.tooltip=鸡蛋收集器
-gtlitecore.machine.mob_extractor.iv.name=§1精英§f生物资源提取器
-gtlitecore.machine.mob_extractor.iv.tooltip=无痛采血站
-gtlitecore.machine.mob_extractor.luv.name=§d先锋§f生物资源提取器
-gtlitecore.machine.mob_extractor.luv.tooltip=无痛采血站
-gtlitecore.machine.mob_extractor.zpm.name=§c大师§f生物资源提取器
-gtlitecore.machine.mob_extractor.zpm.tooltip=无痛采血站
-gtlitecore.machine.mob_extractor.uv.name=§3终极§f生物资源提取器
-gtlitecore.machine.mob_extractor.uv.tooltip=活体陈列室
-gtlitecore.machine.mob_extractor.uhv.name=§4高科技§f生物资源提取器
-gtlitecore.machine.mob_extractor.uhv.tooltip=活体陈列室
-gtlitecore.machine.mob_extractor.uev.name=§a次世代§f生物资源提取器
-gtlitecore.machine.mob_extractor.uev.tooltip=活体陈列室
-gtlitecore.machine.mob_extractor.uiv.name=§2史诗§f生物资源提取器
-gtlitecore.machine.mob_extractor.uiv.tooltip=活体陈列室
-gtlitecore.machine.mob_extractor.uxv.name=§e传奇§f生物资源提取器
-gtlitecore.machine.mob_extractor.uxv.tooltip=活体陈列室
-gtlitecore.machine.mob_extractor.opv.name=§9超凡§f生物资源提取器
-gtlitecore.machine.mob_extractor.opv.tooltip=活体陈列室
 
 gtlitecore.machine.bio_simulator.lv.name=§7基础§f生物模拟室
 gtlitecore.machine.bio_simulator.lv.tooltip=怪物意识模拟器
@@ -2276,6 +2257,16 @@ gtlitecore.machine.acid_generator.hv.name=§6进阶§f酸性发电机
 gtlitecore.machine.acid_generator.hv.tooltip=需要酸性物质
 gtlitecore.machine.acid_generator.ev.name=§5涡轮§f酸性发电机
 gtlitecore.machine.acid_generator.ev.tooltip=需要酸性物质
+
+gtlitecore.machine.mob_slaughter.lv.name=§7基础§f生物屠宰机
+gtlitecore.machine.mob_slaughter.lv.tooltip=屠夫的最爱
+gtlitecore.machine.mob_slaughter.mv.name=§b优良§f生物屠宰机
+gtlitecore.machine.mob_slaughter.mv.tooltip=屠夫的最爱
+gtlitecore.machine.mob_slaughter.hv.name=§6高级§f生物屠宰机
+gtlitecore.machine.mob_slaughter.hv.tooltip=屠夫的最爱
+
+gtlitecore.machine.mob_slaughter.tooltip.1=工作时每秒对§a9×9§7范围内的§l至多4个生物§r§7造成40点伤害并产生%s次掉落
+gtlitecore.machine.mob_slaughter.tooltip.2=每次造成伤害消耗§c%s§7 EU的能量，输入§b一氧化二氮§7来将最大目标数提升到§l12个§r§7
 
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
@@ -3991,6 +3982,7 @@ gtlitecore.subtitle.tick.stellar_forge.name=恒星炎炀锻炉：超新星爆发
 gtlitecore.message.berry_bush_blocked=这会导致位于%s处的浆果丛无法生长
 
 death.attack.ore_crushing=%s被当作矿石粉碎了
+death.attack.mob_slaughtering=%s被屠宰了
 
 # Enchantment Levels
 enchantment.level.0=I

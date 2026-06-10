@@ -52,6 +52,8 @@ object GTLiteOverlays
     val NAQUADAH_REACTOR_OVERLAY = singleId("naquadah_reactor")
     @JvmField
     val ACID_GENERATOR_OVERLAY = singleId("acid_generator")
+    @JvmField
+    val MOB_SLAUGHTER_OVERLAY = singleId("mob_slaughter")
 
     // endregion
 

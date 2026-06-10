@@ -18,6 +18,7 @@ import gregtech.api.capability.impl.PropertyFluidFilter
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
+import gregtech.api.metatileentity.TieredMetaTileEntity
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.unification.material.Materials.Aluminium
@@ -141,6 +142,7 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineHugeItemBus
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileCleaningMaintenanceHatch
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobExtractor
+import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobSlaughter
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineSapCollector
 import gregtechlite.gtlitecore.common.metatileentity.single.SteamMachineSapCollector
 import gregtechlite.gtlitecore.common.metatileentity.storage.MetaTileEntityBridge
@@ -196,6 +198,7 @@ object GTLiteMetaTileEntities
     lateinit var ROCKET_ENGINE: Array<SimpleGeneratorMetaTileEntity>
     lateinit var NAQUADAH_REACTOR: Array<SimpleGeneratorMetaTileEntity>
     lateinit var ACID_GENERATOR: Array<SimpleGeneratorMetaTileEntity>
+    lateinit var MOB_SLAUGHTER: Array<MachineMobSlaughter>
 
     // endregion
 
@@ -501,12 +504,11 @@ object GTLiteMetaTileEntities
                                GTLiteOverlays.MULTICOOKER_OVERLAY, true,
                                genericGeneratorTankSizeFunction)
 
-        // 286-300: Mob Extractor (LV-OpV)
-        MOB_EXTRACTOR = register(288, 0..12) {
+        // 286-300: Mob Extractor (LV-HV)
+        MOB_EXTRACTOR = register(288, 0..2) {
             MachineMobExtractor(GTLiteMod.id("mob_extractor.${VN[it + 1].lowercase()}"),
                                 GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES,
-                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false,
-                                largeTankSizeFunction)
+                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false) { largeTankSizeFunction.apply(it) }
         }
 
         // 301-315: Bio Simulator (LV-IV)
@@ -537,6 +539,11 @@ object GTLiteMetaTileEntities
                                           GTLiteRecipeMaps.ACID_GENERATOR_FUELS,
                                           GTLiteOverlays.ACID_GENERATOR_OVERLAY, it + MV,
                                           genericGeneratorTankSizeFunction)
+        }
+
+        // 361-375: Mob Slaughter (LV-HV)
+        MOB_SLAUGHTER = register(363, 0..2) {
+            MachineMobSlaughter(GTLiteMod.id("mob_slaughter.${VN[it + 1].lowercase()}"), it + 1)
         }
 
         // endregion

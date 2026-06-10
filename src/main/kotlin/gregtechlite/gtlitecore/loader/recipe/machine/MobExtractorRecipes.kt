@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
-import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
@@ -111,12 +110,10 @@ internal object MobExtractorRecipes
         MOB_EXTRACTOR_RECIPES.addRecipe {
             circuitMeta(10)
             fluidOutputs(Blood.getFluid(200))
-            EUt(VA[EV])
+            EUt(VA[HV])
             duration(10 * TICK)
             mob("player")
         }
-
-        // TODO: Zombie, Skeleton, Mooshroom, e.t.c.?
     }
 
     // @formatter:on
