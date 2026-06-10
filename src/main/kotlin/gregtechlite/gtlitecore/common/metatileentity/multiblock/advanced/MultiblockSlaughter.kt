@@ -109,7 +109,7 @@ class MultiblockSlaughter(id: ResourceLocation) : MultiMapMultiblockController(i
 
     override fun canBeDistinct(): Boolean = true
 
-    private inner class LargeSlaughterRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
+    private inner class LargeSlaughterRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)

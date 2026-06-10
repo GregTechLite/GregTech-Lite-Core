@@ -335,18 +335,18 @@ internal object MobExtractorRecipes
             output(FEATHER, 2)
             output(EGG)
             fluidOutputs(Blood.getFluid(64))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Cow
         MOB_COLLECTING_RECIPES.addRecipe {
             notConsumable(MEMORY_CARD_COW)
-            output(LEATHER, 5)
+            output(LEATHER, 3)
             fluidOutputs(Blood.getFluid(225))
             fluidOutputs(Milk.getFluid(1000))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Pig
@@ -354,8 +354,8 @@ internal object MobExtractorRecipes
             notConsumable(MEMORY_CARD_PIG)
             output(MUD_BALL, 3)
             fluidOutputs(Blood.getFluid(175))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Sheep
@@ -364,8 +364,8 @@ internal object MobExtractorRecipes
             output(WOOL, 2)
             output(STRING, 3)
             fluidOutputs(Blood.getFluid(200))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Horse
@@ -374,8 +374,8 @@ internal object MobExtractorRecipes
             output(LEATHER, 2)
             chancedOutput(SADDLE.stack(), 2000, 0)
             fluidOutputs(Blood.getFluid(180))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Donkey
@@ -384,8 +384,8 @@ internal object MobExtractorRecipes
             output(MUD_BALL)
             chancedOutput(SADDLE.stack(), 1500, 0)
             fluidOutputs(Blood.getFluid(175))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Mule
@@ -394,33 +394,34 @@ internal object MobExtractorRecipes
             chancedOutput(SADDLE.stack(), 3500, 0)
             chancedOutput(LEAD.stack(), 3500, 0)
             fluidOutputs(Blood.getFluid(225))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Ocelot
         MOB_COLLECTING_RECIPES.addRecipe {
             notConsumable(MEMORY_CARD_OCELOT)
             fluidOutputs(Blood.getFluid(50))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Wolf
         MOB_COLLECTING_RECIPES.addRecipe {
             notConsumable(MEMORY_CARD_WOLF)
             fluidOutputs(Blood.getFluid(80))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Rabbit
         MOB_COLLECTING_RECIPES.addRecipe {
             notConsumable(MEMORY_CARD_RABBIT)
             output(RABBIT_HIDE)
+            output(RABBIT_FOOT, 2)
             fluidOutputs(Blood.getFluid(65))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Llama
@@ -428,8 +429,8 @@ internal object MobExtractorRecipes
             notConsumable(MEMORY_CARD_LLAMA)
             output(LEATHER)
             fluidOutputs(Blood.getFluid(180))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Mooshroom
@@ -438,8 +439,8 @@ internal object MobExtractorRecipes
             output(BROWN_MUSHROOM, 2)
             output(RED_MUSHROOM)
             fluidOutputs(Blood.getFluid(200))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Bat
@@ -448,23 +449,23 @@ internal object MobExtractorRecipes
             output(dust, Ash, 2)
             output(dust, DarkAsh)
             fluidOutputs(Blood.getFluid(10))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Villager
         MOB_COLLECTING_RECIPES.addRecipe {
             notConsumable(MEMORY_CARD_VILLAGER)
             fluidOutputs(Blood.getFluid(250))
-            EUt(VA[LV])
-            duration(2 * SECOND)
+            EUt(VA[HV])
+            duration(10 * SECOND)
         }
 
         // Wandering Trader
         MOB_COLLECTING_RECIPES.addRecipe {
             notConsumable(MEMORY_CARD_TRADER)
             fluidOutputs(Blood.getFluid(250))
-            EUt(VA[LV])
+            EUt(VA[HV])
             duration(10 * SECOND)
         }
 
@@ -584,8 +585,6 @@ internal object MobExtractorRecipes
     }
 
     // @formatter:on
-
-
 
     private fun addSlaughterRecipes(card: MetaItem<*>.MetaValueItem, bloodAmount: Int, fatAmount: Int,
                                     builder: SimpleRecipeBuilder.(a: Int) -> Unit)
