@@ -18,7 +18,6 @@ import gregtech.api.capability.impl.PropertyFluidFilter
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
-import gregtech.api.metatileentity.TieredMetaTileEntity
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.unification.material.Materials.Aluminium
@@ -101,6 +100,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.Multibl
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockElectromagnet
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockExtractor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockExtruder
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFisher
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFluidSolidifier
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFoodProcessor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockForgeHammer
@@ -352,6 +352,7 @@ object GTLiteMetaTileEntities
     lateinit var LARGE_ACID_GENERATOR: MultiblockAcidGenerator
     lateinit var LARGE_TRANSFORMER: MultiblockTransformer
     lateinit var LARGE_SLAUGHTER: MultiblockSlaughter
+    lateinit var LARGE_FISHER: MultiblockFisher
 
     lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
     lateinit var PLASMA_ARC_TRANSMITTER: MultiblockPlasmaArcTransmitter
@@ -867,6 +868,7 @@ object GTLiteMetaTileEntities
         LARGE_ACID_GENERATOR = register(10139, MultiblockAcidGenerator(GTLiteMod.id("large_acid_generator")))
         LARGE_TRANSFORMER = register(10140, MultiblockTransformer(GTLiteMod.id("large_transformer")))
         LARGE_SLAUGHTER = register(10141, MultiblockSlaughter(GTLiteMod.id("large_slaughter")))
+        LARGE_FISHER = register(10142, MultiblockFisher(GTLiteMod.id("large_fisher")))
 
         // ...
 

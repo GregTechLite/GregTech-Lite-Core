@@ -127,6 +127,8 @@ object GTLiteOverlays
     val MATTER_RESHAPING_FRAMEWORK_OVERLAY = multiId("matter_reshaping_framework")
     @JvmField
     val LARGE_SLAUGHTER_OVERLAY = multiId("large_slaughter")
+    @JvmField
+    val LARGE_FISHER_OVERLAY = multiId("large_fisher")
 
     // endregion
 
