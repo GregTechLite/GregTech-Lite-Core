@@ -436,6 +436,7 @@ tile.gtlitecore.active_unique_casing_01.heat_vent.name=Heat Vent
 tile.gtlitecore.active_unique_casing_01.temperature_controller.name=Fission Reactor Temperature Controller
 tile.gtlitecore.active_unique_casing_01.nano_precise_assembly_unit.name=Nano Precise Assembly Unit
 tile.gtlitecore.active_unique_casing_01.nanite_control_casing.name=Nanite Control Machine Casing
+tile.gtlitecore.active_unique_casing_01.crushing_wheel.name=Crushing Wheel Casing
 
 tile.gtlitecore.turbine_casing_01.rhodium_plated_palladium_turbine.name=Rhodium Plated Palladium Turbine Casing
 
@@ -890,6 +891,21 @@ metaitem.tool.memory_card.ghast.name=Memory Card (Ghast)
 metaitem.tool.memory_card.shulker.name=Memory Card (Shulker)
 metaitem.tool.memory_card.wither.name=Memory Card (Wither)
 metaitem.tool.memory_card.ender_dragon.name=Memory Card (Ender Dragon)
+metaitem.tool.memory_card.chicken=Memory Card (Chicken)
+metaitem.tool.memory_card.cow.name=Memory Card (Cow)
+metaitem.tool.memory_card.pig.name=Memory Card (Pig)
+metaitem.tool.memory_card.sheep.name=Memory Card (Sheep)
+metaitem.tool.memory_card.horse.name=Memory Card (Horse)
+metaitem.tool.memory_card.donkey.name=Memory Card (Donkey)
+metaitem.tool.memory_card.mule.name=Memory Card (Mule)
+metaitem.tool.memory_card.ocelot.name=Memory Card (Ocelot)
+metaitem.tool.memory_card.wolf.name=Memory Card (Wolf)
+metaitem.tool.memory_card.rabbit.name=Memory Card (Rabbit)
+metaitem.tool.memory_card.llama.name=Memory Card (Llama)
+metaitem.tool.memory_card.mooshroom.name=Memory Card (Mooshroom)
+metaitem.tool.memory_card.bat.name=Memory Card (Bat)
+metaitem.tool.memory_card.villager.name=Memory Card (Villager)
+metaitem.tool.memory_card.trader.name=Memory Card (Wandering Trader)
 
 metaitem.tool.catalyst.base.name=Catalyst Base
 metaitem.tool.catalyst.rubber_polymer.name=Rubber Polymer Catalyst
@@ -1653,6 +1669,8 @@ recipemap.integrated_ore_processor.name=Integrated Ore Processor
 recipemap.matter_reshaping_framework.name=Matter Reshaping
 recipemap.solidification_submodule.name=Forging Solidification Submodule
 recipemap.recombination_submodule.name=Separating Recombination Submodule
+recipemap.mob_collecting_mode.name=Collecting
+recipemap.mob_slaughtering_mode.name=Slaughtering
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -2222,26 +2240,6 @@ gtlitecore.machine.mob_extractor.mv.name=§bGood§f Mob Extractor
 gtlitecore.machine.mob_extractor.mv.tooltip=Egg Collector
 gtlitecore.machine.mob_extractor.hv.name=§6Advanced§f Mob Extractor
 gtlitecore.machine.mob_extractor.hv.tooltip=Egg Collector
-gtlitecore.machine.mob_extractor.ev.name=§5Digitized§f Mob Extractor
-gtlitecore.machine.mob_extractor.ev.tooltip=Egg Collector
-gtlitecore.machine.mob_extractor.iv.name=§1Elite§f Mob Extractor
-gtlitecore.machine.mob_extractor.iv.tooltip=Painless Blood Extractor
-gtlitecore.machine.mob_extractor.luv.name=§dAvant§f Mob Extractor
-gtlitecore.machine.mob_extractor.luv.tooltip=Painless Blood Extractor
-gtlitecore.machine.mob_extractor.zpm.name=§cMaster§f Mob Extractor
-gtlitecore.machine.mob_extractor.zpm.tooltip=Painless Blood Extractor
-gtlitecore.machine.mob_extractor.uv.name=§3Ultimate§f Mob Extractor
-gtlitecore.machine.mob_extractor.uv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uhv.name=§4Hi-Tech§f Mob Extractor
-gtlitecore.machine.mob_extractor.uhv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uev.name=§aNew Era§f Mob Extractor
-gtlitecore.machine.mob_extractor.uev.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uiv.name=§2Epic§f Mob Extractor
-gtlitecore.machine.mob_extractor.uiv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uxv.name=§eLegendary§f Mob Extractor
-gtlitecore.machine.mob_extractor.uxv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.opv.name=§9Exotic§f Mob Extractor
-gtlitecore.machine.mob_extractor.opv.tooltip=Bio-Trophy Chamber
 
 gtlitecore.machine.bio_simulator.lv.name=§7Basic§f Mob Simulator
 gtlitecore.machine.bio_simulator.lv.tooltip=Mobware Simulator
@@ -2276,6 +2274,16 @@ gtlitecore.machine.acid_generator.hv.name=§6Advanced§f Acid Generator
 gtlitecore.machine.acid_generator.hv.tooltip=Required Acid Matters
 gtlitecore.machine.acid_generator.ev.name=§5Turbine§f Acid Generator
 gtlitecore.machine.acid_generator.ev.tooltip=Required Acid Matters
+
+gtlitecore.machine.mob_slaughter.lv.name=§7Basic§f Mob Slaughter
+gtlitecore.machine.mob_slaughter.lv.tooltip=Butcher's favorite
+gtlitecore.machine.mob_slaughter.mv.name=§bGood§f Mob Slaughter
+gtlitecore.machine.mob_slaughter.mv.tooltip=Butcher's favorite
+gtlitecore.machine.mob_slaughter.hv.name=§6Advanced§f Mob Slaughter
+gtlitecore.machine.mob_slaughter.hv.tooltip=Butcher's favorite
+
+gtlitecore.machine.mob_slaughter.tooltip.1=Deal 40 damage and generate %s drops per second to §lup to 4 mobs§r§7 within §a9×9§7 range while working
+gtlitecore.machine.mob_slaughter.tooltip.2=Each damage deal consume §c%s§7 EU, input §bNitrous Oxide§7 to increase the maximum number of target mobs to §l12§r§7
 
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your Latex!
@@ -2634,8 +2642,10 @@ gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=氧等离子体�
 gtlitecore.machine.large_acid_generator.name=Large Acid Generator
 
 gtlitecore.machine.large_transformer.name=Large Transformer
-gtlitecore.machine.large_transformer.tooltip.1=比单方块变压器更好
-gtlitecore.machine.large_transformer.tooltip.2=必须同时安装§a能源仓§7与§b动力仓§7才可以工作。
+gtlitecore.machine.large_transformer.tooltip.1=Better than singleblock transformer
+gtlitecore.machine.large_transformer.tooltip.2=Must both use §aEnergy Hatch§7 and §bDynamo Hatch§7 for work.
+
+gtlitecore.machine.large_slaughter.name=Large Slaughter
 
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
@@ -3991,6 +4001,7 @@ gtlitecore.subtitle.tick.stellar_forge.name=Stellar Forge: Supernova Explosion
 gtlitecore.message.berry_bush_blocked=Will cause Berry Bush unable to grow at %s
 
 death.attack.ore_crushing=%s was crushed as ore
+death.attack.mob_slaughtering=%s was slaughtered
 
 # Enchantment Levels
 enchantment.level.0=I

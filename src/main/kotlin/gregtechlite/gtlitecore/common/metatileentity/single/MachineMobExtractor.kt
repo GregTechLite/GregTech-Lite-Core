@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.single
 
 import gregtech.api.capability.impl.AbstractRecipeLogic
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.recipes.Recipe
@@ -16,11 +17,10 @@ import net.minecraft.entity.EntityList
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.AxisAlignedBB
-import java.util.function.Function
 
-class MachineMobExtractor(id: ResourceLocation, recipeMap: RecipeMap<*>?,
-                          renderer: ICubeRenderer?, tier: Int, hasFrontFacing: Boolean,
-                          tankScalingFunction: Function<Int?, Int?>?) : SimpleMachineMetaTileEntity(id, recipeMap, renderer, tier, hasFrontFacing, tankScalingFunction)
+class MachineMobExtractor(id: ResourceLocation, recipeMap: RecipeMap<*>, renderer: ICubeRenderer, tier: Int,
+                          hasFrontFacing: Boolean, private val tankScalingFunction: (Int) -> Int)
+    : SimpleMachineMetaTileEntity(id, recipeMap, renderer, tier, hasFrontFacing, tankScalingFunction)
 {
 
     private var boundingBox: AxisAlignedBB? = null
@@ -34,10 +34,12 @@ class MachineMobExtractor(id: ResourceLocation, recipeMap: RecipeMap<*>?,
             return world.getEntitiesWithinAABB(Entity::class.java, boundingBox!!)
         }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MachineMobExtractor(metaTileEntityId, MOB_EXTRACTOR_RECIPES, GTLiteOverlays.MOB_EXTRACTOR_OVERLAY,
-                                                                                             tier, hasFrontFacing(), tankScalingFunction)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MachineMobExtractor(metaTileEntityId, MOB_EXTRACTOR_RECIPES, GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, tier,
+                              hasFrontFacing(), tankScalingFunction)
 
-    override fun createWorkable(recipeMap: RecipeMap<*>): AbstractRecipeLogic = MobExtractorRecipeLogic(this, recipeMap) { energyContainer }
+    override fun createWorkable(recipeMap: RecipeMap<*>): AbstractRecipeLogic
+        = MobExtractorRecipeLogic(this, recipeMap) { energyContainer }
 
     fun checkRecipe(recipe: Recipe): Boolean
     {
@@ -55,5 +57,4 @@ class MachineMobExtractor(id: ResourceLocation, recipeMap: RecipeMap<*>?,
         }
         return false
     }
-
 }

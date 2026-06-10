@@ -18,6 +18,7 @@ import gregtech.api.capability.impl.PropertyFluidFilter
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
+import gregtech.api.metatileentity.TieredMetaTileEntity
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.unification.material.Materials.Aluminium
@@ -114,6 +115,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.Multibl
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockReplicator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockRockBreaker
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockSifter
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockSlaughter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockTransformer
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockVolcanus
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockWiremill
@@ -141,6 +143,7 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineHugeItemBus
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileCleaningMaintenanceHatch
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobExtractor
+import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobSlaughter
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineSapCollector
 import gregtechlite.gtlitecore.common.metatileentity.single.SteamMachineSapCollector
 import gregtechlite.gtlitecore.common.metatileentity.storage.MetaTileEntityBridge
@@ -196,6 +199,7 @@ object GTLiteMetaTileEntities
     lateinit var ROCKET_ENGINE: Array<SimpleGeneratorMetaTileEntity>
     lateinit var NAQUADAH_REACTOR: Array<SimpleGeneratorMetaTileEntity>
     lateinit var ACID_GENERATOR: Array<SimpleGeneratorMetaTileEntity>
+    lateinit var MOB_SLAUGHTER: Array<MachineMobSlaughter>
 
     // endregion
 
@@ -347,6 +351,7 @@ object GTLiteMetaTileEntities
     lateinit var LARGE_NAQUADAH_REACTOR: MultiblockNaquadahReactor
     lateinit var LARGE_ACID_GENERATOR: MultiblockAcidGenerator
     lateinit var LARGE_TRANSFORMER: MultiblockTransformer
+    lateinit var LARGE_SLAUGHTER: MultiblockSlaughter
 
     lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
     lateinit var PLASMA_ARC_TRANSMITTER: MultiblockPlasmaArcTransmitter
@@ -501,12 +506,11 @@ object GTLiteMetaTileEntities
                                GTLiteOverlays.MULTICOOKER_OVERLAY, true,
                                genericGeneratorTankSizeFunction)
 
-        // 286-300: Mob Extractor (LV-OpV)
-        MOB_EXTRACTOR = register(288, 0..12) {
+        // 286-300: Mob Extractor (LV-HV)
+        MOB_EXTRACTOR = register(288, 0..2) {
             MachineMobExtractor(GTLiteMod.id("mob_extractor.${VN[it + 1].lowercase()}"),
                                 GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES,
-                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false,
-                                largeTankSizeFunction)
+                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false) { largeTankSizeFunction.apply(it) }
         }
 
         // 301-315: Bio Simulator (LV-IV)
@@ -537,6 +541,11 @@ object GTLiteMetaTileEntities
                                           GTLiteRecipeMaps.ACID_GENERATOR_FUELS,
                                           GTLiteOverlays.ACID_GENERATOR_OVERLAY, it + MV,
                                           genericGeneratorTankSizeFunction)
+        }
+
+        // 361-375: Mob Slaughter (LV-HV)
+        MOB_SLAUGHTER = register(363, 0..2) {
+            MachineMobSlaughter(GTLiteMod.id("mob_slaughter.${VN[it + 1].lowercase()}"), it + 1)
         }
 
         // endregion
@@ -857,6 +866,7 @@ object GTLiteMetaTileEntities
         LARGE_NAQUADAH_REACTOR = register(10138, MultiblockNaquadahReactor(GTLiteMod.id("large_naquadah_reactor")))
         LARGE_ACID_GENERATOR = register(10139, MultiblockAcidGenerator(GTLiteMod.id("large_acid_generator")))
         LARGE_TRANSFORMER = register(10140, MultiblockTransformer(GTLiteMod.id("large_transformer")))
+        LARGE_SLAUGHTER = register(10141, MultiblockSlaughter(GTLiteMod.id("large_slaughter")))
 
         // ...
 

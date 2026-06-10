@@ -92,6 +92,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LEAD
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LOOM
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MASS_FABRICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_EXTRACTOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_SLAUGHTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MULTICOOKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NAQUADAH_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.POLISHER
@@ -431,6 +432,16 @@ internal object GTMetaTileEntityLoader
             'X', CraftingComponent.CIRCUIT,
             'W', CraftingComponent.CABLE,
             'B', CraftingComponent.PIPE_REACTOR)
+
+        // Mob Slaughter
+        MetaTileEntityLoader.registerMachineRecipe(true, MOB_SLAUGHTER,
+            "BBB", "CSR", "WHW",
+            'H', CraftingComponent.HULL,
+            'W', CraftingComponent.CABLE,
+            'S', OreDictUnifier.get(toolHeadDrill, Steel),
+            'R', CraftingComponent.ROTOR,
+            'C', CraftingComponent.CONVEYOR,
+            'B', ItemStack(Blocks.IRON_BARS))
 
         // -------------------------------------------------------------------------------------------------------------
 

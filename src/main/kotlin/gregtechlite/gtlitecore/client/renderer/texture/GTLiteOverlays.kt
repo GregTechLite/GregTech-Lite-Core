@@ -52,6 +52,8 @@ object GTLiteOverlays
     val NAQUADAH_REACTOR_OVERLAY = singleId("naquadah_reactor")
     @JvmField
     val ACID_GENERATOR_OVERLAY = singleId("acid_generator")
+    @JvmField
+    val MOB_SLAUGHTER_OVERLAY = singleId("mob_slaughter")
 
     // endregion
 
@@ -123,6 +125,8 @@ object GTLiteOverlays
     val INTEGRATED_ORE_PROCESSOR_OVERLAY = multiId("integrated_ore_processor")
     @JvmField
     val MATTER_RESHAPING_FRAMEWORK_OVERLAY = multiId("matter_reshaping_framework")
+    @JvmField
+    val LARGE_SLAUGHTER_OVERLAY = multiId("large_slaughter")
 
     // endregion
 
