@@ -151,6 +151,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
 import gregtech.common.items.MetaItems.EMITTER_EV
+import gregtech.common.items.MetaItems.EMITTER_HV
 import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.EMITTER_LV
 import gregtech.common.items.MetaItems.EMITTER_LuV
@@ -177,6 +178,7 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UXV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.SENSOR_EV
+import gregtech.common.items.MetaItems.SENSOR_HV
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.items.MetaItems.SENSOR_MV
@@ -390,6 +392,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARG
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ROCKET_ENGINE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ROCK_BREAKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_SIFTER
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_SLAUGHTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_STEAM_ALLOY_SMELTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_STEAM_COMPRESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_TRANSFORMER
@@ -399,6 +402,8 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MASS_FABRICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MINING_DRONE_AIRPORT
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_EXTRACTOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_SLAUGHTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MULTICOOKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NANOSCALE_FABRICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NANO_ASSEMBLY_COMPLEX
@@ -1551,6 +1556,15 @@ internal object MachineRecipeLoader
             'X', UnificationEntry(circuit, Tier.HV))
 
         // Large Slaughter
+        ModHandler.addShapedRecipe(true, "large_slaughter", LARGE_SLAUGHTER.stack(),
+            "GGG", "ACB", "EWS",
+            'A', MOB_EXTRACTOR[HV - 1].stack(),
+            'B', MOB_SLAUGHTER[HV - 1].stack(),
+            'C', GTMetalCasing.STEEL_SOLID.stack,
+            'E', EMITTER_HV,
+            'S', SENSOR_HV,
+            'W', UnificationEntry(cableGtQuadruple, Gold),
+            'G', UnificationEntry(gear, BlackSteel))
 
         // Large Fisher
         ModHandler.removeRecipeByOutput(FISHER[HV].stack())

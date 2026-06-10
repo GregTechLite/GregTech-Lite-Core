@@ -1,12 +1,17 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
+import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
+import gregtech.api.unification.material.Materials.Bone
 import gregtech.api.unification.material.Materials.Emerald
+import gregtech.api.unification.material.Materials.Meat
 import gregtech.api.unification.material.Materials.Milk
+import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
@@ -14,8 +19,11 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.outputs
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_SLAUGHTERING_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Blood
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BASE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_CHICKEN
@@ -38,24 +46,44 @@ import net.minecraft.entity.passive.EntityHorse
 import net.minecraft.entity.passive.EntityPig
 import net.minecraft.entity.passive.EntitySheep
 import net.minecraft.entity.passive.EntityVillager
-import net.minecraft.init.Blocks
-import net.minecraft.init.Blocks.BROWN_MUSHROOM
 import net.minecraft.init.Blocks.DEADBUSH
 import net.minecraft.init.Blocks.RED_MUSHROOM
 import net.minecraft.init.Blocks.WOOL
-import net.minecraft.init.Items
 import net.minecraft.init.Items.BEETROOT
 import net.minecraft.init.Items.CARROT
+import net.minecraft.init.Items.CHICKEN
+import net.minecraft.init.Items.DIAMOND_SWORD
 import net.minecraft.init.Items.DYE
 import net.minecraft.init.Items.EGG
+import net.minecraft.init.Items.FEATHER
 import net.minecraft.init.Items.FISH
 import net.minecraft.init.Items.IRON_HORSE_ARMOR
+import net.minecraft.init.Items.IRON_SWORD
 import net.minecraft.init.Items.LEAD
 import net.minecraft.init.Items.LEATHER
 import net.minecraft.init.Items.MILK_BUCKET
 import net.minecraft.init.Items.SADDLE
+import net.minecraft.init.Items.STONE_SWORD
 import net.minecraft.init.Items.STRING
-import net.minecraft.item.ItemStack
+import net.minecraft.init.Items.WOODEN_SWORD
+import gregtech.api.recipes.builders.SimpleRecipeBuilder
+import gregtech.api.unification.material.Materials.Ash
+import gregtech.api.unification.material.Materials.DarkAsh
+import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.ore.OrePrefix.nugget
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_COLLECTING_RECIPES
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.ANIMAL_FAT
+import net.minecraft.init.Blocks.BROWN_MUSHROOM
+import net.minecraft.init.Items.BEEF
+import net.minecraft.init.Items.CLAY_BALL
+import net.minecraft.init.Items.FLINT
+import net.minecraft.init.Items.MUTTON
+import net.minecraft.init.Items.PAPER
+import net.minecraft.init.Items.PORKCHOP
+import net.minecraft.init.Items.RABBIT_FOOT
+import net.minecraft.init.Items.RABBIT_HIDE
+import net.minecraft.item.Item
 
 /**
  * @see gregtechlite.gtlitecore.loader.recipe.foodprocessing.AnimalFatProcessing
@@ -299,8 +327,286 @@ internal object MobExtractorRecipes
         }
 
         // ---------------------------------------------------------------------------------------------------------
+        // Mob Collecting
+
+        // Chicken
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_CHICKEN)
+            output(FEATHER, 2)
+            output(EGG)
+            fluidOutputs(Blood.getFluid(64))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Cow
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_COW)
+            output(LEATHER, 5)
+            fluidOutputs(Blood.getFluid(225))
+            fluidOutputs(Milk.getFluid(1000))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Pig
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_PIG)
+            output(MUD_BALL, 3)
+            fluidOutputs(Blood.getFluid(175))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Sheep
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_SHEEP)
+            output(WOOL, 2)
+            output(STRING, 3)
+            fluidOutputs(Blood.getFluid(200))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Horse
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_HORSE)
+            output(LEATHER, 2)
+            chancedOutput(SADDLE.stack(), 2000, 0)
+            fluidOutputs(Blood.getFluid(180))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Donkey
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_DONKEY)
+            output(MUD_BALL)
+            chancedOutput(SADDLE.stack(), 1500, 0)
+            fluidOutputs(Blood.getFluid(175))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Mule
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_MULE)
+            chancedOutput(SADDLE.stack(), 3500, 0)
+            chancedOutput(LEAD.stack(), 3500, 0)
+            fluidOutputs(Blood.getFluid(225))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Ocelot
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_OCELOT)
+            fluidOutputs(Blood.getFluid(50))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Wolf
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_WOLF)
+            fluidOutputs(Blood.getFluid(80))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Rabbit
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_RABBIT)
+            output(RABBIT_HIDE)
+            fluidOutputs(Blood.getFluid(65))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Llama
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_LLAMA)
+            output(LEATHER)
+            fluidOutputs(Blood.getFluid(180))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Mooshroom
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_MOOSHROOM)
+            output(BROWN_MUSHROOM, 2)
+            output(RED_MUSHROOM)
+            fluidOutputs(Blood.getFluid(200))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Bat
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_BAT)
+            output(dust, Ash, 2)
+            output(dust, DarkAsh)
+            fluidOutputs(Blood.getFluid(10))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Villager
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_VILLAGER)
+            fluidOutputs(Blood.getFluid(250))
+            EUt(VA[LV])
+            duration(2 * SECOND)
+        }
+
+        // Wandering Trader
+        MOB_COLLECTING_RECIPES.addRecipe {
+            notConsumable(MEMORY_CARD_TRADER)
+            fluidOutputs(Blood.getFluid(250))
+            EUt(VA[LV])
+            duration(10 * SECOND)
+        }
+
+        // ---------------------------------------------------------------------------------------------------------
+        // Mob Slaughtering
+
+        // Chicken
+        addSlaughterRecipes(MEMORY_CARD_CHICKEN, 125, 100) {
+            output(FEATHER, 4 * it)
+            output(CHICKEN, 2 * it)
+            output(dust, Meat, 2 * it)
+            output(dust, Bone, 1 * it)
+        }
+
+        // Cow
+        addSlaughterRecipes(MEMORY_CARD_COW, 500, 350) {
+            output(LEATHER, 8 * it)
+            output(BEEF, 4 * it)
+            output(dust, Meat, 6 * it)
+            output(dust, Bone, 3 * it)
+        }
+
+        // Pig
+        addSlaughterRecipes(MEMORY_CARD_PIG, 450, 275) {
+            output(PORKCHOP, 6 * it)
+            output(dust, Meat, 8 * it)
+            output(dust, Bone, 2 * it)
+        }
+
+        // Sheep
+        addSlaughterRecipes(MEMORY_CARD_SHEEP, 475, 250) {
+            output(WOOL, 8 * it)
+            output(MUTTON, 5 * it)
+            output(dust, Meat, 4 * it)
+            output(dust, Bone, 4 * it)
+        }
+
+        // Horse
+        addSlaughterRecipes(MEMORY_CARD_HORSE, 650, 200) {
+            output(LEATHER, 6 * it)
+            output(dust, Meat, 8 * it)
+            output(dust, Bone, 4 * it)
+        }
+
+        // Donkey
+        addSlaughterRecipes(MEMORY_CARD_DONKEY, 500, 250) {
+            output(LEATHER, 4 * it)
+            outputs(ANIMAL_FAT.getStack(2 * it))
+            output(dust, Meat, 3 * it)
+            output(dust, Bone, 2 * it)
+        }
+
+        // Mute
+        addSlaughterRecipes(MEMORY_CARD_MULE, 525, 180) {
+            output(LEATHER, 5 * it)
+            outputs(ANIMAL_FAT.getStack(1 * it))
+            output(dust, Meat, 6 * it)
+            output(dust, Bone, 5 * it)
+        }
+
+        // Ocelot
+        addSlaughterRecipes(MEMORY_CARD_OCELOT, 75, 30) {
+            output(dust, Meat, 2 * it)
+            output(dust, Bone, 1 * it)
+        }
+
+        // Wolf
+        addSlaughterRecipes(MEMORY_CARD_WOLF, 60, 90) {
+            output(dust, Meat, 2 * it)
+            output(dust, Bone, 3 * it)
+        }
+
+        // Rabbit
+        addSlaughterRecipes(MEMORY_CARD_RABBIT, 40, 60) {
+            output(RABBIT_FOOT, 2 * it)
+            output(RABBIT_HIDE, 1 * it)
+            output(dust, Meat, 1 * it)
+            output(dust, Bone, 1 * it)
+        }
+
+        // Llama
+        addSlaughterRecipes(MEMORY_CARD_LLAMA, 400, 380) {
+            output(LEATHER, 3 * it)
+            outputs(ANIMAL_FAT.getStack(4 * it))
+            output(dust, Meat, 3 * it)
+            output(dust, Bone, 3 * it)
+        }
+
+        // Mooshroom
+        addSlaughterRecipes(MEMORY_CARD_MOOSHROOM, 480, 325) {
+            output(BROWN_MUSHROOM, 4 * it)
+            output(RED_MUSHROOM, 4 * it)
+            output(dust, Meat, 4 * it)
+            output(dust, Bone, 4 * it)
+        }
+
+        // Bat
+        addSlaughterRecipes(MEMORY_CARD_BAT, 20, 10) {
+            output(dust, Meat, 1 * it)
+        }
+
+        // Villager
+        addSlaughterRecipes(MEMORY_CARD_VILLAGER, 350, 275) {
+            output(CLAY_BALL, it * 3)
+            output(FLINT, it * 1)
+            output(dust, Meat, 6 * it)
+            output(dust, Bone, 8 * it)
+        }
+
+        // Wandering Trader
+        addSlaughterRecipes(MEMORY_CARD_TRADER, 350, 275) {
+            output(PAPER, it * 2)
+            output(nugget, Gold, it * 2)
+            output(dust, Meat, 6 * it)
+            output(dust, Bone, 8 * it)
+        }
     }
 
     // @formatter:on
 
+
+
+    private fun addSlaughterRecipes(card: MetaItem<*>.MetaValueItem, bloodAmount: Int, fatAmount: Int,
+                                    builder: SimpleRecipeBuilder.(a: Int) -> Unit)
+    {
+        addSlaughterRecipe(card, WOODEN_SWORD, 1, VA[LV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, STONE_SWORD, 4, VA[MV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, IRON_SWORD, 16, VA[HV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, DIAMOND_SWORD, 64, VA[EV], bloodAmount, fatAmount, builder)
+    }
+
+    private fun addSlaughterRecipe(card: MetaItem<*>.MetaValueItem, weapon: Item, factor: Int, eut: Int,
+                                   bloodAmount: Int, fatAmount: Int, builder: SimpleRecipeBuilder.(a: Int) -> Unit)
+    {
+        MOB_SLAUGHTERING_RECIPES.addRecipe {
+            notConsumable(card)
+            notConsumable(weapon.stack())
+            builder(factor)
+            fluidOutputs(Blood.getFluid(bloodAmount * factor))
+            fluidOutputs(Fat.getFluid(fatAmount * factor))
+            EUt(eut)
+            duration(5 * SECOND)
+        }
+    }
 }
