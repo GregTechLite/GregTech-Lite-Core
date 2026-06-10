@@ -93,6 +93,7 @@ import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Polycaprolactam
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.PolyvinylButyral
@@ -662,6 +663,7 @@ object GTLiteMaterialFlags
         Moscovium.addFlags(GENERATE_FINE_WIRE)
         Duranium.addFlags(GENERATE_FINE_WIRE)
         Rhenium.addFlags(GENERATE_FINE_WIRE)
+        Polycaprolactam.addFlags(GENERATE_FINE_WIRE)
 
         // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
         Pyrochlore.addFlags(DISABLE_DECOMPOSITION)

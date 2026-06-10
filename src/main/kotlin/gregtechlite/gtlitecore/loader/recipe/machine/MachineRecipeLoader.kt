@@ -64,6 +64,7 @@ import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Polycaprolactam
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.RedSteel
@@ -377,6 +378,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARG
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ELECTROMAGNET
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_EXTRACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_EXTRUDER
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_FISHER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_FLUID_SOLIDIFIER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_FOOD_PROCESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_FORGE_HAMMER
@@ -431,6 +433,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SUPE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.TOOL_CASTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.VACUUM_CHAMBER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.VOLCANUS
+import net.minecraft.init.Items.FISHING_ROD
 
 internal object MachineRecipeLoader
 {
@@ -1567,7 +1570,15 @@ internal object MachineRecipeLoader
             'G', UnificationEntry(gear, BlackSteel))
 
         // Large Fisher
-        ModHandler.removeRecipeByOutput(FISHER[HV].stack())
+        ModHandler.removeRecipeByOutput(FISHER[EV - 1].stack())
+        ModHandler.addShapedRecipe(true, "large_fisher", LARGE_FISHER.stack(),
+            "WFW", "QAQ", "CPC",
+            'A', FISHER[HV - 1].stack(),
+            'W', UnificationEntry(wireFine, Polycaprolactam),
+            'P', UnificationEntry(pipeLargeFluid, Aluminium),
+            'C', UnificationEntry(cableGtDouble, Silver),
+            'Q', ELECTRIC_PUMP_HV,
+            'F', FISHING_ROD.stack())
 
         // Hydraulic Fracker
         ModHandler.addShapedRecipe(true, "hydraulic_fracker", HYDRAULIC_FRACKER.stack(),

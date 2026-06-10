@@ -3856,6 +3856,7 @@ gtlitecore.material.eternity_plus_token=永恒+
 item.gregtech.material.graphite.fuelRod=石墨慢化棒
 item.gregtech.material.graphite.fuelRodEnriched=浓缩石墨慢化棒
 item.gregtech.material.graphite.fuelRodHighDensity=高密度石墨慢化棒
+item.gregtech.material.polycaprolactam.wireFine=聚己内酰胺纤维
 
 # Fluids
 gtlitecore.fluid.molten=熔融%s

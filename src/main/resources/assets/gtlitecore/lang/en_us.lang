@@ -3856,6 +3856,7 @@ gtlitecore.material.eternity_plus_token=Eternity+
 item.gregtech.material.graphite.fuelRod=Graphite Moderate Rod
 item.gregtech.material.graphite.fuelRodEnriched=Enriched Graphite Moderate Rod
 item.gregtech.material.graphite.fuelRodHighDensity=High Density Graphite Moderate Rod
+item.gregtech.material.polycaprolactam.wireFine=Polycaprolactam Fiber
 
 # Fluids
 gtlitecore.fluid.molten=Molten %s

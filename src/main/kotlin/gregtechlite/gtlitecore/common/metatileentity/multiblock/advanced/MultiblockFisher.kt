@@ -35,6 +35,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.capability.logic.LargeFisherRecipeLogic
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import net.minecraft.client.resources.I18n
@@ -156,7 +157,7 @@ class MultiblockFisher(id: ResourceLocation) : MultiblockWithDisplayBase(id), ID
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = Textures.FROST_PROOF_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = Textures.VACUUM_FREEZER_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_FISHER_OVERLAY
 
     @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState, translation: Matrix4, pipeline: Array<IVertexOperation>)
