@@ -24,7 +24,7 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
     private var progressTime = 0
     private var maxProgress = 0
 
-    private var outputAmount = 0
+    var outputAmount = 0
     private var lootTable = ""
     var mode = 0
 
@@ -157,17 +157,17 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
         {
             0 ->
             {
-                outputAmount = 8 + (mte.parallelLimit - 2)
+                outputAmount = mte.casingTier * (8 + mte.parallelLimit)
                 lootTable = "gameplay/fishing/fish"
             }
             1 ->
             {
-                outputAmount = 4 + (mte.parallelLimit - 2)
+                outputAmount = mte.casingTier * (4 + mte.parallelLimit)
                 lootTable = "gameplay/fishing/junk"
             }
             2 ->
             {
-                outputAmount = 2 + (mte.parallelLimit - 2)
+                outputAmount = mte.casingTier * (2 + mte.parallelLimit)
                 lootTable = "gameplay/fishing/treasure"
             }
             else ->
@@ -190,7 +190,7 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
             return false
         }
 
-        if (isEnergyNotEnough && mte.energyInputPerSecond > 19L * VA[getTierByVoltage(mte.energyContainer!!.inputVoltage).toInt()])
+        if (isEnergyNotEnough && mte.energyInputPerSec > 19L * VA[getTierByVoltage(mte.energyContainer!!.inputVoltage).toInt()])
         {
             isEnergyNotEnough = false
         }

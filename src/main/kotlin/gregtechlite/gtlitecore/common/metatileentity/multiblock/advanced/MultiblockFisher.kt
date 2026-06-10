@@ -4,7 +4,6 @@ import codechicken.lib.raytracer.CuboidRayTraceResult
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
-import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.VA
 import gregtech.api.capability.GregtechTileCapabilities.CAPABILITY_CONTROLLABLE
 import gregtech.api.capability.GregtechTileCapabilities.CAPABILITY_WORKABLE
@@ -26,20 +25,20 @@ import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.pattern.MultiblockShapeInfo
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.util.GTTransferUtils
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtech.common.metatileentities.MetaTileEntities
+import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.capability.logic.LargeFisherRecipeLogic
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
@@ -64,12 +63,14 @@ class MultiblockFisher(id: ResourceLocation) : MultiblockWithDisplayBase(id), ID
     private var inputFluidInventory: IMultipleTankHandler? = null
     private var outputItemInventory: IItemHandler? = null
 
-    val energyInputPerSecond: Long = energyContainer?.inputPerSec ?: 0L
-    var parallelLimit: Int = 0
+    val energyInputPerSec = energyContainer?.inputPerSec ?: 0L
+    var casingTier = 0
+    var parallelLimit = 0
 
     companion object
     {
         private val casingState = GTMetalCasing.ALUMINIUM_FROSTPROOF.state
+        private val secondCasingState = GTMultiblockCasing.GRATE_CASING.state
     }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockFisher(metaTileEntityId)
@@ -78,8 +79,8 @@ class MultiblockFisher(id: ResourceLocation) : MultiblockWithDisplayBase(id), ID
     {
         super.formStructure(context)
         initializeAbilities()
-        parallelLimit = if (energyContainer != null) max(1, 8 * (getTierByVoltage(energyContainer!!.inputVoltage) + 1))
-        else 0
+        casingTier = context.getAttributeOrDefault(PUMP_CASING_TIER, 0)
+        parallelLimit = if (energyContainer != null) max(1, 8 * (getTierByVoltage(energyContainer!!.inputVoltage) + 1)) else 0
     }
 
     override fun invalidateStructure()
@@ -87,6 +88,7 @@ class MultiblockFisher(id: ResourceLocation) : MultiblockWithDisplayBase(id), ID
         super.invalidateStructure()
         resetTileAbilities()
         logic.invalidate()
+        casingTier = 0
         parallelLimit = 0
     }
 
@@ -120,17 +122,17 @@ class MultiblockFisher(id: ResourceLocation) : MultiblockWithDisplayBase(id), ID
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("EEEEEEEEE", "XXXXXXXXX", "XXXXXXXXX")
-        .aisle("EXXXXXXXE", "X#######X", "X#######X")
-        .aisle("EXXXXXXXE", "X#######X", "X#######X")
-        .aisle("EXXXXXXXE", "X#######X", "X#######X")
-        .aisle("EXXXXXXXE", "X#######X", "X#######X")
-        .aisle("EXXXXXXXE", "X#######X", "X#######X")
-        .aisle("EXXXXXXXE", "X#######X", "X#######X")
-        .aisle("EXXXXXXXE", "X#######X", "X#######X")
+        .aisle("EXXXXXXXE", "D#######D", "X#######X")
+        .aisle("EXXXXXXXE", "D#######D", "X#######X")
+        .aisle("EXXXXXXXE", "P#######P", "X#######X")
+        .aisle("EXXXXXXXE", "D#######D", "X#######X")
+        .aisle("EXXXXXXXE", "P#######P", "X#######X")
+        .aisle("EXXXXXXXE", "D#######D", "X#######X")
+        .aisle("EXXXXXXXE", "D#######D", "X#######X")
         .aisle("EEEEEEEEE", "XXXXSXXXX", "XXXXXXXXX")
         .where('S', selfPredicate())
         .where('X', states(casingState)
-            .setMinGlobalLimited(106)
+            .setMinGlobalLimited(92)
             .or(abilities(EXPORT_ITEMS)
                 .setExactLimit(1))
             .or(abilities(IMPORT_FLUIDS)
@@ -143,6 +145,8 @@ class MultiblockFisher(id: ResourceLocation) : MultiblockWithDisplayBase(id), ID
             .or(abilities(INPUT_ENERGY)
                 .setMinGlobalLimited(1)
                 .setMaxGlobalLimited(3)))
+        .where('D', states(secondCasingState))
+        .where('P', pumpCasings())
         .where('#', any())
         .build()
 
@@ -192,7 +196,7 @@ class MultiblockFisher(id: ResourceLocation) : MultiblockWithDisplayBase(id), ID
         builder.setWorkingStatus(logic.isWorkingEnabled, logic.isActive)
             .addEnergyUsageLine(energyContainer)
             .addEnergyTierLine(if (energyContainer != null) getTierByVoltage(energyContainer!!.inputVoltage).toInt() else 0)
-            .addParallelsLine(parallelLimit)
+            .addParallelsLine(logic.outputAmount)
             .addCustom { keyManager, uiSyncer ->
                 if (isStructureFormed)
                 {
