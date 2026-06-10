@@ -183,19 +183,34 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETIC_DOMAIN_WALL_
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETRON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MANIFOLD_OSCILLATORY_POWER_CELL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BASE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BLAZE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_CHICKEN
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_COW
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_CREEPER
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_DONKEY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_ENDERMAN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_ENDER_DRAGON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_GHAST
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_GUARDIAN
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_HORSE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_LLAMA
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_MOOSHROOM
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_MULE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_OCELOT
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_PIG
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_RABBIT
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_SHEEP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_SHULKER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_SKELETON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_SLIME
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_SPIDER
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_TRADER
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_VILLAGER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_WITCH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_WITHER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_WITHER_SKELETON
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_WOLF
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_ZOMBIE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MICA_INSULATOR_FOIL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MICA_INSULATOR_PLATE
@@ -904,8 +919,21 @@ object GTLiteMetaItem1
         MEMORY_CARD_SHULKER = item(653, "tool.memory_card.shulker")
         MEMORY_CARD_WITHER = item(654, "tool.memory_card.wither")
         MEMORY_CARD_ENDER_DRAGON = item(655, "tool.memory_card.ender_dragon")
-
-        // ...
+        MEMORY_CARD_CHICKEN = item(656, "tool.memory_card.chicken")
+        MEMORY_CARD_COW = item(657, "tool.memory_card.cow")
+        MEMORY_CARD_PIG = item(658, "tool.memory_card.pig")
+        MEMORY_CARD_SHEEP = item(659, "tool.memory_card.sheep")
+        MEMORY_CARD_HORSE = item(660, "tool.memory_card.horse")
+        MEMORY_CARD_DONKEY = item(661, "tool.memory_card.donkey")
+        MEMORY_CARD_MULE = item(662, "tool.memory_card.mule")
+        MEMORY_CARD_OCELOT = item(663, "tool.memory_card.ocelot")
+        MEMORY_CARD_WOLF = item(664, "tool.memory_card.wolf")
+        MEMORY_CARD_RABBIT = item(665, "tool.memory_card.rabbit")
+        MEMORY_CARD_LLAMA = item(666, "tool.memory_card.llama")
+        MEMORY_CARD_MOOSHROOM = item(667, "tool.memory_card.mooshroom")
+        MEMORY_CARD_BAT = item(668, "tool.memory_card.bat")
+        MEMORY_CARD_VILLAGER = item(669, "tool.memory_card.villager")
+        MEMORY_CARD_TRADER = item(670, "tool.memory_card.trader")
 
         CATALYST_BASE = item(671, "tool.catalyst.base")
             .addOreDict("catalystBase")

@@ -176,6 +176,21 @@ object GTLiteMetaItems
     lateinit var MEMORY_CARD_SHULKER: MetaItem<*>.MetaValueItem
     lateinit var MEMORY_CARD_WITHER: MetaItem<*>.MetaValueItem
     lateinit var MEMORY_CARD_ENDER_DRAGON: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_CHICKEN: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_COW: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_PIG: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_SHEEP: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_HORSE: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_DONKEY: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_MULE: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_OCELOT: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_WOLF: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_RABBIT: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_LLAMA: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_MOOSHROOM: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_BAT: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_VILLAGER: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_TRADER: MetaItem<*>.MetaValueItem
 
     lateinit var CATALYST_BASE: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_RUBBER_POLYMER: MetaItem<*>.MetaValueItem

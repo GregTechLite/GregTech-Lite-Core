@@ -891,6 +891,21 @@ metaitem.tool.memory_card.ghast.name=恶魂意识存储卡
 metaitem.tool.memory_card.shulker.name=潜影壳意识存储卡
 metaitem.tool.memory_card.wither.name=凋零意识存储卡
 metaitem.tool.memory_card.ender_dragon.name=末影龙意识存储卡
+metaitem.tool.memory_card.chicken.name=鸡意识存储卡
+metaitem.tool.memory_card.cow.name=牛意识存储卡
+metaitem.tool.memory_card.pig.name=猪意识存储卡
+metaitem.tool.memory_card.sheep.name=羊意识存储卡
+metaitem.tool.memory_card.horse.name=马意识存储卡
+metaitem.tool.memory_card.donkey.name=驴意识存储卡
+metaitem.tool.memory_card.mule.name=骡意识存储卡
+metaitem.tool.memory_card.ocelot.name=豹猫意识存储卡
+metaitem.tool.memory_card.wolf.name=狼意识存储卡
+metaitem.tool.memory_card.rabbit.name=兔子意识存储卡
+metaitem.tool.memory_card.llama.name=羊驼意识存储卡
+metaitem.tool.memory_card.mooshroom.name=哞菇意识存储卡
+metaitem.tool.memory_card.bat.name=蝙蝠意识存储卡
+metaitem.tool.memory_card.villager.name=村民意识存储卡
+metaitem.tool.memory_card.trader.name=流浪商人意识存储卡
 
 metaitem.tool.catalyst.base.name=催化剂载体
 metaitem.tool.catalyst.rubber_polymer.name=橡胶聚合催化剂
@@ -1654,6 +1669,8 @@ recipemap.integrated_ore_processor.name=集成矿石处理厂
 recipemap.matter_reshaping_framework.name=物质重塑
 recipemap.solidification_submodule.name=锻压固化模组
 recipemap.recombination_submodule.name=分离重构模组
+recipemap.mob_collecting_mode.name=繁育模式
+recipemap.mob_slaughtering_mode.name=屠宰模式
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -2627,6 +2644,8 @@ gtlitecore.machine.large_acid_generator.name=大型酸性发电机
 gtlitecore.machine.large_transformer.name=大型变压器
 gtlitecore.machine.large_transformer.tooltip.1=比单方块变压器更好
 gtlitecore.machine.large_transformer.tooltip.2=必须同时安装§a能源仓§7与§b动力仓§7才可以工作。
+
+gtlitecore.machine.large_slaughter.name=大型屠宰机
 
 gtlitecore.machine.entrodynamically_phase_changer.name=熵动力学相变发生器
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变

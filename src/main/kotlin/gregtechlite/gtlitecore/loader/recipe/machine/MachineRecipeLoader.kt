@@ -211,6 +211,7 @@ import gregtech.common.metatileentities.MetaTileEntities.ELECTROMAGNETIC_SEPARAT
 import gregtech.common.metatileentities.MetaTileEntities.EXTRACTOR
 import gregtech.common.metatileentities.MetaTileEntities.EXTRUDER
 import gregtech.common.metatileentities.MetaTileEntities.FERMENTER
+import gregtech.common.metatileentities.MetaTileEntities.FISHER
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_SOLIDIFIER
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
@@ -1548,6 +1549,11 @@ internal object MachineRecipeLoader
             'T', POWER_TRANSFORMER[HV].stack(),
             'V', VOLTAGE_COIL_HV,
             'X', UnificationEntry(circuit, Tier.HV))
+
+        // Large Slaughter
+
+        // Large Fisher
+        ModHandler.removeRecipeByOutput(FISHER[HV].stack())
 
         // Hydraulic Fracker
         ModHandler.addShapedRecipe(true, "hydraulic_fracker", HYDRAULIC_FRACKER.stack(),
