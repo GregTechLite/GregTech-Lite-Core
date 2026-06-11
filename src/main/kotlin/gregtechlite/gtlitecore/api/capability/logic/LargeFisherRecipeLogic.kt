@@ -93,7 +93,7 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
                 }
             }
         }
-        return amount >= 60
+        return amount >= GTLiteConfigHolder.machine.largeFisher.waterFillCount
     }
 
     private fun depleteInput(fluid: FluidStack): Boolean

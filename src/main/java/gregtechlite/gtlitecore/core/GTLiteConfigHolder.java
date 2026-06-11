@@ -103,13 +103,16 @@ public class GTLiteConfigHolder
             @Name("Progress Time Per Cycle")
             @RangeInt(min = TICK)
             public int maxProgressTime = SECOND;
-        }
 
+            @Comment({"The water fill count in Large Fisher structure for working", "Default: 60"})
+            @Name("Minimum Water Fill Count")
+            @RangeInt(min = 1, max = 98)
+            public int waterFillCount = 60;
+        }
     }
 
     public static class RecipeOptions
     {
-
     }
 
     public static class WorldGenOptions
