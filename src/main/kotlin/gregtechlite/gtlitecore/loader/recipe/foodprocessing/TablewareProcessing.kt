@@ -7,18 +7,22 @@ import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRUDER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
+import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Polyethylene
+import gregtech.api.unification.material.Materials.PolyvinylChloride
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BOTTLE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BOTTLE
+import gregtech.common.items.MetaItems.SHAPE_MOLD_CYLINDER
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PiranhaSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_BOWL
@@ -27,6 +31,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CLAY_BOWL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CLAY_CUP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DIRTY_CERAMIC_BOWL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PLASTIC_BOTTLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PVC_CAN
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 
@@ -92,6 +97,23 @@ internal object TablewareProcessing
             notConsumable(SHAPE_MOLD_BOTTLE)
             fluidInputs(Polyethylene.getFluid(L))
             output(PLASTIC_BOTTLE)
+            EUt(4) // ULV
+            duration(12 * TICK)
+        }
+
+        // PVC Can
+        EXTRUDER_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_CYLINDER)
+            input(ingot, PolyvinylChloride)
+            output(PVC_CAN)
+            EUt(VA[LV])
+            duration(1 * SECOND + 12 * TICK)
+        }
+
+        FLUID_SOLIDFICATION_RECIPES.addRecipe {
+            notConsumable(SHAPE_MOLD_CYLINDER)
+            fluidInputs(PolyvinylChloride.getFluid(L))
+            output(PVC_CAN)
             EUt(4) // ULV
             duration(12 * TICK)
         }

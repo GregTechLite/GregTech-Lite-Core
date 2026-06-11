@@ -71,8 +71,12 @@ import net.minecraft.init.Items.WOODEN_SWORD
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
 import gregtech.api.unification.material.Materials.Ash
 import gregtech.api.unification.material.Materials.DarkAsh
+import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.HSSE
+import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.ore.OrePrefix.nugget
+import gregtech.common.items.ToolItems
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_COLLECTING_RECIPES
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSE_MEAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
@@ -87,6 +91,7 @@ import net.minecraft.init.Items.PORKCHOP
 import net.minecraft.init.Items.RABBIT_FOOT
 import net.minecraft.init.Items.RABBIT_HIDE
 import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
 
 /**
  * @see gregtechlite.gtlitecore.loader.recipe.foodprocessing.AnimalFatProcessing
@@ -593,18 +598,17 @@ internal object MobExtractorRecipes
     private fun addSlaughterRecipes(card: MetaItem<*>.MetaValueItem, bloodAmount: Int, fatAmount: Int,
                                     builder: SimpleRecipeBuilder.(a: Int) -> Unit)
     {
-        addSlaughterRecipe(card, WOODEN_SWORD, 1, VA[HV], bloodAmount, fatAmount, builder)
-        addSlaughterRecipe(card, STONE_SWORD, 4, VA[EV], bloodAmount, fatAmount, builder)
-        addSlaughterRecipe(card, IRON_SWORD, 16, VA[IV], bloodAmount, fatAmount, builder)
-        addSlaughterRecipe(card, DIAMOND_SWORD, 64, VA[LuV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, ToolItems.SWORD.get(RedSteel), 1, VA[HV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, ToolItems.SWORD.get(HSSE), 4, VA[EV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, ToolItems.SWORD.get(Duranium), 16, VA[IV], bloodAmount, fatAmount, builder)
     }
 
-    private fun addSlaughterRecipe(card: MetaItem<*>.MetaValueItem, weapon: Item, factor: Int, eut: Int,
+    private fun addSlaughterRecipe(card: MetaItem<*>.MetaValueItem, weapon: ItemStack, factor: Int, eut: Int,
                                    bloodAmount: Int, fatAmount: Int, builder: SimpleRecipeBuilder.(a: Int) -> Unit)
     {
         MOB_SLAUGHTERING_RECIPES.addRecipe {
             notConsumable(card)
-            notConsumable(weapon.stack())
+            notConsumable(weapon)
             builder(factor)
             fluidOutputs(Blood.getFluid(bloodAmount * factor))
             fluidOutputs(Fat.getFluid(fatAmount * factor))

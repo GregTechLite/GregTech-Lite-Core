@@ -19,9 +19,11 @@ internal object FoodProcessingList
         SugarProcessing.init()
         GoldenFruitsProcessing.init()
         CreosoteProcessing.init()
-        AnimalFatProcessing.init()
         OrangesProcessing.init()
         EtirpsProcessing.init()
+        SoybeanProcessing.init()
+        AnimalFatProcessing.init()
+        NutrientPasteMealProcessing.init()
     }
 
     // @formatter:on
