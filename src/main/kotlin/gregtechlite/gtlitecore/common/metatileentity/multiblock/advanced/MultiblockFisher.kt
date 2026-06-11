@@ -191,6 +191,7 @@ class MultiblockFisher(id: ResourceLocation) : MultiblockWithDisplayBase(id), ID
         tooltip.add(I18n.format("gtlitecore.machine.large_fisher.tooltip.2"))
         tooltip.add(I18n.format("gtlitecore.machine.large_fisher.tooltip.3"))
         tooltip.add(I18n.format("gtlitecore.machine.large_fisher.tooltip.4"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_fisher.tooltip.5"))
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)

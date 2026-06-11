@@ -9,8 +9,9 @@ import gregtech.api.metatileentity.multiblock.IMaintenance
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFisher
-import kotlin.math.sqrt
+import kotlin.math.pow
 import net.minecraft.init.Blocks
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
@@ -19,6 +20,8 @@ import net.minecraft.world.WorldServer
 import net.minecraft.world.storage.loot.LootContext
 import net.minecraftforge.fluids.FluidRegistry
 import net.minecraftforge.fluids.FluidStack
+import kotlin.math.log2
+import kotlin.math.sqrt
 
 class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, IControllable
 {
@@ -155,24 +158,44 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
         }
     }
 
+    /**
+     * | Voltage Tier | Casing Tier | Parallel Limit | Output Amount (Fish) | Output Amount (Jerk/Treasure) |
+     * |--------------|-------------|----------------|----------------------|-------------------------------|
+     * | LV           | LV          | 16             | 16                   | 12                            |
+     * | MV           | MV          | 24             | 55                   | 19                            |
+     * | HV           | HV          | 32             | 146                  | 26                            |
+     * | EV           | EV          | 40             | 346                  | 35                            |
+     * | IV           | IV          | 48             | 775                  | 44                            |
+     * | LuV          | LuV         | 56             | 1667                 | 55                            |
+     * | ZPM          | ZPM         | 64             | 3490                 | 68                            |
+     * | UV           | UV          | 72             | 7163                 | 82                            |
+     * | UHV          | UHV         | 80             | 14481                | 99                            |
+     * | UEV          | UEV         | 88             | 28921                | 121                           |
+     * | UIV          | UIV         | 96             | 57199                | 146                           |
+     * | UXV          | UXV         | 104            | 112213               | 176                           |
+     * | OpV          | OpV         | 112            | 218641               | 214                           |
+     * | MAX          | MAX         | 120            | 423539               | 260                           |
+     */
     fun getLootTable(): String
     {
-        val p = sqrt(mte.parallelLimit.toDouble()).toInt().coerceAtLeast(1)
+        val n = getTierByVoltage(mte.energyContainer!!.inputVoltage).toDouble()
+        val p = mte.parallelLimit
+        val q = mte.casingTier
         when (mode)
         {
             0 ->
             {
-                outputAmount = mte.casingTier * (6 + p)
+                outputAmount = (1.8.pow(n) * (8 * q + 1)).toInt() // (1.8.pow(sqrt(p.toDouble())) * q).toInt()
                 lootTable = "gameplay/fishing/fish"
             }
             1 ->
             {
-                outputAmount = mte.casingTier * (4 + p * 2 / 3)
+                outputAmount = (1.2.pow(n) * q + p * 2 / 3).toInt()
                 lootTable = "gameplay/fishing/junk"
             }
             2 ->
             {
-                outputAmount = mte.casingTier * (2 + p / 3)
+                outputAmount = (1.2.pow(n) * q + p * 2 / 3).toInt()
                 lootTable = "gameplay/fishing/treasure"
             }
             else ->
@@ -187,9 +210,9 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
     {
         if (!consumeEnergy(true))
         {
-            if (progressTime >= 2)
+            if (progressTime >= 2 * TICK)
             {
-                progressTime = if (ConfigHolder.machines.recipeProgressLowEnergy) 1 else 1.coerceAtLeast(progressTime - 2)
+                progressTime = if (ConfigHolder.machines.recipeProgressLowEnergy) 1 * TICK else 1.coerceAtLeast(progressTime - 2 * TICK)
                 isEnergyNotEnough = true
             }
             return false
