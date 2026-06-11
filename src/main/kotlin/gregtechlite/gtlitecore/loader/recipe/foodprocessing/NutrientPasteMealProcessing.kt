@@ -14,10 +14,13 @@ import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Epichlorohydrin
 import gregtech.api.unification.material.Materials.FishOil
 import gregtech.api.unification.material.Materials.Gelatin
+import gregtech.api.unification.material.Materials.Glycerol
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.SeedOil
+import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -28,6 +31,7 @@ import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AscorbicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BeanPhospholipid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Biotin
@@ -45,6 +49,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichNutrientPaste
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichNutrientPasteWaterPhaseMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SoybeanOil
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StearicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedNutrientPasteEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedRichNutrientPasteEmulsion
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NUTRIENT_PASTE_MEAL
@@ -81,6 +86,18 @@ internal object NutrientPasteMealProcessing
             fluidOutputs(Monoglyceride.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[LV])
+            duration(5 * SECOND)
+        }
+
+        // Advanced recipe for C21H42O4
+
+        // NaOH + C3H8O3 + C18H36O2 -> C21H42O4 + O (drop)
+        VACUUM_CHAMBER_RECIPES.addRecipe {
+            notConsumable(dust, SodiumHydroxide)
+            fluidInputs(StearicAcid.getFluid(1000))
+            fluidInputs(Glycerol.getFluid(1000))
+            fluidOutputs(Monoglyceride.getFluid(1000))
+            EUt(VA[EV])
             duration(5 * SECOND)
         }
     }
