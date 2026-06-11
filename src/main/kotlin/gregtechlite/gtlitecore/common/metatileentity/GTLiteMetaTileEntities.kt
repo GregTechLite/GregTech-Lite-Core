@@ -115,7 +115,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.Multibl
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockReplicator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockRockBreaker
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockSifter
-import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockSlaughter
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockMobSlaughter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockTransformer
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockVolcanus
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockWiremill
@@ -351,7 +351,7 @@ object GTLiteMetaTileEntities
     lateinit var LARGE_NAQUADAH_REACTOR: MultiblockNaquadahReactor
     lateinit var LARGE_ACID_GENERATOR: MultiblockAcidGenerator
     lateinit var LARGE_TRANSFORMER: MultiblockTransformer
-    lateinit var LARGE_SLAUGHTER: MultiblockSlaughter
+    lateinit var LARGE_SLAUGHTER: MultiblockMobSlaughter
     lateinit var LARGE_FISHER: MultiblockFisher
 
     lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
@@ -867,7 +867,7 @@ object GTLiteMetaTileEntities
         LARGE_NAQUADAH_REACTOR = register(10138, MultiblockNaquadahReactor(GTLiteMod.id("large_naquadah_reactor")))
         LARGE_ACID_GENERATOR = register(10139, MultiblockAcidGenerator(GTLiteMod.id("large_acid_generator")))
         LARGE_TRANSFORMER = register(10140, MultiblockTransformer(GTLiteMod.id("large_transformer")))
-        LARGE_SLAUGHTER = register(10141, MultiblockSlaughter(GTLiteMod.id("large_slaughter")))
+        LARGE_SLAUGHTER = register(10141, MultiblockMobSlaughter(GTLiteMod.id("large_slaughter")))
         LARGE_FISHER = register(10142, MultiblockFisher(GTLiteMod.id("large_fisher")))
 
         // ...

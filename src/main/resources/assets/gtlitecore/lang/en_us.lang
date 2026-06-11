@@ -1567,6 +1567,9 @@ metaitem.food.polenta.tooltip.2=Also a thicker corn paste called Eshima in East 
 metaitem.food.graham_cracker.name=Graham Cracker
 metaitem.food.graham_cracker.tooltip=Rich in Satiety
 
+metaitem.food.horse_meat.name=Horse Meat
+metaitem.food.cooked_horse_meat.name=Cooked Horse Meat
+
 metaitem.food.hard_apple_candy.name=Hard Apple Candy
 metaitem.food.hard_apple_candy.tooltip=Maybe it hurts a bit
 
@@ -2648,14 +2651,15 @@ gtlitecore.machine.large_transformer.tooltip.2=Must both use §aEnergy Hatch§7 
 gtlitecore.machine.large_slaughter.name=Large Slaughter
 
 gtlitecore.machine.large_fisher.name=Large Fisher
-gtlitecore.machine.large_fisher.tooltip.1=Require §9fill water§7 in multiblock to maintain environment
+gtlitecore.machine.large_fisher.tooltip.1=Require §9fill water§7 in multiblock to maintain environment, use §fFluid Import Hatch§7 for automation
 gtlitecore.machine.large_fisher.tooltip.2=Use §fScrewdriver§7 click to change fishing mode (§bFish§7/§8Jerk§7/§6Treasure§7)
-gtlitecore.machine.large_fisher.tooltip.3=Maximum Parallel: §ePump Casing Tier × (Basic Output Count + 8 * (Voltage Tier + 1))§7
-gtlitecore.machine.large_fisher.tooltip.4=Basic Output Count in different mode will be §b§l8§r§7/§8§l4§r§7/§6§l2
+gtlitecore.machine.large_fisher.tooltip.3=Maximum Parallel:
+gtlitecore.machine.large_fisher.tooltip.4=- In §bFish§f Mode§7: §e(1.8^(Voltage Tier) × (8 × (Pump Casing Tier) + 1))
+gtlitecore.machine.large_fisher.tooltip.5=- In §8Jerk§f / §6Treasure§f Mode§7: §e(1.2^(Voltage Tier) × Pump Casing Tier) + ((8 × (Voltage Tier) + 1) × 0.67)
 gtlitecore.machine.large_fisher.mode.0=Current Mode: §bFish§7
 gtlitecore.machine.large_fisher.mode.1=Current Mode: §8Jerk§7
 gtlitecore.machine.large_fisher.mode.2=Current Mode: §6Treasure§7
-gtlitecore.machine.large_fisher.error=Output Full
+gtlitecore.machine.large_fisher.inventory_full=Output Full
 
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变

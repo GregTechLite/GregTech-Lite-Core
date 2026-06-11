@@ -9,7 +9,10 @@ import gregtech.api.metatileentity.multiblock.IMaintenance
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFisher
+import gregtechlite.gtlitecore.core.GTLiteConfigHolder
+import kotlin.math.pow
 import net.minecraft.init.Blocks
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
@@ -18,6 +21,8 @@ import net.minecraft.world.WorldServer
 import net.minecraft.world.storage.loot.LootContext
 import net.minecraftforge.fluids.FluidRegistry
 import net.minecraftforge.fluids.FluidStack
+import kotlin.math.log2
+import kotlin.math.sqrt
 
 class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, IControllable
 {
@@ -39,7 +44,7 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
 
     companion object
     {
-        const val MAX_PROGRESS = 1 * SECOND // TODO: Configurable.
+        val MAX_PROGRESS = GTLiteConfigHolder.machine.largeFisher.maxProgressTime
     }
 
     init
@@ -88,7 +93,7 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
                 }
             }
         }
-        return amount >= 60
+        return amount >= GTLiteConfigHolder.machine.largeFisher.waterFillCount
     }
 
     private fun depleteInput(fluid: FluidStack): Boolean
@@ -128,11 +133,12 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
         progressTime = 0
 
         val world = mte.world
+        val lootTable = world.lootTableManager.getLootTableFromLocation(ResourceLocation(getLootTable()))
+        val lootCtx = LootContext.Builder(world as WorldServer).build()
+
         var l = world.rand.nextInt(outputAmount)
         while (l < outputAmount)
         {
-            val lootTable = world.lootTableManager.getLootTableFromLocation(ResourceLocation(getLootTable()))
-            val lootCtx = LootContext.Builder(world as WorldServer).build()
             val stacks = lootTable.generateLootForPools(world.rand, lootCtx)
             for (stack in stacks)
             {
@@ -145,29 +151,52 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
                     isInventoryFull = true
                     setActive(false)
                     wasActiveAndNeedsUpdate = true
+                    return  // Stop immediately; don't keep trying to insert into a full output
                 }
                 l++
+                if (l >= outputAmount) break
             }
         }
     }
 
+    /**
+     * | Voltage Tier | Casing Tier | Parallel Limit | Output Amount (Fish) | Output Amount (Jerk/Treasure) |
+     * |--------------|-------------|----------------|----------------------|-------------------------------|
+     * | LV           | LV          | 16             | 16                   | 12                            |
+     * | MV           | MV          | 24             | 55                   | 19                            |
+     * | HV           | HV          | 32             | 146                  | 26                            |
+     * | EV           | EV          | 40             | 346                  | 35                            |
+     * | IV           | IV          | 48             | 775                  | 44                            |
+     * | LuV          | LuV         | 56             | 1667                 | 55                            |
+     * | ZPM          | ZPM         | 64             | 3490                 | 68                            |
+     * | UV           | UV          | 72             | 7163                 | 82                            |
+     * | UHV          | UHV         | 80             | 14481                | 99                            |
+     * | UEV          | UEV         | 88             | 28921                | 121                           |
+     * | UIV          | UIV         | 96             | 57199                | 146                           |
+     * | UXV          | UXV         | 104            | 112213               | 176                           |
+     * | OpV          | OpV         | 112            | 218641               | 214                           |
+     * | MAX          | MAX         | 120            | 423539               | 260                           |
+     */
     fun getLootTable(): String
     {
+        val n = getTierByVoltage(mte.energyContainer!!.inputVoltage).toDouble()
+        val p = mte.parallelLimit
+        val q = mte.casingTier
         when (mode)
         {
             0 ->
             {
-                outputAmount = mte.casingTier * (8 + mte.parallelLimit)
+                outputAmount = (1.8.pow(n) * (8 * q + 1)).toInt() // (1.8.pow(sqrt(p.toDouble())) * q).toInt()
                 lootTable = "gameplay/fishing/fish"
             }
             1 ->
             {
-                outputAmount = mte.casingTier * (4 + mte.parallelLimit)
+                outputAmount = (1.2.pow(n) * q + p * 2 / 3).toInt()
                 lootTable = "gameplay/fishing/junk"
             }
             2 ->
             {
-                outputAmount = mte.casingTier * (2 + mte.parallelLimit)
+                outputAmount = (1.2.pow(n) * q + p * 2 / 3).toInt()
                 lootTable = "gameplay/fishing/treasure"
             }
             else ->
@@ -182,9 +211,9 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
     {
         if (!consumeEnergy(true))
         {
-            if (progressTime >= 2)
+            if (progressTime >= 2 * TICK)
             {
-                progressTime = if (ConfigHolder.machines.recipeProgressLowEnergy) 1 else 1.coerceAtLeast(progressTime - 2)
+                progressTime = if (ConfigHolder.machines.recipeProgressLowEnergy) 1 * TICK else 1.coerceAtLeast(progressTime - 2 * TICK)
                 isEnergyNotEnough = true
             }
             return false
@@ -195,26 +224,24 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
             isEnergyNotEnough = false
         }
 
-        val world = mte.world
-        val lootTable = world.lootTableManager.getLootTableFromLocation(ResourceLocation(getLootTable()))
-        val lootCtx = LootContext.Builder(world as WorldServer).build()
-        val stacks = lootTable.generateLootForPools(world.rand, lootCtx)
-        for (stack in stacks)
+        val handler = mte.outputItemInventory ?: return false
+        var emptySlots = 0
+        for (i in 0 until handler.slots)
         {
-            if (mte.fillOutput(stack, true))
+            if (handler.getStackInSlot(i).isEmpty) emptySlots++
+        }
+        if (emptySlots == 0)
+        {
+            isInventoryFull = true
+            if (isActive)
             {
-                isInventoryFull = false
-                return true
+                setActive(false)
+                wasActiveAndNeedsUpdate = true
             }
+            return false
         }
-        isInventoryFull = true
-
-        if (isActive)
-        {
-            setActive(false)
-            wasActiveAndNeedsUpdate = true
-        }
-        return false
+        isInventoryFull = false
+        return true
     }
 
     private fun consumeEnergy(energy: Boolean): Boolean

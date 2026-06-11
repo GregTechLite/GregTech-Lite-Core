@@ -559,6 +559,9 @@ object GTLiteMetaItems
 
     lateinit var GRAHAM_CRACKER: MetaItem<*>.MetaValueItem
 
+    lateinit var HORSE_MEAT: MetaItem<*>.MetaValueItem
+    lateinit var COOKED_HORSE_MEAT: MetaItem<*>.MetaValueItem
+
     lateinit var HARD_APPLE_CANDY: MetaItem<*>.MetaValueItem
 
     lateinit var SILVER_APPLE: MetaItem<*>.MetaValueItem

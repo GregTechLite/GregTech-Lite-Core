@@ -1567,6 +1567,9 @@ metaitem.food.polenta.tooltip.2=在非洲东部也有更浓稠的玉米糊恩希
 metaitem.food.graham_cracker.name=全麦饼干
 metaitem.food.graham_cracker.tooltip=富含饱腹感
 
+metaitem.food.horse_meat.name=生马肉
+metaitem.food.cooked_horse_meat.name=熟马肉
+
 metaitem.food.hard_apple_candy.name=苹果硬糖
 metaitem.food.hard_apple_candy.tooltip=或许有点硌牙
 
@@ -2648,14 +2651,15 @@ gtlitecore.machine.large_transformer.tooltip.2=必须同时安装§a能源仓§7
 gtlitecore.machine.large_slaughter.name=大型屠宰机
 
 gtlitecore.machine.large_fisher.name=大型捕鱼机
-gtlitecore.machine.large_fisher.tooltip.1=需要在结构中§9填满水§7来保持捕捞环境
+gtlitecore.machine.large_fisher.tooltip.1=需要在结构中§9填满水§7来保持捕捞环境，使用§f输入仓§7可以自动输入
 gtlitecore.machine.large_fisher.tooltip.2=使用§f螺丝刀§7单击以切换捕捞模式（§b捕鱼§7/§8垃圾§7/§6宝藏§7）
-gtlitecore.machine.large_fisher.tooltip.3=并行数：§e泵外壳等级×(基础产出数+8×(电压等级+1))§7
-gtlitecore.machine.large_fisher.tooltip.4=3种模式下基础产出数分别为§b§l8§r§7/§8§l4§r§7/§6§l2
+gtlitecore.machine.large_fisher.tooltip.3=并行数：
+gtlitecore.machine.large_fisher.tooltip.4=- §b捕鱼§f模式§7：§e(1.8^电压等级)×(8×泵外壳等级 + 1))
+gtlitecore.machine.large_fisher.tooltip.5=- §8垃圾§f/§6宝藏§f模式§7：§e(1.2^电压等级×泵外壳等级)+((8×电压等级+1)×0.67)
 gtlitecore.machine.large_fisher.mode.0=当前模式：§b捕鱼§7
 gtlitecore.machine.large_fisher.mode.1=当前模式：§8垃圾§7
 gtlitecore.machine.large_fisher.mode.2=当前模式：§6宝藏§7
-gtlitecore.machine.large_fisher.error=输出已满
+gtlitecore.machine.large_fisher.inventory_full=输出已满
 
 gtlitecore.machine.entrodynamically_phase_changer.name=熵动力学相变发生器
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
