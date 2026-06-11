@@ -2651,11 +2651,11 @@ gtlitecore.machine.large_fisher.name=Large Fisher
 gtlitecore.machine.large_fisher.tooltip.1=Require §9fill water§7 in multiblock to maintain environment
 gtlitecore.machine.large_fisher.tooltip.2=Use §fScrewdriver§7 click to change fishing mode (§bFish§7/§8Jerk§7/§6Treasure§7)
 gtlitecore.machine.large_fisher.tooltip.3=Maximum Parallel: §ePump Casing Tier × (Base + sqrt(8 * Voltage Tier + 1) × Mode Rate)§7
-gtlitecore.machine.large_fisher.tooltip.4=Base/Rate per mode: §b6/100%§7, §84/67%§7, §62/33%
+gtlitecore.machine.large_fisher.tooltip.4=Base/Rate per mode: §b6/100%%§7, §84/67%%§7, §62/33%%
 gtlitecore.machine.large_fisher.mode.0=Current Mode: §bFish§7
 gtlitecore.machine.large_fisher.mode.1=Current Mode: §8Jerk§7
 gtlitecore.machine.large_fisher.mode.2=Current Mode: §6Treasure§7
-gtlitecore.machine.large_fisher.error=Output Full
+gtlitecore.machine.large_fisher.inventory_full=Output Full
 
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变

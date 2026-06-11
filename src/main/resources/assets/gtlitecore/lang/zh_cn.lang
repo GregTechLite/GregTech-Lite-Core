@@ -2655,7 +2655,7 @@ gtlitecore.machine.large_fisher.tooltip.4=各模式基础值/倍率：§b6/100%%
 gtlitecore.machine.large_fisher.mode.0=当前模式：§b捕鱼§7
 gtlitecore.machine.large_fisher.mode.1=当前模式：§8垃圾§7
 gtlitecore.machine.large_fisher.mode.2=当前模式：§6宝藏§7
-gtlitecore.machine.large_fisher.error=输出已满
+gtlitecore.machine.large_fisher.inventory_full=输出已满
 
 gtlitecore.machine.entrodynamically_phase_changer.name=熵动力学相变发生器
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
