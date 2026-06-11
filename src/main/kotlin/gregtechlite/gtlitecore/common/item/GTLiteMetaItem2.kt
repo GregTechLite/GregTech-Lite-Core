@@ -33,6 +33,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COCONUT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COFFEE_CHERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COFFEE_CUP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COFFEE_SEED
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COOKED_HORSE_MEAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CORN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CORN_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COTTON
@@ -54,6 +55,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GRAPE_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HARD_APPLE_CANDY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSERADISH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSERADISH_SEED
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSE_MEAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LEMON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LIME
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LINGONBERRY
@@ -471,6 +473,13 @@ object GTLiteMetaItem2
         // endregion
 
         // region 1501-1700: Barbecue & Kebab
+        HORSE_MEAT = item(1501, "food.horse_meat")
+            .addComponents(FoodBehavior(3, 1.8f))
+            .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
+
+        COOKED_HORSE_MEAT = item(1502, "food.cooked_horse_meat")
+            .addComponents(FoodBehavior(8, 12.8f))
+            .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         // endregion
 

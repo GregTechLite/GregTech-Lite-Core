@@ -74,6 +74,7 @@ import gregtech.api.unification.material.Materials.DarkAsh
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.ore.OrePrefix.nugget
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_COLLECTING_RECIPES
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSE_MEAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.ANIMAL_FAT
 import net.minecraft.init.Blocks.BROWN_MUSHROOM
@@ -508,7 +509,8 @@ internal object MobExtractorRecipes
         // Horse
         addSlaughterRecipes(MEMORY_CARD_HORSE, 650, 200) {
             output(LEATHER, 6 * it)
-            output(dust, Meat, 8 * it)
+            output(HORSE_MEAT, 3 * it)
+            output(dust, Meat, 5 * it)
             output(dust, Bone, 4 * it)
         }
 
@@ -607,7 +609,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(bloodAmount * factor))
             fluidOutputs(Fat.getFluid(fatAmount * factor))
             EUt(eut)
-            duration(10 * SECOND)
+            duration(40 * SECOND)
         }
     }
 }

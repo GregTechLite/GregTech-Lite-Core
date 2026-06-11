@@ -1567,6 +1567,9 @@ metaitem.food.polenta.tooltip.2=在非洲东部也有更浓稠的玉米糊恩希
 metaitem.food.graham_cracker.name=全麦饼干
 metaitem.food.graham_cracker.tooltip=富含饱腹感
 
+metaitem.food.horse_meat.name=生马肉
+metaitem.food.cooked_horse_meat.name=熟马肉
+
 metaitem.food.hard_apple_candy.name=苹果硬糖
 metaitem.food.hard_apple_candy.tooltip=或许有点硌牙
 

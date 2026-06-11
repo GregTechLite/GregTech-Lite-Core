@@ -70,6 +70,7 @@ internal class CoreModule : CustomModule
     {
         logger.debug("Starting to construct EventHandlers of the mod")
         MinecraftForge.EVENT_BUS.register(EventHandlers)
+        MinecraftForge.EVENT_BUS.register(VanillaDropsLoader)
 
         logger.debug("Modifying configurations of GregTech mod")
         GTLiteConfigModifier.init()
