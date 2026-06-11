@@ -1607,6 +1607,8 @@ metaitem.apple_pulp_dust.name=Apple Pulp Dust
 metaitem.hard_apple_candy_chunk_plate_dense.name=Hard Apple Candy Chunk
 metaitem.hard_apple_candy_plate.name=Hard Apple Candy Plate
 metaitem.hard_apple_candy_dust.name=Hard Apple Candy Dust
+metaitem.soybean_meal_dust_small.name=Soybean Meal
+metaitem.plant_protein_dust_small.name=Plant Protein
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
@@ -3759,6 +3761,9 @@ gtlitecore.material.cane_syrup=Cane Syrup
 gtlitecore.material.apple_cane_syrup=Apple-Cane Syrup
 gtlitecore.material.hard_apple_candy_syrup=Hard Apple Candy Syrup
 gtlitecore.material.fracturing_fluid=Fracturing Fluid
+gtlitecore.material.crude_soybean_oil=Crude Soybean Oil
+gtlitecore.material.soybean_oil=Soybean Oil
+gtlitecore.material.bean_phospholipid=Bean Phospholipid
 
 gtlitecore.material.free_electron_gas=Free Electron Gas
 gtlitecore.material.fermionic_uu_matter=Fermionic UU Matter

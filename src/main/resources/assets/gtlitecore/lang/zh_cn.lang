@@ -1607,6 +1607,8 @@ metaitem.apple_pulp_dust.name=苹果果肉末
 metaitem.hard_apple_candy_chunk_plate_dense.name=苹果硬糖胚
 metaitem.hard_apple_candy_plate.name=苹果硬糖片
 metaitem.hard_apple_candy_dust.name=苹果硬糖碎
+metaitem.soybean_meal_dust_small.name=大豆豆粕
+metaitem.plant_protein_dust_small.name=植物蛋白
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
@@ -3759,6 +3761,9 @@ gtlitecore.material.cane_syrup=甘蔗糖浆
 gtlitecore.material.apple_cane_syrup=苹果-甘蔗糖浆
 gtlitecore.material.hard_apple_candy_syrup=苹果硬糖糖浆
 gtlitecore.material.fracturing_fluid=压裂液
+gtlitecore.material.crude_soybean_oil=大豆毛油
+gtlitecore.material.soybean_oil=大豆油
+gtlitecore.material.bean_phospholipid=豆磷脂
 
 gtlitecore.material.free_electron_gas=自由电子气体
 gtlitecore.material.fermionic_uu_matter=费米子UU物质

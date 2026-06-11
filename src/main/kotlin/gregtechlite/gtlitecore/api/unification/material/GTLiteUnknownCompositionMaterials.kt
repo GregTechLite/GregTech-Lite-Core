@@ -44,6 +44,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AppleSyrup
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BFGF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BZMedium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BeanPhospholipid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockSmoke
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockSootSolution
@@ -73,6 +74,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CranberryEtirps
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CranberryExtract
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CranberrySodaSyrup
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CrudeNaquadahFuel
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CrudeSoybeanOil
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CupriavidusNecator
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimerizedCarbon5Fraction
@@ -161,6 +163,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaWater
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SelfInteractingDarkMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SemistableAntimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodioIndene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SoybeanOil
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpatiallyEnlargedFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StableBaryonicMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SteamCrackedSodioIndene
@@ -506,35 +509,56 @@ object GTLiteUnknownCompositionMaterials
             color(0xF2E1AC)
         }
 
-        // 12065 Cane Syrup
+        // 12066 Cane Syrup
         CaneSyrup = addMaterial(12066, "cane_syrup")
         {
             liquid()
             color(0xF2F1DC)
         }
 
-        // 12066 Apple-Cane Syrup
+        // 12067 Apple-Cane Syrup
         AppleCaneSyrup = addMaterial(12067, "apple_cane_syrup")
         {
             liquid()
             color(0xE7F5AE)
         }
 
-        // 12067 Hard Apple Candy Syrup
+        // 12068 Hard Apple Candy Syrup
         HardAppleCandySyrup = addMaterial(12068, "hard_apple_candy_syrup")
         {
             liquid()
             color(0x78E32B)
         }
 
-        // 12068 Fracturing Fluid
+        // 12069 Fracturing Fluid
         FracturingFluid = addMaterial(12069, "fracturing_fluid")
         {
             liquid()
             color(0x96D6D5)
         }
 
-        // 12069-12100 for misc unknown composition materials.
+        // 12070 Crude Soybean Oil
+        CrudeSoybeanOil = addMaterial(12070, "crude_soybean_oil")
+        {
+            liquid()
+            color(0xDEDE43)
+        }
+
+        // 12071 Soybean Oil
+        SoybeanOil = addMaterial(12071, "soybean_oil")
+        {
+            liquid()
+            color(0xEBEB4D)
+        }
+
+        // 12072 Bean Phospholipid
+        BeanPhospholipid = addMaterial(12072, "bean_phospholipid")
+        {
+            liquid()
+            color(0xCA9046)
+        }
+
+        // 12071-12100 for misc unknown composition materials.
         // ...
 
         // 12101 Free Electron Gas

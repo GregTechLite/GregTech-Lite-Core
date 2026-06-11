@@ -791,6 +791,9 @@ object GTLiteMaterials
     lateinit var AppleCaneSyrup: Material
     lateinit var HardAppleCandySyrup: Material
     lateinit var FracturingFluid: Material
+    lateinit var CrudeSoybeanOil: Material
+    lateinit var SoybeanOil: Material
+    lateinit var BeanPhospholipid: Material
 
     lateinit var FreeElectronGas: Material
     lateinit var FermionicUUMatter: Material
