@@ -11,6 +11,7 @@ import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFisher
+import gregtechlite.gtlitecore.core.GTLiteConfigHolder
 import kotlin.math.pow
 import net.minecraft.init.Blocks
 import net.minecraft.nbt.NBTTagCompound
@@ -43,7 +44,7 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
 
     companion object
     {
-        const val MAX_PROGRESS = 1 * SECOND // TODO: Configurable.
+        val MAX_PROGRESS = GTLiteConfigHolder.machine.largeFisher.maxProgressTime
     }
 
     init

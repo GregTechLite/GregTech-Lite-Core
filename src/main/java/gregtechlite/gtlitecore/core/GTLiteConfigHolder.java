@@ -7,6 +7,8 @@ import net.minecraftforge.common.config.Config.RangeInt;
 import net.minecraftforge.common.config.Config.RequiresMcRestart;
 
 import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
+import static gregtechlite.gtlitecore.api.GTLiteValues.SECOND;
+import static gregtechlite.gtlitecore.api.GTLiteValues.TICK;
 
 @Config(modid = MOD_ID,
         name = MOD_ID + '/' + MOD_ID) // Put configurations to the total files with module configurations.
@@ -71,6 +73,10 @@ public class GTLiteConfigHolder
         @Name("Energy Infuser Options")
         public EnergyInfuser energyInfuser = new EnergyInfuser();
 
+        @Comment({"Modifiable settings for Large Fisher, consists of its basic progress time."})
+        @Name("Large Fisher Options")
+        public LargeFisher largeFisher = new LargeFisher();
+
         public static class EnergyInfuser
         {
 
@@ -89,6 +95,14 @@ public class GTLiteConfigHolder
             @RangeInt(min = 1)
             public int uuMatterConsumedPerDurability = 1;
 
+        }
+
+        public static class LargeFisher
+        {
+            @Comment({"The progress time for Large Fisher each cycle working consumed", "Default: 20 (=1s)"})
+            @Name("Progress Time Per Cycle")
+            @RangeInt(min = TICK)
+            public int maxProgressTime = SECOND;
         }
 
     }
