@@ -23,6 +23,7 @@ internal object FoodProcessingList
         EtirpsProcessing.init()
         SoybeanProcessing.init()
         AnimalFatProcessing.init()
+        NutrientPasteMealProcessing.init()
     }
 
     // @formatter:on

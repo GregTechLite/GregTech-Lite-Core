@@ -543,6 +543,7 @@ object GTLiteMetaItems
     lateinit var CLAY_CUP: MetaItem<*>.MetaValueItem
     lateinit var CERAMIC_CUP: MetaItem<*>.MetaValueItem
     lateinit var PLASTIC_BOTTLE: MetaItem<*>.MetaValueItem
+    lateinit var PVC_CAN: MetaItem<*>.MetaValueItem
 
     lateinit var GRAPE_JUICE: MetaItem<*>.MetaValueItem
     lateinit var RED_WINE: MetaItem<*>.MetaValueItem
@@ -569,6 +570,9 @@ object GTLiteMetaItems
     lateinit var GOLDEN_STRAWBERRY: MetaItem<*>.MetaValueItem
     lateinit var RAINBOW_BERRY: MetaItem<*>.MetaValueItem
     lateinit var MOON_BERRY: MetaItem<*>.MetaValueItem
+
+    lateinit var NUTRIENT_PASTE_MEAL: MetaItem<*>.MetaValueItem
+    lateinit var RICH_NUTRIENT_PASTE_MEAL: MetaItem<*>.MetaValueItem
 
     fun init()
     {

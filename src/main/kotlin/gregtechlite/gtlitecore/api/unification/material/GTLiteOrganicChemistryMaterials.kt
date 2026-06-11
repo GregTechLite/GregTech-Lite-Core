@@ -173,6 +173,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GammaButyrolacton
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GeodesicPolyarene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glucose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glutamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GlycidylStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glyoxal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GrignardReagent
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Guaiacol
@@ -210,6 +211,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylhydrazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylparatoluate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methyltrichlorosilane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Monoglyceride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NDifluorophenylpyrrole
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NHydroxysuccinimide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NMethylPyrrolidone
@@ -2398,6 +2400,24 @@ object GTLiteOrganicChemistryMaterials
             liquid()
             color(0xF6E2E2)
             components(Carbon, 19, Hydrogen, 38, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8238 Glycidyl Stearate
+        GlycidylStearate = addMaterial(8238, "glycidyl_stearate")
+        {
+            liquid()
+            color(0x64E1BF)
+            components(Carbon, 21, Hydrogen, 40, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8239 Monoglyceride
+        Monoglyceride = addMaterial(8239, "monoglyceride")
+        {
+            liquid()
+            color(0x30C09A)
+            components(Carbon, 21, Hydrogen, 42, Oxygen, 4)
             flags(DISABLE_DECOMPOSITION)
         }
     }

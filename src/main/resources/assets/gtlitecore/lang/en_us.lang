@@ -1538,6 +1538,7 @@ metaitem.food.tableware.paper_cone.name=Paper Cone
 metaitem.food.tableware.component.clay_cup.name=Clay Cup
 metaitem.food.tableware.ceramic_cup.name=Ceramic Cup
 metaitem.food.tableware.plastic_bottle.name=Plastic Bottle
+metaitem.food.tableware.pvc_can.name=PVC Can
 
 metaitem.food.drink.grape_juice.name=Grape Juice
 metaitem.food.drink.grape_juice.tooltip=Rich in Sugar
@@ -1583,6 +1584,11 @@ metaitem.fruit.product.rainbow_berry.name=Rainbow Berry
 metaitem.fruit.product.rainbow_berry.tooltip=Chromatic
 metaitem.fruit.product.moon_berry.name=Moon Berry
 metaitem.fruit.product.moon_berry.tooltip=Wow!
+
+metaitem.food.nutrient_paste_meal.name=Nutrient Paste Meal
+metaitem.food.nutrient_paste_meal.tooltip=Eating it is very disgusting
+metaitem.food.rich_nutrient_paste_meal.name=Nutrient Paste Meal (Rich Nutrient)
+metaitem.food.rich_nutrient_paste_meal.tooltip=Nausea Degree may be less than its Nutritional Value
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=Corn Kernal
@@ -3713,6 +3719,8 @@ gtlitecore.material.ethylene_vinyl_acetate_polymer=Ethylene-Vinyl Acetate Polyme
 gtlitecore.material.stearic_acid=Stearic Acid
 gtlitecore.material.sodium_stearate=Sodium Stearate
 gtlitecore.material.methyl_stearate=Methyl Stearate
+gtlitecore.material.glycidyl_stearate=Glycidyl Stearate
+gtlitecore.material.monoglyceride=Monoglyceride
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -3833,6 +3841,15 @@ gtlitecore.material.mutated_living_solder=Mutated Living Solder
 gtlitecore.material.sodio_indene=Sodio-Indene Mixture
 gtlitecore.material.steam_cracked_sodio_indene=Steam-Cracked Sodio-Indene Mixture
 gtlitecore.material.phosphorene_solution=Phosphorene Solution
+gtlitecore.material.nutrient_paste_water_phase_mixture=Nutrient Paste Water Phase Mixture
+gtlitecore.material.rich_nutrient_paste_water_phase_mixture=Nutrient Paste Water Phase Mixture (Rich Nutrient)
+gtlitecore.material.nutrient_paste_oil_phase_mixture=Nutrient Paste Oil Phase Mixture
+gtlitecore.material.nutrient_paste_crude_emulsion=Nutrient Paste Crude Emulsion
+gtlitecore.material.rich_nutrient_paste_crude_emulsion=Nutrient Paste Crude Emulsion (Rich Nutrient)
+gtlitecore.material.nutrient_paste_emulsion=Nutrient Paste Emulsion
+gtlitecore.material.rich_nutrient_paste_emulsion=Nutrient Paste Emulsion (Rich Nutrient)
+gtlitecore.material.sterilized_nutrient_paste_emulsion=Sterilized Nutrient Paste Emulsion
+gtlitecore.material.sterilized_rich_nutrient_paste_emulsion=Sterilized Nutrient Paste Emulsion (Rich Nutrient)
 
 gtlitecore.material.neutron_proton_fermi_superfluid=Neutron-Proton Fermi Superfluid
 gtlitecore.material.heavy_lepton_mixture=Heavy Lepton Mixture
