@@ -2,7 +2,9 @@ package gregtechlite.gtlitecore.loader.recipe.machine
 
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.items.metaitem.MetaItem
@@ -589,10 +591,10 @@ internal object MobExtractorRecipes
     private fun addSlaughterRecipes(card: MetaItem<*>.MetaValueItem, bloodAmount: Int, fatAmount: Int,
                                     builder: SimpleRecipeBuilder.(a: Int) -> Unit)
     {
-        addSlaughterRecipe(card, WOODEN_SWORD, 1, VA[LV], bloodAmount, fatAmount, builder)
-        addSlaughterRecipe(card, STONE_SWORD, 4, VA[MV], bloodAmount, fatAmount, builder)
-        addSlaughterRecipe(card, IRON_SWORD, 16, VA[HV], bloodAmount, fatAmount, builder)
-        addSlaughterRecipe(card, DIAMOND_SWORD, 64, VA[EV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, WOODEN_SWORD, 1, VA[HV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, STONE_SWORD, 4, VA[EV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, IRON_SWORD, 16, VA[IV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, DIAMOND_SWORD, 64, VA[LuV], bloodAmount, fatAmount, builder)
     }
 
     private fun addSlaughterRecipe(card: MetaItem<*>.MetaValueItem, weapon: Item, factor: Int, eut: Int,
@@ -605,7 +607,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(bloodAmount * factor))
             fluidOutputs(Fat.getFluid(fatAmount * factor))
             EUt(eut)
-            duration(5 * SECOND)
+            duration(10 * SECOND)
         }
     }
 }
