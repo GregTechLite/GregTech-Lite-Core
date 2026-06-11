@@ -1,5 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -10,6 +12,8 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.client.renderer.ICubeRenderer
@@ -34,7 +38,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import kotlin.math.max
 
-class MultiblockSlaughter(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(MOB_COLLECTING_RECIPES, MOB_SLAUGHTERING_RECIPES))
+class MultiblockMobSlaughter(id: ResourceLocation) : MultiMapMultiblockController(id, arrayOf(MOB_COLLECTING_RECIPES, MOB_SLAUGHTERING_RECIPES))
 {
     private var casingTier = 0
 
@@ -52,7 +56,7 @@ class MultiblockSlaughter(id: ResourceLocation) : MultiMapMultiblockController(i
         private val glassState = GTGlassCasing.TEMPERED_GLASS.state
     }
 
-    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockSlaughter(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockMobSlaughter(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -100,7 +104,7 @@ class MultiblockSlaughter(id: ResourceLocation) : MultiMapMultiblockController(i
         addTooltip(tooltip)
         {
             addMachineTypeLine()
-            addOverclockInfo(OverclockMode.PERFECT)
+            addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(UpgradeMode.CONVEYOR_CASING, 8)
             addDurationInfo(UpgradeMode.CONVEYOR_CASING, 200)
             addEnergyInfo(10)
@@ -111,6 +115,8 @@ class MultiblockSlaughter(id: ResourceLocation) : MultiMapMultiblockController(i
 
     private inner class LargeSlaughterRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
+        override fun getOverclockingDurationFactor(): Double
+            = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
