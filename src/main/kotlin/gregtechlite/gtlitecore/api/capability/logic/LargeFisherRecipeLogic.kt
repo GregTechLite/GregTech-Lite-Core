@@ -129,11 +129,12 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
         progressTime = 0
 
         val world = mte.world
+        val lootTable = world.lootTableManager.getLootTableFromLocation(ResourceLocation(getLootTable()))
+        val lootCtx = LootContext.Builder(world as WorldServer).build()
+
         var l = world.rand.nextInt(outputAmount)
         while (l < outputAmount)
         {
-            val lootTable = world.lootTableManager.getLootTableFromLocation(ResourceLocation(getLootTable()))
-            val lootCtx = LootContext.Builder(world as WorldServer).build()
             val stacks = lootTable.generateLootForPools(world.rand, lootCtx)
             for (stack in stacks)
             {
@@ -146,8 +147,10 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
                     isInventoryFull = true
                     setActive(false)
                     wasActiveAndNeedsUpdate = true
+                    return  // Stop immediately; don't keep trying to insert into a full output
                 }
                 l++
+                if (l >= outputAmount) break
             }
         }
     }
@@ -197,26 +200,24 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
             isEnergyNotEnough = false
         }
 
-        val world = mte.world
-        val lootTable = world.lootTableManager.getLootTableFromLocation(ResourceLocation(getLootTable()))
-        val lootCtx = LootContext.Builder(world as WorldServer).build()
-        val stacks = lootTable.generateLootForPools(world.rand, lootCtx)
-        for (stack in stacks)
+        val handler = mte.outputItemInventory ?: return false
+        var emptySlots = 0
+        for (i in 0 until handler.slots)
         {
-            if (mte.fillOutput(stack, true))
+            if (handler.getStackInSlot(i).isEmpty) emptySlots++
+        }
+        if (emptySlots == 0)
+        {
+            isInventoryFull = true
+            if (isActive)
             {
-                isInventoryFull = false
-                return true
+                setActive(false)
+                wasActiveAndNeedsUpdate = true
             }
+            return false
         }
-        isInventoryFull = true
-
-        if (isActive)
-        {
-            setActive(false)
-            wasActiveAndNeedsUpdate = true
-        }
-        return false
+        isInventoryFull = false
+        return true
     }
 
     private fun consumeEnergy(energy: Boolean): Boolean

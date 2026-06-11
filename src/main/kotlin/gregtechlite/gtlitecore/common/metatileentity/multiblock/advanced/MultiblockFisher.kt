@@ -62,7 +62,8 @@ class MultiblockFisher(id: ResourceLocation) : MultiblockWithDisplayBase(id), ID
 
     var energyContainer: IEnergyContainer? = null
     private var inputFluidInventory: IMultipleTankHandler? = null
-    private var outputItemInventory: IItemHandler? = null
+    var outputItemInventory: IItemHandler? = null
+        private set
 
     val energyInputPerSec = energyContainer?.inputPerSec ?: 0L
     var casingTier = 0
