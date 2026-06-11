@@ -10,6 +10,7 @@ import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFisher
+import kotlin.math.sqrt
 import net.minecraft.init.Blocks
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
@@ -153,21 +154,22 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
 
     fun getLootTable(): String
     {
+        val p = sqrt(mte.parallelLimit.toDouble()).toInt().coerceAtLeast(1)
         when (mode)
         {
             0 ->
             {
-                outputAmount = mte.casingTier * (8 + mte.parallelLimit)
+                outputAmount = mte.casingTier * (6 + p)
                 lootTable = "gameplay/fishing/fish"
             }
             1 ->
             {
-                outputAmount = mte.casingTier * (4 + mte.parallelLimit)
+                outputAmount = mte.casingTier * (4 + p * 2 / 3)
                 lootTable = "gameplay/fishing/junk"
             }
             2 ->
             {
-                outputAmount = mte.casingTier * (2 + mte.parallelLimit)
+                outputAmount = mte.casingTier * (2 + p / 3)
                 lootTable = "gameplay/fishing/treasure"
             }
             else ->
