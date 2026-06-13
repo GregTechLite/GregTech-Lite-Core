@@ -135,7 +135,7 @@ internal object NutrientPasteMealProcessing
         }
 
         // Nutrient Paste Oil Phase Mixture
-        for (oil in arrayOf(SeedOil, FishOil, OliveOil, CrudeSoybeanOil, SoybeanOil))
+        for (oil in arrayOf(SeedOil, FishOil, OliveOil, SoybeanOil))
         {
             LARGE_MIXER_RECIPES.addRecipe {
                 fluidInputs(oil.getFluid(1000))
