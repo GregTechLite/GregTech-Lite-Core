@@ -80,11 +80,11 @@ internal object NutrientPasteMealProcessing
             duration(10 * SECOND)
         }
 
-        // C21H40O3 -> C21H42O4 + H2O
-        CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
+        // C21H40O3 + H2O -> C21H42O4
+        CHEMICAL_RECIPES.addRecipe {
             fluidInputs(GlycidylStearate.getFluid(1000))
+            fluidInputs(Water.getFluid(1000))
             fluidOutputs(Monoglyceride.getFluid(1000))
-            fluidOutputs(Water.getFluid(1000))
             EUt(VA[LV])
             duration(5 * SECOND)
         }
