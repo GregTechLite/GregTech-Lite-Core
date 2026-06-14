@@ -120,7 +120,7 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
             .setMinGlobalLimited(36))
         .where('G', states(glassState))
         .where('I', metaTileEntities(MetaTileEntities.ITEM_IMPORT_BUS[ULV])
-            .or(metaTileEntities(GTLiteMetaTileEntities.HUGE_ITEM_IMPORT_BUS[ULV]))
+            .or(metaTileEntities(GTLiteMetaTileEntities.QUANTUM_ITEM_IMPORT_BUS[ULV]))
             .or(states(secondCasingState)))
         .where('C', states(secondCasingState)
             .or(cruciblePredicate()))

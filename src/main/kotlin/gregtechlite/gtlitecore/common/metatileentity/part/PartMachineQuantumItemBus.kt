@@ -1,5 +1,9 @@
 package gregtechlite.gtlitecore.common.metatileentity.part
 
+import codechicken.lib.render.CCRenderState
+import codechicken.lib.render.pipeline.ColourMultiplier
+import codechicken.lib.render.pipeline.IVertexOperation
+import codechicken.lib.vec.Matrix4
 import com.cleanroommc.modularui.api.drawable.IKey
 import com.cleanroommc.modularui.factory.PosGuiData
 import com.cleanroommc.modularui.screen.ModularPanel
@@ -19,7 +23,6 @@ import gregtech.api.capability.IGhostSlotConfigurable
 import gregtech.api.capability.INotifiableHandler
 import gregtech.api.capability.impl.GhostCircuitItemStackHandler
 import gregtech.api.capability.impl.ItemHandlerList
-import gregtech.api.capability.impl.NotifiableItemStackHandler
 import gregtech.api.items.itemhandlers.GTItemStackHandler
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -30,10 +33,15 @@ import gregtech.api.mui.GTGuiTextures
 import gregtech.api.mui.GTGuis
 import gregtech.api.mui.widget.GhostCircuitSlotWidget
 import gregtech.api.util.GTHashMaps
+import gregtech.api.util.GTUtility.convertRGBtoOpaqueRGBA_CL
+import gregtech.client.renderer.texture.cube.SimpleOrientedCubeRenderer
+import gregtech.client.renderer.texture.custom.FireboxActiveRenderer
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityItemBus
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.capability.handler.ConfigurableItemStackHandler
+import gregtechlite.gtlitecore.api.extension.add
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -43,23 +51,22 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
+import org.apache.commons.lang3.ArrayUtils
 import kotlin.math.max
 import kotlin.math.sqrt
 
-// TODO: FIXME: Seems cannot notify mte.
-class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
+class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     : MetaTileEntityItemBus(id, tier, false), IMultiblockAbilityPart<IItemHandlerModifiable>, IControllable,
       IGhostSlotConfigurable
 {
 
-    private var slotItemInventory: ConfigurableItemStackHandler? = null
     private var actualImportItems: IItemHandlerModifiable? = null
 
     private var workingEnabled: Boolean = true
     private var autoCollapse: Boolean = false
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
-        = PartMachineHugeItemBus(metaTileEntityId, tier)
+        = PartMachineQuantumItemBus(metaTileEntityId, tier)
 
     override fun initializeInventory()
     {
@@ -68,12 +75,11 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
         {
             circuitInventory = GhostCircuitItemStackHandler(this)
             circuitInventory!!.addNotifiableMetaTileEntity(this)
-            slotItemInventory = ConfigurableItemStackHandler(this, getInventorySize(), null, false) { Int.MAX_VALUE }
-            actualImportItems = ItemHandlerList(listOf(slotItemInventory, circuitInventory))
+            actualImportItems = ItemHandlerList(listOf(this.importItems!!, circuitInventory!!))
         }
         else
         {
-            actualImportItems = null
+            actualImportItems = this.importItems
         }
     }
 
@@ -84,14 +90,11 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
     }
 
     override fun getImportItems(): IItemHandlerModifiable?
-    {
-        return if (actualImportItems == null) super.getImportItems() else actualImportItems
-    }
+        = if (actualImportItems == null) super.getImportItems() else actualImportItems
+
 
     override fun createImportItemHandler(): IItemHandlerModifiable?
-    {
-        return NotifiableItemStackHandler(this, getInventorySize(), controller, false)
-    }
+        = ConfigurableItemStackHandler(this, getInventorySize(), controller, false) { Int.MAX_VALUE }
 
      override fun update()
      {
@@ -234,7 +237,7 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
         {
             if (this.autoCollapse)
             {
-                addNotifiedInput(super.getImportItems())
+                addNotifiedInput(getImportItems())
             }
             writeCustomData(GregtechDataCodes.TOGGLE_COLLAPSE_ITEMS) { it.writeBoolean(this.autoCollapse) }
             notifyBlockUpdate()
@@ -275,14 +278,7 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
 
     override fun registerAbilities(abilityInstances: AbilityInstances)
     {
-        if (hasGhostCircuitInventory() && actualImportItems != null)
-        {
-            abilityInstances.add(actualImportItems)
-        }
-        else
-        {
-            abilityInstances.add(importItems)
-        }
+        abilityInstances.add(getImportItems())
     }
 
     @SideOnly(Side.CLIENT)
@@ -311,9 +307,9 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
 
         val collapseStateValue = BooleanSyncValue(
             { autoCollapse },
-            { collapseMode: Boolean -> autoCollapse = collapseMode })
+            { collapseMode -> autoCollapse = collapseMode })
 
-        val handler = if (isExportHatch) exportItems else importItems
+        val handler = getImportItems()
         val hasGhostCircuit = hasGhostCircuitInventory() && circuitInventory != null
 
         return GTGuis.createPanel(this, backgroundWidth, backgroundHeight)
@@ -329,7 +325,7 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
                        .minColWidth(18)
                        .minRowHeight(18)
                        .alignX(0.5f)
-                       .mapTo(rowSize, rowSize * rowSize) { slotIdx: Int ->
+                       .mapTo(rowSize, rowSize * rowSize) { slotIdx ->
                            ItemSlot()
                                .slot(SyncHandlers.itemSlot(handler, slotIdx)
                                          .slotGroup("item_inv")
@@ -338,7 +334,7 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
                                                  handler.onContentsChanged(slotIdx)
                                          }
                                          .ignoreMaxStackSize(true)
-                                         .accessibility(!isExportHatch, true))
+                                         .accessibility(true, true))
                        })
             .child(Flow.column()
                        .pos(backgroundWidth - 7 - 18, backgroundHeight - 18 * 4 - 7 - 5)
@@ -353,20 +349,10 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
                                   .overlay(GTGuiTextures.BUTTON_ITEM_OUTPUT)
                                   .tooltipAutoUpdate(true)
                                   .tooltipBuilder {
-                                      if (isExportHatch)
-                                      {
-                                          if (workingStateValue.boolValue)
-                                              it.addLine(IKey.lang("gregtech.gui.item_auto_output.tooltip.enabled"))
-                                          else
-                                              it.addLine(IKey.lang("gregtech.gui.item_auto_output.tooltip.disabled"))
-                                      }
+                                      if (workingStateValue.boolValue)
+                                          it.addLine(IKey.lang("gregtech.gui.item_auto_input.tooltip.enabled"))
                                       else
-                                      {
-                                          if (workingStateValue.boolValue)
-                                              it.addLine(IKey.lang("gregtech.gui.item_auto_input.tooltip.enabled"))
-                                          else
-                                              it.addLine(IKey.lang("gregtech.gui.item_auto_input.tooltip.disabled"))
-                                      }
+                                          it.addLine(IKey.lang("gregtech.gui.item_auto_input.tooltip.disabled"))
                                   })
             .child(ToggleButton()
                        .top(18)
@@ -374,7 +360,6 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
                        .overlay(GTGuiTextures.BUTTON_AUTO_COLLAPSE)
                        .tooltipAutoUpdate(true)
                        .tooltipBuilder {
-
                            if (collapseStateValue.boolValue)
                                it.addLine( IKey.lang("gregtech.gui.item_auto_collapse.tooltip.enabled"))
                            else
@@ -390,4 +375,15 @@ class PartMachineHugeItemBus(id: ResourceLocation, tier: Int)
                 }))
     }
 
+    override fun renderMetaTileEntity(renderState: CCRenderState, translation: Matrix4,
+                                      pipeline: Array<IVertexOperation>)
+    {
+        pipeline.add(ColourMultiplier(convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
+        if (baseTexture !is FireboxActiveRenderer && baseTexture !is SimpleOrientedCubeRenderer)
+            baseTexture!!.render(renderState, translation, pipeline)
+        else
+            baseTexture.renderOriented(renderState, translation, pipeline, frontFacing)
+        if (shouldRenderOverlay())
+            GTLiteOverlays.QUANTUM_ITEM_BUS_OVERLAY.renderSided(frontFacing, renderState, translation, pipeline)
+    }
 }
