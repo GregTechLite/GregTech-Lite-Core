@@ -7,7 +7,6 @@ import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRUDER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
-import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.PolyvinylChloride
@@ -22,7 +21,6 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
-import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PiranhaSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_BOWL
