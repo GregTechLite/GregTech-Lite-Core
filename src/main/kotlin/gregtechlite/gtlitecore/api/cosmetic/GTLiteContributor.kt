@@ -10,7 +10,7 @@ import java.util.UUID
  * @param uuid        The uuid of the contributor in game.
  * @param isDeveloper If the contributor is a developer, then it will have special cape in game.
  */
-enum class GTLiteContributor(name: String, internal val uuid: UUID, internal val isDeveloper: Boolean = true)
+enum class GTLiteContributor(val userName: String, internal val uuid: UUID, internal val isDeveloper: Boolean = true)
 {
     // Developers
     MAGIC_SWEEPY(    "Magic_Sweepy",   "aaed705b-8e08-47fa-b8e0-d0024e3c75bc"),
@@ -22,8 +22,8 @@ enum class GTLiteContributor(name: String, internal val uuid: UUID, internal val
     YIYU_QAQ(        "YIYU_QAQ",       "d5482dd2-8894-4916-b347-50eff773d2f3", false),
     CATARREL(        "Catarrel",       "7e120341-d0aa-40cf-a1a2-ff5f47d2c858", false);
 
-    constructor(name: String, uuid: String, isDeveloper: Boolean = true)
-            : this(name, UUID.fromString(uuid), isDeveloper)
+    constructor(userName: String, uuid: String, isDeveloper: Boolean = true)
+            : this(userName, UUID.fromString(uuid), isDeveloper)
 
     companion object
     {

@@ -555,7 +555,7 @@ object GTLiteMetaItem2
         NUTRIENT_PASTE_MEAL = item(2101, "food.nutrient_paste_meal")
             .addComponents(TooltipBehavior {
                 if (TooltipHelper.isShiftDown())
-                    it.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.CATARREL.name))
+                    it.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.CATARREL.userName))
                 else
                     it.add(I18n.format("gtlitecore.tooltip.contributor_item"))
                 it.add(I18n.format("metaitem.food.nutrient_paste_meal.tooltip.1"))
@@ -570,7 +570,7 @@ object GTLiteMetaItem2
         RICH_NUTRIENT_PASTE_MEAL = item(2102, "food.rich_nutrient_paste_meal")
             .addComponents(TooltipBehavior {
                 if (TooltipHelper.isShiftDown())
-                    it.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.CATARREL.name))
+                    it.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.CATARREL.userName))
                 else
                     it.add(I18n.format("gtlitecore.tooltip.contributor_item"))
                 it.add(I18n.format("metaitem.food.rich_nutrient_paste_meal.tooltip.1"))

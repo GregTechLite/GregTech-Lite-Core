@@ -159,7 +159,7 @@ class LaserDestroyerBehavior : IItemBehaviour
     {
         super.addInformation(itemStack, lines)
         if (TooltipHelper.isShiftDown())
-            lines.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.YIYU_QAQ.name))
+            lines.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.YIYU_QAQ.userName))
         else
             lines.add(I18n.format("gtlitecore.tooltip.contributor_item"))
         lines.add(I18n.format("metaitem.tool.laser_destroyer.mode"))
