@@ -1,6 +1,8 @@
 package gregtechlite.gtlitecore.common
 
+import gregtech.api.GTValues
 import gregtech.api.GregTechAPI
+import gregtech.api.capability.GregtechCapabilities
 import gregtech.api.metatileentity.registry.MTEManager.MTERegistryEvent
 import gregtech.api.unification.material.event.MaterialEvent
 import gregtech.api.unification.material.event.MaterialRegistryEvent
@@ -26,6 +28,7 @@ import gregtechlite.gtlitecore.loader.recipe.component.CraftingComponents
 import gregtechlite.gtlitecore.loader.recipe.handler.RecipeHandlers
 import net.minecraft.item.crafting.IRecipe
 import net.minecraftforge.event.RegistryEvent
+import net.minecraftforge.event.entity.player.PlayerInteractEvent
 import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
@@ -83,5 +86,4 @@ object EventHandlers
     {
         RecipeHandlers.init()
     }
-
 }

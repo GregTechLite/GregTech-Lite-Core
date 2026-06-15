@@ -869,6 +869,12 @@ metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell6
 
 metaitem.tool.magnetron.name=Magnetron
 
+metaitem.tool.laser_destroyer.name=Laser Destroyer
+metaitem.tool.laser_destroyer.mode=Use while sneaking to toggle §fSilk Mode§7, will enabled Silk Touch when in §fSilk Mode§7
+metaitem.tool.laser_destroyer.energy_cost=Consume §e%s EU§7 for each block breaking, consume twice when in §fSilk Mode§7
+metaitem.tool.laser_destroyer.silk_mode.disabled=Silk Mode: §cDisabled§f
+metaitem.tool.laser_destroyer.silk_mode.enabled=Silk Mode: §aEnabled§f
+
 metaitem.tool.petri_dish.dirty.name=Dirty Petri Dish
 metaitem.tool.petri_dish.brevibacterium_flavum.name=Brevibacterium Flavum Petri Dish
 metaitem.tool.petri_dish.cupriavidus_necator.name=Cupriavidus Necator Petri Dish
@@ -1586,9 +1592,9 @@ metaitem.fruit.product.moon_berry.name=Moon Berry
 metaitem.fruit.product.moon_berry.tooltip=Wow!
 
 metaitem.food.nutrient_paste_meal.name=Nutrient Paste Meal
-metaitem.food.nutrient_paste_meal.tooltip=Eating it is very disgusting
+metaitem.food.nutrient_paste_meal.tooltip.1=Eating it is very disgusting
 metaitem.food.rich_nutrient_paste_meal.name=Nutrient Paste Meal (Rich Nutrient)
-metaitem.food.rich_nutrient_paste_meal.tooltip=Nausea Degree may be less than its Nutritional Value
+metaitem.food.rich_nutrient_paste_meal.tooltip.1=Nausea Degree may be less than its Nutritional Value
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=Corn Kernal
@@ -4014,6 +4020,9 @@ gtlitecore.tooltip.machine.special_max_voltage=Max Recipe Tier Predicate: §3Dis
 gtlitecore.tooltip.machine.excess_mode=Switch the §bExcess Mode§7 to choose whether to destroy excess energy
 gtlitecore.tooltip.gui.excess_mode.enabled=Excess Mode: §aEnabled§r\nWhen Dynamo Hatch is full, continues working and destroys excess energy.
 gtlitecore.tooltip.gui.excess_mode.disabled=Excess Mode: §cDisabled§r\nWhen Dynamo Hatch is full, stop recipe working and maintain progress time.
+
+gtlitecore.tooltip.contributor_item=§a§lContributor Item
+gtlitecore.tooltip.contributor_item.owner=This item is exclusively owned by §lContributor§r§6%s§7, thank your contribution for modpack!
 
 # Creative Tabs
 itemGroup.gtlite.main=GregTech Lite

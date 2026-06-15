@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.item
 
 import gregtech.api.GTValues.M
 import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
@@ -174,6 +175,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HELIUM_NEON_LASER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HIGHLY_DENSE_POLYMER_PLATE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HOLOGRAPHIC_INFORMATION_IMC
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.INFINITE_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LASER_DESTROYER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_CORE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_DECORATION
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_FOOD
@@ -452,7 +454,9 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.X_RAY_WAVEGUIDE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ZENITH_STAR
 import gregtechlite.gtlitecore.common.item.behavior.CircuitPatternBehavior
 import gregtechlite.gtlitecore.common.item.behavior.HaloRenderItemBehavior
+import gregtechlite.gtlitecore.common.item.behavior.LaserDestroyerBehavior
 import gregtechlite.gtlitecore.common.item.behavior.StructureWriterBehavior
+import gregtechlite.gtlitecore.core.GTLiteConfigHolder
 import net.minecraft.client.resources.I18n
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.EnumRarity
@@ -892,6 +896,12 @@ object GTLiteMetaItem1
             .addComponents(CircuitPatternBehavior())
 
         MAGNETRON = item(622, "tool.magnetron")
+
+        LASER_DESTROYER = item(623, "tool.laser_destroyer")
+            .addComponents(ElectricStats.createElectricItem(GTLiteConfigHolder.tool.laserDestroyer.capacity.toLong(),
+                 GTLiteConfigHolder.tool.laserDestroyer.toolTier.toLong()), LaserDestroyerBehavior())
+            .setMaxStackSize(1)
+            .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS)
 
         // ...
 

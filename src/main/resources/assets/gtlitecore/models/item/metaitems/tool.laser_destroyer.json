@@ -1,0 +1,6 @@
+{
+  "parent": "gtlitecore:item/laser_destroyer",
+  "textures" : {
+    "layer0": "gtlitecore:items/metaitems/tool.laser_destroyer"
+  }
+}

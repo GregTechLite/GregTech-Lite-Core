@@ -869,6 +869,12 @@ metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell6
 
 metaitem.tool.magnetron.name=磁控管
 
+metaitem.tool.laser_destroyer.name=激光拆解器
+metaitem.tool.laser_destroyer.mode=潜行右击以切换§f精准模式§7，在§f精准模式§7下自动启用精准采集
+metaitem.tool.laser_destroyer.energy_cost=挖掘方块时消耗§e%s EU§7，处于§f精准模式§7下消耗双倍
+metaitem.tool.laser_destroyer.silk_mode.disabled=精准模式：§c禁用§f
+metaitem.tool.laser_destroyer.silk_mode.enabled=精准模式：§a启用§f
+
 metaitem.tool.petri_dish.dirty.name=污浊的培养皿
 metaitem.tool.petri_dish.brevibacterium_flavum.name=黄色短杆菌培养皿
 metaitem.tool.petri_dish.cupriavidus_necator.name=贪铜钩虫菌培养皿
@@ -1586,9 +1592,9 @@ metaitem.fruit.product.moon_berry.name=月莓
 metaitem.fruit.product.moon_berry.tooltip=哇哦！
 
 metaitem.food.nutrient_paste_meal.name=营养膏
-metaitem.food.nutrient_paste_meal.tooltip=食用起来非常恶心
+metaitem.food.nutrient_paste_meal.tooltip.1=食用起来非常恶心
 metaitem.food.rich_nutrient_paste_meal.name=营养膏（富营养）
-metaitem.food.rich_nutrient_paste_meal.tooltip=恶心程度也许小于营养价值
+metaitem.food.rich_nutrient_paste_meal.tooltip.1=恶心程度也许小于营养价值
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=玉米粒
@@ -4014,6 +4020,9 @@ gtlitecore.tooltip.machine.special_max_voltage=最大配方等级判定：§3禁
 gtlitecore.tooltip.machine.excess_mode=可以在机器界面中切换§b溢能模式§7来选择是否销毁多余能量。
 gtlitecore.tooltip.gui.excess_mode.enabled=溢能模式：§a启用§7\n当动力仓的缓存充满时机器继续运行，销毁多余的能量。
 gtlitecore.tooltip.gui.excess_mode.disabled=溢能模式：§c禁用§7\n当动力仓的缓存充满时机器停机，保持配方进度不再运行。
+
+gtlitecore.tooltip.contributor_item=§a§l贡献者物品
+gtlitecore.tooltip.contributor_item.owner=该物品专属于§l贡献者§r§6%s§7，感谢你对本整合包做出的贡献
 
 # Creative Tabs
 itemGroup.gtlite.main=格雷科技精简版

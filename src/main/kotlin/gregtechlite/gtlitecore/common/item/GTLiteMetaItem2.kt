@@ -2,10 +2,12 @@ package gregtechlite.gtlitecore.common.item
 
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.util.RandomPotionEffect
+import gregtech.client.utils.TooltipHelper
 import gregtech.common.items.behaviors.TooltipBehavior
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
 import gregtechlite.gtlitecore.api.extension.addOreDicts
 import gregtechlite.gtlitecore.api.item.GTLiteMetaItem
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -551,6 +553,13 @@ object GTLiteMetaItem2
 
         // region 2101-2300: Snacks
         NUTRIENT_PASTE_MEAL = item(2101, "food.nutrient_paste_meal")
+            .addComponents(TooltipBehavior {
+                if (TooltipHelper.isShiftDown())
+                    it.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.CATARREL.userName))
+                else
+                    it.add(I18n.format("gtlitecore.tooltip.contributor_item"))
+                it.add(I18n.format("metaitem.food.nutrient_paste_meal.tooltip.1"))
+            })
             .addComponents(FoodBehavior(4, 6.0F)
                                .setEatingDuration(10 * TICK)
                                .setPotionEffects(RandomPotionEffect(MobEffects.NAUSEA, 2 * SECOND, 1, 100 - 100),
@@ -559,6 +568,13 @@ object GTLiteMetaItem2
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         RICH_NUTRIENT_PASTE_MEAL = item(2102, "food.rich_nutrient_paste_meal")
+            .addComponents(TooltipBehavior {
+                if (TooltipHelper.isShiftDown())
+                    it.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.CATARREL.userName))
+                else
+                    it.add(I18n.format("gtlitecore.tooltip.contributor_item"))
+                it.add(I18n.format("metaitem.food.rich_nutrient_paste_meal.tooltip.1"))
+            })
             .addComponents(FoodBehavior(6, 9.0F)
                                .setEatingDuration(10 * TICK)
                                .setPotionEffects(RandomPotionEffect(MobEffects.NAUSEA, 1 * SECOND, 1, 100 - 100),

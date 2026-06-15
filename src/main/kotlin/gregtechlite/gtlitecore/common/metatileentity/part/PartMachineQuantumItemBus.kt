@@ -14,7 +14,6 @@ import com.cleanroommc.modularui.screen.ModularPanel
 import com.cleanroommc.modularui.screen.UISettings
 import com.cleanroommc.modularui.utils.Color
 import com.cleanroommc.modularui.value.sync.BooleanSyncValue
-import com.cleanroommc.modularui.value.sync.IntSyncValue
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.value.sync.SyncHandlers
 import com.cleanroommc.modularui.widget.Widget
@@ -28,7 +27,6 @@ import com.cleanroommc.modularui.widgets.slot.ItemSlot
 import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.OpV
-import gregtech.api.capability.GregtechDataCodes
 import gregtech.api.capability.GregtechDataCodes.TOGGLE_COLLAPSE_ITEMS
 import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
 import gregtech.api.capability.IControllable
@@ -466,11 +464,11 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     override fun renderMetaTileEntity(renderState: CCRenderState, translation: Matrix4,
                                       pipeline: Array<IVertexOperation>)
     {
-        pipeline.add(ColourMultiplier(convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
-        if (baseTexture !is FireboxActiveRenderer && baseTexture !is SimpleOrientedCubeRenderer)
-            baseTexture!!.render(renderState, translation, pipeline)
+        val coloredPipeline = pipeline.add(ColourMultiplier(convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
+        if (baseTexture is FireboxActiveRenderer || baseTexture is SimpleOrientedCubeRenderer)
+            baseTexture.renderOriented(renderState, translation, coloredPipeline, frontFacing)
         else
-            baseTexture.renderOriented(renderState, translation, pipeline, frontFacing)
+            baseTexture.render(renderState, translation, coloredPipeline)
         if (shouldRenderOverlay())
             GTLiteOverlays.QUANTUM_ITEM_BUS_OVERLAY.renderSided(frontFacing, renderState, translation, pipeline)
     }
