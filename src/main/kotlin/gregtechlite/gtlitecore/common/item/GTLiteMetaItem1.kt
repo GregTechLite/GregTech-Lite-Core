@@ -456,6 +456,7 @@ import gregtechlite.gtlitecore.common.item.behavior.CircuitPatternBehavior
 import gregtechlite.gtlitecore.common.item.behavior.HaloRenderItemBehavior
 import gregtechlite.gtlitecore.common.item.behavior.LaserDestroyerBehavior
 import gregtechlite.gtlitecore.common.item.behavior.StructureWriterBehavior
+import gregtechlite.gtlitecore.core.GTLiteConfigHolder
 import net.minecraft.client.resources.I18n
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.EnumRarity
@@ -897,7 +898,8 @@ object GTLiteMetaItem1
         MAGNETRON = item(622, "tool.magnetron")
 
         LASER_DESTROYER = item(623, "tool.laser_destroyer")
-            .addComponents(ElectricStats.createElectricItem(1_000_000L, MV.toLong()), LaserDestroyerBehavior())
+            .addComponents(ElectricStats.createElectricItem(GTLiteConfigHolder.tool.laserDestroyer.capacity,
+                 GTLiteConfigHolder.tool.laserDestroyer.toolTier.toLong()), LaserDestroyerBehavior())
             .setMaxStackSize(1)
             .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS)
 

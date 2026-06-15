@@ -3,9 +3,13 @@ package gregtechlite.gtlitecore.core;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
 import net.minecraftforge.common.config.Config.Name;
+import net.minecraftforge.common.config.Config.RangeDouble;
 import net.minecraftforge.common.config.Config.RangeInt;
 import net.minecraftforge.common.config.Config.RequiresMcRestart;
 
+import static gregtech.api.GTValues.MAX;
+import static gregtech.api.GTValues.MV;
+import static gregtech.api.GTValues.ULV;
 import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
 import static gregtechlite.gtlitecore.api.GTLiteValues.SECOND;
 import static gregtechlite.gtlitecore.api.GTLiteValues.TICK;
@@ -20,7 +24,7 @@ public class GTLiteConfigHolder
     @RequiresMcRestart
     public static CompatibilityOptions compat = new CompatibilityOptions();
 
-    @Comment("Config options for GregTech Lite Machines, Pipes, Cables, and Electric Items")
+    @Comment("Config options for GregTech Lite Machines, Pipes and Cables")
     @Name("Machine Options")
     @RequiresMcRestart
     public static MachineOptions machine = new MachineOptions();
@@ -29,6 +33,11 @@ public class GTLiteConfigHolder
     @Name("Recipe Options")
     @RequiresMcRestart
     public static RecipeOptions recipe = new RecipeOptions();
+
+    @Comment("Config options for GregTech Lite Tools and Armors")
+    @Name("Tool Options")
+    @RequiresMcRestart
+    public static ToolOptions tool = new ToolOptions();
 
     @Comment("Config options for World Generation features")
     @Name("Worldgen Options")
@@ -113,6 +122,26 @@ public class GTLiteConfigHolder
 
     public static class RecipeOptions
     {
+    }
+
+    public static class ToolOptions
+    {
+        @Comment({"Modifiable settings of Laser Destroyer tool"})
+        @Name("Laser Destroyer Options")
+        public LaserDestroyer laserDestroyer = new LaserDestroyer();
+
+        public static class LaserDestroyer
+        {
+            @Comment({"The default energy tier of Laser Destroyer", "Default: 2 (MV)"})
+            @Name("Energy Tier")
+            @RangeInt(min = ULV, max = MAX)
+            public int toolTier = MV;
+
+            @Comment({"The default capacity of Laser Destroyer", "Default: 1,024,000 EU"})
+            @Name("Capacity")
+            @RangeDouble(min = 0, max = Long.MAX_VALUE)
+            public long capacity = 1_024_000L;
+        }
     }
 
     public static class WorldGenOptions
