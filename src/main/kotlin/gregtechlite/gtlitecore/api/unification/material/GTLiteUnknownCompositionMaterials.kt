@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.api.unification.material
 import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.V
 import gregtech.api.unification.material.Materials.EXT2_METAL
+import gregtech.api.unification.material.Materials.Ethanol
 import gregtech.api.unification.material.Materials.GreenSapphire
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.SaltWater
@@ -79,6 +80,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CupriavidusNecato
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimerizedCarbon5Fraction
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EGF
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EggLiquid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EggWhite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EggYolk
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedBedrockSootSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EscherichiaColi
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EternityPlusToken
@@ -136,12 +140,14 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NaquadriaEnergeti
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutronProtonFermiSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteCrudeEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteEmulsion
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteOilPhaseMixture
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FoodOilPhaseMixture
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lecithin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteWaterPhaseMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OganessonBreedingBase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OrangeExtract
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Paraffin
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhospholipidEthanolEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhosphoreneSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polenta
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotatoJuice
@@ -177,6 +183,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SteamCrackedSodio
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedNutrientPasteEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedRichNutrientPasteEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StreptococcusPyogenes
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SugarFreeEggWhite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TachyonRichTemporalFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UltralightBedrockSmoke
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UnprocessedNdYAGSolution
@@ -581,8 +588,8 @@ object GTLiteUnknownCompositionMaterials
             color(0x57D422).iconSet(DULL)
         }
 
-        // 12075 Nutrient Paste Oil Phase Mixture
-        NutrientPasteOilPhaseMixture = addMaterial(12075, "nutrient_paste_oil_phase_mixture")
+        // 12075 Food Oil Phase Mixture
+        FoodOilPhaseMixture = addMaterial(12075, "food_oil_phase_mixture")
         {
             liquid()
             color(0xACB61F)
@@ -630,7 +637,55 @@ object GTLiteUnknownCompositionMaterials
             color(0xF5F2CD)
         }
 
-        // 12080-12100 for misc unknown composition materials.
+        // 12082 Egg Liquid
+        EggLiquid = addMaterial(12082, "egg_liquid")
+        {
+            liquid()
+            color(0xDFCE9B)
+        }
+
+        // 12083 Egg White
+        EggWhite = addMaterial(12083, "egg_white")
+        {
+            dust()
+            liquid {
+                translation("gtlitecore.material.egg_white.fluid")
+            }
+            color(0xFFFBF0)
+        }
+
+        // 12084 Egg Yolk
+        EggYolk = addMaterial(12084, "egg_yolk")
+        {
+            dust()
+            liquid {
+                translation("gtlitecore.fluid.slurry")
+            }
+            color(0xF5D65B)
+        }
+
+        // 12085 Sugar Free Egg White
+        SugarFreeEggWhite = addMaterial(12085, "sugar_free_egg_white")
+        {
+            liquid()
+            color(0xFFF3D1)
+        }
+
+        // 12086 Phospholipid Ethanol Emulsion
+        PhospholipidEthanolEmulsion = addMaterial(12086, "phospholipid_ethanol_emulsion")
+        {
+            liquid()
+            colorAverage(EggYolk, Ethanol)
+        }
+
+        // 12087 Lecithin
+        Lecithin = addMaterial(12087, "lecithin")
+        {
+            liquid()
+            color(0xCA4C26)
+        }
+
+        // 12088-12100 for misc unknown composition materials.
         // ...
 
         // 12101 Free Electron Gas

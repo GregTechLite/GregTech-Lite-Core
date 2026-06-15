@@ -1621,6 +1621,8 @@ metaitem.hard_apple_candy_plate.name=苹果硬糖片
 metaitem.hard_apple_candy_dust.name=苹果硬糖碎
 metaitem.soybean_meal_dust_small.name=大豆豆粕
 metaitem.plant_protein_dust_small.name=植物蛋白
+metaitem.eggshell_dust_small.name=蛋壳
+metaitem.wet_egg_white_cake_crushed_centrifuged.name=湿鸡蛋蛋白饼
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
@@ -3777,13 +3779,20 @@ gtlitecore.material.soybean_oil=大豆油
 gtlitecore.material.bean_phospholipid=豆磷脂
 gtlitecore.material.nutrient_paste_water_phase_mixture=营养膏水相混合物
 gtlitecore.material.rich_nutrient_paste_water_phase_mixture=营养膏水相混合物（富营养）
-gtlitecore.material.nutrient_paste_oil_phase_mixture=营养膏油相混合物
+gtlitecore.material.food_oil_phase_mixture=食品用油相混合物
 gtlitecore.material.nutrient_paste_crude_emulsion=营养膏粗乳液
 gtlitecore.material.rich_nutrient_paste_crude_emulsion=营养膏粗乳液（富营养）
 gtlitecore.material.nutrient_paste_emulsion=营养膏乳液
 gtlitecore.material.rich_nutrient_paste_emulsion=营养膏乳液（富营养）
 gtlitecore.material.sterilized_nutrient_paste_emulsion=灭菌营养膏乳液
 gtlitecore.material.sterilized_rich_nutrient_paste_emulsion=灭菌营养膏乳液（富营养）
+gtlitecore.material.egg_liquid=鸡蛋蛋液
+gtlitecore.material.egg_white=鸡蛋蛋白
+gtlitecore.material.egg_white.fluid=鸡蛋蛋清
+gtlitecore.material.egg_yolk=鸡蛋蛋黄
+gtlitecore.material.sugar_free_egg_white=脱糖鸡蛋蛋清
+gtlitecore.material.phospholipid_ethanol_emulsion=含磷脂乙醇浊液
+gtlitecore.material.lecithin=卵磷脂
 
 gtlitecore.material.free_electron_gas=自由电子气体
 gtlitecore.material.fermionic_uu_matter=费米子UU物质
@@ -3889,6 +3898,7 @@ item.gregtech.material.polycaprolactam.wireFine=聚己内酰胺纤维
 
 # Fluids
 gtlitecore.fluid.molten=熔融%s
+gtlitecore.fluid.slurry=%s浆
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球

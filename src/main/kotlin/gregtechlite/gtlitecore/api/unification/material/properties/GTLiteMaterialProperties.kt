@@ -172,6 +172,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BFGF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Baddeleyite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BeanPhospholipid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzyltrimethylammoniumBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BiphenylTetracarboxylicAcidDianhydride
@@ -263,6 +264,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumEmbedded
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFullereneMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFullereneNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lecithin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Limestone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
@@ -884,6 +886,8 @@ object GTLiteMaterialProperties
         UnprocessedNdYAGSolution.setFormula("Nd:YAG?", false)
         AxinoFusedRedMatter.setFormula("gtlitecore.material.axino_fused_red_matter.formula",
             "Hot Dark Matter formed by the Aggregation of Dark Matter and Supersymmetric Axions")
+        BeanPhospholipid.setFormula("C42H80NO8P", true)
+        Lecithin.setFormula("C40H80NO8P", true)
         // endregion
 
     }

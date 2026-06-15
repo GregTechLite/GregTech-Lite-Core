@@ -13,7 +13,7 @@ import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES
 import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Paper
 import gregtech.api.unification.material.Materials.Water
-import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.common.items.MetaItems.PLANT_BALL
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
@@ -165,7 +165,7 @@ internal object CoffeeProcessing
             inputs(GROUND_COFFEE.stack())
             input(PAPER_CONE)
             fluidInputs(DistilledWater.getFluid(1000))
-            output(dust, Paper)
+            output(dustSmall, Paper)
             fluidOutputs(Coffee.getFluid(100))
             EUt(VA[LV])
             duration(5 * SECOND)
