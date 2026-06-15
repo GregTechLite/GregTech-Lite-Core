@@ -2891,23 +2891,20 @@ gtlitecore.machine.fluid_hatch.export_9x.lv.name=§7LV§f Nonuple Fluid Export H
 gtlitecore.machine.fluid_hatch.export_9x.mv.name=§bMV§f Nonuple Fluid Export Hatch
 gtlitecore.machine.fluid_hatch.export_9x.hv.name=§6HV§f Nonuple Fluid Export Hatch
 
-gtlitecore.machine.huge_item_bus.import.ulv.name=§8ULV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.lv.name=§7LV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.mv.name=§bMV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.hv.name=§6HV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.ev.name=§5EV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.iv.name=§1IV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.luv.name=§dLuV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.zpm.name=§cZPM§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uv.name=§3UV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uhv.name=§4UHV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uev.name=§aUEV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uiv.name=§2UIV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uxv.name=§eUXV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.opv.name=§9OpV§f Huge Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.iv.name=§1IV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.luv.name=§dLuV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.zpm.name=§cZPM§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uv.name=§3UV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uhv.name=§4UHV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uev.name=§aUEV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uiv.name=§2UIV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uxv.name=§eUXV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.opv.name=§9OpV§f Quantum Item Import Bus
 
-gtlitecore.machine.huge_item_bus.import.tooltip=特化存储空间的输入总线
-gtlitecore.machine.huge_item_bus.tooltip=§c注意：当内部存储物品过多时会造成卡顿，请避免不必要的过量物品存储
+gtlitecore.machine.quantum_item_bus.import.tooltip.1=Input bus for Extremely Specialized Single-Slot Storage
+gtlitecore.machine.quantum_item_bus.import.tooltip.2=Can configure the Maximum Stack Size for every slots in GUI
+gtlitecore.machine.quantum_item_bus.import.tooltip.3=§aMaximum Stack Size per Slot: §f%s§7
+gtlitecore.machine.quantum_item_bus.import.configuration=Configure Maximum Stack Size per Slot
 
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=For automatically maintaining Multiblocks with Sterile Cleaning!

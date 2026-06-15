@@ -6,6 +6,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
@@ -140,7 +141,7 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedLas
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedMultiFluidHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAirIntakeHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
-import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineHugeItemBus
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumItemBus
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileCleaningMaintenanceHatch
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobExtractor
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobSlaughter
@@ -257,7 +258,7 @@ object GTLiteMetaTileEntities
     lateinit var NONUPLE_FLUID_IMPORT_HATCH: Array<PartMachineAdvancedMultiFluidHatch>
     lateinit var NONUPLE_FLUID_EXPORT_HATCH: Array<PartMachineAdvancedMultiFluidHatch>
 
-    lateinit var HUGE_ITEM_IMPORT_BUS: Array<PartMachineHugeItemBus>
+    lateinit var QUANTUM_ITEM_IMPORT_BUS: Array<PartMachineQuantumItemBus>
     lateinit var STERILE_CLEANING_MAINTENANCE_HATCH: PartMachineSterileCleaningMaintenanceHatch
     lateinit var AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
     lateinit var EXTREME_AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
@@ -739,8 +740,8 @@ object GTLiteMetaTileEntities
         }
 
         // 5017-5032: ULV-OpV Huge Item Import Buses
-        HUGE_ITEM_IMPORT_BUS = register(5017, 0..13) {
-            PartMachineHugeItemBus(GTLiteMod.id("huge_item_bus.import.${VN[it].lowercase()}"), it)
+        QUANTUM_ITEM_IMPORT_BUS = register(5017, IV..OpV) {
+            PartMachineQuantumItemBus(GTLiteMod.id("quantum_item_bus.import.${VN[it].lowercase()}"), it)
         }
 
         // 5033: Sterile Cleaning Maintenance Hatch
