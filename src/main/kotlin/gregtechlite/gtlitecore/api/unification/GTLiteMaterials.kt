@@ -798,7 +798,7 @@ object GTLiteMaterials
     lateinit var BeanPhospholipid: Material
     lateinit var NutrientPasteWaterPhaseMixture: Material
     lateinit var RichNutrientPasteWaterPhaseMixture: Material
-    lateinit var NutrientPasteOilPhaseMixture: Material
+    lateinit var FoodOilPhaseMixture: Material
     lateinit var NutrientPasteCrudeEmulsion: Material
     lateinit var RichNutrientPasteCrudeEmulsion: Material
     lateinit var NutrientPasteEmulsion: Material

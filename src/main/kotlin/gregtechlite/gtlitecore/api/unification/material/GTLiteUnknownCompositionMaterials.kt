@@ -136,7 +136,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NaquadriaEnergeti
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutronProtonFermiSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteCrudeEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteEmulsion
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteOilPhaseMixture
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FoodOilPhaseMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteWaterPhaseMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OganessonBreedingBase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
@@ -581,8 +581,8 @@ object GTLiteUnknownCompositionMaterials
             color(0x57D422).iconSet(DULL)
         }
 
-        // 12075 Nutrient Paste Oil Phase Mixture
-        NutrientPasteOilPhaseMixture = addMaterial(12075, "nutrient_paste_oil_phase_mixture")
+        // 12075 Food Oil Phase Mixture
+        FoodOilPhaseMixture = addMaterial(12075, "food_oil_phase_mixture")
         {
             liquid()
             color(0xACB61F)
