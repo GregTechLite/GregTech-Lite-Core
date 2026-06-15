@@ -898,7 +898,7 @@ object GTLiteMetaItem1
         MAGNETRON = item(622, "tool.magnetron")
 
         LASER_DESTROYER = item(623, "tool.laser_destroyer")
-            .addComponents(ElectricStats.createElectricItem(GTLiteConfigHolder.tool.laserDestroyer.capacity,
+            .addComponents(ElectricStats.createElectricItem(GTLiteConfigHolder.tool.laserDestroyer.capacity.toLong(),
                  GTLiteConfigHolder.tool.laserDestroyer.toolTier.toLong()), LaserDestroyerBehavior())
             .setMaxStackSize(1)
             .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS)

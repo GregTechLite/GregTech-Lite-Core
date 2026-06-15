@@ -140,7 +140,7 @@ public class GTLiteConfigHolder
             @Comment({"The default capacity of Laser Destroyer", "Default: 1,024,000 EU"})
             @Name("Capacity")
             @RangeDouble(min = 0, max = Long.MAX_VALUE)
-            public long capacity = 1_024_000L;
+            public double capacity = 1024000;
         }
     }
 
