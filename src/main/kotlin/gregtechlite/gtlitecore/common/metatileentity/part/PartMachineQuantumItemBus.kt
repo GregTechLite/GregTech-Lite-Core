@@ -26,6 +26,8 @@ import com.cleanroommc.modularui.widgets.layout.Flow
 import com.cleanroommc.modularui.widgets.layout.Grid
 import com.cleanroommc.modularui.widgets.slot.ItemSlot
 import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget
+import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.OpV
 import gregtech.api.capability.GregtechDataCodes
 import gregtech.api.capability.GregtechDataCodes.TOGGLE_COLLAPSE_ITEMS
 import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
@@ -49,7 +51,6 @@ import gregtech.client.renderer.texture.cube.SimpleOrientedCubeRenderer
 import gregtech.client.renderer.texture.custom.FireboxActiveRenderer
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityItemBus
 import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes
 import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.STACK_SIZE_PER_SLOT
 import gregtechlite.gtlitecore.api.capability.handler.ConfigurableItemStackHandler
 import gregtechlite.gtlitecore.api.extension.add
@@ -65,6 +66,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sqrt
 
 class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
@@ -78,6 +80,16 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     private var autoCollapse: Boolean = false
 
     private var stackSizePerSlot: Int = Int.MAX_VALUE
+
+    private val MAX_STACK_SIZE_PER_SLOT: Int
+        get()
+        {
+            require(tier in IV..OpV)
+            val actualTier = this.tier - IV
+            val exp = intArrayOf(11, 14, 17, 20, 23, 26, 28, 30, 31)
+            val n = exp[actualTier]
+            return if (actualTier == OpV - IV) 1 shl n - 1 else 1 shl n
+        }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = PartMachineQuantumItemBus(metaTileEntityId, tier)
@@ -109,7 +121,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
 
 
     override fun createImportItemHandler(): IItemHandlerModifiable?
-        = ConfigurableItemStackHandler(this, getInventorySize(), controller, false) { stackSizePerSlot }
+        = ConfigurableItemStackHandler(this, getInventorySize(), controller, false) { min(stackSizePerSlot, MAX_STACK_SIZE_PER_SLOT) }
 
      override fun update()
      {
@@ -306,6 +318,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         tooltip.add(I18n.format("gregtech.machine.item_bus.import.tooltip"))
         tooltip.add(I18n.format("gtlitecore.machine.quantum_item_bus.import.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.quantum_item_bus.import.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.quantum_item_bus.import.tooltip.3", MAX_STACK_SIZE_PER_SLOT))
         tooltip.add(I18n.format("gregtech.universal.tooltip.item_storage_capacity", getInventorySize()))
         tooltip.add(I18n.format("gregtech.universal.enabled"))
     }
@@ -428,7 +441,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                                   .background(Rectangle()
                                                   .color(Color.BLACK.brighter(2)).asIcon()
                                                   .height(8))
-                                  .bounds(0.0, Int.MAX_VALUE.toDouble())
+                                  .bounds(0.0, MAX_STACK_SIZE_PER_SLOT.toDouble())
                                   .setAxis(GuiAxis.X)
                                   .value(stackSizeSync)
                                   .widthRel(0.7f)
@@ -441,7 +454,10 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                                   .value(stackSizeSync)
                                   .setValidator {
                                       var value = it.toInt()
-                                      if (value < 0) value = 0
+                                      if (value < 0)
+                                          value = 0
+                                      else if (value > MAX_STACK_SIZE_PER_SLOT)
+                                          value = MAX_STACK_SIZE_PER_SLOT
                                       return@setValidator value.toString()
                                   }))
     }

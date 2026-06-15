@@ -2903,6 +2903,7 @@ gtlitecore.machine.quantum_item_bus.import.opv.name=§9OpV§f Quantum Item Impor
 
 gtlitecore.machine.quantum_item_bus.import.tooltip.1=Input bus for Extremely Specialized Single-Slot Storage
 gtlitecore.machine.quantum_item_bus.import.tooltip.2=Can configure the Maximum Stack Size for every slots in GUI
+gtlitecore.machine.quantum_item_bus.import.tooltip.3=§aMaximum Stack Size per Slot: §f%s§7
 gtlitecore.machine.quantum_item_bus.import.configuration=Configure Maximum Stack Size per Slot
 
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch

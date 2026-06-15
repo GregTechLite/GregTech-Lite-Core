@@ -2903,6 +2903,7 @@ gtlitecore.machine.quantum_item_bus.import.opv.name=§9OpV§f 量子输入总线
 
 gtlitecore.machine.quantum_item_bus.import.tooltip.1=极端特化单槽位存储空间的输入总线
 gtlitecore.machine.quantum_item_bus.import.tooltip.2=可以在界面中配置单个槽位的§f最大堆叠数§7
+gtlitecore.machine.quantum_item_bus.import.tooltip.3=§a单槽最大堆叠数：§f%s§7
 gtlitecore.machine.quantum_item_bus.import.configuration=配置单槽最大堆叠数
 
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=自动无菌过滤维护仓
