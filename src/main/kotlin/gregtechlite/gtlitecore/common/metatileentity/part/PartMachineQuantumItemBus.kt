@@ -87,7 +87,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
             val actualTier = this.tier - IV
             val exp = intArrayOf(11, 14, 17, 20, 23, 26, 28, 30, 31)
             val n = exp[actualTier]
-            return if (actualTier == OpV - IV) 1 shl n - 1 else 1 shl n
+            return if (actualTier == OpV - IV) (1 shl n) - 1 else 1 shl n
         }
 
     private var stackSizePerSlot: Int = MAX_STACK_SIZE_PER_SLOT
