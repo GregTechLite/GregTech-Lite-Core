@@ -2,10 +2,13 @@ package gregtechlite.gtlitecore.common.item
 
 import gregtech.api.items.metaitem.MetaOreDictItem
 import gregtech.api.items.metaitem.MetaOreDictItem.OreDictValueItem
+import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
+import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.ore.OrePrefix.crushed
+import gregtech.api.unification.ore.OrePrefix.crushedCentrifuged
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.gemChipped
@@ -50,6 +53,8 @@ object GTLiteMetaOreDictItems
     lateinit var HARD_APPLE_CANDY_DUST: OreDictValueItem
     lateinit var SOYBEAN_MEAL: OreDictValueItem
     lateinit var PLANT_PROTEIN: OreDictValueItem
+    lateinit var EGGSHELL: OreDictValueItem
+    lateinit var WET_EGG_WHITE_CAKE: OreDictValueItem
 
     @JvmStatic
     fun init()
@@ -62,31 +67,37 @@ object GTLiteMetaOreDictItems
     @JvmStatic
     fun register()
     {
-        CORN_KERNEL = ORE_DICT_ITEMS.addOreDictItem(1, "corn_kernel", 0xFFEA70, DULL, gemChipped)
-        CORN_COB = ORE_DICT_ITEMS.addOreDictItem(2, "corn_cob", 0xF2D434, DULL, gemFlawed)
-        BARE_CORN_KERNEL = ORE_DICT_ITEMS.addOreDictItem(3, "bare_corn_kernel", 0xFECB60, DULL, gemChipped)
-        SMALL_GREEN_COFFEE = ORE_DICT_ITEMS.addOreDictItem(4, "small_green_coffee", 0x3B220D, DULL, round)
-        LARGE_GREEN_COFFEE = ORE_DICT_ITEMS.addOreDictItem(5, "large_green_coffee", 0x3B220D, DULL, gemChipped)
-        FERMENTED_SMALL_COFFEE = ORE_DICT_ITEMS.addOreDictItem(6, "fermented_small_coffee", 0x756452, DULL, round)
-        FERMENTED_LARGE_COFFEE = ORE_DICT_ITEMS.addOreDictItem(7, "fermented_large_coffee", 0x756452, DULL, gemChipped)
-        DRIED_SMALL_COFFEE = ORE_DICT_ITEMS.addOreDictItem(8, "dried_small_coffee", 0x8C6842, DULL, round)
-        DRIED_LARGE_COFFEE = ORE_DICT_ITEMS.addOreDictItem(9, "dried_large_coffee", 0x8C6842, DULL, gemChipped)
-        ROASTED_SMALL_COFFEE = ORE_DICT_ITEMS.addOreDictItem(10, "roasted_small_coffee", 0x1A1612, DULL, round)
-        ROASTED_LARGE_COFFEE = ORE_DICT_ITEMS.addOreDictItem(11, "roasted_large_coffee", 0x1A1612, DULL, gemChipped)
-        GROUND_COFFEE = ORE_DICT_ITEMS.addOreDictItem(12, "ground_coffee", 0x1A1612, DULL, dust)
-        GRAHAM_CRACKER_DOUGH = ORE_DICT_ITEMS.addOreDictItem(13, "graham_cracker_dough", 0xF0C25D, ORGANIC, crushed)
-        GRAHAM_CRACKER_CHUNK = ORE_DICT_ITEMS.addOreDictItem(14, "graham_cracker_chunk", 0xFFE1A1, ORGANIC, plateDense)
-        GRAHAM_CRACKER_SLICE = ORE_DICT_ITEMS.addOreDictItem(15, "graham_cracker_slice", 0xFFE1A1, ORGANIC, plate)
-        ANIMAL_FAT = ORE_DICT_ITEMS.addOreDictItem(16, "animal_fat", 0xFFF200, ORGANIC, ingot, "C57H110O6")
-        ZEST_DUST = ORE_DICT_ITEMS.addOreDictItem(17, "zest", 0xD8FF4A, FINE, dust)
-        POPPY_DUST = ORE_DICT_ITEMS.addOreDictItem(18, "poppy", 0x940801, ROUGH, dust)
-        APPLE_PULP = ORE_DICT_ITEMS.addOreDictItem(19, "apple_pulp", 0xCCCC99, NANOPARTICLES, dust)
-        HARD_APPLE_CANDY_CHUNK = ORE_DICT_ITEMS.addOreDictItem(20, "hard_apple_candy_chunk", 0x78E32B, ORGANIC, plateDense)
-        HARD_APPLE_CANDY_PLATE = ORE_DICT_ITEMS.addOreDictItem(21, "hard_apple_candy", 0x78E32B, ORGANIC, plate)
-        HARD_APPLE_CANDY_DUST = ORE_DICT_ITEMS.addOreDictItem(22, "hard_apple_candy", 0x78E32B, NANOPARTICLES, dust)
-        SOYBEAN_MEAL = ORE_DICT_ITEMS.addOreDictItem(23, "soybean_meal", 0x629046, NANOPARTICLES, dustSmall)
-        PLANT_PROTEIN = ORE_DICT_ITEMS.addOreDictItem(24, "plant_protein", 0xFFFFFF, ORGANIC, dustSmall)
+        CORN_KERNEL = item(1, "corn_kernel", 0xFFEA70, DULL, gemChipped)
+        CORN_COB = item(2, "corn_cob", 0xF2D434, DULL, gemFlawed)
+        BARE_CORN_KERNEL = item(3, "bare_corn_kernel", 0xFECB60, DULL, gemChipped)
+        SMALL_GREEN_COFFEE = item(4, "small_green_coffee", 0x3B220D, DULL, round)
+        LARGE_GREEN_COFFEE = item(5, "large_green_coffee", 0x3B220D, DULL, gemChipped)
+        FERMENTED_SMALL_COFFEE = item(6, "fermented_small_coffee", 0x756452, DULL, round)
+        FERMENTED_LARGE_COFFEE = item(7, "fermented_large_coffee", 0x756452, DULL, gemChipped)
+        DRIED_SMALL_COFFEE = item(8, "dried_small_coffee", 0x8C6842, DULL, round)
+        DRIED_LARGE_COFFEE = item(9, "dried_large_coffee", 0x8C6842, DULL, gemChipped)
+        ROASTED_SMALL_COFFEE = item(10, "roasted_small_coffee", 0x1A1612, DULL, round)
+        ROASTED_LARGE_COFFEE = item(11, "roasted_large_coffee", 0x1A1612, DULL, gemChipped)
+        GROUND_COFFEE = item(12, "ground_coffee", 0x1A1612, DULL, dust)
+        GRAHAM_CRACKER_DOUGH = item(13, "graham_cracker_dough", 0xF0C25D, ORGANIC, crushed)
+        GRAHAM_CRACKER_CHUNK = item(14, "graham_cracker_chunk", 0xFFE1A1, ORGANIC, plateDense)
+        GRAHAM_CRACKER_SLICE = item(15, "graham_cracker_slice", 0xFFE1A1, ORGANIC, plate)
+        ANIMAL_FAT = item(16, "animal_fat", 0xFFF200, ORGANIC, ingot, "C57H110O6")
+        ZEST_DUST = item(17, "zest", 0xD8FF4A, FINE, dust)
+        POPPY_DUST = item(18, "poppy", 0x940801, ROUGH, dust)
+        APPLE_PULP = item(19, "apple_pulp", 0xCCCC99, NANOPARTICLES, dust)
+        HARD_APPLE_CANDY_CHUNK = item(20, "hard_apple_candy_chunk", 0x78E32B, ORGANIC, plateDense)
+        HARD_APPLE_CANDY_PLATE = item(21, "hard_apple_candy", 0x78E32B, ORGANIC, plate)
+        HARD_APPLE_CANDY_DUST = item(22, "hard_apple_candy", 0x78E32B, NANOPARTICLES, dust)
+        SOYBEAN_MEAL = item(23, "soybean_meal", 0x629046, NANOPARTICLES, dustSmall)
+        PLANT_PROTEIN = item(24, "plant_protein", 0xFFFFFF, ORGANIC, dustSmall)
+        EGGSHELL = item(25, "eggshell", 0xDFCE9B, NANOPARTICLES, dustSmall)
+        WET_EGG_WHITE_CAKE = item(26, "wet_egg_white_cake", 0xFFFBF0, DULL, crushedCentrifuged)
     }
+
+    private fun item(id: Int, name: String, color: Int, iconSet: MaterialIconSet, prefix: OrePrefix,
+                     formula: String? = null)
+        = ORE_DICT_ITEMS.addOreDictItem(id, name, color, iconSet, prefix, formula)
 
     // @formatter:on
 

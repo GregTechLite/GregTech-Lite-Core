@@ -19,12 +19,15 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BeanPhospholipid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FoodOilPhaseMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GlycidylStearate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lecithin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Monoglyceride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
@@ -89,7 +92,7 @@ internal object AdditivesProcessing
         }
 
         // Food Oil Phase Mixture
-        for (oil in arrayOf(SeedOil, OliveOil, SoybeanOil))
+        for (oil in arrayOf(SeedOil, OliveOil, SoybeanOil, Butter))
         {
             LARGE_MIXER_RECIPES.addRecipe {
                 fluidInputs(oil.getFluid(2000))
@@ -99,7 +102,16 @@ internal object AdditivesProcessing
                 EUt(VA[EV])
                 duration(2 * SECOND + 10 * TICK)
             }
-        } // TODO: Lecithin.getFluid(50)
+
+            LARGE_MIXER_RECIPES.addRecipe {
+                fluidInputs(oil.getFluid(2000))
+                fluidInputs(Lecithin.getFluid(50))
+                fluidInputs(Monoglyceride.getFluid(100))
+                fluidOutputs(FoodOilPhaseMixture.getFluid(2000))
+                EUt(VA[EV])
+                duration(2 * SECOND + 10 * TICK)
+            }
+        }
     }
 
     // @formatter:on

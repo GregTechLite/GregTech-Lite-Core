@@ -1621,6 +1621,8 @@ metaitem.hard_apple_candy_plate.name=Hard Apple Candy Plate
 metaitem.hard_apple_candy_dust.name=Hard Apple Candy Dust
 metaitem.soybean_meal_dust_small.name=Soybean Meal
 metaitem.plant_protein_dust_small.name=Plant Protein
+metaitem.eggshell_dust_small.name=Eggshell
+metaitem.wet_egg_white_cake_crushed_centrifuged.name=Wet Egg White Cake
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
@@ -3853,6 +3855,13 @@ gtlitecore.material.nutrient_paste_emulsion=Nutrient Paste Emulsion
 gtlitecore.material.rich_nutrient_paste_emulsion=Nutrient Paste Emulsion (Rich Nutrient)
 gtlitecore.material.sterilized_nutrient_paste_emulsion=Sterilized Nutrient Paste Emulsion
 gtlitecore.material.sterilized_rich_nutrient_paste_emulsion=Sterilized Nutrient Paste Emulsion (Rich Nutrient)
+gtlitecore.material.egg_liquid=Egg Liquid
+gtlitecore.material.egg_white=Egg Protein
+gtlitecore.material.egg_white.fluid=Egg White
+gtlitecore.material.egg_yolk=Egg Yolk
+gtlitecore.material.sugar_free_egg_white=Sugar Free Egg White
+gtlitecore.material.phospholipid_ethanol_emulsion=Phospholipid Ethanol Emulsion
+gtlitecore.material.lecithin=Lecithin
 
 gtlitecore.material.neutron_proton_fermi_superfluid=Neutron-Proton Fermi Superfluid
 gtlitecore.material.heavy_lepton_mixture=Heavy Lepton Mixture
@@ -3889,6 +3898,7 @@ item.gregtech.material.polycaprolactam.wireFine=Polycaprolactam Fiber
 
 # Fluids
 gtlitecore.fluid.molten=Molten %s
+gtlitecore.fluid.slurry=%s Slurry
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere

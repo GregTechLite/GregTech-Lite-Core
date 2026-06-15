@@ -805,6 +805,12 @@ object GTLiteMaterials
     lateinit var RichNutrientPasteEmulsion: Material
     lateinit var SterilizedNutrientPasteEmulsion: Material
     lateinit var SterilizedRichNutrientPasteEmulsion: Material
+    lateinit var EggLiquid: Material
+    lateinit var EggWhite: Material
+    lateinit var EggYolk: Material
+    lateinit var SugarFreeEggWhite: Material
+    lateinit var PhospholipidEthanolEmulsion: Material
+    lateinit var Lecithin: Material
 
     lateinit var FreeElectronGas: Material
     lateinit var FermionicUUMatter: Material
