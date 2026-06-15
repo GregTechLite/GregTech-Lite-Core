@@ -1592,9 +1592,9 @@ metaitem.fruit.product.moon_berry.name=月莓
 metaitem.fruit.product.moon_berry.tooltip=哇哦！
 
 metaitem.food.nutrient_paste_meal.name=营养膏
-metaitem.food.nutrient_paste_meal.tooltip=食用起来非常恶心
+metaitem.food.nutrient_paste_meal.tooltip.1=食用起来非常恶心
 metaitem.food.rich_nutrient_paste_meal.name=营养膏（富营养）
-metaitem.food.rich_nutrient_paste_meal.tooltip=恶心程度也许小于营养价值
+metaitem.food.rich_nutrient_paste_meal.tooltip.1=恶心程度也许小于营养价值
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=玉米粒

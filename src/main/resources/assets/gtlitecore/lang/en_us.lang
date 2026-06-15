@@ -1592,9 +1592,9 @@ metaitem.fruit.product.moon_berry.name=Moon Berry
 metaitem.fruit.product.moon_berry.tooltip=Wow!
 
 metaitem.food.nutrient_paste_meal.name=Nutrient Paste Meal
-metaitem.food.nutrient_paste_meal.tooltip=Eating it is very disgusting
+metaitem.food.nutrient_paste_meal.tooltip.1=Eating it is very disgusting
 metaitem.food.rich_nutrient_paste_meal.name=Nutrient Paste Meal (Rich Nutrient)
-metaitem.food.rich_nutrient_paste_meal.tooltip=Nausea Degree may be less than its Nutritional Value
+metaitem.food.rich_nutrient_paste_meal.tooltip.1=Nausea Degree may be less than its Nutritional Value
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=Corn Kernal

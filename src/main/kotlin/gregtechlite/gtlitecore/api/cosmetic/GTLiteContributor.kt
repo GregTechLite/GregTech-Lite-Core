@@ -19,7 +19,8 @@ enum class GTLiteContributor(name: String, internal val uuid: UUID, internal val
     // Contributors
     LLAMA_WEI(       "llama_wei",      "b0fbc8fe-269a-47a8-9105-70246759eeae", false),
     MINATO_AQUKINNE( "MinatoAqukinne", "99405735-a590-459f-90bf-8b3e39aee7d0", false),
-    YIYU_QAQ(        "YIYU_QAQ",       "d5482dd2-8894-4916-b347-50eff773d2f3", false);
+    YIYU_QAQ(        "YIYU_QAQ",       "d5482dd2-8894-4916-b347-50eff773d2f3", false),
+    CATARREL(        "Catarrel",       "7e120341-d0aa-40cf-a1a2-ff5f47d2c858", false);
 
     constructor(name: String, uuid: String, isDeveloper: Boolean = true)
             : this(name, UUID.fromString(uuid), isDeveloper)
