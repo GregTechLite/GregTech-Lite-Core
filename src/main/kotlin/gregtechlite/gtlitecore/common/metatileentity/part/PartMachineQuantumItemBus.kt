@@ -55,6 +55,7 @@ import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.STACK_SIZE_PER_SLO
 import gregtechlite.gtlitecore.api.capability.handler.ConfigurableItemStackHandler
 import gregtechlite.gtlitecore.api.extension.add
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.gui.sync.SafeIntSyncValue
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -79,8 +80,6 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     private var workingEnabled: Boolean = true
     private var autoCollapse: Boolean = false
 
-    private var stackSizePerSlot: Int = Int.MAX_VALUE
-
     private val MAX_STACK_SIZE_PER_SLOT: Int
         get()
         {
@@ -90,6 +89,8 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
             val n = exp[actualTier]
             return if (actualTier == OpV - IV) 1 shl n - 1 else 1 shl n
         }
+
+    private var stackSizePerSlot: Int = MAX_STACK_SIZE_PER_SLOT
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = PartMachineQuantumItemBus(metaTileEntityId, tier)
@@ -164,7 +165,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         super.writeInitialSyncData(buf)
         buf.writeBoolean(workingEnabled)
         buf.writeBoolean(autoCollapse)
-        buf.writeInt(stackSizePerSlot)
+        buf.writeInt(min(stackSizePerSlot, MAX_STACK_SIZE_PER_SLOT))
     }
 
     override fun receiveInitialSyncData(buf: PacketBuffer)
@@ -194,7 +195,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         if (data.hasKey("autoCollapse"))
             autoCollapse = data.getBoolean("autoCollapse")
         if (data.hasKey("stackSizePerSlot"))
-            stackSizePerSlot = data.getInteger("stackSizePerSlot")
+            stackSizePerSlot = min(data.getInteger("stackSizePerSlot"), MAX_STACK_SIZE_PER_SLOT)
         if (circuitInventory != null)
             circuitInventory!!.read(data)
     }
@@ -206,7 +207,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         {
             TOGGLE_COLLAPSE_ITEMS -> autoCollapse     = buf.readBoolean()
             WORKING_ENABLED       -> workingEnabled   = buf.readBoolean()
-            STACK_SIZE_PER_SLOT   -> stackSizePerSlot = buf.readInt()
+            STACK_SIZE_PER_SLOT   -> stackSizePerSlot = min(buf.readInt(), MAX_STACK_SIZE_PER_SLOT)
         }
     }
 
@@ -267,7 +268,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
 
     fun setStackSizePerSlot(newStackSize: Int)
     {
-        stackSizePerSlot = newStackSize
+        stackSizePerSlot = min(newStackSize, MAX_STACK_SIZE_PER_SLOT)
         if (!world.isRemote)
         {
             writeCustomData(STACK_SIZE_PER_SLOT) { it.writeInt(stackSizePerSlot) }
@@ -422,7 +423,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     @Suppress("UnstableApiUsage")
     private fun makeStackSizePanel(syncManager: PanelSyncManager, syncHandler: IPanelHandler): ModularPanel
     {
-        val stackSizeSync = IntSyncValue(::stackSizePerSlot, ::setStackSizePerSlot)
+        val stackSizeSync = SafeIntSyncValue(::stackSizePerSlot, ::setStackSizePerSlot)
         return GTGuis.createPopupPanel("stack_size", 116, 53)
             .child(Flow.row()
                        .pos(4, 4)
