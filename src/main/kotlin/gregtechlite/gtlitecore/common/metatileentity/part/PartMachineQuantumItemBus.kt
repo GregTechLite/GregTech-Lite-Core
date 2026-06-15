@@ -4,20 +4,31 @@ import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.ColourMultiplier
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
+import com.cleanroommc.modularui.api.GuiAxis
+import com.cleanroommc.modularui.api.IPanelHandler
 import com.cleanroommc.modularui.api.drawable.IKey
+import com.cleanroommc.modularui.drawable.ItemDrawable
+import com.cleanroommc.modularui.drawable.Rectangle
 import com.cleanroommc.modularui.factory.PosGuiData
 import com.cleanroommc.modularui.screen.ModularPanel
 import com.cleanroommc.modularui.screen.UISettings
+import com.cleanroommc.modularui.utils.Color
 import com.cleanroommc.modularui.value.sync.BooleanSyncValue
+import com.cleanroommc.modularui.value.sync.IntSyncValue
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.value.sync.SyncHandlers
 import com.cleanroommc.modularui.widget.Widget
+import com.cleanroommc.modularui.widgets.ButtonWidget
+import com.cleanroommc.modularui.widgets.SliderWidget
 import com.cleanroommc.modularui.widgets.SlotGroupWidget
 import com.cleanroommc.modularui.widgets.ToggleButton
 import com.cleanroommc.modularui.widgets.layout.Flow
 import com.cleanroommc.modularui.widgets.layout.Grid
 import com.cleanroommc.modularui.widgets.slot.ItemSlot
+import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget
 import gregtech.api.capability.GregtechDataCodes
+import gregtech.api.capability.GregtechDataCodes.TOGGLE_COLLAPSE_ITEMS
+import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IGhostSlotConfigurable
 import gregtech.api.capability.INotifiableHandler
@@ -38,6 +49,8 @@ import gregtech.client.renderer.texture.cube.SimpleOrientedCubeRenderer
 import gregtech.client.renderer.texture.custom.FireboxActiveRenderer
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityItemBus
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes
+import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.STACK_SIZE_PER_SLOT
 import gregtechlite.gtlitecore.api.capability.handler.ConfigurableItemStackHandler
 import gregtechlite.gtlitecore.api.extension.add
 import gregtechlite.gtlitecore.api.extension.copy
@@ -51,7 +64,6 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
-import org.apache.commons.lang3.ArrayUtils
 import kotlin.math.max
 import kotlin.math.sqrt
 
@@ -65,6 +77,8 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     private var workingEnabled: Boolean = true
     private var autoCollapse: Boolean = false
 
+    private var stackSizePerSlot: Int = Int.MAX_VALUE
+
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = PartMachineQuantumItemBus(metaTileEntityId, tier)
 
@@ -75,17 +89,18 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         {
             circuitInventory = GhostCircuitItemStackHandler(this)
             circuitInventory!!.addNotifiableMetaTileEntity(this)
-            actualImportItems = ItemHandlerList(listOf(this.importItems!!, circuitInventory!!))
+            actualImportItems = ItemHandlerList(listOf(importItems!!, circuitInventory!!))
         }
         else
         {
-            actualImportItems = this.importItems
+            actualImportItems = importItems
         }
     }
 
     private fun getInventorySize(): Int
     {
-        val slotRoot = 1 + tier
+        // QIB start at IV stage and it will nerf with LV tier level inventory limit as default.
+        val slotRoot = 1 + tier - 5
         return slotRoot * slotRoot
     }
 
@@ -94,7 +109,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
 
 
     override fun createImportItemHandler(): IItemHandlerModifiable?
-        = ConfigurableItemStackHandler(this, getInventorySize(), controller, false) { Int.MAX_VALUE }
+        = ConfigurableItemStackHandler(this, getInventorySize(), controller, false) { stackSizePerSlot }
 
      override fun update()
      {
@@ -103,7 +118,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
          {
              if (workingEnabled)
              {
-                pullItemsFromNearbyHandlers(getFrontFacing())
+                pullItemsFromNearbyHandlers(frontFacing)
              }
          }
          // Only attempt to auto collapse the inventory contents once the bus has been notified
@@ -112,31 +127,32 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
              // Exclude the ghost circuit inventory from the auto collapse, so it does not extract any ghost circuits
              // from the slot
              val inventory = super.getImportItems()
-             if (!isAttachedToMultiBlock || this.getNotifiedItemInputList().contains(inventory))
+             if (!isAttachedToMultiBlock || notifiedItemInputList.contains(inventory))
              {
                  collapseInventorySlotContents(inventory)
              }
          }
     }
 
-    override fun isAutoCollapse(): Boolean = this.autoCollapse
+    override fun isAutoCollapse(): Boolean = autoCollapse
 
     override fun setWorkingEnabled(workingEnabled: Boolean)
     {
         this.workingEnabled = workingEnabled
         if (world != null && !world.isRemote)
         {
-            writeCustomData(GregtechDataCodes.WORKING_ENABLED) { it.writeBoolean(this.workingEnabled) }
+            writeCustomData(WORKING_ENABLED) { it.writeBoolean(this.workingEnabled) }
         }
     }
 
-    override fun isWorkingEnabled(): Boolean = this.workingEnabled
+    override fun isWorkingEnabled(): Boolean = workingEnabled
 
     override fun writeInitialSyncData(buf: PacketBuffer)
     {
         super.writeInitialSyncData(buf)
         buf.writeBoolean(workingEnabled)
         buf.writeBoolean(autoCollapse)
+        buf.writeInt(stackSizePerSlot)
     }
 
     override fun receiveInitialSyncData(buf: PacketBuffer)
@@ -144,6 +160,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         super.receiveInitialSyncData(buf)
         workingEnabled = buf.readBoolean()
         autoCollapse = buf.readBoolean()
+        stackSizePerSlot = buf.readInt()
     }
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
@@ -151,10 +168,9 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         super.writeToNBT(data)
         data.setBoolean("workingEnabled", workingEnabled)
         data.setBoolean("autoCollapse", autoCollapse)
+        data.setInteger("stackSizePerSlot", stackSizePerSlot)
         if (circuitInventory != null)
-        {
             circuitInventory!!.write(data)
-        }
         return data
     }
 
@@ -162,29 +178,23 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     {
         super.readFromNBT(data)
         if (data.hasKey("workingEnabled"))
-        {
             workingEnabled = data.getBoolean("workingEnabled")
-        }
         if (data.hasKey("autoCollapse"))
-        {
             autoCollapse = data.getBoolean("autoCollapse")
-        }
+        if (data.hasKey("stackSizePerSlot"))
+            stackSizePerSlot = data.getInteger("stackSizePerSlot")
         if (circuitInventory != null)
-        {
             circuitInventory!!.read(data)
-        }
     }
 
     override fun receiveCustomData(dataId: Int, buf: PacketBuffer)
     {
         super.receiveCustomData(dataId, buf)
-        if (dataId == GregtechDataCodes.TOGGLE_COLLAPSE_ITEMS)
+        when (dataId)
         {
-            this.autoCollapse = buf.readBoolean()
-        }
-        else if (dataId == GregtechDataCodes.WORKING_ENABLED)
-        {
-            this.workingEnabled = buf.readBoolean()
+            TOGGLE_COLLAPSE_ITEMS -> autoCollapse     = buf.readBoolean()
+            WORKING_ENABLED       -> workingEnabled   = buf.readBoolean()
+            STACK_SIZE_PER_SLOT   -> stackSizePerSlot = buf.readInt()
         }
     }
 
@@ -192,12 +202,12 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     {
         // Gather a snapshot of the provided inventory
         val inventoryContents = GTHashMaps.fromItemHandler(inventory, true)
-        val inventoryItemContents: MutableList<ItemStack> = ArrayList()
+        val inventoryItemContents = arrayListOf<ItemStack>()
 
         // Populate the list of item stacks in the inventory with apportioned item stacks, for easy replacement
         for (e in inventoryContents.object2IntEntrySet())
         {
-            val stack: ItemStack = e.key!!
+            val stack = e.key!!
             var count = e.intValue
             val maxStackSize = stack.maxStackSize
             while (count >= maxStackSize)
@@ -232,14 +242,23 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
 
     override fun setAutoCollapse(inverted: Boolean)
     {
-        this.autoCollapse = inverted
+        autoCollapse = inverted
         if (!world.isRemote)
         {
-            if (this.autoCollapse)
-            {
+            if (autoCollapse)
                 addNotifiedInput(getImportItems())
-            }
-            writeCustomData(GregtechDataCodes.TOGGLE_COLLAPSE_ITEMS) { it.writeBoolean(this.autoCollapse) }
+            writeCustomData(TOGGLE_COLLAPSE_ITEMS) { it.writeBoolean(autoCollapse) }
+            notifyBlockUpdate()
+            markDirty()
+        }
+    }
+
+    fun setStackSizePerSlot(newStackSize: Int)
+    {
+        stackSizePerSlot = newStackSize
+        if (!world.isRemote)
+        {
+            writeCustomData(STACK_SIZE_PER_SLOT) { it.writeInt(stackSizePerSlot) }
             notifyBlockUpdate()
             markDirty()
         }
@@ -285,10 +304,10 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         tooltip.add(I18n.format("gregtech.machine.item_bus.import.tooltip"))
-        tooltip.add(I18n.format("gtlitecore.machine.huge_item_bus.import.tooltip"))
+        tooltip.add(I18n.format("gtlitecore.machine.quantum_item_bus.import.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.quantum_item_bus.import.tooltip.2"))
         tooltip.add(I18n.format("gregtech.universal.tooltip.item_storage_capacity", getInventorySize()))
         tooltip.add(I18n.format("gregtech.universal.enabled"))
-        tooltip.add(I18n.format("gtlitecore.machine.huge_item_bus.tooltip"))
     }
 
     @Suppress("UnstableApiUsage")
@@ -311,6 +330,8 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
 
         val handler = getImportItems()
         val hasGhostCircuit = hasGhostCircuitInventory() && circuitInventory != null
+
+        val stackSizePanel = panelSyncManager.syncedPanel("stack_size_panel", true, ::makeStackSizePanel)
 
         return GTGuis.createPanel(this, backgroundWidth, backgroundHeight)
             .child(IKey.lang(metaFullName).asWidget()
@@ -340,9 +361,19 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                        .pos(backgroundWidth - 7 - 18, backgroundHeight - 18 * 4 - 7 - 5)
                        .width(18)
                        .height(18 * 4 + 5)
-                       .child(GTGuiTextures.getLogo(uiTheme).asWidget()
+                       .child(ButtonWidget()
                                   .size(17)
-                                  .top(18 * 3 + 5))
+                                  .top(18 * 3 + 5)
+                                  .overlay(GTGuiTextures.FILTER_SETTINGS_OVERLAY.asIcon()
+                                               .size(16))
+                                  .addTooltipLine(IKey.lang("gtlitecore.machine.quantum_item_bus.import.configuration"))
+                                  .onMousePressed {
+                                      if (stackSizePanel.isPanelOpen)
+                                          stackSizePanel.closePanel()
+                                      else
+                                          stackSizePanel.openPanel()
+                                      return@onMousePressed true
+                                  })
                        .child(ToggleButton()
                                   .top(18 * 2)
                                   .value(workingStateValue)
@@ -373,6 +404,46 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                 .tooltip {
                     it.addLine(IKey.lang("gregtech.gui.configurator_slot.unavailable.tooltip"))
                 }))
+    }
+
+    @Suppress("UnstableApiUsage")
+    private fun makeStackSizePanel(syncManager: PanelSyncManager, syncHandler: IPanelHandler): ModularPanel
+    {
+        val stackSizeSync = IntSyncValue(::stackSizePerSlot, ::setStackSizePerSlot)
+        return GTGuis.createPopupPanel("stack_size", 116, 53)
+            .child(Flow.row()
+                       .pos(4, 4)
+                       .height(16)
+                       .coverChildrenWidth()
+                       .child(ItemDrawable(stackForm).asWidget()
+                                  .size(16)
+                                  .marginRight(4))
+                       .child(IKey.lang("gtlitecore.machine.quantum_item_bus.import.configuration").asWidget()
+                                  .heightRel(1.0f)))
+            .child(Flow.row()
+                       .top(20)
+                       .margin(4, 0)
+                       .coverChildrenHeight()
+                       .child(SliderWidget()
+                                  .background(Rectangle()
+                                                  .color(Color.BLACK.brighter(2)).asIcon()
+                                                  .height(8))
+                                  .bounds(0.0, Int.MAX_VALUE.toDouble())
+                                  .setAxis(GuiAxis.X)
+                                  .value(stackSizeSync)
+                                  .widthRel(0.7f)
+                                  .height(20))
+                       .child(TextFieldWidget()
+                                  .widthRel(0.3f)
+                                  .height(20)
+                                  .setTextColor(Color.WHITE.darker(1))
+                                  .background(GTGuiTextures.DISPLAY)
+                                  .value(stackSizeSync)
+                                  .setValidator {
+                                      var value = it.toInt()
+                                      if (value < 0) value = 0
+                                      return@setValidator value.toString()
+                                  }))
     }
 
     override fun renderMetaTileEntity(renderState: CCRenderState, translation: Matrix4,

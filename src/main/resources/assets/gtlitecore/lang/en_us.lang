@@ -2901,8 +2901,9 @@ gtlitecore.machine.quantum_item_bus.import.uiv.name=§2UIV§f Quantum Item Impor
 gtlitecore.machine.quantum_item_bus.import.uxv.name=§eUXV§f Quantum Item Import Bus
 gtlitecore.machine.quantum_item_bus.import.opv.name=§9OpV§f Quantum Item Import Bus
 
-gtlitecore.machine.huge_item_bus.import.tooltip=特化存储空间的输入总线
-gtlitecore.machine.huge_item_bus.tooltip=§c注意：当内部存储物品过多时会造成卡顿，请避免不必要的过量物品存储
+gtlitecore.machine.quantum_item_bus.import.tooltip.1=Input bus for Extremely Specialized Single-Slot Storage
+gtlitecore.machine.quantum_item_bus.import.tooltip.2=Can configure the Maximum Stack Size for every slots in GUI
+gtlitecore.machine.quantum_item_bus.import.configuration=Configure Maximum Stack Size per Slot
 
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=For automatically maintaining Multiblocks with Sterile Cleaning!
