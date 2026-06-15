@@ -7,6 +7,7 @@ import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
 import gregtech.api.unification.ore.OrePrefix.crushed
 import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.gemChipped
 import gregtech.api.unification.ore.OrePrefix.gemFlawed
 import gregtech.api.unification.ore.OrePrefix.ingot
@@ -15,6 +16,7 @@ import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.round
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.NANOPARTICLES
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.ORGANIC
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.WAX
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 
 object GTLiteMetaOreDictItems
@@ -46,6 +48,8 @@ object GTLiteMetaOreDictItems
     lateinit var HARD_APPLE_CANDY_CHUNK: OreDictValueItem
     lateinit var HARD_APPLE_CANDY_PLATE: OreDictValueItem
     lateinit var HARD_APPLE_CANDY_DUST: OreDictValueItem
+    lateinit var SOYBEAN_MEAL: OreDictValueItem
+    lateinit var PLANT_PROTEIN: OreDictValueItem
 
     @JvmStatic
     fun init()
@@ -80,7 +84,8 @@ object GTLiteMetaOreDictItems
         HARD_APPLE_CANDY_CHUNK = ORE_DICT_ITEMS.addOreDictItem(20, "hard_apple_candy_chunk", 0x78E32B, ORGANIC, plateDense)
         HARD_APPLE_CANDY_PLATE = ORE_DICT_ITEMS.addOreDictItem(21, "hard_apple_candy", 0x78E32B, ORGANIC, plate)
         HARD_APPLE_CANDY_DUST = ORE_DICT_ITEMS.addOreDictItem(22, "hard_apple_candy", 0x78E32B, NANOPARTICLES, dust)
-
+        SOYBEAN_MEAL = ORE_DICT_ITEMS.addOreDictItem(23, "soybean_meal", 0x629046, NANOPARTICLES, dustSmall)
+        PLANT_PROTEIN = ORE_DICT_ITEMS.addOreDictItem(24, "plant_protein", 0xFFFFFF, ORGANIC, dustSmall)
     }
 
     // @formatter:on

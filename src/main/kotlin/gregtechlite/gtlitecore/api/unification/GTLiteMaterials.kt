@@ -737,6 +737,11 @@ object GTLiteMaterials
     lateinit var Isophthaloylbisdiethylthiourea: Material
     lateinit var Silane: Material
     lateinit var EthyleneVinylAcetatePolymer: Material
+    lateinit var StearicAcid: Material
+    lateinit var SodiumStearate: Material
+    lateinit var MethylStearate: Material
+    lateinit var GlycidylStearate: Material
+    lateinit var Monoglyceride: Material
 
     // endregion
 
@@ -788,6 +793,18 @@ object GTLiteMaterials
     lateinit var AppleCaneSyrup: Material
     lateinit var HardAppleCandySyrup: Material
     lateinit var FracturingFluid: Material
+    lateinit var CrudeSoybeanOil: Material
+    lateinit var SoybeanOil: Material
+    lateinit var BeanPhospholipid: Material
+    lateinit var NutrientPasteWaterPhaseMixture: Material
+    lateinit var RichNutrientPasteWaterPhaseMixture: Material
+    lateinit var NutrientPasteOilPhaseMixture: Material
+    lateinit var NutrientPasteCrudeEmulsion: Material
+    lateinit var RichNutrientPasteCrudeEmulsion: Material
+    lateinit var NutrientPasteEmulsion: Material
+    lateinit var RichNutrientPasteEmulsion: Material
+    lateinit var SterilizedNutrientPasteEmulsion: Material
+    lateinit var SterilizedRichNutrientPasteEmulsion: Material
 
     lateinit var FreeElectronGas: Material
     lateinit var FermionicUUMatter: Material

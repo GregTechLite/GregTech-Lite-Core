@@ -436,6 +436,7 @@ tile.gtlitecore.active_unique_casing_01.heat_vent.name=Heat Vent
 tile.gtlitecore.active_unique_casing_01.temperature_controller.name=Fission Reactor Temperature Controller
 tile.gtlitecore.active_unique_casing_01.nano_precise_assembly_unit.name=Nano Precise Assembly Unit
 tile.gtlitecore.active_unique_casing_01.nanite_control_casing.name=Nanite Control Machine Casing
+tile.gtlitecore.active_unique_casing_01.crushing_wheel.name=Crushing Wheel Casing
 
 tile.gtlitecore.turbine_casing_01.rhodium_plated_palladium_turbine.name=Rhodium Plated Palladium Turbine Casing
 
@@ -896,6 +897,21 @@ metaitem.tool.memory_card.ghast.name=Memory Card (Ghast)
 metaitem.tool.memory_card.shulker.name=Memory Card (Shulker)
 metaitem.tool.memory_card.wither.name=Memory Card (Wither)
 metaitem.tool.memory_card.ender_dragon.name=Memory Card (Ender Dragon)
+metaitem.tool.memory_card.chicken=Memory Card (Chicken)
+metaitem.tool.memory_card.cow.name=Memory Card (Cow)
+metaitem.tool.memory_card.pig.name=Memory Card (Pig)
+metaitem.tool.memory_card.sheep.name=Memory Card (Sheep)
+metaitem.tool.memory_card.horse.name=Memory Card (Horse)
+metaitem.tool.memory_card.donkey.name=Memory Card (Donkey)
+metaitem.tool.memory_card.mule.name=Memory Card (Mule)
+metaitem.tool.memory_card.ocelot.name=Memory Card (Ocelot)
+metaitem.tool.memory_card.wolf.name=Memory Card (Wolf)
+metaitem.tool.memory_card.rabbit.name=Memory Card (Rabbit)
+metaitem.tool.memory_card.llama.name=Memory Card (Llama)
+metaitem.tool.memory_card.mooshroom.name=Memory Card (Mooshroom)
+metaitem.tool.memory_card.bat.name=Memory Card (Bat)
+metaitem.tool.memory_card.villager.name=Memory Card (Villager)
+metaitem.tool.memory_card.trader.name=Memory Card (Wandering Trader)
 
 metaitem.tool.catalyst.base.name=Catalyst Base
 metaitem.tool.catalyst.rubber_polymer.name=Rubber Polymer Catalyst
@@ -1528,6 +1544,7 @@ metaitem.food.tableware.paper_cone.name=Paper Cone
 metaitem.food.tableware.component.clay_cup.name=Clay Cup
 metaitem.food.tableware.ceramic_cup.name=Ceramic Cup
 metaitem.food.tableware.plastic_bottle.name=Plastic Bottle
+metaitem.food.tableware.pvc_can.name=PVC Can
 
 metaitem.food.drink.grape_juice.name=Grape Juice
 metaitem.food.drink.grape_juice.tooltip=Rich in Sugar
@@ -1557,6 +1574,9 @@ metaitem.food.polenta.tooltip.2=Also a thicker corn paste called Eshima in East 
 metaitem.food.graham_cracker.name=Graham Cracker
 metaitem.food.graham_cracker.tooltip=Rich in Satiety
 
+metaitem.food.horse_meat.name=Horse Meat
+metaitem.food.cooked_horse_meat.name=Cooked Horse Meat
+
 metaitem.food.hard_apple_candy.name=Hard Apple Candy
 metaitem.food.hard_apple_candy.tooltip=Maybe it hurts a bit
 
@@ -1570,6 +1590,11 @@ metaitem.fruit.product.rainbow_berry.name=Rainbow Berry
 metaitem.fruit.product.rainbow_berry.tooltip=Chromatic
 metaitem.fruit.product.moon_berry.name=Moon Berry
 metaitem.fruit.product.moon_berry.tooltip=Wow!
+
+metaitem.food.nutrient_paste_meal.name=Nutrient Paste Meal
+metaitem.food.nutrient_paste_meal.tooltip=Eating it is very disgusting
+metaitem.food.rich_nutrient_paste_meal.name=Nutrient Paste Meal (Rich Nutrient)
+metaitem.food.rich_nutrient_paste_meal.tooltip=Nausea Degree may be less than its Nutritional Value
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=Corn Kernal
@@ -1594,6 +1619,8 @@ metaitem.apple_pulp_dust.name=Apple Pulp Dust
 metaitem.hard_apple_candy_chunk_plate_dense.name=Hard Apple Candy Chunk
 metaitem.hard_apple_candy_plate.name=Hard Apple Candy Plate
 metaitem.hard_apple_candy_dust.name=Hard Apple Candy Dust
+metaitem.soybean_meal_dust_small.name=Soybean Meal
+metaitem.plant_protein_dust_small.name=Plant Protein
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
@@ -1659,6 +1686,8 @@ recipemap.integrated_ore_processor.name=Integrated Ore Processor
 recipemap.matter_reshaping_framework.name=Matter Reshaping
 recipemap.solidification_submodule.name=Forging Solidification Submodule
 recipemap.recombination_submodule.name=Separating Recombination Submodule
+recipemap.mob_collecting_mode.name=Collecting
+recipemap.mob_slaughtering_mode.name=Slaughtering
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -2228,26 +2257,6 @@ gtlitecore.machine.mob_extractor.mv.name=§bGood§f Mob Extractor
 gtlitecore.machine.mob_extractor.mv.tooltip=Egg Collector
 gtlitecore.machine.mob_extractor.hv.name=§6Advanced§f Mob Extractor
 gtlitecore.machine.mob_extractor.hv.tooltip=Egg Collector
-gtlitecore.machine.mob_extractor.ev.name=§5Digitized§f Mob Extractor
-gtlitecore.machine.mob_extractor.ev.tooltip=Egg Collector
-gtlitecore.machine.mob_extractor.iv.name=§1Elite§f Mob Extractor
-gtlitecore.machine.mob_extractor.iv.tooltip=Painless Blood Extractor
-gtlitecore.machine.mob_extractor.luv.name=§dAvant§f Mob Extractor
-gtlitecore.machine.mob_extractor.luv.tooltip=Painless Blood Extractor
-gtlitecore.machine.mob_extractor.zpm.name=§cMaster§f Mob Extractor
-gtlitecore.machine.mob_extractor.zpm.tooltip=Painless Blood Extractor
-gtlitecore.machine.mob_extractor.uv.name=§3Ultimate§f Mob Extractor
-gtlitecore.machine.mob_extractor.uv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uhv.name=§4Hi-Tech§f Mob Extractor
-gtlitecore.machine.mob_extractor.uhv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uev.name=§aNew Era§f Mob Extractor
-gtlitecore.machine.mob_extractor.uev.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uiv.name=§2Epic§f Mob Extractor
-gtlitecore.machine.mob_extractor.uiv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uxv.name=§eLegendary§f Mob Extractor
-gtlitecore.machine.mob_extractor.uxv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.opv.name=§9Exotic§f Mob Extractor
-gtlitecore.machine.mob_extractor.opv.tooltip=Bio-Trophy Chamber
 
 gtlitecore.machine.bio_simulator.lv.name=§7Basic§f Mob Simulator
 gtlitecore.machine.bio_simulator.lv.tooltip=Mobware Simulator
@@ -2282,6 +2291,16 @@ gtlitecore.machine.acid_generator.hv.name=§6Advanced§f Acid Generator
 gtlitecore.machine.acid_generator.hv.tooltip=Required Acid Matters
 gtlitecore.machine.acid_generator.ev.name=§5Turbine§f Acid Generator
 gtlitecore.machine.acid_generator.ev.tooltip=Required Acid Matters
+
+gtlitecore.machine.mob_slaughter.lv.name=§7Basic§f Mob Slaughter
+gtlitecore.machine.mob_slaughter.lv.tooltip=Butcher's favorite
+gtlitecore.machine.mob_slaughter.mv.name=§bGood§f Mob Slaughter
+gtlitecore.machine.mob_slaughter.mv.tooltip=Butcher's favorite
+gtlitecore.machine.mob_slaughter.hv.name=§6Advanced§f Mob Slaughter
+gtlitecore.machine.mob_slaughter.hv.tooltip=Butcher's favorite
+
+gtlitecore.machine.mob_slaughter.tooltip.1=Deal 40 damage and generate %s drops per second to §lup to 4 mobs§r§7 within §a9×9§7 range while working
+gtlitecore.machine.mob_slaughter.tooltip.2=Each damage deal consume §c%s§7 EU, input §bNitrous Oxide§7 to increase the maximum number of target mobs to §l12§r§7
 
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your Latex!
@@ -2495,7 +2514,7 @@ gtlitecore.machine.space_pump_module.tooltip.2=Set the Planet ID and Fluid ID to
 gtlitecore.machine.space_pump_module.tooltip.3=Upgrade module tier to unlock more fluid output slot
 gtlitecore.machine.space_pump_module.tooltip.4=Allowed to set 4 slots of fluid output simultaneously
 gtlitecore.machine.space_pump_module.tooltip.5=Working speed increased by 4 times than original speed
-gtlitecore.machine.space_pump_module.max_parallel=Workable Voltage: %s§7
+gtlitecore.machine.space_pump_module.max_parallel=Workable Voltage: %s§7, Max Parallel: §e%s§7
 gtlitecore.machine.space_pump_module.track_tier=Needs §f%s§7 or higher tier Acceleration Track.
 
 gtlitecore.machine.space_pump_module.config_button.closed=Open Configuration Panel
@@ -2509,7 +2528,7 @@ gtlitecore.machine.space_pump_module.fluid_row.2=Set the Planet ID and Fluid ID 
 gtlitecore.machine.space_pump_module.fluid_row.3=Space Pump will extract the fluid from the corresponding planet.
 gtlitecore.machine.space_pump_module.fluid=Fluid %d:
 gtlitecore.machine.space_pump_module.fluid.empty=Invalid Planet ID or Fluid ID! please check JEI for correct IDs.
-gtlitecore.machine.space_pump_module.fluid.efficient=§a%sL/s §7per parallel
+gtlitecore.machine.space_pump_module.fluid.efficient=§a%sL §7per parallel
 
 gtlitecore.machine.energy_infuser.name=Energy Infuser
 gtlitecore.machine.energy_infuser.tooltip.1=Charging rechargeable items with energy, §fFE/EU/RF§7 format electric items is also supported.
@@ -2640,8 +2659,21 @@ gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=氧等离子体�
 gtlitecore.machine.large_acid_generator.name=Large Acid Generator
 
 gtlitecore.machine.large_transformer.name=Large Transformer
-gtlitecore.machine.large_transformer.tooltip.1=比单方块变压器更好
-gtlitecore.machine.large_transformer.tooltip.2=必须同时安装§a能源仓§7与§b动力仓§7才可以工作。
+gtlitecore.machine.large_transformer.tooltip.1=Better than singleblock transformer
+gtlitecore.machine.large_transformer.tooltip.2=Must both use §aEnergy Hatch§7 and §bDynamo Hatch§7 for work.
+
+gtlitecore.machine.large_slaughter.name=Large Slaughter
+
+gtlitecore.machine.large_fisher.name=Large Fisher
+gtlitecore.machine.large_fisher.tooltip.1=Require §9fill water§7 in multiblock to maintain environment, use §fFluid Import Hatch§7 for automation
+gtlitecore.machine.large_fisher.tooltip.2=Use §fScrewdriver§7 click to change fishing mode (§bFish§7/§8Jerk§7/§6Treasure§7)
+gtlitecore.machine.large_fisher.tooltip.3=Maximum Parallel:
+gtlitecore.machine.large_fisher.tooltip.4=- In §bFish§f Mode§7: §e(1.8^(Voltage Tier) × (8 × (Pump Casing Tier) + 1))
+gtlitecore.machine.large_fisher.tooltip.5=- In §8Jerk§f / §6Treasure§f Mode§7: §e(1.2^(Voltage Tier) × Pump Casing Tier) + ((8 × (Voltage Tier) + 1) × 0.67)
+gtlitecore.machine.large_fisher.mode.0=Current Mode: §bFish§7
+gtlitecore.machine.large_fisher.mode.1=Current Mode: §8Jerk§7
+gtlitecore.machine.large_fisher.mode.2=Current Mode: §6Treasure§7
+gtlitecore.machine.large_fisher.inventory_full=Output Full
 
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
@@ -2865,23 +2897,20 @@ gtlitecore.machine.fluid_hatch.export_9x.lv.name=§7LV§f Nonuple Fluid Export H
 gtlitecore.machine.fluid_hatch.export_9x.mv.name=§bMV§f Nonuple Fluid Export Hatch
 gtlitecore.machine.fluid_hatch.export_9x.hv.name=§6HV§f Nonuple Fluid Export Hatch
 
-gtlitecore.machine.huge_item_bus.import.ulv.name=§8ULV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.lv.name=§7LV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.mv.name=§bMV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.hv.name=§6HV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.ev.name=§5EV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.iv.name=§1IV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.luv.name=§dLuV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.zpm.name=§cZPM§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uv.name=§3UV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uhv.name=§4UHV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uev.name=§aUEV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uiv.name=§2UIV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uxv.name=§eUXV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.opv.name=§9OpV§f Huge Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.iv.name=§1IV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.luv.name=§dLuV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.zpm.name=§cZPM§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uv.name=§3UV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uhv.name=§4UHV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uev.name=§aUEV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uiv.name=§2UIV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uxv.name=§eUXV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.opv.name=§9OpV§f Quantum Item Import Bus
 
-gtlitecore.machine.huge_item_bus.import.tooltip=特化存储空间的输入总线
-gtlitecore.machine.huge_item_bus.tooltip=§c注意：当内部存储物品过多时会造成卡顿，请避免不必要的过量物品存储
+gtlitecore.machine.quantum_item_bus.import.tooltip.1=Input bus for Extremely Specialized Single-Slot Storage
+gtlitecore.machine.quantum_item_bus.import.tooltip.2=Can configure the Maximum Stack Size for every slots in GUI
+gtlitecore.machine.quantum_item_bus.import.tooltip.3=§aMaximum Stack Size per Slot: §f%s§7
+gtlitecore.machine.quantum_item_bus.import.configuration=Configure Maximum Stack Size per Slot
 
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=For automatically maintaining Multiblocks with Sterile Cleaning!
@@ -3690,6 +3719,11 @@ gtlitecore.material.diethylthiourea=Diethylthiourea
 gtlitecore.material.isophthaloylbisdiethylthiourea=Isophthaloylbisdiethylthiourea
 gtlitecore.material.silane=Silane
 gtlitecore.material.ethylene_vinyl_acetate_polymer=Ethylene-Vinyl Acetate Polymer (EVA)
+gtlitecore.material.stearic_acid=Stearic Acid
+gtlitecore.material.sodium_stearate=Sodium Stearate
+gtlitecore.material.methyl_stearate=Methyl Stearate
+gtlitecore.material.glycidyl_stearate=Glycidyl Stearate
+gtlitecore.material.monoglyceride=Monoglyceride
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -3738,6 +3772,9 @@ gtlitecore.material.cane_syrup=Cane Syrup
 gtlitecore.material.apple_cane_syrup=Apple-Cane Syrup
 gtlitecore.material.hard_apple_candy_syrup=Hard Apple Candy Syrup
 gtlitecore.material.fracturing_fluid=Fracturing Fluid
+gtlitecore.material.crude_soybean_oil=Crude Soybean Oil
+gtlitecore.material.soybean_oil=Soybean Oil
+gtlitecore.material.bean_phospholipid=Bean Phospholipid
 
 gtlitecore.material.free_electron_gas=Free Electron Gas
 gtlitecore.material.fermionic_uu_matter=Fermionic UU Matter
@@ -3807,6 +3844,15 @@ gtlitecore.material.mutated_living_solder=Mutated Living Solder
 gtlitecore.material.sodio_indene=Sodio-Indene Mixture
 gtlitecore.material.steam_cracked_sodio_indene=Steam-Cracked Sodio-Indene Mixture
 gtlitecore.material.phosphorene_solution=Phosphorene Solution
+gtlitecore.material.nutrient_paste_water_phase_mixture=Nutrient Paste Water Phase Mixture
+gtlitecore.material.rich_nutrient_paste_water_phase_mixture=Nutrient Paste Water Phase Mixture (Rich Nutrient)
+gtlitecore.material.nutrient_paste_oil_phase_mixture=Nutrient Paste Oil Phase Mixture
+gtlitecore.material.nutrient_paste_crude_emulsion=Nutrient Paste Crude Emulsion
+gtlitecore.material.rich_nutrient_paste_crude_emulsion=Nutrient Paste Crude Emulsion (Rich Nutrient)
+gtlitecore.material.nutrient_paste_emulsion=Nutrient Paste Emulsion
+gtlitecore.material.rich_nutrient_paste_emulsion=Nutrient Paste Emulsion (Rich Nutrient)
+gtlitecore.material.sterilized_nutrient_paste_emulsion=Sterilized Nutrient Paste Emulsion
+gtlitecore.material.sterilized_rich_nutrient_paste_emulsion=Sterilized Nutrient Paste Emulsion (Rich Nutrient)
 
 gtlitecore.material.neutron_proton_fermi_superfluid=Neutron-Proton Fermi Superfluid
 gtlitecore.material.heavy_lepton_mixture=Heavy Lepton Mixture
@@ -3839,6 +3885,7 @@ gtlitecore.material.eternity_plus_token=Eternity+
 item.gregtech.material.graphite.fuelRod=Graphite Moderate Rod
 item.gregtech.material.graphite.fuelRodEnriched=Enriched Graphite Moderate Rod
 item.gregtech.material.graphite.fuelRodHighDensity=High Density Graphite Moderate Rod
+item.gregtech.material.polycaprolactam.wireFine=Polycaprolactam Fiber
 
 # Fluids
 gtlitecore.fluid.molten=Molten %s
@@ -3997,6 +4044,7 @@ gtlitecore.subtitle.tick.stellar_forge.name=Stellar Forge: Supernova Explosion
 gtlitecore.message.berry_bush_blocked=Will cause Berry Bush unable to grow at %s
 
 death.attack.ore_crushing=%s was crushed as ore
+death.attack.mob_slaughtering=%s was slaughtered
 
 # Enchantment Levels
 enchantment.level.0=I

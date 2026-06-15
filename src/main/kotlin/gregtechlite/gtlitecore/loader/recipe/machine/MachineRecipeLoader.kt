@@ -64,6 +64,7 @@ import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Polycaprolactam
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.RedSteel
@@ -151,6 +152,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UHV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UIV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
 import gregtech.common.items.MetaItems.EMITTER_EV
+import gregtech.common.items.MetaItems.EMITTER_HV
 import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.EMITTER_LV
 import gregtech.common.items.MetaItems.EMITTER_LuV
@@ -177,6 +179,7 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UXV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.SENSOR_EV
+import gregtech.common.items.MetaItems.SENSOR_HV
 import gregtech.common.items.MetaItems.SENSOR_IV
 import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.items.MetaItems.SENSOR_MV
@@ -211,6 +214,7 @@ import gregtech.common.metatileentities.MetaTileEntities.ELECTROMAGNETIC_SEPARAT
 import gregtech.common.metatileentities.MetaTileEntities.EXTRACTOR
 import gregtech.common.metatileentities.MetaTileEntities.EXTRUDER
 import gregtech.common.metatileentities.MetaTileEntities.FERMENTER
+import gregtech.common.metatileentities.MetaTileEntities.FISHER
 import gregtech.common.metatileentities.MetaTileEntities.FLUID_SOLIDIFIER
 import gregtech.common.metatileentities.MetaTileEntities.FORGE_HAMMER
 import gregtech.common.metatileentities.MetaTileEntities.FORMING_PRESS
@@ -374,6 +378,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARG
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ELECTROMAGNET
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_EXTRACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_EXTRUDER
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_FISHER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_FLUID_SOLIDIFIER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_FOOD_PROCESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_FORGE_HAMMER
@@ -389,6 +394,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARG
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ROCKET_ENGINE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ROCK_BREAKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_SIFTER
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_SLAUGHTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_STEAM_ALLOY_SMELTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_STEAM_COMPRESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_TRANSFORMER
@@ -398,6 +404,8 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MASS_FABRICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MINING_DRONE_AIRPORT
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_EXTRACTOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_SLAUGHTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MULTICOOKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NANOSCALE_FABRICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NANO_ASSEMBLY_COMPLEX
@@ -425,6 +433,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.SUPE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.TOOL_CASTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.VACUUM_CHAMBER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.VOLCANUS
+import net.minecraft.init.Items.FISHING_ROD
 
 internal object MachineRecipeLoader
 {
@@ -1548,6 +1557,28 @@ internal object MachineRecipeLoader
             'T', POWER_TRANSFORMER[HV].stack(),
             'V', VOLTAGE_COIL_HV,
             'X', UnificationEntry(circuit, Tier.HV))
+
+        // Large Slaughter
+        ModHandler.addShapedRecipe(true, "large_slaughter", LARGE_SLAUGHTER.stack(),
+            "GGG", "ACB", "EWS",
+            'A', MOB_EXTRACTOR[HV - 1].stack(),
+            'B', MOB_SLAUGHTER[HV - 1].stack(),
+            'C', GTMetalCasing.STEEL_SOLID.stack,
+            'E', EMITTER_HV,
+            'S', SENSOR_HV,
+            'W', UnificationEntry(cableGtQuadruple, Gold),
+            'G', UnificationEntry(gear, BlackSteel))
+
+        // Large Fisher
+        ModHandler.removeRecipeByOutput(FISHER[EV - 1].stack())
+        ModHandler.addShapedRecipe(true, "large_fisher", LARGE_FISHER.stack(),
+            "WFW", "QAQ", "CPC",
+            'A', FISHER[HV - 1].stack(),
+            'W', UnificationEntry(wireFine, Polycaprolactam),
+            'P', UnificationEntry(pipeLargeFluid, Aluminium),
+            'C', UnificationEntry(cableGtDouble, Silver),
+            'Q', ELECTRIC_PUMP_HV,
+            'F', FISHING_ROD.stack())
 
         // Hydraulic Fracker
         ModHandler.addShapedRecipe(true, "hydraulic_fracker", HYDRAULIC_FRACKER.stack(),

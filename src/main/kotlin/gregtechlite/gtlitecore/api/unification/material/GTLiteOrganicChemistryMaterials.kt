@@ -173,6 +173,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GammaButyrolacton
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GeodesicPolyarene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glucose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glutamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GlycidylStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glyoxal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GrignardReagent
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Guaiacol
@@ -204,11 +205,13 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MalonicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mauveine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methoxycreosol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylFormate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylhydrazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylparatoluate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methyltrichlorosilane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Monoglyceride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NDifluorophenylpyrrole
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NHydroxysuccinimide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NMethylPyrrolidone
@@ -260,8 +263,10 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RhodamineB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SacchariaAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sarcosine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Silane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumSulfanilate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sorbose
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StearicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Succinimide
@@ -329,7 +334,9 @@ object GTLiteOrganicChemistryMaterials
         Polyisoprene = addMaterial(8003, "polyisoprene")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(423)
+            }
             color(0x575757).iconSet(SHINY)
             components(Carbon, 5, Hydrogen, 8)
             flags(NO_SMASHING, NO_SMELTING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
@@ -555,7 +562,9 @@ object GTLiteOrganicChemistryMaterials
         KaptonK = addMaterial(8030, "kapton_k")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(673)
+            }
             color(0xFFCE52)
             components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -589,7 +598,9 @@ object GTLiteOrganicChemistryMaterials
         KaptonE = addMaterial(8034, "kapton_e")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(873)
+            }
             color(0xFFDF8C)
             components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
             flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, NO_SMASHING, NO_SMELTING, GENERATE_FOIL)
@@ -623,7 +634,9 @@ object GTLiteOrganicChemistryMaterials
         Polymethylmethacrylate = addMaterial(8038, "polymethylmethacrylate")
         {
             ingot()
-            liquid()
+            liquid {
+                temperature(473)
+            }
             color(0x91CAE1)
             components(Carbon, 5, Hydrogen, 8, Oxygen, 2)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE,
@@ -666,7 +679,9 @@ object GTLiteOrganicChemistryMaterials
         Polystyrene = addMaterial(8043, "polystyrene")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(423)
+            }
             color(0xE1C2C2)
             components(Carbon, 8, Hydrogen, 8)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -676,7 +691,9 @@ object GTLiteOrganicChemistryMaterials
         PolystyreneSulfonate = addMaterial(8044, "polystyrene_sulfonate")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(293)
+            }
             color(0xE17C72)
             components(Carbon, 8, Hydrogen, 8, Sulfur, 1, Oxygen, 3)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -886,7 +903,9 @@ object GTLiteOrganicChemistryMaterials
         PolyphosphonitrileFluoroRubber = addMaterial(8068, "polyphosphonitrile_fluoro_rubber")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(593)
+            }
             color(0x372B28)
             components(Carbon, 24, Hydrogen, 16, Oxygen, 8, Nitrogen, 4, Phosphorus, 4, Fluorine, 40)
             flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_FOIL)
@@ -956,7 +975,9 @@ object GTLiteOrganicChemistryMaterials
         PolytetramethyleneGlycolRubber = addMaterial(8076, "polytetramethylene_glycol_rubber")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(423)
+            }
             color(0xFFFFFF)
             components(Carbon, 23, Hydrogen, 23, Oxygen, 5, Nitrogen, 2)
             flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_FOIL)
@@ -1024,7 +1045,9 @@ object GTLiteOrganicChemistryMaterials
         Polyetheretherketone = addMaterial(8084, "polyetheretherketone")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(673)
+            }
             color(0x45433D)
             components(Carbon, 20, Hydrogen, 12, Oxygen, 3)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -1237,7 +1260,9 @@ object GTLiteOrganicChemistryMaterials
         PolyethyleneTerephthalate = addMaterial(8108, "polyethylene_terephthalate")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(523)
+            }
             color(0x1E5C58)
             components(Carbon, 10, Hydrogen, 6, Oxygen, 4)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -2351,6 +2376,50 @@ object GTLiteOrganicChemistryMaterials
             flags(DISABLE_DECOMPOSITION)
         }
 
+        // 8235 Stearic Acid
+        StearicAcid = addMaterial(8235, "stearic_acid")
+        {
+            liquid()
+            color(0xF5E8E8)
+            components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8236 Sodium Stearate
+        SodiumStearate = addMaterial(8236, "sodium_stearate")
+        {
+            liquid()
+            color(0xFFF5F5)
+            components(Carbon, 18, Hydrogen, 35, Oxygen, 2, Sodium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8237 Methyl Stearate
+        MethylStearate = addMaterial(8237, "methyl_stearate")
+        {
+            liquid()
+            color(0xF6E2E2)
+            components(Carbon, 19, Hydrogen, 38, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8238 Glycidyl Stearate
+        GlycidylStearate = addMaterial(8238, "glycidyl_stearate")
+        {
+            liquid()
+            color(0x64E1BF)
+            components(Carbon, 21, Hydrogen, 40, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8239 Monoglyceride
+        Monoglyceride = addMaterial(8239, "monoglyceride")
+        {
+            liquid()
+            color(0x30C09A)
+            components(Carbon, 21, Hydrogen, 42, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
     }
 
     // @formatter:on

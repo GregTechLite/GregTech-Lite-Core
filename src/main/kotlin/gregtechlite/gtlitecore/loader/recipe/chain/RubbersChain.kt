@@ -306,7 +306,7 @@ internal object RubbersChain
                 notConsumable(SHAPE_EXTRUDER_GEAR)
                 input(dust, Latex, 4)
                 input(dust, Sulfur)
-                output(gear, Rubber, 4)
+                output(gear, Rubber)
                 EUt(VA[ULV])
                 duration(20 * SECOND)
             }
@@ -316,7 +316,7 @@ internal object RubbersChain
                 notConsumable(SHAPE_EXTRUDER_GEAR)
                 input(dust, Polyisoprene, 2)
                 input(dust, Sulfur)
-                output(gear, Rubber, 8)
+                output(gear, Rubber, 2)
                 EUt(VA[ULV])
                 duration(10 * SECOND)
             }
@@ -459,7 +459,7 @@ internal object RubbersChain
                 notConsumable(SHAPE_EXTRUDER_GEAR)
                 input(dust, Polydimethylsiloxane, 4)
                 input(dust, Sulfur)
-                output(gear, SiliconeRubber, 4)
+                output(gear, SiliconeRubber)
                 EUt(VA[LV])
                 duration(30 * SECOND)
             }

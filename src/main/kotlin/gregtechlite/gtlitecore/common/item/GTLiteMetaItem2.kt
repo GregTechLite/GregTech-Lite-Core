@@ -33,6 +33,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COCONUT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COFFEE_CHERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COFFEE_CUP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COFFEE_SEED
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COOKED_HORSE_MEAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CORN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CORN_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COTTON
@@ -54,12 +55,14 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GRAPE_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HARD_APPLE_CANDY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSERADISH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSERADISH_SEED
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSE_MEAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LEMON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LIME
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LINGONBERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MANGO
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MOON_BERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NUTMEG
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NUTRIENT_PASTE_MEAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OLIVE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ONION
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ONION_SEED
@@ -73,12 +76,14 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PEA_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PLASTIC_BOTTLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.POLENTA
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.POTATO_JUICE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PVC_CAN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RAINBOW_BERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RASPBERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RED_CURRANT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RED_WINE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RICE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RICE_SEED
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RICH_NUTRIENT_PASTE_MEAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SILVER_APPLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SILVER_STRAWBERRY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SOYBEAN
@@ -383,6 +388,7 @@ object GTLiteMetaItem2
         CLAY_CUP = item(305, "food.tableware.component.clay_cup")
         CERAMIC_CUP = item(306, "food.tableware.ceramic_cup")
         PLASTIC_BOTTLE = item(307, "food.tableware.plastic_bottle")
+        PVC_CAN = item(308, "food.tableware.pvc_can")
 
         // endregion
 
@@ -471,6 +477,13 @@ object GTLiteMetaItem2
         // endregion
 
         // region 1501-1700: Barbecue & Kebab
+        HORSE_MEAT = item(1501, "food.horse_meat")
+            .addComponents(FoodBehavior(3, 1.8f))
+            .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
+
+        COOKED_HORSE_MEAT = item(1502, "food.cooked_horse_meat")
+            .addComponents(FoodBehavior(8, 12.8f))
+            .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         // endregion
 
@@ -537,6 +550,22 @@ object GTLiteMetaItem2
         // endregion
 
         // region 2101-2300: Snacks
+        NUTRIENT_PASTE_MEAL = item(2101, "food.nutrient_paste_meal")
+            .addComponents(FoodBehavior(4, 6.0F)
+                               .setEatingDuration(10 * TICK)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.NAUSEA, 2 * SECOND, 1, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.HEALTH_BOOST, 30 * SECOND, 1, 100 - 100))
+                               .setReturnStack(PVC_CAN))
+            .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
+
+        RICH_NUTRIENT_PASTE_MEAL = item(2102, "food.rich_nutrient_paste_meal")
+            .addComponents(FoodBehavior(6, 9.0F)
+                               .setEatingDuration(10 * TICK)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.NAUSEA, 1 * SECOND, 1, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.HEALTH_BOOST, 30 * SECOND, 2, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.HASTE, 2 * MINUTE, 1, 100 - 80))
+                               .setReturnStack(PVC_CAN))
+            .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         // endregion
 
