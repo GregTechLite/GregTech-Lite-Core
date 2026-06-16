@@ -8,16 +8,18 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 
-abstract class ExtendableMultiblockBase<T: ExtendableMultiblockBase<T>>(metaTileEntityId: ResourceLocation) :
-    MultiblockWithDisplayBase(metaTileEntityId), IWorkable, IControllable
+abstract class ExtendableMultiblockBase<T: ExtendableMultiblockBase<T>>(metaTileEntityId: ResourceLocation)
+    : MultiblockWithDisplayBase(metaTileEntityId), IWorkable, IControllable
 {
     protected val additionalStructureManager: AdditionalStructureManager<T> = AdditionalStructureManager(this)
 
-    fun removeAdditional(pos: BlockPos) {
+    fun removeAdditional(pos: BlockPos)
+    {
         additionalStructureManager.remove(pos)
     }
 
-    fun addAdditional(additionalMultiblockBase: AdditionalMultiblockBase<T>) {
+    fun addAdditional(additionalMultiblockBase: AdditionalMultiblockBase<T>)
+    {
         additionalStructureManager.add(additionalMultiblockBase)
     }
 
@@ -27,15 +29,14 @@ abstract class ExtendableMultiblockBase<T: ExtendableMultiblockBase<T>>(metaTile
         return super.writeToNBT(data)
     }
 
-    override fun readFromNBT(data: NBTTagCompound?) {
+    override fun readFromNBT(data: NBTTagCompound?)
+    {
         super.readFromNBT(data)
         data?.getCompoundTag("Additional")?.let {
             additionalStructureManager.deserialize(it)
                 .map { pos -> GTUtility.getMetaTileEntity(world, pos) }
                 .filterIsInstance<AdditionalMultiblockBase<T>>()
-                .forEach { additionalMultiblockBase ->
-                    additionalMultiblockBase.connect(this)
-                }
+                .forEach { additionalMultiblockBase -> additionalMultiblockBase.connect(this) }
         }
     }
 }
