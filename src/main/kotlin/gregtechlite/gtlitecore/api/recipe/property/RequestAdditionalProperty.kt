@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.recipe
+package gregtechlite.gtlitecore.api.recipe.property
 
 import gregtech.api.recipes.properties.RecipeProperty
 import net.minecraft.client.Minecraft

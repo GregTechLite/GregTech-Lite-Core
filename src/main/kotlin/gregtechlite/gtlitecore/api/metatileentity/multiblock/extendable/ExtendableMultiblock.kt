@@ -5,16 +5,16 @@ import net.minecraft.util.math.BlockPos
 
 interface ExtendableMultiblock<T: ExtendableMultiblock<T>>: IMultiblockController
 {
-    fun getAdditionalStructureManager(): AdditionalStructureManager<T>
+    var additionalStructureManager: AdditionalStructureManager<T>
 
     fun isWorkingEnabled(): Boolean
 
     fun addAdditional(additionalMultiblockBase: AdditionalMultiblockBase<T>) {
-        getAdditionalStructureManager().add(additionalMultiblockBase)
+        additionalStructureManager.add(additionalMultiblockBase)
     }
 
     fun removeAdditional(pos: BlockPos)
     {
-        getAdditionalStructureManager().remove(pos)
+        additionalStructureManager.remove(pos)
     }
 }

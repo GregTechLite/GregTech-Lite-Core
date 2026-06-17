@@ -11,8 +11,7 @@ import net.minecraft.util.ResourceLocation
 abstract class ExtendableMultiblockBase<T: ExtendableMultiblockBase<T>>(metaTileEntityId: ResourceLocation)
     : MultiblockWithDisplayBase(metaTileEntityId), IWorkable, IControllable, ExtendableMultiblock<T>
 {
-    protected val additionalStructureManager: AdditionalStructureManager<T> = AdditionalStructureManager(this)
-    override fun getAdditionalStructureManager(): AdditionalStructureManager<T> = additionalStructureManager
+    override var additionalStructureManager: AdditionalStructureManager<T> = AdditionalStructureManager(this)
 
     override fun <A> getAbilities(ability: MultiblockAbility<A>): List<A>
     {
