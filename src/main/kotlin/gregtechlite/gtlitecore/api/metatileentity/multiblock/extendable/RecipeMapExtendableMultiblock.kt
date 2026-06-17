@@ -7,6 +7,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.GTUtility
+import gregtechlite.gtlitecore.api.capability.logic.ExtendableMultiblockRecipeLogic
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -18,6 +19,11 @@ abstract class RecipeMapExtendableMultiblock<T: RecipeMapExtendableMultiblock<T>
     : RecipeMapMultiblockController(metaTileEntityId, recipeMap), IWorkable, IControllable, IDataStickIntractable, ExtendableMultiblock<T>
 {
     override var additionalStructureManager: AdditionalStructureManager<T> = AdditionalStructureManager(this)
+
+    init
+    {
+        recipeMapWorkable = ExtendableMultiblockRecipeLogic(this, additionalStructureManager)
+    }
 
     override fun <A> getAbilities(ability: MultiblockAbility<A>): List<A>
     {
