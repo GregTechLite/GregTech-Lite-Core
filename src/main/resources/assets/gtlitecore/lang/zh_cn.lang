@@ -1762,6 +1762,12 @@ gtlitecore.recipe.acceleration_track_tier.5=加速轨道等级：MK5
 
 gtlitecore.recipe.request_additional_structures=需求附属结构：%s
 
+# Machine API contexts
+gtlitecore.machine.additional_structure.data_stick.name=§o附属结构配置数据
+gtlitecore.machine.additional_structure.pos_saved=已将附属结构控制器坐标（%s，%s，%s）保存到闪存
+gtlitecore.machine.additional_structure.connected=已将附属结构连接至主结构
+gtlitecore.machine.additional_structure.not_found=未发现有效的附属结构
+
 # Machines
 gtlitecore.machine.polisher.lv.name=§7基础§f抛光机
 gtlitecore.machine.polisher.lv.tooltip=电动切石机

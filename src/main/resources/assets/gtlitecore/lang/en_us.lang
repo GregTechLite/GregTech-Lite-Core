@@ -1762,6 +1762,12 @@ gtlitecore.recipe.acceleration_track_tier.5=Acceleration Track Tier: MK5
 
 gtlitecore.recipe.request_additional_structures=Required Additional Structure: %s
 
+# Machine API contexts
+gtlitecore.machine.additional_structure.data_stick.name=§oAdditional Structure Configuration Data
+gtlitecore.machine.additional_structure.pos_saved=Saved Controller Pos (%s，%s，%s) of Additional Structure to Data Stick
+gtlitecore.machine.additional_structure.connected=Connected Additional Structure to Main Structure
+gtlitecore.machine.additional_structure.not_found=Not found any effective Additional Structure
+
 # Machines
 gtlitecore.machine.polisher.lv.name=§7Basic§f Polisher
 gtlitecore.machine.polisher.lv.tooltip=Electric Stonecutter
