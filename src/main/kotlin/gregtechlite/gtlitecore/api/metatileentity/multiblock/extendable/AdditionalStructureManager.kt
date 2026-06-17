@@ -1,12 +1,13 @@
 package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable
 
+import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.nbt.NBTTagList
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 
-open class AdditionalStructureManager<T: ExtendableMultiblockBase<T>>(protected val base: ExtendableMultiblockBase<T>)
+open class AdditionalStructureManager<T: ExtendableMultiblock<T>>(protected val base: ExtendableMultiblock<T>)
 {
     protected val structures = openHashMapOf<BlockPos, AdditionalMultiblockBase<T>>()
 
@@ -21,6 +22,12 @@ open class AdditionalStructureManager<T: ExtendableMultiblockBase<T>>(protected 
     fun get(pos: BlockPos): AdditionalMultiblockBase<T>? = structures[pos]
 
     fun remove(pos: BlockPos) = structures.remove(pos)
+
+    fun <A> getAbilities(ability: MultiblockAbility<A>): MutableList<A> {
+        val abilities = ArrayList<A>()
+        structures.values.forEach { it.getAbilities<A>(ability).also { ab -> abilities.addAll(ab) } }
+        return abilities
+    }
 
     fun serialize(): NBTTagCompound
     {

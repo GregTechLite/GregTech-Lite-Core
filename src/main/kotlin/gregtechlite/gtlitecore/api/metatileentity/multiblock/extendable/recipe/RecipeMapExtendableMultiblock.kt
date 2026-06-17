@@ -1,15 +1,19 @@
-package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable
+package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.recipe
 
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IWorkable
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
-import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
+import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.GTUtility
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalMultiblockBase
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalStructureManager
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.ExtendableMultiblock
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.ResourceLocation
 
-abstract class ExtendableMultiblockBase<T: ExtendableMultiblockBase<T>>(metaTileEntityId: ResourceLocation)
-    : MultiblockWithDisplayBase(metaTileEntityId), IWorkable, IControllable, ExtendableMultiblock<T>
+abstract class RecipeMapExtendableMultiblock<T: RecipeMapExtendableMultiblock<T>>(metaTileEntityId: ResourceLocation, recipeMap: RecipeMap<*>)
+    : RecipeMapMultiblockController(metaTileEntityId, recipeMap), IWorkable, IControllable, ExtendableMultiblock<T>
 {
     protected val additionalStructureManager: AdditionalStructureManager<T> = AdditionalStructureManager(this)
     override fun getAdditionalStructureManager(): AdditionalStructureManager<T> = additionalStructureManager

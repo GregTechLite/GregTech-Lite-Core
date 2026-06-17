@@ -4,28 +4,20 @@ import gregtech.api.capability.IControllable
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import net.minecraft.util.ResourceLocation
 
-abstract class AdditionalMultiblockBase<T : ExtendableMultiblockBase<T>>(metaTileEntityId: ResourceLocation)
+abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEntityId: ResourceLocation)
     : MultiblockWithDisplayBase(metaTileEntityId), IControllable
 {
-    protected var mainController: ExtendableMultiblockBase<T>? = null
+    protected var mainController: ExtendableMultiblock<T>? = null
 
     override fun hasMaintenanceMechanics() = false
     override fun isWorkingEnabled() = isStructureFormed && isConnected()
 
-    protected fun isConnected() = mainController != null && mainController!!.isWorkingEnabled
+    protected fun isConnected() = mainController != null && mainController!!.isWorkingEnabled()
 
-    fun connect(controller: ExtendableMultiblockBase<T>)
-    {
-        mainController = controller
-    }
-
-    override fun updateFormedValid()
-    {
-        mainController?.addAdditional(this)
-    }
-
-    override fun invalidateStructure()
+    fun connect(controller: ExtendableMultiblock<T>)
     {
         mainController?.removeAdditional(pos)
+        mainController = controller
+        mainController?.addAdditional(this)
     }
 }
