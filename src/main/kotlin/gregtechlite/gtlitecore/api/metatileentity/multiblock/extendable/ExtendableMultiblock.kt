@@ -9,7 +9,8 @@ interface ExtendableMultiblock<T: ExtendableMultiblock<T>>: IMultiblockControlle
 
     fun isWorkingEnabled(): Boolean
 
-    fun addAdditional(additionalMultiblockBase: AdditionalMultiblockBase<T>) {
+    fun addAdditional(additionalMultiblockBase: AdditionalMultiblockBase<T>)
+    {
         additionalStructureManager.add(additionalMultiblockBase)
     }
 

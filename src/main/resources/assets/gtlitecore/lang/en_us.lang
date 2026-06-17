@@ -1760,6 +1760,8 @@ gtlitecore.recipe.acceleration_track_tier.3=Acceleration Track Tier: MK3
 gtlitecore.recipe.acceleration_track_tier.4=Acceleration Track Tier: MK4
 gtlitecore.recipe.acceleration_track_tier.5=Acceleration Track Tier: MK5
 
+gtlitecore.recipe.request_additional_structures=Required Additional Structure: %s
+
 # Machines
 gtlitecore.machine.polisher.lv.name=§7Basic§f Polisher
 gtlitecore.machine.polisher.lv.tooltip=Electric Stonecutter

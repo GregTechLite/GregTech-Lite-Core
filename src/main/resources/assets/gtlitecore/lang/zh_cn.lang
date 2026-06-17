@@ -1760,6 +1760,8 @@ gtlitecore.recipe.acceleration_track_tier.3=加速轨道等级：MK3
 gtlitecore.recipe.acceleration_track_tier.4=加速轨道等级：MK4
 gtlitecore.recipe.acceleration_track_tier.5=加速轨道等级：MK5
 
+gtlitecore.recipe.request_additional_structures=需求附属结构：%s
+
 # Machines
 gtlitecore.machine.polisher.lv.name=§7基础§f抛光机
 gtlitecore.machine.polisher.lv.tooltip=电动切石机

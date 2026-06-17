@@ -19,8 +19,7 @@ object RequestAdditionalProperty: RecipeProperty<ResourceLocation>("request_addi
     override fun drawInfo(mc: Minecraft, x: Int, y: Int, color: Int, value: Any)
     {
         val split = value.toString().split(":")
-        mc.fontRenderer.drawString(
-            I18n.format("gtlitecore.recipe.request_additional_structures", "${split[0]}.machine.${split[1]}.name")
-            , x, y, color)
+        mc.fontRenderer.drawString(I18n.format("gtlitecore.recipe.request_additional_structures",
+            I18n.format("${split[0]}.machine.${split[1]}.name")), x, y, color)
     }
 }
