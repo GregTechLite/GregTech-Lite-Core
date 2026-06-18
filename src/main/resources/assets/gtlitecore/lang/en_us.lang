@@ -2436,8 +2436,12 @@ gtlitecore.machine.pcb_factory.trace_size.increment=§a缩短25μm线宽 /n§7�
 gtlitecore.machine.pcb_factory.additional_structure_name=PCB Factory Additional Module
 
 gtlitecore.machine.nanolithography_array.name=Nanolithography Array
+gtlitecore.machine.nanolithography_array.tooltip.1=Add Nanolithography functionality to the PCB Factory.
+gtlitecore.machine.nanolithography_array.tooltip.2=Each 1 §dSilver Nanite§7 in §fItem Import Bus§7 will cause Parallel §e+2§7
 
 gtlitecore.machine.microscale_circuit_detector.name=Microscale Circuit Component Detector
+gtlitecore.machine.microscale_circuit_detector.tooltip.1=Add Microscale Detecting functionality to the PCB Factory
+gtlitecore.machine.microscale_circuit_detector.tooltip.2=Each 1 §6Gold Nanite§7 in §fItem Import Bus§7 will cause Parallel §e+4§7
 
 gtlitecore.machine.bio_cultivation_chamber.name=Bio Component Cultivation Chamber
 

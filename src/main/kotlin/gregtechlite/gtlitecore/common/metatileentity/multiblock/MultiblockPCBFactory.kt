@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
+import com.morphismmc.morphismlib.util.ItemUtil
 import gregtech.api.GTValues.ULV
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.ItemHandlerList
@@ -8,6 +9,7 @@ import gregtech.api.gui.Widget
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
+import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
@@ -33,6 +35,7 @@ import gregtech.common.blocks.MetaBlocks
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.capability.logic.ExtendableMultiblockRecipeLogic
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalMultiblockBase
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.RecipeMapExtendableMultiblock
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PCB_FACTORY_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
@@ -48,6 +51,10 @@ import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNanolithographyArray
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockMicroscaleCircuitDetector
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockWaterCoolingTower
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockThermosinkCoolingTower
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockBioCultivationChamber
 import net.minecraft.client.resources.I18n
 import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
@@ -59,12 +66,15 @@ import net.minecraft.util.math.MathHelper.clamp
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
+import kotlin.math.min
 
 /**
  * Additional Structures:
  * - T2: [MultiblockNanolithographyArray]
- * - T3:
+ * - T3: [MultiblockMicroscaleCircuitDetector]
+ * - Cooling Upgrade: [MultiblockWaterCoolingTower]
+ * - Advanced Cooling Upgrade: [MultiblockThermosinkCoolingTower]
+ * - Bio Chamber Upgrade: [MultiblockBioCultivationChamber]
  */
 class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
     : RecipeMapExtendableMultiblock<T>(id, PCB_FACTORY_RECIPES)
@@ -244,13 +254,6 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
         traceSize = clamp(traceSize + 25, minTraceSize, maxTraceSize)
     }
 
-    // override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean
-    // {
-    //     return super.checkRecipe(recipe, consumeIfSuccess)
-    //             && recipe.getProperty(GTLiteRecipeProperties.PCB_FACTORY_TIER, 0)!! <= mainUpgradeNumber
-    //             && recipe.getProperty(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, 0)!! <= auxiliaryUpgradeNumber
-    // }
-
     private inner class PCBFactoryRecipeLogic(mte: RecipeMapExtendableMultiblock<T>) : ExtendableMultiblockRecipeLogic<T>(mte, additionalStructureManager)
     {
 
@@ -273,10 +276,40 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
             return 1.0 // 1/1
         }
 
+        override fun getParallelLimit(): Int
+        {
+            val targetNanite = OreDictUnifier.get(nanite, Silver)
+            val targetAdvancedNanite = OreDictUnifier.get(nanite, Gold)
 
+            var count = 0
+            var countAdvanced = 0
 
-        // override fun getParallelLimit() = calculateParallelByNanites()
-//
+            if (additionalStructureManager.get(GTLiteMod.id("nanolithography_array")).isNotEmpty())
+            {
+                val abilities = additionalStructureManager.get(GTLiteMod.id("nanolithography_array"))[0].getAbilities(IMPORT_ITEMS)
+                val itemInputs = ItemHandlerList(abilities)
+                for (i in 0 until itemInputs.slots)
+                {
+                    val currentStack = itemInputs.getStackInSlot(i)
+                    if (ItemUtil.areItemTagsEqual(targetNanite, currentStack, false))
+                        count = 2 * currentStack.count
+                }
+            }
+
+            if (additionalStructureManager.get(GTLiteMod.id("microscale_circuit_detector")).isNotEmpty())
+            {
+                val abilities = additionalStructureManager.get(GTLiteMod.id("microscale_circuit_detector"))[0].getAbilities(IMPORT_ITEMS)
+                val itemInputs = ItemHandlerList(abilities)
+                for (i in 0 until itemInputs.slots)
+                {
+                    val currentStack = itemInputs.getStackInSlot(i)
+                    if (ItemUtil.areItemTagsEqual(targetAdvancedNanite, currentStack, false))
+                        countAdvanced = 4 * currentStack.count
+                }
+            }
+            return min(count + countAdvanced, Int.MAX_VALUE - 1) // I think it's safe... may some edge case will break this?
+        }
+
         // override fun setMaxProgress(maxProgress: Int)
         // {
         //     maxProgressTime = when (traceSize)
@@ -320,29 +353,6 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
         //         decreaseProgress()
         //     }
         // }
-//
-        // private fun calculateParallelByNanites(): Int
-        // {
-        //     val itemInputInventory = getAbilities(IMPORT_ITEMS)
-        //     val itemInputs = ItemHandlerList(itemInputInventory)
-        //     var parallelBase = 0
-        //     for (i in 0 until itemInputs.slots)
-        //     {
-        //         parallelBase = itemInputs.getStackInSlot(i).count
-        //         if (mainUpgradeNumber == 2)
-        //         {
-        //             if (itemInputs.getStackInSlot(i).isItemEqual(OreDictUnifier.get(nanite, Silver)))
-        //                 return parallelBase * 2
-        //         }
-        //         if (mainUpgradeNumber == 3)
-        //         {
-        //             if (itemInputs.getStackInSlot(i).isItemEqual(OreDictUnifier.get(nanite, Gold)))
-        //                 return parallelBase * 4
-        //         }
-        //     }
-        //     return parallelBase
-        // }
-
     }
 
 }

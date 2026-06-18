@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.module
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.unification.material.Materials.Osmiridium
@@ -44,7 +45,10 @@ class MultiblockNanolithographyArray<T : MultiblockPCBFactory<T>>(id: ResourceLo
         .aisle("EEEE", "E##E", "E##E", "FEEF", "FEEF", "    ", "    ")
         .aisle("FEEF", "FSEF", "FEEF", "    ", "    ", "    ", "    ")
         .where('S', selfPredicate())
-        .where('E', states(casingState))
+        .where('E', states(casingState)
+            .setMinGlobalLimited(140)
+            .or(abilities(IMPORT_ITEMS)
+                    .setPreviewCount(1)))
         .where('F', frames(Osmiridium))
         .where('#', air())
         .where(' ', any())
@@ -59,5 +63,7 @@ class MultiblockNanolithographyArray<T : MultiblockPCBFactory<T>>(id: ResourceLo
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.tooltip.machine.machine_type",
                                 I18n.format("gtlitecore.machine.pcb_factory.additional_structure_name")))
+        tooltip.add(I18n.format("gtlitecore.machine.nanolithography_array.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.nanolithography_array.tooltip.2"))
     }
 }

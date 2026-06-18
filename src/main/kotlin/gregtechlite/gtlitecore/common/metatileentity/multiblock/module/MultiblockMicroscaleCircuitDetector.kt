@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.module
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.client.renderer.ICubeRenderer
@@ -43,7 +44,10 @@ class MultiblockMicroscaleCircuitDetector<T : MultiblockPCBFactory<T>>(id: Resou
         .aisle("KKKKKKK", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "       ", "       ", "       ", "  KKK  ", "  KKK  ", "  KKK  ", "  K K  ", "  K K  ", "  K K  ", "  KKK  ", "  KKK  ", "  KKK  ", "       ", "       ", "       ", "       ")
         .aisle(" KKSKK ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
         .where('S', selfPredicate())
-        .where('K', states(casingState))
+        .where('K', states(casingState)
+            .setMinGlobalLimited(282)
+            .or(abilities(IMPORT_ITEMS)
+                    .setPreviewCount(1)))
         .where('L', states(secondCasingState))
         .where('#', air())
         .where(' ', any())
@@ -58,5 +62,7 @@ class MultiblockMicroscaleCircuitDetector<T : MultiblockPCBFactory<T>>(id: Resou
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.tooltip.machine.machine_type",
                                 I18n.format("gtlitecore.machine.pcb_factory.additional_structure_name")))
+        tooltip.add(I18n.format("gtlitecore.machine.microscale_circuit_detector.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.microscale_circuit_detector.tooltip.2"))
     }
 }
