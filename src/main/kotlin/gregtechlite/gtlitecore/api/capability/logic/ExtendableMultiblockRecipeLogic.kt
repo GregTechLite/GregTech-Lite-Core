@@ -19,7 +19,7 @@ open class ExtendableMultiblockRecipeLogic<T: RecipeMapExtendableMultiblock<T>>(
     private fun checkAdditionalRequirement(recipe: Recipe): Boolean
     {
         if (!recipe.hasProperty(RequestAdditionalProperty)) return true
-        val requiredId = recipe.getProperty(RequestAdditionalProperty, null) ?: return false
-        return manager.get(requiredId).isNotEmpty()
+        val requirement = recipe.getProperty(RequestAdditionalProperty, null) ?: return false
+        return requirement.additionalStructures.all { manager.get(it).isNotEmpty() }
     }
 }

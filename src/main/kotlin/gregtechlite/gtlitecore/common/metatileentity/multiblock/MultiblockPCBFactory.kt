@@ -411,12 +411,12 @@ class MultiblockPCBFactory(id: ResourceLocation) : RecipeMapMultiblockController
         traceSize = clamp(traceSize + 25, minTraceSize, maxTraceSize)
     }
 
-    override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean
-    {
-        return super.checkRecipe(recipe, consumeIfSuccess)
-                && recipe.getProperty(GTLiteRecipeProperties.PCB_FACTORY_TIER, 0)!! <= mainUpgradeNumber
-                && recipe.getProperty(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, 0)!! <= auxiliaryUpgradeNumber
-    }
+    // override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean
+    // {
+    //     return super.checkRecipe(recipe, consumeIfSuccess)
+    //             && recipe.getProperty(GTLiteRecipeProperties.PCB_FACTORY_TIER, 0)!! <= mainUpgradeNumber
+    //             && recipe.getProperty(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, 0)!! <= auxiliaryUpgradeNumber
+    // }
 
     private inner class PCBFactoryRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
