@@ -39,4 +39,6 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
         player.sendStatusMessage(TextComponentTranslation("gtlitecore.machine.additional_structure.pos_saved",
                                                           pos.x, pos.y, pos.z), true)
     }
+
+    override fun onDataStickRightClick(player: EntityPlayer, stack: ItemStack): Boolean = false
 }

@@ -61,4 +61,6 @@ abstract class ExtendableMultiblockBase<T: ExtendableMultiblockBase<T>>(metaTile
             }
         }
     }
+
+    override fun onDataStickRightClick(p0: EntityPlayer?, p1: ItemStack?): Boolean = false
 }

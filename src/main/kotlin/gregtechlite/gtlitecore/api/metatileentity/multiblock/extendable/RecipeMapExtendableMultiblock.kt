@@ -68,4 +68,10 @@ abstract class RecipeMapExtendableMultiblock<T: RecipeMapExtendableMultiblock<T>
             }
         }
     }
+
+    override fun onDataStickRightClick(player: EntityPlayer, stack: ItemStack): Boolean = false
+
+    override fun getProgress(): Int = recipeMapWorkable.progress
+
+    override fun getMaxProgress(): Int = recipeMapWorkable.maxProgress
 }
