@@ -1,5 +1,8 @@
 package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable
 
+import codechicken.lib.render.CCRenderState
+import codechicken.lib.render.pipeline.IVertexOperation
+import codechicken.lib.vec.Matrix4
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IDataStickIntractable
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
@@ -41,4 +44,11 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
     }
 
     override fun onDataStickRightClick(player: EntityPlayer, stack: ItemStack): Boolean = false
+
+    override fun renderMetaTileEntity(renderState: CCRenderState, translation: Matrix4,
+                                      pipeline: Array<out IVertexOperation>)
+    {
+        super.renderMetaTileEntity(renderState, translation, pipeline)
+        frontOverlay.renderOrientedState(renderState, translation, pipeline, frontFacing, isActive, isWorkingEnabled)
+    }
 }
