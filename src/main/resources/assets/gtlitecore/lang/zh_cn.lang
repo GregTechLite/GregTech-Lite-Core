@@ -1736,12 +1736,6 @@ gtlitecore.recipe.component_assembly_line_tier.14=部件装配外壳等级：MAX
 
 gtlitecore.recipe.min_height=最低高度：%s
 
-gtlitecore.recipe.pcb_factory_tier=结构等级：错误
-gtlitecore.recipe.pcb_factory_tier.1=结构等级：1
-gtlitecore.recipe.pcb_factory_tier.2=结构等级：2
-gtlitecore.recipe.pcb_factory_tier.3=结构等级：3
-gtlitecore.recipe.pcb_factory_auxiliary_tier=需要生物仓升级
-
 gtlitecore.recipe.nano_forge_tier=结构等级：错误
 gtlitecore.recipe.nano_forge_tier.1=结构等级：1
 gtlitecore.recipe.nano_forge_tier.2=结构等级：2
@@ -1760,7 +1754,7 @@ gtlitecore.recipe.acceleration_track_tier.3=加速轨道等级：MK3
 gtlitecore.recipe.acceleration_track_tier.4=加速轨道等级：MK4
 gtlitecore.recipe.acceleration_track_tier.5=加速轨道等级：MK5
 
-gtlitecore.recipe.request_additional_structures=需求附属结构：%s
+gtlitecore.recipe.request_additional_structures=需要：%s
 
 # Machine API contexts
 gtlitecore.machine.additional_structure.data_stick.name=§o附属结构配置数据
@@ -2438,6 +2432,22 @@ gtlitecore.machine.pcb_factory.structure_bio_chamber=有机黏菌充斥于生物
 
 gtlitecore.machine.pcb_factory.trace_size.decrement=§c放宽25μm线宽 /n§7配方时间增加20%%，耗电量减少10%%
 gtlitecore.machine.pcb_factory.trace_size.increment=§a缩短25μm线宽 /n§7配方时间减少20%%，耗电量增加50%%
+
+gtlitecore.machine.pcb_factory.additional_structure_name=PCB工厂附属模块
+
+gtlitecore.machine.nanolithography_array.name=纳米光刻集群
+
+gtlitecore.machine.microscale_circuit_detector.name=微尺度电路元件检测器
+
+gtlitecore.machine.bio_cultivation_chamber.name=生物元件培养室
+
+gtlitecore.machine.water_cooling_tower.name=水冷塔
+gtlitecore.machine.water_cooling_tower.tooltip.1=将冷却功能添加到PCB工厂
+gtlitecore.machine.water_cooling_tower.tooltip.2=当§6PCB工厂§7安装此模块时为其解锁§a常规超频§7功能
+
+gtlitecore.machine.thermosink_cooling_tower.name=空冻塔
+gtlitecore.machine.thermosink_cooling_tower.tooltip.1=将超级冷却功能添加到PCB工厂
+gtlitecore.machine.thermosink_cooling_tower.tooltip.2=当§6PCB工厂§7安装此模块时为其解锁§b无损超频§7功能
 
 gtlitecore.machine.nano_forge.name=纳米锻炉
 gtlitecore.machine.nano_forge.tooltip.1=以极高的能量融合金属与电路，进而淬炼出纳米蜂群

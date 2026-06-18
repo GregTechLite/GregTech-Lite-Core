@@ -18,7 +18,7 @@ class PCBFactoryRecipeBuilder : RecipeBuilder<PCBFactoryRecipeBuilder>
     {
         val nanoArray = GTLiteMod.id("nanolithography_array") // T2
         val circDetector = GTLiteMod.id("microscale_circuit_detector") // T3
-        val bioChamber = GTLiteMod.id("bio_component_cultivation_chamber") // Bio Chamber Upgrade
+        val bioChamber = GTLiteMod.id("bio_cultivation_chamber") // Bio Chamber Upgrade
 
         // TODO: Gooware: Nonlinear Thermodynamic Cycle Unit, Optical: Optoelectronic Carving Room,
         //       Spintronic: Electromagnetic Effect Generator

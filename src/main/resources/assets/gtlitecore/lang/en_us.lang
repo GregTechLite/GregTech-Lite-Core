@@ -1736,12 +1736,6 @@ gtlitecore.recipe.component_assembly_line_tier.14=Component Assembly Casing Tier
 
 gtlitecore.recipe.min_height=Minimum Height: %s
 
-gtlitecore.recipe.pcb_factory_tier=Structure Tier: Error
-gtlitecore.recipe.pcb_factory_tier.1=Structure Tier: 1
-gtlitecore.recipe.pcb_factory_tier.2=Structure Tier: 2
-gtlitecore.recipe.pcb_factory_tier.3=Structure Tier: 3
-gtlitecore.recipe.pcb_factory_auxiliary_tier=Required Bio Chamber Upgrade
-
 gtlitecore.recipe.nano_forge_tier=Structure Tier: Error
 gtlitecore.recipe.nano_forge_tier.1=Structure Tier: 1
 gtlitecore.recipe.nano_forge_tier.2=Structure Tier: 2
@@ -1760,7 +1754,7 @@ gtlitecore.recipe.acceleration_track_tier.3=Acceleration Track Tier: MK3
 gtlitecore.recipe.acceleration_track_tier.4=Acceleration Track Tier: MK4
 gtlitecore.recipe.acceleration_track_tier.5=Acceleration Track Tier: MK5
 
-gtlitecore.recipe.request_additional_structures=Required Additional Structure: %s
+gtlitecore.recipe.request_additional_structures=Required: %s
 
 # Machine API contexts
 gtlitecore.machine.additional_structure.data_stick.name=§oAdditional Structure Configuration Data
@@ -2438,6 +2432,22 @@ gtlitecore.machine.pcb_factory.structure_bio_chamber=有机黏菌充斥于生物
 
 gtlitecore.machine.pcb_factory.trace_size.decrement=§c放宽25μm线宽 /n§7配方时间增加20%%，耗电量减少10%%
 gtlitecore.machine.pcb_factory.trace_size.increment=§a缩短25μm线宽 /n§7配方时间减少20%%，耗电量增加50%%
+
+gtlitecore.machine.pcb_factory.additional_structure_name=PCB Factory Additional Module
+
+gtlitecore.machine.nanolithography_array.name=Nanolithography Array
+
+gtlitecore.machine.microscale_circuit_detector.name=Microscale Circuit Component Detector
+
+gtlitecore.machine.bio_cultivation_chamber.name=Bio Component Cultivation Chamber
+
+gtlitecore.machine.water_cooling_tower.name=Water Cooling Tower
+gtlitecore.machine.water_cooling_tower.tooltip.1=Add Cooling functionality to the PCB Factory.
+gtlitecore.machine.water_cooling_tower.tooltip.2=Unlocked §aStandard Overclock§7 when §6PCB Factory§7 has this module
+
+gtlitecore.machine.thermosink_cooling_tower.name=Thermosink Cooling Tower
+gtlitecore.machine.thermosink_cooling_tower.tooltip.1=Add Extremely Cooling functionality to the PCB Factory.
+gtlitecore.machine.thermosink_cooling_tower.tooltip.2=Unlocked §bPerfect Overclock§7 when §6PCB Factory§7 has this module
 
 gtlitecore.machine.nano_forge.name=Nano Forge
 gtlitecore.machine.nano_forge.tooltip.1=以极高的能量融合金属与电路，进而淬炼出纳米蜂群
