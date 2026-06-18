@@ -20,7 +20,9 @@ abstract class ExtendableMultiblockBase<T: ExtendableMultiblockBase<T>>(metaTile
 
     override fun <A> getAbilities(ability: MultiblockAbility<A>): List<A>
     {
-        return super.getAbilities(ability).also { it.addAll(additionalStructureManager.getAbilities(ability)) }
+        val abilities = super.getAbilities(ability).toMutableList()
+        abilities.addAll(additionalStructureManager.getAbilities(ability))
+        return abilities
     }
 
     override fun writeToNBT(data: NBTTagCompound?): NBTTagCompound?
