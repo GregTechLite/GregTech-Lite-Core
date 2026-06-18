@@ -9,6 +9,7 @@ import gregtech.api.util.GTUtility
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
+import net.minecraft.network.PacketBuffer
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextComponentTranslation
@@ -65,4 +66,21 @@ abstract class ExtendableMultiblockBase<T: ExtendableMultiblockBase<T>>(metaTile
     }
 
     override fun onDataStickRightClick(p0: EntityPlayer?, p1: ItemStack?): Boolean = false
+
+    override fun writeInitialSyncData(buf: PacketBuffer)
+    {
+        super.writeInitialSyncData(buf)
+        buf.writeCompoundTag(additionalStructureManager.serialize())
+    }
+
+    override fun receiveInitialSyncData(buf: PacketBuffer)
+    {
+        super.receiveInitialSyncData(buf)
+        buf.readCompoundTag()?.let {
+            additionalStructureManager.deserialize(it)
+                .map { pos -> GTUtility.getMetaTileEntity(world, pos) }
+                .filterIsInstance<AdditionalMultiblockBase<T>>()
+                .forEach { additionalMultiblockBase -> additionalMultiblockBase.connect(this) }
+        }
+    }
 }
