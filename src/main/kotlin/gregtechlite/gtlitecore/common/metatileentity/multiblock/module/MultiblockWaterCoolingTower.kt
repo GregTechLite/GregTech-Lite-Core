@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.module
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.client.renderer.ICubeRenderer
@@ -45,7 +46,11 @@ class MultiblockWaterCoolingTower<T : MultiblockPCBFactory<T>>(id: ResourceLocat
         .aisle("HHHHH", "PIIIP", " III ", " III ", "JIIIJ", " III ", " III ", " PPP ", " III ", "I***I")
         .aisle("gHSHg", "gPPPg", "g   g", "g   g", "gJJJg", "g   g", "g   g", "g   g", "g   g", "gIIIg")
         .where('S', selfPredicate())
-        .where('H', states(casingState))
+        .where('H', states(casingState)
+            .setMinGlobalLimited(19)
+            .or(abilities(IMPORT_FLUIDS)
+                    .setMaxGlobalLimited(1)
+                    .setPreviewCount(1)))
         .where('I', states(secondCasingState))
         .where('J', states(turbineCasingState))
         .where('P', states(pipeCasingState))
@@ -66,5 +71,6 @@ class MultiblockWaterCoolingTower<T : MultiblockPCBFactory<T>>(id: ResourceLocat
                                 I18n.format("gtlitecore.machine.pcb_factory.additional_structure_name")))
         tooltip.add(I18n.format("gtlitecore.machine.water_cooling_tower.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.water_cooling_tower.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.water_cooling_tower.tooltip.3"))
     }
 }

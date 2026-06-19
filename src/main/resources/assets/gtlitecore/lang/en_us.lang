@@ -2440,6 +2440,7 @@ gtlitecore.machine.bio_cultivation_chamber.name=Bio Component Cultivation Chambe
 gtlitecore.machine.water_cooling_tower.name=Water Cooling Tower
 gtlitecore.machine.water_cooling_tower.tooltip.1=Add Cooling functionality to the PCB Factory.
 gtlitecore.machine.water_cooling_tower.tooltip.2=Unlocked §aStandard Overclock§7 when §6PCB Factory§7 has this module
+gtlitecore.machine.water_cooling_tower.tooltip.3=Can input §bDistilled Water§7 to get §9+400%%§7 Speed Bonus for PCB Factory
 
 gtlitecore.machine.thermosink_cooling_tower.name=Thermosink Cooling Tower
 gtlitecore.machine.thermosink_cooling_tower.tooltip.1=Add Extremely Cooling functionality to the PCB Factory.

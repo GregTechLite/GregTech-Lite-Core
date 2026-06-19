@@ -1,15 +1,12 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import com.morphismmc.morphismlib.util.ItemUtil
-import gregtech.api.GTValues.ULV
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.ItemHandlerList
-import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.gui.Widget
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
@@ -17,55 +14,43 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.MAINTENANCE_HATCH
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.pattern.MultiblockShapeInfo
+import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Gold
-import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Silver
-import gregtech.api.util.RelativeDirection.DOWN
-import gregtech.api.util.RelativeDirection.FRONT
-import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.common.blocks.MetaBlocks
-import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.capability.logic.ExtendableMultiblockRecipeLogic
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalMultiblockBase
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.RecipeMapExtendableMultiblock
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PCB_FACTORY_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
-import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
-import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
-import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
-import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNanolithographyArray
-import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockMicroscaleCircuitDetector
-import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockWaterCoolingTower
-import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockThermosinkCoolingTower
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockBioCultivationChamber
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockMicroscaleCircuitDetector
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNanolithographyArray
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockThermosinkCoolingTower
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockWaterCoolingTower
 import net.minecraft.client.resources.I18n
-import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.network.PacketBuffer
-import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.MathHelper.clamp
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import kotlin.math.max
 import kotlin.math.min
 
 /**
@@ -196,14 +181,7 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.5"))
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.6"))
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.7"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.8"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.9"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.10"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.11"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.12"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.13"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.14"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.15"))
+        tooltip.add(I18n.format("gtlitecore.tooltip.machine.laser_hatch"))
     }
 
     // TODO
@@ -256,6 +234,7 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
 
     private inner class PCBFactoryRecipeLogic(mte: RecipeMapExtendableMultiblock<T>) : ExtendableMultiblockRecipeLogic<T>(mte, additionalStructureManager)
     {
+        private var hasWaterCooling: Boolean = false
 
         override fun getOverclockingDurationFactor(): Double
         {
@@ -308,6 +287,48 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
                 }
             }
             return min(count + countAdvanced, Int.MAX_VALUE - 1) // I think it's safe... may some edge case will break this?
+        }
+
+        override fun updateRecipeProgress()
+        {
+            if (additionalStructureManager.get(GTLiteMod.id("water_cooling_tower")).isEmpty())
+                return super.updateRecipeProgress()
+
+            val abilities = additionalStructureManager.get(GTLiteMod.id("water_cooling_tower"))[0].getAbilities(IMPORT_FLUIDS)
+            if (canRecipeProgress && drawEnergy(recipeEUt, true))
+            {
+                val inputTank = abilities[0]
+                val coolant = DistilledWater.getFluid(50)
+                // Water cooling
+                if (coolant.isFluidStackIdentical(inputTank.fluid))
+                {
+                    inputTank.drain(coolant.amount, true)
+                    hasWaterCooling = true
+                }
+
+                // TODO: Trace Size
+
+                if (++progressTime > maxProgressTime)
+                    completeRecipe()
+
+                if (hasNotEnoughEnergy && energyInputPerSecond > ((SECOND - 1) * recipeEUt))
+                    hasNotEnoughEnergy = false
+            }
+            else if (recipeEUt > 0)
+            {
+                hasNotEnoughEnergy = true
+                decreaseProgress()
+            }
+        }
+
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
+        {
+            super.modifyOverclockPost(ocResult, storage)
+            // +400% | D' = D / (1 + 4.0) = D / 5.0
+            if (hasWaterCooling)
+            {
+                ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / 5.0).toInt()))
+            }
         }
 
         // override fun setMaxProgress(maxProgress: Int)

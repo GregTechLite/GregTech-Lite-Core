@@ -2440,6 +2440,7 @@ gtlitecore.machine.bio_cultivation_chamber.name=生物元件培养室
 gtlitecore.machine.water_cooling_tower.name=水冷塔
 gtlitecore.machine.water_cooling_tower.tooltip.1=将冷却功能添加到PCB工厂
 gtlitecore.machine.water_cooling_tower.tooltip.2=当§6PCB工厂§7安装此模块时为其解锁§a常规超频§7功能
+gtlitecore.machine.water_cooling_tower.tooltip.3=可以输入§b蒸馏水§7来使PCB工厂获得§9+400%%§7的速度加成
 
 gtlitecore.machine.thermosink_cooling_tower.name=空冻塔
 gtlitecore.machine.thermosink_cooling_tower.tooltip.1=将超级冷却功能添加到PCB工厂
