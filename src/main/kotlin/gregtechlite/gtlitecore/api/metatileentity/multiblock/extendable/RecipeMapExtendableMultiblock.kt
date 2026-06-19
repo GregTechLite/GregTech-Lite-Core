@@ -1,13 +1,17 @@
 package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable
 
+import com.cleanroommc.modularui.widgets.ButtonWidget
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IDataStickIntractable
 import gregtech.api.capability.IWorkable
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.GTUtility
+import gregtech.api.util.KeyUtil
 import gregtechlite.gtlitecore.api.capability.logic.ExtendableMultiblockRecipeLogic
+import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -20,6 +24,7 @@ abstract class RecipeMapExtendableMultiblock<T: RecipeMapExtendableMultiblock<T>
     : RecipeMapMultiblockController(metaTileEntityId, recipeMap), IWorkable, IControllable, IDataStickIntractable, ExtendableMultiblock<T>
 {
     override var additionalStructureManager: AdditionalStructureManager<T> = AdditionalStructureManager(this)
+    override val maintenanceProblem: Byte = maintenanceProblems
 
     init
     {
@@ -31,6 +36,24 @@ abstract class RecipeMapExtendableMultiblock<T: RecipeMapExtendableMultiblock<T>
         val abilities = super.getAbilities(ability).toMutableList()
         abilities.addAll(additionalStructureManager.getAbilities(ability))
         return abilities
+    }
+
+    override fun createUIFactory(): MultiblockUIFactory?
+    {
+        return super.createUIFactory()
+            .createFlexButton { _, guiSyncManager ->
+                guiSyncManager.registerSyncedAction("refresh_structure_pattern") { reinitializeStructurePattern() }
+                return@createFlexButton ButtonWidget()
+                    .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
+                    .disableHoverBackground()
+                    .onMousePressed {
+                        guiSyncManager.callSyncedAction("refresh_structure_pattern")
+                        true
+                    }
+                    .tooltip { tooltip ->
+                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
+                    }
+            }
     }
 
     override fun writeToNBT(data: NBTTagCompound?): NBTTagCompound?

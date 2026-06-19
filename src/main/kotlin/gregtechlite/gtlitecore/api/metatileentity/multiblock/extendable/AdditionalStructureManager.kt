@@ -1,5 +1,7 @@
 package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable
 
+import com.cleanroommc.modularui.api.widget.IWidget
+import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import net.minecraft.nbt.NBTTagCompound
@@ -22,6 +24,10 @@ open class AdditionalStructureManager<T: ExtendableMultiblock<T>>(protected val 
     fun get(pos: BlockPos): AdditionalMultiblockBase<T>? = structures[pos]
 
     fun remove(pos: BlockPos) = structures.remove(pos)
+
+    fun getWidgets(panelSyncManager: PanelSyncManager): List<IWidget> {
+        return structures.values.map { it.getButton(panelSyncManager) }.toList()
+    }
 
     fun <A> getAbilities(ability: MultiblockAbility<A>): MutableList<A> {
         val abilities = ArrayList<A>()
