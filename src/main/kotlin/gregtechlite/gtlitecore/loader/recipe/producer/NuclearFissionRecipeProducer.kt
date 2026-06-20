@@ -48,7 +48,6 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.duration
-import gregtechlite.gtlitecore.api.extension.getFluid
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NUCLEAR_FUELS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadBismuthEutatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
@@ -223,7 +222,7 @@ internal object NuclearFissionRecipeProducer
                             }
                         }
 
-                        put(fluid.get().getFluid(_amount), _hotCoolant.get().getFluid(_amount))
+                        put(fluid.get().getFluid(_amount.toInt()), _hotCoolant.get().getFluid(_amount.toInt()))
                     }
             }
         }
