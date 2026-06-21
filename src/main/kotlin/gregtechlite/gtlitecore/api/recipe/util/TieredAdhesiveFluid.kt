@@ -84,7 +84,7 @@ enum class TieredAdhesiveFluid(val material: Material, val costOffset: Int = 0)
         @JvmStatic
         fun generateRecipeFluidStacks(tier: Int): ArrayList<FluidStack>
         {
-            val fluidStacks = ArrayList<FluidStack>()
+            val fluidStacks = arrayListOf<FluidStack>()
             val current = fromTier(tier)
             entries.dropWhile { it != current }
                 .forEach {
