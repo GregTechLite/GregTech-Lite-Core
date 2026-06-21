@@ -34,22 +34,15 @@ open class WorldGeneratorBerryBase(seed: Int, val bush: GTLiteBerryBushBlock) : 
             notifier(worldIn, blockPos, bush.withAge(2))
             repeat(rand!!.nextInt(3))
             {
-                val other = blockPos!!.add(rand.nextInt(5) - 2,
-                                           rand.nextInt(5) - 2, 0)
-
-                if (canGrowAt(worldIn, other))
-                    notifier(worldIn, other, bush.withAge(2))
+                val other = blockPos!!.add(rand.nextInt(5) - 2, rand.nextInt(5) - 2, 0)
+                if (canGrowAt(worldIn, other)) notifier(worldIn, other, bush.withAge(2))
             }
             return true
         }
         return false
     }
 
-    fun addCondition(condition: GenerateCondition): WorldGeneratorBerryBase
-    {
-        this.conditions.add(condition)
-        return this
-    }
+    fun addCondition(condition: GenerateCondition): WorldGeneratorBerryBase = apply { conditions.add(condition) }
 
     private fun canGrowAt(world: World?, pos: BlockPos?): Boolean
     {
@@ -57,8 +50,8 @@ open class WorldGeneratorBerryBase(seed: Int, val bush: GTLiteBerryBushBlock) : 
         {
             val soilState = world.getBlockState(pos.down())
             val currentState = world.getBlockState(pos)
-            return canGrowInto(currentState.getBlock()) && soilState.getBlock()
-                .canSustainPlant(soilState, world, pos.down(), EnumFacing.UP, bush)
+            return canGrowInto(currentState.block)
+                    && soilState.block.canSustainPlant(soilState, world, pos.down(), EnumFacing.UP, bush)
         }
         return false
     }

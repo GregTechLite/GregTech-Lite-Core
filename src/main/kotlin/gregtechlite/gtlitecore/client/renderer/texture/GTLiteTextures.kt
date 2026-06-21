@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.client.renderer.texture
 
 import codechicken.lib.texture.TextureUtils
-import gregtechlite.gtlitecore.api.extension.registerSprite
+import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.client.renderer.texture.custom.OreProcessorRenderer
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.renderer.texture.TextureMap
@@ -63,4 +63,5 @@ object GTLiteTextures : TextureUtils.IIconRegister
             COSMIC_5, COSMIC_6, COSMIC_7, COSMIC_8, COSMIC_9)
     }
 
+    internal fun TextureMap.registerSprite(path: String): TextureAtlasSprite = registerSprite(GTLiteMod.id(path))
 }

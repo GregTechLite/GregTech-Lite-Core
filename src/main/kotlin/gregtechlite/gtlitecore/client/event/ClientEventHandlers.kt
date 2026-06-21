@@ -58,21 +58,15 @@ object ClientEventHandlers
         // Added glass tier tooltips for all mod glasses.
         GlassCasing.Enum01.entries
             .filter { ItemUtil.areItemTypeEqual(it.stack, stack) }
-            .forEach { glass ->
-                tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[glass.tier]))
-            }
+            .forEach { tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[it.tier])) }
 
         GlassCasing.Enum02.entries
             .filter { ItemUtil.areItemTypeEqual(it.stack, stack) }
-            .forEach { glass ->
-                tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[glass.tier]))
-            }
+            .forEach { tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[it.tier])) }
 
         GlassCasing.Enum03.entries
             .filter { ItemUtil.areItemTypeEqual(it.stack, stack) }
-            .forEach { glass ->
-                tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[glass.tier]))
-            }
+            .forEach { tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[it.tier])) }
     }
 
     @SubscribeEvent
