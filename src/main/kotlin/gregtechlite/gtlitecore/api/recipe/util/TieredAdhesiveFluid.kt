@@ -86,17 +86,12 @@ enum class TieredAdhesiveFluid(val material: Material, val costOffset: Int = 0)
         {
             val fluidStacks = ArrayList<FluidStack>()
             val current = fromTier(tier)
-
-            // Add all fluids from current tier and above
             entries.dropWhile { it != current }
                 .forEach {
-                    fluidStacks.add(
-                            it.material.getFluid(
-                                    if (tier > LV)
-                                        getGTHatchFluidAmount(tier + it.costOffset)
-                                    else if (tier == ULV) 250 else 500
-                            )
-                    )
+                    val offsetTier = tier + it.costOffset
+                    if (offsetTier < ULV) return fluidStacks
+                    fluidStacks.add(it.material.getFluid(if (tier > LV) getGTHatchFluidAmount(offsetTier)
+                                                         else if (tier == ULV) 250 else 500))
                 }
 
             return fluidStacks
