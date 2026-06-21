@@ -66,9 +66,7 @@ enum class TieredAdhesiveFluid(val material: Material, val costOffset: Int = 0)
          */
         @JvmStatic
         fun fluidStackFromTier(tier: Int): FluidStack = materialFromTier(tier).getFluid(
-                if (tier > LV)
-                    getGTHatchFluidAmount(tier + fromTier(tier).costOffset)
-                else if (tier == ULV) 250 else 500
+                maxOf(L, getGTHatchFluidAmount(tier + fromTier(tier).costOffset))
         )
 
 
@@ -90,8 +88,7 @@ enum class TieredAdhesiveFluid(val material: Material, val costOffset: Int = 0)
                 .forEach {
                     val offsetTier = tier + it.costOffset
                     if (offsetTier < ULV) return fluidStacks
-                    fluidStacks.add(it.material.getFluid(if (tier > LV) getGTHatchFluidAmount(offsetTier)
-                                                         else if (tier == ULV) 250 else 500))
+                    fluidStacks.add(it.material.getFluid(maxOf(1, getGTHatchFluidAmount(offsetTier))))
                 }
 
             return fluidStacks
