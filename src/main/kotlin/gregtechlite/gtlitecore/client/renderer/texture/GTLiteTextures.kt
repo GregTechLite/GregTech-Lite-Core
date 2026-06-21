@@ -63,5 +63,5 @@ object GTLiteTextures : TextureUtils.IIconRegister
             COSMIC_5, COSMIC_6, COSMIC_7, COSMIC_8, COSMIC_9)
     }
 
-    private fun TextureMap.registerSprite(path: String): TextureAtlasSprite = registerSprite(GTLiteMod.id(path))
+    internal fun TextureMap.registerSprite(path: String): TextureAtlasSprite = registerSprite(GTLiteMod.id(path))
 }

@@ -6,7 +6,7 @@ import codechicken.lib.vec.Cuboid6
 import codechicken.lib.vec.Matrix4
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.texture.IconRegistrar
-import gregtechlite.gtlitecore.api.extension.registerSprite
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures.registerSprite
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.renderer.texture.TextureMap
 import net.minecraft.util.BlockRenderLayer
@@ -72,5 +72,4 @@ class OreProcessorRenderer : IconRegistrar
                                 activeBladeSprite, BlockRenderLayer.CUTOUT_MIPPED)
         }
     }
-
 }
