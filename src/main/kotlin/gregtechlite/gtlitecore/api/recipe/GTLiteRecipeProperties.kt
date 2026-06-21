@@ -20,8 +20,6 @@ object GTLiteRecipeProperties
     lateinit var MINIMUM_HEIGHT: RecipeProperty<Int>
     lateinit var NANO_FORGE_TIER: RecipeProperty<Int>
     lateinit var NO_COIL_TEMPERATURE: RecipeProperty<Int>
-    lateinit var PCB_FACTORY_BIO_CHAMBER_UPGRADE: RecipeProperty<Int>
-    lateinit var PCB_FACTORY_TIER: RecipeProperty<Int>
     lateinit var QUANTUM_FORCE_TRANSFORMER_TIER: RecipeProperty<Int>
 
     internal fun init()
@@ -46,9 +44,6 @@ object GTLiteRecipeProperties
                     listOf(I18n.format("gtlitecore.recipe.temperature", it))
                 }
             }
-
-            PCB_FACTORY_TIER = tierProperty(GTLiteMod.id("pcb_factory_tier"))
-            PCB_FACTORY_BIO_CHAMBER_UPGRADE = tierProperty(GTLiteMod.id("pcb_factory_auxiliary_tier"))
         }
 
         FusionEUToStartProperty.getInstance().apply {

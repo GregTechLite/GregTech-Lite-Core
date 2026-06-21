@@ -1,9 +1,8 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
-import gregtech.api.GTValues.ULV
+import com.morphismmc.morphismlib.util.ItemUtil
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.ItemHandlerList
-import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.gui.Widget
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -15,74 +14,57 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.MAINTENANCE_HATCH
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
-import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.pattern.MultiblockShapeInfo
-import gregtech.api.pattern.PatternMatchContext
-import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Gold
-import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Silver
-import gregtech.api.util.RelativeDirection.DOWN
-import gregtech.api.util.RelativeDirection.FRONT
-import gregtech.api.util.RelativeDirection.LEFT
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.common.blocks.MetaBlocks
-import gregtech.common.metatileentities.MetaTileEntities
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.SNOW_LAYER
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.optionalStates
+import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.capability.logic.ExtendableMultiblockRecipeLogic
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.RecipeMapExtendableMultiblock
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PCB_FACTORY_RECIPES
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
-import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
-import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
-import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockBioCultivationChamber
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockMicroscaleCircuitDetector
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNanolithographyArray
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockThermosinkCoolingTower
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockWaterCoolingTower
 import net.minecraft.client.resources.I18n
-import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.network.PacketBuffer
-import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.MathHelper.clamp
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.floor
+import kotlin.math.max
+import kotlin.math.min
 
 /**
- * TODO Redo structure pattern checking with Mui2 and patterning structures when GTCEu merged related
- *      pull (patterning MTEs and Mui2 rework).
+ * Additional Structures:
+ * - T2: [MultiblockNanolithographyArray]
+ * - T3: [MultiblockMicroscaleCircuitDetector]
+ * - Cooling Upgrade: [MultiblockWaterCoolingTower]
+ * - Advanced Cooling Upgrade: [MultiblockThermosinkCoolingTower]
+ * - Bio Chamber Upgrade: [MultiblockBioCultivationChamber]
  */
-class MultiblockPCBFactory(id: ResourceLocation) : RecipeMapMultiblockController(id, PCB_FACTORY_RECIPES)
+class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
+    : RecipeMapExtendableMultiblock<T>(id, PCB_FACTORY_RECIPES)
 {
-
-    /**
-     * Main structure level of PCB Factory, has 3 upgrade.
-     */
-    private var mainUpgradeNumber = 0
-    /**
-     * Auxiliary structure level of PCB Factory, has 1 upgrade now.
-     */
-    private var auxiliaryUpgradeNumber = 0
-    /**
-     * Cooling structure level of PCB Factory, has 2 upgrade now.
-     */
-    private var coolingUpgradeNumber = 0
-
-    /**
-     * Trace size to modify durations and OC params,  default: 100μm, range: 25~200μm.
-     */
+    // Trace size to modify durations and OC params,  default: 100μm, range: 25~200μm.
     private var traceSize = 100
     private val minTraceSize = 25
     private val maxTraceSize = 200
@@ -94,58 +76,15 @@ class MultiblockPCBFactory(id: ResourceLocation) : RecipeMapMultiblockController
 
     companion object
     {
-        private val casingState = MetalCasing.IRIDIUM.state
+        private val firstCasingState = MetalCasing.IRIDIUM.state
         private val secondCasingState = GTCleanroomCasing.PLASCRETE.state
         private val thirdCasingState = GTMultiblockCasing.GRATE_CASING.state
         private val fourthCasingState = MultiblockCasing.SUBSTRATE_CASING.state
-        private val fifthCasingState = MetalCasing.OSMIRIDIUM.state
-        private val sixthCasingState = MetalCasing.NAQUADAH_ALLOY.state
-        private val seventhCasingState = MetalCasing.NEUTRONIUM.state
-        private val eighthCasingState = MultiblockCasing.INFINITY_COOLING_CASING.state
-        private val ninthCasingState = GTMetalCasing.STAINLESS_CLEAN.state
-
-        private val pipeCasingState= GTBoilerCasing.TUNGSTENSTEEL_PIPE.state
-        private val turbineCasingState = GTMultiblockCasing.EXTREME_ENGINE_INTAKE_CASING.state
-
-        private val coilState = GTFusionCasing.SUPERCONDUCTOR_COIL.state
 
         private val glassState= GTGlassCasing.LAMINATED_GLASS.state
     }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockPCBFactory(metaTileEntityId)
-
-    /**
-     * PCB Factory has an asynchronous upgrade system, which used 3 params to control it:
-     * - [mainUpgradeNumber]: Main structure tier predicate (3);
-     * - [auxiliaryUpgradeNumber]: Auxiliary structure tier predicate (1);
-     * - [coolingUpgradeNumber]: Cooling structure tier predicate (2).
-     */
-    override fun formStructure(context: PatternMatchContext)
-    {
-        super.formStructure(context)
-        // Main structure upgrade numbers.
-        mainUpgradeNumber += 1 // T1 structure for default
-        if (context.get<String>("MainStructureUpgradeT2") != null)
-            mainUpgradeNumber += 1 // T2 structure upgrade
-        if (context.get<String>("MainStructureUpgradeT3") != null)
-            mainUpgradeNumber += 1 // T3 structure upgrade
-        // Auxiliary structure upgrade numbers.
-        if (context.get<String>("BioChamberStructureUpgrade") != null)
-            auxiliaryUpgradeNumber += 1 // Bio chamber structure upgrade
-        // Cooling structure upgrade numbers.
-        if (context.get<String>("CoolingStructureUpgradeT1") != null)
-            coolingUpgradeNumber += 1 // Liquid cooling tower structure upgrade
-        if (context.get<String>("CoolingStructureUpgradeT2") != null)
-            coolingUpgradeNumber += 1 // Thermosink structure upgrade
-    }
-
-    override fun invalidate()
-    {
-        super.invalidate()
-        mainUpgradeNumber = 0
-        auxiliaryUpgradeNumber = 0
-        coolingUpgradeNumber = 0
-    }
 
     override fun initializeAbilities()
     {
@@ -159,67 +98,34 @@ class MultiblockPCBFactory(id: ResourceLocation) : RecipeMapMultiblockController
     // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
-        .aisle("              gHHHg  nTTTn       ", "              gPPPg  nQQQn       ", "              g   g  n   n       ", "              g   g  n   n       ", "              gJJJg  nRRRn       ", "              g   g  n   n       ", "              g   g  n   n       ", "              g   g  n   n       ", "              g   g  n   n       ", "              gIIIg  nTTTn       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle("              HHHHH  TTTTT       ", "              PIIIP  QOOOQ       ", "               III    OOO        ", "               III    OOO        ", "              JIIIJ  ROOOR       ", "               III    OOO        ", "               III    OOO        ", "               PPP    QQQ        ", "               III    TTT        ", "              I###I  T###T       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle("              HHHHH  TTTTT       ", "              PI*IP  QOUOQ       ", "               I#I    OUO        ", "               I#I    OUO        ", "              JI#IJ  ROUOR       ", "               I#I    OUO        ", "               I#I    OUO        ", "               P#P    QUQ        ", "               I#I    TUT        ", "              I###I  T###T       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle(" KKKKK        HHHHH  TTTTT       ", "              PIIIP  QOOOQ       ", "               III    OOO        ", "               III    OOO        ", "              JIIIJ  ROOOR       ", "               III    OOO        ", "               III    OOO        ", "               PPP    QQQ        ", "               III    TTT        ", "              I###I  T###T       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle("KKKKKKK       gHHHg  nTTTn       ", "  KKK         gPPPg  nQQQn       ", "  KKK         g   g  n   n       ", "  KKK         g   g  n   n       ", "  KKK         gJJJg  nRRRn       ", "  KKK         g   g  n   n       ", "  KKK         g   g  n   n       ", "  KKK         g   g  n   n       ", "  KKK         g   g  n   n       ", "  KKK         gIIIg  nTTTn       ", "  KKK                            ", "  KKK                            ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle("KKKKKKK                          ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  LLL                            ", "  LLL                            ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle("KKKKKKK                          ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  L#L                            ", " K###K                           ", "  L#L                            ", "  L#L                            ", "  LKL                            ", "  LKL                            ", "   K                             ", "   K                             ", "   K                             ", "   K                             ", "   K                             ", "                                 ")
-        .aisle("KKKKKKK  fEEf                    ", " K###K   fEEf                    ", " K###K   fEEf                    ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  L#L                            ", " K###K                           ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "   K                             ", "   K                             ")
-        .aisle("KKKKKKK  EEEE                    ", " K###K   E##E                    ", " K###K   E##E                    ", " K###K   fEEf                    ", " K###K   fEEf                    ", " K###K                           ", "  L#L                            ", "  L#L                            ", "  L#L                            ", " K###K                           ", "  L#L                            ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  L#L                            ", "  L#L                            ", "   K                             ", "   K                             ")
-        .aisle("KKKKKKK  EEEEFCCCCCF             ", " K###K   E##EFCCCCCF             ", " K###K   E##EFCCCCCF             ", " K###K   E##EFCCCCCF             ", " K###K   E##EF     F             ", " K###K   fEEf                    ", "  L#L                            ", "  L#L                            ", "  L#L                            ", " K###K                           ", "  L#L                            ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  L#L                            ", "  LKL                            ", "   K                             ", "                                 ")
-        .aisle("KKKKKKK  EEEECcccccC hMMMh  hMMMh", " K###K   E##EC#####C hNNNh  hNNNh", " K###K   E##EC#####C hNNNh  hNNNh", " K###K   E##EC#####C hNNNh  hNNNh", " K###K   E##ECCCCCCC h   h  h   h", " K###K   EEEEF     F             ", "  LLL    fEEf                    ", "  LLL                            ", "  LLL                            ", " K###K                           ", " K###K                           ", " K###K                           ", " K#L#K                           ", " K#L#K                           ", " K#L#K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  LLL                            ", "  LLL                            ", "                                 ", "                                 ")
-        .aisle("KKKKKKK  EEEECcccccC MMMMM  MMMMM", "  KKK    E##ED#XXX#D N###N  N###N", "  KKK    E##ED#####D N###N  N###N", "  KKK    E##EC#####C N###N  N###N", "  KKK    E##ECCCCCCC  MMM    MMM ", "  KKK    EEEEF     F             ", "         fEEf                    ", "                                 ", "                                 ", "  KKK                            ", "  KKK                            ", "  KKK                            ", "  K K                            ", "  K K                            ", "  K K                            ", "  KKK                            ", "  KKK                            ", "  KKK                            ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle(" KKKKK   EEEECcccccC MMMMM  MMMMM", "         E##ED#XXX#D N###N  N###N", "         E##ED#####D N###N  N###N", "         E##EC#####C N###N  N###N", "         E##ECCCCCCC  MMM    MMM ", "         EEEEFFFFFFF   M      M  ", "         fEEf           MMMMMM   ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle("         EEEECcccccC MMMMM  MMMMM", "         E##ED#XXX#D N###N  N###N", "         E##ED#####D N###N  N###N", "         E##EC#####C N###N  N###N", "         E##ECGGGGGC  MMM    MMM ", "         EEEEF     F             ", "         fEEf                    ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle("         EEEECcccccC hMMMh  hMMMh", "         E##EC#####C hNNNh  hNNNh", "         E##EC#####C hNNNh  hNNNh", "         E##EC#####C hNNNh  hNNNh", "         E##ECGGGGGC h   h  h   h", "         EEEEF     F             ", "         fEEf                    ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle("         EEEEFCCSCCF             ", "         E##EFGGGGGF             ", "         E##EFGGGGGF             ", "         E##EFGGGGGF             ", "         E##EFFFFFFF             ", "         fEEf                    ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle("         EEEE                    ", "         E##E                    ", "         E##E                    ", "         fEEf                    ", "         fEEf                    ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        .aisle("         fEEf                    ", "         fEEf                    ", "         fEEf                    ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-        // Multiblock controller
+        .aisle("FCCCCCF", "FCCCCCF", "FCCCCCF", "FCCCCCF", "F     F", "       ")
+        .aisle("CcccccC", "C#####C", "C#####C", "C#####C", "CCCCCCC", "F     F")
+        .aisle("CcccccC", "D#XXX#D", "D#####D", "C#####C", "CCCCCCC", "F     F")
+        .aisle("CcccccC", "D#XXX#D", "D#####D", "C#####C", "CCCCCCC", "FFFFFFF")
+        .aisle("CcccccC", "D#XXX#D", "D#####D", "C#####C", "CGGGGGC", "F     F")
+        .aisle("CcccccC", "C#####C", "C#####C", "C#####C", "CGGGGGC", "F     F")
+        .aisle("FCCSCCF", "FGGGGGF", "FGGGGGF", "FGGGGGF", "FFFFFFF", "       ")
         .where('S', selfPredicate())
-        // T1 Main structure
-        .where('C', states(casingState) // Iridium casing
+        .where('C', states(firstCasingState)
             .setMinGlobalLimited(40)
             .or(abilities(MAINTENANCE_HATCH)
-                .setExactLimit(1))
+                    .setExactLimit(1))
             .or(abilities(INPUT_ENERGY)
-                .setMaxGlobalLimited(2))
+                    .setMaxGlobalLimited(2))
             .or(abilities(INPUT_LASER)
-                .setMaxGlobalLimited(1))
-            .or(abilities(IMPORT_ITEMS, EXPORT_ITEMS, IMPORT_FLUIDS)))
-        .where('c', states(secondCasingState)) // Plascrete
-        .where('D', states(thirdCasingState)) // Grate casing
+                    .setMaxGlobalLimited(1))
+            .or(abilities(IMPORT_ITEMS)
+                    .setPreviewCount(1))
+            .or(abilities(EXPORT_ITEMS)
+                    .setPreviewCount(1))
+            .or(abilities(IMPORT_FLUIDS)
+                    .setPreviewCount(1)))
+        .where('c', states(secondCasingState))
+        .where('D', states(thirdCasingState))
         .where('F', frames(HSLASteel))
-        .where('G', states(glassState)) // Laminated glass
-        .where('X', states(fourthCasingState)) // Substrate casing
-        // T2 Main structure
-        .where('E', optionalStates("MainStructureUpgradeT2", fifthCasingState)) // Osmiridium casing
-        .where('f', optionalStates("MainStructureUpgradeT2", MetaBlocks.FRAMES[Osmiridium]!!.getBlock(Osmiridium)))
-        // Liquid Cooling Tower structure
-        .where('H', optionalStates("CoolingStructureUpgradeT1", fifthCasingState)) // Osmiridium casing
-        .where('I', optionalStates("CoolingStructureUpgradeT1", sixthCasingState)) // Naquadah Alloy casing
-        .where('J', optionalStates("CoolingStructureUpgradeT1", turbineCasingState)) // Extreme intake casing
-        .where('P', optionalStates("CoolingStructureUpgradeT1", pipeCasingState)) // Tungsten steel pipe casing
-        .where('g', optionalStates("CoolingStructureUpgradeT1", MetaBlocks.FRAMES[HSLASteel]!!.getBlock(HSLASteel)))
-        // T3 Main structure
-        .where('K', optionalStates("MainStructureUpgradeT3", seventhCasingState)) // Neutronium casing
-        .where('L', optionalStates("MainStructureUpgradeT3", sixthCasingState)) // Naquadah Alloy casing
-        // Bio Chamber structure
-        .where('M', optionalStates("BioChamberStructureUpgrade", ninthCasingState)) // Stainless Steel casing
-        .where('h', optionalStates("BioChamberStructureUpgrade", MetaBlocks.FRAMES[HSLASteel]!!.getBlock(HSLASteel)))
-        .where('N', optionalStates("BioChamberStructureUpgrade", glassState))
-        // Thermosink structure
-        .where('O', optionalStates("CoolingStructureUpgradeT2", eighthCasingState)) // Infinity cooling machine casing
-        .where('Q', optionalStates("CoolingStructureUpgradeT2", pipeCasingState)) // Tungsten steel pipe casing
-        .where('R', optionalStates("CoolingStructureUpgradeT2", turbineCasingState)) // Extreme intake casing
-        .where('T', optionalStates("CoolingStructureUpgradeT2", fifthCasingState)) // Osmiridium casing
-        .where('U', optionalStates("CoolingStructureUpgradeT2", coilState)) // Superconductor coil
-        .where('n', optionalStates("CoolingStructureUpgradeT2", MetaBlocks.FRAMES[HSLASteel]!!.getBlock(HSLASteel)))
-        // Misc structure contents
+        .where('G', states(glassState))
+        .where('X', states(fourthCasingState))
         .where('#', air())
-        .where('*', air().or(SNOW_LAYER))
         .where(' ', any())
         .build()
 
@@ -238,109 +144,31 @@ class MultiblockPCBFactory(id: ResourceLocation) : RecipeMapMultiblockController
         return group
     }*/
 
-    override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
-    {
-        data.setInteger("TraceSize", traceSize)
-        return super.writeToNBT(data)
-    }
-
-    override fun readFromNBT(data: NBTTagCompound)
-    {
-        traceSize = data.getInteger("TraceSize")
-        super.readFromNBT(data)
-    }
-
-    override fun writeInitialSyncData(buf: PacketBuffer)
-    {
-        super.writeInitialSyncData(buf)
-        buf.writeVarInt(traceSize)
-    }
-
-    override fun receiveInitialSyncData(buf: PacketBuffer)
-    {
-        super.receiveInitialSyncData(buf)
-        traceSize = buf.readVarInt()
-    }
+    // override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
+    // {
+    //     data.setInteger("TraceSize", traceSize)
+    //     return super.writeToNBT(data)
+    // }
+//
+    // override fun readFromNBT(data: NBTTagCompound)
+    // {
+    //     traceSize = data.getInteger("TraceSize")
+    //     super.readFromNBT(data)
+    // }
+//
+    // override fun writeInitialSyncData(buf: PacketBuffer)
+    // {
+    //     super.writeInitialSyncData(buf)
+    //     buf.writeVarInt(traceSize)
+    // }
+//
+    // override fun receiveInitialSyncData(buf: PacketBuffer)
+    // {
+    //     super.receiveInitialSyncData(buf)
+    //     traceSize = buf.readVarInt()
+    // }
 
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.IRIDIUM_CASING
-
-    // @formatter:off
-
-    override fun getMatchingShapes(): MutableList<MultiblockShapeInfo>
-    {
-        val shapeInfo: MutableList<MultiblockShapeInfo> = ArrayList()
-        val builder = MultiblockShapeInfo.builder(LEFT, DOWN, FRONT)
-            .aisle("              gHHHg  nTTTn       ", "              gPPPg  nQQQn       ", "              g   g  n   n       ", "              g   g  n   n       ", "              gJJJg  nRRRn       ", "              g   g  n   n       ", "              g   g  n   n       ", "              g   g  n   n       ", "              g   g  n   n       ", "              gIIIg  nTTTn       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle("              HHHHH  TTTTT       ", "              PIIIP  QOOOQ       ", "               III    OOO        ", "               III    OOO        ", "              JIIIJ  ROOOR       ", "               III    OOO        ", "               III    OOO        ", "               PPP    QQQ        ", "               III    TTT        ", "              I###I  T###T       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle("              HHHHH  TTTTT       ", "              PI*IP  QOUOQ       ", "               I#I    OUO        ", "               I#I    OUO        ", "              JI#IJ  ROUOR       ", "               I#I    OUO        ", "               I#I    OUO        ", "               P#P    QUQ        ", "               I#I    TUT        ", "              I###I  T###T       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle(" KKKKK        HHHHH  TTTTT       ", "              PIIIP  QOOOQ       ", "               III    OOO        ", "               III    OOO        ", "              JIIIJ  ROOOR       ", "               III    OOO        ", "               III    OOO        ", "               PPP    QQQ        ", "               III    TTT        ", "              I###I  T###T       ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle("KKKKKKK       gHHHg  nTTTn       ", "  KKK         gPPPg  nQQQn       ", "  KKK         g   g  n   n       ", "  KKK         g   g  n   n       ", "  KKK         gJJJg  nRRRn       ", "  KKK         g   g  n   n       ", "  KKK         g   g  n   n       ", "  KKK         g   g  n   n       ", "  KKK         g   g  n   n       ", "  KKK         gIIIg  nTTTn       ", "  KKK                            ", "  KKK                            ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle("KKKKKKK                          ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  LLL                            ", "  LLL                            ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle("KKKKKKK                          ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  L#L                            ", " K###K                           ", "  L#L                            ", "  L#L                            ", "  LKL                            ", "  LKL                            ", "   K                             ", "   K                             ", "   K                             ", "   K                             ", "   K                             ", "                                 ")
-            .aisle("KKKKKKK  fEEf                    ", " K###K   fEEf                    ", " K###K   fEEf                    ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  L#L                            ", " K###K                           ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "  L#L                            ", "   K                             ", "   K                             ")
-            .aisle("KKKKKKK  EEEE                    ", " K###K   E##E                    ", " K###K   E##E                    ", " K###K   fEEf                    ", " K###K   fEEf                    ", " K###K                           ", "  L#L                            ", "  L#L                            ", "  L#L                            ", " K###K                           ", "  L#L                            ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  L#L                            ", "  L#L                            ", "   K                             ", "   K                             ")
-            .aisle("KKKKKKK  EEEEFCCCeeF             ", " K###K   E##EFCCCCCF             ", " K###K   E##EFCCCCCF             ", " K###K   E##EFCCCCCF             ", " K###K   E##EF     F             ", " K###K   fEEf                    ", "  L#L                            ", "  L#L                            ", "  L#L                            ", " K###K                           ", "  L#L                            ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  L#L                            ", "  LKL                            ", "   K                             ", "                                 ")
-            .aisle("KKKKKKK  EEEECcccccC hMMMh  hMMMh", " K###K   E##EC#####C hNNNh  hNNNh", " K###K   E##EC#####C hNNNh  hNNNh", " K###K   E##EC#####C hNNNh  hNNNh", " K###K   E##ECCCCCCC h   h  h   h", " K###K   EEEEF     F             ", "  LLL    fEEf                    ", "  LLL                            ", "  LLL                            ", " K###K                           ", " K###K                           ", " K###K                           ", " K#L#K                           ", " K#L#K                           ", " K#L#K                           ", " K###K                           ", " K###K                           ", " K###K                           ", "  LLL                            ", "  LLL                            ", "                                 ", "                                 ")
-            .aisle("KKKKKKK  EEEECcccccC MMMMM  MMMMM", "  KKK    E##ED#XXX#D N###N  N###N", "  KKK    E##ED#####D N###N  N###N", "  KKK    E##EC#####C N###N  N###N", "  KKK    E##ECCCCCCC  MMM    MMM ", "  KKK    EEEEF     F             ", "         fEEf                    ", "                                 ", "                                 ", "  KKK                            ", "  KKK                            ", "  KKK                            ", "  K K                            ", "  K K                            ", "  K K                            ", "  KKK                            ", "  KKK                            ", "  KKK                            ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle(" KKKKK   EEEECcccccC MMMMM  MMMMM", "         E##ED#XXX#D N###N  N###N", "         E##ED#####D N###N  N###N", "         E##EC#####C N###N  N###N", "         E##ECCCCCCC  MMM    MMM ", "         EEEEFFFFFFF   M      M  ", "         fEEf           MMMMMM   ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle("         EEEECcccccC MMMMM  MMMMM", "         E##ED#XXX#D N###N  N###N", "         E##ED#####D N###N  N###N", "         E##EC#####C N###N  N###N", "         E##ECGGGGGC  MMM    MMM ", "         EEEEF     F             ", "         fEEf                    ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle("         EEEECcccccC hMMMh  hMMMh", "         E##EC#####C hNNNh  hNNNh", "         E##EC#####C hNNNh  hNNNh", "         E##EC#####C hNNNh  hNNNh", "         E##ECGGGGGC h   h  h   h", "         EEEEF     F             ", "         fEEf                    ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle("         EEEEFijSmkF             ", "         E##EFGGGGGF             ", "         E##EFGGGGGF             ", "         E##EFGGGGGF             ", "         E##EFFFFFFF             ", "         fEEf                    ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle("         EEEE                    ", "         E##E                    ", "         E##E                    ", "         fEEf                    ", "         fEEf                    ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .aisle("         fEEf                    ", "         fEEf                    ", "         fEEf                    ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ", "                                 ")
-            .where('S', GTLiteMetaTileEntities.PCB_FACTORY, EnumFacing.SOUTH)
-            .where('C', casingState) // Iridium casing
-            .where('c', secondCasingState) // Plascrete
-            .where('D', thirdCasingState) // Grate casing
-            .where('F', MetaBlocks.FRAMES[HSLASteel]!!.getBlock(HSLASteel))
-            .where('G', glassState)
-            .where('X', fourthCasingState)
-            .where('i', MetaTileEntities.ITEM_IMPORT_BUS[ULV], EnumFacing.SOUTH)
-            .where('j', MetaTileEntities.ITEM_EXPORT_BUS[ULV], EnumFacing.SOUTH)
-            .where('k', MetaTileEntities.FLUID_IMPORT_HATCH[ULV], EnumFacing.SOUTH)
-            .where('m', MetaTileEntities.MAINTENANCE_HATCH, EnumFacing.SOUTH)
-            .where('e', MetaTileEntities.ENERGY_INPUT_HATCH[ULV], EnumFacing.NORTH)
-            .where('#', Blocks.AIR.defaultState)
-            .where('*', Blocks.AIR.defaultState)
-            .where(' ', Blocks.AIR.defaultState)
-        shapeInfo.add(builder.build())
-        // T2 main structure
-        shapeInfo.add(builder
-            .where('E', fifthCasingState) // Osmiridium casing
-            .where('f', MetaBlocks.FRAMES[Osmiridium]!!.getBlock(Osmiridium))
-            .build())
-        // Liquid Cooling Tower structure
-        shapeInfo.add(builder
-            .where('H', fifthCasingState) // Osmiridium casing
-            .where('I', sixthCasingState) // Naquadah Alloy casing
-            .where('J', turbineCasingState) // Extreme intake casing
-            .where('P', pipeCasingState) // Tungsten steel pipe casing
-            .where('g', MetaBlocks.FRAMES[HSLASteel]!!.getBlock(HSLASteel))
-            .build())
-        // T3 main structure
-        shapeInfo.add(builder
-            .where('K', seventhCasingState) // Neutronium casing
-            .where('L', sixthCasingState) // Naquadah Alloy casing
-            .build())
-        // Bio Chamber structure
-        shapeInfo.add(builder
-            .where('M', ninthCasingState) // Stainless Steel casing
-            .where('h', MetaBlocks.FRAMES[HSLASteel]!!.getBlock(HSLASteel))
-            .where('N', glassState)
-            .build())
-        // Thermosink structure
-        shapeInfo.add(builder
-            .where('O', eighthCasingState) // Infinity cooling machine casing
-            .where('Q', pipeCasingState) // Tungsten steel pipe casing
-            .where('R', turbineCasingState) // Extreme intake casing
-            .where('T', fifthCasingState) // Osmiridium casing
-            .where('U', coilState) // Superconductor coil
-            .where('n', MetaBlocks.FRAMES[HSLASteel]!!.getBlock(HSLASteel))
-            .build())
-        return shapeInfo
-    }
-
-    // @formatter:on
 
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
@@ -353,14 +181,7 @@ class MultiblockPCBFactory(id: ResourceLocation) : RecipeMapMultiblockController
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.5"))
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.6"))
         tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.7"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.8"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.9"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.10"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.11"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.12"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.13"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.14"))
-        tooltip.add(I18n.format("gtlitecore.machine.pcb_factory.tooltip.15"))
+        tooltip.add(I18n.format("gtlitecore.tooltip.machine.laser_hatch"))
     }
 
     // TODO
@@ -411,92 +232,148 @@ class MultiblockPCBFactory(id: ResourceLocation) : RecipeMapMultiblockController
         traceSize = clamp(traceSize + 25, minTraceSize, maxTraceSize)
     }
 
-    override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean
+    private inner class PCBFactoryRecipeLogic(mte: RecipeMapExtendableMultiblock<T>) : ExtendableMultiblockRecipeLogic<T>(mte, additionalStructureManager)
     {
-        return super.checkRecipe(recipe, consumeIfSuccess)
-                && recipe.getProperty(GTLiteRecipeProperties.PCB_FACTORY_TIER, 0)!! <= mainUpgradeNumber
-                && recipe.getProperty(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, 0)!! <= auxiliaryUpgradeNumber
-    }
+        private var hasWaterCooling: Boolean = false
 
-    private inner class PCBFactoryRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
-    {
-
-        override fun getOverclockingDurationFactor() = when (coolingUpgradeNumber)
+        override fun getOverclockingDurationFactor(): Double
         {
-            0 -> 1.0  // Non OC
-            1 -> 0.5 // Normal OC
-            2 -> 0.25 // Perfect OC
-            else -> 0.0 // Error OC
+            if (additionalStructureManager.get(GTLiteMod.id("water_cooling_tower")).isNotEmpty()) // 4/2
+            {
+                if (additionalStructureManager.get(GTLiteMod.id("thermosink_cooling_tower")).isNotEmpty()) // 4/4
+                    return PERFECT_DURATION_FACTOR
+                return STD_DURATION_FACTOR
+            }
+            return 1.0 // 1/1
         }
 
-        override fun getParallelLimit() = calculateParallelByNanites()
-
-        override fun setMaxProgress(maxProgress: Int)
+        override fun getOverclockingVoltageFactor(): Double
         {
-            maxProgressTime = when (traceSize)
+            if (additionalStructureManager.get(GTLiteMod.id("water_cooling_tower")).isNotEmpty()
+                || additionalStructureManager.get(GTLiteMod.id("thermosink_cooling_tower")).isNotEmpty())
+                return super.getOverclockingVoltageFactor()
+            return 1.0 // 1/1
+        }
+
+        override fun getParallelLimit(): Int
+        {
+            val targetNanite = OreDictUnifier.get(nanite, Silver)
+            val targetAdvancedNanite = OreDictUnifier.get(nanite, Gold)
+
+            var count = 0
+            var countAdvanced = 0
+
+            if (additionalStructureManager.get(GTLiteMod.id("nanolithography_array")).isNotEmpty())
             {
-                25 -> floor(0.4 * maxProgress).toInt()
-                50 -> floor(0.6 * maxProgress).toInt()
-                75 -> floor(0.8 * maxProgress).toInt()
-                125 -> floor(1.2 * maxProgress).toInt()
-                150 -> floor(1.4 * maxProgress).toInt()
-                175 -> floor(1.6 * maxProgress).toInt()
-                200 -> floor(1.8 * maxProgress).toInt()
-                else -> maxProgress
+                val abilities = additionalStructureManager.get(GTLiteMod.id("nanolithography_array"))[0].getAbilities(IMPORT_ITEMS)
+                val itemInputs = ItemHandlerList(abilities)
+                for (i in 0 until itemInputs.slots)
+                {
+                    val currentStack = itemInputs.getStackInSlot(i)
+                    if (ItemUtil.areItemTagsEqual(targetNanite, currentStack, false))
+                        count = 2 * currentStack.count
+                }
             }
+
+            if (additionalStructureManager.get(GTLiteMod.id("microscale_circuit_detector")).isNotEmpty())
+            {
+                val abilities = additionalStructureManager.get(GTLiteMod.id("microscale_circuit_detector"))[0].getAbilities(IMPORT_ITEMS)
+                val itemInputs = ItemHandlerList(abilities)
+                for (i in 0 until itemInputs.slots)
+                {
+                    val currentStack = itemInputs.getStackInSlot(i)
+                    if (ItemUtil.areItemTagsEqual(targetAdvancedNanite, currentStack, false))
+                        countAdvanced = 4 * currentStack.count
+                }
+            }
+            return min(count + countAdvanced, Int.MAX_VALUE - 1) // I think it's safe... may some edge case will break this?
         }
 
         override fun updateRecipeProgress()
         {
-            val traceSizeFactor = when (traceSize)
+            if (additionalStructureManager.get(GTLiteMod.id("water_cooling_tower")).isEmpty())
+                return super.updateRecipeProgress()
+
+            val abilities = additionalStructureManager.get(GTLiteMod.id("water_cooling_tower"))[0].getAbilities(IMPORT_FLUIDS)
+            if (canRecipeProgress && drawEnergy(recipeEUt, true))
             {
-                25 -> 2.5
-                50 -> 2
-                75 -> 1.5
-                125 -> 0.9
-                150 -> 0.8
-                175 -> 0.7
-                200 -> 0.6
-                else -> 1
-            }
-            val actuallyEnergyConsumed: Int = recipeEUt.toInt() * traceSizeFactor.toInt()
-            if (canRecipeProgress && drawEnergy(actuallyEnergyConsumed.toLong(), true))
-            {
-                drawEnergy(actuallyEnergyConsumed.toLong(), false)
+                val inputTank = abilities[0]
+                val coolant = DistilledWater.getFluid(50)
+                // Water cooling
+                if (coolant.isFluidStackIdentical(inputTank.fluid))
+                {
+                    inputTank.drain(coolant.amount, true)
+                    hasWaterCooling = true
+                }
+
+                // TODO: Trace Size
+
                 if (++progressTime > maxProgressTime)
                     completeRecipe()
-                if (hasNotEnoughEnergy && energyInputPerSecond > 19L * actuallyEnergyConsumed.toLong())
+
+                if (hasNotEnoughEnergy && energyInputPerSecond > ((SECOND - 1) * recipeEUt))
                     hasNotEnoughEnergy = false
             }
-            else if (actuallyEnergyConsumed > 0)
+            else if (recipeEUt > 0)
             {
                 hasNotEnoughEnergy = true
                 decreaseProgress()
             }
         }
 
-        private fun calculateParallelByNanites(): Int
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            val itemInputInventory = getAbilities(IMPORT_ITEMS)
-            val itemInputs = ItemHandlerList(itemInputInventory)
-            var parallelBase = 0
-            for (i in 0 until itemInputs.slots)
+            super.modifyOverclockPost(ocResult, storage)
+            // +400% | D' = D / (1 + 4.0) = D / 5.0
+            if (hasWaterCooling)
             {
-                parallelBase = itemInputs.getStackInSlot(i).count
-                if (mainUpgradeNumber == 2)
-                {
-                    if (itemInputs.getStackInSlot(i).isItemEqual(OreDictUnifier.get(nanite, Silver)))
-                        return parallelBase * 2
-                }
-                if (mainUpgradeNumber == 3)
-                {
-                    if (itemInputs.getStackInSlot(i).isItemEqual(OreDictUnifier.get(nanite, Gold)))
-                        return parallelBase * 4
-                }
+                ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / 5.0).toInt()))
             }
-            return parallelBase
         }
 
+        // override fun setMaxProgress(maxProgress: Int)
+        // {
+        //     maxProgressTime = when (traceSize)
+        //     {
+        //         25 -> floor(0.4 * maxProgress).toInt()
+        //         50 -> floor(0.6 * maxProgress).toInt()
+        //         75 -> floor(0.8 * maxProgress).toInt()
+        //         125 -> floor(1.2 * maxProgress).toInt()
+        //         150 -> floor(1.4 * maxProgress).toInt()
+        //         175 -> floor(1.6 * maxProgress).toInt()
+        //         200 -> floor(1.8 * maxProgress).toInt()
+        //         else -> maxProgress
+        //     }
+        // }
+//
+        // override fun updateRecipeProgress()
+        // {
+        //     val traceSizeFactor = when (traceSize)
+        //     {
+        //         25 -> 2.5
+        //         50 -> 2
+        //         75 -> 1.5
+        //         125 -> 0.9
+        //         150 -> 0.8
+        //         175 -> 0.7
+        //         200 -> 0.6
+        //         else -> 1
+        //     }
+        //     val actuallyEnergyConsumed: Int = recipeEUt.toInt() * traceSizeFactor.toInt()
+        //     if (canRecipeProgress && drawEnergy(actuallyEnergyConsumed.toLong(), true))
+        //     {
+        //         drawEnergy(actuallyEnergyConsumed.toLong(), false)
+        //         if (++progressTime > maxProgressTime)
+        //             completeRecipe()
+        //         if (hasNotEnoughEnergy && energyInputPerSecond > 19L * actuallyEnergyConsumed.toLong())
+        //             hasNotEnoughEnergy = false
+        //     }
+        //     else if (actuallyEnergyConsumed > 0)
+        //     {
+        //         hasNotEnoughEnergy = true
+        //         decreaseProgress()
+        //     }
+        // }
     }
 
 }

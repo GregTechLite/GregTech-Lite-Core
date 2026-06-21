@@ -705,7 +705,7 @@ object GTLiteOrganicChemistryMaterials
             polymer()
             liquid()
             color(0xE165A7)
-            flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
+            flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
             components(Edot, 1, PolystyreneSulfonate, 1)
             cableProp(V[ZPM], 6, 1)
         }

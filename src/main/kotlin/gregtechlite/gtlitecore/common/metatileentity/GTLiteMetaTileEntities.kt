@@ -131,8 +131,13 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockE
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockMatterReshapingFramework
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockNanoAssemblyComplex
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockPlasmaArcTransmitter
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockBioCultivationChamber
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockMicroscaleCircuitDetector
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNanolithographyArray
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpaceAssembler
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpacePump
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockThermosinkCoolingTower
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockWaterCoolingTower
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive.MultiblockAdvancedPrimitiveBlastFurnace
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive.MultiblockCoagulationTank
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.steam.SteamMultiblockAlloySmelter
@@ -295,7 +300,12 @@ object GTLiteMetaTileEntities
     lateinit var COSMIC_RAY_DETECTOR: MultiblockCosmicRayDetector
     lateinit var STELLAR_FORGE: MultiblockStellarForge
     lateinit var PLASMA_ENHANCED_CVD_UNIT: MultiblockPlasmaEnhancedCVDUnit
-    lateinit var PCB_FACTORY: MultiblockPCBFactory
+    lateinit var PCB_FACTORY: MultiblockPCBFactory<*>
+    lateinit var NANOLITHOGRAPHY_ARRAY: MultiblockNanolithographyArray<*>
+    lateinit var MICROSCALE_CIRCUIT_DETECTOR: MultiblockMicroscaleCircuitDetector<*>
+    lateinit var BIO_CULTIVATION_CHAMBER: MultiblockBioCultivationChamber<*>
+    lateinit var WATER_COOLING_TOWER: MultiblockWaterCoolingTower<*>
+    lateinit var THERMOSINK_COOLING_TOWER: MultiblockThermosinkCoolingTower<*>
     lateinit var NANO_FORGE: MultiblockNanoForge
     lateinit var QUANTUM_FORCE_TRANSFORMER: MultiblockQuantumForceTransformer
     lateinit var ANTIMATTER_FORGE: MultiblockAntimatterForge
@@ -804,27 +814,38 @@ object GTLiteMetaTileEntities
         STELLAR_FORGE = register(10023, MultiblockStellarForge(GTLiteMod.id("stellar_forge")))
         PLASMA_ENHANCED_CVD_UNIT = register(10024, MultiblockPlasmaEnhancedCVDUnit(GTLiteMod.id("plasma_enhanced_cvd_unit")))
         PCB_FACTORY = register(10025, MultiblockPCBFactory(GTLiteMod.id("pcb_factory")))
-        NANO_FORGE = register(10026, MultiblockNanoForge(GTLiteMod.id("nano_forge")))
-        QUANTUM_FORCE_TRANSFORMER = register(10027, MultiblockQuantumForceTransformer(GTLiteMod.id("quantum_force_transformer")))
-        ANTIMATTER_FORGE = register(10028, MultiblockAntimatterForge(GTLiteMod.id("antimatter_forge")))
-        ANTIMATTER_GENERATOR = register(10029, MultiblockAntimatterGenerator(GTLiteMod.id("antimatter_generator")))
-        SPACE_ELEVATOR = register(10030, MultiblockSpaceElevator(GTLiteMod.id("space_elevator")))
-        SPACE_ASSEMBLER_MK1 = register(10031, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk1"), UHV, 1, 1))
-        SPACE_ASSEMBLER_MK2 = register(10032, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk2"), UEV, 2, 3))
-        SPACE_ASSEMBLER_MK3 = register(10033, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk3"), UIV, 3, 5))
+        NANOLITHOGRAPHY_ARRAY = register(10026, MultiblockNanolithographyArray(GTLiteMod.id("nanolithography_array")))
+        MICROSCALE_CIRCUIT_DETECTOR = register(10027, MultiblockMicroscaleCircuitDetector(GTLiteMod.id("microscale_circuit_detector")))
+        BIO_CULTIVATION_CHAMBER = register(10028, MultiblockBioCultivationChamber(GTLiteMod.id("bio_cultivation_chamber")))
+        // Gooware 29
+        // Optic 30
+        // Spintronic 31
+        WATER_COOLING_TOWER = register(10032, MultiblockWaterCoolingTower(GTLiteMod.id("water_cooling_tower")))
+        THERMOSINK_COOLING_TOWER = register(10033, MultiblockThermosinkCoolingTower(GTLiteMod.id("thermosink_cooling_tower")))
+        NANO_FORGE = register(10034, MultiblockNanoForge(GTLiteMod.id("nano_forge")))
+        // T2 35
+        // T3 36
+        // T4 37
+        QUANTUM_FORCE_TRANSFORMER = register(10038, MultiblockQuantumForceTransformer(GTLiteMod.id("quantum_force_transformer")))
+        ANTIMATTER_FORGE = register(10039, MultiblockAntimatterForge(GTLiteMod.id("antimatter_forge")))
+        ANTIMATTER_GENERATOR = register(10040, MultiblockAntimatterGenerator(GTLiteMod.id("antimatter_generator")))
+        SPACE_ELEVATOR = register(10041, MultiblockSpaceElevator(GTLiteMod.id("space_elevator")))
+        SPACE_ASSEMBLER_MK1 = register(10042, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk1"), UHV, 1, 1))
+        SPACE_ASSEMBLER_MK2 = register(10043, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk2"), UEV, 2, 3))
+        SPACE_ASSEMBLER_MK3 = register(10044, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk3"), UIV, 3, 5))
 
-        // 10034 TODO SPACE_MINER_MK1
-        // 10035 TODO SPACE_MINER_MK2
-        // 10036 TODO SPACE_MINER_MK3
+        // 10045 TODO SPACE_MINER_MK1
+        // 10046 TODO SPACE_MINER_MK2
+        // 10047 TODO SPACE_MINER_MK3
 
-        SPACE_PUMP_MK1 = register(10037, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk1"), UV, 1, 1))
-        SPACE_PUMP_MK2 = register(10038, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk2"), UHV, 2, 2))
-        SPACE_PUMP_MK3 = register(10039, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk3"), UEV, 3, 4))
+        SPACE_PUMP_MK1 = register(10048, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk1"), UV, 1, 1))
+        SPACE_PUMP_MK2 = register(10049, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk2"), UHV, 2, 2))
+        SPACE_PUMP_MK3 = register(10050, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk3"), UEV, 3, 4))
 
-        // 10040 TODO DYSON_SWARM_GROUND_UNIT
+        // 10051 TODO DYSON_SWARM_GROUND_UNIT
 
-        ENERGY_INFUSER = register(10041, MultiblockEnergyInfuser(GTLiteMod.id("energy_infuser")))
-        INTEGRATED_ORE_PROCESSOR = register(10042, MultiblockIntegratedOreProcessor(GTLiteMod.id("integrated_ore_processor")))
+        ENERGY_INFUSER = register(10052, MultiblockEnergyInfuser(GTLiteMod.id("energy_infuser")))
+        INTEGRATED_ORE_PROCESSOR = register(10053, MultiblockIntegratedOreProcessor(GTLiteMod.id("integrated_ore_processor")))
 
         // ...
 
