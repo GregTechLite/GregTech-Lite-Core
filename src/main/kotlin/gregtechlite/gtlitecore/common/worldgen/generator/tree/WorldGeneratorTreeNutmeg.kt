@@ -2,13 +2,13 @@ package gregtechlite.gtlitecore.common.worldgen.generator.tree
 
 import gregtech.api.GTValues
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.moveUp
 import gregtechlite.gtlitecore.api.worldgen.condition.BiomeCondition
 import gregtechlite.gtlitecore.api.worldgen.condition.ClimateCondition
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.block.state.IBlockState
 import net.minecraft.init.Biomes
 import net.minecraft.item.ItemStack
-import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
@@ -33,28 +33,25 @@ class WorldGeneratorTreeNutmeg : WorldGeneratorTreeBase("nutmeg", 7)
                                 notifier: (World?, BlockPos?, IBlockState?) -> Unit)
     {
         val currentYBlockPos = blockPos.copy()
-        currentYBlockPos.move(EnumFacing.UP, height - 2)
-        var i = 3.0
-        while (i > 0)
+        currentYBlockPos.moveUp(height - 2)
+        var size = 3.0
+        while (size > 0)
         {
-            val layerSize = (ceil(i)).toInt()
+            val layerSize = (ceil(size)).toInt()
             val iterator = BlockPos.getAllInBox(
-                currentYBlockPos.offset(EnumFacing.NORTH, layerSize)
-                    .offset(EnumFacing.WEST, layerSize),
-                currentYBlockPos.offset(EnumFacing.SOUTH, layerSize)
-                    .offset(EnumFacing.EAST, layerSize)
-            )
-            val j = i
-            iterator.forEach { leavesPos ->
-                if ((abs(leavesPos!!.x - currentYBlockPos.getX()).toDouble().pow(2.0) + abs(leavesPos.z
-                    - currentYBlockPos.getZ()).toDouble().pow(2.0)).pow(0.5) <= j)
-                    notifier(worldIn, leavesPos, placedLeaveState)
+                currentYBlockPos.north(layerSize).west(layerSize),
+                currentYBlockPos.south(layerSize).east(layerSize))
+
+            val sideSize = size
+            iterator.forEach {
+                if ((abs(it.x - currentYBlockPos.x).toDouble().pow(2.0)
+                            + abs(it.z - currentYBlockPos.z).toDouble().pow(2.0)).pow(0.5) <= sideSize)
+                    notifier(worldIn, it, placedLeaveState)
             }
-            currentYBlockPos.move(EnumFacing.UP)
-            i -= (rand.nextDouble() / 2 + 0.5)
+            currentYBlockPos.moveUp()
+            size -= (rand.nextDouble() / 2 + 0.5)
         }
-        notifier(worldIn, blockPos.copy()
-                .move(EnumFacing.UP, height), placedLeaveState)
+        notifier(worldIn, blockPos.copy().moveUp(height), placedLeaveState)
     }
 
     override fun getItemColor(stack: ItemStack?, tintIndex: Int) = 0x6DB626

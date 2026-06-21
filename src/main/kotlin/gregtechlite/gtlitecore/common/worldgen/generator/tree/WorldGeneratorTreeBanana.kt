@@ -2,6 +2,10 @@ package gregtechlite.gtlitecore.common.worldgen.generator.tree
 
 import gregtech.api.GTValues
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.horizontal
+import gregtechlite.gtlitecore.api.extension.horizontalYRotate
+import gregtechlite.gtlitecore.api.extension.moveHorizontal
+import gregtechlite.gtlitecore.api.extension.moveUp
 import gregtechlite.gtlitecore.api.worldgen.condition.BiomeCondition
 import gregtechlite.gtlitecore.api.worldgen.condition.ClimateCondition
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
@@ -9,7 +13,6 @@ import net.minecraft.block.BlockLog
 import net.minecraft.block.state.IBlockState
 import net.minecraft.init.Biomes
 import net.minecraft.item.ItemStack
-import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
@@ -34,48 +37,50 @@ class WorldGeneratorTreeBanana : WorldGeneratorTreeBase("banana", 0)
                                 rand: Random,
                                 notifier: (World?, BlockPos?, IBlockState?) -> Unit)
     {
-        // region Top leaves
+        // region Top Leaves
+
         val pos = blockPos.up(height - 1).copy()
-        for (facingIndex in 0 .. 2)
+        for (facingIdx in 0 .. 2)
         {
-            pos.move(EnumFacing.UP)
+            pos.moveUp()
             notifier(worldIn, pos, placedLeaveState)
-            if (facingIndex == 1)
+            if (facingIdx == 1)
             {
-                pos.move(EnumFacing.byHorizontalIndex(rand.nextInt(4)))
+                pos.moveHorizontal(rand.nextInt(4))
                 notifier(worldIn, pos, placedLeaveState)
             }
         }
+
         // endregion
 
-        // region Sideways leaves
-        for (facingIndex in 0 .. 3)
+        // region Sideways Leaves
+
+        for (facingIdx in 0 .. 3)
         {
             val leafOffset = rand.nextInt(2)
             val sidePos = blockPos.up(height - 2 + leafOffset).copy()
             for (sideFacingIndex in 0 .. 2)
             {
-                sidePos.move(EnumFacing.byHorizontalIndex(facingIndex))
+                sidePos.moveHorizontal(facingIdx)
                 notifier(worldIn, sidePos, placedLeaveState)
                 if (sideFacingIndex == 0)
                 {
-                    sidePos.move(EnumFacing.UP)
+                    sidePos.moveUp()
                     notifier(worldIn, sidePos, placedLeaveState)
                 }
             }
         }
+
         // endregion
 
-        // region Bottom leaves
-        for (facingIndex in 0 .. 3)
+        // region Bottom Leaves
+
+        for (facingIdx in 0 .. 3)
         {
-            notifier(worldIn, blockPos.up(height - 1)
-                .offset(EnumFacing.byHorizontalIndex(facingIndex)), placedLeaveState)
-            notifier(
-                worldIn, blockPos.up(height - 1)
-                    .offset(EnumFacing.byHorizontalIndex(facingIndex))
-                    .offset(EnumFacing.byHorizontalIndex(facingIndex).rotateY()), placedLeaveState)
+            notifier(worldIn, blockPos.up(height - 1).horizontal(facingIdx), placedLeaveState)
+            notifier(worldIn, blockPos.up(height - 1).horizontal(facingIdx).horizontalYRotate(facingIdx), placedLeaveState)
         }
+
         // endregion
     }
 
@@ -89,14 +94,12 @@ class WorldGeneratorTreeBanana : WorldGeneratorTreeBase("banana", 0)
         {
             val blockState = worldIn.getBlockState(upNBlockPos)
             val block = blockState.block
-            if (block.isAir(blockState, worldIn, upNBlockPos)
-                || block.isLeaves(blockState, worldIn, upNBlockPos))
+            if (block.isAir(blockState, worldIn, upNBlockPos) || block.isLeaves(blockState, worldIn, upNBlockPos))
             {
-                notifier(worldIn, blockPos.up(height), logState
-                    ?.withProperty(BlockLog.LOG_AXIS,
-                                   if (height == maxHeight - 1) BlockLog.EnumAxis.NONE else BlockLog.EnumAxis.Y))
+                notifier(worldIn, blockPos.up(height), logState?.withProperty(BlockLog.LOG_AXIS,
+                    if (height == maxHeight - 1) BlockLog.EnumAxis.NONE else BlockLog.EnumAxis.Y))
             }
-            upNBlockPos.move(EnumFacing.UP)
+            upNBlockPos.moveUp()
         }
     }
 

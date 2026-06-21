@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.worldgen.generator.tree
 
 import gregtech.api.GTValues
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.moveUp
 import gregtechlite.gtlitecore.api.worldgen.condition.BiomeCondition
 import gregtechlite.gtlitecore.api.worldgen.condition.ClimateCondition
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
@@ -26,10 +27,7 @@ class WorldGeneratorTreeOrange : WorldGeneratorTreeBase("orange", 1)
         conditions.add(ClimateCondition(3, 1.2, 1.15, 0.0, 0.2))
     }
 
-    override fun getMinTrunkHeight(random: Random): Int
-    {
-        return 2 + random.nextInt(3)
-    }
+    override fun getMinTrunkHeight(random: Random): Int = 2 + random.nextInt(3)
 
     override fun generateLeaves(worldIn: World,
                                 blockPos: BlockPos.MutableBlockPos,
@@ -38,27 +36,23 @@ class WorldGeneratorTreeOrange : WorldGeneratorTreeBase("orange", 1)
                                 notifier: (World?, BlockPos?, IBlockState?) -> Unit)
     {
         val currentYBlockPos = blockPos.copy()
-        currentYBlockPos.move(EnumFacing.UP)
-        for (facingIndex in 0 ..< height + 1)
+        currentYBlockPos.moveUp()
+        for (facingIdx in 0 ..< height + 1)
         {
             val iterator = BlockPos.getAllInBox(
-                currentYBlockPos.offset(EnumFacing.NORTH, 2)
-                    .offset(EnumFacing.WEST, 2),
-                currentYBlockPos.offset(EnumFacing.SOUTH, 2)
-                    .offset(EnumFacing.EAST, 2))
+                currentYBlockPos.north(2).west(2),
+                currentYBlockPos.south(2).east(2))
 
-            val sideFacingIndex = facingIndex
-            iterator.forEach { leavesPos ->
-                if (abs(leavesPos!!.x - currentYBlockPos.getX())
-                        + abs(leavesPos.z - currentYBlockPos.getZ()) < 3
-                    && (sideFacingIndex < height || ((abs(leavesPos.x - currentYBlockPos.getX())
-                        + abs(leavesPos.z - currentYBlockPos.getZ()) == 1
+            val sideFacingIdx = facingIdx
+            iterator.forEach {
+                if (abs(it.x - currentYBlockPos.x) + abs(it.z - currentYBlockPos.z) < 3
+                    && (sideFacingIdx < height || ((abs(it.x - currentYBlockPos.x) + abs(it.z - currentYBlockPos.z) == 1
                             || rand.nextInt(2) == 0))))
                 {
-                    notifier(worldIn, leavesPos, placedLeaveState)
+                    notifier(worldIn, it, placedLeaveState)
                 }
             }
-            currentYBlockPos.move(EnumFacing.UP)
+            currentYBlockPos.moveUp()
         }
         notifier(worldIn, currentYBlockPos, placedLeaveState)
     }
@@ -70,7 +64,7 @@ class WorldGeneratorTreeOrange : WorldGeneratorTreeBase("orange", 1)
                                notifier: (World?, BlockPos?, IBlockState?) -> Unit)
     {
         val upNBlockPos = blockPos.copy()
-        for (height in 0..<maxHeight)
+        for (height in 0..< maxHeight)
         {
             notifier(worldIn, upNBlockPos, logState?.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y))
             if (height > 0)
@@ -79,7 +73,7 @@ class WorldGeneratorTreeOrange : WorldGeneratorTreeBase("orange", 1)
                 notifier(worldIn, upNBlockPos.offset(randomFacing), logState
                     ?.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(randomFacing.axis)))
             }
-            upNBlockPos.move(EnumFacing.UP)
+            upNBlockPos.moveUp()
         }
     }
 
