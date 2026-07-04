@@ -708,6 +708,7 @@ tile.gtlitecore.quantum_chromodynamic_charge.tooltip.2=§cWarning: §fThe Blocks
 entity.gtlitecore.quantum_chromodynamic_charge.name=Quantum Chromodynamic Charge
 
 tile.gtlitecore.bottlecrate.name=Bottlecrate
+tile.gtlitecore.bottlecrate.tooltip.1=Can hold various fluid containers and drinks.
 
 # Items
 metaitem.shape.mold.screw.name=Mold (Screw)
