@@ -127,6 +127,8 @@ public class CommonProxy
         registry.register(GTLiteBlocks.LEPTONIC_CHARGE);
         registry.register(GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE);
 
+        registry.register(GTLiteBlocks.BOTTLECRATE);
+
         // TODO Crops?...
 
         // Sheeted frames.
@@ -185,6 +187,7 @@ public class CommonProxy
         registry.register(GTLiteBlocks.TRANSPARENT_CASING_01);
         registry.register(GTLiteBlocks.TRANSPARENT_CASING_02);
         registry.register(GTLiteBlocks.TRANSPARENT_CASING_03);
+
     }
 
     @SubscribeEvent
@@ -251,6 +254,8 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteBlocks.LEPTONIC_CHARGE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE, ItemBlock::new));
 
+        registry.register(createItemBlock(GTLiteBlocks.BOTTLECRATE,ItemBlock::new));
+
         GTLiteBlocks.SHEETED_FRAMES.values().stream()
                 .distinct()
                 .map(block -> createItemBlock(block, SheetedFrameItemBlock::new))
@@ -306,6 +311,7 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_01, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_02, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_03, VariantItemBlock::new));
+
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block,

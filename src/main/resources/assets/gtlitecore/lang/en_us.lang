@@ -707,6 +707,8 @@ tile.gtlitecore.quantum_chromodynamic_charge.tooltip.1=Exploded Quark Confinemen
 tile.gtlitecore.quantum_chromodynamic_charge.tooltip.2=§cWarning: §fThe Blocks destroyed by the Explosion will be §4Completely Destroyed§f.
 entity.gtlitecore.quantum_chromodynamic_charge.name=Quantum Chromodynamic Charge
 
+tile.gtlitecore.bottlecrate.name=Bottlecrate
+
 # Items
 metaitem.shape.mold.screw.name=Mold (Screw)
 metaitem.shape.mold.screw.tooltip=Mold for making Screws.

@@ -20,6 +20,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems
 import gregtechlite.gtlitecore.common.item.ToolEventHandlers
 import gregtechlite.gtlitecore.common.item.behavior.GTLiteBehaviors
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import gregtechlite.gtlitecore.common.tileentity.GTLiteTileEntities
 import gregtechlite.gtlitecore.core.advancement.AdvancementManagerImpl
 import gregtechlite.gtlitecore.core.advancement.AdvancementTriggers
 import gregtechlite.gtlitecore.core.command.CommandManagerImpl
@@ -116,6 +117,7 @@ internal class CoreModule : CustomModule
         logger.debug("Loading all MetaTileEntities and MetaEntities")
         GTLiteMetaTileEntities.init()
         GTLiteMetaEntities.init()
+        GTLiteTileEntities.init()
 
         logger.debug("Starting to load Pre-Load contents by Proxies")
         proxy.onPreInit()
