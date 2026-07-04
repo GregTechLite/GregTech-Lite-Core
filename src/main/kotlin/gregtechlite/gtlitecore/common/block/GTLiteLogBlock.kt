@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.common.block
 
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
@@ -66,7 +66,7 @@ class GTLiteLogBlock(private val offset: Int) : BlockLog(), TranslatableBlock
     override fun getTranslation(blockState: IBlockState): String = runCatching {
         "${MOD_ID}.log.${getTreeFromState(blockState).name}"
     }.getOrElse {
-        GTLiteLog.logger.warn("Found some incorrect log block state '$blockState'")
+        LOGGER.warn("Found some incorrect log block state '$blockState'")
         "${MOD_ID}.log.error"
     }
 }

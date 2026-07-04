@@ -1,12 +1,11 @@
 package gregtechlite.gtlitecore.client.model
 
-import com.google.common.collect.Table
 import com.morphismmc.morphismlib.client.Games
 import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtech.api.unification.material.info.MaterialIconType
 import gregtech.api.util.GTUtility
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.collection.hashTableOf
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
@@ -37,8 +36,8 @@ import net.minecraftforge.fml.relauncher.Side
 @Mod.EventBusSubscriber(modid = MOD_ID, value = [Side.CLIENT])
 object MaterialBlockStateLoader {
 
-    private val BLOCKSTATES_CACHE: Table<MaterialIconType, MaterialIconSet, ResourceLocation> = hashTableOf()
-    private val ENTRIES: MutableMap<ModelEntry, ModelResourceLocation> = openHashMapOf()
+    private val BLOCKSTATES_CACHE = hashTableOf<MaterialIconType, MaterialIconSet, ResourceLocation>()
+    private val ENTRIES = openHashMapOf<ModelEntry, ModelResourceLocation>()
 
     /**
      * Loads or retrieves a cached block model for the specified [iconType] and [iconSet].
@@ -65,13 +64,8 @@ object MaterialBlockStateLoader {
      * @param iconSet  The icon set of the material.
      * @return         A [ModelResourceLocation] pointing to the baked model resource.
      */
-    fun loadItemModel(iconType: MaterialIconType,
-                      iconSet: MaterialIconSet): ModelResourceLocation
-    {
-        return ENTRIES.getOrPut(ModelEntry(iconType, iconSet, null)) {
-            createModelId(iconType, iconSet, null, "inventory")
-        }
-    }
+    fun loadItemModel(iconType: MaterialIconType, iconSet: MaterialIconSet): ModelResourceLocation
+        = ENTRIES.getOrPut(ModelEntry(iconType, iconSet, null)) { createModelId(iconType, iconSet, null, "inventory") }
 
     /**
      * Pre-loads and caches all registered material block models during texture stitching, ensuring textures are
@@ -128,7 +122,7 @@ object MaterialBlockStateLoader {
                 it.textures.forEach { texture -> event.map.registerSprite(texture) }
             }
         }
-        .onFailure { GTLiteLog.logger.error("Failed to load material model {}:", modelEntry, it) }
+        .onFailure { LOGGER.error("Failed to load material model {}:", modelEntry, it) }
         .getOrNull()
 
     private fun bakeAndRegister(registry: IRegistry<ModelResourceLocation?, IBakedModel?>,

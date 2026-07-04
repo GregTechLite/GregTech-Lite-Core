@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.loader
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.M
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
@@ -17,7 +18,9 @@ import gregtech.api.unification.material.Materials.NULL
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahEnriched
 import gregtech.api.unification.material.Materials.Naquadria
+import gregtech.api.unification.material.Materials.NeodymiumMagnetic
 import gregtech.api.unification.material.Materials.Nichrome
+import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.RTMAlloy
 import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.Materials.Seaborgium
@@ -142,6 +145,21 @@ internal object RecyclingDataLoader
 
         GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(GOLDEN_APPLE.stack(meta = 1),
             RecyclingData(MaterialStack(Gold, M * 4)))
+
+        // EV Energy/Dynamo Hatch recycling data. TODO: Remove it when CEu fix this problem.
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(MetaTileEntities.ENERGY_INPUT_HATCH[EV].stack(),
+            RecyclingData(MaterialStack(Titanium, M * 8),
+                          MaterialStack(Aluminium, M * 2),
+                          MaterialStack(Rubber, M * 4),
+                          MaterialStack(Platinum, M * 2),
+                          MaterialStack(NeodymiumMagnetic, M / 2)))
+
+        GregTechAPI.RECYCLING_MANAGER.registerRecyclingData(MetaTileEntities.ENERGY_OUTPUT_HATCH[EV].stack(),
+            RecyclingData(MaterialStack(Titanium, M * 8),
+                          MaterialStack(Aluminium, 3 * M),
+                          MaterialStack(Rubber, M * 2),
+                          MaterialStack(Platinum, M * 2),
+                          MaterialStack(NeodymiumMagnetic, M / 2)))
 
         // Sheeted Frames recycling datas.
         GTLiteBlocks.SHEETED_FRAMES.entries.forEach { (material, block) ->

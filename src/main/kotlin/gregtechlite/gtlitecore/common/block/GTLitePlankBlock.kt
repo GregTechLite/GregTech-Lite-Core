@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.common.block
 
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
@@ -59,7 +59,7 @@ class GTLitePlankBlock(private val offset: Int) : Block(Material.WOOD), Translat
     override fun getTranslation(blockState: IBlockState): String = runCatching {
         "${MOD_ID}.planks.${getTreeFromState(blockState).name}"
     }.getOrElse {
-        GTLiteLog.logger.warn("Found some incorrect plank block state '$blockState'")
+        LOGGER.warn("Found some incorrect plank block state '$blockState'")
         "${MOD_ID}.planks.error"
     }
 }

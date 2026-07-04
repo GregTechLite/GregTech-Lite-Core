@@ -18,6 +18,7 @@ import gregtech.api.util.GTUtility
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.collection.to
 import gregtechlite.gtlitecore.api.extension.add
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
@@ -207,21 +208,21 @@ class MetaTileEntityPlasticCan(id: ResourceLocation, private val fluidFilter: IP
     }
 
     @SideOnly(Side.CLIENT)
-    override fun getParticleTexture(): Pair<TextureAtlasSprite, Int>
+    override fun getParticleTexture(): Pair<TextureAtlasSprite?, Int?>
     {
-        val color = GTUtility.convertOpaqueRGBA_CLtoRGB(
-            ColourRGBA.multiply(GTUtility.convertRGBtoOpaqueRGBA_CL(color),
-                                GTUtility.convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
-        return Pair.of(GTLiteOverlays.PLASTIC_CAN.particleTexture, color)
+        val color = GTUtility.convertOpaqueRGBA_CLtoRGB(ColourRGBA.multiply(
+            GTUtility.convertRGBtoOpaqueRGBA_CL(color),
+            GTUtility.convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
+        return GTLiteOverlays.PLASTIC_CAN.particleTexture to color
     }
 
     @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
     {
-        val multiplier = ColourMultiplier(
-            ColourRGBA.multiply(GTUtility.convertRGBtoOpaqueRGBA_CL(color),
-                                GTUtility.convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
+        val multiplier = ColourMultiplier(ColourRGBA.multiply(
+            GTUtility.convertRGBtoOpaqueRGBA_CL(color),
+            GTUtility.convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
         GTLiteOverlays.PLASTIC_CAN.render(renderState, translation, pipeline?.add(multiplier), frontFacing)
         GTLiteOverlays.PLASTIC_CAN_OVERLAY.render(renderState, translation, pipeline)
         if (isAutoOutput)

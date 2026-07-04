@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.common.worldgen.generator.tree
 
 import gregtech.api.GTValues
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.moveUp
 import gregtechlite.gtlitecore.api.worldgen.condition.BiomeCondition
 import gregtechlite.gtlitecore.api.worldgen.condition.ClimateCondition
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
@@ -36,26 +37,23 @@ class WorldGeneratorTreeOlive : WorldGeneratorTreeBase("olive", 6)
                                 notifier: (World?, BlockPos?, IBlockState?) -> Unit)
     {
         val currentBlockPos = blockPos.copy()
-        currentBlockPos.move(EnumFacing.UP, height)
+        currentBlockPos.moveUp(height)
 
-        var i = 25
-        while (i > 0)
+        var size = 25
+        while (size > 0)
         {
-            val layerSize = (ceil(sqrt(i.toDouble()))).toInt()
+            val layerSize = (ceil(sqrt(size.toDouble()))).toInt()
             val iterator = BlockPos.getAllInBox(
-                currentBlockPos.offset(EnumFacing.NORTH, layerSize)
-                    .offset(EnumFacing.WEST, layerSize),
-                currentBlockPos.offset(EnumFacing.SOUTH, layerSize)
-                    .offset(EnumFacing.EAST, layerSize))
+                currentBlockPos.north(layerSize).west(layerSize),
+                currentBlockPos.south(layerSize).east(layerSize))
 
-            val j = i
-            iterator.forEach { leavesPos ->
-                if (abs(leavesPos!!.x - currentBlockPos.getX())
-                        + abs(leavesPos.z - currentBlockPos.getZ()) <= sqrt(j.toDouble()))
-                    notifier(worldIn, leavesPos, placedLeaveState)
+            val sideSize = size
+            iterator.forEach {
+                if (abs(it.x - currentBlockPos.x) + abs(it.z - currentBlockPos.z) <= sqrt(sideSize.toDouble()))
+                    notifier(worldIn, it, placedLeaveState)
             }
-            currentBlockPos.move(EnumFacing.UP)
-            i -= (rand.nextInt(8) + 13)
+            currentBlockPos.moveUp()
+            size -= (rand.nextInt(8) + 13)
         }
     }
 
@@ -71,14 +69,13 @@ class WorldGeneratorTreeOlive : WorldGeneratorTreeBase("olive", 6)
         val splitDirection = EnumFacing.byHorizontalIndex(rand!!.nextInt(4))
         val splittingHeight = maxHeight - 1 - rand.nextInt(3)
 
-        for (height in 0..<maxHeight)
+        for (height in 0..< maxHeight)
         {
             val state = worldIn.getBlockState(upNBlockPos)
             if (state.getBlock().isAir(state, worldIn, upNBlockPos)
                 || state.getBlock().isLeaves(state, worldIn, upNBlockPos))
             {
-                notifier(worldIn, upNBlockPos, logState
-                    ?.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y))
+                notifier(worldIn, upNBlockPos, logState?.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y))
             }
 
             if (height == splittingHeight)
@@ -87,14 +84,13 @@ class WorldGeneratorTreeOlive : WorldGeneratorTreeBase("olive", 6)
             }
             if (height >= splittingHeight)
             {
-                notifier(worldIn, upNSplitBlockPos, logState
-                    ?.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y))
+                notifier(worldIn, upNSplitBlockPos, logState?.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y))
                 if (rand.nextInt(2) == 0)
                     upNSplitBlockPos.move(splitDirection)
             }
 
-            upNBlockPos.move(EnumFacing.UP)
-            upNSplitBlockPos.move(EnumFacing.UP)
+            upNBlockPos.moveUp()
+            upNSplitBlockPos.moveUp()
         }
     }
 

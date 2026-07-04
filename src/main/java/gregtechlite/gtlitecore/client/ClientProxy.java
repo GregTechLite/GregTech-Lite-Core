@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.client;
 
-import gregtechlite.gtlitecore.api.GTLiteLog;
+import gregtechlite.gtlitecore.api.GTLiteValues;
 import gregtechlite.gtlitecore.client.event.ClientEventHandlers;
 import gregtechlite.gtlitecore.client.event.GTLiteTooltips;
 import gregtechlite.gtlitecore.client.renderer.handler.TESRBottlecrate;
@@ -11,6 +11,9 @@ import gregtechlite.gtlitecore.common.CommonProxy;
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks;
 import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities;
 import gregtechlite.gtlitecore.common.tileentity.TileEntityBlockcrate;
+import gregtechlite.gtlitecore.core.network.ClientNetworkHandler;
+import gregtechlite.gtlitecore.core.network.NetworkHandlerImpl;
+import gregtechlite.gtlitecore.core.network.PacketHandler;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -34,13 +37,15 @@ public class ClientProxy extends CommonProxy
         MinecraftForge.EVENT_BUS.register(ClientEventHandlers.INSTANCE);
         CosmicShaderProgram.initShaders();
         GTLiteMetaEntities.initRenderers();
+        NetworkHandlerImpl.Companion.getInstance().registerEventListener(
+                new ClientNetworkHandler(PacketHandler.Companion.getInstance()));
     }
 
     @Override
     public void onInit()
     {
         super.onInit();
-        GTLiteLog.logger.debug("Registering Block(Item)ColorHandler for Meta(Item)Blocks");
+        GTLiteValues.LOGGER.debug("Registering Block(Item)ColorHandler for Meta(Item)Blocks");
         GTLiteBlocks.registerColors();
     }
 

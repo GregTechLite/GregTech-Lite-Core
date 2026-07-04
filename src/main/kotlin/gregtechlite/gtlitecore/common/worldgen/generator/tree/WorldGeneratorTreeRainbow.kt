@@ -1,12 +1,12 @@
 package gregtechlite.gtlitecore.common.worldgen.generator.tree
 
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.moveUp
 import gregtechlite.gtlitecore.api.worldgen.condition.BiomeCondition
 import gregtechlite.gtlitecore.api.worldgen.condition.ClimateCondition
 import net.minecraft.block.state.IBlockState
 import net.minecraft.init.Biomes
 import net.minecraft.item.ItemStack
-import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
@@ -23,8 +23,7 @@ class WorldGeneratorTreeRainbow : WorldGeneratorTreeBase("rainbow", 9)
         conditions.add(ClimateCondition(5, 0.5, 0.8, 0.4, 0.1))
     }
 
-    override val perlinScale: Double
-        get() = 0.05
+    override val perlinScale: Double = 0.05
 
     override fun generateLeaves(worldIn: World,
                                 blockPos: BlockPos.MutableBlockPos,
@@ -33,23 +32,20 @@ class WorldGeneratorTreeRainbow : WorldGeneratorTreeBase("rainbow", 9)
                                 notifier: (World?, BlockPos?, IBlockState?) -> Unit)
     {
         val currentYBlockPos = blockPos.copy()
-        currentYBlockPos.move(EnumFacing.UP, height - 3)
+        currentYBlockPos.moveUp(height - 3)
         for (i in 0..6)
         {
             val layerSize = getMooreRadiusAtHeight(i + height - 3, height)
             val iterator = BlockPos.getAllInBox(
-                currentYBlockPos.offset(EnumFacing.NORTH, layerSize)
-                    .offset(EnumFacing.WEST, layerSize),
-                currentYBlockPos.offset(EnumFacing.SOUTH, layerSize)
-                    .offset(EnumFacing.EAST, layerSize))
-            iterator.forEach { leavesPos: BlockPos? ->
-                if (abs(leavesPos!!.x - currentYBlockPos.getX())
-                    + abs(leavesPos.z - currentYBlockPos.getZ()) < 6)
+                currentYBlockPos.north(layerSize).west(layerSize),
+                currentYBlockPos.south(layerSize).east(layerSize))
+            iterator.forEach {
+                if (abs(it.x - currentYBlockPos.x) + abs(it.z - currentYBlockPos.z) < 6)
                 {
-                    notifier(worldIn, leavesPos, placedLeaveState)
+                    notifier(worldIn, it, placedLeaveState)
                 }
             }
-            currentYBlockPos.move(EnumFacing.UP)
+            currentYBlockPos.moveUp()
         }
     }
 

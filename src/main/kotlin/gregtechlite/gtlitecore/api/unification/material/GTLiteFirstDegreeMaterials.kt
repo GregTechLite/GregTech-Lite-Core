@@ -2053,6 +2053,7 @@ object GTLiteFirstDegreeMaterials
             }
             color(0xCC3300)
             flags(DISABLE_DECOMPOSITION)
+            components(Hydrogen, 1, Technetium, 1, Oxygen, 4)
         }
 
         // 2163 Ammonium Nitrate
@@ -2705,7 +2706,9 @@ object GTLiteFirstDegreeMaterials
         // 2231 Scandium-Titanium Mixture
         ScandiumTitaniumMixture = addMaterial(2231, "scandium_titanium_mixture")
         {
-            liquid()
+            liquid {
+                temperature(1800)
+            }
             colorAverage()
             components(Scandium, 1, Titanium, 1)
             flags(DISABLE_DECOMPOSITION)
@@ -2714,7 +2717,9 @@ object GTLiteFirstDegreeMaterials
         // 2232 Radium-Radon Mixture
         RadiumRadonMixture = addMaterial(2232, "radium_radon_mixture")
         {
-            liquid()
+            liquid {
+                temperature(1200)
+            }
             colorAverage()
             components(Radium, 1, Radon, 1)
             flags(DISABLE_DECOMPOSITION)

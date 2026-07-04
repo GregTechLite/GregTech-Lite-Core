@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.common.block
 
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.TranslatableBlock
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
@@ -108,7 +108,7 @@ class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), 
     override fun getTranslation(blockState: IBlockState): String = runCatching {
         "${MOD_ID}.sapling.${getTreeFromState(blockState).name}"
     }.getOrElse {
-        GTLiteLog.logger.warn("Found some incorrect sapling block state '$blockState")
+        LOGGER.warn("Found some incorrect sapling block state '$blockState")
         "${MOD_ID}.sapling.error"
     }
 }

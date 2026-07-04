@@ -3,10 +3,16 @@ package gregtechlite.gtlitecore.core;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
 import net.minecraftforge.common.config.Config.Name;
+import net.minecraftforge.common.config.Config.RangeDouble;
 import net.minecraftforge.common.config.Config.RangeInt;
 import net.minecraftforge.common.config.Config.RequiresMcRestart;
 
+import static gregtech.api.GTValues.MAX;
+import static gregtech.api.GTValues.MV;
+import static gregtech.api.GTValues.ULV;
 import static gregtechlite.gtlitecore.api.GTLiteValues.MOD_ID;
+import static gregtechlite.gtlitecore.api.GTLiteValues.SECOND;
+import static gregtechlite.gtlitecore.api.GTLiteValues.TICK;
 
 @Config(modid = MOD_ID,
         name = MOD_ID + '/' + MOD_ID) // Put configurations to the total files with module configurations.
@@ -18,7 +24,7 @@ public class GTLiteConfigHolder
     @RequiresMcRestart
     public static CompatibilityOptions compat = new CompatibilityOptions();
 
-    @Comment("Config options for GregTech Lite Machines, Pipes, Cables, and Electric Items")
+    @Comment("Config options for GregTech Lite Machines, Pipes and Cables")
     @Name("Machine Options")
     @RequiresMcRestart
     public static MachineOptions machine = new MachineOptions();
@@ -27,6 +33,11 @@ public class GTLiteConfigHolder
     @Name("Recipe Options")
     @RequiresMcRestart
     public static RecipeOptions recipe = new RecipeOptions();
+
+    @Comment("Config options for GregTech Lite Tools and Armors")
+    @Name("Tool Options")
+    @RequiresMcRestart
+    public static ToolOptions tool = new ToolOptions();
 
     @Comment("Config options for World Generation features")
     @Name("Worldgen Options")
@@ -71,6 +82,10 @@ public class GTLiteConfigHolder
         @Name("Energy Infuser Options")
         public EnergyInfuser energyInfuser = new EnergyInfuser();
 
+        @Comment({"Modifiable settings for Large Fisher, consists of its basic progress time."})
+        @Name("Large Fisher Options")
+        public LargeFisher largeFisher = new LargeFisher();
+
         public static class EnergyInfuser
         {
 
@@ -91,11 +106,42 @@ public class GTLiteConfigHolder
 
         }
 
+        public static class LargeFisher
+        {
+            @Comment({"The progress time for Large Fisher each cycle working consumed", "Default: 20 (=1s)"})
+            @Name("Progress Time Per Cycle")
+            @RangeInt(min = TICK)
+            public int maxProgressTime = SECOND;
+
+            @Comment({"The water fill count in Large Fisher structure for working", "Default: 60"})
+            @Name("Minimum Water Fill Count")
+            @RangeInt(min = 1, max = 98)
+            public int waterFillCount = 60;
+        }
     }
 
     public static class RecipeOptions
     {
+    }
 
+    public static class ToolOptions
+    {
+        @Comment({"Modifiable settings of Laser Destroyer tool"})
+        @Name("Laser Destroyer Options")
+        public LaserDestroyer laserDestroyer = new LaserDestroyer();
+
+        public static class LaserDestroyer
+        {
+            @Comment({"The default energy tier of Laser Destroyer", "Default: 2 (MV)"})
+            @Name("Energy Tier")
+            @RangeInt(min = ULV, max = MAX)
+            public int toolTier = MV;
+
+            @Comment({"The default capacity of Laser Destroyer", "Default: 1,024,000 EU"})
+            @Name("Capacity")
+            @RangeDouble(min = 0, max = Long.MAX_VALUE)
+            public double capacity = 1024000;
+        }
     }
 
     public static class WorldGenOptions

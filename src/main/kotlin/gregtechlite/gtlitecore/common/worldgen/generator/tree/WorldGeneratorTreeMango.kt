@@ -2,13 +2,13 @@ package gregtechlite.gtlitecore.common.worldgen.generator.tree
 
 import gregtech.api.GTValues
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.moveUp
 import gregtechlite.gtlitecore.api.worldgen.condition.BiomeCondition
 import gregtechlite.gtlitecore.api.worldgen.condition.ClimateCondition
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.block.state.IBlockState
 import net.minecraft.init.Biomes
 import net.minecraft.item.ItemStack
-import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
@@ -33,29 +33,26 @@ class WorldGeneratorTreeMango : WorldGeneratorTreeBase("mango", 2)
                                 notifier: (World?, BlockPos?, IBlockState?) -> Unit)
     {
         val currentYBlockPos = blockPos.copy()
-        currentYBlockPos.move(EnumFacing.UP, height - 2)
+        currentYBlockPos.moveUp(height - 2)
 
         var size = 13
         while (size > 0)
         {
             val layerSize = (ceil(sqrt(size.toDouble()))).toInt()
             val iterator = BlockPos.getAllInBox(
-                currentYBlockPos.offset(EnumFacing.NORTH, layerSize)
-                    .offset(EnumFacing.WEST, layerSize),
-                currentYBlockPos.offset(EnumFacing.SOUTH, layerSize)
-                    .offset(EnumFacing.EAST, layerSize))
+                currentYBlockPos.north(layerSize).west(layerSize),
+                currentYBlockPos.south(layerSize).east(layerSize))
 
             val sideSize = size
-            iterator.forEach { leavesPos ->
-                if (abs(leavesPos!!.x - currentYBlockPos.getX())
-                    + abs(leavesPos.z - currentYBlockPos.getZ()) <= sqrt(sideSize.toDouble()))
-                    notifier(worldIn, leavesPos, placedLeaveState)
+            iterator.forEach {
+                if (abs(it.x - currentYBlockPos.x) + abs(it.z - currentYBlockPos.z) <= sqrt(sideSize.toDouble()))
+                    notifier(worldIn, it, placedLeaveState)
             }
 
-            currentYBlockPos.move(EnumFacing.UP)
+            currentYBlockPos.moveUp()
             size -= (rand.nextInt(4) + 4)
         }
-        notifier(worldIn, blockPos.copy().move(EnumFacing.UP, height), placedLeaveState)
+        notifier(worldIn, blockPos.copy().moveUp(height), placedLeaveState)
     }
 
     override fun getFruitDrop(chance: Int): ItemStack?

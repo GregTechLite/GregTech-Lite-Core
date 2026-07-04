@@ -2,11 +2,16 @@ package gregtechlite.gtlitecore.common.worldgen.generator.tree
 
 import gregtech.api.GTValues
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.horizontal
+import gregtechlite.gtlitecore.api.extension.horizontalYRotate
+import gregtechlite.gtlitecore.api.extension.moveHorizontal
+import gregtechlite.gtlitecore.api.extension.moveHorizontalRotateY
+import gregtechlite.gtlitecore.api.extension.moveHorizontalRotateYCCW
+import gregtechlite.gtlitecore.api.extension.moveUp
 import gregtechlite.gtlitecore.api.worldgen.condition.ClimateCondition
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
-import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
@@ -26,67 +31,69 @@ class WorldGeneratorTreeCoconut : WorldGeneratorTreeBase("coconut", 8)
                                 rand: Random,
                                 notifier: (World?, BlockPos?, IBlockState?) -> Unit)
     {
-        // region Top leaves
-        val tBlockPos = blockPos.up(height - 1).copy()
-        val tSideVariance = rand.nextInt(4)
-        for (i in 0 .. 2)
+        // region Top Leaves
+
+        val pos = blockPos.up(height - 1).copy()
+        val leafOffset = rand.nextInt(4)
+        for (facingIdx in 0 .. 2)
         {
-            tBlockPos.move(EnumFacing.UP)
-            notifier(worldIn, tBlockPos, placedLeaveState)
-            if (i == 1 || i == 2)
+            pos.moveUp()
+            notifier(worldIn, pos, placedLeaveState)
+            if (facingIdx == 1 || facingIdx == 2)
             {
-                tBlockPos.move(EnumFacing.byHorizontalIndex(tSideVariance))
-                notifier(worldIn, tBlockPos, placedLeaveState)
+                pos.moveHorizontal(leafOffset)
+                notifier(worldIn, pos, placedLeaveState)
             }
         }
-        tBlockPos.move(EnumFacing.byHorizontalIndex(tSideVariance))
-        notifier(worldIn, tBlockPos, placedLeaveState)
+        pos.moveHorizontal(leafOffset)
+        notifier(worldIn, pos, placedLeaveState)
+
         // endregion
 
-        // region Sideway leaves
-        for (i in 0 .. 3)
+        // region Sideway Leaves
+
+        for (facingIdx in 0 .. 3)
         {
             val leafOffset = rand.nextInt(2)
-            val sBlockPos = blockPos.up(height - 2 + leafOffset).copy()
+            val pos = blockPos.up(height - 2 + leafOffset).copy()
 
-            val sSideVariance = rand.nextInt(2)
-            for (j in 0 .. 2)
+            val randIdx = rand.nextInt(2)
+            for (count in 0 .. 2)
             {
-                sBlockPos.move(EnumFacing.byHorizontalIndex(i))
-                notifier(worldIn, sBlockPos, placedLeaveState)
-                if (j == 0)
+                pos.moveHorizontal(facingIdx)
+                notifier(worldIn, pos, placedLeaveState)
+                if (count == 0)
                 {
-                    sBlockPos.move(EnumFacing.UP)
-                    notifier(worldIn, sBlockPos, placedLeaveState)
+                    pos.moveUp()
+                    notifier(worldIn, pos, placedLeaveState)
                 }
                 if (rand.nextInt(3) == 0)
                 {
-                    if (sSideVariance == 0)
+                    if (randIdx == 0)
                     {
-                        sBlockPos.move(EnumFacing.byHorizontalIndex(i).rotateY())
-                        notifier(worldIn, sBlockPos, placedLeaveState)
+                        pos.moveHorizontalRotateY(facingIdx)
+                        notifier(worldIn, pos, placedLeaveState)
                     }
                     else
                     {
-                        sBlockPos.move(EnumFacing.byHorizontalIndex(i).rotateYCCW())
-                        notifier(worldIn, sBlockPos, placedLeaveState)
+                        pos.moveHorizontalRotateYCCW(facingIdx)
+                        notifier(worldIn, pos, placedLeaveState)
                     }
                 }
             }
         }
+
         // endregion
 
-        // region Bottom leaves
-        for (i in 0 .. 3)
+        // region Bottom Leaves
+
+        for (facingIdx in 0 .. 3)
         {
-            notifier(worldIn, blockPos.up(height - 1)
-                .offset(EnumFacing.byHorizontalIndex(i)), placedLeaveState)
-            notifier(worldIn, blockPos.up(height - 1)
-                .offset(EnumFacing.byHorizontalIndex(i))
-                .offset(EnumFacing.byHorizontalIndex(i).rotateY()), placedLeaveState)
+            notifier(worldIn, blockPos.up(height - 1).horizontal(facingIdx), placedLeaveState)
+            notifier(worldIn, blockPos.up(height - 1).horizontal(facingIdx).horizontalYRotate(facingIdx), placedLeaveState)
         }
-        // endregion
 
+        // endregion
     }
 
     override fun getFruitDrop(chance: Int): ItemStack?

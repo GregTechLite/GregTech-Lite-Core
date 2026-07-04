@@ -6,6 +6,7 @@ import gregtech.client.utils.RenderUtil;
 import gregtech.common.gui.widget.prospector.ProspectorMode;
 import gregtech.common.gui.widget.prospector.ProspectingTexture;
 import gregtech.core.network.packets.PacketProspecting;
+import it.unimi.dsi.fastutil.bytes.Byte2ObjectOpenHashMap;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.AbstractTexture;
@@ -34,6 +35,9 @@ import java.util.Map;
 public abstract class MixinProspectingTexture extends AbstractTexture
 {
 
+    @Shadow
+    @Final
+    public Map<Byte, String>[][] map;
     @Shadow
     private @Final int radius;
 
@@ -129,6 +133,8 @@ public abstract class MixinProspectingTexture extends AbstractTexture
             // region patch
             gtlitecore$map[currentColumn][currentRow] = packet.map[0][0] == null
                     ? gtlitecore$emptyTag : packet.map[0][0];
+            map[currentColumn][currentRow] = packet.map[0][0] == null
+                    ? new Byte2ObjectOpenHashMap<>(gtlitecore$emptyTag) : new Byte2ObjectOpenHashMap<>(packet.map[0][0]);
             // endregion
         }
         else
@@ -140,6 +146,8 @@ public abstract class MixinProspectingTexture extends AbstractTexture
                     // region patch
                     gtlitecore$map[x + currentColumn * 16][z + currentRow * 16] = packet.map[x][z] == null
                             ? gtlitecore$emptyTag : packet.map[x][z];
+                    map[x + currentColumn * 16][z + currentRow * 16] = packet.map[x][z] == null
+                            ? new Byte2ObjectOpenHashMap<>(gtlitecore$emptyTag) : new Byte2ObjectOpenHashMap<>(packet.map[x][z]);
                     // endregion
                 }
             }
