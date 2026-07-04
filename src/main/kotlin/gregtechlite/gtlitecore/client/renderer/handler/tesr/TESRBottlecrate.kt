@@ -65,7 +65,7 @@ class TESRBottlecrate : TileEntitySpecialRenderer<TileEntityBlockcrate>()
         else // canInsertInto
         {
             drawFluid(x + fxOffset, y + fyOffset, z + fzOffset,
-                      BottlecrateUtils.FLUID_HEIGHT, BottlecrateBehavior.getColor(bottleStack))
+                      BottlecrateUtils.FLUID_HEIGHT, BottlecrateBehavior.getColor(bottleStack).toInt())
         }
 
         val bxOffset = xOffset + BottlecrateUtils.DEPTH_OFFSET

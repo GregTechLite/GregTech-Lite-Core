@@ -4,7 +4,7 @@ import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.stats.IItemBehaviour
 import net.minecraft.item.ItemStack
 
-class BottlecrateBehavior(val color: Int = 0xFFFFFFFF.toInt()) : IItemBehaviour
+class BottlecrateBehavior(val color: Long = 0xFFFFFFFF) : IItemBehaviour
 {
     companion object
     {
@@ -20,17 +20,17 @@ class BottlecrateBehavior(val color: Int = 0xFFFFFFFF.toInt()) : IItemBehaviour
             return false
         }
 
-        fun getColor(stack: ItemStack): Int
+        fun getColor(stack: ItemStack): Long
         {
-            if (stack.isEmpty) return 0xFFFFFFFF.toInt()
+            if (stack.isEmpty) return 0xFFFFFFFF
             val item = stack.item
             if (item is MetaItem<*>)
             {
                 val valueItem = item.getItem(stack)
                 val behavior = valueItem?.behaviours?.filterIsInstance<BottlecrateBehavior>()?.firstOrNull()
-                return behavior?.color ?: 0xFFFFFFFF.toInt()
+                return behavior?.color ?: 0xFFFFFFFF
             }
-            return 0xFFFFFFFF.toInt()
+            return 0xFFFFFFFF
         }
     }
 }
