@@ -7,6 +7,7 @@ import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
+import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Indium
@@ -20,6 +21,7 @@ import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.Wood
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircaloy4
+import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
@@ -37,6 +39,7 @@ import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.CREDIT_NEUTRONIUM
 import gregtech.common.items.MetaItems.EMITTER_MV
+import gregtech.common.items.MetaItems.FLUID_CELL
 import gregtech.common.items.MetaItems.ITEM_FILTER
 import gregtech.common.items.MetaItems.ORE_DICTIONARY_FILTER
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
@@ -68,6 +71,7 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_ROD_LONG
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROUND
 import gregtech.common.items.MetaItems.SMART_FILTER
+import gregtech.common.items.MetaItems.STICKY_RESIN
 import gregtech.common.items.ToolItems
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.stack
@@ -85,6 +89,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetoResonatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Prasiolite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks.BOTTLECRATE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AIR_VENT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_BUTCHERY_KNIFE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_CROWBAR
@@ -127,7 +132,9 @@ import gregtechlite.gtlitecore.loader.recipe.handler.ToolRecipeHandler
 import net.minecraft.init.Blocks
 import net.minecraft.init.Blocks.TORCH
 import net.minecraft.init.Items
+import net.minecraft.init.Items.SLIME_BALL
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NBTTagCompound
 
 internal object CraftingRecipeLoader
 {
@@ -586,6 +593,19 @@ internal object CraftingRecipeLoader
             'R', UnificationEntry(ring, Steel),
             'X', UnificationEntry(circuit, Tier.HV),
             'E', EMITTER_MV)
+
+        // Bottlecrate
+        ModHandler.addShapedRecipe(true, "bottlecrate_resin", BOTTLECRATE.stack(),
+            "sfr", "PGP", "SPS",
+            'P', "plankWood",
+            'S', UnificationEntry(bolt, Wood),
+            'G', STICKY_RESIN)
+
+        ModHandler.addShapedRecipe(true, "bottlecrate_slimeball", BOTTLECRATE.stack(),
+             "sfr", "PGP", "SPS",
+             'P', "plankWood",
+             'S', UnificationEntry(bolt, Wood),
+             'G', SLIME_BALL)
     }
 
     // @formatter:on

@@ -2,7 +2,8 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures":{
-		"0":"blocks/planks_oak"
+		"0":"blocks/planks_oak",
+		"particle": "minecraft:blocks/planks_oak"
 	},
 	"elements": [
 		{
@@ -188,6 +189,21 @@
 		}
 	],
 	"display": {
+		"thirdperson_righthand": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"scale": [0.5, 0.5, 0.3]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.5, 0.5, 0.3]
+		},
+		"ground": {
+			"scale": [0.5, 0.5, 0.5]
+		},
 		"gui": {
 			"rotation": [25, -45, 0],
 			"translation": [0, 1.75, 0],

@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.client;
 import gregtechlite.gtlitecore.api.GTLiteValues;
 import gregtechlite.gtlitecore.client.event.ClientEventHandlers;
 import gregtechlite.gtlitecore.client.event.GTLiteTooltips;
-import gregtechlite.gtlitecore.client.renderer.handler.TESRBottlecrate;
+import gregtechlite.gtlitecore.client.renderer.handler.tesr.TESRBottlecrate;
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures;
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper;
 import gregtechlite.gtlitecore.client.shader.CosmicShaderProgram;
@@ -53,7 +53,6 @@ public class ClientProxy extends CommonProxy
     public static void registerModels(ModelRegistryEvent event)
     {
         GTLiteBlocks.registerItemModels();
-
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockcrate.class, new TESRBottlecrate());
     }
 
