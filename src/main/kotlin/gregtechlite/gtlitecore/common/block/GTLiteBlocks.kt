@@ -198,6 +198,9 @@ object GTLiteBlocks
     lateinit var TRANSPARENT_CASING_02: VariantBlock<GlassCasing.Enum02>
     lateinit var TRANSPARENT_CASING_03: VariantBlock<GlassCasing.Enum03>
 
+    @JvmField
+    val BOTTLECRATE = BlockBottlecrate()
+
     fun init()
     {
         // Initialized stones and its variant blocks.
@@ -573,6 +576,8 @@ object GTLiteBlocks
         registerItemModel(TRANSPARENT_CASING_01)
         registerItemModel(TRANSPARENT_CASING_02)
         registerItemModel(TRANSPARENT_CASING_03)
+
+        setModelLocation(BOTTLECRATE)
 
         ACTIVE_UNIQUE_CASING_01.onModelRegister()
         FUSION_CASING.onModelRegister()
