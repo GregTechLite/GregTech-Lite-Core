@@ -2327,20 +2327,20 @@ gtlitecore.machine.mining_drone_airport.tooltip.3=Increasing number or tier of M
 gtlitecore.machine.mining_drone_airport.tooltip.4=Each work requires fuel §consumption§7, but drills and sticks §fdoes not§7consume.
 
 gtlitecore.machine.nuclear_reactor.name=Nuclear Reactor
-gtlitecore.machine.nuclear_reactor.tooltip.1=将核素裂变以产生巨量的电力洪流，核素以§a燃料棒§7形式插入反应堆中。
-gtlitecore.machine.nuclear_reactor.tooltip.2=需要输入§d反应堆慢化剂§7来控制反应足够稳定，反应后将会输出其的过热/超临界流体。
-gtlitecore.machine.nuclear_reactor.tooltip.3=热冷却液的状态取决于裂变核素的重量，当其处于核素裂变链中的中后部分时才会输出超临界流体。
-gtlitecore.machine.nuclear_reactor.tooltip.4=核反应堆将会尝试并行裂变所有的燃料棒，同时需要输入更多的冷却液来稳定反应。
-gtlitecore.machine.nuclear_reactor.tooltip.5=换用更高的§c反应堆堆芯§7以获取更高的能量输出。
-gtlitecore.machine.nuclear_reactor.tooltip.6=倍率：§f钍（1.05），镤（1.1），铀（1.3），镎（1.4），钚（1.5），镅（1.8），§7
-gtlitecore.machine.nuclear_reactor.tooltip.7=§f锔（1.85），锫（1.9），锎（2.0），锿（2.5），镄（3），钔（3.2）。
+gtlitecore.machine.nuclear_reactor.tooltip.1=Nuclear Fission produces massive energy and nuclides are inserted into the reactor by fuel rods.
+gtlitecore.machine.nuclear_reactor.tooltip.2=Need to input §dReactor Moderator§7 to control the reaction to be stable, and its superheated/supercritical fluid will output after the reaction.
+gtlitecore.machine.nuclear_reactor.tooltip.3=The state of hot coolant depends on the weight of fission nuclide, and it will only output supercritical fluid when it is in the middle and end part of the fission chain.
+gtlitecore.machine.nuclear_reactor.tooltip.4=Nuclear Reactor will attempt to fission all fuel rods in parallel, while requiring more coolant input to stabilize the reaction.
+gtlitecore.machine.nuclear_reactor.tooltip.5=Switch to a higher §cReactor Core§7 to achieve higher energy output.
+gtlitecore.machine.nuclear_reactor.tooltip.6=Factor: §fThorium (1.05), Protactinium (1.1), Uranium (1.3), Neptunium (1.4), Plutonium (1.5), Americium (1.8),§7
+gtlitecore.machine.nuclear_reactor.tooltip.7=§fCurium (1.85), Berkelium (1.9), Californium (2.0), Einsteinium (2.5), Fermium (3), Mendelevium (3.2).
 
 gtlitecore.machine.large_turbine.hot_coolant.name=Large Hot Coolant Turbine
 
 gtlitecore.machine.large_turbine.supercritical_fluid.name=Large Supercritical Fluid Turbine
 
 gtlitecore.machine.hydraulic_fracker.name=Hydraulic Fracker
-gtlitecore.machine.hydraulic_fracker.tooltip.1=使用§b压裂液§7补充基岩下的区块流体，每次消耗§f1000L§7。
+gtlitecore.machine.hydraulic_fracker.tooltip.1=Use §bFracturing Fluid§7 to supplement bedrock fluid vein, consuming §f1000L§7 each time.
 gtlitecore.machine.hydraulic_fracker.tooltip.2=§eEnergy Usage: §f%s EU/t
 
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
@@ -2352,9 +2352,9 @@ gtlitecore.machine.crystallization_crucible.name=Crystallization Crucible
 gtlitecore.machine.crystallization_crucible.tooltip.1=Artificial Gemstone Technology
 
 gtlitecore.machine.nanoscale_fabricator.name=Nanoscale Fabricator
-gtlitecore.machine.nanoscale_fabricator.tooltip.1=配方温度受到结构中的所有坩埚的平均温度限制。
-gtlitecore.machine.nanoscale_fabricator.tooltip.2=平均温度必须在配方要求的±§c250K§7以内方可使配方成功运行。
-gtlitecore.machine.nanoscale_fabricator.tooltip.3=只能使用ULV输入总线在指定坩埚位置的下方输入物品。
+gtlitecore.machine.nanoscale_fabricator.tooltip.1=Recipe temperature is limited by average temperature of all crucibles in structure.
+gtlitecore.machine.nanoscale_fabricator.tooltip.2=Average temperature must be within ±§c250K§7 as required by recipe in order for successfully working
+gtlitecore.machine.nanoscale_fabricator.tooltip.3=Only ULV Item Input Bus can be used to input items below the specified crucible position.
 
 gtlitecore.machine.nanoscale_fabricator.average_temperature=Average Temperature: %s
 gtlitecore.machine.nanoscale_fabricator.temperature_range=Workable Temperature Range: %s-%s
@@ -2364,7 +2364,7 @@ gtlitecore.machine.sonicator.name=Sonicator
 
 gtlitecore.machine.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition Unit
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=Promoting Gas-Phase Deposition Reaction with High-Energy Laser Beam
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，但需要放入不消耗的§9激光传输气体§7。
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=Compatible with all standard §2CVD§7 recipes, but requires the insertion of non-consumable §9Laser Transmissive Gas§7.
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=Supported Laser Transmissive Gas: §fHe, Ne, Ar, Kr, Xe§7
 
 gtlitecore.machine.bedrock_drilling_rig.name=Bedrock Drilling Rig
