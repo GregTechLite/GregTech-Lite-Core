@@ -8,7 +8,6 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix;
 import gregtechlite.gtlitecore.api.GTLiteLog;
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks;
-import gregtechlite.gtlitecore.common.block.GTLiteCropBlock;
 import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock;
 import gregtechlite.gtlitecore.common.item.DimensionDisplayItemBlock;
 import gregtechlite.gtlitecore.common.item.SheetedFrameItemBlock;

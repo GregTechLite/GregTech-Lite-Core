@@ -5,7 +5,6 @@ import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import gregtechlite.gtlitecore.common.tileentity.Bottlecrate
 import gregtechlite.gtlitecore.common.util.BottlecrateUtils.bottleBoxes
 import gregtechlite.gtlitecore.common.util.BottlecrateUtils.getPhysIndex
-import groovyjarjarantlr4.v4.parse.ANTLRParser
 import net.minecraft.block.BlockHorizontal
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.BlockStateContainer
@@ -23,12 +22,9 @@ import net.minecraft.util.math.AxisAlignedBB
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.RayTraceResult
 import net.minecraft.util.math.Vec3d
-import net.minecraft.util.text.TextComponentString
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
 import net.minecraftforge.fluids.FluidUtil
-import net.minecraftforge.fml.common.FMLCommonHandler
-
 
 class BlockBottlecrate : BlockHorizontal(Material.WOOD) {
 
@@ -106,9 +102,6 @@ class BlockBottlecrate : BlockHorizontal(Material.WOOD) {
 
         val heldItem = playerIn.getHeldItem(hand)
         var hitSlot = -1
-
-        val server = FMLCommonHandler.instance().minecraftServerInstance
-        server.playerList.sendMessage(TextComponentString("$hitX,$hitY,$hitZ"))
 
         for (i in 0..8){
             if (te.getStackInSlot(i).isEmpty) continue

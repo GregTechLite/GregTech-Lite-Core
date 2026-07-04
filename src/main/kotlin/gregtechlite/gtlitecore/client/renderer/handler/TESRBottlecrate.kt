@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.client.renderer.handler
 
-import gregtechlite.gtlitecore.common.block.BlockBottlecrate
 import gregtechlite.gtlitecore.common.tileentity.Bottlecrate
 import gregtechlite.gtlitecore.common.util.BottlecrateUtils.BOTTLE_HEIGHT
 import gregtechlite.gtlitecore.common.util.BottlecrateUtils.BOTTLE_LENGTH

@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.common.util
 
-import gregtechlite.gtlitecore.common.block.BlockBottlecrate
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.EnumFacing.*
 import net.minecraft.util.math.AxisAlignedBB
