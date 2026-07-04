@@ -2,9 +2,9 @@ package gregtechlite.gtlitecore.common.block
 
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
-import gregtechlite.gtlitecore.common.tileentity.Bottlecrate
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.bottleBoxes
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.getPhysIndex
+import gregtechlite.gtlitecore.common.tileentity.TileEntityBlockcrate
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.bottleBoxes
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.getPhysIndex
 import net.minecraft.block.BlockHorizontal
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.BlockStateContainer
@@ -95,9 +95,9 @@ class BlockBottlecrate : BlockHorizontal(Material.WOOD) {
         if (worldIn.isRemote) return true
 
         val te: TileEntity? = worldIn.getTileEntity(pos)
-        if (te !is Bottlecrate) return false
+        if (te !is TileEntityBlockcrate) return false
 
-        val bottlecrate: Bottlecrate? = te as Bottlecrate?
+        val bottlecrate: TileEntityBlockcrate? = te as TileEntityBlockcrate?
         if (bottlecrate == null) return false
 
         val heldItem = playerIn.getHeldItem(hand)
@@ -163,7 +163,7 @@ class BlockBottlecrate : BlockHorizontal(Material.WOOD) {
          }
 
         val te= worldIn.getTileEntity(pos)
-        if (te !is Bottlecrate)  return
+        if (te !is TileEntityBlockcrate)  return
 
         for (i in 0..8){
             if (te.getStackInSlot(i).isEmpty) continue
@@ -184,7 +184,7 @@ class BlockBottlecrate : BlockHorizontal(Material.WOOD) {
     ): RayTraceResult? {
 
         val te = worldIn.getTileEntity(pos)
-        if (te !is Bottlecrate) return super.collisionRayTrace(blockState, worldIn, pos, start, end)
+        if (te !is TileEntityBlockcrate) return super.collisionRayTrace(blockState, worldIn, pos, start, end)
 
 
         val facing = blockState.getValue(FACING)
@@ -230,13 +230,13 @@ class BlockBottlecrate : BlockHorizontal(Material.WOOD) {
     override fun getRenderType(state: IBlockState): EnumBlockRenderType = EnumBlockRenderType.MODEL
 
     override fun createTileEntity(world: World, state: IBlockState): TileEntity? {
-        return Bottlecrate()
+        return TileEntityBlockcrate()
     }
 
     override fun breakBlock(world: World, pos: BlockPos, state: IBlockState) {
         val te = world.getTileEntity(pos)
-        if (te is Bottlecrate) {
-            val bottlecrate = te as Bottlecrate?
+        if (te is TileEntityBlockcrate) {
+            val bottlecrate = te as TileEntityBlockcrate?
             if (bottlecrate == null) {
                 super.breakBlock(world, pos, state)
                 return

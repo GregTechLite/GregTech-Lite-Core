@@ -1,22 +1,23 @@
 package gregtechlite.gtlitecore.client.renderer.handler
 
-import gregtechlite.gtlitecore.common.tileentity.Bottlecrate
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.BOTTLE_HEIGHT
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.BOTTLE_LENGTH
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.BOTTLE_WIDTH
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.CAP_HEIGHT
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.CAP_LENGTH
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.CAP_WIDTH
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.DEPTH_OFFSET
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.FLUID_HEIGHT
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.FLUID_LENGTH
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.FLUID_MARGIN
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.FLUID_WIDTH
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.NECK_HEIGHT
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.NECK_LENGTH
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.NECK_WIDTH
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.getPhysIndex
-import gregtechlite.gtlitecore.common.util.BottlecrateUtils.getStartPoint
+import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.common.tileentity.TileEntityBlockcrate
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.BOTTLE_HEIGHT
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.BOTTLE_LENGTH
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.BOTTLE_WIDTH
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.CAP_HEIGHT
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.CAP_LENGTH
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.CAP_WIDTH
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.DEPTH_OFFSET
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.FLUID_HEIGHT
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.FLUID_LENGTH
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.FLUID_MARGIN
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.FLUID_WIDTH
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.NECK_HEIGHT
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.NECK_LENGTH
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.NECK_WIDTH
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.getPhysIndex
+import gregtechlite.gtlitecore.common.block.BottlecrateUtils.getStartPoint
 import net.minecraft.block.BlockHorizontal.FACING
 import net.minecraft.client.renderer.BufferBuilder
 import net.minecraft.client.renderer.GlStateManager
@@ -25,7 +26,6 @@ import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import net.minecraft.item.ItemStack
-import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fluids.FluidUtil
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
@@ -34,12 +34,12 @@ import org.lwjgl.opengl.GL11
 
 
 @SideOnly(Side.CLIENT)
-class TESRBottlecrate : TileEntitySpecialRenderer<Bottlecrate>(){
+class TESRBottlecrate : TileEntitySpecialRenderer<TileEntityBlockcrate>(){
 
-    val TEXTURE = ResourceLocation("gtlitecore","textures/shaders/bottle_in_crate.png")
+    val TEXTURE = GTLiteMod.id("textures/shaders/bottle_in_crate.png")
 
     override fun render(
-        te: Bottlecrate,
+        te: TileEntityBlockcrate,
         x: Double,
         y: Double,
         z: Double,

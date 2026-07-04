@@ -143,6 +143,9 @@ object GTLiteBlocks
     lateinit var LEPTONIC_CHARGE: BlockLeptonicCharge
     lateinit var QUANTUM_CHROMODYNAMIC_CHARGE: BlockQuantumChromodynamicCharge
 
+    @JvmField
+    val BOTTLECRATE = BlockBottlecrate()
+
     // GT format material blocks.
     @JvmField
     val SHEETED_FRAMES = hashMapOf<GTMaterial, BlockSheetedFrame>()
@@ -198,8 +201,6 @@ object GTLiteBlocks
     lateinit var TRANSPARENT_CASING_02: VariantBlock<GlassCasing.Enum02>
     lateinit var TRANSPARENT_CASING_03: VariantBlock<GlassCasing.Enum03>
 
-    @JvmField
-    val BOTTLECRATE = BlockBottlecrate()
 
     fun init()
     {
@@ -547,6 +548,8 @@ object GTLiteBlocks
         registerItemModel(LEPTONIC_CHARGE)
         registerItemModel(QUANTUM_CHROMODYNAMIC_CHARGE)
 
+        setModelLocation(BOTTLECRATE)
+
         // Initialized meta blocks.
         registerItemModel(MOTOR_CASING)
         registerItemModel(PISTON_CASING)
@@ -576,8 +579,6 @@ object GTLiteBlocks
         registerItemModel(TRANSPARENT_CASING_01)
         registerItemModel(TRANSPARENT_CASING_02)
         registerItemModel(TRANSPARENT_CASING_03)
-
-        setModelLocation(BOTTLECRATE)
 
         ACTIVE_UNIQUE_CASING_01.onModelRegister()
         FUSION_CASING.onModelRegister()

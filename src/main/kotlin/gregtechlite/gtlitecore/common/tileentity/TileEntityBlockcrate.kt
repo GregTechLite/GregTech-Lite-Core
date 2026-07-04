@@ -8,8 +8,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity
 import net.minecraft.tileentity.TileEntity
 import net.minecraftforge.common.util.Constants
 
-
-class Bottlecrate: TileEntity() {
+class TileEntityBlockcrate: TileEntity() {
 
     private var inventory = Array<ItemStack>(9){ ItemStack.EMPTY }
     private var dirtySlots = mutableSetOf<Int>()

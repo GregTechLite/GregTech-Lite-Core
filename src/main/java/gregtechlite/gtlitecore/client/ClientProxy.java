@@ -10,7 +10,7 @@ import gregtechlite.gtlitecore.client.shader.CosmicShaderProgram;
 import gregtechlite.gtlitecore.common.CommonProxy;
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks;
 import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities;
-import gregtechlite.gtlitecore.common.tileentity.Bottlecrate;
+import gregtechlite.gtlitecore.common.tileentity.TileEntityBlockcrate;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -49,7 +49,7 @@ public class ClientProxy extends CommonProxy
     {
         GTLiteBlocks.registerItemModels();
 
-        ClientRegistry.bindTileEntitySpecialRenderer(Bottlecrate.class, new TESRBottlecrate());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockcrate.class, new TESRBottlecrate());
     }
 
 }

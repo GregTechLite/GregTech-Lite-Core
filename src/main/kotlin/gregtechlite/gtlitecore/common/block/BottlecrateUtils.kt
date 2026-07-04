@@ -1,7 +1,6 @@
-package gregtechlite.gtlitecore.common.util
+package gregtechlite.gtlitecore.common.block
 
 import net.minecraft.util.EnumFacing
-import net.minecraft.util.EnumFacing.*
 import net.minecraft.util.math.AxisAlignedBB
 
 object BottlecrateUtils {
@@ -45,10 +44,10 @@ object BottlecrateUtils {
         val visualRow = visualIndex/3
         val visualCol = visualIndex%3
         return when(facing){
-            NORTH -> Pair(2-visualCol,2-visualRow)
-            EAST -> Pair(visualRow,2-visualCol)
-            SOUTH -> Pair(visualCol,visualRow)
-            WEST -> Pair(2-visualRow,visualCol)
+            EnumFacing.NORTH -> Pair(2-visualCol,2-visualRow)
+            EnumFacing.EAST -> Pair(visualRow,2-visualCol)
+            EnumFacing.SOUTH -> Pair(visualCol,visualRow)
+            EnumFacing.WEST -> Pair(2-visualRow,visualCol)
             else -> Pair(visualCol,visualRow)
         }
     }
@@ -63,10 +62,10 @@ object BottlecrateUtils {
         val visualCol = visual%3
 
         val (physCol,physRow) = when(facing){
-            NORTH -> Pair(2-visualCol,2-visualRow)
-            EAST -> Pair(visualRow,2-visualCol)
-            SOUTH -> Pair(visualCol,visualRow)
-            WEST -> Pair(2-visualRow,visualCol)
+            EnumFacing.NORTH -> Pair(2-visualCol,2-visualRow)
+            EnumFacing.EAST -> Pair(visualRow,2-visualCol)
+            EnumFacing.SOUTH -> Pair(visualCol,visualRow)
+            EnumFacing.WEST -> Pair(2-visualRow,visualCol)
             else-> Pair(visualCol,visualRow)
         }
         return 3*physRow+physCol
@@ -83,10 +82,10 @@ object BottlecrateUtils {
         val physRow = physIndex/3
 
         val (visualCol,visualRow) =  when(facing){
-            NORTH -> Pair(2-physCol,2-physRow)
-            EAST -> Pair(2-physRow,physCol)
-            SOUTH -> Pair(physCol,physRow)
-            WEST -> Pair(physRow,2-physCol)
+            EnumFacing.NORTH -> Pair(2-physCol,2-physRow)
+            EnumFacing.EAST -> Pair(2-physRow,physCol)
+            EnumFacing.SOUTH -> Pair(physCol,physRow)
+            EnumFacing.WEST -> Pair(physRow,2-physCol)
             else -> Pair(physCol,physRow)
         }
         return 3*visualCol+visualRow
