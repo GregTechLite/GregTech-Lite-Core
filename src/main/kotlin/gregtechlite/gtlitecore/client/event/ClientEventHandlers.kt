@@ -7,7 +7,7 @@ import gregtech.api.GTValues.VOCNF
 import gregtech.api.unification.OreDictUnifier
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
-import gregtechlite.gtlitecore.client.renderer.handler.StructureSelectRenderer
+import gregtechlite.gtlitecore.client.renderer.handler.world.StructureSelectRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
 import gregtechlite.gtlitecore.common.block.BlockMetalWall

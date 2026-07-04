@@ -122,14 +122,11 @@ public class CommonProxy
         registry.register(GTLiteBlocks.DIMENSION_DISPLAY_OVERWORLD);
         registry.register(GTLiteBlocks.DIMENSION_DISPLAY_NETHER);
         registry.register(GTLiteBlocks.DIMENSION_DISPLAY_END);
+        registry.register(GTLiteBlocks.BOTTLECRATE);
         registry.register(GTLiteBlocks.NAQUADRIA_CHARGE);
         registry.register(GTLiteBlocks.TARANIUM_CHARGE);
         registry.register(GTLiteBlocks.LEPTONIC_CHARGE);
         registry.register(GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE);
-
-        registry.register(GTLiteBlocks.BOTTLECRATE);
-
-        // TODO Crops?...
 
         // Sheeted frames.
         GTLiteBlocks.SHEETED_FRAMES.values().stream()
@@ -249,12 +246,11 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_OVERWORLD, DimensionDisplayItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_NETHER, DimensionDisplayItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_END, DimensionDisplayItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.BOTTLECRATE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.NAQUADRIA_CHARGE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.TARANIUM_CHARGE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.LEPTONIC_CHARGE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE, ItemBlock::new));
-
-        registry.register(createItemBlock(GTLiteBlocks.BOTTLECRATE,ItemBlock::new));
 
         GTLiteBlocks.SHEETED_FRAMES.values().stream()
                 .distinct()

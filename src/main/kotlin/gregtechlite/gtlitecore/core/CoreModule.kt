@@ -116,8 +116,8 @@ internal class CoreModule : CustomModule
 
         logger.debug("Loading all MetaTileEntities and MetaEntities")
         GTLiteMetaTileEntities.init()
-        GTLiteMetaEntities.init()
         GTLiteTileEntities.init()
+        GTLiteMetaEntities.init()
 
         logger.debug("Starting to load Pre-Load contents by Proxies")
         proxy.onPreInit()
