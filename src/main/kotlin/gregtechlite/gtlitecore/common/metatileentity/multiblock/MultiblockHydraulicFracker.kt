@@ -3,6 +3,9 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
+import com.cleanroommc.modularui.api.drawable.IKey
+import com.cleanroommc.modularui.value.sync.IntSyncValue
+import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import gregtech.api.GTValues.VA
 import gregtech.api.capability.GregtechDataCodes.WORKABLE_ACTIVE
 import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
@@ -20,7 +23,10 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
+import gregtech.api.metatileentity.multiblock.ProgressBarMultiblock
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
+import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder
+import gregtech.api.mui.GTGuiTextures
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
@@ -41,14 +47,17 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import java.util.function.UnaryOperator
 import kotlin.math.max
+import kotlin.math.round
 
 class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
-    : MultiblockWithDisplayBase(id), IWorkable, ITieredMetaTileEntity
+    : MultiblockWithDisplayBase(id), IWorkable, ITieredMetaTileEntity, ProgressBarMultiblock
 {
 
     companion object
@@ -371,5 +380,55 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     override fun shouldShowVoidingModeButton(): Boolean = false
 
     override fun getTier(): Int = this.tier
+
+    override fun getProgressBarCount(): Int = 1
+
+    @Suppress("unstableApiUsage")
+    override fun registerBars(
+        templateBars: MutableList<UnaryOperator<TemplateBarBuilder>>,
+        guiSyncManager: PanelSyncManager
+    )
+    {
+        val veinValue = IntSyncValue {
+            BedrockFluidVeinHandler.getOperationsRemaining(world, pos.x / 16, pos.z / 16)
+        }
+
+        guiSyncManager.syncValue("veinRemaining", veinValue)
+
+        templateBars.add { bar -> bar
+                .progress {
+                    veinValue.value * 1.0 / BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS
+                }
+                .texture(GTGuiTextures.PROGRESS_BAR_FLUID_RIG_DEPLETION)
+                .tooltipBuilder { t ->
+                    if (isStructureFormed) {
+                        t.addLine(createVeinTooltip(veinValue))
+                    } else {
+                        t.addLine(IKey.lang("gregtech.multiblock.invalid_structure"))
+                    }
+                }
+        }
+    }
+
+    private fun createVeinTooltip(veinValue: IntSyncValue): String {
+        if (veinValue.value == BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS) {
+            return IKey.lang("gtlitecore.machine.hydraulic_fracker.vein.full").get()
+        } else {
+            val percent: Int = round(
+                100.0 * veinValue.value /
+                        BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS
+            ).toInt()
+            return if (percent > 40) {
+                TextFormatting.GREEN.toString() + IKey
+                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.high", percent)
+            } else if (percent > 10) {
+                TextFormatting.YELLOW.toString() + IKey
+                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.medium", percent)
+            } else {
+                TextFormatting.RED.toString() + IKey
+                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.low", percent)
+            }
+        }
+    }
 
 }
