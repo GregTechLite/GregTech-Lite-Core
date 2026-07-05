@@ -9,7 +9,7 @@ import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.common.metatileentities.multi.electric.MetaTileEntityPowerSubstation;
-import gregtechlite.gtlitecore.api.wireless.WirelessAbilities;
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates;
 import net.minecraft.block.state.IBlockState;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,7 +27,7 @@ import java.util.function.Supplier;
 import static gregtech.api.util.RelativeDirection.*;
 
 @Mixin(value = MetaTileEntityPowerSubstation.class, remap = false)
-public abstract class MixinPowerSubstation {
+public abstract class MixinMetaTileEntityPowerSubstation {
 
     @Shadow
     private EnergyContainerList inputHatches;
@@ -66,13 +66,13 @@ public abstract class MixinPowerSubstation {
                                 MultiblockAbility.INPUT_ENERGY,
                                 MultiblockAbility.SUBSTATION_INPUT_ENERGY,
                                 MultiblockAbility.INPUT_LASER,
-                                WirelessAbilities.INSTANCE.WIRELESS_ENERGY_STORAGE)
+                                TraceabilityPredicates.WIRELESS_ENERGY_STORAGE)
                                 .setMinGlobalLimited(1))
                         .or(MultiblockControllerBase.abilities(
                                 MultiblockAbility.OUTPUT_ENERGY,
                                 MultiblockAbility.SUBSTATION_OUTPUT_ENERGY,
                                 MultiblockAbility.OUTPUT_LASER,
-                                WirelessAbilities.INSTANCE.WIRELESS_ENERGY_STORAGE)
+                                TraceabilityPredicates.WIRELESS_ENERGY_STORAGE)
                                 .setMinGlobalLimited(1)))
                 .where('G', MultiblockControllerBase.states(getGlassState()))
                 .where('B', ((TraceabilityPredicate) getBatteryPredicate().get()))
@@ -87,14 +87,14 @@ public abstract class MixinPowerSubstation {
         inputs.addAll(self.getAbilities(MultiblockAbility.INPUT_ENERGY));
         inputs.addAll(self.getAbilities(MultiblockAbility.SUBSTATION_INPUT_ENERGY));
         inputs.addAll(self.getAbilities(MultiblockAbility.INPUT_LASER));
-        inputs.addAll(self.getAbilities(WirelessAbilities.INSTANCE.WIRELESS_ENERGY_STORAGE));
+        inputs.addAll(self.getAbilities(TraceabilityPredicates.WIRELESS_ENERGY_STORAGE));
         this.inputHatches = new EnergyContainerList(inputs);
 
         List<IEnergyContainer> outputs = new ArrayList<>();
         outputs.addAll(self.getAbilities(MultiblockAbility.OUTPUT_ENERGY));
         outputs.addAll(self.getAbilities(MultiblockAbility.SUBSTATION_OUTPUT_ENERGY));
         outputs.addAll(self.getAbilities(MultiblockAbility.OUTPUT_LASER));
-        outputs.addAll(self.getAbilities(WirelessAbilities.INSTANCE.WIRELESS_ENERGY_STORAGE));
+        outputs.addAll(self.getAbilities(TraceabilityPredicates.WIRELESS_ENERGY_STORAGE));
         this.outputHatches = new EnergyContainerList(outputs);
     }
 

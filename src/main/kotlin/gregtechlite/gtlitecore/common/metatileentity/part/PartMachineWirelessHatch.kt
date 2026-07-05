@@ -18,6 +18,10 @@ import gregtech.api.capability.IEnergyContainer
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart
 import gregtech.api.mui.GTGuis
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart
+import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_AMPERAGE
+import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_BUFFER_DURATION
+import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_CHANNEL
+import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_PRIORITY
 import gregtechlite.gtlitecore.api.wireless.WirelessEnergyHolder
 import gregtechlite.gtlitecore.api.wireless.WirelessNetworkManager
 import gregtechlite.gtlitecore.api.wireless.WirelessRole
@@ -38,7 +42,6 @@ abstract class PartMachineWirelessHatch(
 
     companion object {
         const val MAX_CHANNEL = 16
-        private const val UPDATE_WIRELESS_CHANNEL = 998877
         const val MIN_AMPERAGE = 1
         const val MIN_BUFFER_DURATION = 5
         const val MAX_BUFFER_DURATION = 600
@@ -109,11 +112,7 @@ abstract class PartMachineWirelessHatch(
         }
 
         markDirty()
-        writeCustomData(UPDATE_WIRELESS_CHANNEL) { buf ->
-            buf.writeInt(channel)
-            buf.writeInt(priority)
-            buf.writeInt(amperage)
-        }
+        writeCustomData(UPDATE_WIRELESS_AMPERAGE) { it.writeInt(amperage) }
     }
 
     fun setBufferDuration(newDuration: Int) {
@@ -132,12 +131,7 @@ abstract class PartMachineWirelessHatch(
         }
 
         markDirty()
-        writeCustomData(UPDATE_WIRELESS_CHANNEL) { buf ->
-            buf.writeInt(channel)
-            buf.writeInt(priority)
-            buf.writeInt(amperage)
-            buf.writeInt(bufferDurationSeconds)
-        }
+        writeCustomData(UPDATE_WIRELESS_BUFFER_DURATION) { it.writeInt(bufferDurationSeconds) }
     }
 
     override fun onScrewdriverClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing, hitResult: CuboidRayTraceResult): Boolean {
@@ -226,10 +220,7 @@ abstract class PartMachineWirelessHatch(
             priority = newPriority
             if (!world.isRemote) {
                 markDirty()
-                writeCustomData(UPDATE_WIRELESS_CHANNEL) { buf ->
-                    buf.writeInt(channel)
-                    buf.writeInt(priority)
-                }
+                writeCustomData(UPDATE_WIRELESS_PRIORITY) { it.writeInt(priority) }
             }
         }
     }
@@ -239,10 +230,7 @@ abstract class PartMachineWirelessHatch(
             channel = newChannel
             if (!world.isRemote) {
                 markDirty()
-                writeCustomData(UPDATE_WIRELESS_CHANNEL) { buf ->
-                    buf.writeInt(channel)
-                    buf.writeInt(priority)
-                }
+                writeCustomData(UPDATE_WIRELESS_CHANNEL) { it.writeInt(channel) }
             }
         }
     }
@@ -353,15 +341,11 @@ abstract class PartMachineWirelessHatch(
 
     override fun receiveCustomData(dataId: Int, buf: PacketBuffer) {
         super.receiveCustomData(dataId, buf)
-        if (dataId == UPDATE_WIRELESS_CHANNEL) {
-            channel = buf.readInt()
-            priority = buf.readInt()
-            if (buf.readableBytes() >= 4) {
-                amperage = buf.readInt()
-            }
-            if (buf.readableBytes() >= 4) {
-                bufferDurationSeconds = buf.readInt()
-            }
+        when (dataId) {
+            UPDATE_WIRELESS_CHANNEL -> channel = buf.readInt()
+            UPDATE_WIRELESS_PRIORITY -> priority = buf.readInt()
+            UPDATE_WIRELESS_AMPERAGE -> amperage = buf.readInt()
+            UPDATE_WIRELESS_BUFFER_DURATION -> bufferDurationSeconds = buf.readInt()
         }
     }
 

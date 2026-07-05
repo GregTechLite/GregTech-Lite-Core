@@ -29,7 +29,7 @@
     "MixinMetaTileEntityLargeChemicalReactor",
     "MixinMultiblockControllerBase",
     "MixinMultiblockRecipeLogic",
-    "MixinPowerSubstation",
+    "MixinMetaTileEntityPowerSubstation",
     "MixinMultiMapMultiblockController",
     "MixinOreConfigUtils",
     "MixinOreRecipeHandler",

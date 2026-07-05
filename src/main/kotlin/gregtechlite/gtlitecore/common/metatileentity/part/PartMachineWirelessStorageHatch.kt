@@ -11,7 +11,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.AbilityInstances
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.client.renderer.texture.Textures
-import gregtechlite.gtlitecore.api.wireless.WirelessAbilities
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates
 import gregtechlite.gtlitecore.api.wireless.WirelessRole
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -26,6 +26,10 @@ class PartMachineWirelessStorageHatch(
 
     override val role: WirelessRole = WirelessRole.STORAGE
     override val bufferCapacityMultiplier: Int = 2
+
+    init {
+        MultiblockAbility.registerMultiblockAbility(TraceabilityPredicates.WIRELESS_ENERGY_STORAGE, this)
+    }
 
     override fun initializeEnergyContainer() {
         energyContainer = object : EnergyContainerHandler(
@@ -81,7 +85,7 @@ class PartMachineWirelessStorageHatch(
     override fun getAbility(): MultiblockAbility<IEnergyContainer>? = null
 
     override fun getAbilities(): List<MultiblockAbility<*>> {
-        return listOf(WirelessAbilities.WIRELESS_ENERGY_STORAGE)
+        return listOf(TraceabilityPredicates.WIRELESS_ENERGY_STORAGE)
     }
 
     override fun registerAbilities(abilityInstances: AbilityInstances) {

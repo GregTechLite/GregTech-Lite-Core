@@ -143,8 +143,6 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAirIntakeHa
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumItemBus
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileCleaningMaintenanceHatch
-import gregtech.api.metatileentity.multiblock.MultiblockAbility
-import gregtechlite.gtlitecore.api.wireless.WirelessAbilities
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessDynamoHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessEnergyHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessStorageHatch
@@ -733,9 +731,6 @@ object GTLiteMetaTileEntities
         // 4201-4230: Wireless Storage Hatches (IV-MAX)
         WIRELESS_STORAGE_HATCH = register(4201, 0..9) {
             PartMachineWirelessStorageHatch(GTLiteMod.id("wireless_storage_hatch.${VN[it + IV].lowercase()}"), it + IV)
-        }
-        WIRELESS_STORAGE_HATCH.forEach {
-            MultiblockAbility.registerMultiblockAbility(WirelessAbilities.WIRELESS_ENERGY_STORAGE, it)
         }
 
         // 5001-5100: Item Import/Export Buses and Fluid Import/Export Hatches
