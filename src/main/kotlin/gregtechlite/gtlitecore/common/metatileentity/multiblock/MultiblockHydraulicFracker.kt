@@ -80,7 +80,6 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     private var isActive: Boolean = true
     private var isWorkingEnabled: Boolean = true
     private var wasActiveAndNeedsUpdate: Boolean = false
-    private var hasNotEnoughEnergy: Boolean = false
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = MultiblockHydraulicFracker(metaTileEntityId, tier)
@@ -210,14 +209,8 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
                 else
                     progressTime = max(1 * TICK, progressTime - 2 * TICK)
 
-                hasNotEnoughEnergy = true
             }
             return false
-        }
-
-        if (hasNotEnoughEnergy && getEnergyInputPerSecond() >= MAX_MULTIPLIER * VA[tier])
-        {
-            hasNotEnoughEnergy = false
         }
 
         if (drainTanks(FLUID_USE_AMOUNT, true))
@@ -236,6 +229,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     fun drainEnergy(simulate: Boolean): Boolean
     {
         val energyToDrain = getParallelMax() * VA[tier]
+        if (energyToDrain <= 0) return false
         val resultEnergy = energyContainer!!.energyStored - energyToDrain
         if (resultEnergy >= 0L && resultEnergy <= energyContainer!!.energyCapacity)
         {
@@ -247,9 +241,12 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     }
 
     private fun getParallelMax(): Int =
-        min(MAX_MULTIPLIER, (energyContainer!!.inputVoltage / VA[tier]).toInt())
+        if (energyContainer?.inputVoltage != null)
+            min(MAX_MULTIPLIER, (energyContainer!!.inputVoltage / VA[tier]).toInt())
+        else 0
 
-    fun getEnergyInputPerSecond(): Long = energyContainer!!.inputPerSec
+
+    private fun isParallelNotMaxed(): Boolean = getParallelMax() != MAX_MULTIPLIER
 
     @Suppress("SameParameterValue")
     private fun drainTanks(amount: Int, simulate: Boolean): Boolean
@@ -277,15 +274,19 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         return true
     }
 
-    override fun configureDisplayText(builder: MultiblockUIBuilder)
-    {
+    override fun configureDisplayText(builder: MultiblockUIBuilder) {
         builder.addEnergyUsageLine(energyContainer)
+            .setWorkingStatus(this.isWorkingEnabled, this.isActive)
             .addWorkingStatusLine()
             .addProgressLine(progress, maxProgress)
-            .addLowPowerLine(hasNotEnoughEnergy)
+            .addLowPowerLine(::isParallelNotMaxed) // TODO: Maybe a better low power display?
             .addCustom { manager, syncer ->
                 val workingMultiplier = syncer.syncInt { getParallelMax() }
-                manager.add(IKey.lang("Multiplier: %d/%d", workingMultiplier, MAX_MULTIPLIER))
+                manager.add(
+                    IKey.lang("gtlitecore.machine.hydraulic_fracker.multiplier",
+                        workingMultiplier, MAX_MULTIPLIER
+                    )
+                )
             }
     }
 
@@ -294,7 +295,9 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.2", formatNumbers(VA[tier])))
+        tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.2", formatNumbers(MAX_MULTIPLIER)))
+        tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.3", formatNumbers(VA[tier])))
+        tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.4", formatNumbers(VA[tier])))
     }
 
     override fun getProgress(): Int = progressTime
@@ -314,7 +317,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         }
     }
 
-    override fun isActive(): Boolean = super.isActive() && isActive
+    override fun isActive(): Boolean = isActive
 
     fun setActive(active: Boolean)
     {

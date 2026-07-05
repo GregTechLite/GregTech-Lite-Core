@@ -2344,9 +2344,11 @@ gtlitecore.machine.large_turbine.supercritical_fluid.name=Large Supercritical Fl
 
 gtlitecore.machine.hydraulic_fracker.name=Hydraulic Fracker
 gtlitecore.machine.hydraulic_fracker.vein.full=Vein Full
+gtlitecore.machine.hydraulic_fracker.multiplier=Current Multiplier: %d/%d
 gtlitecore.machine.hydraulic_fracker.tooltip.1=Use §bFracturing Fluid§7 to supplement bedrock fluid vein, consuming §f1000L§7 each time.
-gtlitecore.machine.hydraulic_fracker.tooltip.2=§eEnergy Usage: §f%s EU/t
-
+gtlitecore.machine.hydraulic_fracker.tooltip.2=Supply up to §f%sx§7 of the base energy to boost the hydraulic pressure
+gtlitecore.machine.hydraulic_fracker.tooltip.3=§eBase Energy Usage: §f%s EU/t
+gtlitecore.machine.hydraulic_fracker.tooltip.4=Every §f%s EU/t§7 of the input voltage adds §f100%% efficiency§7
 
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
 
