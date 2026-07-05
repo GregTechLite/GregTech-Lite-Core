@@ -54,6 +54,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.function.UnaryOperator
 import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.round
 
 class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
@@ -64,6 +65,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     {
         private const val FLUID_USE_AMOUNT = 1000
         private const val MAX_PROGRESS = 5 * SECOND
+        private const val MAX_MULTIPLIER = 20
 
         private val casingState = MetalCasing.WATERTIGHT_STEEL.state
         private val secondCasingState = GTMetalCasing.STAINLESS_CLEAN.state
@@ -187,7 +189,10 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         if (drainTanks(FLUID_USE_AMOUNT, true))
         {
             drainTanks(FLUID_USE_AMOUNT, false)
-            replenishVein(false)
+            repeat(getParallelMax())
+            {
+                replenishVein(false)
+            }
         }
     }
 
@@ -209,14 +214,15 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
             }
             return false
         }
-        else if (drainTanks(FLUID_USE_AMOUNT, true))
-        {
-            return true
-        }
 
-        if (hasNotEnoughEnergy && getEnergyInputPerSecond() > 19L * VA[tier])
+        if (hasNotEnoughEnergy && getEnergyInputPerSecond() >= MAX_MULTIPLIER * VA[tier])
         {
             hasNotEnoughEnergy = false
+        }
+
+        if (drainTanks(FLUID_USE_AMOUNT, true))
+        {
+            return true
         }
 
         if (isActive())
@@ -229,16 +235,19 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
 
     fun drainEnergy(simulate: Boolean): Boolean
     {
-        val energyToDrain = VA[tier].toLong()
+        val energyToDrain = getParallelMax() * VA[tier]
         val resultEnergy = energyContainer!!.energyStored - energyToDrain
         if (resultEnergy >= 0L && resultEnergy <= energyContainer!!.energyCapacity)
         {
             if (!simulate)
-                energyContainer!!.changeEnergy(-energyToDrain)
+                energyContainer!!.changeEnergy((-energyToDrain).toLong())
             return true
         }
         return false
     }
+
+    private fun getParallelMax(): Int =
+        min(MAX_MULTIPLIER, (energyContainer!!.inputVoltage / VA[tier]).toInt())
 
     fun getEnergyInputPerSecond(): Long = energyContainer!!.inputPerSec
 
@@ -274,6 +283,10 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
             .addWorkingStatusLine()
             .addProgressLine(progress, maxProgress)
             .addLowPowerLine(hasNotEnoughEnergy)
+            .addCustom { manager, syncer ->
+                val workingMultiplier = syncer.syncInt { getParallelMax() }
+                manager.add(IKey.lang("Multiplier: %d/%d", workingMultiplier, MAX_MULTIPLIER))
+            }
     }
 
     @SideOnly(Side.CLIENT)
