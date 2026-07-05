@@ -17,11 +17,11 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 
-class WirelessEnergyHatch(
+class PartMachineWirelessEnergyHatch(
     id: ResourceLocation,
     tier: Int,
     initialAmperage: Int = 2
-) : WirelessHatch(id, tier, initialAmperage) {
+) : PartMachineWirelessHatch(id, tier, initialAmperage) {
 
     override val role: WirelessRole = WirelessRole.INPUT
     override val bufferCapacityMultiplier: Int = 1
@@ -50,7 +50,7 @@ class WirelessEnergyHatch(
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?): MetaTileEntity {
-        return WirelessEnergyHatch(metaTileEntityId, getTier(), amperage)
+        return PartMachineWirelessEnergyHatch(metaTileEntityId, getTier(), amperage)
     }
 
     override fun getAbility(): MultiblockAbility<IEnergyContainer>? {

@@ -7,6 +7,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "AccessorMultiblockUIFactory",
+    "AccessorMultiblockWithDisplayBase",
     "AccessorTraceabilityPredicate",
     "MixinBlockPattern",
     "MixinMultiblockUIBuilder",
@@ -28,6 +29,7 @@
     "MixinMetaTileEntityLargeChemicalReactor",
     "MixinMultiblockControllerBase",
     "MixinMultiblockRecipeLogic",
+    "MixinPowerSubstation",
     "MixinMultiMapMultiblockController",
     "MixinOreConfigUtils",
     "MixinOreRecipeHandler",

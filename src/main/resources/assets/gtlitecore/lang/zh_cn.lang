@@ -3001,6 +3001,7 @@ gtlitecore.top.wireless_hatch.channel=频道: %s
 gtlitecore.top.wireless_hatch.connections=连接数: %d
 gtlitecore.top.wireless_hatch.priority=优先级: %d
 gtlitecore.top.wireless_hatch.no_channel=未连接频道
+gtlitecore.top.wireless_hatch.error_unknown=未知错误
 gtlitecore.top.wireless_hatch.amperage=电流: %sA
 gtlitecore.top.wireless_hatch.overflow=溢出: %s EU
 

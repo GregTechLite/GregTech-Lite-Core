@@ -52,9 +52,6 @@ internal object RecipeManager
 
         // Pseudo Recipes (Recipe Frontends).
         SpacePumpRecipeFrontend.init()
-
-        // Wireless Hatch Recipes.
-        WirelessHatchRecipeLoader.init()
     }
 
     // @formatter:on

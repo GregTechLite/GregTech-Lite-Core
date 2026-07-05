@@ -5,12 +5,15 @@ import com.cleanroommc.modularui.drawable.Rectangle
 import com.cleanroommc.modularui.factory.PosGuiData
 import com.cleanroommc.modularui.screen.ModularPanel
 import com.cleanroommc.modularui.screen.UISettings
+import com.cleanroommc.modularui.utils.MouseData
 import com.cleanroommc.modularui.value.sync.IntSyncValue
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.widgets.ButtonWidget
+import com.cleanroommc.modularui.widgets.layout.Flow
 import com.cleanroommc.modularui.widgets.SliderWidget
-import com.cleanroommc.modularui.widgets.TextWidget
 import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget
+import gregtech.api.mui.GTGuiTextures
+import gregtech.common.mui.widget.GTTextFieldWidget
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart
 import gregtech.api.mui.GTGuis
@@ -27,7 +30,7 @@ import net.minecraft.util.EnumFacing
 import net.minecraft.util.EnumHand
 import net.minecraft.util.ResourceLocation
 
-abstract class WirelessHatch(
+abstract class PartMachineWirelessHatch(
     id: ResourceLocation,
     tier: Int,
     initialAmperage: Int = 2
@@ -260,75 +263,76 @@ abstract class WirelessHatch(
             { this.priority },
             { newPriority -> setPriority(newPriority) }
         )
-        val ampTrigger = IntSyncValue(
-            { 0 },
-            null,
-            { 0 },
-            { command ->
-                if (command == 1) setAmperage(amperage * 2)
-                else if (command == -1) setAmperage(amperage / 2)
-            }
+        val ampSync = IntSyncValue(
+            { this.amperage },
+            { newAmp -> setAmperage(newAmp) }
         )
-        panelSyncManager.syncValue("ampTrigger", 0, ampTrigger)
         val durationSync = IntSyncValue(
             { this.bufferDurationSeconds },
             { newDuration -> setBufferDuration(newDuration.coerceIn(MIN_BUFFER_DURATION, MAX_BUFFER_DURATION)) }
         )
 
-        return GTGuis.createPanel(this, 180, 126)
-            .child(IKey.lang(metaFullName).asWidget().pos(5, 5))
-            .child(IKey.lang("gtlitecore.gui.wireless_hatch.channel_label").asWidget().pos(5, 25))
-            .child(TextFieldWidget()
-                .pos(90, 22)
-                .size(80, 18)
-                .setNumbers(0, MAX_CHANNEL)
-                .value(channelSync)
-                .setTextColor(0xFFAAAA99.toInt()))
-            .child(IKey.lang("gtlitecore.gui.wireless_hatch.priority_label").asWidget().pos(5, 47))
-            .child(TextFieldWidget()
-                .pos(90, 44)
-                .size(80, 18)
-                .setNumbers(Int.MIN_VALUE, Int.MAX_VALUE)
-                .value(prioritySync)
-                .setTextColor(0xFFAAAA99.toInt()))
-            .child(IKey.lang("gtlitecore.gui.wireless_hatch.amperage_label").asWidget().pos(5, 69))
-            .child(TextWidget(IKey.dynamic { "${amperage}A" })
-                .pos(90, 68))
-            .child(ButtonWidget()
-                .pos(135, 66)
-                .size(16, 18)
-                .overlay(IKey.str("\u00d72"))
-                .onMouseTapped {
-                    if (this.amperage < getMaxAmperage()) {
-                        ampTrigger.setIntValue(1, true, true)
-                    }
-                    true
-                })
-            .child(ButtonWidget()
-                .pos(153, 66)
-                .size(16, 18)
-                .overlay(IKey.str("\u00f72"))
-                .onMouseTapped {
-                    if (this.amperage > MIN_AMPERAGE) {
-                        ampTrigger.setIntValue(-1, true, true)
-                    }
-                    true
-                })
-            .child(IKey.lang("gtlitecore.gui.wireless_hatch.buffer_duration_label").asWidget().pos(5, 89))
-            .child(SliderWidget()
-                .pos(90, 88)
-                .size(45, 12)
-                .bounds(MIN_BUFFER_DURATION.toDouble(), MAX_BUFFER_DURATION.toDouble())
-                .background(Rectangle().setColor(0xFF333333.toInt()))
-                .value(durationSync))
-            .child(TextFieldWidget()
-                .pos(138, 86)
-                .size(28, 14)
-                .setNumbers(MIN_BUFFER_DURATION, MAX_BUFFER_DURATION)
-                .value(durationSync)
-                .setTextColor(0xFFAAAA99.toInt()))
-            .child(TextWidget(IKey.str("s"))
-                .pos(168, 90))
+        return GTGuis.createPanel(this, 180, 110)
+            .child(Flow.column().margin(7, 8).widthRel(1f).coverChildrenHeight()
+                .child(IKey.lang(metaFullName).asWidget().marginBottom(4))
+                .child(Flow.row().coverChildrenHeight().marginBottom(2).widthRel(1f)
+                    .child(IKey.lang("gtlitecore.gui.wireless_hatch.channel_label").asWidget().width(90))
+                    .child(TextFieldWidget()
+                        .width(80)
+                        .setNumbers(0, MAX_CHANNEL)
+                        .value(channelSync)
+                        .setTextColor(0xFFAAAA99.toInt())))
+                .child(Flow.row().coverChildrenHeight().marginBottom(2).widthRel(1f)
+                    .child(IKey.lang("gtlitecore.gui.wireless_hatch.priority_label").asWidget().width(90))
+                    .child(TextFieldWidget()
+                        .width(80)
+                        .setNumbers(Int.MIN_VALUE, Int.MAX_VALUE)
+                        .value(prioritySync)
+                        .setTextColor(0xFFAAAA99.toInt())))
+                .child(Flow.row().coverChildrenHeight().marginBottom(2).widthRel(1f)
+                    .child(IKey.lang("gtlitecore.gui.wireless_hatch.amperage_label").asWidget().width(90))
+                    .child(ButtonWidget()
+                        .width(18)
+                        .onMouseTapped { mouseButton ->
+                            val factor = if (MouseData.create(mouseButton).shift) 4 else 2
+                            ampSync.setIntValue((amperage / factor).coerceAtLeast(MIN_AMPERAGE), true, true)
+                            true
+                        }
+                        .overlay(IKey.dynamic {
+                            val shift = net.minecraft.client.gui.GuiScreen.isShiftKeyDown()
+                            if (shift) "/4" else "/2"
+                        }))
+                    .child(GTTextFieldWidget()
+                        .width(44)
+                        .setPostFix("A")
+                        .setNumbers(MIN_AMPERAGE, getMaxAmperage())
+                        .setTextColor(0xFFAAAA99.toInt())
+                        .value(ampSync)
+                        .background(GTGuiTextures.DISPLAY))
+                    .child(ButtonWidget()
+                        .width(18)
+                        .onMouseTapped { mouseButton ->
+                            val factor = if (MouseData.create(mouseButton).shift) 4 else 2
+                            ampSync.setIntValue((amperage * factor).coerceAtMost(getMaxAmperage()), true, true)
+                            true
+                        }
+                        .overlay(IKey.dynamic {
+                            val shift = net.minecraft.client.gui.GuiScreen.isShiftKeyDown()
+                            if (shift) "x4" else "x2"
+                        })))
+                .child(Flow.row().coverChildrenHeight().marginBottom(2).widthRel(1f)
+                    .child(IKey.lang("gtlitecore.gui.wireless_hatch.buffer_duration_label").asWidget().width(90))
+                    .child(SliderWidget()
+                        .width(50)
+                        .bounds(MIN_BUFFER_DURATION.toDouble(), MAX_BUFFER_DURATION.toDouble())
+                        .background(Rectangle().setColor(0xFF333333.toInt()))
+                        .value(durationSync))
+                    .child(GTTextFieldWidget()
+                        .width(30)
+                        .setPostFix { "s" }
+                        .setNumbers(MIN_BUFFER_DURATION, MAX_BUFFER_DURATION)
+                        .value(durationSync)
+                        .setTextColor(0xFFAAAA99.toInt()))))
     }
 
     override fun writeInitialSyncData(buf: PacketBuffer) {

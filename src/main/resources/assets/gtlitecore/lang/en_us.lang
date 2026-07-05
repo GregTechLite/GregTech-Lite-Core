@@ -4046,6 +4046,7 @@ gtlitecore.top.wireless_hatch.channel=Channel: %s
 gtlitecore.top.wireless_hatch.connections=Connections: %d
 gtlitecore.top.wireless_hatch.priority=Priority: %d
 gtlitecore.top.wireless_hatch.no_channel=Not connected to channel
+gtlitecore.top.wireless_hatch.error_unknown=Unknown Error
 gtlitecore.top.wireless_hatch.amperage=Amperage: %sA
 gtlitecore.top.wireless_hatch.overflow=Overflow: %s EU
 

@@ -1,12 +1,13 @@
 package gregtechlite.gtlitecore.integration.theoneprobe.provider
 
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
+import gregtech.api.util.TextComponentUtil.translationWithColor
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.wireless.WirelessNetworkManager
-import gregtechlite.gtlitecore.common.metatileentity.part.WirelessDynamoHatch
-import gregtechlite.gtlitecore.common.metatileentity.part.WirelessEnergyHatch
-import gregtechlite.gtlitecore.common.metatileentity.part.WirelessHatch
-import gregtechlite.gtlitecore.common.metatileentity.part.WirelessStorageHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessDynamoHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessEnergyHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessStorageHatch
 import mcjty.theoneprobe.api.IProbeHitData
 import mcjty.theoneprobe.api.IProbeInfo
 import mcjty.theoneprobe.api.IProbeInfoProvider
@@ -14,8 +15,8 @@ import mcjty.theoneprobe.api.NumberFormat
 import mcjty.theoneprobe.api.ProbeMode
 import mcjty.theoneprobe.apiimpl.elements.ElementProgress
 import net.minecraft.block.state.IBlockState
-import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 
 /**
@@ -32,11 +33,11 @@ class WirelessHatchInfoProvider : IProbeInfoProvider {
         if (tile !is IGregTechTileEntity) return
 
         val mte = tile.metaTileEntity ?: return
-        if (mte !is WirelessHatch) return
+        if (mte !is PartMachineWirelessHatch) return
 
-        val isInput = mte is WirelessEnergyHatch
-        val isOutput = mte is WirelessDynamoHatch
-        val isStorage = mte is WirelessStorageHatch
+        val isInput = mte is PartMachineWirelessEnergyHatch
+        val isOutput = mte is PartMachineWirelessDynamoHatch
+        val isStorage = mte is PartMachineWirelessStorageHatch
 
         val channel = mte.getChannel()
         val bufferStored = mte.getBufferEnergyStored()
@@ -46,23 +47,30 @@ class WirelessHatchInfoProvider : IProbeInfoProvider {
         val overflow = mte.overflowPool
 
         // Display role and amperage (always visible)
-        val roleText = when {
-            isInput -> I18n.format("gtlitecore.top.wireless_hatch.role_input")
-            isOutput -> I18n.format("gtlitecore.top.wireless_hatch.role_output")
-            isStorage -> I18n.format("gtlitecore.top.wireless_hatch.role_storage")
-            else -> "??"
+        val roleKey = when {
+            isInput -> "gtlitecore.top.wireless_hatch.role_input"
+            isOutput -> "gtlitecore.top.wireless_hatch.role_output"
+            isStorage -> "gtlitecore.top.wireless_hatch.role_storage"
+            else -> {
+                info.text(TextFormatting.RED.toString() + "{*gtlitecore.top.wireless_hatch.error_unknown*}")
+                return
+            }
         }
-        info.text("§e$roleText")
-        info.text(I18n.format("gtlitecore.top.wireless_hatch.amperage", amperage))
+        info.text("{*$roleKey*}")
+        info.text(translationWithColor(TextFormatting.GRAY,
+            "gtlitecore.top.wireless_hatch.amperage", amperage).formattedText)
 
         // Display channel info
         if (channel > 0) {
-            info.text(I18n.format("gtlitecore.top.wireless_hatch.channel", channel))
+            info.text(translationWithColor(TextFormatting.GRAY,
+                "gtlitecore.top.wireless_hatch.channel", channel).formattedText)
             val connectionCount = WirelessNetworkManager.getConnectionCount(channel)
-            info.text(I18n.format("gtlitecore.top.wireless_hatch.connections", connectionCount))
-            info.text(I18n.format("gtlitecore.top.wireless_hatch.priority", priority))
+            info.text(translationWithColor(TextFormatting.GRAY,
+                "gtlitecore.top.wireless_hatch.connections", connectionCount).formattedText)
+            info.text(translationWithColor(TextFormatting.GRAY,
+                "gtlitecore.top.wireless_hatch.priority", priority).formattedText)
         } else {
-            info.text(I18n.format("gtlitecore.top.wireless_hatch.no_channel"))
+            info.text("{*gtlitecore.top.wireless_hatch.no_channel*}")
         }
 
         // Display buffer progress
@@ -94,7 +102,8 @@ class WirelessHatchInfoProvider : IProbeInfoProvider {
 
         // Display overflow pool if non-zero
         if (overflow > 0) {
-            info.text(I18n.format("gtlitecore.top.wireless_hatch.overflow", overflow))
+            info.text(translationWithColor(TextFormatting.GRAY,
+                "gtlitecore.top.wireless_hatch.overflow", overflow).formattedText)
         }
     }
 

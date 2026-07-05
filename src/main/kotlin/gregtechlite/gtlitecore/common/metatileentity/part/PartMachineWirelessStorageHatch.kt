@@ -11,17 +11,18 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.AbilityInstances
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.client.renderer.texture.Textures
+import gregtechlite.gtlitecore.api.wireless.WirelessAbilities
 import gregtechlite.gtlitecore.api.wireless.WirelessRole
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 
-class WirelessStorageHatch(
+class PartMachineWirelessStorageHatch(
     id: ResourceLocation,
     tier: Int,
     initialAmperage: Int = 2
-) : WirelessHatch(id, tier, initialAmperage) {
+) : PartMachineWirelessHatch(id, tier, initialAmperage) {
 
     override val role: WirelessRole = WirelessRole.STORAGE
     override val bufferCapacityMultiplier: Int = 2
@@ -74,13 +75,13 @@ class WirelessStorageHatch(
     }
 
     override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?): MetaTileEntity {
-        return WirelessStorageHatch(metaTileEntityId, getTier(), amperage)
+        return PartMachineWirelessStorageHatch(metaTileEntityId, getTier(), amperage)
     }
 
     override fun getAbility(): MultiblockAbility<IEnergyContainer>? = null
 
     override fun getAbilities(): List<MultiblockAbility<*>> {
-        return listOf(MultiblockAbility.SUBSTATION_INPUT_ENERGY, MultiblockAbility.SUBSTATION_OUTPUT_ENERGY)
+        return listOf(WirelessAbilities.WIRELESS_ENERGY_STORAGE)
     }
 
     override fun registerAbilities(abilityInstances: AbilityInstances) {
