@@ -270,8 +270,8 @@ object GTLiteMetaTileEntities
     lateinit var DUAL_IMPORT_HATCH: Array<PartMachineDualHatch>
     lateinit var DUAL_EXPORT_HATCH: Array<PartMachineDualHatch>
 
-    lateinit var WIRELESS_ENERGY_HATCH: Array<PartMachineWirelessEnergyHatch>
-    lateinit var WIRELESS_DYNAMO_HATCH: Array<PartMachineWirelessDynamoHatch>
+    lateinit var WIRELESS_ENERGY_INPUT_HATCH: Array<PartMachineWirelessEnergyHatch>
+    lateinit var WIRELESS_ENERGY_OUTPUT_HATCH: Array<PartMachineWirelessDynamoHatch>
     lateinit var WIRELESS_STORAGE_HATCH: Array<PartMachineWirelessStorageHatch>
 
     // endregion
@@ -719,12 +719,12 @@ object GTLiteMetaTileEntities
         }
 
         // 4146-4160: Wireless Energy Hatches (ULV-MAX)
-        WIRELESS_ENERGY_HATCH = register(4146, 0..14) {
+        WIRELESS_ENERGY_INPUT_HATCH = register(4146, 0..14) {
             PartMachineWirelessEnergyHatch(GTLiteMod.id("wireless_energy_hatch.input.${VN[it].lowercase()}"), it)
         }
 
         // 4161-4175: Wireless Dynamo Hatches (ULV-MAX)
-        WIRELESS_DYNAMO_HATCH = register(4161, 0..14) {
+        WIRELESS_ENERGY_OUTPUT_HATCH = register(4161, 0..14) {
             PartMachineWirelessDynamoHatch(GTLiteMod.id("wireless_energy_hatch.output.${VN[it].lowercase()}"), it)
         }
 
