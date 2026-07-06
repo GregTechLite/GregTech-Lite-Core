@@ -3,6 +3,12 @@ package gregtechlite.gtlitecore.common.metatileentity.part
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
+import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.OpV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.ULV
+import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VNF
 import gregtech.api.capability.IEnergyContainer
@@ -90,6 +96,14 @@ class PartMachineWirelessStorageHatch(id: ResourceLocation, tier: Int, initialAm
         super.update()
         if (world.isRemote) return
         updateWireless()
+    }
+
+    override fun getMaxAmperage(): Int = when (tier)
+    {
+        in ULV..UHV -> 256
+        in UEV..UXV -> 1024
+        in OpV..MAX -> 4096
+        else -> 2
     }
 
     override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?,
