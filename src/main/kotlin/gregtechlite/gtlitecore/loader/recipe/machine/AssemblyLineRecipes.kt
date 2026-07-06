@@ -1,18 +1,22 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
+import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
+import gregtech.api.fluids.store.FluidStorageKeys
 import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
 import gregtech.api.recipes.RecipeMaps.RESEARCH_STATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
@@ -24,7 +28,11 @@ import gregtech.api.unification.material.Materials.DrillingFluid
 import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.HSSE
+import gregtech.api.unification.material.Materials.Helium
+import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.NaquadahAlloy
+import gregtech.api.unification.material.Materials.Naquadria
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
@@ -40,12 +48,14 @@ import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.lens
+import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.round
 import gregtech.api.unification.ore.OrePrefix.spring
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
+import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.EMITTER_LuV
 import gregtech.common.items.MetaItems.EMITTER_OpV
@@ -79,9 +89,12 @@ import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_LuV
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_UV
 import gregtech.common.items.MetaItems.VOLTAGE_COIL_ZPM
+import gregtech.common.metatileentities.MetaTileEntities.ACTIVE_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_OUTPUT_HATCH
 import gregtech.loaders.recipe.CraftingComponent
 import gregtechlite.gtlitecore.api.HOUR
 import gregtechlite.gtlitecore.api.MINUTE
@@ -91,12 +104,19 @@ import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.recipe.util.TierBridge
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DegenerateRhenium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Legendarium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
@@ -106,8 +126,15 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumPotassiumEu
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpaceTime
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyB
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
+import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
+import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCoil
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.EMITTER_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENERGISED_TESSERACT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_IV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_LuV
@@ -135,7 +162,10 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_OUTPUT_HATCH_1048576
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_OUTPUT_HATCH_16777216
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_OUTPUT_HATCH_4194304
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_ENERGY_OUTPUT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_ENERGY_INPUT_HATCH
 import net.minecraft.item.ItemStack
+import kotlin.math.max
 
 internal object AssemblyLineRecipes
 {
@@ -147,6 +177,7 @@ internal object AssemblyLineRecipes
         miningDroneRecipes()
         energyHatchesRecipes()
         laserHatchesRecipes()
+        wirelessEnergyHatchesRecipes()
     }
 
     private fun miningDroneRecipes()
@@ -895,6 +926,155 @@ internal object AssemblyLineRecipes
                         .CWUt(32)
                 }
             }
+        }
+    }
+
+    private fun wirelessEnergyHatchesRecipes()
+    {
+        for (tier in ULV..MAX)
+        {
+            val fusionCasing = when (tier)
+            {
+                in ULV..IV  -> GTFusionCasing.FUSION_COIL.stack
+                in LuV..UIV -> FusionCoil.ADVANCED.stack
+                in UXV..MAX -> FusionCoil.ULTIMATE.stack
+                else        -> GTGlassCasing.FUSION_GLASS.stack // fallback
+            }
+
+            val wire = when (tier)
+            {
+                in ULV..IV -> Bedrockium
+                in LuV..ZPM -> Adamantium
+                in UV..UHV -> Taranium
+                in UEV..UIV -> Infinity
+                in UXV..MAX -> SpaceTime
+                else -> Iron
+            }
+
+            val dense = when (tier)
+            {
+                in ULV..IV -> Naquadria
+                in LuV..ZPM -> Neutronium
+                in UV..UHV -> MetastableHassium
+                in UEV..UIV -> HalkoniteSteel
+                in UXV..MAX -> TranscendentMetal
+                else -> Iron
+            }
+
+            val casingCount = when (tier)
+            {
+                in ULV..HV  -> 1
+                in EV..ZPM  -> 4
+                in UV..UIV  -> 16
+                in UXV..MAX -> 64
+                else -> 0
+            }
+
+            val plateCount = when (tier)
+            {
+                in ULV..MV -> 1
+                in HV..IV -> 2
+                in LuV..UV -> 4
+                in UHV..UIV -> 5
+                in UXV..MAX -> 6
+                else -> 0
+            }
+
+            // Wireless Energy Hatch
+            val builderA = ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ENERGY_INPUT_HATCH[tier])
+                .inputs(fusionCasing.copy(casingCount))
+                .inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(casingCount))
+                .input(ACTIVE_TRANSFORMER)
+                .inputs(GTComputerCasing.HIGH_POWER_CASING.getStack(casingCount))
+                .input(wireGtHex, wire, casingCount)
+                .input(plateDense, dense, plateCount)
+                .input(circuit, TierBridge.of(tier).material, (casingCount / 4).coerceIn(1, 16))
+
+            if (tier >= UXV)
+            {
+                builderA.input(ENERGISED_TESSERACT)
+            }
+
+            if (tier in ULV..UHV)
+            {
+                builderA.fluidInputs(SolderingAlloy.getFluid(L * 36))
+                    .fluidInputs(Lubricant.getFluid(16000))
+                    .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 8000))
+            }
+            else
+            {
+                builderA.fluidInputs(MutatedLivingSolder.getFluid(L * 36))
+                    .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+                    .fluidInputs(Helium.getPlasma(8000))
+            }
+
+            if (tier in ULV..UEV)
+            {
+                builderA.fluidInputs(DegenerateRhenium.getFluid(500))
+            }
+            else
+            {
+                builderA.fluidInputs(Shirabon.getFluid(L * 4))
+            }
+
+            builderA.output(WIRELESS_ENERGY_INPUT_HATCH[tier])
+                .EUt(max(VA[UHV], VA[tier]))
+                .duration(10 * SECOND)
+                .stationResearch {
+                    it.researchStack(SUBSTATION_ENERGY_INPUT_HATCH[tier])
+                        .EUt(max(VA[UHV], VA[tier]))
+                        .CWUt(if (tier in ULV..UHV) 16 else 32)
+                }
+                .buildAndRegister()
+
+            // Wireless Dynamo Hatch
+            val builderB = ASSEMBLY_LINE_RECIPES.recipeBuilder()
+                .input(ENERGY_OUTPUT_HATCH[tier])
+                .inputs(fusionCasing.copy(casingCount))
+                .inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(casingCount))
+                .input(ACTIVE_TRANSFORMER)
+                .inputs(GTComputerCasing.HIGH_POWER_CASING.getStack(casingCount))
+                .input(wireGtHex, wire, casingCount)
+                .input(plateDense, dense, plateCount)
+                .input(circuit, TierBridge.of(tier).material, (casingCount / 4).coerceIn(1, 16))
+
+            if (tier >= UXV)
+            {
+                builderB.input(ENERGISED_TESSERACT)
+            }
+
+            if (tier in ULV..UHV)
+            {
+                builderB.fluidInputs(SolderingAlloy.getFluid(L * 36))
+                    .fluidInputs(Lubricant.getFluid(16000))
+                    .fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 8000))
+            }
+            else
+            {
+                builderB.fluidInputs(MutatedLivingSolder.getFluid(L * 36))
+                    .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+                    .fluidInputs(Helium.getPlasma(8000))
+            }
+
+            if (tier in ULV..UEV)
+            {
+                builderB.fluidInputs(DegenerateRhenium.getFluid(500))
+            }
+            else
+            {
+                builderB.fluidInputs(Shirabon.getFluid(L * 4))
+            }
+
+            builderB.output(WIRELESS_ENERGY_OUTPUT_HATCH[tier])
+                .EUt(max(VA[UHV], VA[tier]))
+                .duration(10 * SECOND)
+                .stationResearch {
+                    it.researchStack(SUBSTATION_ENERGY_OUTPUT_HATCH[tier])
+                        .EUt(max(VA[UHV], VA[tier]))
+                        .CWUt(if (tier in ULV..UHV) 16 else 32)
+                }
+                .buildAndRegister()
         }
     }
 

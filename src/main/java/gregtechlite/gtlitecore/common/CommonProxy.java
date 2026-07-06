@@ -122,12 +122,11 @@ public class CommonProxy
         registry.register(GTLiteBlocks.DIMENSION_DISPLAY_OVERWORLD);
         registry.register(GTLiteBlocks.DIMENSION_DISPLAY_NETHER);
         registry.register(GTLiteBlocks.DIMENSION_DISPLAY_END);
+        registry.register(GTLiteBlocks.BOTTLECRATE);
         registry.register(GTLiteBlocks.NAQUADRIA_CHARGE);
         registry.register(GTLiteBlocks.TARANIUM_CHARGE);
         registry.register(GTLiteBlocks.LEPTONIC_CHARGE);
         registry.register(GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE);
-
-        // TODO Crops?...
 
         // Sheeted frames.
         GTLiteBlocks.SHEETED_FRAMES.values().stream()
@@ -185,6 +184,7 @@ public class CommonProxy
         registry.register(GTLiteBlocks.TRANSPARENT_CASING_01);
         registry.register(GTLiteBlocks.TRANSPARENT_CASING_02);
         registry.register(GTLiteBlocks.TRANSPARENT_CASING_03);
+
     }
 
     @SubscribeEvent
@@ -246,6 +246,7 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_OVERWORLD, DimensionDisplayItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_NETHER, DimensionDisplayItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_END, DimensionDisplayItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.BOTTLECRATE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.NAQUADRIA_CHARGE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.TARANIUM_CHARGE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.LEPTONIC_CHARGE, ItemBlock::new));
@@ -306,6 +307,7 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_01, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_02, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_03, VariantItemBlock::new));
+
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block,

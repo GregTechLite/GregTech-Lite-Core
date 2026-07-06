@@ -142,6 +142,7 @@ object GTLiteBlocks
     lateinit var TARANIUM_CHARGE: BlockTaraniumCharge
     lateinit var LEPTONIC_CHARGE: BlockLeptonicCharge
     lateinit var QUANTUM_CHROMODYNAMIC_CHARGE: BlockQuantumChromodynamicCharge
+    lateinit var BOTTLECRATE: BlockBottlecrate
 
     // GT format material blocks.
     @JvmField
@@ -197,6 +198,7 @@ object GTLiteBlocks
     lateinit var TRANSPARENT_CASING_01: VariantBlock<GlassCasing.Enum01>
     lateinit var TRANSPARENT_CASING_02: VariantBlock<GlassCasing.Enum02>
     lateinit var TRANSPARENT_CASING_03: VariantBlock<GlassCasing.Enum03>
+
 
     fun init()
     {
@@ -391,6 +393,11 @@ object GTLiteBlocks
         DIMENSION_DISPLAY_END.setTranslationKey("gtlitecore.dimension_display.end")
         DIMENSION_DISPLAY_END.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
 
+        BOTTLECRATE = BlockBottlecrate()
+        BOTTLECRATE.setTranslationKey("gtlitecore.bottlecrate")
+        BOTTLECRATE.setRegistryName("bottlecrate")
+        BOTTLECRATE.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
+
         NAQUADRIA_CHARGE = BlockNaquadriaCharge()
         NAQUADRIA_CHARGE.setTranslationKey("gtlitecore.naquadria_charge")
         NAQUADRIA_CHARGE.setRegistryName("naquadria_charge")
@@ -538,6 +545,7 @@ object GTLiteBlocks
         setModelLocation(DIMENSION_DISPLAY_OVERWORLD)
         setModelLocation(DIMENSION_DISPLAY_NETHER)
         setModelLocation(DIMENSION_DISPLAY_END)
+        setModelLocation(BOTTLECRATE)
 
         registerItemModel(NAQUADRIA_CHARGE)
         registerItemModel(TARANIUM_CHARGE)

@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.client.renderer.handler
+package gregtechlite.gtlitecore.client.renderer.handler.bloom
 
 import gregtech.client.renderer.IRenderSetup
 import gregtech.client.shader.postprocessing.BloomEffect

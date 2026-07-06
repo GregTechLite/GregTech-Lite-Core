@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.client.renderer.handler
+package gregtechlite.gtlitecore.client.renderer.handler.world
 
 import com.morphismmc.morphismlib.client.Games
 import gregtech.client.utils.RenderBufferHelper

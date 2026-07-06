@@ -99,6 +99,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VODKA
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WHITE_CURRANT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WHITE_GRAPE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WHITE_GRAPE_SEED
+import gregtechlite.gtlitecore.common.item.behavior.BottlecrateBehavior
 import gregtechlite.gtlitecore.common.item.behavior.FoodBehavior
 import gregtechlite.gtlitecore.common.item.behavior.HaloRenderItemBehavior
 import net.minecraft.client.resources.I18n
@@ -397,6 +398,7 @@ object GTLiteMetaItem2
         // region 501-700: Drinks
         GRAPE_JUICE = item(501, "food.drink.grape_juice")
             .addComponents(FoodBehavior(3, 0.2F, true, true, ItemStack(Items.GLASS_BOTTLE)))
+            .addComponents(BottlecrateBehavior(0xFF50C039))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         RED_WINE = item(502, "food.drink.red_wine")
@@ -404,16 +406,19 @@ object GTLiteMetaItem2
                 RandomPotionEffect(MobEffects.NAUSEA, 30 * SECOND, 0, 100 - 60),
                 RandomPotionEffect(MobEffects.RESISTANCE, 20 * SECOND, 0, 100 - 40))
                 .setEatingDuration(8 * SECOND + 16 * TICK))
+            .addComponents(BottlecrateBehavior(0xFF7D0B07))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         VINEGAR = item(503, "food.drink.vinegar")
             .addComponents(FoodBehavior(2, 0.5f, true, true, ItemStack(Items.GLASS_BOTTLE),
                 RandomPotionEffect(MobEffects.RESISTANCE, 10 * SECOND, 0, 100 - 30)))
+            .addComponents(BottlecrateBehavior(0xFF5E0805))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         POTATO_JUICE = item(504, "food.drink.potato_juice")
             .addComponents(FoodBehavior(4, 0.4F, true, true, ItemStack(Items.GLASS_BOTTLE),
                 RandomPotionEffect(MobEffects.NAUSEA, 25 * SECOND, 0, 100 - 80)))
+            .addComponents(BottlecrateBehavior(0xFFC3A92C))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         VODKA = item(505, "food.drink.vodka")
@@ -421,32 +426,39 @@ object GTLiteMetaItem2
                 RandomPotionEffect(MobEffects.NAUSEA, 20 * SECOND, 0, 100 - 80),
                 RandomPotionEffect(MobEffects.RESISTANCE, 40 * SECOND, 2, 100 - 80))
                 .setEatingDuration(6 * SECOND + 10 * TICK))
+            .addComponents(BottlecrateBehavior(0xFFCFDBFF))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         COFFEE_CUP = item(506, "food.drink.coffee_cup")
             .addComponents(FoodBehavior(8, 0.4F, true, true, CERAMIC_CUP.stackForm,
                 RandomPotionEffect(MobEffects.REGENERATION, 60, 1, 0),
                 RandomPotionEffect(MobEffects.SPEED, 1800, 2, 0)))
+            .addComponents(BottlecrateBehavior(0xFF36312E))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         ORANGE_JUICE = item(507, "food.drink.orange_juice")
             .addComponents(FoodBehavior(3, 0.3F, true, true, ItemStack(Items.GLASS_BOTTLE)))
+            .addComponents(BottlecrateBehavior(0xFFFF6100))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         ETIRPS = item(508, "food.drink.etirps")
             .addComponents(FoodBehavior(2, 0.4f, true, true, PLASTIC_BOTTLE.stackForm,
                 RandomPotionEffect(MobEffects.SPEED, 1 * MINUTE, 2, 0)))
+            .addComponents(BottlecrateBehavior(0xFFB0FF73))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         SPARKLING_WATER = item(509, "food.drink.sparkling_water")
             .addComponents(FoodBehavior(2, 0.3F, true, true, PLASTIC_BOTTLE.stackForm,
                 RandomPotionEffect(MobEffects.SPEED, 30 * SECOND, 1, 0)))
+            .addComponents(BottlecrateBehavior(0xFFDCDCFF))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         CRANBERRY_ETIRPS = item(510, "food.drink.cranberry_etirps")
             .addComponents(FoodBehavior(3, 0.4f, true, true, PLASTIC_BOTTLE.stackForm,
                 RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
                 RandomPotionEffect(MobEffects.REGENERATION, 200, 1, 100 - 80)))
+            .addComponents(BottlecrateBehavior(0xFF8C0D22))
+            .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         // endregion
 

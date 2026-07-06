@@ -6,12 +6,15 @@ import com.morphismmc.morphismlib.util.ItemUtil
 import gregtech.api.GTValues.VOCNF
 import gregtech.api.unification.OreDictUnifier
 import gregtech.client.renderer.texture.Textures
+import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
-import gregtechlite.gtlitecore.client.renderer.handler.StructureSelectRenderer
+import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.client.renderer.handler.world.StructureSelectRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
 import gregtechlite.gtlitecore.common.block.BlockMetalWall
 import gregtechlite.gtlitecore.common.block.BlockSheetedFrame
+import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import net.minecraft.client.entity.AbstractClientPlayer
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
@@ -67,6 +70,20 @@ object ClientEventHandlers
         GlassCasing.Enum03.entries
             .filter { ItemUtil.areItemTypeEqual(it.stack, stack) }
             .forEach { tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[it.tier])) }
+
+        // Added tooltips for bottlecrate.
+        if (ItemUtil.areItemTypeEqual(GTLiteBlocks.BOTTLECRATE.stack(), stack))
+        {
+            if (TooltipHelper.isShiftDown())
+            {
+                tooltip.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.LLAMA_WEI.userName))
+            }
+            else
+            {
+                tooltip.add(I18n.format("gtlitecore.tooltip.contributor_item"))
+            }
+            tooltip.add(I18n.format("tile.gtlitecore.bottlecrate.tooltip.1"))
+        }
     }
 
     @SubscribeEvent

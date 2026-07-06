@@ -707,6 +707,9 @@ tile.gtlitecore.quantum_chromodynamic_charge.tooltip.1=Exploded Quark Confinemen
 tile.gtlitecore.quantum_chromodynamic_charge.tooltip.2=§cWarning: §fThe Blocks destroyed by the Explosion will be §4Completely Destroyed§f.
 entity.gtlitecore.quantum_chromodynamic_charge.name=Quantum Chromodynamic Charge
 
+tile.gtlitecore.bottlecrate.name=Bottlecrate
+tile.gtlitecore.bottlecrate.tooltip.1=Can hold various fluid containers and drinks.
+
 # Items
 metaitem.shape.mold.screw.name=Mold (Screw)
 metaitem.shape.mold.screw.tooltip=Mold for making Screws.
@@ -2953,6 +2956,89 @@ gtlitecore.machine.dual_hatch.export.uev.name=§aUEV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.uiv.name=§2UIV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.uxv.name=§eUXV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.opv.name=§9OpV§f Dual Export Hatch
+
+gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.mv.name=§bMV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.hv.name=§6HV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.ev.name=§5EV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.iv.name=§1IV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.luv.name=§dLuV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.zpm.name=§cZPM§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.uv.name=§3UV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.uhv.name=§4UHV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.uev.name=§aUEV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.uiv.name=§2UIV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.uxv.name=§eUXV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.opv.name=§9OpV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.max.name=§cMAX§f Wireless Energy Hatch
+
+gtlitecore.machine.wireless_energy_hatch.output.ulv.name=§8ULV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.lv.name=§7LV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.mv.name=§bMV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.hv.name=§6HV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.ev.name=§5EV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.iv.name=§1IV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.luv.name=§dLuV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.zpm.name=§cZPM§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.uv.name=§3UV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.uhv.name=§4UHV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.uev.name=§aUEV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.uiv.name=§2UIV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.uxv.name=§eUXV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.opv.name=§9OpV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.max.name=§cMAX§f Wireless Dynamo Hatch
+
+gtlitecore.machine.wireless_energy_hatch.storage.iv.name=§1IV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.luv.name=§dLuV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.zpm.name=§cZPM§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.uv.name=§3UV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.uhv.name=§4UHV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.uev.name=§aUEV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.uiv.name=§2UIV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.uxv.name=§eUXV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.opv.name=§9OpV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.max.name=§cMAX§f Wireless Energy Buffer
+
+gtlitecore.machine.wireless_energy_hatch.tooltip.1=Receives energy from Wireless Network
+gtlitecore.machine.wireless_energy_hatch.tooltip.2=Set a §fChannel§7 to add hatch to §dWireless Energy Network§7.
+gtlitecore.machine.wireless_energy_hatch.tooltip.3=A higher §fPriority§7 will make hatch extract energy before others in network.
+gtlitecore.machine.wireless_energy_hatch.tooltip.4=The §eAmperage§7 of the hatch can configure freely, default is §e2A§7.
+gtlitecore.machine.wireless_energy_hatch.tooltip.5=Right-click hatch with §fScrewdriver§f7 to double the §eAmperage§7, sneak while right-clicking to halve it.
+gtlitecore.machine.wireless_energy_hatch.tooltip.6=The §fBuffer Energy Duration§7 can configure freely, default is §f10s§7.
+
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.1=Outputs energy to Wireless Network
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.2=Set a §fChannel§7 to add hatch to §dWireless Energy Network§7.
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.3=A higher §fPriority§7 will make hatch pull energy before others in network.
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.4=The §eAmperage§7 of the hatch can configure freely, default is §e2A§7.
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.5=Right-click hatch with §fScrewdriver§f7 to double the §eAmperage§7, sneak while right-clicking to halve it.
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.6=The §fBuffer Energy Duration§7 can configure freely, default is §f10s§7.
+
+gtlitecore.machine.wireless_storage_hatch.tooltip.1=Buffers Wireless Network energy via §6Power Substation§7
+gtlitecore.machine.wireless_storage_hatch.tooltip.2=Set a §fChannel§7 to add hatch to §dWireless Energy Network§7.
+gtlitecore.machine.wireless_storage_hatch.tooltip.3=A higher §fPriority§7 will make hatch interact with energy before others in network.
+gtlitecore.machine.wireless_storage_hatch.tooltip.4=The §eAmperage§7 of the hatch can configure freely, default is §e2A§7.
+gtlitecore.machine.wireless_storage_hatch.tooltip.5=Right-click hatch with §fScrewdriver§f7 to double the §eAmperage§7, sneak while right-clicking to halve it.
+gtlitecore.machine.wireless_storage_hatch.tooltip.6=The §fBuffer Energy Duration§7 can configure freely, default is §f10s§7.
+
+gtlitecore.machine.wireless_energy_hatch.interactive_voltage=§aInteractive Voltage: §f%,d EU/t (%s§f)
+gtlitecore.machine.wireless_energy_hatch.interactive_amperage=§eInteractive Amperage: §f%,dA
+gtlitecore.machine.wireless_energy_hatch.channel=Channel
+gtlitecore.machine.wireless_energy_hatch.connections=Connections: %d
+gtlitecore.machine.wireless_energy_hatch.priority=Priority
+gtlitecore.machine.wireless_energy_hatch.amperage=Amperage
+gtlitecore.machine.wireless_energy_hatch.buffer_duration=Buffer Duration
+
+gtlitecore.top.wireless_hatch.role_input=Input
+gtlitecore.top.wireless_hatch.role_output=Output
+gtlitecore.top.wireless_hatch.role_storage=Storage
+gtlitecore.top.wireless_hatch.channel=Channel: %s
+gtlitecore.top.wireless_hatch.connections=Connections: %d
+gtlitecore.top.wireless_hatch.priority=Priority: %d
+gtlitecore.top.wireless_hatch.no_channel=Not connected to channel
+gtlitecore.top.wireless_hatch.error_unknown=Unknown Error
+gtlitecore.top.wireless_hatch.amperage=Amperage: %sA
+gtlitecore.top.wireless_hatch.overflow=Overflow: %s EU
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s
