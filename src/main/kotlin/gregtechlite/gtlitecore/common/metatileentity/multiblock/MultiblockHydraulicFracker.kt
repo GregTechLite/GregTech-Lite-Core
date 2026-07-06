@@ -191,10 +191,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         if (drainTanks(FLUID_USE_AMOUNT, true))
         {
             drainTanks(FLUID_USE_AMOUNT, false)
-            repeat(getParallelMax())
-            {
-                replenishVein(false)
-            }
+            replenishVein(false, getCurrentMultiplier())
         }
     }
 
@@ -223,24 +220,27 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
 
     fun drainEnergy(simulate: Boolean): Boolean
     {
-        val energyToDrain = getParallelMax() * VA[tier]
+        val energyToDrain = getCurrentMultiplier().toLong() * VA[tier]
         if (energyToDrain <= 0) return false
         val resultEnergy = energyContainer!!.energyStored - energyToDrain
         if (resultEnergy >= 0L && resultEnergy <= energyContainer!!.energyCapacity)
         {
             if (!simulate)
-                energyContainer!!.changeEnergy((-energyToDrain).toLong())
+                energyContainer!!.changeEnergy(-energyToDrain)
             return true
         }
         return false
     }
 
-    override fun configureWarningText(builder: MultiblockUIBuilder) {
+    override fun configureWarningText(builder: MultiblockUIBuilder)
+    {
         super.configureWarningText(builder)
         builder.addCustom { keyManager, uiSyncer ->
-            if (isStructureFormed) {
-                val parallelCount = uiSyncer.syncInt { getParallelMax() }
-                if (parallelCount <= 0) {
+            if (isStructureFormed)
+            {
+                val currentMultiplier = uiSyncer.syncInt { getCurrentMultiplier() }
+                if (currentMultiplier <= 0)
+                {
                     val warnKey = KeyUtil.lang(TextFormatting.YELLOW, "gregtech.multiblock.not_enough_energy")
                     keyManager.add(warnKey)
                 }
@@ -248,13 +248,13 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         }
     }
 
-    private fun getParallelMax(): Int =
-        if (energyContainer?.inputVoltage != null)
-            min(MAX_MULTIPLIER, (energyContainer!!.inputVoltage / VA[tier]).toInt())
-        else 0
+    private fun getCurrentMultiplier(): Int
+    {
+        val energyContainer = energyContainer ?: return 0
+        return min(MAX_MULTIPLIER, (energyContainer.inputVoltage / VA[tier]).toInt())
+    }
 
-
-    private fun isParallelNotMaxed(): Boolean = getParallelMax() != MAX_MULTIPLIER
+    private fun needsMoreVoltage(): Boolean = getCurrentMultiplier() != MAX_MULTIPLIER
 
     @Suppress("SameParameterValue")
     private fun drainTanks(amount: Int, simulate: Boolean): Boolean
@@ -265,6 +265,9 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     }
 
     private fun replenishVein(simulate: Boolean): Boolean
+        = replenishVein(simulate, 1)
+
+    private fun replenishVein(simulate: Boolean, multiplier: Int): Boolean
     {
         val entry = BedrockFluidVeinHandler.getFluidVeinWorldEntry(world, pos.x / 16, pos.z / 16)
         if (entry == null) return false
@@ -272,8 +275,11 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         val definition = entry.definition
         if (definition == null) return false
 
-        val amount = entry.operationsRemaining + definition.depletionAmount
-        if (amount <= BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS)
+        val amount = min(
+            BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS,
+            entry.operationsRemaining + definition.depletionAmount * multiplier
+        )
+        if (amount > entry.operationsRemaining)
         {
             if (simulate) return true
             entry.operationsRemaining = amount
@@ -282,23 +288,25 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         return true
     }
 
-    override fun configureDisplayText(builder: MultiblockUIBuilder) {
+    override fun configureDisplayText(builder: MultiblockUIBuilder)
+    {
         builder.addEnergyUsageLine(energyContainer)
             .setWorkingStatus(this.isWorkingEnabled, this.isActive)
             .addWorkingStatusLine()
             .addProgressLine(progress, maxProgress)
             .addCustom { manager, syncer ->
-                val maxedVoltage = syncer.syncBoolean { isParallelNotMaxed() }
-                if (maxedVoltage) {
+                val showVoltageWarning = syncer.syncBoolean { needsMoreVoltage() }
+                if (showVoltageWarning)
+                {
                     manager.add(
                         KeyUtil.lang(TextFormatting.YELLOW, "gtlitecore.machine.hydraulic_fracker.insufficient_power")
                     )
                 }
 
-                val workingMultiplier = syncer.syncInt { getParallelMax() }
+                val currentMultiplier = syncer.syncInt { getCurrentMultiplier() }
                 manager.add(
                     IKey.lang("gtlitecore.machine.hydraulic_fracker.multiplier",
-                        workingMultiplier, MAX_MULTIPLIER
+                        currentMultiplier, MAX_MULTIPLIER
                     )
                 )
             }
@@ -331,7 +339,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         }
     }
 
-    override fun isActive(): Boolean = isActive
+    override fun isActive(): Boolean = super.isActive() && isActive
 
     fun setActive(active: Boolean)
     {
@@ -440,23 +448,32 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         }
     }
 
-    private fun createVeinTooltip(veinValue: IntSyncValue): String {
-        if (veinValue.value == BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS) {
+    private fun createVeinTooltip(veinValue: IntSyncValue): String
+    {
+        if (veinValue.value == BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS)
+        {
             return IKey.lang("gtlitecore.machine.hydraulic_fracker.vein_full").get()
-        } else {
+        }
+        else
+        {
             val percent: Int = round(
                 100.0 * veinValue.value /
                         BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS
             ).toInt()
-            return if (percent > 40) {
+            return if (percent > 40)
+            {
                 TextFormatting.GREEN.toString() + IKey
-                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.high", percent)
-            } else if (percent > 10) {
+                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.high", percent).get()
+            }
+            else if (percent > 10)
+            {
                 TextFormatting.YELLOW.toString() + IKey
-                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.medium", percent)
-            } else {
+                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.medium", percent).get()
+            }
+            else
+            {
                 TextFormatting.RED.toString() + IKey
-                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.low", percent)
+                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.low", percent).get()
             }
         }
     }
