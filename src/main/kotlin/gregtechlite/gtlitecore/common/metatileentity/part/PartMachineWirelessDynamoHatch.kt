@@ -97,9 +97,13 @@ class PartMachineWirelessDynamoHatch(id: ResourceLocation, tier: Int, initialAmp
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        tooltip.add(I18n.format("gtlitecore.machine.wireless_hatch.screwdriver_info"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_dynamo_hatch.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_dynamo_hatch.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_dynamo_hatch.tooltip.3"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_dynamo_hatch.tooltip.4"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_dynamo_hatch.tooltip.5"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_dynamo_hatch.tooltip.6"))
         tooltip.add(I18n.format("gregtech.universal.tooltip.voltage_out", V[tier], VNF[tier]))
         tooltip.add(I18n.format("gregtech.universal.tooltip.amperage_out_till", getMaxAmperage()))
-        tooltip.add(I18n.format("gtlitecore.machine.wireless_hatch.configurable"))
     }
 }

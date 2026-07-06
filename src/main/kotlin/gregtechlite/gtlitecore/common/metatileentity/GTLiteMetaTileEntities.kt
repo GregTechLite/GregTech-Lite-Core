@@ -718,19 +718,19 @@ object GTLiteMetaTileEntities
                                           it + IV, 16_777_216, true)
         }
 
-        // 4141-4170: Wireless Energy Hatches (IV-MAX)
-        WIRELESS_ENERGY_HATCH = register(4141, 0..9) {
-            PartMachineWirelessEnergyHatch(GTLiteMod.id("wireless_energy_hatch.${VN[it + IV].lowercase()}"), it + IV)
+        // 4146-4160: Wireless Energy Hatches (ULV-MAX)
+        WIRELESS_ENERGY_HATCH = register(4146, 0..14) {
+            PartMachineWirelessEnergyHatch(GTLiteMod.id("wireless_energy_hatch.input.${VN[it].lowercase()}"), it)
         }
 
-        // 4171-4200: Wireless Dynamo Hatches (IV-MAX)
-        WIRELESS_DYNAMO_HATCH = register(4171, 0..9) {
-            PartMachineWirelessDynamoHatch(GTLiteMod.id("wireless_dynamo_hatch.${VN[it + IV].lowercase()}"), it + IV)
+        // 4161-4175: Wireless Dynamo Hatches (ULV-MAX)
+        WIRELESS_DYNAMO_HATCH = register(4161, 0..14) {
+            PartMachineWirelessDynamoHatch(GTLiteMod.id("wireless_energy_hatch.output.${VN[it].lowercase()}"), it)
         }
 
-        // 4201-4230: Wireless Storage Hatches (IV-MAX)
-        WIRELESS_STORAGE_HATCH = register(4201, 0..9) {
-            PartMachineWirelessStorageHatch(GTLiteMod.id("wireless_storage_hatch.${VN[it + IV].lowercase()}"), it + IV)
+        // 4176-4190: Wireless Storage Hatches (IV-MAX)
+        WIRELESS_STORAGE_HATCH = register(4176, 0..9) {
+            PartMachineWirelessStorageHatch(GTLiteMod.id("wireless_energy_hatch.storage.${VN[it + IV].lowercase()}"), it + IV)
         }
 
         // 5001-5100: Item Import/Export Buses and Fluid Import/Export Hatches

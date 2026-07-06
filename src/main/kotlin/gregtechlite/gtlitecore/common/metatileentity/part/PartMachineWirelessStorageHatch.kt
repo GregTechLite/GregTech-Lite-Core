@@ -104,9 +104,13 @@ class PartMachineWirelessStorageHatch(id: ResourceLocation, tier: Int, initialAm
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        tooltip.add(I18n.format("gtlitecore.machine.wireless_hatch.screwdriver_info"))
-        tooltip.add(I18n.format("gtlitecore.machine.wireless_hatch.interactive_voltage", V[tier], VNF[tier]))
-        tooltip.add(I18n.format("gtlitecore.machine.wireless_hatch.interactive_amperage", getMaxAmperage()))
-        tooltip.add(I18n.format("gtlitecore.machine.wireless_hatch.configurable"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_storage_hatch.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_storage_hatch.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_storage_hatch.tooltip.3"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_storage_hatch.tooltip.4"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_storage_hatch.tooltip.5"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_storage_hatch.tooltip.6"))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_energy_hatch.interactive_voltage", V[tier], VNF[tier]))
+        tooltip.add(I18n.format("gtlitecore.machine.wireless_energy_hatch.interactive_amperage", getMaxAmperage()))
     }
 }
