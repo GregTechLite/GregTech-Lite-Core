@@ -2343,7 +2343,8 @@ gtlitecore.machine.large_turbine.hot_coolant.name=大型热冷却液涡轮
 gtlitecore.machine.large_turbine.supercritical_fluid.name=大型超临界流体涡轮
 
 gtlitecore.machine.hydraulic_fracker.name=压裂机
-gtlitecore.machine.hydraulic_fracker.vein.full=流体矿脉已满
+gtlitecore.machine.hydraulic_fracker.vein_full=流体矿脉已满
+gtlitecore.machine.hydraulic_fracker.insufficient_power=输入更多能量来提高压裂压力
 gtlitecore.machine.hydraulic_fracker.multiplier=当前倍率：%d/%d
 gtlitecore.machine.hydraulic_fracker.tooltip.1=使用§b压裂液§7补充基岩下的区块流体，每次消耗§f1000L§7。
 gtlitecore.machine.hydraulic_fracker.tooltip.2=提供至多§f%s倍§7的基础能量输入来提高压裂压力

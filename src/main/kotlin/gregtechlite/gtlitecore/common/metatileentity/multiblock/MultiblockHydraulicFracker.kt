@@ -30,6 +30,7 @@ import gregtech.api.mui.GTGuiTextures
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.util.KeyUtil
 import gregtech.api.util.TextFormattingUtil.formatNumbers
 import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinHandler
 import gregtech.client.renderer.ICubeRenderer
@@ -200,30 +201,22 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
      */
     private fun checkCanDrain(): Boolean
     {
-        if (!drainEnergy(true))
-        {
-            if (progressTime >= (2 * TICK))
-            {
-                if (ConfigHolder.machines.recipeProgressLowEnergy)
-                    progressTime = 1 * TICK
-                else
-                    progressTime = max(1 * TICK, progressTime - 2 * TICK)
-
+        var canRun = true
+        if (!drainEnergy(true)) {
+            if (progressTime >= (2 * TICK)) {
+                progressTime = if (ConfigHolder.machines.recipeProgressLowEnergy)
+                    1 * TICK else max(1 * TICK, progressTime - 2 * TICK)
             }
-            return false
+            canRun = false
         }
 
-        if (drainTanks(FLUID_USE_AMOUNT, true))
-        {
-            return true
-        }
+        if (!drainTanks(FLUID_USE_AMOUNT, true)) canRun = false
 
-        if (isActive())
-        {
+        if (isActive() && !canRun) {
             setActive(false)
             wasActiveAndNeedsUpdate = true
         }
-        return false
+        return canRun
     }
 
     fun drainEnergy(simulate: Boolean): Boolean
@@ -238,6 +231,19 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
             return true
         }
         return false
+    }
+
+    override fun configureWarningText(builder: MultiblockUIBuilder) {
+        super.configureWarningText(builder)
+        builder.addCustom { keyManager, uiSyncer ->
+            if (isStructureFormed) {
+                val parallelCount = uiSyncer.syncInt { getParallelMax() }
+                if (parallelCount <= 0) {
+                    val warnKey = KeyUtil.lang(TextFormatting.YELLOW, "gregtech.multiblock.not_enough_energy")
+                    keyManager.add(warnKey)
+                }
+            }
+        }
     }
 
     private fun getParallelMax(): Int =
@@ -279,8 +285,14 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
             .setWorkingStatus(this.isWorkingEnabled, this.isActive)
             .addWorkingStatusLine()
             .addProgressLine(progress, maxProgress)
-            .addLowPowerLine(::isParallelNotMaxed) // TODO: Maybe a better low power display?
             .addCustom { manager, syncer ->
+                val maxedVoltage = syncer.syncBoolean { isParallelNotMaxed() }
+                if (maxedVoltage) {
+                    manager.add(
+                        KeyUtil.lang(TextFormatting.YELLOW, "gtlitecore.machine.hydraulic_fracker.insufficient_power")
+                    )
+                }
+
                 val workingMultiplier = syncer.syncInt { getParallelMax() }
                 manager.add(
                     IKey.lang("gtlitecore.machine.hydraulic_fracker.multiplier",
@@ -428,7 +440,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
 
     private fun createVeinTooltip(veinValue: IntSyncValue): String {
         if (veinValue.value == BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS) {
-            return IKey.lang("gtlitecore.machine.hydraulic_fracker.vein.full").get()
+            return IKey.lang("gtlitecore.machine.hydraulic_fracker.vein_full").get()
         } else {
             val percent: Int = round(
                 100.0 * veinValue.value /
