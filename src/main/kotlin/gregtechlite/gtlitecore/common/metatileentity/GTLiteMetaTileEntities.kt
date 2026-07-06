@@ -143,6 +143,9 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAirIntakeHa
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumItemBus
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileCleaningMaintenanceHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessDynamoHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessEnergyHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessStorageHatch
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobExtractor
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobSlaughter
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineSapCollector
@@ -266,6 +269,10 @@ object GTLiteMetaTileEntities
 
     lateinit var DUAL_IMPORT_HATCH: Array<PartMachineDualHatch>
     lateinit var DUAL_EXPORT_HATCH: Array<PartMachineDualHatch>
+
+    lateinit var WIRELESS_ENERGY_HATCH: Array<PartMachineWirelessEnergyHatch>
+    lateinit var WIRELESS_DYNAMO_HATCH: Array<PartMachineWirelessDynamoHatch>
+    lateinit var WIRELESS_STORAGE_HATCH: Array<PartMachineWirelessStorageHatch>
 
     // endregion
 
@@ -711,7 +718,20 @@ object GTLiteMetaTileEntities
                                           it + IV, 16_777_216, true)
         }
 
-        // TODO Wireless Energy/Dynamo Hatches
+        // 4141-4170: Wireless Energy Hatches (IV-MAX)
+        WIRELESS_ENERGY_HATCH = register(4141, 0..9) {
+            PartMachineWirelessEnergyHatch(GTLiteMod.id("wireless_energy_hatch.${VN[it + IV].lowercase()}"), it + IV)
+        }
+
+        // 4171-4200: Wireless Dynamo Hatches (IV-MAX)
+        WIRELESS_DYNAMO_HATCH = register(4171, 0..9) {
+            PartMachineWirelessDynamoHatch(GTLiteMod.id("wireless_dynamo_hatch.${VN[it + IV].lowercase()}"), it + IV)
+        }
+
+        // 4201-4230: Wireless Storage Hatches (IV-MAX)
+        WIRELESS_STORAGE_HATCH = register(4201, 0..9) {
+            PartMachineWirelessStorageHatch(GTLiteMod.id("wireless_storage_hatch.${VN[it + IV].lowercase()}"), it + IV)
+        }
 
         // 5001-5100: Item Import/Export Buses and Fluid Import/Export Hatches
 

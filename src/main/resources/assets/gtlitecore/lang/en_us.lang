@@ -4037,6 +4037,82 @@ gtlitecore.tooltip.gui.excess_mode.disabled=Excess Mode: §cDisabled§r\nWhen Dy
 gtlitecore.tooltip.contributor_item=§a§lContributor Item
 gtlitecore.tooltip.contributor_item.owner=This item is exclusively owned by §lContributor§r§6%s§7, thank your contribution for modpack!
 
+# GUI
+gtlitecore.gui.wireless_hatch.channel_label=Channel
+gtlitecore.gui.wireless_hatch.priority_label=Priority
+
+# TOP Probe
+gtlitecore.top.wireless_hatch.role_input=Input
+gtlitecore.top.wireless_hatch.role_output=Output
+gtlitecore.top.wireless_hatch.role_storage=Storage
+gtlitecore.top.wireless_hatch.channel=Channel: %s
+gtlitecore.top.wireless_hatch.connections=Connections: %d
+gtlitecore.top.wireless_hatch.priority=Priority: %d
+gtlitecore.top.wireless_hatch.no_channel=Not connected to channel
+gtlitecore.top.wireless_hatch.error_unknown=Unknown Error
+gtlitecore.top.wireless_hatch.amperage=Amperage: %sA
+gtlitecore.top.wireless_hatch.overflow=Overflow: %s EU
+
+# Wireless Energy Hatches
+gtlitecore.machine.wireless_energy_hatch.channel=Channel: %d
+gtlitecore.machine.wireless_energy_hatch.connections=Connections: %d
+
+# Wireless Dynamo Hatches
+gtlitecore.machine.wireless_dynamo_hatch.channel=Channel: %d
+gtlitecore.machine.wireless_dynamo_hatch.connections=Connections: %d
+
+# Wireless Storage Hatches
+gtlitecore.machine.wireless_storage_hatch.channel=Channel: %d
+gtlitecore.machine.wireless_storage_hatch.connections=Connections: %d
+
+# GUI
+gtlitecore.gui.wireless_hatch.priority_label=Priority
+gtlitecore.gui.wireless_hatch.amperage_label=Amps
+gtlitecore.gui.wireless_hatch.buffer_duration_label=Buffer
+
+# Wireless Energy Hatches
+gtlitecore.machine.wireless_energy_hatch.tooltip=Receives energy from wireless network
+gtlitecore.machine.wireless_energy_hatch.iv.name=IV Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.luv.name=LuV Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.zpm.name=ZPM Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.uv.name=UV Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.uhv.name=UHV Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.uev.name=UEV Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.uiv.name=UIV Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.uxv.name=UXV Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.opv.name=OpV Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.max.name=MAX Wireless Energy Hatch
+
+# Wireless Dynamo Hatches
+gtlitecore.machine.wireless_dynamo_hatch.tooltip=Outputs energy to wireless network
+gtlitecore.machine.wireless_hatch.screwdriver_info=Use screwdriver to double amperage, shift to halve
+gtlitecore.machine.wireless_hatch.configurable=Energy buffer configurable in GUI
+gtlitecore.machine.wireless_hatch.interactive_voltage=§aIO Voltage: §f%,d EU/t (%s§f)
+gtlitecore.machine.wireless_hatch.interactive_amperage=§eIO Amperage up to: §f%,dA
+gtlitecore.machine.wireless_dynamo_hatch.iv.name=IV Wireless Dynamo Hatch
+gtlitecore.machine.wireless_dynamo_hatch.luv.name=LuV Wireless Dynamo Hatch
+gtlitecore.machine.wireless_dynamo_hatch.zpm.name=ZPM Wireless Dynamo Hatch
+gtlitecore.machine.wireless_dynamo_hatch.uv.name=UV Wireless Dynamo Hatch
+gtlitecore.machine.wireless_dynamo_hatch.uhv.name=UHV Wireless Dynamo Hatch
+gtlitecore.machine.wireless_dynamo_hatch.uev.name=UEV Wireless Dynamo Hatch
+gtlitecore.machine.wireless_dynamo_hatch.uiv.name=UIV Wireless Dynamo Hatch
+gtlitecore.machine.wireless_dynamo_hatch.uxv.name=UXV Wireless Dynamo Hatch
+gtlitecore.machine.wireless_dynamo_hatch.opv.name=OpV Wireless Dynamo Hatch
+gtlitecore.machine.wireless_dynamo_hatch.max.name=MAX Wireless Dynamo Hatch
+
+# Wireless Storage Hatches
+gtlitecore.machine.wireless_storage_hatch.tooltip=Buffers wireless network energy via Power Substation
+gtlitecore.machine.wireless_storage_hatch.iv.name=IV Wireless Storage
+gtlitecore.machine.wireless_storage_hatch.luv.name=LuV Wireless Storage
+gtlitecore.machine.wireless_storage_hatch.zpm.name=ZPM Wireless Storage
+gtlitecore.machine.wireless_storage_hatch.uv.name=UV Wireless Storage
+gtlitecore.machine.wireless_storage_hatch.uhv.name=UHV Wireless Storage
+gtlitecore.machine.wireless_storage_hatch.uev.name=UEV Wireless Storage
+gtlitecore.machine.wireless_storage_hatch.uiv.name=UIV Wireless Storage
+gtlitecore.machine.wireless_storage_hatch.uxv.name=UXV Wireless Storage
+gtlitecore.machine.wireless_storage_hatch.opv.name=OpV Wireless Storage
+gtlitecore.machine.wireless_storage_hatch.max.name=MAX Wireless Storage
+
 # Creative Tabs
 itemGroup.gtlite.main=GregTech Lite
 itemGroup.gtlite.machine=GregTech Lite | Machines

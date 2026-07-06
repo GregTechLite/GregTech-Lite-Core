@@ -24,6 +24,7 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Duranium
@@ -35,6 +36,7 @@ import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Platinum
@@ -89,6 +91,8 @@ import gregtech.common.items.MetaItems.SENSOR_LV
 import gregtech.common.items.MetaItems.SENSOR_MV
 import gregtech.common.items.MetaItems.VACUUM_TUBE
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_CRATE
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
@@ -129,6 +133,7 @@ import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addIOHatchRecipes
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addMultiFluidHatchRecipes
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BerylliumOxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromiumGermaniumTellurideMagnetic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
@@ -163,6 +168,8 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UXV
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_INPUT_HATCH_1048576
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_DYNAMO_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_ENERGY_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_INPUT_HATCH_16384
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_INPUT_HATCH_262144
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_INPUT_HATCH_65536
@@ -193,6 +200,7 @@ internal object AssemblerRecipes
         hiAmpEnergyHatchesRecipes()
         hiAmpDynamoHatchesRecipes()
         laserHatchesRecipes()
+        wirelessHatchRecipes()
         voltageCoilRecipes()
         miningDroneRecipes()
         miscItemsRecipes()
@@ -691,6 +699,65 @@ internal object AssemblerRecipes
                 output(LASER_OUTPUT_HATCH_1048576[actualTier])
                 EUt(VA[tier])
                 duration(16 * MINUTE)
+            }
+        }
+    }
+
+    private fun wirelessHatchRecipes()
+    {
+        // Wireless Energy/Dynamo Hatch recipes (IV-OpV tiers)
+        for (tier in 0..8)
+        {
+            val voltageTier = tier + IV
+            val tierCircuit = when (voltageTier) {
+                IV -> Tier.IV
+                LuV -> Tier.LuV
+                ZPM -> Tier.ZPM
+                UV -> Tier.UV
+                UHV -> Tier.UHV
+                UEV -> Tier.UEV
+                UIV -> Tier.UIV
+                UXV -> Tier.UXV
+                OpV -> Tier.OpV
+                else -> Tier.IV
+            }
+            val antennaMaterial = when (tier) {
+                0 -> Aluminium
+                1 -> StainlessSteel
+                2 -> Titanium
+                3 -> TungstenSteel
+                4 -> RhodiumPlatedPalladium
+                5 -> NaquadahAlloy
+                6 -> Darmstadtium
+                7 -> Neutronium
+                8 -> Vibranium
+                else -> Aluminium
+            }
+
+            // Wireless Energy Hatch (Input)
+            ASSEMBLER_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(ENERGY_INPUT_HATCH[voltageTier])
+                input(plate, antennaMaterial, 2)
+                input(circuit, tierCircuit, 2)
+                inputs(CraftingComponent.FIELD_GENERATOR.getIngredient(voltageTier) as ItemStack)
+                fluidInputs(SolderingAlloy.getFluid(L * 2))
+                output(WIRELESS_ENERGY_HATCH[tier])
+                EUt(VA[voltageTier])
+                duration(10 * SECOND)
+            }
+
+            // Wireless Dynamo Hatch (Output)
+            ASSEMBLER_RECIPES.addRecipe {
+                circuitMeta(1)
+                input(ENERGY_OUTPUT_HATCH[voltageTier])
+                input(plate, antennaMaterial, 2)
+                input(circuit, tierCircuit, 2)
+                inputs(CraftingComponent.FIELD_GENERATOR.getIngredient(voltageTier) as ItemStack)
+                fluidInputs(SolderingAlloy.getFluid(L * 2))
+                output(WIRELESS_DYNAMO_HATCH[tier])
+                EUt(VA[voltageTier])
+                duration(10 * SECOND)
             }
         }
     }
