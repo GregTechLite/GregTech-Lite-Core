@@ -14,6 +14,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.wireless.WirelessRole
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -90,8 +91,7 @@ class PartMachineWirelessDynamoHatch(id: ResourceLocation, tier: Int, initialAmp
         super.renderMetaTileEntity(renderState, translation, pipeline)
         if (shouldRenderOverlay())
         {
-            // TODO: Change textures
-            Textures.ENERGY_OUT.renderSided(getFrontFacing(), renderState, translation, pipeline)
+            GTLiteOverlays.WIRELESS_ENERGY_HATCH_OVERLAY.renderSided(getFrontFacing(), renderState, translation, pipeline)
         }
     }
 

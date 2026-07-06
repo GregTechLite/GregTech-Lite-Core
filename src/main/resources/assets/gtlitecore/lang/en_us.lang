@@ -3023,7 +3023,7 @@ gtlitecore.machine.wireless_storage_hatch.tooltip.6=The §fBuffer Energy Duratio
 
 gtlitecore.machine.wireless_energy_hatch.interactive_voltage=§aInteractive Voltage: §f%,d EU/t (%s§f)
 gtlitecore.machine.wireless_energy_hatch.interactive_amperage=§eInteractive Amperage: §f%,dA
-gtlitecore.machine.wireless_energy_hatch.channel=Channel: %d
+gtlitecore.machine.wireless_energy_hatch.channel=Channel
 gtlitecore.machine.wireless_energy_hatch.connections=Connections: %d
 gtlitecore.machine.wireless_energy_hatch.priority=Priority
 gtlitecore.machine.wireless_energy_hatch.amperage=Amperage

@@ -14,6 +14,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates
 import gregtechlite.gtlitecore.api.wireless.WirelessRole
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -97,8 +98,7 @@ class PartMachineWirelessStorageHatch(id: ResourceLocation, tier: Int, initialAm
         super.renderMetaTileEntity(renderState, translation, pipeline)
         if (shouldRenderOverlay())
         {
-            // TODO: Change textures.
-            Textures.ENERGY_IN.renderSided(getFrontFacing(), renderState, translation, pipeline)
+            GTLiteOverlays.WIRELESS_STORAGE_HATCH_OVERLAY.renderSided(getFrontFacing(), renderState, translation, pipeline)
         }
     }
 
