@@ -2349,7 +2349,7 @@ gtlitecore.machine.hydraulic_fracker.multiplier=当前倍率：%d/%d
 gtlitecore.machine.hydraulic_fracker.tooltip.1=使用§b压裂液§7补充基岩下的区块流体，每次消耗§f1000L§7。
 gtlitecore.machine.hydraulic_fracker.tooltip.2=提供至多§f%s倍§7的基础能量输入来提高压裂压力
 gtlitecore.machine.hydraulic_fracker.tooltip.3=§e基础能量消耗：§f%s EU/t
-gtlitecore.machine.hydraulic_fracker.tooltip.4=输入每增加§f%s EU/t§7，效率都将提升§f100%%§7
+gtlitecore.machine.hydraulic_fracker.tooltip.4=输入每增加§f%s EU/t§7，效率就提升§f100%%§7
 
 gtlitecore.machine.catalytic_reformer.name=催化重整机
 

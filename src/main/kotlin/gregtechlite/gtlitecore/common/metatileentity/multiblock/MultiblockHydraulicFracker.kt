@@ -264,10 +264,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
                 && stack.amount == FLUID_USE_AMOUNT
     }
 
-    private fun replenishVein(simulate: Boolean): Boolean
-        = replenishVein(simulate, 1)
-
-    private fun replenishVein(simulate: Boolean, multiplier: Int): Boolean
+    private fun replenishVein(simulate: Boolean, multiplier: Int = 1): Boolean
     {
         val entry = BedrockFluidVeinHandler.getFluidVeinWorldEntry(world, pos.x / 16, pos.z / 16)
         if (entry == null) return false
@@ -433,8 +430,8 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
 
         guiSyncManager.syncValue("veinRemaining", veinValue)
 
-        templateBars.add { bar -> bar
-                .progress {
+        templateBars.add {
+                it.progress {
                     veinValue.value * 1.0 / BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS
                 }
                 .texture(GTGuiTextures.PROGRESS_BAR_FLUID_RIG_DEPLETION)
