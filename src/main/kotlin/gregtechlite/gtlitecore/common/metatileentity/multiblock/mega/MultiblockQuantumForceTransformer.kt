@@ -1,48 +1,74 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 
+import com.morphismmc.morphismlib.client.Games
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.IFastRenderMetaTileEntity
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.MAINTENANCE_HATCH
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
-import gregtech.api.util.GTUtility
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
+import gregtech.api.util.RelativeDirection
 import gregtech.client.renderer.ICubeRenderer
+import gregtech.client.shader.postprocessing.BloomType
+import gregtech.client.utils.BloomEffectUtil
+import gregtech.client.utils.EffectRenderContext
+import gregtech.client.utils.IBloomEffect
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.api.GTLiteAPI
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.manipulators
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.shieldingCores
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.QUANTUM_FORCE_TRANSFORMER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
+import gregtechlite.gtlitecore.client.renderer.handler.bloom.ForceFieldBloomSetup
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
+import net.minecraft.client.renderer.BufferBuilder
+import net.minecraft.client.renderer.Tessellator
+import net.minecraft.client.renderer.texture.TextureMap
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.SoundEvent
+import net.minecraft.util.math.AxisAlignedBB
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import org.lwjgl.opengl.GL11
 import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.pow
 
 class MultiblockQuantumForceTransformer(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, GTLiteRecipeMaps.QUANTUM_FORCE_TRANSFORMER_RECIPES) // TODO IFastRenderMetaTileEntity, IBloomEffect
+    : RecipeMapMultiblockController(id, QUANTUM_FORCE_TRANSFORMER_RECIPES), IFastRenderMetaTileEntity, IBloomEffect
 {
 
     private var manipulatorTier = 0
     private var shieldingCoreTier = 0
     private var tier = 0
+
+    @SideOnly(Side.CLIENT)
+    private var registeredBloomRenderTicket = false
 
     init
     {
@@ -77,9 +103,9 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
     override fun initializeAbilities()
     {
         super.initializeAbilities()
-        val inputEnergy = ArrayList(getAbilities(MultiblockAbility.INPUT_ENERGY))
-        inputEnergy.addAll(getAbilities(MultiblockAbility.INPUT_LASER))
-        inputEnergy.addAll(getAbilities(MultiblockAbility.SUBSTATION_INPUT_ENERGY))
+        val inputEnergy = ArrayList(getAbilities(INPUT_ENERGY))
+        inputEnergy.addAll(getAbilities(INPUT_LASER))
+        inputEnergy.addAll(getAbilities(SUBSTATION_INPUT_ENERGY))
         energyContainer = EnergyContainerList(inputEnergy)
     }
 
@@ -104,20 +130,20 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         .where('S', selfPredicate())
         .where('H', states(casingState)
             .setMinGlobalLimited(16)
-            .or(abilities(MultiblockAbility.MAINTENANCE_HATCH)
+            .or(abilities(MAINTENANCE_HATCH)
                     .setExactLimit(1))
-            .or(abilities(MultiblockAbility.INPUT_ENERGY)
+            .or(abilities(INPUT_ENERGY)
                     .setMaxGlobalLimited(2))
-            .or(abilities(MultiblockAbility.INPUT_LASER)
+            .or(abilities(INPUT_LASER)
                     .setMaxGlobalLimited(1))
-            .or(abilities(MultiblockAbility.IMPORT_ITEMS, MultiblockAbility.IMPORT_FLUIDS)
+            .or(abilities(IMPORT_ITEMS, IMPORT_FLUIDS)
                     .setPreviewCount(1)))
         .where('F', states(casingState)
             .setMinGlobalLimited(16)
-            .or(abilities(MultiblockAbility.EXPORT_ITEMS, MultiblockAbility.EXPORT_FLUIDS)
+            .or(abilities(EXPORT_ITEMS, EXPORT_FLUIDS)
                     .setPreviewCount(1)))
-        .where('A', TraceabilityPredicates.manipulators())
-        .where('B', TraceabilityPredicates.shieldingCores())
+        .where('A', manipulators())
+        .where('B', shieldingCores())
         .where('C', states(coilState))
         .where('D', states(casingState))
         .where('E', states(glassState))
@@ -150,7 +176,7 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
     {
         builder.setWorkingStatus(recipeMapWorkable.isWorkingEnabled, recipeMapWorkable.isActive)
             .addEnergyUsageLine(energyContainer)
-            .addEnergyTierLine(GTUtility.getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
+            .addEnergyTierLine(getTierByVoltage(recipeMapWorkable.maxVoltage).toInt())
             .addCustom { keyManager, syncer ->
                 if (isStructureFormed)
                 {
@@ -176,122 +202,142 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
     override fun checkRecipe(recipe: Recipe, consumeIfSuccess: Boolean): Boolean
     {
-        recipe.chancedOutputs.chancedEntries.forEach { chanceEntry ->
-            min(chanceEntry.chance * shieldingCoreTier, 10000)
-        }
-        recipe.chancedFluidOutputs.chancedEntries.forEach { chanceEntry ->
-            min(chanceEntry.chance * shieldingCoreTier, 10000)
-        }
+        recipe.chancedOutputs.chancedEntries.forEach { min(it.chance * shieldingCoreTier, 10000) }
+        recipe.chancedFluidOutputs.chancedEntries.forEach { min(it.chance * shieldingCoreTier, 10000) }
         return super.checkRecipe(recipe, consumeIfSuccess)
                 && recipe.getProperty(GTLiteRecipeProperties.QUANTUM_FORCE_TRANSFORMER_TIER, 0)!! <= manipulatorTier
     }
 
-    // @SideOnly(Side.CLIENT)
-    // override fun renderMetaTileEntity(x: Double, y: Double, z: Double, partialTicks: Float)
-    // {
-    //     val forceField = GTLiteTextures.FORCE_FIELD
-    //     if (isActive && MinecraftForgeClient.getRenderPass() == 0) {
-    //         BloomEffectUtil.registerBloomRender(ForceFieldRenderer.INSTANCE, BloomType.UNREAL, this, this) { buffer ->
-    //             val entity: Entity? = Minecraft.getMinecraft().renderViewEntity
-    //             if (entity != null) {
-    //                 val minU = forceField.minU.toDouble()
-    //                 val maxU = forceField.maxU.toDouble()
-    //                 val minV = forceField.minV.toDouble()
-    //                 val maxV = forceField.maxV.toDouble()
-    //                 val xBaseOffset: Double = (3 * getFrontFacing().getOpposite().getXOffset()).toDouble()
-    //                 val zBaseOffset: Double = (3 * getFrontFacing().getOpposite().getZOffset()).toDouble()
-    //                 GlStateManager.pushMatrix()
-    //                 GlStateManager.disableCull()
-    //                 GlStateManager.disableAlpha()
-    //                 GlStateManager.enableBlend()
-    //                 Minecraft.getMinecraft().textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE)
-    //                 //Center O:  0,  0         1 ------- 8
-    //                 //Corner 1:  7, -2        /           \
-    //                 //Corner 2:  3, -6     2 /             \ 7
-    //                 //Corner 3: -2, -6      |               |
-    //                 //Corner 4: -6, -2      |       O       |
-    //                 //Corner 5: -6,  3      |               |
-    //                 //Corner 6: -2,  7     3 \             / 6
-    //                 //Corner 7:  3,  7        \           /
-    //                 //Corner 8:  7,  3         4 ------- 5
-    //                 buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX)
-    //                 GlStateManager.translate(
-    //                     x + xBaseOffset + 0.5,
-    //                     0,
-    //                     MathUtils.z + zBaseOffset + 0.5
-    //                 )
-    //                 if (zBaseOffset == 0.0) {
-    //                     GlStateManager.rotate(90f, 0f, 1f, 0f)
-    //                 }
-    //                 for (i in 0..7) {
-    //                     renderForceField(buffer, 0, MathUtils.y, 0, i, minU, maxU, minV, maxV)
-    //                 }
-    //                 Tessellator.getInstance().draw()
-    //                 GlStateManager.disableBlend()
-    //                 GlStateManager.enableAlpha()
-    //                 GlStateManager.enableCull()
-    //                 GlStateManager.popMatrix()
-    //             }
-    //         }
-    //     }
-    // }
+    @SideOnly(Side.CLIENT)
+    override fun renderMetaTileEntity(x: Double, y: Double, z: Double, partialTicks: Float)
+    {
+        if (isActive && !registeredBloomRenderTicket)
+        {
+            registeredBloomRenderTicket = true
+            BloomEffectUtil.registerBloomRender(ForceFieldBloomSetup.INSTANCE, BloomType.UNREAL, this, this)
+        }
+    }
 
-    // @SideOnly(Side.CLIENT)
-    // private fun renderForceField(buffer: BufferBuilder, x: Double, y: Double, z: Double, side: Int,
-    //                              minU: Double, maxU: Double, minV: Double, maxV: Double)
-    // {
-    //     when (side)
-    //     {
-    //         0 -> {
-    //             buffer.pos(x + 3, y, z + 7).tex(maxU, maxV).endVertex()
-    //             buffer.pos(x + 3, y + 4, z + 7).tex(maxU, minV).endVertex()
-    //             buffer.pos(x - 3, y + 4, z + 7).tex(minU, minV).endVertex()
-    //             buffer.pos(x - 3, y, z + 7).tex(minU, maxV).endVertex()
-    //         }
-    //         1 -> {
-    //             buffer.pos(x + 7, y, z + 4).tex(maxU, maxV).endVertex()
-    //             buffer.pos(x + 7, y + 4, z + 4).tex(maxU, minV).endVertex()
-    //             buffer.pos(x + 7, y + 4, z - 4).tex(minU, minV).endVertex()
-    //             buffer.pos(x + 7, y, z - 4).tex(minU, maxV).endVertex()
-    //         }
-    //         2 -> {
-    //             buffer.pos(x + 3, y, z - 7).tex(maxU, maxV).endVertex()
-    //             buffer.pos(x + 3, y + 4, z - 7).tex(maxU, minV).endVertex()
-    //             buffer.pos(x - 3, y + 4, z - 7).tex(minU, minV).endVertex()
-    //             buffer.pos(x - 3, y, z - 7).tex(minU, maxV).endVertex()
-    //         }
-    //         3 -> {
-    //             buffer.pos(x - 7, y, z + 4).tex(maxU, maxV).endVertex()
-    //             buffer.pos(x - 7, y + 4, z + 4).tex(maxU, minV).endVertex()
-    //             buffer.pos(x - 7, y + 4, z - 4).tex(minU, minV).endVertex()
-    //             buffer.pos(x - 7, y, z - 4).tex(minU, maxV).endVertex()
-    //         }
-    //         4 -> {
-    //             buffer.pos(x - 3, y, z + 7).tex(maxU, maxV).endVertex()
-    //             buffer.pos(x - 3, y + 4, z + 7).tex(maxU, minV).endVertex()
-    //             buffer.pos(x - 7, y + 4, z + 4).tex(minU, minV).endVertex()
-    //             buffer.pos(x - 7, y, z + 4).tex(minU, maxV).endVertex()
-    //         }
-    //         5 -> {
-    //             buffer.pos(x - 3, y, z - 7).tex(maxU, maxV).endVertex()
-    //             buffer.pos(x - 3, y + 4, z - 7).tex(maxU, minV).endVertex()
-    //             buffer.pos(x - 7, y + 4, z - 4).tex(minU, minV).endVertex()
-    //             buffer.pos(x - 7, y, z - 4).tex(minU, maxV).endVertex()
-    //         }
-    //         6 -> {
-    //             buffer.pos(x + 3, y, z + 7).tex(maxU, maxV).endVertex()
-    //             buffer.pos(x + 3, y + 4, z + 7).tex(maxU, minV).endVertex()
-    //             buffer.pos(x + 7, y + 4, z + 4).tex(minU, minV).endVertex()
-    //             buffer.pos(x + 7, y, z + 4).tex(minU, maxV).endVertex()
-    //         }
-    //         7 -> {
-    //             buffer.pos(x + 3, y, z - 7).tex(maxU, maxV).endVertex()
-    //             buffer.pos(x + 3, y + 4, z - 7).tex(maxU, minV).endVertex()
-    //             buffer.pos(x + 7, y + 4, z - 4).tex(minU, minV).endVertex()
-    //             buffer.pos(x + 7, y, z - 4).tex(minU, maxV).endVertex()
-    //         }
-    //     }
-    // }
+    override fun getRenderBoundingBox(): AxisAlignedBB
+    {
+        val relativeBack = RelativeDirection.BACK.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped())
+        val relativeRight = RelativeDirection.RIGHT.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped())
+        return AxisAlignedBB(pos.offset(relativeBack, -4).offset(relativeRight, -7),
+                             pos.offset(relativeBack, 10).offset(relativeRight, 7).up(4))
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun renderBloomEffect(buffer: BufferBuilder, context: EffectRenderContext)
+    {
+        if (!isActive) return
+
+        val texture = GTLiteTextures.FORCE_FIELD
+        val minU = texture.minU.toDouble()
+        val maxU = texture.maxU.toDouble()
+        val minV = texture.minV.toDouble()
+        val maxV = texture.maxV.toDouble()
+
+        val frontFacing = getFrontFacing()
+        val forward = frontFacing.opposite
+        val right = forward.rotateY()
+
+        // Center
+        val cx = pos.x - context.cameraX() + forward.xOffset * 3 + 0.5
+        val cy = pos.y - context.cameraY()
+        val cz = pos.z - context.cameraZ() + forward.zOffset * 3 + 0.5
+
+        Games.mc().textureManager.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE)
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX)
+
+        for (side in 0..7)
+        {
+            renderForceField(buffer, cx, cy, cz, side, minU, maxU, minV, maxV,
+                             forward.xOffset.toDouble(), forward.zOffset.toDouble(),
+                             right.xOffset.toDouble(), right.zOffset.toDouble())
+        }
+
+        Tessellator.getInstance().draw()
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun shouldRenderBloomEffect(context: EffectRenderContext): Boolean
+        = isActive && context.camera().isBoundingBoxInFrustum(getRenderBoundingBox())
+
+    @SideOnly(Side.CLIENT)
+    private fun renderForceField(buffer: BufferBuilder, cx: Double, cy: Double, cz: Double, side: Int,
+                                 minU: Double, maxU: Double, minV: Double, maxV: Double,
+                                 fx: Double, fz: Double, rx: Double, rz: Double)
+    {
+        fun vertex(lx: Double, ly: Double, lz: Double, u: Double, v: Double)
+        {
+            buffer.pos(cx + lx * rx + lz * fx, cy + ly, cz + lx * rz + lz * fz).tex(u, v).endVertex()
+        }
+
+        when (side)
+        {
+            0 ->
+            {
+                vertex(3.0, 0.0, 7.0, maxU, maxV)
+                vertex(3.0, 4.0, 7.0, maxU, minV)
+                vertex(-3.0, 4.0, 7.0, minU, minV)
+                vertex(-3.0, 0.0, 7.0, minU, maxV)
+            }
+            1 ->
+            {
+                vertex(7.0, 0.0, 4.0, maxU, maxV)
+                vertex(7.0, 4.0, 4.0, maxU, minV)
+                vertex(7.0, 4.0, -4.0, minU, minV)
+                vertex(7.0, 0.0, -4.0, minU, maxV)
+            }
+            2 ->
+            {
+                vertex(3.0, 0.0, -7.0, maxU, maxV)
+                vertex(3.0, 4.0, -7.0, maxU, minV)
+                vertex(-3.0, 4.0, -7.0, minU, minV)
+                vertex(-3.0, 0.0, -7.0, minU, maxV)
+            }
+            3 ->
+            {
+                vertex(-7.0, 0.0, 4.0, maxU, maxV)
+                vertex(-7.0, 4.0, 4.0, maxU, minV)
+                vertex(-7.0, 4.0, -4.0, minU, minV)
+                vertex(-7.0, 0.0, -4.0, minU, maxV)
+            }
+            4 ->
+            {
+                vertex(-3.0, 0.0, 7.0, maxU, maxV)
+                vertex(-3.0, 4.0, 7.0, maxU, minV)
+                vertex(-7.0, 4.0, 4.0, minU, minV)
+                vertex(-7.0, 0.0, 4.0, minU, maxV)
+            }
+            5 ->
+            {
+                vertex(-3.0, 0.0, -7.0, maxU, maxV)
+                vertex(-3.0, 4.0, -7.0, maxU, minV)
+                vertex(-7.0, 4.0, -4.0, minU, minV)
+                vertex(-7.0, 0.0, -4.0, minU, maxV)
+            }
+            6 ->
+            {
+                vertex(3.0, 0.0, 7.0, maxU, maxV)
+                vertex(3.0, 4.0, 7.0, maxU, minV)
+                vertex(7.0, 4.0, 4.0, minU, minV)
+                vertex(7.0, 0.0, 4.0, minU, maxV)
+            }
+            7 ->
+            {
+                vertex(3.0, 0.0, -7.0, maxU, maxV)
+                vertex(3.0, 4.0, -7.0, maxU, minV)
+                vertex(7.0, 4.0, -4.0, minU, minV)
+                vertex(7.0, 0.0, -4.0, minU, maxV)
+            }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun shouldRenderInPass(pass: Int): Boolean = pass == 0
+
+    override fun isGlobalRenderer(): Boolean = true
 
     private inner class QuantumForceTransformerRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
@@ -304,5 +350,4 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         override fun getParallelLimit() = 16 * shieldingCoreTier
 
     }
-
 }
