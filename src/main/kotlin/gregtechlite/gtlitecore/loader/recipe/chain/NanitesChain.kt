@@ -12,6 +12,7 @@ import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Glowstone
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Monazite
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.Neutronium
@@ -19,6 +20,7 @@ import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.Topaz
 import gregtech.api.unification.material.Materials.UUMatter
+import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -195,6 +197,18 @@ internal object NanitesChain
             output(nanite, Copper, 16)
             EUt(10_000_000) // UIV
             duration(30 * SECOND)
+            tier(1)
+        }
+
+        // Zinc Nanite (for QFT casing and some QFT Catalysts)
+        NANO_FORGE_RECIPES.addRecipe {
+            notConsumable(lens, Monazite)
+            input(block, Zinc, 8)
+            input(ADVANCED_SYSTEM_ON_CHIP, 64)
+            fluidInputs(UUMatter.getFluid(160_000))
+            output(nanite, Zinc, 8)
+            EUt(10_000_000) // UIV
+            duration(40 * SECOND)
             tier(1)
         }
 

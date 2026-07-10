@@ -2,7 +2,6 @@ package gregtechlite.gtlitecore.common.item
 
 import gregtech.api.GTValues.M
 import gregtech.api.GTValues.MAX
-import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
@@ -82,7 +81,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_RAW_INTELLIG
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_RUBBER_POLYMER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_STELLAR_CORE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_TEMPORAL_HARMONY
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_TITANIUM_TUNGSTEN_INDIUM
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_TRANSITION_METAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_ULTIMATE_PLASTIC_POLYMER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_ULTIMATE_RADIOACTIVE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CIRCUIT_PATTERN
@@ -975,8 +974,8 @@ object GTLiteMetaItem1
         CATALYST_ULTIMATE_RADIOACTIVE = item(680, "tool.catalyst.ultimate_radioactive")
             .addOreDict("catalystUltimateRadioactive")
 
-        CATALYST_TITANIUM_TUNGSTEN_INDIUM = item(681, "tool.catalyst.titanium_tungsten_indium")
-            .addOreDict("catalystTitaniumTungstenIndium")
+        CATALYST_TRANSITION_METAL = item(681, "tool.catalyst.transition_metal")
+            .addOreDict("catalystTransitionMetal")
 
         CATALYST_ADHESION_PROMOTER = item(682, "tool.catalyst.adhesion_promoter")
             .addOreDict("catalystAdhesionPromoter")

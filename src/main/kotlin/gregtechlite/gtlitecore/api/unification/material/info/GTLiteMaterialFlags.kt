@@ -417,6 +417,7 @@ object GTLiteMaterialFlags
         Copper.addFlags(GENERATE_NANITE)
         Iron.addFlags(GENERATE_NANITE)
         Chrome.addFlags(GENERATE_NANITE)
+        Zinc.addFlags(GENERATE_NANITE)
 
         // plate
         Clay.addFlags(GENERATE_PLATE)
