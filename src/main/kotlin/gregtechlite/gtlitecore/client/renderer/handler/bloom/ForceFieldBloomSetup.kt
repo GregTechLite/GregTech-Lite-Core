@@ -29,10 +29,12 @@ enum class ForceFieldBloomSetup : IRenderSetup
         lastBrightnessY = OpenGlHelper.lastBrightnessY
         GlStateManager.color(1f, 1f, 1f, 1f)
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f)
+        GlStateManager.disableCull()
     }
 
     override fun postDraw(buffer: BufferBuilder)
     {
+        GlStateManager.enableCull()
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, lastBrightnessX, lastBrightnessY)
     }
 }

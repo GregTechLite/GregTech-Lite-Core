@@ -203,7 +203,7 @@ object GTLiteMetaItems
     lateinit var CATALYST_RADIOACTIVE: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_ADVANCED_RADIOACTIVE: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_ULTIMATE_RADIOACTIVE: MetaItem<*>.MetaValueItem
-    lateinit var CATALYST_TITANIUM_TUNGSTEN_INDIUM: MetaItem<*>.MetaValueItem
+    lateinit var CATALYST_TRANSITION_METAL: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_ADHESION_PROMOTER: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_RARE_EARTH_GROUP: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_RARE_METAL_GROUP: MetaItem<*>.MetaValueItem

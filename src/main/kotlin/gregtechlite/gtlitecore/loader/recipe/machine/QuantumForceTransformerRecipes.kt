@@ -167,6 +167,7 @@ import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Wheat
 import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.material.Materials.Yttrium
+import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircon
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -280,7 +281,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_RAW_INTELLIG
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_RUBBER_POLYMER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_STELLAR_CORE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_TEMPORAL_HARMONY
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_TITANIUM_TUNGSTEN_INDIUM
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_TRANSITION_METAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_ULTIMATE_PLASTIC_POLYMER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_ULTIMATE_RADIOACTIVE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENERGISED_TESSERACT
@@ -291,6 +292,14 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.STABLE_ADHESIVE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPERCONDUCTOR_COMPOSITE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TIMEPIECE
 
+/**
+ * | Liquid            | Nanite                   |
+ * |-------------------|--------------------------|
+ * | Tritanium         | Carbon, Copper           |
+ * | Neutronium        | Carbon, Silver, Zinc     |
+ * | Cosmic Neutronium | Carbon, Neutronium, Gold |
+ * | Shirabon, Hypogen | Transcendent Metal       |
+ */
 internal object QuantumForceTransformerRecipes
 {
 
@@ -298,9 +307,36 @@ internal object QuantumForceTransformerRecipes
 
     fun init()
     {
-        catalystRecipes()
+        // Catalyst Base
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(20)
+            input(plate, Steel, 8)
+            input(wireFine, Copper, 4)
+            input(screw, Tin, 6)
+            output(CATALYST_BASE)
+            EUt(VH[LV])
+            duration(10 * SECOND)
+        }
 
-        // Rubber 1
+        // region Rubbers
+
+        // Rubber Polymer Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, SiliconeRubber, 64)
+            input(dust, StyreneButadieneRubber, 64)
+            input(dust, Rubber, 64)
+            input(dust, PolyphenyleneSulfide, 64)
+            input(nanite, Carbon, 16)
+            fluidInputs(Neutronium.getFluid(L * 4))
+            output(CATALYST_RUBBER_POLYMER)
+            EUt(VA[UV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Rubber
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_RUBBER_POLYMER)
             input(dust, Carbon, 64)
@@ -316,7 +352,23 @@ internal object QuantumForceTransformerRecipes
             tier(1)
         }
 
-        // Rubber 2
+        // Advanced Rubber Polymer Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, PolyphosphonitrileFluoroRubber, 64)
+            input(dust, PolytetramethyleneGlycolRubber, 64)
+            input(dust, Polyetheretherketone, 64)
+            input(dust, Zylon, 64)
+            input(nanite, Carbon, 16)
+            fluidInputs(CosmicNeutronium.getFluid(L * 4))
+            output(CATALYST_ADVANCED_RUBBER_POLYMER)
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Advanced Rubber
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_ADVANCED_RUBBER_POLYMER)
             input(dust, Carbon, 64)
@@ -336,7 +388,25 @@ internal object QuantumForceTransformerRecipes
             tier(2)
         }
 
-        // Plastic 1
+        // endregion
+
+        // region Plastics
+
+        // Plastic Polymer Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Polybenzimidazole, 64)
+            input(dust, Polytetrafluoroethylene, 64)
+            input(nanite, Carbon, 16)
+            fluidInputs(Neutronium.getFluid(L * 4))
+            output(CATALYST_PLASTIC_POLYMER)
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Plastic
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_PLASTIC_POLYMER)
             input(dust, Carbon, 64)
@@ -355,7 +425,23 @@ internal object QuantumForceTransformerRecipes
             tier(1)
         }
 
-        // Plastic 2: Kevlar, KaptonE, KaptonK, PMMA, PET, EPoxy
+        // Advanced Plastic Polymer Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Kevlar, 64)
+            input(dust, KaptonE, 64)
+            input(dust, PolyethyleneTerephthalate, 64)
+            input(dust, Polymethylmethacrylate, 64)
+            input(nanite, Carbon, 16)
+            fluidInputs(CosmicNeutronium.getFluid(L * 4))
+            output(CATALYST_ADVANCED_PLASTIC_POLYMER)
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Advanced Plastic
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_ADVANCED_PLASTIC_POLYMER)
             input(dust, Carbon, 64)
@@ -373,7 +459,25 @@ internal object QuantumForceTransformerRecipes
             tier(2)
         }
 
-        // Plastic 3
+        // Ultimate Plastic Polymer Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, FullerenePolymerMatrix, 64)
+            input(dust, CarbonNanotube, 64)
+            input(dust, Fullerene, 64)
+            input(dust, Phosphorene, 64)
+            input(dust, PedotPSS, 64)
+            input(dust, PedotTMA, 64)
+            input(nanite, TranscendentMetal)
+            fluidInputs(Shirabon.getFluid(L * 4))
+            output(CATALYST_ULTIMATE_PLASTIC_POLYMER)
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Ultimate Plastic
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_ULTIMATE_PLASTIC_POLYMER)
             input(dust, Carbon, 64)
@@ -394,6 +498,25 @@ internal object QuantumForceTransformerRecipes
             tier(3)
         }
 
+        // endregion
+
+        // region Platinum Group Elements
+
+        // Platinum Group Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, RhodiumPlatedPalladium, 64)
+            input(dust, Osmiridium, 64)
+            input(dust, Ruridit, 64)
+            input(nanite, Carbon, 16)
+            fluidInputs(Neutronium.getFluid(L * 4))
+            output(CATALYST_PLATINUM_GROUP)
+            EUt(VA[UV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
         // Platinum Group
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_PLATINUM_GROUP)
@@ -409,7 +532,29 @@ internal object QuantumForceTransformerRecipes
             tier(1)
         }
 
-        // Radioactive 1
+        // endregion
+
+        // region Radioactive Elements
+
+        // Radioactive Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Uranium235, 64)
+            input(dust, Uranium238, 64)
+            input(dust, Plutonium239, 64)
+            input(dust, Plutonium241, 64)
+            input(dust, Plutonium244, 64)
+            input(dust, Thorium, 64)
+            input(nanite, Carbon, 16)
+            fluidInputs(Tritanium.getFluid(L * 4))
+            output(CATALYST_RADIOACTIVE)
+            EUt(VA[UV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Radioactive
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_RADIOACTIVE)
             input(dust, Thorium, 32)
@@ -425,7 +570,25 @@ internal object QuantumForceTransformerRecipes
             tier(1)
         }
 
-        // Radioactive 2
+        // Advanced Radioactive Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Protactinium, 64)
+            input(dust, Neptunium, 64)
+            input(dust, Americium, 64)
+            input(dust, Curium, 64)
+            input(dust, Berkelium, 64)
+            input(dust, Californium, 64)
+            input(nanite, Zinc, 4)
+            fluidInputs(Neutronium.getFluid(L * 4))
+            output(CATALYST_ADVANCED_RADIOACTIVE)
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Advanced Radioactive
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_ADVANCED_RADIOACTIVE)
             input(dust, Protactinium, 32)
@@ -441,7 +604,25 @@ internal object QuantumForceTransformerRecipes
             tier(1)
         }
 
-        // Radioactive 3
+         // Ultimate Radioactive Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Einsteinium, 64)
+            input(dust, Fermium, 64)
+            input(dust, Mendelevium, 64)
+            input(dust, Nobelium, 64)
+            input(dust, Lawrencium, 64)
+            input(dust, Rutherfordium, 64)
+            input(nanite, Neutronium)
+            fluidInputs(CosmicNeutronium.getFluid(L * 4))
+            output(CATALYST_ULTIMATE_RADIOACTIVE)
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Ultimate Radioactive
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_ULTIMATE_PLASTIC_POLYMER)
             input(dust, Plutonium244, 64)
@@ -456,9 +637,28 @@ internal object QuantumForceTransformerRecipes
             tier(2)
         }
 
-        // Titanium Tungsten Indium
+        // endregion
+
+        // region Transition Metals
+
+        // Titanium Tungsten Indium Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Titanium, 64)
+            input(dust, Tungsten, 64)
+            input(dust, Indium, 64)
+            input(nanite, Carbon, 16)
+            fluidInputs(Tritanium.getFluid(L * 4))
+            output(CATALYST_TRANSITION_METAL)
+            EUt(VA[UV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Transition Metal 1
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
-            notConsumable(CATALYST_TITANIUM_TUNGSTEN_INDIUM)
+            notConsumable(CATALYST_TRANSITION_METAL)
             input(dust, Lead, 16)
             input(dust, Bauxite, 32)
             input(dust, Tungstate, 16)
@@ -472,8 +672,9 @@ internal object QuantumForceTransformerRecipes
             tier(1)
         }
 
+        // Transition Metal 2
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
-            notConsumable(CATALYST_TITANIUM_TUNGSTEN_INDIUM)
+            notConsumable(CATALYST_TRANSITION_METAL)
             input(dust, Rutile, 32)
             input(dust, Scheelite, 16)
             input(dust, Ilmenite, 16)
@@ -485,6 +686,24 @@ internal object QuantumForceTransformerRecipes
             EUt(VA[UV])
             duration(20 * SECOND)
             tier(1)
+        }
+
+        // endregion
+
+        // region Adhesive Promoters
+
+        // Adhesion Promoter Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, BatteryAlloy, 64)
+            input(dust, Tin, 64)
+            input(nanite, Carbon, 32)
+            fluidInputs(Glue.getFluid(64000))
+            output(CATALYST_ADHESION_PROMOTER)
+            EUt(VA[UV])
+            duration(10 * SECOND)
+            cleanroom()
         }
 
         // Adhesives
@@ -504,6 +723,25 @@ internal object QuantumForceTransformerRecipes
             EUt(VA[UV])
             duration(20 * SECOND)
             tier(1)
+        }
+
+        // endregion
+
+        // region Rare Earth Elements
+
+        // Rare Earth Group Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Lutetium, 64)
+            input(dust, Thulium, 64)
+            input(dust, Gadolinium, 64)
+            input(nanite, Silver, 4)
+            fluidInputs(Neutronium.getFluid(L * 4))
+            output(CATALYST_RARE_EARTH_GROUP)
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+            cleanroom()
         }
 
         // REE 1
@@ -551,7 +789,27 @@ internal object QuantumForceTransformerRecipes
             tier(2)
         }
 
-        // Rare Metal Group
+        // endregion
+
+        // region Rare Metals
+
+        // Rare Metal Group Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Molybdenum, 64)
+            input(dust, Gallium, 64)
+            input(dust, Germanium, 64)
+            input(dust, Rhenium, 64)
+            input(nanite, Copper, 4)
+            fluidInputs(Tritanium.getFluid(L * 4))
+            output(CATALYST_RARE_METAL_GROUP)
+            EUt(VA[UV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Rare Metal 1
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_RARE_METAL_GROUP)
             input(dust, Sphalerite, 32)
@@ -568,6 +826,7 @@ internal object QuantumForceTransformerRecipes
             tier(1)
         }
 
+        // Rare Metal 2
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_RARE_METAL_GROUP)
             input(dust, Sphalerite, 32)
@@ -584,6 +843,7 @@ internal object QuantumForceTransformerRecipes
             tier(1)
         }
 
+        // Rare Metal 3
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_RARE_METAL_GROUP)
             input(dust, Pitchblende, 32)
@@ -598,6 +858,25 @@ internal object QuantumForceTransformerRecipes
             EUt(VA[UV])
             duration(20 * SECOND)
             tier(1)
+        }
+
+        // endregion
+
+        // region Naquadah Group Elements
+
+        // Naquadah Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Naquadria, 64)
+            input(dust, Trinium, 64)
+            input(dust, Technetium, 64)
+            input(nanite, Neutronium, 4)
+            fluidInputs(CosmicNeutronium.getFluid(L * 4))
+            output(CATALYST_NAQUADAH)
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+            cleanroom()
         }
 
         // Naquadah
@@ -624,7 +903,24 @@ internal object QuantumForceTransformerRecipes
             tier(3)
         }
 
-        // Raw Intelligence
+        // endregion
+
+        // region Bio Chain
+
+        // Raw Intelligence Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(STEM_CELLS, 64)
+            input(nanite, Gold, 4)
+            fluidInputs(CosmicNeutronium.getFluid(L * 4))
+            output(CATALYST_RAW_INTELLIGENCE)
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
+        // Raw Intelligence 1
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_RAW_INTELLIGENCE)
             input(dust, Calcium, 32)
@@ -646,6 +942,7 @@ internal object QuantumForceTransformerRecipes
             tier(2)
         }
 
+        // Raw Intelligence 2
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_RAW_INTELLIGENCE)
             input(dust, Yeast, 32)
@@ -667,6 +964,7 @@ internal object QuantumForceTransformerRecipes
             tier(2)
         }
 
+        // Raw Intelligence 3
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_RAW_INTELLIGENCE)
             input(dust, Sugar, 64)
@@ -682,6 +980,22 @@ internal object QuantumForceTransformerRecipes
             EUt(VA[UHV])
             duration(20 * SECOND)
             tier(2)
+        }
+
+        // Biological Intelligence Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, BrevibacteriumFlavum, 64)
+            input(dust, CupriavidusNecator, 64)
+            input(dust, StreptococcusPyogenes, 64)
+            input(dust, EscherichiaColi, 64)
+            input(nanite, TranscendentMetal)
+            fluidInputs(Hypogen.getFluid(L * 4))
+            output(CATALYST_BIOLOGICAL_INTELLIGENCE)
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+            cleanroom()
         }
 
         // Biological Intelligence
@@ -705,6 +1019,24 @@ internal object QuantumForceTransformerRecipes
             tier(3)
         }
 
+        // endregion
+
+        // region High Explosive Components
+
+        // High Explosive Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Hexanitrohexaaxaisowurtzitane, 64)
+            input(dust, Octaazacubane, 64)
+            input(nanite, Carbon, 16)
+            fluidInputs(CosmicNeutronium.getFluid(L * 4))
+            output(CATALYST_HIGH_EXPLOSIVE)
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
         // High Explosives
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_HIGH_EXPLOSIVE)
@@ -723,19 +1055,24 @@ internal object QuantumForceTransformerRecipes
             tier(2)
         }
 
-        // Temporal Harmony
-        QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
-            notConsumable(CATALYST_TEMPORAL_HARMONY)
-            input(GRAVITON_SHARD)
-            input(ENERGISED_TESSERACT)
-            fluidInputs(PrimordialMatter.getFluid(L * 8))
-            chancedOutput(dust, Shirabon, 64, 2500, 0)
-            chancedOutput(TIMEPIECE, 1, 2500, 0)
-            chancedFluidOutput(Eternity.getFluid(L * 64), 2500, 0)
-            chancedFluidOutput(TachyonRichTemporalFluid.getFluid(L * 128), 2500, 0)
-            EUt(VA[UIV])
-            duration(20 * SECOND)
-            tier(4)
+        // endregion
+
+        // region Bedrockium Group Elements
+
+         // Stellar Core Matter Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, Bedrockium, 64)
+            input(dust, Adamantium, 64)
+            input(dust, Vibranium, 64)
+            input(dust, Taranium, 64)
+            input(nanite, Neutronium, 4)
+            fluidInputs(CosmicNeutronium.getFluid(L * 4))
+            output(CATALYST_STELLAR_CORE)
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+            cleanroom()
         }
 
         // Bedrockium
@@ -764,6 +1101,28 @@ internal object QuantumForceTransformerRecipes
             tier(3)
         }
 
+        // endregion
+
+        // region Artificial Gems
+
+        // Artificial Gem Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(gem, CubicZirconia, 64)
+            input(gem, CubicBoronNitride, 64)
+            input(gem, CubicSiliconNitride, 64)
+            input(gem, NdYAG, 64)
+            input(gem, LuTmYVO, 64)
+            input(gem, PrHoYLF, 64)
+            input(nanite, TranscendentMetal)
+            fluidInputs(CosmicNeutronium.getFluid(L * 4))
+            output(CATALYST_ARTIFICIAL_GEM)
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+            cleanroom()
+        }
+
         // Artificial Gems
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
             notConsumable(CATALYST_ARTIFICIAL_GEM)
@@ -783,6 +1142,28 @@ internal object QuantumForceTransformerRecipes
             EUt(VA[UHV])
             duration(10 * SECOND)
             tier(2)
+        }
+
+        // endregion
+
+        // region Organic Dyes
+
+        // Organic Dye Catalyst
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(21)
+            input(CATALYST_BASE)
+            input(dust, DiaminostilbenedisulfonicAcid, 64)
+            input(dust, Fluorescein, 64)
+            input(dust, CyanIndigo, 64)
+            input(dust, PrussianBlue, 64)
+            input(dust, DirectBrown77, 64)
+            input(dust, Erythrosine, 64)
+            input(nanite, Carbon, 16)
+            fluidInputs(Neutronium.getFluid(L * 4))
+            output(CATALYST_ORGANIC_DYE)
+            EUt(VA[UV])
+            duration(10 * SECOND)
+            cleanroom()
         }
 
         // Organic Dye 1
@@ -858,285 +1239,10 @@ internal object QuantumForceTransformerRecipes
             duration(10 * SECOND)
             tier(1)
         }
-    }
 
-    private fun catalystRecipes()
-    {
-        // Catalyst Base
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(20)
-            input(plate, Steel, 8)
-            input(wireFine, Copper, 4)
-            input(screw, Tin, 6)
-            output(CATALYST_BASE)
-            EUt(VH[LV])
-            duration(10 * SECOND)
-        }
+        // endregion
 
-        // Rubber Polymer Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, SiliconeRubber, 64)
-            input(dust, StyreneButadieneRubber, 64)
-            input(dust, Rubber, 64)
-            input(dust, PolyphenyleneSulfide, 64)
-            input(nanite, Carbon, 16)
-            fluidInputs(Neutronium.getFluid(L * 4))
-            output(CATALYST_RUBBER_POLYMER)
-            EUt(VA[UV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Advanced Rubber Polymer Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, PolyphosphonitrileFluoroRubber, 64)
-            input(dust, PolytetramethyleneGlycolRubber, 64)
-            input(dust, Polyetheretherketone, 64)
-            input(dust, Zylon, 64)
-            input(nanite, Carbon, 16)
-            fluidInputs(CosmicNeutronium.getFluid(L * 4))
-            output(CATALYST_ADVANCED_RUBBER_POLYMER)
-            EUt(VA[UHV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Plastic Polymer Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Polybenzimidazole, 64)
-            input(dust, Polytetrafluoroethylene, 64)
-            input(nanite, Carbon, 16)
-            fluidInputs(Neutronium.getFluid(L * 4))
-            output(CATALYST_PLASTIC_POLYMER)
-            EUt(VA[UHV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Advanced Plastic Polymer Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Kevlar, 64)
-            input(dust, KaptonE, 64)
-            input(dust, PolyethyleneTerephthalate, 64)
-            input(dust, Polymethylmethacrylate, 64)
-            input(nanite, Carbon, 16)
-            fluidInputs(CosmicNeutronium.getFluid(L * 4))
-            output(CATALYST_ADVANCED_PLASTIC_POLYMER)
-            EUt(VA[UEV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Ultimate Plastic Polymer Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, FullerenePolymerMatrix, 64)
-            input(dust, CarbonNanotube, 64)
-            input(dust, Fullerene, 64)
-            input(dust, Phosphorene, 64)
-            input(dust, PedotPSS, 64)
-            input(dust, PedotTMA, 64)
-            input(nanite, TranscendentMetal)
-            fluidInputs(Shirabon.getFluid(L * 4))
-            output(CATALYST_ULTIMATE_PLASTIC_POLYMER)
-            EUt(VA[UIV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Platinum Group Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, RhodiumPlatedPalladium, 64)
-            input(dust, Osmiridium, 64)
-            input(dust, Ruridit, 64)
-            input(nanite, Carbon, 16)
-            fluidInputs(Neutronium.getFluid(L * 4))
-            output(CATALYST_PLATINUM_GROUP)
-            EUt(VA[UV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Radioactive Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Uranium235, 64)
-            input(dust, Uranium238, 64)
-            input(dust, Plutonium239, 64)
-            input(dust, Plutonium241, 64)
-            input(dust, Plutonium244, 64)
-            input(dust, Thorium, 64)
-            input(nanite, Carbon, 16)
-            fluidInputs(Tritanium.getFluid(L * 4))
-            output(CATALYST_RADIOACTIVE)
-            EUt(VA[UV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Advanced Radioactive Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Protactinium, 64)
-            input(dust, Neptunium, 64)
-            input(dust, Americium, 64)
-            input(dust, Curium, 64)
-            input(dust, Berkelium, 64)
-            input(dust, Californium, 64)
-            input(nanite, Neutronium, 4)
-            fluidInputs(Neutronium.getFluid(L * 4))
-            output(CATALYST_ADVANCED_RADIOACTIVE)
-            EUt(VA[UHV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Ultimate Radioactive Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Einsteinium, 64)
-            input(dust, Fermium, 64)
-            input(dust, Mendelevium, 64)
-            input(dust, Nobelium, 64)
-            input(dust, Lawrencium, 64)
-            input(dust, Rutherfordium, 64)
-            fluidInputs(CosmicNeutronium.getFluid(L * 4))
-            output(CATALYST_ULTIMATE_RADIOACTIVE)
-            EUt(VA[UEV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Titanium Tungsten Indium Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Titanium, 64)
-            input(dust, Tungsten, 64)
-            input(dust, Indium, 64)
-            fluidInputs(Tritanium.getFluid(L * 4))
-            output(CATALYST_TITANIUM_TUNGSTEN_INDIUM)
-            EUt(VA[UV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Adhesion Promoter Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, BatteryAlloy, 64)
-            input(dust, Tin, 64)
-            input(nanite, Carbon, 32)
-            fluidInputs(Glue.getFluid(64000))
-            output(CATALYST_ADHESION_PROMOTER)
-            EUt(VA[UV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Rare Earth Group Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Lutetium, 64)
-            input(dust, Thulium, 64)
-            input(dust, Gadolinium, 64)
-            input(nanite, Silver, 4)
-            fluidInputs(Neutronium.getFluid(L * 4))
-            output(CATALYST_RARE_EARTH_GROUP)
-            EUt(VA[UHV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Rare Metal Group Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Molybdenum, 64)
-            input(dust, Gallium, 64)
-            input(dust, Germanium, 64)
-            input(dust, Rhenium, 64)
-            input(nanite, Copper, 4)
-            fluidInputs(Tritanium.getFluid(L * 4))
-            output(CATALYST_RARE_METAL_GROUP)
-            EUt(VA[UV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Naquadah Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Naquadria, 64)
-            input(dust, Trinium, 64)
-            input(dust, Technetium, 64)
-            input(nanite, Neutronium, 4)
-            fluidInputs(CosmicNeutronium.getFluid(L * 4))
-            output(CATALYST_NAQUADAH)
-            EUt(VA[UEV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Raw Intelligence Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(STEM_CELLS, 64)
-            input(nanite, Gold, 4)
-            fluidInputs(CosmicNeutronium.getFluid(L * 4))
-            output(CATALYST_RAW_INTELLIGENCE)
-            EUt(VA[UHV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Biological Intelligence Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, BrevibacteriumFlavum, 64)
-            input(dust, CupriavidusNecator, 64)
-            input(dust, StreptococcusPyogenes, 64)
-            input(dust, EscherichiaColi, 64)
-            input(nanite, TranscendentMetal)
-            fluidInputs(Hypogen.getFluid(L * 4))
-            output(CATALYST_BIOLOGICAL_INTELLIGENCE)
-            EUt(VA[UEV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // High Explosive Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Hexanitrohexaaxaisowurtzitane, 64)
-            input(dust, Octaazacubane, 64)
-            input(nanite, Carbon, 16)
-            fluidInputs(CosmicNeutronium.getFluid(L * 4))
-            output(CATALYST_HIGH_EXPLOSIVE)
-            EUt(VA[UHV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
+        // region Eternity
 
         // Temporal Harmony Catalyst
         ASSEMBLER_RECIPES.addRecipe {
@@ -1152,57 +1258,22 @@ internal object QuantumForceTransformerRecipes
             cleanroom()
         }
 
-        // Stellar Core Matter Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, Bedrockium, 64)
-            input(dust, Adamantium, 64)
-            input(dust, Vibranium, 64)
-            input(dust, Taranium, 64)
-            input(nanite, Neutronium, 4)
-            fluidInputs(CosmicNeutronium.getFluid(L * 4))
-            output(CATALYST_STELLAR_CORE)
-            EUt(VA[UEV])
-            duration(10 * SECOND)
-            cleanroom()
+        // Temporal Harmony
+        QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
+            notConsumable(CATALYST_TEMPORAL_HARMONY)
+            input(GRAVITON_SHARD)
+            input(ENERGISED_TESSERACT)
+            fluidInputs(PrimordialMatter.getFluid(L * 8))
+            chancedOutput(dust, Shirabon, 64, 2500, 0)
+            chancedOutput(TIMEPIECE, 1, 2500, 0)
+            chancedFluidOutput(Eternity.getFluid(L * 64), 2500, 0)
+            chancedFluidOutput(TachyonRichTemporalFluid.getFluid(L * 128), 2500, 0)
+            EUt(VA[UIV])
+            duration(20 * SECOND)
+            tier(4)
         }
 
-        // Artificial Gem Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(gem, CubicZirconia, 64)
-            input(gem, CubicBoronNitride, 64)
-            input(gem, CubicSiliconNitride, 64)
-            input(gem, NdYAG, 64)
-            input(gem, LuTmYVO, 64)
-            input(gem, PrHoYLF, 64)
-            input(nanite, TranscendentMetal)
-            fluidInputs(CosmicNeutronium.getFluid(L * 4))
-            output(CATALYST_ARTIFICIAL_GEM)
-            EUt(VA[UEV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
-
-        // Organic Dye Catalyst
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(21)
-            input(CATALYST_BASE)
-            input(dust, DiaminostilbenedisulfonicAcid, 64)
-            input(dust, Fluorescein, 64)
-            input(dust, CyanIndigo, 64)
-            input(dust, PrussianBlue, 64)
-            input(dust, DirectBrown77, 64)
-            input(dust, Erythrosine, 64)
-            input(nanite, Carbon, 16)
-            fluidInputs(Neutronium.getFluid(L * 4))
-            output(CATALYST_ORGANIC_DYE)
-            EUt(VA[UV])
-            duration(10 * SECOND)
-            cleanroom()
-        }
+        // endregion
     }
 
     // @formatter:on
