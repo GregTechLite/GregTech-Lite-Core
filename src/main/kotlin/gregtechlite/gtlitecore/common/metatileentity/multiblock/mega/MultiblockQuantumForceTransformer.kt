@@ -272,7 +272,15 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         {
             buffer.pos(cx + lx * rx + lz * fx, cy + ly, cz + lx * rz + lz * fz).tex(u, v).endVertex()
         }
-
+        // Center O:  0,  0         1 ------- 8
+        // Corner 1:  7, -2        /           \
+        // Corner 2:  3, -6     2 /             \ 7
+        // Corner 3: -2, -6      |               |
+        // Corner 4: -6, -2      |       O       |
+        // Corner 5: -6,  3      |               |
+        // Corner 6: -2,  7     3 \             / 6
+        // Corner 7:  3,  7        \           /
+        // Corner 8:  7,  3         4 ------- 5
         when (side)
         {
             0 ->
