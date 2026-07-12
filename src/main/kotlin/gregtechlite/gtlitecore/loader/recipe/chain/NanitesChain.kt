@@ -37,6 +37,9 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.recipe.builder.NanoForgeRecipeBuilder.Companion.structT2
+import gregtechlite.gtlitecore.api.recipe.builder.NanoForgeRecipeBuilder.Companion.structT3
+import gregtechlite.gtlitecore.api.recipe.builder.NanoForgeRecipeBuilder.Companion.structT4
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
@@ -135,7 +138,6 @@ internal object NanitesChain
             output(nanite, Carbon, 64)
             EUt(10_000_000) // UIV
             duration(20 * SECOND)
-            tier(1)
         }
 
         // Silver Nanite (for PCB Factory T2 recipes, some QFT Catalysts)
@@ -147,7 +149,7 @@ internal object NanitesChain
             output(nanite, Silver)
             EUt(10_000_000) // UIV
             duration(40 * SECOND)
-            tier(2)
+            requireStruct(structT2)
         }
 
         // Gold Nanite (for PCB Factory T3 recipes)
@@ -159,7 +161,7 @@ internal object NanitesChain
             output(nanite, Gold)
             EUt(100_000_000) // UXV
             duration(1 * MINUTE)
-            tier(3)
+            requireStruct(structT3)
         }
 
         // Glowstone Nanite (for Optoelectronic SoC for Optical Circuits and some QFT Catalysts)
@@ -171,7 +173,7 @@ internal object NanitesChain
             output(nanite, Glowstone, 64)
             EUt(50_000_000) // UXV
             duration(1 * MINUTE + 30 * SECOND)
-            tier(2)
+            requireStruct(structT2)
         }
 
         // Neutronium Nanite (for some QFT Catalysts and UXV+ component recipes)
@@ -184,7 +186,6 @@ internal object NanitesChain
             output(nanite, Neutronium)
             EUt(100_000_000) // UIV
             duration(50 * SECOND)
-            tier(1)
         }
 
         // Copper Nanite (for some QFT Catalysts and Mag Matter)
@@ -197,7 +198,6 @@ internal object NanitesChain
             output(nanite, Copper, 16)
             EUt(10_000_000) // UIV
             duration(30 * SECOND)
-            tier(1)
         }
 
         // Zinc Nanite (for QFT casing and some QFT Catalysts)
@@ -209,7 +209,6 @@ internal object NanitesChain
             output(nanite, Zinc, 8)
             EUt(10_000_000) // UIV
             duration(40 * SECOND)
-            tier(1)
         }
 
         // Iron Nanite (for Harmonic Phonon Matter blasting and Nano Shielding Frame)
@@ -222,7 +221,7 @@ internal object NanitesChain
             output(nanite, Iron, 4)
             EUt(50_000_000) // UXV
             duration(30 * SECOND)
-            tier(2)
+            requireStruct(structT2)
         }
 
         // Transcendent Metal Nanite (for some QFT Catalysts and Phonon Crystal Seed)
@@ -236,7 +235,7 @@ internal object NanitesChain
             output(nanite, TranscendentMetal)
             EUt(1_000_000_000) // MAX
             duration(2 * MINUTE + 30 * SECOND)
-            tier(2)
+            requireStruct(structT2)
         }
 
         // Chrome Nanite (for Lattice QCD Shielding Casing)
@@ -250,7 +249,7 @@ internal object NanitesChain
             output(nanite, Chrome, 2)
             EUt(1_500_000_000) // MAX
             duration(2 * MINUTE)
-            tier(3)
+            requireStruct(structT3)
         }
 
         // White Dwarf Matter Nanite (for MHDCSM recipe)
@@ -267,7 +266,7 @@ internal object NanitesChain
             output(nanite, WhiteDwarfMatter, 16)
             EUt(2_000_000_000) // MAX
             duration(1 * MINUTE + 30 * SECOND)
-            tier(3)
+            requireStruct(structT4)
         }
 
         // Black Dwarf Matter Nanite (for MHDCSM recipe)
@@ -284,7 +283,7 @@ internal object NanitesChain
             output(nanite, BlackDwarfMatter, 16)
             EUt(2_000_000_000) // MAX
             duration(1 * MINUTE + 30 * SECOND)
-            tier(3)
+            requireStruct(structT4)
         }
 
         // Universium Nanite (for MHDCSM recipe)
@@ -301,7 +300,7 @@ internal object NanitesChain
             output(nanite, Universium, 16)
             EUt(2_000_000_000) // MAX
             duration(1 * MINUTE + 30 * SECOND)
-            tier(3)
+            requireStruct(structT4)
         }
 
         // Eternity Nanite (for MHDCSM advanced recipe)
@@ -318,7 +317,7 @@ internal object NanitesChain
             output(nanite, Eternity, 16)
             EUt(2_000_000_000) // MAX
             duration(1 * MINUTE + 30 * SECOND)
-            tier(3)
+            requireStruct(structT4)
         }
 
         // Mag Matter Nanite (for Supracausal Circuit recipes)
@@ -335,7 +334,7 @@ internal object NanitesChain
             output(nanite, MagMatter, 4)
             EUt(2_000_000_000) // MAX
             duration(2 * MINUTE)
-            tier(3)
+            requireStruct(structT4)
         }
 
         // Shirabon Nanite (for Supracausal Circuit Component recipes)
@@ -352,7 +351,7 @@ internal object NanitesChain
             output(nanite, Shirabon, 16)
             EUt(4_800_000_000) // MAX+
             duration(2 * MINUTE + 30 * SECOND)
-            tier(3)
+            requireStruct(structT4)
         }
 
         // Mellion Nanite (for Supracausal Circuit Component recipes)
@@ -369,7 +368,7 @@ internal object NanitesChain
             output(nanite, Mellion, 16)
             EUt(4_800_000_000) // MAX+
             duration(2 * MINUTE + 30 * SECOND)
-            tier(3)
+            requireStruct(structT4)
         }
     }
 

@@ -1739,11 +1739,6 @@ gtlitecore.recipe.component_assembly_line_tier.14=Component Assembly Casing Tier
 
 gtlitecore.recipe.min_height=Minimum Height: %s
 
-gtlitecore.recipe.nano_forge_tier=Structure Tier: Error
-gtlitecore.recipe.nano_forge_tier.1=Structure Tier: 1
-gtlitecore.recipe.nano_forge_tier.2=Structure Tier: 2
-gtlitecore.recipe.nano_forge_tier.3=Structure Tier: 3
-
 gtlitecore.recipe.quantum_force_transformer_tier=Structure Tier: Error
 gtlitecore.recipe.quantum_force_transformer_tier.1=Structure Tier: 1 (Neutron)
 gtlitecore.recipe.quantum_force_transformer_tier.2=Structure Tier: 2 (Cosmic)
@@ -2458,7 +2453,20 @@ gtlitecore.machine.nano_forge.tooltip.5=带有多级附属结构，附属结构�
 gtlitecore.machine.nano_forge.tooltip.6=2级与3级纳米锻炉分别具有§e64§7与§e256§7并行。
 gtlitecore.machine.nano_forge.tooltip.7=当结构等级大于配方要求等级时，进行§d无损超频§7。
 
-gtlitecore.machine.nano_forge.structure_info=Structure Tier: %s
+gtlitecore.machine.nano_forge.structure.t2=Multi-Quadrant Consciousness Storage Center: §aEnabled
+gtlitecore.machine.nano_forge.structure.t3=Nanite Self-Replication Unrestrictor: §aEnabled
+gtlitecore.machine.nano_forge.structure.t4=Virtual Gestalt Computing Uplink: §aEnabled
+
+gtlitecore.machine.nano_forge.additional_structure_name=Nano Forge Additional Module
+
+gtlitecore.machine.consciousness_storage_center.name=Multi-Quadrant Consciousness Storage Center
+gtlitecore.machine.consciousness_storage_center.tooltip.1=Add Distributed-Centralized Consciousness Storage functionality to the Nano Forge
+
+gtlitecore.machine.nanite_replication_unrestricor.name=Nanite Self-Replication Unrestrictor
+gtlitecore.machine.nanite_replication_unrestricor.tooltip.1=Add Nanite Self-Replication functionality to the Nano Forge
+
+gtlitecore.machine.virtual_gestalt_computing_uplink.name=Virtual Gestalt Computing Uplink
+gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.1=Add Virtual Consciousness Storage and Computing functionality to the Nano Forge
 
 gtlitecore.machine.quantum_force_transformer.name=Quantum Force Transformer
 gtlitecore.machine.quantum_force_transformer.tooltip.1=让复杂的化学过程一步到位

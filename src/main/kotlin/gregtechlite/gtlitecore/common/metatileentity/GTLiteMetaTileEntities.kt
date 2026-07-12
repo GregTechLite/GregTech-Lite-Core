@@ -152,6 +152,9 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessDyn
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessEnergyHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessStorageHatch
 import gregtechlite.gtlitecore.common.metatileentity.electric.MachineEnergyDistributor
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockConsciousnessStorageCenter
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNaniteReplicationUnrestricor
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockVirtualGestaltComputingUplink
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobExtractor
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobSlaughter
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineSapCollector
@@ -315,7 +318,10 @@ object GTLiteMetaTileEntities
     lateinit var BIO_CULTIVATION_CHAMBER: MultiblockBioCultivationChamber<*>
     lateinit var WATER_COOLING_TOWER: MultiblockWaterCoolingTower<*>
     lateinit var THERMOSINK_COOLING_TOWER: MultiblockThermosinkCoolingTower<*>
-    lateinit var NANO_FORGE: MultiblockNanoForge
+    lateinit var NANO_FORGE: MultiblockNanoForge<*>
+    lateinit var CONSCIOUSNESS_STORAGE_CENTER: MultiblockConsciousnessStorageCenter<*>
+    lateinit var NANITE_REPLICATION_UNRESTRICOR: MultiblockNaniteReplicationUnrestricor<*>
+    lateinit var VIRTUAL_GESTALT_COMPUTING_UPLINK: MultiblockVirtualGestaltComputingUplink<*>
     lateinit var QUANTUM_FORCE_TRANSFORMER: MultiblockQuantumForceTransformer
     lateinit var ANTIMATTER_FORGE: MultiblockAntimatterForge
     lateinit var ANTIMATTER_GENERATOR: MultiblockAntimatterGenerator
@@ -850,9 +856,9 @@ object GTLiteMetaTileEntities
         WATER_COOLING_TOWER = register(10032, MultiblockWaterCoolingTower(GTLiteMod.id("water_cooling_tower")))
         THERMOSINK_COOLING_TOWER = register(10033, MultiblockThermosinkCoolingTower(GTLiteMod.id("thermosink_cooling_tower")))
         NANO_FORGE = register(10034, MultiblockNanoForge(GTLiteMod.id("nano_forge")))
-        // T2 35
-        // T3 36
-        // T4 37
+        CONSCIOUSNESS_STORAGE_CENTER = register(10035, MultiblockConsciousnessStorageCenter(GTLiteMod.id("consciousness_storage_center")))
+        NANITE_REPLICATION_UNRESTRICOR = register(10036, MultiblockNaniteReplicationUnrestricor(GTLiteMod.id("nanite_replication_unrestricor")))
+        VIRTUAL_GESTALT_COMPUTING_UPLINK = register(10037, MultiblockVirtualGestaltComputingUplink(GTLiteMod.id("virtual_gestalt_computing_uplink")))
         QUANTUM_FORCE_TRANSFORMER = register(10038, MultiblockQuantumForceTransformer(GTLiteMod.id("quantum_force_transformer")))
         ANTIMATTER_FORGE = register(10039, MultiblockAntimatterForge(GTLiteMod.id("antimatter_forge")))
         ANTIMATTER_GENERATOR = register(10040, MultiblockAntimatterGenerator(GTLiteMod.id("antimatter_generator")))

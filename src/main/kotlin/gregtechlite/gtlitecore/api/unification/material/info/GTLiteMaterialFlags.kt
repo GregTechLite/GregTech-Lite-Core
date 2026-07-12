@@ -38,6 +38,7 @@ import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Fermium
+import gregtech.api.unification.material.Materials.Francium
 import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
@@ -335,6 +336,7 @@ object GTLiteMaterialFlags
         Dubnium.addFlags(GENERATE_FRAME)
         Curium.addFlags(GENERATE_FRAME)
         VanadiumGallium.addFlags(GENERATE_FRAME)
+        Francium.addFlags(GENERATE_FRAME)
 
         // fuelRod
         Thorium.addFlags(GENERATE_FUEL_ROD)
@@ -593,6 +595,7 @@ object GTLiteMaterialFlags
         Roentgenium.addFlags(GENERATE_ROD)
         Nickel.addFlags(GENERATE_ROD)
         Nihonium.addFlags(GENERATE_ROD)
+        Francium.addFlags(GENERATE_ROD)
 
         // stickLong
         Chrome.addFlags(GENERATE_LONG_ROD)
