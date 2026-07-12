@@ -6,11 +6,8 @@ import net.minecraft.util.math.BlockPos
 interface ExtendableMultiblock<T: ExtendableMultiblock<T>>: IMultiblockController
 {
     var additionalStructureManager: AdditionalStructureManager<T>
+
     val maintenanceProblem: Byte
-
-    fun getPos(): BlockPos
-
-    fun highlightController()
 
     fun isWorkingEnabled(): Boolean
 

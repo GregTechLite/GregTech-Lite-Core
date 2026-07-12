@@ -1,7 +1,5 @@
 package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable
 
-import com.cleanroommc.modularui.api.widget.IWidget
-import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import net.minecraft.nbt.NBTTagCompound
@@ -18,20 +16,17 @@ open class AdditionalStructureManager<T: ExtendableMultiblock<T>>(protected val 
         structures[additionalMultiblockBase.pos] = additionalMultiblockBase
     }
 
-    fun get(metaTileEntityId: ResourceLocation): MutableList<AdditionalMultiblockBase<T>>
+    operator fun get(metaTileEntityId: ResourceLocation): MutableList<AdditionalMultiblockBase<T>>
         = structures.values.filter { it.metaTileEntityId.equals(metaTileEntityId) }.toMutableList()
 
-    fun get(pos: BlockPos): AdditionalMultiblockBase<T>? = structures[pos]
+    operator fun get(pos: BlockPos): AdditionalMultiblockBase<T>? = structures[pos]
 
     fun remove(pos: BlockPos) = structures.remove(pos)
 
-    fun getWidgets(panelSyncManager: PanelSyncManager): List<IWidget> {
-        return structures.values.map { it.getButton(panelSyncManager) }.toList()
-    }
-
-    fun <A> getAbilities(ability: MultiblockAbility<A>): MutableList<A> {
-        val abilities = ArrayList<A>()
-        structures.values.forEach { it.getAbilities<A>(ability).also { ab -> abilities.addAll(ab) } }
+    fun <A> getAbilities(ability: MultiblockAbility<A>): MutableList<A>
+    {
+        val abilities = arrayListOf<A>()
+        structures.values.forEach { it.getAbilities<A>(ability).also { ability -> abilities.addAll(ability) } }
         return abilities
     }
 
