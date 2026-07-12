@@ -146,6 +146,7 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileClea
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessDynamoHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessEnergyHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessStorageHatch
+import gregtechlite.gtlitecore.common.metatileentity.electric.MachineEnergyDistributor
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobExtractor
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobSlaughter
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineSapCollector
@@ -204,6 +205,7 @@ object GTLiteMetaTileEntities
     lateinit var NAQUADAH_REACTOR: Array<SimpleGeneratorMetaTileEntity>
     lateinit var ACID_GENERATOR: Array<SimpleGeneratorMetaTileEntity>
     lateinit var MOB_SLAUGHTER: Array<MachineMobSlaughter>
+    lateinit var ENERGY_DISTRIBUTOR: Array<MachineEnergyDistributor>
 
     // endregion
 
@@ -555,6 +557,11 @@ object GTLiteMetaTileEntities
         // 361-375: Mob Slaughter (LV-HV)
         MOB_SLAUGHTER = register(363, 0..2) {
             MachineMobSlaughter(GTLiteMod.id("mob_slaughter.${VN[it + 1].lowercase()}"), it + 1)
+        }
+
+        // 376-390: Energy Distributors (ULV-MAX)
+        ENERGY_DISTRIBUTOR = register(376, 0..14) {
+            MachineEnergyDistributor(GTLiteMod.id("energy_distributor.${VN[it].lowercase()}"), it)
         }
 
         // endregion

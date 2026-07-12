@@ -3005,6 +3005,30 @@ gtlitecore.machine.wireless_energy_hatch.storage.uxv.name=§eUXV§f 无线能量
 gtlitecore.machine.wireless_energy_hatch.storage.opv.name=§9OpV§f 无线能量存储器
 gtlitecore.machine.wireless_energy_hatch.storage.max.name=§cMAX§f 无线能量存储器
 
+gtlitecore.machine.energy_distributor.ulv.name=§7ULV§f 能量分配器
+gtlitecore.machine.energy_distributor.lv.name=§7LV§f 能量分配器
+gtlitecore.machine.energy_distributor.mv.name=§bMV§f 能量分配器
+gtlitecore.machine.energy_distributor.hv.name=§6HV§f 能量分配器
+gtlitecore.machine.energy_distributor.ev.name=§5EV§f 能量分配器
+gtlitecore.machine.energy_distributor.iv.name=§1IV§f 能量分配器
+gtlitecore.machine.energy_distributor.luv.name=§dLuV§f 能量分配器
+gtlitecore.machine.energy_distributor.zpm.name=§cZPM§f 能量分配器
+gtlitecore.machine.energy_distributor.uv.name=§3UV§f 能量分配器
+gtlitecore.machine.energy_distributor.uhv.name=§4UHV§f 能量分配器
+gtlitecore.machine.energy_distributor.uev.name=§aUEV§f 能量分配器
+gtlitecore.machine.energy_distributor.uiv.name=§2UIV§f 能量分配器
+gtlitecore.machine.energy_distributor.uxv.name=§eUXV§f 能量分配器
+gtlitecore.machine.energy_distributor.opv.name=§9OpV§f 能量分配器
+gtlitecore.machine.energy_distributor.max.name=§cMAX§f 能量分配器
+
+gtlitecore.machine.energy_distributor.tooltip.1=从正面分流到5个输出面，或从5个输入面汇聚到正面
+gtlitecore.machine.energy_distributor.tooltip.2=支持最大§e320A§7电流
+gtlitecore.machine.energy_distributor.tooltip.3=使用§f扳手§7更改正面朝向
+gtlitecore.machine.energy_distributor.tooltip.4=使用§f软锤§7切换§a分流§7/§c汇聚§7模式
+
+gtlitecore.top.energy_distributor.mode_distribute=模式： §a分流
+gtlitecore.top.energy_distributor.mode_combine=模式： §c汇聚
+
 gtlitecore.machine.wireless_energy_hatch.tooltip.1=从无线网络接收能量
 gtlitecore.machine.wireless_energy_hatch.tooltip.2=设置§f频道§7以将仓室加入§d无线网络§7中
 gtlitecore.machine.wireless_energy_hatch.tooltip.3=设置更高的§f优先级§7将使仓室优先于其他网络中仓室拉入能量
