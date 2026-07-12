@@ -8,11 +8,13 @@ import gregtech.api.capability.IControllable
 import gregtech.api.capability.IDataStickIntractable
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
+import gregtech.api.util.GTUtility
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextComponentTranslation
 
 abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEntityId: ResourceLocation)
@@ -51,13 +53,35 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
     {
         super.writeToNBT(data)
         data.setBoolean("isWorkingEnabled", isWorkingEnabled)
+        mainController?.let {
+            if (mainController is ExtendableMultiblockBase<*>)
+            {
+                val controller = it as ExtendableMultiblockBase<*>
+                val mainPos = NBTTagCompound()
+                mainPos.setInteger("X", controller.pos.x)
+                mainPos.setInteger("Y", controller.pos.y)
+                mainPos.setInteger("Z", controller.pos.z)
+                data.setTag("MainControllerPos", mainPos)
+            }
+        }
         return data
     }
 
+    @Suppress("UNCHECKED_CAST")
     override fun readFromNBT(data: NBTTagCompound)
     {
         super.readFromNBT(data)
         setWorkingEnabled(data.getBoolean("isWorkingEnabled"))
+        if (data.hasKey("MainControllerPos"))
+        {
+            val mainPos = data.getCompoundTag("MainControllerPos")
+            val pos = BlockPos(mainPos.getInteger("X"), mainPos.getInteger("Y"), mainPos.getInteger("Z"))
+            val mte = GTUtility.getMetaTileEntity(world, pos)
+            if (mte is ExtendableMultiblock<*>)
+            {
+                connect(mte as ExtendableMultiblock<T>)
+            }
+        }
     }
 
     override fun writeInitialSyncData(buf: PacketBuffer)
