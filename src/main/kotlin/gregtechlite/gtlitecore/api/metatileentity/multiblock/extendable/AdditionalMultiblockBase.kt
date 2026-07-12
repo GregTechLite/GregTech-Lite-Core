@@ -120,6 +120,12 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
         }
     }
 
+    override fun configureDisplayText(builder: MultiblockUIBuilder)
+    {
+        builder.setWorkingStatus(isWorkingEnabled, isConnected())
+            .addWorkingStatusLine()
+    }
+
     override fun configureWarningText(builder: MultiblockUIBuilder)
     {
         val controller = mainController ?: return
