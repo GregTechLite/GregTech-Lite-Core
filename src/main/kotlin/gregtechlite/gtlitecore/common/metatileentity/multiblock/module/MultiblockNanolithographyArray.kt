@@ -8,7 +8,6 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalMultiblockBase
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -56,7 +55,7 @@ class MultiblockNanolithographyArray<T : MultiblockPCBFactory<T>>(id: ResourceLo
 
     override fun getBaseTexture(source: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.OSMIRIDIUM_CASING
 
-    override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.NANOSCALE_FABRICATOR_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

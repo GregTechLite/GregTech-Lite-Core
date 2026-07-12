@@ -6,7 +6,6 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalMultiblockBase
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.SNOW_LAYER
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
@@ -62,7 +61,7 @@ class MultiblockThermosinkCoolingTower<T : MultiblockPCBFactory<T>>(id: Resource
 
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.INFINITY_COOLING_CASING
 
-    override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_ROCKET_ENGINE_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

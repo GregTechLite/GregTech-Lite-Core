@@ -55,7 +55,7 @@ class MultiblockMicroscaleCircuitDetector<T : MultiblockPCBFactory<T>>(id: Resou
 
     override fun getBaseTexture(source: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.NEUTRONIUM_CASING
 
-    override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = Textures.SCANNER_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

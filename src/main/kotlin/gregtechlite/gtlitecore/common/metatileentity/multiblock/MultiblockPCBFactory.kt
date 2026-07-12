@@ -171,7 +171,6 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
                 }
             }
             .addRecipeOutputLine(recipeMapWorkable)
-
     }
 
     override fun canBeDistinct() = true
