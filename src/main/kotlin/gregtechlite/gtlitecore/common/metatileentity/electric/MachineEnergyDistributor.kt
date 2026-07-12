@@ -22,7 +22,6 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.Arrays
 
 class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTileEntity(id, tier)
 {
@@ -58,7 +57,7 @@ class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTile
 
     override fun getMaxInputOutputAmperage(): Long = 320
 
-    override fun usesMui2() = false
+    override fun openGUIOnRightClick() = false
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
     {
@@ -131,7 +130,7 @@ class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTile
         {
             Textures.ENERGY_IN.renderSided(frontFacing, renderState, translation,
                 PipelineUtil.color(pipeline, GTValues.VC[tier]))
-            Arrays.stream(EnumFacing.values()).filter { f -> f != frontFacing }
+            EnumFacing.values().filter { f -> f != frontFacing }
                 .forEach { f ->
                     Textures.ENERGY_OUT.renderSided(f, renderState, translation,
                         PipelineUtil.color(pipeline, GTValues.VC[tier]))
@@ -141,7 +140,7 @@ class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTile
         {
             Textures.ENERGY_OUT.renderSided(frontFacing, renderState, translation,
                 PipelineUtil.color(pipeline, GTValues.VC[tier]))
-            Arrays.stream(EnumFacing.values()).filter { f -> f != frontFacing }
+            EnumFacing.values().filter { f -> f != frontFacing }
                 .forEach { f ->
                     Textures.ENERGY_IN.renderSided(f, renderState, translation,
                         PipelineUtil.color(pipeline, GTValues.VC[tier]))
