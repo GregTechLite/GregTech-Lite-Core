@@ -84,9 +84,10 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
 
     override fun configureWarningText(builder: MultiblockUIBuilder)
     {
-        if (mainController?.isStructureFormed!!)
+        val controller = mainController ?: return
+        if (controller.isStructureFormed)
         {
-            builder.addMaintenanceProblemLines(mainController?.maintenanceProblem!!, true)
+            controller.maintenanceProblem?.let { builder.addMaintenanceProblemLines(it, true) }
         }
     }
 
