@@ -30,6 +30,7 @@
     "MixinMultiblockControllerBase",
     "MixinMultiblockRecipeLogic",
     "MixinMetaTileEntityPowerSubstation",
+    "MixinTextFormattingUtil",
     "MixinMultiMapMultiblockController",
     "MixinOreConfigUtils",
     "MixinOreRecipeHandler",
