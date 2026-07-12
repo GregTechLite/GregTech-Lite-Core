@@ -257,6 +257,10 @@ object GTLiteOverlays
     val VANADIUM_GALLIUM_CASING = casingId("metal/vanadium_gallium")
     @JvmField
     val NEUTRONIUM_CASING = casingId("metal/neutronium")
+    @JvmField
+    val OSMIRIDIUM_CASING = casingId("metal/osmiridium")
+    @JvmField
+    val INFINITY_COOLING_CASING = casingId("special/infinity_cooling_casing")
 
     // endregion
 

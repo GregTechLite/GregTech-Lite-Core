@@ -367,7 +367,7 @@ object GTLiteSecondDegreeMaterials
             fluid()
             color(0xB4B414).iconSet(SHINY)
             components(Chrome, 13, Nickel, 3, Molybdenum, 2, Copper, 10, Tungsten, 2, Steel, 20)
-            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_BOLT_SCREW)
+            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_BOLT_SCREW, GENERATE_ROTOR)
             blastProp(5400, GasTier.HIGH, // HSS-G
                       VA[IV], 48 * SECOND,
                       VA[EV], 5 * SECOND + 8 * TICK)
@@ -621,7 +621,7 @@ object GTLiteSecondDegreeMaterials
             fluid()
             color(0xE564E4).iconSet(SHINY)
             components(Nickel, 22, Cobalt, 4, Chrome, 3, Aluminium, 3, Tungsten, 2, Hafnium, 1, Rhenium, 2, Tantalum, 3)
-            flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE)
             blastProp(6800, GasTier.HIGH, // Naquadah
                       VA[LuV], 30 * SECOND,
                       VA[EV], 25 * SECOND)
@@ -839,7 +839,7 @@ object GTLiteSecondDegreeMaterials
             color(0x3467BA).iconSet(SHINY)
             components(Inconel718, 8, EglinSteel, 5, NaquadahEnriched, 4, TungstenSteel, 4, Cerium, 3, Antimony, 2,
                        Platinum, 2, Ytterbium, 1)
-            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE)
             blastProp(10400, GasTier.HIGHER, // Tritanium
                       VA[UV], 30 * SECOND,
                       VA[LuV], 15 * SECOND)
@@ -881,7 +881,7 @@ object GTLiteSecondDegreeMaterials
             fluid()
             colorAverage().iconSet(METALLIC)
             components(Hafnium, 1, Carbon, 1)
-            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_BOLT_SCREW)
+            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_BOLT_SCREW, GENERATE_DOUBLE_PLATE)
             blastProp(4090, GasTier.MID, // RTM Alloy
                       VA[EV], 1 * MINUTE + 5 * SECOND,
                       VA[HV], 30 * SECOND)
