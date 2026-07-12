@@ -2438,6 +2438,7 @@ gtlitecore.machine.microscale_circuit_detector.tooltip.1=Add Microscale Detectin
 gtlitecore.machine.microscale_circuit_detector.tooltip.2=Each 1 §6Gold Nanite§7 in §fItem Import Bus§7 will cause Parallel §e+4§7
 
 gtlitecore.machine.bio_cultivation_chamber.name=Bio Component Cultivation Chamber
+gtlitecore.machine.bio_cultivation_chamber.tooltip.1=Add Bio Cultivation functionality to the PCB Factory
 
 gtlitecore.machine.water_cooling_tower.name=Water Cooling Tower
 gtlitecore.machine.water_cooling_tower.tooltip.1=Add Cooling functionality to the PCB Factory.
