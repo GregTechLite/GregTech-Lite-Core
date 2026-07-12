@@ -20,10 +20,11 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextComponentTranslation
 
-abstract class RecipeMapExtendableMultiblock<T: RecipeMapExtendableMultiblock<T>>(metaTileEntityId: ResourceLocation, recipeMap: RecipeMap<*>)
-    : RecipeMapMultiblockController(metaTileEntityId, recipeMap), IWorkable, IControllable, IDataStickIntractable, ExtendableMultiblock<T>
+abstract class RecipeMapExtendableMultiblock<T : RecipeMapExtendableMultiblock<T>>(id: ResourceLocation, recipeMap: RecipeMap<*>)
+    : RecipeMapMultiblockController(id, recipeMap), IWorkable, IControllable, IDataStickIntractable, ExtendableMultiblock<T>
 {
     override var additionalStructureManager: AdditionalStructureManager<T> = AdditionalStructureManager(this)
+
     override val maintenanceProblem: Byte = maintenanceProblems
 
     init
@@ -36,24 +37,6 @@ abstract class RecipeMapExtendableMultiblock<T: RecipeMapExtendableMultiblock<T>
         val abilities = super.getAbilities(ability).toMutableList()
         abilities.addAll(additionalStructureManager.getAbilities(ability))
         return abilities
-    }
-
-    override fun createUIFactory(): MultiblockUIFactory?
-    {
-        return super.createUIFactory()
-            .createFlexButton { _, guiSyncManager ->
-                guiSyncManager.registerSyncedAction("refresh_structure_pattern") { reinitializeStructurePattern() }
-                return@createFlexButton ButtonWidget()
-                    .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
-                    .disableHoverBackground()
-                    .onMousePressed {
-                        guiSyncManager.callSyncedAction("refresh_structure_pattern")
-                        true
-                    }
-                    .tooltip { tooltip ->
-                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
-                    }
-            }
     }
 
     override fun writeToNBT(data: NBTTagCompound?): NBTTagCompound?

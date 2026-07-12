@@ -2412,18 +2412,12 @@ gtlitecore.machine.pcb_factory.name=PCB工厂
 gtlitecore.machine.pcb_factory.tooltip.1=专门用于生产电路基板的大型工厂
 gtlitecore.machine.pcb_factory.tooltip.2=建造§e附属模块§7来解锁高阶配方或增强机器性能
 gtlitecore.machine.pcb_factory.tooltip.3=默认情况下§f不会进行超频§7，需要建造对应的附属模块来解锁
-gtlitecore.machine.pcb_factory.tooltip.4=调整机器的线宽（默认§b100μm§7，每次±§b25μm§7）以获得特殊效果：
-gtlitecore.machine.pcb_factory.tooltip.5=- 线宽每缩短§f25μm§7，配方时间就减少§f20%%§7，耗能就增加§f50%%§7；
-gtlitecore.machine.pcb_factory.tooltip.6=- 线宽每放宽§f25μm§7，配方时间就增加§f20%%§7，耗能就减少§f10%%§7；
-gtlitecore.machine.pcb_factory.tooltip.7=机器的最小线宽为§f25μm§7，最大线宽为§f200μm§7。
 
-gtlitecore.machine.pcb_factory.structure_info=结构等级：%s (线宽：%sμm)
-gtlitecore.machine.pcb_factory.structure_cooling=冷却已启用
-gtlitecore.machine.pcb_factory.structure_thermosink=内部温度正在逼近绝对零度
-gtlitecore.machine.pcb_factory.structure_bio_chamber=有机黏菌充斥于生物仓中
-
-gtlitecore.machine.pcb_factory.trace_size.decrement=§c放宽25μm线宽 /n§7配方时间增加20%%，耗电量减少10%%
-gtlitecore.machine.pcb_factory.trace_size.increment=§a缩短25μm线宽 /n§7配方时间减少20%%，耗电量增加50%%
+gtlitecore.machine.pcb_factory.structure.t2=纳米光刻集群：§a启用
+gtlitecore.machine.pcb_factory.structure.t3=微尺度电路元件检测器：§a启用
+gtlitecore.machine.pcb_factory.structure.oc=水冷塔：§a启用
+gtlitecore.machine.pcb_factory.structure.perfect_oc=空冻塔：§a启用
+gtlitecore.machine.pcb_factory.structure.bio=生物元件培养室：§a启用
 
 gtlitecore.machine.pcb_factory.additional_structure_name=PCB工厂附属模块
 

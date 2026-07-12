@@ -2412,18 +2412,12 @@ gtlitecore.machine.pcb_factory.name=PCB Factory
 gtlitecore.machine.pcb_factory.tooltip.1=Large Factory for Circuit Board Producing
 gtlitecore.machine.pcb_factory.tooltip.2=Add §eAdditional Module§7 to unlock high tier recipes or enhance machine efficiency
 gtlitecore.machine.pcb_factory.tooltip.3=§fCannot overclock§7 by default only if add corresponding Additional Module
-gtlitecore.machine.pcb_factory.tooltip.4=Modify trace size (Default: §b100μm§7, each time ±§b25μm§7）of machine to get special efficiency:
-gtlitecore.machine.pcb_factory.tooltip.5=- For every §f25μm§7 decrement, recipe duration decreases by §f20%%§7 and energy consumption increases by §f50%%§7.
-gtlitecore.machine.pcb_factory.tooltip.6=- For every §f25μm§7 increment, recipe duration increases by §f20%%§7 and energy consumption decreases by §f10%%§7.
-gtlitecore.machine.pcb_factory.tooltip.7=The minimum trace size is §f25μm§7 and maximum is §f200μm§7.
 
-gtlitecore.machine.pcb_factory.structure_info=Structure Tier: %s (Trace Size: %sμm)
-gtlitecore.machine.pcb_factory.structure_cooling=冷却已启用
-gtlitecore.machine.pcb_factory.structure_thermosink=内部温度正在逼近绝对零度
-gtlitecore.machine.pcb_factory.structure_bio_chamber=有机黏菌充斥于生物仓中
-
-gtlitecore.machine.pcb_factory.trace_size.decrement=§c放宽25μm线宽 /n§7配方时间增加20%%，耗电量减少10%%
-gtlitecore.machine.pcb_factory.trace_size.increment=§a缩短25μm线宽 /n§7配方时间减少20%%，耗电量增加50%%
+gtlitecore.machine.pcb_factory.structure.t2=Nanolithography Array: §aEnabled
+gtlitecore.machine.pcb_factory.structure.t3=Microscale Circuit Component Detector: §aEnabled
+gtlitecore.machine.pcb_factory.structure.oc=Water Cooling Tower: §aEnabled
+gtlitecore.machine.pcb_factory.structure.perfect_oc=Thermosink Cooling Tower: §aEnabled
+gtlitecore.machine.pcb_factory.structure.bio=Bio Component Cultivation Chamber: §aEnabled
 
 gtlitecore.machine.pcb_factory.additional_structure_name=PCB Factory Additional Module
 
