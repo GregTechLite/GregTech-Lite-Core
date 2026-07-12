@@ -1,3 +1,4 @@
+@file:Suppress("UNCHECKED_CAST")
 package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable
 
 import codechicken.lib.render.CCRenderState
@@ -26,6 +27,8 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
     @JvmField
     protected var isWorkingEnabled: Boolean = false
 
+    private var snapshotControllerPos: BlockPos? = null
+
     override fun hasMaintenanceMechanics() = false
 
     override fun isWorkingEnabled() = isStructureFormed && isConnected()
@@ -40,34 +43,41 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
         }
     }
 
-    protected fun isConnected() = mainController != null && mainController!!.isWorkingEnabled()
+    protected fun isConnected(): Boolean
+    {
+        if (mainController != null) return mainController!!.isWorkingEnabled()
+        val pendingPos = snapshotControllerPos ?: return false
+        val mte = GTUtility.getMetaTileEntity(world, pendingPos)
+        if (mte is ExtendableMultiblock<*>)
+        {
+            connect(mte as ExtendableMultiblock<T>)
+            return mainController?.isWorkingEnabled() ?: false
+        }
+        return false
+    }
 
     fun connect(controller: ExtendableMultiblock<T>?)
     {
         mainController?.removeAdditional(pos)
         mainController = controller
         mainController?.addAdditional(this)
+        snapshotControllerPos = null
     }
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
     {
         super.writeToNBT(data)
         data.setBoolean("isWorkingEnabled", isWorkingEnabled)
-        mainController?.let {
-            if (mainController is ExtendableMultiblockBase<*>)
-            {
-                val controller = it as ExtendableMultiblockBase<*>
-                val mainPos = NBTTagCompound()
-                mainPos.setInteger("X", controller.pos.x)
-                mainPos.setInteger("Y", controller.pos.y)
-                mainPos.setInteger("Z", controller.pos.z)
-                data.setTag("MainControllerPos", mainPos)
-            }
+        mainController?.let { controller ->
+            val mainPos = NBTTagCompound()
+            mainPos.setInteger("X", controller.controllerPos.x)
+            mainPos.setInteger("Y", controller.controllerPos.y)
+            mainPos.setInteger("Z", controller.controllerPos.z)
+            data.setTag("MainControllerPos", mainPos)
         }
         return data
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun readFromNBT(data: NBTTagCompound)
     {
         super.readFromNBT(data)
@@ -80,6 +90,10 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
             if (mte is ExtendableMultiblock<*>)
             {
                 connect(mte as ExtendableMultiblock<T>)
+            }
+            else
+            {
+                snapshotControllerPos = pos
             }
         }
     }
@@ -111,7 +125,7 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
         val controller = mainController ?: return
         if (controller.isStructureFormed)
         {
-            controller.maintenanceProblem?.let { builder.addMaintenanceProblemLines(it, true) }
+            controller.maintenanceProblem.let { builder.addMaintenanceProblemLines(it, true) }
         }
     }
 

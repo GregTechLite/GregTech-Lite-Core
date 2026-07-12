@@ -1,3 +1,4 @@
+@file:Suppress("UNCHECKED_CAST")
 package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable
 
 import gregtech.api.capability.IControllable
@@ -38,14 +39,16 @@ abstract class ExtendableMultiblockBase<T: ExtendableMultiblockBase<T>>(id: Reso
     {
         super.readFromNBT(data)
         data?.getCompoundTag("Additional")?.let {
-            additionalStructureManager.deserialize(it)
-                .map { pos -> GTUtility.getMetaTileEntity(world, pos) }
-                .filterIsInstance<AdditionalMultiblockBase<T>>()
-                .forEach { additionalMultiblockBase -> additionalMultiblockBase.connect(this) }
+            additionalStructureManager.deserialize(it).forEach { pos ->
+                val mte = GTUtility.getMetaTileEntity(world, pos)
+                if (mte is AdditionalMultiblockBase<*>)
+                    (mte as AdditionalMultiblockBase<T>).connect(this)
+                else
+                    additionalStructureManager.addSnapshotConnection(pos)
+            }
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun onDataStickLeftClick(player: EntityPlayer, stack: ItemStack)
     {
         val tag = stack.tagCompound ?: return
@@ -79,10 +82,13 @@ abstract class ExtendableMultiblockBase<T: ExtendableMultiblockBase<T>>(id: Reso
     {
         super.receiveInitialSyncData(buf)
         buf.readCompoundTag()?.let {
-            additionalStructureManager.deserialize(it)
-                .map { pos -> GTUtility.getMetaTileEntity(world, pos) }
-                .filterIsInstance<AdditionalMultiblockBase<T>>()
-                .forEach { additionalMultiblockBase -> additionalMultiblockBase.connect(this) }
+            additionalStructureManager.deserialize(it).forEach { pos ->
+                val mte = GTUtility.getMetaTileEntity(world, pos)
+                if (mte is AdditionalMultiblockBase<*>)
+                    (mte as AdditionalMultiblockBase<T>).connect(this)
+                else
+                    additionalStructureManager.addSnapshotConnection(pos)
+            }
         }
     }
 }

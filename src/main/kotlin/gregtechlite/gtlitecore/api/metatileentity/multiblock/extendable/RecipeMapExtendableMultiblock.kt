@@ -1,17 +1,14 @@
+@file:Suppress("UNCHECKED_CAST")
 package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable
 
-import com.cleanroommc.modularui.widgets.ButtonWidget
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IDataStickIntractable
 import gregtech.api.capability.IWorkable
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
-import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.GTUtility
-import gregtech.api.util.KeyUtil
 import gregtechlite.gtlitecore.api.capability.logic.ExtendableMultiblockRecipeLogic
-import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -49,14 +46,16 @@ abstract class RecipeMapExtendableMultiblock<T : RecipeMapExtendableMultiblock<T
     {
         super.readFromNBT(data)
         data?.getCompoundTag("Additional")?.let {
-            additionalStructureManager.deserialize(it)
-                .map { pos -> GTUtility.getMetaTileEntity(world, pos) }
-                .filterIsInstance<AdditionalMultiblockBase<T>>()
-                .forEach { additionalMultiblockBase -> additionalMultiblockBase.connect(this) }
+            additionalStructureManager.deserialize(it).forEach { pos ->
+                val mte = GTUtility.getMetaTileEntity(world, pos)
+                if (mte is AdditionalMultiblockBase<*>)
+                    (mte as AdditionalMultiblockBase<T>).connect(this)
+                else
+                    additionalStructureManager.addSnapshotConnection(pos)
+            }
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun onDataStickLeftClick(player: EntityPlayer, stack: ItemStack)
     {
         val tag = stack.tagCompound ?: return
@@ -94,10 +93,13 @@ abstract class RecipeMapExtendableMultiblock<T : RecipeMapExtendableMultiblock<T
     {
         super.receiveInitialSyncData(buf)
         buf.readCompoundTag()?.let {
-            additionalStructureManager.deserialize(it)
-                .map { pos -> GTUtility.getMetaTileEntity(world, pos) }
-                .filterIsInstance<AdditionalMultiblockBase<T>>()
-                .forEach { additionalMultiblockBase -> additionalMultiblockBase.connect(this) }
+            additionalStructureManager.deserialize(it).forEach { pos ->
+                val mte = GTUtility.getMetaTileEntity(world, pos)
+                if (mte is AdditionalMultiblockBase<*>)
+                    (mte as AdditionalMultiblockBase<T>).connect(this)
+                else
+                    additionalStructureManager.addSnapshotConnection(pos)
+            }
         }
     }
 }

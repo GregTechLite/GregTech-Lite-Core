@@ -49,6 +49,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.Multibloc
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
@@ -67,6 +68,9 @@ import kotlin.math.min
 class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
     : RecipeMapExtendableMultiblock<T>(id, PCB_FACTORY_RECIPES)
 {
+    override val controllerPos: BlockPos
+        get() = pos
+
     init
     {
         recipeMapWorkable = PCBFactoryRecipeLogic(this)

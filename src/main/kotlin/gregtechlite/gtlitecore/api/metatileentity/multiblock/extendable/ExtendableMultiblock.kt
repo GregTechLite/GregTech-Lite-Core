@@ -9,6 +9,8 @@ interface ExtendableMultiblock<T: ExtendableMultiblock<T>>: IMultiblockControlle
 
     val maintenanceProblem: Byte
 
+    val controllerPos: BlockPos
+
     fun isWorkingEnabled(): Boolean
 
     fun addAdditional(additionalMultiblockBase: AdditionalMultiblockBase<T>)
