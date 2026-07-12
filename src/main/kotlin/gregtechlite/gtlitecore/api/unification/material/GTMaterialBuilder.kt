@@ -10,7 +10,6 @@ import net.minecraft.util.ResourceLocation
 
 object GTMaterialBuilder
 {
-
     // region Material Builder
 
     /**
@@ -22,7 +21,7 @@ object GTMaterialBuilder
      */
     @JvmStatic
     fun addMaterial(id: Int, name: String, builder: Material.Builder.() -> Unit): Material
-            = addMaterial(id, MOD_ID, name, builder)
+        = addMaterial(id, MOD_ID, name, builder)
 
     /**
      * Add a GTCEu format material with its properties.
@@ -36,7 +35,7 @@ object GTMaterialBuilder
      */
     @JvmStatic
     fun addMaterial(id: Int, modid: String, name: String, builder: Material.Builder.() -> Unit): Material
-            = addMaterial(id, ResourceLocation(modid, name), builder)
+        = addMaterial(id, ResourceLocation(modid, name), builder)
 
     /**
      * Add a GTCEu format material with its properties.
@@ -49,7 +48,7 @@ object GTMaterialBuilder
      */
     @JvmStatic
     fun addMaterial(id: Int, location: ResourceLocation, builder: Material.Builder.() -> Unit): Material
-            = Material.Builder(id, location).apply(builder).build()
+        = Material.Builder(id, location).apply(builder).build()
 
     // endregion
 
@@ -63,7 +62,7 @@ object GTMaterialBuilder
      */
     @JvmStatic
     fun addMaterialFlag(name: String, builder: MaterialFlag.Builder.() -> Unit): MaterialFlag
-            = MaterialFlag.Builder(name).apply(builder).build()
+        = MaterialFlag.Builder(name).apply(builder).build()
 
     // endregion
 
@@ -71,16 +70,14 @@ object GTMaterialBuilder
 
     @JvmStatic
     fun addElement(name: String, builder: ElementBuilder.() -> Unit): Element
-            = ElementBuilder(name).apply(builder).build()
+        = ElementBuilder(name).apply(builder).build()
 
     @JvmStatic
     fun addElement(name: String, symbol: String, builder: ElementBuilder.() -> Unit): Element
-            = ElementBuilder(name, symbol).apply(builder).build()
+        = ElementBuilder(name, symbol).apply(builder).build()
 
-    class ElementBuilder(private var name: String? = null,
-                         private var symbol: String? = null)
+    class ElementBuilder(private var name: String? = null, private var symbol: String? = null)
     {
-
         var protons: Long = 0L
         var neutrons: Long = 0L
         var halfLifeTime: Double = -1.0
@@ -89,48 +86,33 @@ object GTMaterialBuilder
 
         constructor(name: String? = null) : this(name, null)
 
-        fun atomicProp(protons: Long, neutrons: Long): ElementBuilder
-        {
+        fun atomicProp(protons: Long, neutrons: Long): ElementBuilder = apply {
             this.protons = protons
             this.neutrons = neutrons
-            return this
         }
 
-        fun decayable(decayTo: String, halfLifeTime: Double = -1.0): ElementBuilder
-        {
+        fun decayable(decayTo: String, halfLifeTime: Double = -1.0): ElementBuilder = apply {
             this.decayTo = decayTo
             this.halfLifeTime = halfLifeTime
-            return this
         }
 
-        fun decayable(decayTo: Material, halfLifeTime: Double = -1.0): ElementBuilder
-        {
+        fun decayable(decayTo: Material, halfLifeTime: Double = -1.0): ElementBuilder = apply {
             this.decayTo = decayTo.chemicalFormula
             this.halfLifeTime = halfLifeTime
-            return this
         }
 
-        fun isotope(): ElementBuilder
-        {
-            this.isIsotope = true
-            return this
+        fun isotope(): ElementBuilder = apply {
+            isIsotope = true
         }
 
-        fun description(translationKey: String, defaultKey: String = translationKey): ElementBuilder
-        {
-            this.symbol = I18nUtil.format(translationKey, defaultKey)
-            return this
+        fun description(translationKey: String, defaultKey: String = translationKey): ElementBuilder = apply {
+            symbol = I18nUtil.format(translationKey, defaultKey)
         }
 
-        fun build(): Element
-        {
-            return Elements.add(protons, neutrons, halfLifeTime, decayTo, name, symbol, isIsotope)
-        }
-
+        fun build(): Element = Elements.add(protons, neutrons, halfLifeTime, decayTo, name, symbol, isIsotope)
     }
 
     // endregion
-
 }
 
 

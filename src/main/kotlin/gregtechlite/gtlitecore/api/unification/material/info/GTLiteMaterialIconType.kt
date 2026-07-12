@@ -4,34 +4,34 @@ import gregtech.api.unification.material.info.MaterialIconType
 
 object GTLiteMaterialIconType
 {
-
     // @formatter:off
 
     @JvmField
-    val gemSolitary = MaterialIconType("gemSolitary")
+    val gemSolitary = iconType("gemSolitary")
     @JvmField
-    val sheetedFrame = MaterialIconType("sheetedFrame")
+    val sheetedFrame = iconType("sheetedFrame")
     @JvmField
-    val wallGt = MaterialIconType("wallGt")
+    val wallGt = iconType("wallGt")
     @JvmField
-    val seedCrystal = MaterialIconType("seedCrystal")
+    val seedCrystal = iconType("seedCrystal")
     @JvmField
-    val boule = MaterialIconType("boule")
+    val boule = iconType("boule")
     @JvmField
-    val fuelRod = MaterialIconType("fuelRod")
+    val fuelRod = iconType("fuelRod")
     @JvmField
-    val fuelRodEnriched = MaterialIconType("fuelRodEnriched")
+    val fuelRodEnriched = iconType("fuelRodEnriched")
     @JvmField
-    val fuelRodHighDensity = MaterialIconType("fuelRodHighDensity")
+    val fuelRodHighDensity = iconType("fuelRodHighDensity")
     @JvmField
-    val fuelRodDepleted = MaterialIconType("fuelRodDepleted")
+    val fuelRodDepleted = iconType("fuelRodDepleted")
     @JvmField
-    val fuelRodEnrichedDepleted = MaterialIconType("fuelRodEnrichedDepleted")
+    val fuelRodEnrichedDepleted = iconType("fuelRodEnrichedDepleted")
     @JvmField
-    val fuelRodHighDensityDepleted = MaterialIconType("fuelRodHighDensityDepleted")
+    val fuelRodHighDensityDepleted = iconType("fuelRodHighDensityDepleted")
     @JvmField
-    val nanite = MaterialIconType("nanite")
+    val nanite = iconType("nanite")
+
+    private fun iconType(name: String) = MaterialIconType(name)
 
     // @formatter:on
-
 }

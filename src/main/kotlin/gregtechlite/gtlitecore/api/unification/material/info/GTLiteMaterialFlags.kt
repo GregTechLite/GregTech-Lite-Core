@@ -185,7 +185,6 @@ import gregtechlite.gtlitecore.api.unification.material.GTMaterialBuilder.addMat
 
 object GTLiteMaterialFlags
 {
-
     // @formatter:off
 
     // Used to disabled ABS recipes for automatically generate handler.
@@ -685,5 +684,4 @@ object GTLiteMaterialFlags
     }
 
     // @formatter:on
-
 }
