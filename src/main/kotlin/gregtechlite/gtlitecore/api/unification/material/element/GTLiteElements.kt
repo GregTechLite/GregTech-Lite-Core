@@ -4,7 +4,6 @@ import gregtechlite.gtlitecore.api.unification.material.GTMaterialBuilder.addEle
 
 object GTLiteElements
 {
-
     // @formatter:off
 
     // region Isotope Elements
@@ -122,5 +121,4 @@ object GTLiteElements
     // endregion
 
     // @formatter:on
-
 }

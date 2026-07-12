@@ -7,20 +7,18 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 
 object GTLiteToolPropertyAdder
 {
-
-    val softMaterials = listOf(
-        GTLiteMaterials.KaptonK to 4096,
-        GTLiteMaterials.KaptonE to 8192,
-        GTLiteMaterials.Polyetheretherketone to 16384,
-        GTLiteMaterials.Kevlar to 32768,
-        GTLiteMaterials.Zylon to 65536,
-        GTLiteMaterials.Fullerene to 131072,
-        GTLiteMaterials.CarbonNanotube to 262144,
+    internal val softMaterials = listOf(
+        GTLiteMaterials.KaptonK                to 4096,
+        GTLiteMaterials.KaptonE                to 8192,
+        GTLiteMaterials.Polyetheretherketone   to 16384,
+        GTLiteMaterials.Kevlar                 to 32768,
+        GTLiteMaterials.Zylon                  to 65536,
+        GTLiteMaterials.Fullerene              to 131072,
+        GTLiteMaterials.CarbonNanotube         to 262144,
         GTLiteMaterials.FullerenePolymerMatrix to 524288)
 
-    fun initSoftToolProperties()
+    internal fun initSoftToolProperties()
     {
-        // Add extraToolProperties to higher polymers.
         for (i in softMaterials.indices)
         {
             val material = softMaterials[i].first
@@ -32,5 +30,4 @@ object GTLiteToolPropertyAdder
                 ExtraToolProperty.Builder.of(4F, 0F, durability, 1).build())
         }
     }
-
 }
