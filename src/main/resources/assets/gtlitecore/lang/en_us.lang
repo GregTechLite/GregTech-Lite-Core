@@ -3015,6 +3015,30 @@ gtlitecore.machine.wireless_energy_hatch.storage.uxv.name=§eUXV§f Wireless Ene
 gtlitecore.machine.wireless_energy_hatch.storage.opv.name=§9OpV§f Wireless Energy Buffer
 gtlitecore.machine.wireless_energy_hatch.storage.max.name=§cMAX§f Wireless Energy Buffer
 
+gtlitecore.machine.energy_distributor.ulv.name=§7ULV§f Energy Distributor
+gtlitecore.machine.energy_distributor.lv.name=§7LV§f Energy Distributor
+gtlitecore.machine.energy_distributor.mv.name=§bMV§f Energy Distributor
+gtlitecore.machine.energy_distributor.hv.name=§6HV§f Energy Distributor
+gtlitecore.machine.energy_distributor.ev.name=§5EV§f Energy Distributor
+gtlitecore.machine.energy_distributor.iv.name=§1IV§f Energy Distributor
+gtlitecore.machine.energy_distributor.luv.name=§dLuV§f Energy Distributor
+gtlitecore.machine.energy_distributor.zpm.name=§cZPM§f Energy Distributor
+gtlitecore.machine.energy_distributor.uv.name=§3UV§f Energy Distributor
+gtlitecore.machine.energy_distributor.uhv.name=§4UHV§f Energy Distributor
+gtlitecore.machine.energy_distributor.uev.name=§aUEV§f Energy Distributor
+gtlitecore.machine.energy_distributor.uiv.name=§2UIV§f Energy Distributor
+gtlitecore.machine.energy_distributor.uxv.name=§eUXV§f Energy Distributor
+gtlitecore.machine.energy_distributor.opv.name=§9OpV§f Energy Distributor
+gtlitecore.machine.energy_distributor.max.name=§cMAX§f Energy Distributor
+
+gtlitecore.machine.energy_distributor.tooltip.1=Distributes energy from front face to 5 output faces, or combines from 5 input faces to front face
+gtlitecore.machine.energy_distributor.tooltip.2=Supports up to §e320A§7
+gtlitecore.machine.energy_distributor.tooltip.3=Use §fWrench§7 to change front facing
+gtlitecore.machine.energy_distributor.tooltip.4=Use §fSoft Mallet§7 to toggle §aDistribute§7/§cCombine§7 mode
+
+gtlitecore.top.energy_distributor.mode_distribute=Mode: §aDistribute
+gtlitecore.top.energy_distributor.mode_combine=Mode: §cCombine
+
 gtlitecore.machine.wireless_energy_hatch.tooltip.1=Receives energy from Wireless Network
 gtlitecore.machine.wireless_energy_hatch.tooltip.2=Set a §fChannel§7 to add hatch to §dWireless Energy Network§7.
 gtlitecore.machine.wireless_energy_hatch.tooltip.3=A higher §fPriority§7 will make hatch extract energy before others in network.
