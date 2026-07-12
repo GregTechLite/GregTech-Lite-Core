@@ -4,7 +4,6 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.items.metaitem.MetaItem
@@ -54,21 +53,18 @@ import net.minecraft.init.Blocks.WOOL
 import net.minecraft.init.Items.BEETROOT
 import net.minecraft.init.Items.CARROT
 import net.minecraft.init.Items.CHICKEN
-import net.minecraft.init.Items.DIAMOND_SWORD
 import net.minecraft.init.Items.DYE
 import net.minecraft.init.Items.EGG
 import net.minecraft.init.Items.FEATHER
 import net.minecraft.init.Items.FISH
 import net.minecraft.init.Items.IRON_HORSE_ARMOR
-import net.minecraft.init.Items.IRON_SWORD
 import net.minecraft.init.Items.LEAD
 import net.minecraft.init.Items.LEATHER
 import net.minecraft.init.Items.MILK_BUCKET
 import net.minecraft.init.Items.SADDLE
-import net.minecraft.init.Items.STONE_SWORD
 import net.minecraft.init.Items.STRING
-import net.minecraft.init.Items.WOODEN_SWORD
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
+import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Ash
 import gregtech.api.unification.material.Materials.DarkAsh
 import gregtech.api.unification.material.Materials.Duranium
@@ -76,7 +72,7 @@ import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.ore.OrePrefix.nugget
-import gregtech.common.items.ToolItems
+import gregtech.api.unification.ore.OrePrefix.toolHeadBuzzSaw
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_COLLECTING_RECIPES
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSE_MEAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
@@ -90,7 +86,6 @@ import net.minecraft.init.Items.PAPER
 import net.minecraft.init.Items.PORKCHOP
 import net.minecraft.init.Items.RABBIT_FOOT
 import net.minecraft.init.Items.RABBIT_HIDE
-import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 
 /**
@@ -598,9 +593,9 @@ internal object MobExtractorRecipes
     private fun addSlaughterRecipes(card: MetaItem<*>.MetaValueItem, bloodAmount: Int, fatAmount: Int,
                                     builder: SimpleRecipeBuilder.(a: Int) -> Unit)
     {
-        addSlaughterRecipe(card, ToolItems.SWORD.get(RedSteel), 1, VA[HV], bloodAmount, fatAmount, builder)
-        addSlaughterRecipe(card, ToolItems.SWORD.get(HSSE), 4, VA[EV], bloodAmount, fatAmount, builder)
-        addSlaughterRecipe(card, ToolItems.SWORD.get(Duranium), 16, VA[IV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, OreDictUnifier.get(toolHeadBuzzSaw, RedSteel), 1, VA[HV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, OreDictUnifier.get(toolHeadBuzzSaw, HSSE), 4, VA[EV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, OreDictUnifier.get(toolHeadBuzzSaw, Duranium), 16, VA[IV], bloodAmount, fatAmount, builder)
     }
 
     private fun addSlaughterRecipe(card: MetaItem<*>.MetaValueItem, weapon: ItemStack, factor: Int, eut: Int,
