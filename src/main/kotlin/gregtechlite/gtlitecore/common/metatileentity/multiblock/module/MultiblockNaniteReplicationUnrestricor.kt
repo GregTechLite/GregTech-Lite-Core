@@ -65,5 +65,7 @@ class MultiblockNaniteReplicationUnrestricor<T : MultiblockNanoForge<T>>(id: Res
         tooltip.add(I18n.format("gtlitecore.tooltip.machine.machine_type",
                                 I18n.format("gtlitecore.machine.nano_forge.additional_structure_name")))
         tooltip.add(I18n.format("gtlitecore.machine.nanite_replication_unrestricor.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.nanite_replication_unrestricor.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.nanite_replication_unrestricor.tooltip.3"))
     }
 }

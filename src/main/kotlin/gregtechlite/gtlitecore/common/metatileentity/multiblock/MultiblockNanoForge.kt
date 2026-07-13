@@ -14,6 +14,8 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.GTLiteMod
@@ -103,11 +105,8 @@ class MultiblockNanoForge<T : MultiblockNanoForge<T>>(id: ResourceLocation) : Re
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.nano_forge.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.nano_forge.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.nano_forge.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.nano_forge.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.nano_forge.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.nano_forge.tooltip.6"))
-        tooltip.add(I18n.format("gtlitecore.machine.nano_forge.tooltip.7"))
+        tooltip.add(I18n.format("gtlitecore.tooltip.machine.special_max_voltage"))
+        tooltip.add(I18n.format("gtlitecore.tooltip.machine.laser_hatch"))
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)
@@ -137,17 +136,28 @@ class MultiblockNanoForge<T : MultiblockNanoForge<T>>(id: ResourceLocation) : Re
 
     private fun ResourceLocation.checkStructure(): Boolean = additionalStructureManager[this].isNotEmpty()
 
-    private fun ResourceLocation.getStructure(): AdditionalMultiblockBase<T> = additionalStructureManager[this][0]
-
-    private fun ResourceLocation.isStructureEmpty(): Boolean = additionalStructureManager[this].isEmpty()
-
-    private inner class NanoForgeRecipeLogic(mte: RecipeMapExtendableMultiblock<T>)
-        : ExtendedPowerExtendableMultiblockRecipeLogic<T>(mte, additionalStructureManager)
+    private inner class NanoForgeRecipeLogic(mte: RecipeMapExtendableMultiblock<T>) : ExtendedPowerExtendableMultiblockRecipeLogic<T>(mte, additionalStructureManager)
     {
+        override fun getOverclockingDurationFactor(): Double
+        {
+            if (structT3.checkStructure())
+            {
+                if (structT4.checkStructure()) return PERFECT_DURATION_FACTOR / 2 // 8/4
+                return PERFECT_DURATION_FACTOR // 4/4
+            }
+            return STD_DURATION_FACTOR // 4/2
+        }
 
-        // override fun getOverclockingDurationFactor() = if (forcePerfectOC) 0.25 else 0.5
-        // override fun getParallelLimit() = if (mainUpgradeNumber == 1) 64 else 256
-
+        override fun getParallelLimit(): Int
+        {
+            if (structT2.checkStructure())
+                return 64
+            if (structT3.checkStructure())
+                return 256
+            if (structT4.checkStructure())
+                return Int.MAX_VALUE
+            return super.getParallelLimit()
+        }
     }
 
 }

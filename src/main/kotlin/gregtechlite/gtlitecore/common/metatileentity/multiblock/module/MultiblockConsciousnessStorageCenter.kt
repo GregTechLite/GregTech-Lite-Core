@@ -68,5 +68,6 @@ class MultiblockConsciousnessStorageCenter<T : MultiblockNanoForge<T>>(id: Resou
         tooltip.add(I18n.format("gtlitecore.tooltip.machine.machine_type",
                                 I18n.format("gtlitecore.machine.nano_forge.additional_structure_name")))
         tooltip.add(I18n.format("gtlitecore.machine.consciousness_storage_center.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.consciousness_storage_center.tooltip.2"))
     }
 }

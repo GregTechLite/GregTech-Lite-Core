@@ -112,5 +112,7 @@ class MultiblockVirtualGestaltComputingUplink<T : MultiblockNanoForge<T>>(id: Re
         tooltip.add(I18n.format("gtlitecore.tooltip.machine.machine_type",
                                 I18n.format("gtlitecore.machine.nano_forge.additional_structure_name")))
         tooltip.add(I18n.format("gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.3"))
     }
 }
