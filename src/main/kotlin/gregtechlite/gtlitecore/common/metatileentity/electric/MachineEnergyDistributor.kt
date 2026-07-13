@@ -141,8 +141,8 @@ class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTile
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gregtech.universal.tooltip.max_voltage_in", energyContainer.inputVoltage, VNF[tier]))
-        tooltip.add(I18n.format("gregtech.universal.tooltip.energy_storage_capacity", energyContainer.energyCapacity))
         tooltip.add(I18n.format("gtlitecore.machine.energy_distributor.tooltip.1"))
+        tooltip.add(I18n.format("gregtech.universal.tooltip.energy_storage_capacity", energyContainer.energyCapacity))
         tooltip.add(I18n.format("gtlitecore.machine.energy_distributor.tooltip.2"))
         tooltip.add(I18n.format("gtlitecore.machine.energy_distributor.tooltip.3"))
         tooltip.add(I18n.format("gtlitecore.machine.energy_distributor.tooltip.4"))

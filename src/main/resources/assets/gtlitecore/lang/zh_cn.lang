@@ -3039,8 +3039,8 @@ gtlitecore.machine.energy_distributor.uxv.name=§eUXV§f 能量分配器
 gtlitecore.machine.energy_distributor.opv.name=§9OpV§f 能量分配器
 gtlitecore.machine.energy_distributor.max.name=§cMAX§f 能量分配器
 
-gtlitecore.machine.energy_distributor.tooltip.1=从正面分流到5个输出面，或从5个输入面汇聚到正面
-gtlitecore.machine.energy_distributor.tooltip.2=§e最大输入电流：§f320 A
+gtlitecore.machine.energy_distributor.tooltip.1=§e最大输入电流：§f320 A
+gtlitecore.machine.energy_distributor.tooltip.2=从正面分流到5个输出面，或从5个输入面汇聚到正面
 gtlitecore.machine.energy_distributor.tooltip.3=使用§f扳手§7更改正面朝向
 gtlitecore.machine.energy_distributor.tooltip.4=使用§f软锤§7切换§a分流§7/§c汇聚§7模式
 
