@@ -19,6 +19,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
 import gregtechlite.gtlitecore.api.recipe.util.TieredAdhesiveFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
@@ -70,6 +71,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CRYO
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DIAMOND_CRATE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DUAL_EXPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DUAL_IMPORT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ENERGY_DISTRIBUTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.EXTREME_AIR_INTAKE_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FOOD_PROCESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.GOLD_CRATE
@@ -1521,6 +1523,17 @@ internal object GTMetaTileEntityLoader
                 EUt(VA[voltage])
                 duration(20 * SECOND)
             }
+        }
+
+        // Energy Distributor
+        for (tier in ULV..OpV) // TODO: MAX when cable tier up is known.
+        {
+            ModHandler.addShapedRecipe(true, "energy_distributor_${VN[tier].lowercase()}", ENERGY_DISTRIBUTOR[tier].stack(),
+                "WPW", "BEB", "WPW",
+                'E', POWER_TRANSFORMER[tier].stack(),
+                'W', CraftingComponent.WIRE_HEX.getIngredient(tier) as ItemStack,
+                'P', CraftingComponent.DOUBLE_PLATE.getIngredient(tier) as ItemStack,
+                'B', CraftingComponents.CABLE_OCT_TIER_UP.getIngredient(tier) as ItemStack)
         }
     }
 
