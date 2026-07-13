@@ -7,7 +7,7 @@ import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.RecipeMa
 import gregtechlite.gtlitecore.api.recipe.property.RequestAdditionalProperty
 
 open class ExtendableMultiblockRecipeLogic<T: RecipeMapExtendableMultiblock<T>>(controller: RecipeMapExtendableMultiblock<T>,
-                                                                                protected val manager: AdditionalStructureManager<T>)
+                                                                                protected open val manager: AdditionalStructureManager<T>)
     : MultiblockRecipeLogic(controller)
 {
     override fun checkRecipe(recipe: Recipe): Boolean

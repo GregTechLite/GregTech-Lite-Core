@@ -1739,11 +1739,6 @@ gtlitecore.recipe.component_assembly_line_tier.14=Component Assembly Casing Tier
 
 gtlitecore.recipe.min_height=Minimum Height: %s
 
-gtlitecore.recipe.nano_forge_tier=Structure Tier: Error
-gtlitecore.recipe.nano_forge_tier.1=Structure Tier: 1
-gtlitecore.recipe.nano_forge_tier.2=Structure Tier: 2
-gtlitecore.recipe.nano_forge_tier.3=Structure Tier: 3
-
 gtlitecore.recipe.quantum_force_transformer_tier=Structure Tier: Error
 gtlitecore.recipe.quantum_force_transformer_tier.1=Structure Tier: 1 (Neutron)
 gtlitecore.recipe.quantum_force_transformer_tier.2=Structure Tier: 2 (Cosmic)
@@ -2438,6 +2433,7 @@ gtlitecore.machine.microscale_circuit_detector.tooltip.1=Add Microscale Detectin
 gtlitecore.machine.microscale_circuit_detector.tooltip.2=Each 1 §6Gold Nanite§7 in §fItem Import Bus§7 will cause Parallel §e+4§7
 
 gtlitecore.machine.bio_cultivation_chamber.name=Bio Component Cultivation Chamber
+gtlitecore.machine.bio_cultivation_chamber.tooltip.1=Add Bio Cultivation functionality to the PCB Factory
 
 gtlitecore.machine.water_cooling_tower.name=Water Cooling Tower
 gtlitecore.machine.water_cooling_tower.tooltip.1=Add Cooling functionality to the PCB Factory.
@@ -2449,15 +2445,28 @@ gtlitecore.machine.thermosink_cooling_tower.tooltip.1=Add Extremely Cooling func
 gtlitecore.machine.thermosink_cooling_tower.tooltip.2=Unlocked §bPerfect Overclock§7 when §6PCB Factory§7 has this module
 
 gtlitecore.machine.nano_forge.name=Nano Forge
-gtlitecore.machine.nano_forge.tooltip.1=以极高的能量融合金属与电路，进而淬炼出纳米蜂群
-gtlitecore.machine.nano_forge.tooltip.2=你需要先制作§3碳纳米蜂群§7来塑造纳米锻炉，第一批纳米蜂群将引导金属与电路的融合过程。
-gtlitecore.machine.nano_forge.tooltip.3=纳米锻炉无视§f最大配方等级§7限制，只要能源仓的功率超过了配方标称功率，机器就可以工作。
-gtlitecore.machine.nano_forge.tooltip.4=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
-gtlitecore.machine.nano_forge.tooltip.5=带有多级附属结构，附属结构的等级限制了最大配方等级。
-gtlitecore.machine.nano_forge.tooltip.6=2级与3级纳米锻炉分别具有§e64§7与§e256§7并行。
-gtlitecore.machine.nano_forge.tooltip.7=当结构等级大于配方要求等级时，进行§d无损超频§7。
+gtlitecore.machine.nano_forge.tooltip.1=Fuse Metal and Circuit with Extremely High Energy to refine Nanites
+gtlitecore.machine.nano_forge.tooltip.2=Need to craft a §6Carbon Nanite§7 to craft Nano Forge first, it will guide Fusion Process of Metal and Circuit
 
-gtlitecore.machine.nano_forge.structure_info=Structure Tier: %s
+gtlitecore.machine.nano_forge.structure.t2=Multi-Quadrant Consciousness Storage Center: §aEnabled
+gtlitecore.machine.nano_forge.structure.t3=Nanite Self-Replication Unrestrictor: §aEnabled
+gtlitecore.machine.nano_forge.structure.t4=Virtual Gestalt Computing Uplink: §aEnabled
+
+gtlitecore.machine.nano_forge.additional_structure_name=Nano Forge Additional Module
+
+gtlitecore.machine.consciousness_storage_center.name=Multi-Quadrant Consciousness Storage Center
+gtlitecore.machine.consciousness_storage_center.tooltip.1=Add Distributed-Centralized Consciousness Storage functionality to the Nano Forge
+gtlitecore.machine.consciousness_storage_center.tooltip.2=Make Maximum Parallel Limit be §e64§7 when §6Nano Forge§7 has this module
+
+gtlitecore.machine.nanite_replication_unrestricor.name=Nanite Self-Replication Unrestrictor
+gtlitecore.machine.nanite_replication_unrestricor.tooltip.1=Add Nanite Self-Replication functionality to the Nano Forge
+gtlitecore.machine.nanite_replication_unrestricor.tooltip.2=Make Maximum Parallel Limit be §e256§7 when §6Nano Forge§7 has this module
+gtlitecore.machine.nanite_replication_unrestricor.tooltip.3=Unlocked §bPerfect Overclock§7 when §6Nano Forge§7 has this module
+
+gtlitecore.machine.virtual_gestalt_computing_uplink.name=Virtual Gestalt Computing Uplink
+gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.1=Add Virtual Consciousness Storage and Computing functionality to the Nano Forge
+gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.2=Make Maximum Parallel Limit be §eInfinity§7 when §6Nano Forge§7 has this module
+gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.3=Unlocked §bDouble Perfect Overclock§7 when §6Nano Forge§7 has this module
 
 gtlitecore.machine.quantum_force_transformer.name=Quantum Force Transformer
 gtlitecore.machine.quantum_force_transformer.tooltip.1=让复杂的化学过程一步到位

@@ -18,7 +18,6 @@ object GTLiteRecipeProperties
     lateinit var ADVANCED_FUSION_TIER: RecipeProperty<Int>
     lateinit var COMPONENT_ASSEMBLY_LINE_TIER: RecipeProperty<Int>
     lateinit var MINIMUM_HEIGHT: RecipeProperty<Int>
-    lateinit var NANO_FORGE_TIER: RecipeProperty<Int>
     lateinit var NO_COIL_TEMPERATURE: RecipeProperty<Int>
     lateinit var QUANTUM_FORCE_TRANSFORMER_TIER: RecipeProperty<Int>
 
@@ -30,7 +29,6 @@ object GTLiteRecipeProperties
             ACCELERATION_TRACK_TIER = tierProperty(GTLiteMod.id("acceleration_track_tier"))
             COMPONENT_ASSEMBLY_LINE_TIER = tierProperty(GTLiteMod.id("component_assembly_line_tier"))
             QUANTUM_FORCE_TRANSFORMER_TIER = tierProperty(GTLiteMod.id("quantum_force_transformer_tier"))
-            NANO_FORGE_TIER = tierProperty(GTLiteMod.id("nano_forge_tier"))
             ADVANCED_FUSION_TIER = tierProperty(GTLiteMod.id("advanced_fusion_tier"))
 
             MINIMUM_HEIGHT = intProperty("min_height") {

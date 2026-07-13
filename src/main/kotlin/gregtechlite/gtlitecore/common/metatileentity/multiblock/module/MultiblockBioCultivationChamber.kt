@@ -55,5 +55,6 @@ class MultiblockBioCultivationChamber<T : MultiblockPCBFactory<T>>(id: ResourceL
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.tooltip.machine.machine_type",
                                 I18n.format("gtlitecore.machine.pcb_factory.additional_structure_name")))
+        tooltip.add(I18n.format("gtlitecore.machine.bio_cultivation_chamber.tooltip.1"))
     }
 }
