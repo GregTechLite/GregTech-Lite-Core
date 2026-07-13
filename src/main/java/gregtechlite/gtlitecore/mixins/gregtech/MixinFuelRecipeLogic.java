@@ -6,40 +6,33 @@ import gregtech.api.capability.impl.RecipeLogicEnergy;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.RecipeMap;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.function.Supplier;
 
-/**
- * Bug Fix: Let {@code FuelRecipeLogic} has valid fuel consumed recipe logic.
- *
- * @apiNote In {@code FuelRecipeLogic}, recipe progress used incorrect logic with all generators,
- *          because this is same as common recipe logic, this bug will cause all generators running
- *          not-consumed it fuels. For this fix, we add overriden of {@code updateRecipeProgress},
- *          and used back version progress logic to override it.
- */
 @Mixin(value = FuelRecipeLogic.class, remap = false)
 public abstract class MixinFuelRecipeLogic extends RecipeLogicEnergy
 {
-
-    public MixinFuelRecipeLogic(MetaTileEntity tileEntity, RecipeMap<?> recipeMap,
+    public MixinFuelRecipeLogic(MetaTileEntity mte,
+                                RecipeMap<?> recipeMap,
                                 Supplier<IEnergyContainer> energyContainer)
     {
-        super(tileEntity, recipeMap, energyContainer);
+        super(mte, recipeMap, energyContainer);
     }
 
     /**
-     * @deprecated When GTCEu update and fix this problem.
+     * Fix prevent single generators from decreasing progress when energy buffer is full.
      */
+    @Unique
     @Override
-    protected void updateRecipeProgress() // Generators always run recipes
+    protected void updateRecipeProgress()
     {
         if (canRecipeProgress && drawEnergy(recipeEUt, true))
         {
             drawEnergy(recipeEUt, false);
-            // As recipe starts with progress on 1 this has to be > only not => to compensate for it.
             if (++progressTime > maxProgressTime)
                 completeRecipe();
         }
     }
-
 }
