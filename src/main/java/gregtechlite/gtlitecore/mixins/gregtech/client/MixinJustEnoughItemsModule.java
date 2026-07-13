@@ -343,6 +343,26 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
                     gtlitecore$getRecipeMapName(GTLiteRecipeMaps.LAMINATOR_RECIPES));
             registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
                     gtlitecore$getRecipeMapName(GTLiteRecipeMaps.VULCANIZATION_RECIPES));
+
+            // PCB Factory
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.NANOLITHOGRAPHY_ARRAY.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.PCB_FACTORY_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MICROSCALE_CIRCUIT_DETECTOR.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.PCB_FACTORY_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.BIO_CULTIVATION_CHAMBER.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.PCB_FACTORY_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.WATER_COOLING_TOWER.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.PCB_FACTORY_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.THERMOSINK_COOLING_TOWER.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.PCB_FACTORY_RECIPES));
+
+            // Nano Forge
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.CONSCIOUSNESS_STORAGE_CENTER.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.NANO_FORGE_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.NANITE_REPLICATION_UNRESTRICOR.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.NANO_FORGE_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.VIRTUAL_GESTALT_COMPUTING_UPLINK.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.NANO_FORGE_RECIPES));
         }
     }
 
