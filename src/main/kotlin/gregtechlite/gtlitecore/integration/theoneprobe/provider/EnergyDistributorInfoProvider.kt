@@ -11,10 +11,11 @@ import net.minecraft.block.state.IBlockState
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.world.World
 
-class EnergyDistributorInfoProvider : IProbeInfoProvider {
-
-    override fun addProbeInfo(mode: ProbeMode, info: IProbeInfo, player: EntityPlayer,
-                              worldIn: World, state: IBlockState, data: IProbeHitData) {
+class EnergyDistributorInfoProvider : IProbeInfoProvider
+{
+    override fun addProbeInfo(mode: ProbeMode, info: IProbeInfo, player: EntityPlayer, worldIn: World,
+                              state: IBlockState, data: IProbeHitData)
+    {
         if (!state.block.hasTileEntity(state)) return
 
         val tile = worldIn.getTileEntity(data.pos) ?: return
