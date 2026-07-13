@@ -22,7 +22,7 @@ public abstract class MixinFuelRecipeLogic extends RecipeLogicEnergy
     }
 
     /**
-     * Fix prevent single generators from decreasing progress when energy buffer is full.
+     * Prevent single generators from decreasing progress when energy buffer is full.
      */
     @Unique
     @Override

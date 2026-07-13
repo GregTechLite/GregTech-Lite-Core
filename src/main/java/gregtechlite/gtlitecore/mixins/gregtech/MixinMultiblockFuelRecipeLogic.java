@@ -14,7 +14,7 @@ public abstract class MixinMultiblockFuelRecipeLogic extends MultiblockRecipeLog
     }
 
     /**
-     * Fix prevent multiblock generators from decreasing progress when dynamo hatch is full.
+     * Prevent multiblock generators from decreasing progress when dynamo hatch is full.
      */
     @Override
     protected void updateRecipeProgress()
