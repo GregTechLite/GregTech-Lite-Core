@@ -511,8 +511,6 @@ internal object CraftingRecipeLoader
             'D', UnificationEntry(plateDouble, CosmicNeutronium),
             'G', UnificationEntry(gem, CubicSiliconNitride))
 
-
-
         // Adamantium Credit
         ModHandler.addShapelessRecipe("credit_adamantium_alt", CREDIT_ADAMANTIUM.stackForm,
             CREDIT_NEUTRONIUM.stackForm, CREDIT_NEUTRONIUM.stackForm, CREDIT_NEUTRONIUM.stackForm,

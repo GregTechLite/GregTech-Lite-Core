@@ -35,6 +35,7 @@ import gregtech.api.unification.material.Materials.Neodymium
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.NiobiumTitanium
 import gregtech.api.unification.material.Materials.Osmiridium
+import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Polybenzimidazole
@@ -506,6 +507,46 @@ object CraftingComponents
         UXV to UnificationEntry(plate, TranscendentMetal),
         OpV to UnificationEntry(plate, MagnetohydrodynamicallyConstrainedStarMatter),
         MAX to UnificationEntry(plate, Omnium)))
+
+    /**
+     * Tier-Up Octal Cable
+     *
+     * TODO: MAX tier material
+     *
+     * | Tier     | Old Material           | New Material                |
+     * |----------|------------------------|-----------------------------|
+     * | ULV (0)  | Tin                    | Tin                         |
+     * | LV (1)   | Copper                 | Copper                      |
+     * | MV (2)   | Gold                   | Gold                        |
+     * | HV (3)   | Aluminium              | Aluminium                   |
+     * | EV (4)   | Platinum               | Platinum                    |
+     * | IV (5)   | Niobium Titanium       | Niobium Titanium            |
+     * | LuV (6)  | Vanadium Gallium       | Vanadium Gallium            |
+     * | ZPM (7)  | Yttrium Barium Cuprate | Yttrium Barium Cuprate      |
+     * | UV (8)   | Europium               | Europium                    |
+     * | UHV (9)  | -                      | Seaborgium                  |
+     * | UEV (10) | -                      | Superheavy Alloy (Light)    |
+     * | UIV (11) | -                      | Superheavy Alloy (Heavy)    |
+     * | UXV (12) | -                      | Periodicium                 |
+     * | OpV (13) | -                      | Realized Quantum Foam Shard |
+     * | MAX (14) | -                      | -                           |
+     */
+    @JvmStatic
+    val CABLE_OCT_TIER_UP = CraftingComponent.Component(mapOf(
+        ULV to UnificationEntry(cableGtOctal, Tin),
+        LV  to UnificationEntry(cableGtOctal, Copper),
+        MV  to UnificationEntry(cableGtOctal, Gold),
+        HV  to UnificationEntry(cableGtOctal, Aluminium),
+        EV  to UnificationEntry(cableGtOctal, Platinum),
+        IV  to UnificationEntry(cableGtOctal, NiobiumTitanium),
+        LuV to UnificationEntry(cableGtOctal, VanadiumGallium),
+        ZPM to UnificationEntry(cableGtOctal, YttriumBariumCuprate),
+        UV  to UnificationEntry(cableGtOctal, Europium),
+        UHV to UnificationEntry(cableGtOctal, Seaborgium),
+        UEV to UnificationEntry(cableGtOctal, SuperheavyAlloyA),
+        UIV to UnificationEntry(cableGtOctal, SuperheavyAlloyB),
+        UXV to UnificationEntry(cableGtOctal, Periodicium),
+        OpV to UnificationEntry(cableGtOctal, RealizedQuantumFoamShard)))
 
     fun setCraftingComponents()
     {

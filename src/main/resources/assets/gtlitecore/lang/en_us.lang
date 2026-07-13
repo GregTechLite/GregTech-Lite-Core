@@ -3040,7 +3040,7 @@ gtlitecore.machine.energy_distributor.opv.name=§9OpV§f Energy Distributor
 gtlitecore.machine.energy_distributor.max.name=§cMAX§f Energy Distributor
 
 gtlitecore.machine.energy_distributor.tooltip.1=Distributes energy from front face to 5 output faces, or combines from 5 input faces to front face
-gtlitecore.machine.energy_distributor.tooltip.2=Supports up to §e320A§7
+gtlitecore.machine.energy_distributor.tooltip.2=§eMaximum Input Amperage: §f320 A
 gtlitecore.machine.energy_distributor.tooltip.3=Use §fWrench§7 to change front facing
 gtlitecore.machine.energy_distributor.tooltip.4=Use §fSoft Mallet§7 to toggle §aDistribute§7/§cCombine§7 mode
 
