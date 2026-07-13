@@ -3427,7 +3427,7 @@ object GTLiteFirstDegreeMaterials
             polymer()
             color(0x2C2C8C).iconSet(SHINY)
             components(Carbon, 48, Seaborgium, 1)
-            flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
+            flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
         }
 
         // 2307 Praseodymium-Holmium-Yttrium Nitrates Solution
