@@ -4,6 +4,7 @@ import gregtech.api.capability.impl.MultiblockFuelRecipeLogic;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(value = MultiblockFuelRecipeLogic.class, remap = false)
 public abstract class MixinMultiblockFuelRecipeLogic extends MultiblockRecipeLogic
@@ -16,6 +17,7 @@ public abstract class MixinMultiblockFuelRecipeLogic extends MultiblockRecipeLog
     /**
      * Prevent multiblock generators from decreasing progress when dynamo hatch is full.
      */
+    @Unique
     @Override
     protected void updateRecipeProgress()
     {
