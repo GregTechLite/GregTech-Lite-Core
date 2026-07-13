@@ -13,6 +13,8 @@
     "MixinMultiblockUIBuilder",
     "MixinMultiblockUIFactory",
     "MixinCoreModule",
+    "MixinFuelRecipeLogic",
+    "MixinMultiblockFuelRecipeLogic",
     "MixinDualHandler",
     "MixinItemHandlerList",
     "MixinMaterialProperties",
