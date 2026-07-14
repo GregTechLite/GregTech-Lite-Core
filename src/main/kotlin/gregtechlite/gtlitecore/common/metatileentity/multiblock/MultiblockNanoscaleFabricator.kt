@@ -214,11 +214,10 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
 
     private inner class NanoscaleFabricatorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
-
         override fun checkRecipe(recipe: Recipe): Boolean
         {
             val delta = temperature - recipe.getProperty(GTLiteRecipeProperties.NO_COIL_TEMPERATURE, 0)!!
-            return (delta in 1..249)
+            return (delta in -249..249)
         }
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
@@ -234,7 +233,6 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
         }
 
         override fun getParallelLimit() = 4 * robotArmCasingTier
-
     }
 
 }
