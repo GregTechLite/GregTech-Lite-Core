@@ -9,7 +9,6 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.pattern.BlockPattern
-import gregtech.api.pattern.BlockWorldState
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.pattern.TraceabilityPredicate
@@ -42,8 +41,6 @@ import gregtechlite.gtlitecore.common.block.variant.Crucible
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
-import net.minecraft.block.Block
-import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.SoundEvent
@@ -51,12 +48,10 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.function.Predicate
 import kotlin.math.max
 
 class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockController(id, MOLECULAR_BEAM_RECIPES)
 {
-
     private var emitterCasingTier = 0
     private var robotArmCasingTier = 0
     private var temperature = 0
@@ -133,22 +128,22 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
 
     // @formatter:on
 
-    private fun cruciblePredicate() = TraceabilityPredicate(Predicate { blockWorldState: BlockWorldState ->
-        val state: IBlockState = blockWorldState.blockState
-        val block: Block = state.block
+    private fun cruciblePredicate() = TraceabilityPredicate({
+        val state = it.blockState
+        val block = state.block
         if (block is VariantBlock<*>)
         {
-            val storedTemperature = blockWorldState.matchContext.getOrPut("Temperature", 0)
-            blockWorldState.matchContext["Temperature"] = GTLiteBlocks.CRUCIBLE.getState(state).temperature + storedTemperature
-            val storedCrucibleAmount = blockWorldState.matchContext.getOrPut("CrucibleAmount", 0)
-            blockWorldState.matchContext["CrucibleAmount"] = 1 + storedCrucibleAmount
-            return@Predicate true
+            val storedTemperature = it.matchContext.getOrPut("Temperature", 0)
+            it.matchContext["Temperature"] = GTLiteBlocks.CRUCIBLE.getState(state).temperature + storedTemperature
+            val storedCrucibleAmount = it.matchContext.getOrPut("CrucibleAmount", 0)
+            it.matchContext["CrucibleAmount"] = 1 + storedCrucibleAmount
+            return@TraceabilityPredicate true
         }
-            return@Predicate false
-        }) { Crucible.entries
-                .sortedBy { it.temperature }
-                .map { BlockInfo(GTLiteBlocks.CRUCIBLE.getState(it), null) }
-                .toTypedArray()
+        return@TraceabilityPredicate false
+    }) { Crucible.entries
+        .sortedBy { it.temperature }
+        .map { BlockInfo(GTLiteBlocks.CRUCIBLE.getState(it), null) }
+        .toTypedArray()
     }
 
     @SideOnly(Side.CLIENT)
@@ -214,11 +209,10 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
 
     private inner class NanoscaleFabricatorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
-
         override fun checkRecipe(recipe: Recipe): Boolean
         {
             val delta = temperature - recipe.getProperty(GTLiteRecipeProperties.NO_COIL_TEMPERATURE, 0)!!
-            return (delta in 1..249)
+            return (delta in -249..249)
         }
 
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
@@ -234,7 +228,5 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
         }
 
         override fun getParallelLimit() = 4 * robotArmCasingTier
-
     }
-
 }
