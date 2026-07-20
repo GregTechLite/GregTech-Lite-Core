@@ -477,7 +477,6 @@ object GTLiteMaterialFlags
         Copernicium.addFlags(GENERATE_PLATE)
         Sulfur.addFlags(GENERATE_PLATE)
         Roentgenium.addFlags(GENERATE_PLATE)
-        BorosilicateGlass.addFlags(GENERATE_PLATE)
         Gadolinium.addFlags(GENERATE_PLATE)
         Holmium.addFlags(GENERATE_PLATE)
         Praseodymium.addFlags(GENERATE_PLATE)

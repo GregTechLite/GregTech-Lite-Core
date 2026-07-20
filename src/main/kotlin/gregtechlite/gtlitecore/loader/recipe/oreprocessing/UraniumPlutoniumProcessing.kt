@@ -3,8 +3,6 @@ package gregtechlite.gtlitecore.loader.recipe.oreprocessing
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
-import gregtechlite.gtlitecore.api.extension.addRecipe
-import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtech.api.recipes.RecipeMaps.BLAST_RECIPES
 import gregtech.api.recipes.RecipeMaps.CENTRIFUGE_RECIPES
 import gregtech.api.recipes.RecipeMaps.ELECTROLYZER_RECIPES
@@ -22,6 +20,8 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 
 internal object UraniumPlutoniumProcessing

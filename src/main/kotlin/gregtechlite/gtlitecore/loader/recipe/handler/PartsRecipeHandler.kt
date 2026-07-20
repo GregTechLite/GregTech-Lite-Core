@@ -76,8 +76,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalSiliconN
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nephelite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tanzanite
-import gregtechlite.gtlitecore.api.unification.material.properties.GTLitePropertyKey
 import gregtechlite.gtlitecore.api.unification.material.properties.AmorphousLensProperty
+import gregtechlite.gtlitecore.api.unification.material.properties.GTLitePropertyKey
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.gemSolitary
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.sheetedFrame
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.wallGt

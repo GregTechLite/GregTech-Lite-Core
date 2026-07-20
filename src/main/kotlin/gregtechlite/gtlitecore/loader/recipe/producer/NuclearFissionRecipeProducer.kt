@@ -9,7 +9,6 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.THERMAL_CENTRIFUGE_RECIPES
-import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Actinium
 import gregtech.api.unification.material.Materials.Americium
@@ -47,6 +46,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NUCLEAR_FUELS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadBismuthEutatic

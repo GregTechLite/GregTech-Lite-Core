@@ -101,8 +101,8 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
-import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
@@ -162,8 +162,8 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_OUTPUT_HATCH_1048576
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_OUTPUT_HATCH_16777216
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_OUTPUT_HATCH_4194304
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_ENERGY_OUTPUT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_ENERGY_INPUT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_ENERGY_OUTPUT_HATCH
 import net.minecraft.item.ItemStack
 import kotlin.math.max
 

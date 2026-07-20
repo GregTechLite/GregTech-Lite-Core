@@ -100,6 +100,7 @@ internal object ChemistryRecipeList
         FissionFuelChain.init()
         RHTIHChain.init()
         SolarPanelChain.init()
+        BorosilicateGlassChain.init()
     }
 
     // @formatter:on

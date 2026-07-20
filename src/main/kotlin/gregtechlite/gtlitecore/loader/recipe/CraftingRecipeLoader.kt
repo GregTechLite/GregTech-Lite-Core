@@ -7,7 +7,6 @@ import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
-import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Indium
@@ -39,7 +38,6 @@ import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.CREDIT_NEUTRONIUM
 import gregtech.common.items.MetaItems.EMITTER_MV
-import gregtech.common.items.MetaItems.FLUID_CELL
 import gregtech.common.items.MetaItems.ITEM_FILTER
 import gregtech.common.items.MetaItems.ORE_DICTIONARY_FILTER
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
@@ -134,7 +132,6 @@ import net.minecraft.init.Blocks.TORCH
 import net.minecraft.init.Items
 import net.minecraft.init.Items.SLIME_BALL
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
 
 internal object CraftingRecipeLoader
 {
