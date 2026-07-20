@@ -9,10 +9,10 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylEther
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThoriumDioxide
-import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.UranylNitrate
 
 /**

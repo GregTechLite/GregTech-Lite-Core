@@ -2,7 +2,6 @@ package gregtechlite.gtlitecore.loader.recipe.producer
 
 import com.google.common.collect.HashBiMap
 import gregtech.api.GTValues.VA
-import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
@@ -34,10 +33,11 @@ import gregtech.common.items.MetaItems.ELITE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.EXTREME_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.PLASTIC_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PCB_FACTORY_RECIPES
 import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder.Companion.structBio
-import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder.Companion.structT3
 import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder.Companion.structT2
+import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder.Companion.structT3
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FluorinatedEthylenePropylene

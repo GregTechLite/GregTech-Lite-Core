@@ -4,7 +4,6 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.PACKER_RECIPES
-import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.properties.DustProperty
 import gregtech.api.unification.material.properties.PropertyKey
@@ -13,6 +12,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRod
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodEnriched
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensity

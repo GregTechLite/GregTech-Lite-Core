@@ -103,8 +103,8 @@ import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.Pyrope
 import gregtech.api.unification.material.Materials.Quartzite
-import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Realgar
+import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.RocketFuel
@@ -119,8 +119,8 @@ import gregtech.api.unification.material.Materials.Sodalite
 import gregtech.api.unification.material.Materials.Spessartine
 import gregtech.api.unification.material.Materials.Sphalerite
 import gregtech.api.unification.material.Materials.Spodumene
-import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.StainlessSteel
+import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Stibnite
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Talc

@@ -7,7 +7,6 @@ import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.VHA
 import gregtech.api.recipes.ModHandler
-import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRUDER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORGE_HAMMER_RECIPES
@@ -21,6 +20,7 @@ import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock
 

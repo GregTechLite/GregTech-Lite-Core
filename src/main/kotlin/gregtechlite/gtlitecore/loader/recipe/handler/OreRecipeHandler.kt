@@ -8,7 +8,6 @@ import gregtech.api.recipes.RecipeMaps.MACERATOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.ORE_WASHER_RECIPES
 import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.THERMAL_CENTRIFUGE_RECIPES
-import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Stone
@@ -33,6 +32,7 @@ import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TectonicPetrotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZephyreanAerotheum
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.gemSolitary

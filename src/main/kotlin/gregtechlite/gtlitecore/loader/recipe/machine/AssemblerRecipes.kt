@@ -25,7 +25,6 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Aluminium
-import gregtech.api.unification.material.Materials.Darmstadtium
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Duranium
@@ -39,7 +38,6 @@ import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lead
 import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neutronium
-import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Osmiridium
 import gregtech.api.unification.material.Materials.Platinum
@@ -98,8 +96,6 @@ import gregtech.common.items.MetaItems.SENSOR_LV
 import gregtech.common.items.MetaItems.SENSOR_MV
 import gregtech.common.items.MetaItems.VACUUM_TUBE
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_CRATE
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
-import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
@@ -141,7 +137,6 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addIOHatchRecipes
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addMultiFluidHatchRecipes
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BerylliumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromiumGermaniumTellurideMagnetic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
