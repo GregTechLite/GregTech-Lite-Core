@@ -1,7 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gregtech:items/material_sets/universium/wire_fine",
-    "layer1": "gregtech:items/material_sets/universium/wire_fine_overlay"
+    "layer0": "gregtech:items/material_sets/universium/wire_fine"
   }
 }
