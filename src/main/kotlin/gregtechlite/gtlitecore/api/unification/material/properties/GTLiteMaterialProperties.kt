@@ -210,6 +210,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylhexylPhosphoricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diethylthiourea
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophenone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylacetamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylamineHydrochloride
@@ -248,6 +249,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydroxyquinolineA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indanone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Iron3Sulfate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsobutyricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isochloropropane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
@@ -879,6 +881,8 @@ object GTLiteMaterialProperties
         Trisaminoethylamine.setFormula("(NH2CH2CH2)3N", true)
         Ethylamine.setFormula("C2H5NH2", true)
         Diethylthiourea.setFormula("(C2H5NH)2CS", true)
+        DimethylCarbonate.setFormula("(CH3O)2CO", true)
+        IsobutyricAcid.setFormula("(CH3)2CHCO2H", true)
 
         // endregion
 

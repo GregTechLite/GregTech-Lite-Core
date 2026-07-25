@@ -3859,6 +3859,14 @@ gtlitecore.material.sodium_stearate=硬脂酸钠
 gtlitecore.material.methyl_stearate=硬脂酸甲酯
 gtlitecore.material.glycidyl_stearate=硬脂酸缩水甘油酯
 gtlitecore.material.monoglyceride=单硬脂酸甘油酯
+gtlitecore.material.dimethyl_carbonate=碳酸二甲酯
+gtlitecore.material.diphenyl_carbonate=碳酸二苯酯
+gtlitecore.material.bpa_polycarbonate=双酚A聚碳酸酯
+gtlitecore.material.isobutyric_acid=异丁酸
+gtlitecore.material.isobutyric_anhydride=异丁酸酐
+gtlitecore.material.dimethylketene=二甲基乙烯酮
+gtlitecore.material.tetramethylcyclobutanediol=四甲基环丁二醇（CBDO）
+gtlitecore.material.cbdo_polycarbonate=CBDO聚碳酸酯
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂

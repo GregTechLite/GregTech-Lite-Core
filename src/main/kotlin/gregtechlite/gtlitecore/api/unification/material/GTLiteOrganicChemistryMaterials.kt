@@ -11,11 +11,13 @@ import gregtech.api.unification.material.Materials.Benzene
 import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Butene
+import gregtech.api.unification.material.Materials.Butyraldehyde
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Dimethylamine
 import gregtech.api.unification.material.Materials.Dimethylhydrazine
 import gregtech.api.unification.material.Materials.EXT_METAL
+import gregtech.api.unification.material.Materials.Ethenone
 import gregtech.api.unification.material.Materials.Ethylene
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gallium
@@ -79,6 +81,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AscorbicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Azafullerene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETS
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BPAPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Benzaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylChloride
@@ -96,6 +99,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bromomethane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanediol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butyllithium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CBDOPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Carbamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cellulose
@@ -132,14 +136,17 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diiodobiphenyl
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diisopropylcarbodiimide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diketopyrrolopyrrole
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylTerephthalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylacetamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylamineHydrochloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylaminopyridine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylformamide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylketene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dinitrodipropanyloxybenzene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dinitrotoluene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiphenylCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DirectBrown77
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DitertbutylDicarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Durene
@@ -192,6 +199,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydroxyquinoline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indanone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indigo
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsobutyricAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsobutyricAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isochloropropane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isophthaloylbisdiethylthiourea
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylAlcohol
@@ -285,6 +294,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetraethylammoniu
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrahydrofuran
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetramethylcyclobutanediol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetrasodiumEDTA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThionylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TolueneDiisocyanate
@@ -2419,6 +2429,74 @@ object GTLiteOrganicChemistryMaterials
             color(0x30C09A)
             components(Carbon, 21, Hydrogen, 42, Oxygen, 4)
             flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8240 Dimethyl Carbonate
+        DimethylCarbonate = addMaterial(8240, "dimethyl_carbonate")
+        {
+            liquid()
+            color(0xC5EB9E)
+            components(Carbon, 3, Hydrogen, 6, Oxygen, 3)
+        }
+        
+        // 8241 Diphenyl Carbonate
+        DiphenylCarbonate = addMaterial(8241, "diphenyl_carbonate")
+        {
+            liquid()
+            colorAverage(DimethylCarbonate, Benzene)
+            components(Carbon, 13, Hydrogen, 10, Oxygen, 3)
+        }
+
+        // 8242 BPA Polycarbonate
+        BPAPolycarbonate = addMaterial(8242, "bpa_polycarbonate")
+        {
+            polymer()
+            liquid()
+            color(0xE3EBDA)
+            flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING)
+            components(Carbon, 16, Hydrogen, 14, Oxygen, 3)
+        }
+
+        // 8243 Isobutyric Acid
+        IsobutyricAcid = addMaterial(8243, "isobutyric_acid")
+        {
+            liquid()
+            colorAverage(Butyraldehyde, Oxygen)
+            components(Carbon, 4, Hydrogen, 8, Oxygen, 2)
+        }
+
+        // 8244 Isobutyric Anhydride
+        IsobutyricAnhydride = addMaterial(8244, "isobutyric_anhydride")
+        {
+            liquid()
+            colorAverage(IsobutyricAcid, AceticAnhydride)
+            components(Carbon, 8, Hydrogen, 14, Oxygen, 3)
+        }
+
+        // 8245 Dimethylketene
+        Dimethylketene = addMaterial(8245, "dimethylketene")
+        {
+            liquid()
+            colorAverage(Ethenone, IsobutyricAnhydride)
+            components(Carbon, 4, Hydrogen, 6, Oxygen, 2)
+        }
+
+        // 8246 Tetramethylcyclobutanediol (CBDO)
+        Tetramethylcyclobutanediol = addMaterial(8246, "tetramethylcyclobutanediol")
+        {
+            liquid()
+            colorAverage(Dimethylketene, Butanediol)
+            components(Carbon, 8, Hydrogen, 16, Oxygen, 2)
+        }
+
+        // 8247 CBDO Polycarbonate
+        CBDOPolycarbonate = addMaterial(8247, "cbdo_polycarbonate")
+        {
+            polymer()
+            liquid()
+            color(0xDFDFDF)
+            flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING)
+            components(Carbon, 9, Hydrogen, 14, Oxygen, 3)
         }
     }
 

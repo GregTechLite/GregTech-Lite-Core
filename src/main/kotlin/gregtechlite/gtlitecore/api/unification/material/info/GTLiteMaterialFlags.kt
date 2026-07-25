@@ -159,6 +159,7 @@ import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Wulfenite
 import gregtech.api.unification.material.Materials.Ytterbium
+import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircaloy4
@@ -601,6 +602,7 @@ object GTLiteMaterialFlags
         Nihonium.addFlags(GENERATE_ROD)
         Francium.addFlags(GENERATE_ROD)
         Moscovium.addFlags(GENERATE_ROD)
+        Yttrium.addFlags(GENERATE_ROD)
 
         // stickLong
         Chrome.addFlags(GENERATE_LONG_ROD)
