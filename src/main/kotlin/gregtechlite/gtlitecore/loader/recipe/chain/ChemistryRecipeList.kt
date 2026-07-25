@@ -102,6 +102,7 @@ internal object ChemistryRecipeList
         SolarPanelChain.init()
         BorosilicateGlassChain.init()
         BPAPolycarbonateChain.init()
+        CBDOPolycarbonateChain.init()
     }
 
     // @formatter:on

@@ -36,6 +36,7 @@ import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BPAPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CBDOPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GSTGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenSchist
@@ -308,6 +309,15 @@ internal object PolisherRecipes
             input(block, BPAPolycarbonate)
             outputs(GlassCasing.BPA_POLYCARBONATE.getStack(2))
             output(dust, BPAPolycarbonate)
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
+
+        // CBDO Polycarbonate Glass
+        POLISHER_RECIPES.addRecipe {
+            input(block, CBDOPolycarbonate)
+            outputs(GlassCasing.CBDO_POLYCARBONATE.getStack(2))
+            output(dust, CBDOPolycarbonate)
             EUt(VA[HV])
             duration(5 * SECOND)
         }

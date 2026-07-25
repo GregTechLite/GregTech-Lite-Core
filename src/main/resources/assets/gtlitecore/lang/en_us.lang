@@ -3862,6 +3862,11 @@ gtlitecore.material.monoglyceride=Monoglyceride
 gtlitecore.material.dimethyl_carbonate=Dimethyl Carbonate
 gtlitecore.material.diphenyl_carbonate=Diphenyl Carbonate
 gtlitecore.material.bpa_polycarbonate=Bisphenol A Polycarbonate
+gtlitecore.material.isobutyric_acid=Isobutyric Acid
+gtlitecore.material.isobutyric_anhydride=Isobutyric Anhydride
+gtlitecore.material.dimethylketene=Dimethylketene
+gtlitecore.material.tetramethylcyclobutanediol=Tetramethylcyclobutanediol (CBDO)
+gtlitecore.material.cbdo_polycarbonate=CBDO Polycarbonate
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin

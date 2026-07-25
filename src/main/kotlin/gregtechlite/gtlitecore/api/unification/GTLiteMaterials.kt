@@ -745,6 +745,11 @@ object GTLiteMaterials
     lateinit var DimethylCarbonate: Material
     lateinit var DiphenylCarbonate: Material
     lateinit var BPAPolycarbonate: Material
+    lateinit var IsobutyricAcid: Material
+    lateinit var IsobutyricAnhydride: Material
+    lateinit var Dimethylketene: Material
+    lateinit var Tetramethylcyclobutanediol: Material
+    lateinit var CBDOPolycarbonate: Material
 
     // endregion
 
