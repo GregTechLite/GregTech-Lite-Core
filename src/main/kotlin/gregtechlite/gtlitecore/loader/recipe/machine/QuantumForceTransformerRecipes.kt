@@ -624,7 +624,7 @@ internal object QuantumForceTransformerRecipes
 
         // Ultimate Radioactive
         QUANTUM_FORCE_TRANSFORMER_RECIPES.addRecipe {
-            notConsumable(CATALYST_ULTIMATE_PLASTIC_POLYMER)
+            notConsumable(CATALYST_ULTIMATE_RADIOACTIVE)
             input(dust, Plutonium244, 64)
             chancedOutput(dust, Einsteinium, 64, 2500, 0)
             chancedOutput(dust, Fermium, 64, 2500, 0)
@@ -682,7 +682,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, TungstenSteel, 64, 2500, 0)
             chancedOutput(dust, TitaniumCarbide, 64, 2500, 0)
             chancedOutput(dust, Indium, 64, 2500, 0)
-            chancedOutput(dust, Tantalum, 2500, 0)
+            chancedOutput(dust, Tantalum, 64, 2500, 0)
             EUt(VA[UV])
             duration(20 * SECOND)
             tier(1)
