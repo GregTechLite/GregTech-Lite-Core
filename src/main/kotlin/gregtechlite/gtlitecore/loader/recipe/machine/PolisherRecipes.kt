@@ -34,6 +34,7 @@ import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BPAPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GSTGlass
@@ -298,6 +299,15 @@ internal object PolisherRecipes
             input(block, Polymethylmethacrylate)
             outputs(GlassCasing.PMMA.getStack(2))
             output(dust, Polymethylmethacrylate)
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
+
+        // BPA Polycarbonate Glass
+        POLISHER_RECIPES.addRecipe {
+            input(block, BPAPolycarbonate)
+            outputs(GlassCasing.BPA_POLYCARBONATE.getStack(2))
+            output(dust, BPAPolycarbonate)
             EUt(VA[HV])
             duration(5 * SECOND)
         }

@@ -79,6 +79,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AscorbicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Azafullerene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETS
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BPAPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Benzaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylChloride
@@ -132,6 +133,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diiodobiphenyl
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diisopropylcarbodiimide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diketopyrrolopyrrole
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylTerephthalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylacetamide
@@ -140,6 +142,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylaminopyri
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylformamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dinitrodipropanyloxybenzene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dinitrotoluene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiphenylCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DirectBrown77
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DitertbutylDicarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Durene
@@ -2420,6 +2423,31 @@ object GTLiteOrganicChemistryMaterials
             components(Carbon, 21, Hydrogen, 42, Oxygen, 4)
             flags(DISABLE_DECOMPOSITION)
         }
+
+        // 8240 Dimethyl Carbonate
+        DimethylCarbonate = addMaterial(8240, "dimethyl_carbonate")
+        {
+            liquid()
+            color(0xC5EB9E)
+            components(Carbon, 3, Hydrogen, 6, Oxygen, 3)
+        }
+        
+        // 8241 Diphenyl Carbonate
+        DiphenylCarbonate = addMaterial(8241, "diphenyl_carbonate")
+        {
+            liquid()
+            colorAverage(DimethylCarbonate, Benzene)
+            components(Carbon, 13, Hydrogen, 10, Oxygen, 3)
+        }
+
+        // 8242 BPA Polycarbonate
+        BPAPolycarbonate = addMaterial(8242, "bpa_polycarbonate")
+        {
+            polymer()
+            liquid()
+            color(0xE3EBDA)
+            flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING)
+            components(Carbon, 16, Hydrogen, 14, Oxygen, 3)}
     }
 
     // @formatter:on

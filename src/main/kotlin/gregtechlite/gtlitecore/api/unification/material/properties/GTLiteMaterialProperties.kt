@@ -210,6 +210,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylhexylPhosphoricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diethylthiourea
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophenone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylacetamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylamineHydrochloride
@@ -879,6 +880,7 @@ object GTLiteMaterialProperties
         Trisaminoethylamine.setFormula("(NH2CH2CH2)3N", true)
         Ethylamine.setFormula("C2H5NH2", true)
         Diethylthiourea.setFormula("(C2H5NH)2CS", true)
+        DimethylCarbonate.setFormula("(CH3O)2CO", true)
 
         // endregion
 

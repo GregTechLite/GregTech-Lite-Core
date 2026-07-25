@@ -742,6 +742,9 @@ object GTLiteMaterials
     lateinit var MethylStearate: Material
     lateinit var GlycidylStearate: Material
     lateinit var Monoglyceride: Material
+    lateinit var DimethylCarbonate: Material
+    lateinit var DiphenylCarbonate: Material
+    lateinit var BPAPolycarbonate: Material
 
     // endregion
 
