@@ -43,7 +43,6 @@ import gregtech.api.metatileentity.multiblock.MultiblockControllerBase
 import gregtech.api.mui.GTGuiTextures
 import gregtech.api.mui.GTGuis
 import gregtech.api.mui.widget.GhostCircuitSlotWidget
-import gregtech.api.util.GTHashMaps
 import gregtech.api.util.GTUtility.convertRGBtoOpaqueRGBA_CL
 import gregtech.client.renderer.texture.cube.SimpleOrientedCubeRenderer
 import gregtech.client.renderer.texture.custom.FireboxActiveRenderer
@@ -52,7 +51,8 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.STACK_SIZE_PER_SLOT
 import gregtechlite.gtlitecore.api.capability.handler.ConfigurableItemStackHandler
 import gregtechlite.gtlitecore.api.extension.add
-import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.collapseInventorySlotContents
+import gregtechlite.gtlitecore.api.extension.square
 import gregtechlite.gtlitecore.api.gui.sync.SafeIntSyncValue
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
@@ -72,23 +72,25 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     : MetaTileEntityItemBus(id, tier, false), IMultiblockAbilityPart<IItemHandlerModifiable>, IControllable,
       IGhostSlotConfigurable
 {
-
     private var actualImportItems: IItemHandlerModifiable? = null
 
     private var workingEnabled: Boolean = true
     private var autoCollapse: Boolean = false
 
-    private val MAX_STACK_SIZE_PER_SLOT: Int
+    private val maxStackSizePerSlot: Int
         get()
         {
             require(tier in IV..OpV)
-            val actualTier = this.tier - IV
+            val actualTier = tier - IV
             val exp = intArrayOf(11, 14, 17, 20, 23, 26, 28, 30, 31)
             val n = exp[actualTier]
             return if (actualTier == OpV - IV) (1 shl n) - 1 else 1 shl n
         }
 
-    private var stackSizePerSlot: Int = MAX_STACK_SIZE_PER_SLOT
+    private var stackSizePerSlot: Int = maxStackSizePerSlot
+
+    private val itemSize: Int // QIB start at IV stage, and it will nerf with LV tier level inventory limit as default.
+        get() = (1 + tier - 5).square()
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = PartMachineQuantumItemBus(metaTileEntityId, tier)
@@ -108,19 +110,11 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         }
     }
 
-    private fun getInventorySize(): Int
-    {
-        // QIB start at IV stage and it will nerf with LV tier level inventory limit as default.
-        val slotRoot = 1 + tier - 5
-        return slotRoot * slotRoot
-    }
-
     override fun getImportItems(): IItemHandlerModifiable?
-        = if (actualImportItems == null) super.getImportItems() else actualImportItems
-
+        = if (actualImportItems == null) super<MetaTileEntityItemBus>.importItems else actualImportItems
 
     override fun createImportItemHandler(): IItemHandlerModifiable?
-        = ConfigurableItemStackHandler(this, getInventorySize(), controller, false) { min(stackSizePerSlot, MAX_STACK_SIZE_PER_SLOT) }
+        = ConfigurableItemStackHandler(this, itemSize, controller, false) { min(stackSizePerSlot, maxStackSizePerSlot) }
 
      override fun update()
      {
@@ -136,11 +130,11 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
          if (isAutoCollapse())
          {
              // Exclude the ghost circuit inventory from the auto collapse, so it does not extract any ghost circuits
-             // from the slot
-             val inventory = super.getImportItems()
+             // from the slot.
+             val inventory = super<MetaTileEntityItemBus>.importItems
              if (!isAttachedToMultiBlock || notifiedItemInputList.contains(inventory))
              {
-                 collapseInventorySlotContents(inventory)
+                 inventory.collapseInventorySlotContents()
              }
          }
     }
@@ -163,7 +157,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         super.writeInitialSyncData(buf)
         buf.writeBoolean(workingEnabled)
         buf.writeBoolean(autoCollapse)
-        buf.writeInt(min(stackSizePerSlot, MAX_STACK_SIZE_PER_SLOT))
+        buf.writeInt(min(stackSizePerSlot, maxStackSizePerSlot))
     }
 
     override fun receiveInitialSyncData(buf: PacketBuffer)
@@ -180,8 +174,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         data.setBoolean("workingEnabled", workingEnabled)
         data.setBoolean("autoCollapse", autoCollapse)
         data.setInteger("stackSizePerSlot", stackSizePerSlot)
-        if (circuitInventory != null)
-            circuitInventory!!.write(data)
+        circuitInventory?.write(data)
         return data
     }
 
@@ -193,9 +186,8 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         if (data.hasKey("autoCollapse"))
             autoCollapse = data.getBoolean("autoCollapse")
         if (data.hasKey("stackSizePerSlot"))
-            stackSizePerSlot = min(data.getInteger("stackSizePerSlot"), MAX_STACK_SIZE_PER_SLOT)
-        if (circuitInventory != null)
-            circuitInventory!!.read(data)
+            stackSizePerSlot = min(data.getInteger("stackSizePerSlot"), maxStackSizePerSlot)
+        circuitInventory?.read(data)
     }
 
     override fun receiveCustomData(dataId: Int, buf: PacketBuffer)
@@ -205,49 +197,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         {
             TOGGLE_COLLAPSE_ITEMS -> autoCollapse     = buf.readBoolean()
             WORKING_ENABLED       -> workingEnabled   = buf.readBoolean()
-            STACK_SIZE_PER_SLOT   -> stackSizePerSlot = min(buf.readInt(), MAX_STACK_SIZE_PER_SLOT)
-        }
-    }
-
-    private fun collapseInventorySlotContents(inventory: IItemHandlerModifiable)
-    {
-        // Gather a snapshot of the provided inventory
-        val inventoryContents = GTHashMaps.fromItemHandler(inventory, true)
-        val inventoryItemContents = arrayListOf<ItemStack>()
-
-        // Populate the list of item stacks in the inventory with apportioned item stacks, for easy replacement
-        for (e in inventoryContents.object2IntEntrySet())
-        {
-            val stack = e.key!!
-            var count = e.intValue
-            val maxStackSize = stack.maxStackSize
-            while (count >= maxStackSize)
-            {
-                val copy = stack.copy(maxStackSize)
-                inventoryItemContents.add(copy)
-                count -= maxStackSize
-            }
-            if (count > 0)
-            {
-                val copy = stack.copy(count)
-                inventoryItemContents.add(copy)
-            }
-        }
-
-        for (i in 0 ..< inventory.getSlots())
-        {
-            val stackToMove: ItemStack
-            // Ensure that we are not exceeding the List size when attempting to populate items
-            if (i >= inventoryItemContents.size)
-            {
-                stackToMove = ItemStack.EMPTY
-            }
-            else
-            {
-                stackToMove = inventoryItemContents[i]
-            }
-            // Populate the slots
-            inventory.setStackInSlot(i, stackToMove)
+            STACK_SIZE_PER_SLOT   -> stackSizePerSlot = min(buf.readInt(), maxStackSizePerSlot)
         }
     }
 
@@ -256,8 +206,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         autoCollapse = inverted
         if (!world.isRemote)
         {
-            if (autoCollapse)
-                addNotifiedInput(getImportItems())
+            if (autoCollapse) addNotifiedInput(importItems)
             writeCustomData(TOGGLE_COLLAPSE_ITEMS) { it.writeBoolean(autoCollapse) }
             notifyBlockUpdate()
             markDirty()
@@ -266,7 +215,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
 
     fun setStackSizePerSlot(newStackSize: Int)
     {
-        stackSizePerSlot = min(newStackSize, MAX_STACK_SIZE_PER_SLOT)
+        stackSizePerSlot = min(newStackSize, maxStackSizePerSlot)
         if (!world.isRemote)
         {
             writeCustomData(STACK_SIZE_PER_SLOT) { it.writeInt(stackSizePerSlot) }
@@ -275,32 +224,32 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         }
     }
 
-    override fun addToMultiBlock(controllerBase: MultiblockControllerBase?)
+    override fun addToMultiBlock(controller: MultiblockControllerBase?)
     {
-        super.addToMultiBlock(controllerBase)
+        super.addToMultiBlock(controller)
         if (hasGhostCircuitInventory() && actualImportItems is ItemHandlerList)
         {
             for (handler in (actualImportItems as ItemHandlerList).backingHandlers)
             {
                 if (handler is INotifiableHandler)
                 {
-                    handler.addNotifiableMetaTileEntity(controllerBase)
+                    handler.addNotifiableMetaTileEntity(controller)
                     handler.addToNotifiedList(this, handler, false)
                 }
             }
         }
     }
 
-    override fun removeFromMultiBlock(controllerBase: MultiblockControllerBase?)
+    override fun removeFromMultiBlock(controller: MultiblockControllerBase?)
     {
-        super.removeFromMultiBlock(controllerBase)
+        super.removeFromMultiBlock(controller)
         if (hasGhostCircuitInventory() && actualImportItems is ItemHandlerList)
         {
             for (handler in (actualImportItems as ItemHandlerList).backingHandlers)
             {
                 if (handler is INotifiableHandler)
                 {
-                    handler.removeNotifiableMetaTileEntity(controllerBase)
+                    handler.removeNotifiableMetaTileEntity(controller)
                 }
             }
         }
@@ -308,7 +257,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
 
     override fun registerAbilities(abilityInstances: AbilityInstances)
     {
-        abilityInstances.add(getImportItems())
+        abilityInstances.add(importItems)
     }
 
     @SideOnly(Side.CLIENT)
@@ -317,20 +266,19 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
         tooltip.add(I18n.format("gregtech.machine.item_bus.import.tooltip"))
         tooltip.add(I18n.format("gtlitecore.machine.quantum_item_bus.import.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.quantum_item_bus.import.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.quantum_item_bus.import.tooltip.3", MAX_STACK_SIZE_PER_SLOT))
-        tooltip.add(I18n.format("gregtech.universal.tooltip.item_storage_capacity", getInventorySize()))
+        tooltip.add(I18n.format("gtlitecore.machine.quantum_item_bus.import.tooltip.3", maxStackSizePerSlot))
+        tooltip.add(I18n.format("gregtech.universal.tooltip.item_storage_capacity", itemSize))
         tooltip.add(I18n.format("gregtech.universal.enabled"))
     }
 
     @Suppress("UnstableApiUsage")
     override fun buildUI(guiData: PosGuiData, panelSyncManager: PanelSyncManager, settings: UISettings): ModularPanel
     {
-        val rowSize = sqrt(getInventorySize().toDouble()).toInt()
+        val rowSize = sqrt(itemSize.toDouble()).toInt()
         panelSyncManager.registerSlotGroup("item_inv", rowSize)
 
-        val backgroundWidth = max(9 * 18 + 18 + 14 + 5,  // Player Inv width
-                                  rowSize * 18 + 14) // Bus Inv width
-        val backgroundHeight = 18 + 18 * rowSize + 94
+        val backgroundWidth = max(199, rowSize * 18 + 14) // (Player Inv Width, Bus Inv Width)
+        val backgroundHeight = 112 + 18 * rowSize
 
         val workingStateValue = BooleanSyncValue(
             { workingEnabled },
@@ -340,7 +288,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
             { autoCollapse },
             { collapseMode -> autoCollapse = collapseMode })
 
-        val handler = getImportItems()
+        val handler = importItems
         val hasGhostCircuit = hasGhostCircuitInventory() && circuitInventory != null
 
         val stackSizePanel = panelSyncManager.syncedPanel("stack_size_panel", true, ::makeStackSizePanel)
@@ -358,7 +306,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                        .minColWidth(18)
                        .minRowHeight(18)
                        .alignX(0.5f)
-                       .mapTo(rowSize, rowSize * rowSize) { slotIdx ->
+                       .mapTo(rowSize, rowSize.square()) { slotIdx ->
                            ItemSlot()
                                .slot(SyncHandlers.itemSlot(handler, slotIdx)
                                          .slotGroup("item_inv")
@@ -370,12 +318,12 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                                          .accessibility(true, true))
                        })
             .child(Flow.column()
-                       .pos(backgroundWidth - 7 - 18, backgroundHeight - 18 * 4 - 7 - 5)
+                       .pos(backgroundWidth - 25, backgroundHeight - 60)
                        .width(18)
-                       .height(18 * 4 + 5)
+                       .height(77)
                        .child(ButtonWidget()
                                   .size(17)
-                                  .top(18 * 3 + 5)
+                                  .top(59)
                                   .overlay(GTGuiTextures.FILTER_SETTINGS_OVERLAY.asIcon()
                                                .size(16))
                                   .addTooltipLine(IKey.lang("gtlitecore.machine.quantum_item_bus.import.configuration"))
@@ -387,7 +335,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                                       return@onMousePressed true
                                   })
                        .child(ToggleButton()
-                                  .top(18 * 2)
+                                  .top(36)
                                   .value(workingStateValue)
                                   .overlay(GTGuiTextures.BUTTON_ITEM_OUTPUT)
                                   .tooltipAutoUpdate(true)
@@ -418,7 +366,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                 }))
     }
 
-    @Suppress("UnstableApiUsage")
+    @Suppress("UnstableApiUsage", "unused")
     private fun makeStackSizePanel(syncManager: PanelSyncManager, syncHandler: IPanelHandler): ModularPanel
     {
         val stackSizeSync = SafeIntSyncValue(::stackSizePerSlot, ::setStackSizePerSlot)
@@ -440,7 +388,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                                   .background(Rectangle()
                                                   .color(Color.BLACK.brighter(2)).asIcon()
                                                   .height(8))
-                                  .bounds(0.0, MAX_STACK_SIZE_PER_SLOT.toDouble())
+                                  .bounds(0.0, maxStackSizePerSlot.toDouble())
                                   .setAxis(GuiAxis.X)
                                   .value(stackSizeSync)
                                   .widthRel(0.7f)
@@ -455,12 +403,13 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                                       var value = it.toInt()
                                       if (value < 0)
                                           value = 0
-                                      else if (value > MAX_STACK_SIZE_PER_SLOT)
-                                          value = MAX_STACK_SIZE_PER_SLOT
+                                      else if (value > maxStackSizePerSlot)
+                                          value = maxStackSizePerSlot
                                       return@setValidator value.toString()
                                   }))
     }
 
+    @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState, translation: Matrix4,
                                       pipeline: Array<IVertexOperation>)
     {

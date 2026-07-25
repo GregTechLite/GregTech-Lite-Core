@@ -27,27 +27,24 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 class PartMachineSterileCleaningMaintenanceHatch(id: ResourceLocation) : MetaTileEntityAutoMaintenanceHatch(id)
 {
-
     companion object
     {
-
         private val cleanedTypes = hashSetOf<CleanroomType>().apply {
             add(CleanroomType.CLEANROOM)
             add(CleanroomType.STERILE_CLEANROOM)
         }
-
         private val dummyCleanroom = DummyCleanroom.createForTypes(cleanedTypes)
     }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = PartMachineSterileCleaningMaintenanceHatch(metaTileEntityId)
 
-    override fun addToMultiBlock(controllerBase: MultiblockControllerBase)
+    override fun addToMultiBlock(controller: MultiblockControllerBase)
     {
-        super.addToMultiBlock(controllerBase)
-        if (controllerBase is ICleanroomReceiver)
+        super.addToMultiBlock(controller)
+        if (controller is ICleanroomReceiver)
         {
-            controllerBase.setCleanroom(dummyCleanroom)
+            controller.setCleanroom(dummyCleanroom)
         }
     }
 
@@ -95,5 +92,4 @@ class PartMachineSterileCleaningMaintenanceHatch(id: ResourceLocation) : MetaTil
             tooltip.add(String.format("  %s%s", TextFormatting.GREEN, I18n.format(type.translationKey)))
         }
     }
-
 }
