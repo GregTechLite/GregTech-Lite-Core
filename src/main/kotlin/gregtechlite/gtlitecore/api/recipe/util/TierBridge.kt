@@ -33,17 +33,13 @@ import gregtech.api.unification.material.Material
  */
 object TierBridge
 {
-
     /**
      * One bijective tier mapping entry.
      *
      * @property index     The integer voltage tier, usually one of the constants from [GTValues]
      * @property material  The corresponding tier marker [Material], usually one of the constants from [Tier]
      */
-    data class Entry(
-        val index: Int,
-        val material: Material
-    )
+    data class Entry(val index: Int, val material: Material)
 
     /**
      * Ordered list of all known tier mappings.
@@ -53,22 +49,21 @@ object TierBridge
      * rely on this ordering.
      */
     val entries: List<Entry> = listOf(
-            Entry(GTValues.ULV, Tier.ULV),
-            Entry(GTValues.LV, Tier.LV),
-            Entry(GTValues.MV, Tier.MV),
-            Entry(GTValues.HV, Tier.HV),
-            Entry(GTValues.EV, Tier.EV),
-            Entry(GTValues.IV, Tier.IV),
-            Entry(GTValues.LuV, Tier.LuV),
-            Entry(GTValues.ZPM, Tier.ZPM),
-            Entry(GTValues.UV, Tier.UV),
-            Entry(GTValues.UHV, Tier.UHV),
-            Entry(GTValues.UEV, Tier.UEV),
-            Entry(GTValues.UIV, Tier.UIV),
-            Entry(GTValues.UXV, Tier.UXV),
-            Entry(GTValues.OpV, Tier.OpV),
-            Entry(GTValues.MAX, Tier.MAX)
-    )
+        Entry(GTValues.ULV, Tier.ULV),
+        Entry(GTValues.LV, Tier.LV),
+        Entry(GTValues.MV, Tier.MV),
+        Entry(GTValues.HV, Tier.HV),
+        Entry(GTValues.EV, Tier.EV),
+        Entry(GTValues.IV, Tier.IV),
+        Entry(GTValues.LuV, Tier.LuV),
+        Entry(GTValues.ZPM, Tier.ZPM),
+        Entry(GTValues.UV, Tier.UV),
+        Entry(GTValues.UHV, Tier.UHV),
+        Entry(GTValues.UEV, Tier.UEV),
+        Entry(GTValues.UIV, Tier.UIV),
+        Entry(GTValues.UXV, Tier.UXV),
+        Entry(GTValues.OpV, Tier.OpV),
+        Entry(GTValues.MAX, Tier.MAX))
 
     private val byIndex: Map<Int, Entry> = entries.associateBy { it.index }
     private val byMaterial: Map<Material, Entry> = entries.associateBy { it.material }
@@ -115,10 +110,7 @@ object TierBridge
      * @return          The corresponding GregTech voltage tier index
      */
     @JvmStatic
-    fun indexOf(material: Material): Int
-    {
-        return of(material).index
-    }
+    fun indexOf(material: Material): Int = of(material).index
 
     /**
      * Checks whether the given integer tier exists in this bridge.
@@ -131,7 +123,6 @@ object TierBridge
      */
     @JvmStatic
     operator fun contains(index: Int): Boolean = byIndex.containsKey(index)
-
 
     /**
      * Checks whether the given tier material exists in this bridge.
