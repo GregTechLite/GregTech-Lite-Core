@@ -17,7 +17,6 @@ import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.AbilityInstances
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
-import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates
 import gregtechlite.gtlitecore.api.wireless.WirelessRole
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays

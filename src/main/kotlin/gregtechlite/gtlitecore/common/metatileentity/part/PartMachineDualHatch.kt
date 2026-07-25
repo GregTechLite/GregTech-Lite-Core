@@ -21,7 +21,8 @@ import com.cleanroommc.modularui.widgets.layout.Grid
 import com.cleanroommc.modularui.widgets.slot.ItemSlot
 import gregtech.api.GTValues
 import gregtech.api.capability.DualHandler
-import gregtech.api.capability.GregtechDataCodes
+import gregtech.api.capability.GregtechDataCodes.TOGGLE_COLLAPSE_ITEMS
+import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IGhostSlotConfigurable
 import gregtech.api.capability.impl.FluidTankList
@@ -38,12 +39,12 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.mui.GTGuiTextures
 import gregtech.api.mui.GTGuis
 import gregtech.api.mui.widget.GhostCircuitSlotWidget
-import gregtech.api.util.GTHashMaps
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart
 import gregtech.common.mui.widget.GTFluidSlot
 import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.collapseInventorySlotContents
+import gregtechlite.gtlitecore.api.extension.square
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.mixins.Implemented
 import net.minecraft.client.resources.I18n
@@ -64,19 +65,25 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
 
+// TODO: Remove it when we replace CEu to our port version.
 @Implemented(at = ["https://github.com/GregTechCEu/GregTech/pull/2769"])
 class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boolean)
     : MetaTileEntityMultiblockNotifiablePart(id, tier, isExportHatch), IMultiblockAbilityPart<IItemHandlerModifiable>,
       IControllable, IGhostSlotConfigurable
 {
-
     private var circuitInventory: GhostCircuitItemStackHandler? = null
     private var actualImportItems: IItemHandlerModifiable? = null
     private var dualHandler: DualHandler? = null
     
     private var workingEnabled = true
     private var autoCollapse = false
-    
+
+    private val itemSize: Int
+        get() = (1 + min(GTValues.UHV, tier)).square()
+
+    private val tankSize: Int
+        get() = 8000 * min(Int.MAX_VALUE, 1 shl tier)
+
     init
     {
         initializeInventory()
@@ -91,30 +98,17 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
         if (hasGhostCircuitInventory())
         {
             circuitInventory = GhostCircuitItemStackHandler(this)
-            actualImportItems = ItemHandlerList(listOf(this.importItems, circuitInventory))
+            actualImportItems = ItemHandlerList(listOf(importItems, circuitInventory))
         }
         else
         {
-            actualImportItems = this.importItems
+            actualImportItems = importItems
         }
-        dualHandler = DualHandler(if (isExportHatch) this.exportItems!! else this.actualImportItems!!,
-                                  if (isExportHatch) getExportFluids() else getImportFluids(), isExportHatch)
+        dualHandler = DualHandler(if (isExportHatch) exportItems!! else actualImportItems!!,
+                                  if (isExportHatch) exportFluids else importFluids, isExportHatch)
     }
     
     override fun getImportItems(): IItemHandlerModifiable = dualHandler!!
-
-    // TODO Should max value of all sizeRoots should be MAX or still UHV?
-
-    private fun getItemSize(): Int
-    {
-        val sizeRoot = 1 + min(GTValues.UHV, tier)
-        return sizeRoot * sizeRoot
-    }
-
-    private fun getTankSize(): Int
-    {
-        return 8000 * min(Int.MAX_VALUE, 1 shl tier)
-    }
 
     private fun createTanks(): Array<IFluidTank?>
     {
@@ -122,93 +116,69 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
         val tanks = arrayOfNulls<IFluidTank>(size)
         for (index in tanks.indices)
         {
-            tanks[index] = NotifiableFluidTank(getTankSize(), null, isExportHatch)
+            tanks[index] = NotifiableFluidTank(tankSize, null, isExportHatch)
         }
         return tanks
     }
 
-     override fun createImportItemHandler(): IItemHandlerModifiable
-     {
-        return if (isExportHatch)
-            GTItemStackHandler(this, 0)
-        else
-            NotifiableItemStackHandler(this, getItemSize(), null, false)
-    }
+    override fun createImportItemHandler(): IItemHandlerModifiable
+        = if (isExportHatch) GTItemStackHandler(this, 0) else NotifiableItemStackHandler(this, itemSize, null, false)
     
     override fun createExportItemHandler(): IItemHandlerModifiable
-    {
-        return if (isExportHatch)
-            NotifiableItemStackHandler(this, getItemSize(), null, true)
-        else
-            GTItemStackHandler(this, 0)
-    }
+        = if (isExportHatch) NotifiableItemStackHandler(this, itemSize, null, true) else GTItemStackHandler(this, 0)
     
     override fun createImportFluidHandler(): FluidTankList
-    {
-        return if (isExportHatch)
-            FluidTankList(false)
-        else
-            FluidTankList(false, *createTanks())
-    }
+        = if (isExportHatch) FluidTankList(false) else FluidTankList(false, *createTanks())
     
     override fun createExportFluidHandler(): FluidTankList
-    {
-        return if (isExportHatch)
-            FluidTankList(false, *createTanks())
-        else
-            FluidTankList(false)
-    }
+        = if (isExportHatch) FluidTankList(false, *createTanks()) else FluidTankList(false)
     
     override fun update()
     {
         super.update()
-        
+
         if (!world.isRemote && offsetTimer % (5 * TICK) == 0L)
         {
             if (workingEnabled)
             {
                 if (isExportHatch)
                 {
-                    pushItemsIntoNearbyHandlers(getFrontFacing())
-                    pushFluidsIntoNearbyHandlers(getFrontFacing())
+                    pushItemsIntoNearbyHandlers(frontFacing)
+                    pushFluidsIntoNearbyHandlers(frontFacing)
                 }
                 else
                 {
-                    pullItemsFromNearbyHandlers(getFrontFacing())
-                    pullFluidsFromNearbyHandlers(getFrontFacing())
+                    pullItemsFromNearbyHandlers(frontFacing)
+                    pullFluidsFromNearbyHandlers(frontFacing)
                 }
             }
             
             if (autoCollapse())
             {
-                val itemHandler = if (isExportHatch) getExportItems() else super.getImportItems()
-                if (!isAttachedToMultiBlock
-                    || (if (isExportHatch) getNotifiedItemOutputList().contains(itemHandler)
-                        else getNotifiedItemInputList().contains(itemHandler)))
+                val itemHandler = if (isExportHatch) exportItems else super<MetaTileEntityMultiblockNotifiablePart>.importItems
+                if (!isAttachedToMultiBlock || (if (isExportHatch) notifiedItemInputList.contains(itemHandler)
+                    else notifiedItemInputList.contains(itemHandler)))
                 {
-                    collapseInventorySlotContents(itemHandler)
+                    itemHandler.collapseInventorySlotContents()
                 }
             }
         }
     }
     
-    override fun hasGhostCircuitInventory(): Boolean = !this.isExportHatch
+    override fun hasGhostCircuitInventory(): Boolean = !isExportHatch
     
     override fun setGhostCircuitConfig(config: Int)
     {
-        if (this.circuitInventory == null
-            || this.circuitInventory!!.circuitValue == config)
-            return 
+        if (circuitInventory == null || circuitInventory!!.circuitValue == config)
+            return
+        circuitInventory!!.circuitValue = config
 
-        this.circuitInventory!!.circuitValue = config
-        if (!world.isRemote)
-            markDirty()
+        if (!world.isRemote) markDirty()
     }
-    
-    override fun getAbility(): MultiblockAbility<IItemHandlerModifiable?>?
-    {
-        return if (isExportHatch) MultiblockAbility.EXPORT_ITEMS else MultiblockAbility.IMPORT_ITEMS
-    }
+
+    override fun getAbilities(): List<MultiblockAbility<*>>
+        = if (isExportHatch) listOf(MultiblockAbility.EXPORT_ITEMS, MultiblockAbility.EXPORT_FLUIDS)
+          else listOf(MultiblockAbility.IMPORT_ITEMS, MultiblockAbility.IMPORT_FLUIDS)
     
     override fun registerAbilities(abilityInstances: AbilityInstances)
     {
@@ -221,42 +191,41 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
     @Suppress("UnstableApiUsage")
     override fun buildUI(guiData: PosGuiData, syncManager: PanelSyncManager, settings: UISettings): ModularPanel
     {
-        val rowSize = sqrt(getItemSize().toDouble()).toInt()
+        val rowSize = sqrt(itemSize.toDouble()).toInt()
         syncManager.registerSlotGroup("item_inv", rowSize)
         
-        val backgroundWidth = max(9 * 18 + 18 + 14 + 5,  // Player Inv width
-                                         rowSize * 18 + 14 + 18) // Bus Inv width
-        val backgroundHeight = 18 + 18 * rowSize + 94
+        val backgroundWidth = max(199, rowSize * 18 + 32) // (Player Inv Width, Bus Inv Width)
+        val backgroundHeight = 112 + 18 * rowSize
         
-        val widgets: MutableList<MutableList<IWidget>> = ArrayList()
+        val widgets = arrayListOf<MutableList<IWidget>>()
         for (i in 0 ..< rowSize)
         {
-            widgets.add(ArrayList())
+            widgets.add(arrayListOf())
             for (j in 0 ..< rowSize)
             {
-                val index = i * rowSize + j
-                val handler = if (isExportHatch) getExportItems() else getImportItems()
+                val idx = i * rowSize + j
+                val handler = if (isExportHatch) exportItems else importItems
                 widgets[i].add(ItemSlot()
-                        .slot(SyncHandlers.itemSlot(handler, index)
+                        .slot(SyncHandlers.itemSlot(handler, idx)
                                   .slotGroup("item_inv")
                                   .changeListener { newItem, onlyAmountChanged, client, init ->
                                       if (onlyAmountChanged && handler is GTItemStackHandler)
-                                          handler.onContentsChanged(index)
+                                          handler.onContentsChanged(idx)
                                   }
                                   .accessibility(!isExportHatch, true)))
             }
             
-            val tankHandler: IFluidTank = dualHandler!!.getTankAt(i)
+            val tankHandler = dualHandler!!.getTankAt(i)
             widgets[i].add(GTFluidSlot()
                 .syncHandler(GTFluidSlot.sync(tankHandler)
                         .accessibility(true, !isExportHatch)))
         }
         
         val workingStateValue = BooleanSyncValue({ workingEnabled },
-                                                 { workingStatus: Boolean -> workingEnabled = workingStatus })
+                                                 { workingStatus -> workingEnabled = workingStatus })
 
         val collapseStateValue = BooleanSyncValue({ autoCollapse },
-                                                  { collapse: Boolean -> autoCollapse = collapse })
+                                                  { collapse -> autoCollapse = collapse })
 
         syncManager.syncValue("working_state", workingStateValue)
         syncManager.syncValue("collapse_state", collapseStateValue)
@@ -285,10 +254,10 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
         .child(ToggleButton()
                    .top(18 * 2)
                    .value(BoolValue.Dynamic({ workingStateValue.boolValue },
-                                            { workingStatus: Boolean -> workingStateValue.boolValue = workingStatus }))
+                                            { workingStatus -> workingStateValue.boolValue = workingStatus }))
                    .overlay(GTGuiTextures.BUTTON_ITEM_OUTPUT)
                    .tooltipBuilder {
-                       it.setAutoUpdate(true)
+                       it.isAutoUpdate = true
                        if (isExportHatch)
                        {
                            if (workingStateValue.boolValue)
@@ -311,10 +280,10 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
         .child(ToggleButton()
                    .top(18)
                    .value(BoolValue.Dynamic({ collapseStateValue.boolValue },
-                                            { collapseStatus: Boolean -> collapseStateValue.boolValue = collapseStatus }))
+                                            { collapseStatus -> collapseStateValue.boolValue = collapseStatus }))
                    .overlay(GTGuiTextures.BUTTON_AUTO_COLLAPSE)
                    .tooltipBuilder {
-                       it.setAutoUpdate(true)
+                       it.isAutoUpdate = true
                        if (collapseStateValue.boolValue)
                        {
                            it.addLine(IKey.lang("gregtech.gui.item_auto_collapse.tooltip.enabled"))
@@ -336,16 +305,14 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
     }
 
     @SideOnly(Side.CLIENT)
-    override fun renderMetaTileEntity(renderState: CCRenderState?,
-                                      translation: Matrix4?,
+    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
         val renderer = if (isExportHatch) Textures.PIPE_OUT_OVERLAY else Textures.PIPE_IN_OVERLAY
-        renderer.renderSided(getFrontFacing(), renderState, translation, pipeline)
-
+        renderer.renderSided(frontFacing, renderState, translation, pipeline)
         val overlay = if (isExportHatch) GTLiteOverlays.DUAL_HATCH_OUTPUT_OVERLAY else GTLiteOverlays.DUAL_HATCH_INPUT_OVERLAY
-        overlay.renderSided(getFrontFacing(), renderState, translation, pipeline)
+        overlay.renderSided(frontFacing, renderState, translation, pipeline)
     }
     
     override fun writeInitialSyncData(buf: PacketBuffer)
@@ -367,7 +334,7 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
         this.workingEnabled = workingEnabled
         if (world != null && !world.isRemote)
         {
-            writeCustomData(GregtechDataCodes.WORKING_ENABLED) { it.writeBoolean(workingEnabled) }
+            writeCustomData(WORKING_ENABLED) { it.writeBoolean(this.workingEnabled) }
         }
     }
     
@@ -382,14 +349,14 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
             {
                 if (isExportHatch)
                 {
-                    addNotifiedOutput(getExportItems())
+                    addNotifiedOutput(exportItems)
                 }
                 else
                 {
-                    addNotifiedInput(getImportItems())
+                    addNotifiedInput(importItems)
                 }
             }
-            writeCustomData(GregtechDataCodes.TOGGLE_COLLAPSE_ITEMS) { it.writeBoolean(autoCollapse) }
+            writeCustomData(TOGGLE_COLLAPSE_ITEMS) { it.writeBoolean(autoCollapse) }
             notifyBlockUpdate()
             markDirty()
         }
@@ -400,19 +367,14 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
     override fun receiveCustomData(dataId: Int, buf: PacketBuffer)
     {
         super.receiveCustomData(dataId, buf)
-        if (dataId == GregtechDataCodes.WORKING_ENABLED)
+        when (dataId)
         {
-            workingEnabled = buf.readBoolean()
-        }
-        else if (dataId == GregtechDataCodes.TOGGLE_COLLAPSE_ITEMS)
-        {
-            autoCollapse = buf.readBoolean()
+            WORKING_ENABLED       -> workingEnabled = buf.readBoolean()
+            TOGGLE_COLLAPSE_ITEMS -> autoCollapse = buf.readBoolean()
         }
     }
     
-    override fun onScrewdriverClick(playerIn: EntityPlayer,
-                                    hand: EnumHand?,
-                                    facing: EnumFacing?,
+    override fun onScrewdriverClick(playerIn: EntityPlayer, hand: EnumHand?, facing: EnumFacing?,
                                     hitResult: CuboidRayTraceResult?): Boolean
     {
         setAutoCollapse(!autoCollapse)
@@ -435,41 +397,27 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
         super.writeToNBT(data)
         data.setBoolean("workingEnabled", workingEnabled)
         data.setBoolean("autoCollapse", autoCollapse)
-        
-        if (circuitInventory != null)
-        {
-            circuitInventory!!.write(data)
-        }
-        
+        circuitInventory?.write(data)
         return data
     }
     
     override fun readFromNBT(data: NBTTagCompound)
     {
         super.readFromNBT(data)
-        
-        this.workingEnabled = data.getBoolean("workingEnabled")
-        this.autoCollapse = data.getBoolean("autoCollapse")
-        
-        if (circuitInventory != null)
-        {
-            circuitInventory!!.read(data)
-        }
+        workingEnabled = data.getBoolean("workingEnabled")
+        autoCollapse = data.getBoolean("autoCollapse")
+        circuitInventory?.read(data)
     }
 
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         if (isExportHatch)
-        {
             tooltip.add(I18n.format("gregtech.machine.item_bus.export.tooltip"))
-        }
         else
-        {
             tooltip.add(I18n.format("gregtech.machine.item_bus.import.tooltip"))
-        }
-        tooltip.add(I18n.format("gregtech.universal.tooltip.item_storage_capacity", getItemSize()))
-        tooltip.add(I18n.format("gregtech.universal.tooltip.fluid_storage_capacity", getTankSize()))
+        tooltip.add(I18n.format("gregtech.universal.tooltip.item_storage_capacity", itemSize))
+        tooltip.add(I18n.format("gregtech.universal.tooltip.fluid_storage_capacity", tankSize))
         tooltip.add(I18n.format("gregtech.universal.enabled"))
     }
 
@@ -481,49 +429,4 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
         tooltip.add(I18n.format("gregtech.tool_action.wrench.set_facing"))
         super.addToolUsages(stack, world, tooltip, advanced)
     }
-
-    private fun collapseInventorySlotContents(inventory: IItemHandlerModifiable)
-    {
-        // Gather a snapshot of the provided inventory
-        val inventoryContents = GTHashMaps.fromItemHandler(inventory, true)
-            
-        val inventoryItemContents: MutableList<ItemStack> = ArrayList()
-            
-        // Populate the list of item stacks in the inventory with apportioned item stacks, for easy replacement
-        for (e in inventoryContents.object2IntEntrySet())
-        {
-            val stack: ItemStack = e.key!!
-            var count = e.intValue
-            val maxStackSize = stack.maxStackSize
-            while (count >= maxStackSize)
-            {
-                val copy = stack.copy(maxStackSize)
-                inventoryItemContents.add(copy)
-                count -= maxStackSize
-            }
-            if (count > 0)
-            {
-                val copy = stack.copy(count)
-                inventoryItemContents.add(copy)
-            }
-        }
-            
-        for (i in 0 ..< inventory.getSlots())
-        {
-            val stackToMove: ItemStack
-            // Ensure that we are not exceeding the List size when attempting to populate items
-            if (i >= inventoryItemContents.size)
-            {
-                stackToMove = ItemStack.EMPTY
-            }
-            else
-            {
-                stackToMove = inventoryItemContents[i]
-            }
-                
-            // Populate the slots
-            inventory.setStackInSlot(i, stackToMove)
-        }
-    }
-
 }
