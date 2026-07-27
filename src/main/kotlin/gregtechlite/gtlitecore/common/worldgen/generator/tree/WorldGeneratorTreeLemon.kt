@@ -58,9 +58,9 @@ class WorldGeneratorTreeLemon : WorldGeneratorTreeBase("lemon", 4)
         notifier(worldIn, blockPos.copy().moveUp(height), placedLeaveState)
     }
 
-    override fun getMinTrunkHeight(random: Random) = 6 + random.nextInt(3)
+    override fun getMinTrunkHeight(rand: Random) = 6 + rand.nextInt(3)
 
-    override fun getFruitDrop(chance: Int): ItemStack?
+    override fun getFruitDrop(chance: Int): ItemStack
     {
         if (GTValues.RNG.nextInt(chance / 10) == 0)
             return GTLiteMetaItems.LEMON.getStackForm(GTValues.RNG.nextInt(2) + 1)

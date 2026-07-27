@@ -16,12 +16,11 @@ import java.util.*
 
 open class WorldGeneratorBerryBase(seed: Int, val bush: GTLiteBerryBushBlock) : AbstractWorldGenerator(seed)
 {
-
     override var innerGenerator: CustomWorldGeneratorImpl?
         get() = CustomWorldGeneratorBerry(this)
-        set(value)
+        set(newGenerator)
         {
-            innerGenerator = value
+            innerGenerator = newGenerator
         }
 
     override fun generate(worldIn: World?,
@@ -61,5 +60,4 @@ open class WorldGeneratorBerryBase(seed: Int, val bush: GTLiteBerryBushBlock) : 
         val material = block.defaultState.material
         return material === Material.AIR || block === Blocks.VINE || material === Material.SNOW
     }
-
 }

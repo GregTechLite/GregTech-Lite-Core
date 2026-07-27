@@ -146,15 +146,16 @@ public class GTLiteConfigHolder
 
     public static class WorldGenOptions
     {
-
         @Comment({"Whether to disable all Addition Trees world generation.",
                   "Default: false"})
         public boolean disableAdditionTreesGeneration = false;
 
+        @Comment({"Whether to disable all Berry Bushes world generation.",
+                  "Default: false"})
+        public boolean disableAllBerriesGeneration = false;
+
         @Comment({"Allowed to add Additional Items as loot in various structures.",
                   "Default: true"})
         public boolean addLoot = true;
-
     }
-
 }

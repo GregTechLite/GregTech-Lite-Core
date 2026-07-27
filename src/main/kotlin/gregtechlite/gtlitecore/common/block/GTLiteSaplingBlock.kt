@@ -47,7 +47,7 @@ class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), 
     }
 
     fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
-        = WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (offset * 8)]
+        = WorldGeneratorTreeRegistry[blockState.getValue(VARIANT) + (offset * 8)]
 
     override fun createBlockState(): BlockStateContainer = BlockStateContainer(this, BlockSapling.STAGE, VARIANT)
 
@@ -67,7 +67,7 @@ class GTLiteSaplingBlock(private val offset: Int) : BlockBush(Material.LEAVES), 
     {
         for (i in 0..7)
         {
-            if (WorldGeneratorTreeRegistry.generators.size <= i + offset * 8)
+            if (WorldGeneratorTreeRegistry.size <= i + offset * 8)
                 break
             items.add(ItemStack(this, 1, i * 2))
         }
