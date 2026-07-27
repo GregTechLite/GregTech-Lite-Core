@@ -58,7 +58,7 @@ class WorldGeneratorTreeLime : WorldGeneratorTreeBase("lime", 5)
         notifier(worldIn, blockPos.copy().moveUp(height), placedLeaveState)
     }
 
-    override fun getFruitDrop(chance: Int): ItemStack?
+    override fun getFruitDrop(chance: Int): ItemStack
     {
         if (GTValues.RNG.nextInt(chance / 10) == 0)
             return GTLiteMetaItems.LIME.getStackForm(GTValues.RNG.nextInt(2) + 1)
