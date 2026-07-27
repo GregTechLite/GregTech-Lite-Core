@@ -22,37 +22,21 @@ import kotlin.math.abs
 
 abstract class WorldGeneratorTreeBase(val name: String, private val seed: Int) : AbstractWorldGenerator(seed)
 {
-
-    // region Construct and Generation contents
-
     var logState: IBlockState? = null
     var leaveState: IBlockState? = null
     var saplingState: IBlockState? = null
 
-    /**
-     * The natural generating leave block state, the value is based on [leaveState] but be decayable.
-     * Updated with [gregtechlite.magicbook.util.LeafDecayUpdate].
-     */
     open val placedLeaveState: IBlockState
-        get() = this.leaveState!!
-            .withProperty(BlockLeaves.DECAYABLE, true)
-            .withProperty(BlockLeaves.CHECK_DECAY, true)
+        get() = leaveState!!.withProperty(BlockLeaves.DECAYABLE, true).withProperty(BlockLeaves.CHECK_DECAY, true)
 
-    /**
-     * The natural generating sapling block, this block is used for placed a tree for [net.minecraftforge.common.IPlantable] interface.
-     */
     open val placedSaplingBlock: IPlantable
-        get() = this.saplingState!!.block as IPlantable
-
-    // endregion
-
-    // region Correspondenced Generators
+        get() = saplingState!!.block as IPlantable
 
     override var innerGenerator: CustomWorldGeneratorImpl?
         get() = CustomWorldGeneratorTree(false, this)
-        set(value)
+        set(newGenerator)
         {
-            innerGenerator = value
+            innerGenerator = newGenerator
         }
 
     var outerGenerator: CustomWorldGeneratorImpl?
@@ -62,11 +46,9 @@ abstract class WorldGeneratorTreeBase(val name: String, private val seed: Int) :
             outerGenerator = value
         }
 
-    // endregion
-
     init
     {
-        WorldGeneratorTreeRegistry.generators.add(this)
+        WorldGeneratorTreeRegistry.add(this)
     }
 
     abstract fun getItemColor(stack: ItemStack?, tintIndex: Int): Int

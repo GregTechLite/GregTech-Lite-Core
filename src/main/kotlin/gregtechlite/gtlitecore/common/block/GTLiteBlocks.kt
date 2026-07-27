@@ -210,22 +210,22 @@ object GTLiteBlocks
         WorldGeneratorTreeManager.init()
 
         // Initialized tree related blocks.
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 4)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 4)
         {
             val leaves = GTLiteLeaveBlock(i)
             leaves.setRegistryName("leaves_$i")
         }
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 4)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 4)
         {
             val log = GTLiteLogBlock(i)
             log.setRegistryName("log_$i")
         }
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 8)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 8)
         {
             val sapling = GTLiteSaplingBlock(i)
             sapling.setRegistryName("sapling_$i")
         }
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 16)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 16)
         {
             val planks = GTLitePlankBlock(i)
             planks.setRegistryName("planks_$i")
@@ -236,7 +236,7 @@ object GTLiteBlocks
         WorldGeneratorBerryManager.init()
 
         // Setup tree related blocks to its world generator features.
-        WorldGeneratorTreeRegistry.generators.forEach { it.setupBlocks() }
+        WorldGeneratorTreeRegistry.forEach { it.setupBlocks() }
 
         // Initialized wooden slabs.
         WOOD_SLABS = GTLiteWoodSlabBlock.Half()
