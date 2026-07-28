@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.mixins.gregtech;
 import com.cleanroommc.modularui.api.ISyncedAction;
 import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import gregtech.common.covers.filter.BaseFilterContainer;
-import gregtechlite.gtlitecore.mixins.Compat;
+import gregtechlite.gtlitecore.mixins.hooks.Compat;
 import net.minecraftforge.fml.relauncher.Side;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

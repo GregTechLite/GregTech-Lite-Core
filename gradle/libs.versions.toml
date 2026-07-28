@@ -4,7 +4,7 @@ kotlin = "2.1.0"
 asm = "5.2"
 guava = "24.1.1-jre"
 gson = "2.8.6"
-jetbrainsAnnotations = "24.1.0"
+jetbrainsAnnotations = "26.1.0"
 
 # Mods
 forgelin = "2.1.0.0"

@@ -6,7 +6,7 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.common.metatileentities.multi.BoilerType;
 import gregtech.common.metatileentities.multi.MetaTileEntityLargeBoiler;
-import gregtechlite.gtlitecore.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;

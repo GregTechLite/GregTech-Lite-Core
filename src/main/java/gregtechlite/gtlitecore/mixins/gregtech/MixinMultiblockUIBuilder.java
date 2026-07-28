@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
-import gregtechlite.gtlitecore.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import net.minecraftforge.fluids.FluidStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

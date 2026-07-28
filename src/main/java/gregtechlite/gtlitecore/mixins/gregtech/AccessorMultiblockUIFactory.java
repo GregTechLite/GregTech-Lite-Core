@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.mixins.gregtech;
 
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory;
-import gregtechlite.gtlitecore.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 

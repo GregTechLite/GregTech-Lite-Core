@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.mixins.minecraft.client;
 
 import gregtechlite.gtlitecore.GTLiteMod;
 import gregtechlite.gtlitecore.client.util.IconLoader;
-import gregtechlite.gtlitecore.mixins.Texts;
+import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.DefaultResourcePack;
 import net.minecraft.util.Util;
@@ -21,20 +21,12 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 
 /**
- * Feature: Open a confirmation Gui when player want to exit game to ensure they want to do it; add modpack logo to the
- * vanilla game windows.
- * <p>
- * Like same function contents in <a href="https://github.com/GTNewHorizons/NewHorizonsCoreMod">NewHorizonsCoreMod</a>,
- * we shadowed the volatile param {@code running} to control the game thread on/off (in NHCore, devs used {@code shutdown}
- * shadow and injected {@code shutdown} method, we used shadow param and overwrite {@code shutdown} method).
- * <p>
- * This mod is on <a href="https://github.com/GTNewHorizons/NewHorizonsCoreMod/blob/master/LICENSE">GNU LGPL-3.0</a> License,
- * thanks for original authors of these codes, this class is just a high-version port of these codes.
+ * Open a confirmation GUI when player want to exit game to ensure they want to do it.
  */
+@Implemented(at = "https://github.com/GTNewHorizons/NewHorizonsCoreMod/pull/729")
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft
 {
-
     @Shadow
     volatile boolean running;
 
