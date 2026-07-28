@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.mixins.minecraft.client;
 
 import gregtechlite.gtlitecore.GTLiteMod;
 import gregtechlite.gtlitecore.client.util.IconLoader;
+import gregtechlite.gtlitecore.mixins.hooks.I18nHooks;
 import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.DefaultResourcePack;
@@ -66,10 +67,10 @@ public abstract class MixinMinecraft
                 final ImageIcon imageIcon = resourceURL == null ? null : new ImageIcon(resourceURL);
 
                 final int result = JOptionPane.showConfirmDialog(frame,
-                        Texts.translated(
+                        I18nHooks.format(
                                 "gtlitecore.tooltip.quit_message",
                                 "Are you sure you want to exit the game?"),
-                        Texts.translated(
+                        I18nHooks.format(
                                 "gtlitecore.tooltip.modpack_name",
                                 "GregTech Lite"),
                         JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, imageIcon);
@@ -112,7 +113,6 @@ public abstract class MixinMinecraft
                 IOUtils.closeQuietly(inputStream);
                 IOUtils.closeQuietly(inputStream1);
             }
-
         }
     }
 
@@ -121,5 +121,4 @@ public abstract class MixinMinecraft
     {
         throw new AssertionError();
     }
-
 }
