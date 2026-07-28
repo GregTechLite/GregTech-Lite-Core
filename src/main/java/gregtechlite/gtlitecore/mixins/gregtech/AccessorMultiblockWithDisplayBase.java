@@ -6,8 +6,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @Mixin(value = MultiblockWithDisplayBase.class, remap = false)
-public interface AccessorMultiblockWithDisplayBase {
-
+public interface AccessorMultiblockWithDisplayBase
+{
     @Invoker("maintenancePredicate")
-    TraceabilityPredicate invokeMaintenancePredicate();
+    TraceabilityPredicate maintenancePredicate();
 }

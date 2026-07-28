@@ -61,7 +61,7 @@ public abstract class MixinMetaTileEntityPowerSubstation {
                 .where('S', MultiblockControllerBase.metaTileEntities((MultiblockControllerBase) (Object) this).setCenter())
                 .where('C', MultiblockControllerBase.states(getCasingState()))
                 .where('X', MultiblockControllerBase.states(getCasingState()).setMinGlobalLimited(14)
-                        .or(((AccessorMultiblockWithDisplayBase) this).invokeMaintenancePredicate())
+                        .or(((AccessorMultiblockWithDisplayBase) this).maintenancePredicate())
                         .or(MultiblockControllerBase.abilities(
                                 MultiblockAbility.INPUT_ENERGY,
                                 MultiblockAbility.SUBSTATION_INPUT_ENERGY,
