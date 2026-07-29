@@ -8,33 +8,30 @@ import gregtech.api.capability.impl.ItemHandlerList;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
 
-import gregtechlite.gtlitecore.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @deprecated
- */
+@ScheduledForRemoval(inVersion = "Change gregtech to our forked version")
 @Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = DualHandler.class, remap = false)
 public abstract class MixinDualHandler implements INotifiableHandler, MultipleNotifiableHandler
 {
+    @Shadow
+    protected @NotNull IItemHandlerModifiable itemDelegate;
 
     @Shadow
-    @NotNull
-    protected IItemHandlerModifiable itemDelegate;
-
-    @Shadow
-    @NotNull
-    protected IMultipleTankHandler fluidDelegate;
+    protected @NotNull IMultipleTankHandler fluidDelegate;
 
     @Shadow
     List<MetaTileEntity> notifiableEntities;
@@ -117,9 +114,9 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
     }
 
     @SuppressWarnings("AddedMixinMembersNamePattern")
-    @NotNull
+    @Unique
     @Override
-    public Collection<INotifiableHandler> getBackingNotifiers()
+    public @NotNull Collection<INotifiableHandler> getBackingNotifiers()
     {
         ImmutableList.Builder<INotifiableHandler> handlerList = ImmutableList.builder();
 
@@ -149,11 +146,8 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
     }
 
     @Shadow
-    @NotNull
-    public abstract IItemHandlerModifiable getItemDelegate();
+    public abstract @NotNull IItemHandlerModifiable getItemDelegate();
 
     @Shadow
-    @NotNull
-    public abstract IMultipleTankHandler getFluidDelegate();
-
+    public abstract @NotNull IMultipleTankHandler getFluidDelegate();
 }

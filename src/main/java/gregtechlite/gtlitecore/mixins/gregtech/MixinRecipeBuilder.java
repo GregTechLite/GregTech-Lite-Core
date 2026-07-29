@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = RecipeBuilder.class, remap = false)
 public abstract class MixinRecipeBuilder
 {
-
     @Shadow
     protected long EUt;
 
@@ -31,5 +30,4 @@ public abstract class MixinRecipeBuilder
     {
         if (EUt == 0) EUt += 1;
     }
-
 }

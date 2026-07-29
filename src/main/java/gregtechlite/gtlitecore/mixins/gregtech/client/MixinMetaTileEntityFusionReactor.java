@@ -10,6 +10,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -21,11 +22,11 @@ import java.util.List;
 
 import static gregtech.api.GTValues.VNF;
 
+@ScheduledForRemoval(inVersion = "Change gregtech to our forked version")
 @Deprecated
 @Mixin(value = MetaTileEntityFusionReactor.class, remap = false)
 public abstract class MixinMetaTileEntityFusionReactor extends RecipeMapMultiblockController implements IFastRenderMetaTileEntity, IBloomEffect
 {
-
     @Mutable
     @Final
     @Shadow
@@ -38,10 +39,8 @@ public abstract class MixinMetaTileEntityFusionReactor extends RecipeMapMultiblo
     }
 
     @Override
-    public void addInformation(ItemStack stack,
-                               @Nullable World player,
-                               @NotNull List<String> tooltip,
-                               boolean advanced) {
+    public void addInformation(ItemStack stack, @Nullable World player, @NotNull List<String> tooltip, boolean advanced)
+    {
         super.addInformation(stack, player, tooltip, advanced);
         long energyCostEach = calculateEnergyStorageFactor(16) / 1000000L;
         tooltip.add(I18n.format("gtlitecore.machine.fusion_reactor.energy_cost",
@@ -54,7 +53,6 @@ public abstract class MixinMetaTileEntityFusionReactor extends RecipeMapMultiblo
     @Shadow
     private long calculateEnergyStorageFactor(int energyInputAmount)
     {
-        return (long) energyInputAmount * (long) Math.pow(2.0, this.tier - 6) * 10000000L;
+        return (long) energyInputAmount * (long) Math.pow(2.0, tier - 6) * 10000000L;
     }
-
 }

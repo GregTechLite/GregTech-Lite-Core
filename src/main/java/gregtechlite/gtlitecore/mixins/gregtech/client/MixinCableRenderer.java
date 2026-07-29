@@ -43,7 +43,6 @@ import java.util.Map;
 @Mixin(value = CableRenderer.class, remap = false)
 public abstract class MixinCableRenderer
 {
-
     // This map is transform of original wireTexture param, used to stored TextureAtlasSprite
     // data with extra MaterialIconSet (used to change the path of wire texture for different
     // situation, because we needed some special texture for special MaterialIconSet).
@@ -64,20 +63,19 @@ public abstract class MixinCableRenderer
      */
     @Inject(method = "registerIcons",
             at = @At(value = "TAIL"))
-    private void registerIcons(TextureMap map,
-                               CallbackInfo ci)
+    private void registerIcons(TextureMap map, CallbackInfo ci)
     {
         // Wire texture location by default, this is used to DULL icon set.
         // path: "gregtech/textures/blocks/cable/wire.png"
         ResourceLocation wireLocation = GTUtility.gregtechId("blocks/cable/wire");
-        this.gtlitecore$wireTextures.put(MaterialIconSet.DULL, map.registerSprite(wireLocation));
+        gtlitecore$wireTextures.put(MaterialIconSet.DULL, map.registerSprite(wireLocation));
         // Wire texture locations for several icon sets.
         // path: "gregtech/textures/blocks/material_sets/iconSetName/wire.png"
         for (MaterialIconSet iconSet : MaterialIconSet.ICON_SETS.values())
         {
             ResourceLocation iconSetWireLocation = GTUtility.gregtechId("blocks/material_sets/"
                     + iconSet.getName().toLowerCase() + "/wire");
-            this.gtlitecore$wireTextures.put(iconSet, map.registerSprite(iconSetWireLocation));
+            gtlitecore$wireTextures.put(iconSet, map.registerSprite(iconSetWireLocation));
         }
     }
 
@@ -203,5 +201,4 @@ public abstract class MixinCableRenderer
             }
         }
     }
-
 }

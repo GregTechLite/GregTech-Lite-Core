@@ -18,7 +18,6 @@ import java.util.Map;
 @Mixin(value = MetaPrefixItem.class, remap = false)
 public abstract class MixinMetaPrefixItem extends StandardMetaItem
 {
-
     @SuppressWarnings("rawtypes")
     @Inject(
             method = "registerModels()V",
@@ -41,5 +40,4 @@ public abstract class MixinMetaPrefixItem extends StandardMetaItem
             metaItems.get(metaItem).addComponents(((CustomItemRenderer) materialIconSet).getRendererManager());
         }
     }
-
 }

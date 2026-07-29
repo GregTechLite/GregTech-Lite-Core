@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = OreRecipeHandler.class, remap = false)
 public abstract class MixinOreRecipeHandler
 {
-
     /**
      * Disabled crushedPurified recipes initialization.
      *
@@ -56,5 +55,4 @@ public abstract class MixinOreRecipeHandler
     {
         OreRecipeHandler.processOre(prefix, material, property, 4);
     }
-
 }

@@ -17,7 +17,6 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(value = MetaTileEntityNetworkSwitch.class, remap = false)
 public abstract class MixinMetaTileEntityNetworkSwitch extends MetaTileEntityDataBank
 {
-
     public MixinMetaTileEntityNetworkSwitch(ResourceLocation metaTileEntityId)
     {
         super(metaTileEntityId);
@@ -74,5 +73,4 @@ public abstract class MixinMetaTileEntityNetworkSwitch extends MetaTileEntityDat
     {
         return MetaBlocks.COMPUTER_CASING.getState(BlockComputerCasing.CasingType.ADVANCED_COMPUTER_CASING);
     }
-
 }

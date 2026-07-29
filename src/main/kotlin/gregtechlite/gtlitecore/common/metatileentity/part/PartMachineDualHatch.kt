@@ -46,7 +46,7 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.collapseInventorySlotContents
 import gregtechlite.gtlitecore.api.extension.square
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
-import gregtechlite.gtlitecore.mixins.Implemented
+import gregtechlite.gtlitecore.mixins.hooks.Implemented
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack

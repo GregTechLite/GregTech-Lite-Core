@@ -9,7 +9,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = WireCombiningHandler.class, remap = false)
 public abstract class MixinWireCombiningHandler
 {
-
     /**
      * Disabled all wire combining recipes initialization.
      *
@@ -22,5 +21,4 @@ public abstract class MixinWireCombiningHandler
     {
         ci.cancel();
     }
-
 }

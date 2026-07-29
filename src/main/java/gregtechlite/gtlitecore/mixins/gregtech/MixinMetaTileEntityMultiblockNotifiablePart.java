@@ -10,9 +10,10 @@ import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
-import gregtechlite.gtlitecore.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.IFluidTank;
+import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -22,15 +23,12 @@ import org.spongepowered.asm.mixin.Unique;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @deprecated
- */
+@ScheduledForRemoval(inVersion = "Change gregtech to our forked version")
 @Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2769")
 @Mixin(value = MetaTileEntityMultiblockNotifiablePart.class, remap = false)
 public abstract class MixinMetaTileEntityMultiblockNotifiablePart extends MetaTileEntityMultiblockPart
 {
-
     @Shadow
     @Final
     protected boolean isExportHatch;
@@ -153,5 +151,4 @@ public abstract class MixinMetaTileEntityMultiblockNotifiablePart extends MetaTi
 
     @Shadow
     protected abstract FluidTankList getFluidHandlers();
-
 }
