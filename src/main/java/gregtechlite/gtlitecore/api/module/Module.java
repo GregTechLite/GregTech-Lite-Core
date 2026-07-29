@@ -9,7 +9,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Module
 {
-
     /**
      * Id of the module, must be unique within its container (containerId).
      */
@@ -53,5 +52,4 @@ public @interface Module
      * A description of the module in the module configuration file.
      */
     String descriptions() default "";
-
 }
