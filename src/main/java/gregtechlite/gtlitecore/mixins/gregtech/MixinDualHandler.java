@@ -16,6 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.Collection;
 import java.util.List;
@@ -26,14 +27,11 @@ import java.util.List;
 @Mixin(value = DualHandler.class, remap = false)
 public abstract class MixinDualHandler implements INotifiableHandler, MultipleNotifiableHandler
 {
+    @Shadow
+    protected @NotNull IItemHandlerModifiable itemDelegate;
 
     @Shadow
-    @NotNull
-    protected IItemHandlerModifiable itemDelegate;
-
-    @Shadow
-    @NotNull
-    protected IMultipleTankHandler fluidDelegate;
+    protected @NotNull IMultipleTankHandler fluidDelegate;
 
     @Shadow
     List<MetaTileEntity> notifiableEntities;
@@ -116,9 +114,9 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
     }
 
     @SuppressWarnings("AddedMixinMembersNamePattern")
-    @NotNull
+    @Unique
     @Override
-    public Collection<INotifiableHandler> getBackingNotifiers()
+    public @NotNull Collection<INotifiableHandler> getBackingNotifiers()
     {
         ImmutableList.Builder<INotifiableHandler> handlerList = ImmutableList.builder();
 
@@ -148,11 +146,8 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
     }
 
     @Shadow
-    @NotNull
-    public abstract IItemHandlerModifiable getItemDelegate();
+    public abstract @NotNull IItemHandlerModifiable getItemDelegate();
 
     @Shadow
-    @NotNull
-    public abstract IMultipleTankHandler getFluidDelegate();
-
+    public abstract @NotNull IMultipleTankHandler getFluidDelegate();
 }

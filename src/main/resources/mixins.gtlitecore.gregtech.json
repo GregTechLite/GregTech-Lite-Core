@@ -9,6 +9,7 @@
     "AccessorMultiblockUIFactory",
     "AccessorMultiblockWithDisplayBase",
     "AccessorTraceabilityPredicate",
+    "AccessorMetaTileEntityPowerSubstation",
     "MixinBlockPattern",
     "MixinMultiblockUIBuilder",
     "MixinMultiblockUIFactory",

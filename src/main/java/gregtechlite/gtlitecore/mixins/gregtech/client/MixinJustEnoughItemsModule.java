@@ -72,7 +72,7 @@ import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING;
 
 /**
- * Feature: Let {@code MetaTileEntity} has priority in JEI multiblock structure page.
+ * Let {@code MetaTileEntity} has priority in JEI multiblock structure page.
  * <p>
  * This class improved the priority of Gregtech {@code JustEnoughItemsModule}, if an addon mod's
  * first letter is "faster" than Gregtech, then its machines will on top in JustEnoughItems Recipe
@@ -84,9 +84,8 @@ import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
  */
 @SuppressWarnings("UnstableApiUsage")
 @Mixin(value = JustEnoughItemsModule.class, remap = false)
-public abstract class MixinJustEnoughItemsModule implements InjectableModRegistry
+public abstract class MixinJustEnoughItemsModule implements InjectableModRegistry // TODO: Find a better method to add this.
 {
-
     @Shadow
     public static IIngredientRegistry ingredientRegistry;
 
@@ -307,6 +306,7 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
      * register it at there to contained sort.
      */
     @SuppressWarnings("AddedMixinMembersNamePattern")
+    @Unique
     @Override
     public void registerPostContext(@NotNull IModRegistry registry)
     {
@@ -373,7 +373,6 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
      * @return Total {@code MTERegistry} and it contained MetaTileEntities.
      */
     @Unique
-    @Deprecated
     private List<MetaTileEntity> gtlitecore$getSortedMTEs()
     {
         List<MetaTileEntity> sortedMTEs = new ArrayList<>();
@@ -406,6 +405,7 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
     }
 
     @Shadow
-    protected abstract void registerRecipeMapCatalyst(IModRegistry registry, RecipeMap<?> recipeMap, MetaTileEntity metaTileEntity);
-
+    protected abstract void registerRecipeMapCatalyst(IModRegistry registry,
+                                                      RecipeMap<?> recipeMap,
+                                                      MetaTileEntity metaTileEntity);
 }

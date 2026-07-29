@@ -14,7 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(value = MetaItem.MetaValueItem.class, remap = false)
 public abstract class MixinMetaValueItem implements CustomItemRenderer
 {
-
     @Unique
     private ItemRendererManager gtlitecore$rendererManager;
 
@@ -41,5 +40,4 @@ public abstract class MixinMetaValueItem implements CustomItemRenderer
             gtlitecore$rendererManager = (ItemRendererManager) itemComponent;
         }
     }
-
 }

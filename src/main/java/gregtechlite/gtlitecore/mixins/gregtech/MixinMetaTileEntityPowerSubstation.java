@@ -15,43 +15,31 @@ import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 import static gregtech.api.util.RelativeDirection.*;
 
 @Mixin(value = MetaTileEntityPowerSubstation.class, remap = false)
-public abstract class MixinMetaTileEntityPowerSubstation {
-
+public abstract class MixinMetaTileEntityPowerSubstation
+{
     @Shadow
     private EnergyContainerList inputHatches;
 
     @Shadow
     private EnergyContainerList outputHatches;
 
-    @Shadow
-    protected abstract IBlockState getCasingState();
-
-    @Shadow
-    protected abstract IBlockState getGlassState();
-
-    @Accessor("BATTERY_PREDICATE")
-    @SuppressWarnings("rawtypes")
-    abstract Supplier getBatteryPredicate();
-
     /**
      * @author rainy
      * @reason Add wireless energy storage ability to PowerSubstation structure pattern
      */
-    @NotNull
     @Overwrite
-    protected BlockPattern createStructurePattern() {
+    protected @NotNull BlockPattern createStructurePattern()
+    {
         return FactoryBlockPattern.start(RIGHT, FRONT, UP)
                 .aisle("XXSXX", "XXXXX", "XXXXX", "XXXXX", "XXXXX")
                 .aisle("XXXXX", "XCCCX", "XCCCX", "XCCCX", "XXXXX")
@@ -61,7 +49,7 @@ public abstract class MixinMetaTileEntityPowerSubstation {
                 .where('S', MultiblockControllerBase.metaTileEntities((MultiblockControllerBase) (Object) this).setCenter())
                 .where('C', MultiblockControllerBase.states(getCasingState()))
                 .where('X', MultiblockControllerBase.states(getCasingState()).setMinGlobalLimited(14)
-                        .or(((AccessorMultiblockWithDisplayBase) this).maintenancePredicate())
+                        .or(((AccessorMultiblockWithDisplayBase) this).getMaintenancePredicate())
                         .or(MultiblockControllerBase.abilities(
                                 MultiblockAbility.INPUT_ENERGY,
                                 MultiblockAbility.SUBSTATION_INPUT_ENERGY,
@@ -75,12 +63,13 @@ public abstract class MixinMetaTileEntityPowerSubstation {
                                 TraceabilityPredicates.WIRELESS_ENERGY_STORAGE)
                                 .setMinGlobalLimited(1)))
                 .where('G', MultiblockControllerBase.states(getGlassState()))
-                .where('B', ((TraceabilityPredicate) getBatteryPredicate().get()))
+                .where('B', ((TraceabilityPredicate) ((AccessorMetaTileEntityPowerSubstation) this).getBatteryPredicate().get()))
                 .build();
     }
 
     @Inject(method = "formStructure", at = @At("TAIL"))
-    private void collectWirelessContainers(PatternMatchContext context, CallbackInfo ci) {
+    private void collectWirelessContainers(PatternMatchContext context, CallbackInfo ci)
+    {
         MultiblockControllerBase self = (MultiblockControllerBase) (Object) this;
 
         List<IEnergyContainer> inputs = new ArrayList<>();
@@ -98,4 +87,9 @@ public abstract class MixinMetaTileEntityPowerSubstation {
         this.outputHatches = new EnergyContainerList(outputs);
     }
 
+    @Shadow
+    protected abstract IBlockState getCasingState();
+
+    @Shadow
+    protected abstract IBlockState getGlassState();
 }

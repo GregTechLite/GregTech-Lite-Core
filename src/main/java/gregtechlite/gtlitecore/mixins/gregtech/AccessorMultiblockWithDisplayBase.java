@@ -9,5 +9,5 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface AccessorMultiblockWithDisplayBase
 {
     @Invoker("maintenancePredicate")
-    TraceabilityPredicate maintenancePredicate();
+    TraceabilityPredicate getMaintenancePredicate();
 }

@@ -14,6 +14,7 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,16 +31,18 @@ import java.awt.image.WritableRaster;
 import java.util.HashMap;
 import java.util.Map;
 
+@ScheduledForRemoval(inVersion = "Change gregtech to our forked version")
 @Deprecated
 @Mixin(value = ProspectingTexture.class, remap = false)
 public abstract class MixinProspectingTexture extends AbstractTexture
 {
-
     @Shadow
     @Final
     public Map<Byte, String>[][] map;
+
     @Shadow
-    private @Final int radius;
+    @Final
+    private int radius;
 
     @Shadow
     private int playerXGui;
@@ -52,7 +55,8 @@ public abstract class MixinProspectingTexture extends AbstractTexture
     private int imageHeight;
 
     @Shadow
-    private @Final ProspectorMode mode;
+    @Final
+    private ProspectorMode mode;
     @Shadow
     private boolean darkMode;
 
@@ -60,7 +64,8 @@ public abstract class MixinProspectingTexture extends AbstractTexture
     private String selected;
 
     @Shadow
-    public static @Final String SELECTED_ALL;
+    @Final
+    public static String SELECTED_ALL;
 
     @Unique
     private Object[][] gtlitecore$map;
@@ -263,5 +268,4 @@ public abstract class MixinProspectingTexture extends AbstractTexture
 
     @Shadow
     public abstract void loadTexture(@Nullable IResourceManager resourceManager);
-
 }
