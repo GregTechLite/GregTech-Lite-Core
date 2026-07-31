@@ -93,6 +93,7 @@ class TranscendentItemRenderer : WrappedItemRenderer
         GlStateManager.rotate(rotation, axis[0], axis[1], axis[2])
         GlStateManager.rotate(180f, 0.5f, 0.0f, 0.0f)
         GlStateManager.translate(-0.5f, -0.5f, 0.0f)
+        GlStateManager.translate(0.0f, 0.0f, renderBehavior.getFloatingOffset())
     }
 
     private fun updateAnimationTick()
