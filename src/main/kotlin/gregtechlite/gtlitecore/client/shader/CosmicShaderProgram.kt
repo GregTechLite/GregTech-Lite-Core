@@ -7,8 +7,6 @@ import org.lwjgl.opengl.ARBFragmentShader
 import org.lwjgl.opengl.ARBShaderObjects
 import org.lwjgl.opengl.ARBVertexShader
 import org.lwjgl.opengl.GL11
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 
 object CosmicShaderProgram
@@ -82,113 +80,34 @@ object CosmicShaderProgram
         return program
     }
 
-    private fun createShader(filename: String, shaderType: Int): Int
+    private fun createShader(fileName: String, shaderType: Int): Int
     {
-        var shader = 0
-        try
+        val shader = ARBShaderObjects.glCreateShaderObjectARB(shaderType)
+        if (shader == 0) return 0
+        return try
         {
-            shader = ARBShaderObjects.glCreateShaderObjectARB(shaderType)
-            if (shader == 0) return 0
-
-            ARBShaderObjects.glShaderSourceARB(shader, readFileAsString(filename))
+            ARBShaderObjects.glShaderSourceARB(shader, readFileAsString(fileName))
             ARBShaderObjects.glCompileShaderARB(shader)
-
             if (ARBShaderObjects.glGetObjectParameteriARB(shader, ARBShaderObjects.GL_OBJECT_COMPILE_STATUS_ARB) == GL11.GL_FALSE)
             {
-                throw RuntimeException("Error creating shader \"" + filename + "\": " + getLogInfo(shader))
+                throw RuntimeException("Error creating shader \"$fileName\": ${getLogInfo(shader)}")
             }
-
-            return shader
+            shader
         }
         catch (e: Exception)
         {
             ARBShaderObjects.glDeleteObjectARB(shader)
-            LOGGER.error("Cannot create ShaderProgram \"$filename\"", e)
-            return -1
+            LOGGER.error("Cannot create ShaderProgram \"$fileName\"", e)
+            -1
         }
     }
 
-    private fun getLogInfo(obj: Int): String = ARBShaderObjects.glGetInfoLogARB(obj,
-        ARBShaderObjects.glGetObjectParameteriARB(obj, ARBShaderObjects.GL_OBJECT_INFO_LOG_LENGTH_ARB))
+    private fun getLogInfo(shaderType: Int): String = ARBShaderObjects.glGetInfoLogARB(shaderType,
+        ARBShaderObjects.glGetObjectParameteriARB(shaderType, ARBShaderObjects.GL_OBJECT_INFO_LOG_LENGTH_ARB))
 
-    @Throws(Exception::class)
-    private fun readFileAsString(filename: String): String
+    private fun readFileAsString(fileName: String): String
     {
-        val source = StringBuilder()
-        val resourceIn = CosmicShaderProgram::class.java.getResourceAsStream(filename)
-        var exception: Exception? = null
-        val reader: BufferedReader?
-
-        if (resourceIn == null) return ""
-
-        try
-        {
-            reader = BufferedReader(InputStreamReader(resourceIn, StandardCharsets.UTF_8))
-            var innerExc: Exception? = null
-            try
-            {
-                var line: String?
-                while ((reader.readLine().also { line = it }) != null)
-                {
-                    source.append(line).append('\n')
-                }
-            }
-            catch (exc: Exception)
-            {
-                exception = exc
-            }
-            finally
-            {
-                try
-                {
-                    reader.close()
-                }
-                catch (exc: Exception)
-                {
-                    if (innerExc == null)
-                    {
-                        innerExc = exc
-                    }
-                    else
-                    {
-                        exc.printStackTrace()
-                    }
-                }
-            }
-
-            if (innerExc != null)
-            {
-                throw innerExc
-            }
-        }
-        catch (exc: Exception)
-        {
-            exception = exc
-        }
-        finally
-        {
-            try
-            {
-                resourceIn.close()
-            }
-            catch (exc: Exception)
-            {
-                if (exception == null)
-                {
-                    exception = exc
-                }
-                else
-                {
-                    exc.printStackTrace()
-                }
-            }
-
-            if (exception != null)
-            {
-                throw exception
-            }
-        }
-
-        return source.toString()
+        val resourceIn = CosmicShaderProgram::class.java.getResourceAsStream(fileName) ?: return ""
+        return resourceIn.use { it.reader(StandardCharsets.UTF_8).readText() }
     }
 }
