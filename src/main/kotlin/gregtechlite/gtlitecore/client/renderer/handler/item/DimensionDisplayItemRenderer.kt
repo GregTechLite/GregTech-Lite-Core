@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.client.renderer.handler
+package gregtechlite.gtlitecore.client.renderer.handler.item
 
 import codechicken.lib.model.ModelRegistryHelper
 import codechicken.lib.render.CCModelState

@@ -14,11 +14,7 @@ object CosmicShaderHelper
     val shaderCallback: ShaderCallback
 
     var lightlevel = FloatArray(3)
-
-    @JvmField
     var inventoryRender: Boolean = false
-
-    @JvmField
     var cosmicOpacity: Float = 1.0f
 
     init
@@ -65,19 +61,16 @@ object CosmicShaderHelper
         }
     }
 
-    @JvmStatic
     fun useShader()
     {
         CosmicShaderProgram.useShader(CosmicShaderProgram.cosmicShader, shaderCallback)
     }
 
-    @JvmStatic
     fun releaseShader()
     {
         CosmicShaderProgram.releaseShader()
     }
 
-    @JvmStatic
     fun setLightFromLocation(world: World?, pos: BlockPos)
     {
         if (world == null)
