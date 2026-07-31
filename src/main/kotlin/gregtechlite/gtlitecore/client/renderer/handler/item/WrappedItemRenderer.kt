@@ -13,17 +13,14 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.EnumFacing
 import net.minecraftforge.client.model.pipeline.LightUtil
 import net.minecraftforge.common.model.IModelState
-import java.util.*
 
 abstract class WrappedItemRenderer : PerspectiveAwareItemRenderer
 {
-
-    @JvmField
     protected var wrapped: IBakedModel? = null
 
     constructor(state: IModelState?, model: IBakedModel?) : super(state)
     {
-        this.wrapped = model
+        wrapped = model
     }
 
     constructor(state: IModelState?, getter: WrappedModelGetter) : super(state)
@@ -33,7 +30,6 @@ abstract class WrappedItemRenderer : PerspectiveAwareItemRenderer
 
     companion object
     {
-
         /**
          * Renders a model basically the same as `RenderItem` does, except allows overriding the alpha.
          *
@@ -41,7 +37,6 @@ abstract class WrappedItemRenderer : PerspectiveAwareItemRenderer
          * @param stack         The stack being renderer. Used for quad tinting.
          * @param alphaOverride The alpha override value (0.0 -> 1.0).
          */
-        @JvmStatic
         @JvmOverloads
         fun renderModel(model: IBakedModel, stack: ItemStack, alphaOverride: Float = 1.0f)
         {
@@ -49,7 +44,7 @@ abstract class WrappedItemRenderer : PerspectiveAwareItemRenderer
             val tess = Tessellator.getInstance()
             val buffer = tess.buffer
             buffer.begin(0x07, DefaultVertexFormats.ITEM)
-            val quads: MutableList<BakedQuad> = LinkedList<BakedQuad>()
+            val quads = mutableListOf<BakedQuad>()
             for (face in EnumFacing.VALUES)
                 quads.addAll(model.getQuads(null, face, 0))
 
@@ -70,5 +65,4 @@ abstract class WrappedItemRenderer : PerspectiveAwareItemRenderer
             tess.draw()
         }
     }
-
 }
