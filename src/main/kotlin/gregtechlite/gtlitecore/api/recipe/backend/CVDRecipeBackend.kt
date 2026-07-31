@@ -32,7 +32,7 @@ object CVDRecipeBackend
                     .cleanroom(recipeBuilder.cleanroom)
                     .EUt(recipeBuilder.eUt)
                     .duration(recipeBuilder.duration)
-                    .temperature(recipeBuilder.getTemperature())
+                    .temperature(recipeBuilder.temperature)
                     .hidden()
                     .buildAndRegister()
             }
@@ -48,7 +48,7 @@ object CVDRecipeBackend
                 .cleanroom(recipeBuilder.cleanroom)
                 .EUt(recipeBuilder.eUt)
                 .duration(recipeBuilder.duration)
-                .temperature(recipeBuilder.getTemperature())
+                .temperature(recipeBuilder.temperature)
                 .hidden()
                 .buildAndRegister()
         }

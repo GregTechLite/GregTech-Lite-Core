@@ -7,20 +7,17 @@ import net.minecraft.util.IStringSerializable;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(BlockGlassCasing.CasingType.class)
 public abstract class MixinBlockGlassCasingType implements IStringSerializable, StateTier
 {
-
-    @NotNull
-    @Shadow
-    public abstract String getName();
-
     @SuppressWarnings("AddedMixinMembersNamePattern")
+    @Unique
     @Override
     public int getTier()
     {
-        switch (this.getName())
+        switch (getName())
         {
             case ("fusion_glass"): return GTValues.ZPM;
             case ("laminated_glass"): return GTValues.IV;
@@ -29,4 +26,6 @@ public abstract class MixinBlockGlassCasingType implements IStringSerializable, 
         }
     }
 
+    @Shadow
+    public abstract @NotNull String getName();
 }

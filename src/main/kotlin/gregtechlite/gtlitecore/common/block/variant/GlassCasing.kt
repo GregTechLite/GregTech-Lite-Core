@@ -4,6 +4,8 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
@@ -41,6 +43,10 @@ object GlassCasing
     val INFINITY_BOROSILICATE = Enum01.INFINITY_BOROSILICATE
     @JvmField
     val TRANSCENDENT_METAL_BOROSILICATE = Enum01.TRANSCENDENT_METAL_BOROSILICATE
+    @JvmField
+    val SPACE_TIME_BOROSILICATE = Enum01.SPACE_TIME_BOROSILICATE
+    @JvmField
+    val RED_MATTER_BOROSILICATE = Enum01.RED_MATTER_BOROSILICATE
 
     @JvmField
     val PMMA = Enum02.PMMA
@@ -92,7 +98,9 @@ object GlassCasing
         NEUTRONIUM_BOROSILICATE("neutronium_borosilicate", UHV),
         COSMIC_NEUTRONIUM_BOROSILICATE("cosmic_neutronium_borosilicate", UEV),
         INFINITY_BOROSILICATE("infinity_borosilicate", UIV),
-        TRANSCENDENT_METAL_BOROSILICATE("transcendent_metal_borosilicate", UXV); // TODO OpV-MAX
+        TRANSCENDENT_METAL_BOROSILICATE("transcendent_metal_borosilicate", UXV),
+        SPACE_TIME_BOROSILICATE("space_time_borosilicate", OpV),
+        RED_MATTER_BOROSILICATE("red_matter_borosilicate", MAX);
 
         override val state: IBlockState
             get() = GTLiteBlocks.TRANSPARENT_CASING_01.getState(this)

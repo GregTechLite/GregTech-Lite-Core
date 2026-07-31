@@ -4,7 +4,7 @@ import com.morphismmc.morphismlib.util.SidedLogger
 import gregtech.api.GTValues
 import gregtech.api.util.FileUtility
 import gregtechlite.gtlitecore.GTLiteMod
-import gregtechlite.gtlitecore.api.GTLiteLog
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.common.worldgen.generator.WorldGeneratorManager
@@ -83,7 +83,7 @@ class WorldGenModule : BaseModule()
             val sampleURL = GTLiteMod::class.java.getResource("/assets/gtlitecore/LICENSE")
             if (sampleURL == null)
             {
-                GTLiteLog.logger.warn("Could not find LICENSE resource.")
+                LOGGER.warn("Could not find LICENSE resource.")
                 return
             }
 
@@ -101,7 +101,7 @@ class WorldGenModule : BaseModule()
                     val resourceURL = GTLiteMod::class.java.getResource(resource)
                     if (resourceURL == null)
                     {
-                        GTLiteLog.logger.warn("Could not find resource file for $resource.")
+                        LOGGER.warn("Could not find resource file for $resource.")
                         return
                     }
                     resourcePath = Paths.get(resourceURL.toURI())
@@ -133,7 +133,7 @@ class WorldGenModule : BaseModule()
         }
         catch (exception: IOException)
         {
-            GTLiteLog.logger.error("error while extracting jar files: $resource $targetPath", exception)
+            LOGGER.error("error while extracting jar files: $resource $targetPath", exception)
         }
         finally
         {

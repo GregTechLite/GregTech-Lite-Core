@@ -19,6 +19,7 @@ internal object MachineRecipeList
         CutterRecipes.init()
         DistilleryRecipes.init()
         ElectricBlastFurnaceRecipes.init()
+        ExtractorRecipes.init()
         ExtruderRecipes.init()
         FluidSolidifierRecipes.init()
         FormingPressRecipes.init()
@@ -30,6 +31,7 @@ internal object MachineRecipeList
         PackerRecipes.init()
         PrimitiveBlastFurnaceRecipes.init()
         SifterRecipes.init()
+        VacuumFreezerRecipes.init()
         WiremillRecipes.init()
 
         AcidGeneratorRecipes.init()

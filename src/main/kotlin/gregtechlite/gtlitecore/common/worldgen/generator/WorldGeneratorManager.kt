@@ -11,27 +11,20 @@ import java.util.*
 
 class WorldGeneratorManager : IWorldGenerator
 {
-
     companion object
     {
-
         internal fun init()
         {
             GameRegistry.registerWorldGenerator(WorldGeneratorManager(), 1)
         }
-
     }
 
-    override fun generate(random: Random,
-                          chunkX: Int,
-                          chunkZ: Int,
-                          world: World?,
-                          chunkGenerator: IChunkGenerator?,
-                          chunkProvider: IChunkProvider?)
+    override fun generate(random: Random, chunkX: Int, chunkZ: Int,
+                          world: World?, chunkGenerator: IChunkGenerator?, chunkProvider: IChunkProvider?)
     {
         if (chunkGenerator !is ChunkGeneratorFlat)
         {
-            WorldGeneratorRegistry.generators.forEach { generator ->
+            WorldGeneratorRegistry.forEach { generator ->
                 if (generator is AbstractWorldGenerator)
                 {
                     world?.let {
@@ -42,5 +35,4 @@ class WorldGeneratorManager : IWorldGenerator
             }
         }
     }
-
 }

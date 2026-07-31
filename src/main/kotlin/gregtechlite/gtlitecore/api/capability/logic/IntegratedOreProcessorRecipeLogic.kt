@@ -20,13 +20,12 @@ import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.pow
 
-open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockIntegratedOreProcessor)
-    : MultiblockRecipeLogic(metaTileEntity, true)
+open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOreProcessor) : MultiblockRecipeLogic(mte, true)
 {
 
     override fun update()
     {
-        val world: World? = metaTileEntity.world
+        val world: World? = mte.world
         if (world != null && !world.isRemote)
         {
             if (isWorkingEnabled)
@@ -53,10 +52,10 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
     {
         var processedCount = 0
         var remainingVoltage = maxVoltage
-        val inputFluid = GTUtility.fluidHandlerToList(metaTileEntity.inputFluidInventory)
+        val inputFluid = GTUtility.fluidHandlerToList(mte.inputFluidInventory)
 
         var mode = -1
-        val inputInventory = metaTileEntity.inputInventory
+        val inputInventory = mte.inputInventory
         if (inputInventory == null)
             return
 
@@ -171,7 +170,7 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
 
         for (fluidStack in consumedFluidStacks)
         {
-            metaTileEntity.inputFluidInventory?.drain(fluidStack, true)
+            mte.inputFluidInventory?.drain(fluidStack, true)
         }
 
         val ocMult = floor(1.0 * maxVoltage / (maxVoltage - remainingVoltage)).pow(0.5).toInt().coerceAtLeast(1)
@@ -215,7 +214,7 @@ open class IntegratedOreProcessorRecipeLogic(val metaTileEntity: MultiblockInteg
         for (fluidStack in inputFluids)
         {
             var remainingCount : Long = 0
-            for (existingFluidStack in GTUtility.fluidHandlerToList(metaTileEntity.inputFluidInventory))
+            for (existingFluidStack in GTUtility.fluidHandlerToList(mte.inputFluidInventory))
             {
                 if (existingFluidStack != null && existingFluidStack.isFluidEqual(fluidStack))
                 {

@@ -9,17 +9,11 @@ import java.util.*
 
 class CustomWorldGeneratorBerry(berry: WorldGeneratorBerryBase) : CustomWorldGeneratorImpl(true, berry)
 {
-
     override fun generate(worldIn: World, rand: Random, pos: BlockPos): Boolean
-    {
-        return generator.generate(worldIn, BlockPos.MutableBlockPos(pos), rand, ::setBlockAndUpdate)
-    }
+        = generator.generate(worldIn, BlockPos.MutableBlockPos(pos), rand, ::setBlockAndUpdate)
 
     override fun scatter(worldIn: World?, blockPos: BlockPos.MutableBlockPos?, rand: Random?): Boolean
-    {
-        return generator.generate(worldIn, blockPos, rand, ::setBlockAndUpdate)
-    }
+        = generator.generate(worldIn, blockPos, rand, ::setBlockAndUpdate)
 
-    override fun configure(): Boolean = !GTLiteConfigHolder.worldgen.disableAdditionTreesGeneration // TODO clarify
-
+    override fun configure(): Boolean = !GTLiteConfigHolder.worldgen.disableAllBerriesGeneration
 }

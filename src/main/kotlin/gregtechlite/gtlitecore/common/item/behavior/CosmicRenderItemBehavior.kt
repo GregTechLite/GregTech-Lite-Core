@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.common.item.behavior
 import codechicken.lib.model.ModelRegistryHelper
 import codechicken.lib.util.TransformUtils
 import gregtechlite.gtlitecore.client.renderer.CosmicRenderBehavior
-import gregtechlite.gtlitecore.client.renderer.handler.CosmicItemRenderer
+import gregtechlite.gtlitecore.client.renderer.handler.item.CosmicItemRenderer
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.entity.EntityLivingBase
@@ -12,28 +12,21 @@ import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class CosmicRenderItemBehavior(private val supplier: () -> TextureAtlasSprite,
+class CosmicRenderItemBehavior(private val maskTexture: () -> TextureAtlasSprite,
                                private val maskOpacity: Int) : CosmicRenderBehavior
 {
+    @SideOnly(Side.CLIENT)
+    override fun getMaskTexture(stack: ItemStack, player: EntityLivingBase?): TextureAtlasSprite? = maskTexture.invoke()
 
     @SideOnly(Side.CLIENT)
-    override fun getMaskTexture(stack: ItemStack?,
-                                player: EntityLivingBase?): TextureAtlasSprite?
-    {
-        return this.supplier.invoke()
-    }
+    override fun getMaskOpacity(stack: ItemStack, player: EntityLivingBase?): Float = maskOpacity.toFloat()
 
-    override fun getMaskOpacity(stack: ItemStack?,
-                                player: EntityLivingBase?): Float
-    {
-        return this.maskOpacity.toFloat()
-    }
-
+    @SideOnly(Side.CLIENT)
     override fun onRendererRegistry(location: ResourceLocation)
     {
         ModelRegistryHelper.register(ModelResourceLocation(location, "inventory"),
-            CosmicItemRenderer(TransformUtils.DEFAULT_ITEM) { modelRegistry ->
-                modelRegistry.getObject(ModelResourceLocation(location, "inventory"))
+            CosmicItemRenderer(TransformUtils.DEFAULT_ITEM) {
+                it.getObject(ModelResourceLocation(location, "inventory"))
             })
     }
 }

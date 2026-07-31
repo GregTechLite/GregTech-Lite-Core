@@ -2,7 +2,6 @@ package gregtechlite.gtlitecore.loader.recipe.producer
 
 import com.google.common.collect.HashBiMap
 import gregtech.api.GTValues.VA
-import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Americium
@@ -34,7 +33,11 @@ import gregtech.common.items.MetaItems.ELITE_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.EXTREME_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.PLASTIC_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PCB_FACTORY_RECIPES
+import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder.Companion.structBio
+import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder.Companion.structT2
+import gregtechlite.gtlitecore.api.recipe.builder.PCBFactoryRecipeBuilder.Companion.structT3
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FluorinatedEthylenePropylene
@@ -103,7 +106,6 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier] * 3 / 4L)
                 duration(ceil(600 / sqrt(1.5.pow(tier - 1.5))).toInt())
-                tier(1)
             }
         }
 
@@ -131,7 +133,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(600 / sqrt(1.5.pow(tier - 1.5))).toInt())
-                tier(2)
+                requireStruct(structT2)
             }
         }
 
@@ -159,7 +161,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(600 / sqrt(1.5.pow(tier - 1.5))).toInt())
-                tier(3)
+                requireStruct(structT3)
             }
         }
 
@@ -190,7 +192,6 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier] * 3 / 4L)
                 duration(ceil(600 / sqrt(1.5.pow(tier - 2.5))).toInt())
-                tier(1)
             }
         }
 
@@ -218,7 +219,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(500 / sqrt(1.5.pow(tier - 2.5))).toInt())
-                tier(2)
+                requireStruct(structT2)
             }
         }
 
@@ -246,7 +247,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(400 / sqrt(1.5.pow(tier - 2.5))).toInt())
-                tier(3)
+                requireStruct(structT3)
             }
         }
 
@@ -277,7 +278,6 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier] * 3 / 4L)
                 duration(ceil(600 / sqrt(1.5.pow(tier - 3.5))).toInt())
-                tier(1)
             }
         }
 
@@ -305,7 +305,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(500 / sqrt(1.5.pow(tier - 3.5))).toInt())
-                tier(2)
+                requireStruct(structT2)
             }
         }
 
@@ -333,7 +333,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(400 / sqrt(1.5.pow(tier - 3.5))).toInt())
-                tier(3)
+                requireStruct(structT3)
             }
         }
 
@@ -364,7 +364,6 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier] * 3 / 4L)
                 duration(ceil(600 / sqrt(1.5.pow(tier - 4.5))).toInt())
-                tier(1)
             }
         }
 
@@ -392,7 +391,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(500 / sqrt(1.5.pow(tier - 4.5))).toInt())
-                tier(2)
+                requireStruct(structT2)
             }
         }
 
@@ -420,7 +419,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(400 / sqrt(1.5.pow(tier - 4.5))).toInt())
-                tier(3)
+                requireStruct(structT3)
             }
         }
 
@@ -452,8 +451,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier] * 3 / 4L)
                 duration(ceil(600 / sqrt(1.5.pow(tier - 5.5))).toInt())
-                tier(1)
-                upgradeTier(1)
+                requireStruct(structBio)
             }
         }
 
@@ -482,8 +480,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(500 / sqrt(1.5.pow(tier - 5.5))).toInt())
-                tier(2)
-                upgradeTier(1)
+                requireStruct(structT2, structBio)
             }
         }
 
@@ -511,8 +508,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(400 / sqrt(1.5.pow(tier - 5.5))).toInt())
-                tier(3)
-                upgradeTier(1)
+                requireStruct(structT3, structBio)
             }
         }
 
@@ -544,7 +540,6 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier] * 3 / 4L)
                 duration(ceil(600 / sqrt(1.5.pow(tier - 5.5))).toInt())
-                tier(1)
             }
         }
 
@@ -573,7 +568,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(500 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                tier(2)
+                requireStruct(structT2)
             }
         }
 
@@ -602,7 +597,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(400 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                tier(3)
+                requireStruct(structT3)
             }
         }
 
@@ -634,7 +629,6 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier] * 3 / 4L)
                 duration(ceil(600 / sqrt(1.5.pow(tier - 5.5))).toInt())
-                tier(1)
             }
         }
 
@@ -663,7 +657,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(500 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                tier(2)
+                requireStruct(structT2)
             }
         }
 
@@ -692,7 +686,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(400 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                tier(3)
+                requireStruct(structT3)
             }
         }
 
@@ -724,7 +718,6 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier] * 3 / 4L)
                 duration(ceil(600 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                tier(1)
             }
         }
 
@@ -753,7 +746,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(500 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                tier(2)
+                requireStruct(structT2)
             }
         }
 
@@ -782,7 +775,7 @@ internal object PCBFactoryRecipeProducer
                 outputs(*boards.toTypedArray())
                 EUt(VA[tier + 1] * 3 / 4L)
                 duration(ceil(400 / sqrt(1.5.pow(tier - 6.5))).toInt())
-                tier(3)
+                requireStruct(structT3)
             }
         }
 

@@ -6,6 +6,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
@@ -27,11 +28,15 @@ import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Copper
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.material.Materials.Duranium
+import gregtech.api.unification.material.Materials.EnrichedNaquadahTriniumEuropiumDuranide
 import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Glue
 import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.Kanthal
 import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Nichrome
 import gregtech.api.unification.material.Materials.Osmiridium
@@ -39,15 +44,20 @@ import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
+import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
+import gregtech.api.unification.material.Materials.SamariumIronArsenicOxide
 import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.SterlingSilver
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.TinAlloy
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.TungstenCarbide
 import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.material.Materials.Ultimet
+import gregtech.api.unification.material.Materials.UraniumRhodiumDinaquadide
+import gregtech.api.unification.material.Materials.Wood
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.ore.OrePrefix.cableGtDouble
 import gregtech.api.unification.ore.OrePrefix.cableGtHex
@@ -55,7 +65,10 @@ import gregtech.api.unification.ore.OrePrefix.cableGtOctal
 import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.circuit
+import gregtech.api.unification.ore.OrePrefix.dust
+import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.pipeNonupleFluid
 import gregtech.api.unification.ore.OrePrefix.pipeQuadrupleFluid
@@ -67,7 +80,9 @@ import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtOctal
+import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.stack.UnificationEntry
+import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.EMITTER_EV
 import gregtech.common.items.MetaItems.EMITTER_HV
 import gregtech.common.items.MetaItems.EMITTER_IV
@@ -112,29 +127,47 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addIOHatchRecipes
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addMultiFluidHatchRecipes
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BerylliumOxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromiumGermaniumTellurideMagnetic
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullereneSuperconductor
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GSTGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HadronicResonantGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lafium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutroniumSuperconductor
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Omnium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pikyonium64B
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polymethylmethacrylate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StableBaryonicMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumHafniumSeaborgiumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumTungstenCarbide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
+import gregtechlite.gtlitecore.common.block.adapter.GTBatteryBlock
+import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
+import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETRON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_EV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_HV
@@ -158,7 +191,9 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NONU
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NONUPLE_FLUID_IMPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_EXPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_IMPORT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_STORAGE_HATCH
 import net.minecraft.init.Blocks
+import net.minecraft.init.Blocks.TORCH
 import net.minecraft.init.Items.ELYTRA
 import net.minecraft.item.ItemStack
 
@@ -176,6 +211,7 @@ internal object AssemblerRecipes
         hiAmpEnergyHatchesRecipes()
         hiAmpDynamoHatchesRecipes()
         laserHatchesRecipes()
+        wirelessHatchRecipes()
         voltageCoilRecipes()
         miningDroneRecipes()
         miscItemsRecipes()
@@ -678,6 +714,139 @@ internal object AssemblerRecipes
         }
     }
 
+    private fun wirelessHatchRecipes()
+    {
+        // IV Wireless Storage Hatch
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(12)
+            input(HULL[IV])
+            inputs(GTBatteryBlock.LAPOTRONIC_EV.getStack(4))
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(2))
+            input(wireGtQuadruple, SamariumIronArsenicOxide, 8)
+            fluidInputs(HadronicResonantGas.getFluid(250))
+            output(WIRELESS_STORAGE_HATCH[IV - IV])
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
+
+        // LuV Wireless Storage Hatch
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(12)
+            input(HULL[LuV])
+            inputs(GTBatteryBlock.LAPOTRONIC_EV.getStack(8))
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(2))
+            input(wireGtQuadruple, IndiumTinBariumTitaniumCuprate, 8)
+            fluidInputs(HadronicResonantGas.getFluid(500))
+            output(WIRELESS_STORAGE_HATCH[LuV - IV])
+            EUt(VA[LuV])
+            duration(10 * SECOND)
+        }
+
+        // ZPM Wireless Storage Hatch
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(12)
+            input(HULL[ZPM])
+            inputs(GTBatteryBlock.LAPOTRONIC_IV.getStack(4))
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(2))
+            input(wireGtQuadruple, UraniumRhodiumDinaquadide, 8)
+            fluidInputs(HadronicResonantGas.getFluid(750))
+            output(WIRELESS_STORAGE_HATCH[ZPM - IV])
+            EUt(VA[ZPM])
+            duration(10 * SECOND)
+        }
+
+        // UV Wireless Storage Hatch
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(12)
+            input(HULL[UV])
+            inputs(GTBatteryBlock.LAPOTRONIC_IV.getStack(8))
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(4))
+            input(wireGtQuadruple, EnrichedNaquadahTriniumEuropiumDuranide, 8)
+            fluidInputs(HadronicResonantGas.getFluid(1000))
+            output(WIRELESS_STORAGE_HATCH[UV - IV])
+            EUt(VA[UV])
+            duration(10 * SECOND)
+        }
+
+        // UHV Wireless Storage Hatch
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(12)
+            input(HULL[UHV])
+            inputs(GTBatteryBlock.LAPOTRONIC_LuV.getStack(4))
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(4))
+            input(wireGtQuadruple, RutheniumTriniumAmericiumNeutronate, 8)
+            fluidInputs(StableBaryonicMatter.getFluid(1000))
+            output(WIRELESS_STORAGE_HATCH[UHV - IV])
+            EUt(VA[UHV])
+            duration(10 * SECOND)
+        }
+
+        // UEV Wireless Storage Hatch
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(12)
+            input(HULL[UEV])
+            inputs(GTBatteryBlock.LAPOTRONIC_LuV.getStack(8))
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(4))
+            input(wireGtQuadruple, VibraniumTritaniumActiniumIronSuperhydride, 8)
+            fluidInputs(StableBaryonicMatter.getFluid(2000))
+            output(WIRELESS_STORAGE_HATCH[UEV - IV])
+            EUt(VA[UEV])
+            duration(10 * SECOND)
+        }
+
+        // UIV Wireless Storage Hatch
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(12)
+            input(HULL[UIV])
+            inputs(GTBatteryBlock.LAPOTRONIC_ZPM.getStack(4))
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(16))
+            input(wireGtQuadruple, FullereneSuperconductor, 8)
+            fluidInputs(StableBaryonicMatter.getFluid(4000))
+            output(WIRELESS_STORAGE_HATCH[UIV - IV])
+            EUt(VA[UIV])
+            duration(10 * SECOND)
+        }
+
+        // UXV Wireless Storage Hatch
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(12)
+            input(HULL[UXV])
+            inputs(GTBatteryBlock.LAPOTRONIC_ZPM.getStack(4))
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(16))
+            input(wireGtQuadruple, BoronFranciumCarbideSuperconductor, 8)
+            fluidInputs(StableBaryonicMatter.getFluid(8000))
+            output(WIRELESS_STORAGE_HATCH[UXV - IV])
+            EUt(VA[UXV])
+            duration(10 * SECOND)
+        }
+
+        // OpV Wireless Storage Hatch
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(12)
+            input(HULL[OpV])
+            inputs(GTBatteryBlock.LAPOTRONIC_UV.getStack(4))
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(16))
+            input(wireGtQuadruple, NeutroniumSuperconductor, 8)
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
+            output(WIRELESS_STORAGE_HATCH[OpV - IV])
+            EUt(VA[OpV])
+            duration(10 * SECOND)
+        }
+
+        // MAX Wireless Storage Hatch
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(12)
+            input(HULL[MAX])
+            inputs(GTBatteryBlock.ULTIMATE_UHV.getStack(4))
+            inputs(GTFusionCasing.SUPERCONDUCTOR_COIL.getStack(64))
+            input(wireGtQuadruple, Omnium, 8) // TODO: MAX Superconductor
+            fluidInputs(DimensionallyShiftedSuperfluid.getFluid(64000))
+            output(WIRELESS_STORAGE_HATCH[MAX - IV])
+            EUt(VA[MAX])
+            duration(10 * SECOND)
+        }
+    }
+
     private fun voltageCoilRecipes()
     {
         // UHV Voltage Coil
@@ -866,6 +1035,58 @@ internal object AssemblerRecipes
             EUt(VA[UV])
             duration(10 * SECOND)
         }
+
+        // Advanced recipes for Optical Pipe.
+        ASSEMBLER_RECIPES.addRecipe {
+            input(wireFine, GSTGlass, 8)
+            input(foil, SterlingSilver, 8)
+            fluidInputs(Polybenzimidazole.getFluid(L))
+            outputs(MetaBlocks.OPTICAL_PIPES[0].getStack(16))
+            EUt(VA[ZPM])
+            duration(5 * SECOND)
+            cleanroom()
+        }
+
+        ASSEMBLER_RECIPES.addRecipe {
+            input(wireFine, Polymethylmethacrylate, 8)
+            input(foil, Germanium, 8)
+            fluidInputs(ChromaticGlass.getFluid(L))
+            outputs(MetaBlocks.OPTICAL_PIPES[0].getStack(64))
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+            cleanroom()
+        }
+
+        // Advanced recipes for Laser Pipe.
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GlassCasing.ZBLAN.stack)
+            input(foil, NaquadahAlloy, 2)
+            fluidInputs(Polybenzimidazole.getFluid(L))
+            outputs(MetaBlocks.LASER_PIPES[0].getStack(16))
+            EUt(VA[ZPM])
+            duration(5 * SECOND)
+            cleanroom()
+        }
+
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GlassCasing.ERBIUM_ZBLAN.stack)
+            input(foil, EnrichedNaquadahAlloy, 2)
+            fluidInputs(ChromaticGlass.getFluid(L))
+            outputs(MetaBlocks.LASER_PIPES[0].getStack(64))
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+            cleanroom()
+        }
+
+        ASSEMBLER_RECIPES.addRecipe {
+            inputs(GlassCasing.PRASEODYMIUM_ZBLAN.stack)
+            input(foil, EnrichedNaquadahAlloy, 2)
+            fluidInputs(ChromaticGlass.getFluid(L))
+            outputs(MetaBlocks.LASER_PIPES[0].getStack(64))
+            EUt(VA[UHV])
+            duration(5 * SECOND)
+            cleanroom()
+        }
     }
 
     private fun vanillaChangingRecipes()
@@ -879,6 +1100,23 @@ internal object AssemblerRecipes
             outputs(ELYTRA)
             EUt(VH[HV])
             duration(10 * SECOND)
+        }
+
+        // Torch
+        ASSEMBLER_RECIPES.addRecipe {
+            input(gem, Lignite)
+            input(stick, Wood)
+            outputs(TORCH.getStack(4))
+            EUt(1)
+            duration(5 * SECOND)
+        }
+
+        ASSEMBLER_RECIPES.addRecipe {
+            input(dust, Lignite)
+            input(stick, Wood)
+            outputs(TORCH.getStack(4))
+            EUt(1)
+            duration(5 * SECOND)
         }
     }
 

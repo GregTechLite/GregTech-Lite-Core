@@ -203,7 +203,7 @@ internal object ScienceCasingRecipes
             EUt(VA[UHV])
             duration(10 * SECOND)
             stationResearch {
-                it.researchStack(block, Vibranium)
+                it.researchStack(frameGt, Vibranium)
                     .EUt(VA[UHV])
                     .CWUt(32)
             }

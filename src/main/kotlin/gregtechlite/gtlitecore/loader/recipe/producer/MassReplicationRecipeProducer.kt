@@ -5,12 +5,12 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.V
 import gregtech.api.recipes.RecipeMaps.MASS_FABRICATOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.REPLICATOR_RECIPES
-import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BosonicUUMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FermionicUUMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FreeElectronGas

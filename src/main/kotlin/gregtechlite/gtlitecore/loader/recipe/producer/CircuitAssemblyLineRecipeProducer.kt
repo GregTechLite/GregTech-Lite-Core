@@ -722,7 +722,7 @@ internal object CircuitAssemblyLineRecipeProducer
             input(WRAP_EXTREME_CIRCUIT_BOARD)
             input(WRAP_ADVANCED_SOC_CHIP)
             input(wireGtQuadruple, Platinum, 12)
-            input(bolt, NiobiumTitanium, 8)
+            input(bolt, NiobiumTitanium, 64)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(QUANTUM_PROCESSOR_EV, 64)
             output(QUANTUM_PROCESSOR_EV, 64)

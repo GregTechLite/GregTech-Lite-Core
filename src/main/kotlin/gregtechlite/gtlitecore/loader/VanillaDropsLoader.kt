@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.loader
 
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ARTICHOKE_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AUBERGINE_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BASIL_SEED
@@ -12,6 +13,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CUCUMBER_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GARLIC_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GRAPE_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSERADISH_SEED
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSE_MEAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ONION_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OREGANO_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PEA_SEED
@@ -19,7 +21,15 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.RICE_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SOY_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TOMATO_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WHITE_GRAPE_SEED
+import net.minecraft.world.storage.loot.LootEntryItem
+import net.minecraft.world.storage.loot.LootPool
+import net.minecraft.world.storage.loot.LootTableList
+import net.minecraft.world.storage.loot.RandomValueRange
+import net.minecraft.world.storage.loot.functions.LootingEnchantBonus
+import net.minecraft.world.storage.loot.functions.SetMetadata
 import net.minecraftforge.common.MinecraftForge
+import net.minecraftforge.event.LootTableLoadEvent
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
 internal object VanillaDropsLoader
 {
@@ -48,6 +58,25 @@ internal object VanillaDropsLoader
         MinecraftForge.addGrassSeed(RICE_SEED.stackForm, 1)
         MinecraftForge.addGrassSeed(WHITE_GRAPE_SEED.stackForm, 1)
         MinecraftForge.addGrassSeed(COTTON_SEED.stackForm, 1)
+    }
+
+    @SubscribeEvent
+    fun addLootTableDrops(event: LootTableLoadEvent)
+    {
+        if (event.name == LootTableList.ENTITIES_HORSE)
+        {
+            val horseMeat = HORSE_MEAT.stack()
+            val pool = LootPool(
+                arrayOf(LootEntryItem(horseMeat.item, 1, 0,
+                    arrayOf(SetMetadata(arrayOf(), RandomValueRange(horseMeat.itemDamage.toFloat(), horseMeat.itemDamage.toFloat())),
+                            LootingEnchantBonus(arrayOf(), RandomValueRange(0f, 1f), 0)),
+                    arrayOf(), "gtlitecore:horse_meat")),
+                arrayOf(),
+                RandomValueRange(1f, 3f),
+                RandomValueRange(0f),
+                "gtlitecore:horse_meat_pool")
+            event.table.addPool(pool)
+        }
     }
 
     // @formatter:on

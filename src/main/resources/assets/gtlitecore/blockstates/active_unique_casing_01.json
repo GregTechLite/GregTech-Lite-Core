@@ -57,6 +57,22 @@
         "bot_all": "gtlitecore:blocks/casings/special/nanite_control_casing",
         "top_all": "gtlitecore:blocks/casings/special/nanite_control_casing_bloom"
       }
+    },
+    "active=false,variant=crushing_wheel": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/special/crushing_wheel",
+        "side": "gregtech:blocks/casings/solid/machine_casing_solid_steel",
+        "bottom": "#side"
+      }
+    },
+    "active=true,variant=crushing_wheel": {
+      "model": "minecraft:cube_bottom_top",
+      "textures": {
+        "top": "gtlitecore:blocks/casings/special/crushing_wheel_active",
+        "side": "gregtech:blocks/casings/solid/machine_casing_solid_steel",
+        "bottom": "#side"
+      }
     }
   }
 }

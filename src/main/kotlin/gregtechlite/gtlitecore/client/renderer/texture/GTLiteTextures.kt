@@ -1,10 +1,11 @@
 package gregtechlite.gtlitecore.client.renderer.texture
 
 import codechicken.lib.texture.TextureUtils
-import gregtechlite.gtlitecore.api.extension.registerSprite
+import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.client.renderer.texture.custom.OreProcessorRenderer
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.renderer.texture.TextureMap
+import net.minecraft.util.ResourceLocation
 
 object GTLiteTextures : TextureUtils.IIconRegister
 {
@@ -24,8 +25,14 @@ object GTLiteTextures : TextureUtils.IIconRegister
     lateinit var COSMIC_7: TextureAtlasSprite
     lateinit var COSMIC_8: TextureAtlasSprite
     lateinit var COSMIC_9: TextureAtlasSprite
-
     lateinit var FORCE_FIELD: TextureAtlasSprite
+
+    // endregion
+
+    // region Pre Binding Textures
+
+    @JvmStatic
+    val BOTTLE_IN_CRATE: ResourceLocation = GTLiteMod.id("textures/shaders/bottle_in_crate.png")
 
     // endregion
 
@@ -63,4 +70,5 @@ object GTLiteTextures : TextureUtils.IIconRegister
             COSMIC_5, COSMIC_6, COSMIC_7, COSMIC_8, COSMIC_9)
     }
 
+    internal fun TextureMap.registerSprite(path: String): TextureAtlasSprite = registerSprite(GTLiteMod.id(path))
 }

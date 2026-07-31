@@ -6,6 +6,8 @@ import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_TOP
 import gregtechlite.gtlitecore.integration.IntegrationSubModule
 import gregtechlite.gtlitecore.integration.theoneprobe.provider.DelegatorInfoProvider
+import gregtechlite.gtlitecore.integration.theoneprobe.provider.EnergyDistributorInfoProvider
+import gregtechlite.gtlitecore.integration.theoneprobe.provider.WirelessHatchInfoProvider
 import mcjty.theoneprobe.TheOneProbe
 import mcjty.theoneprobe.api.ITheOneProbe
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
@@ -32,6 +34,8 @@ class TheOneProbeModule : IntegrationSubModule()
         logger.info("Registering TheOneProbe Providers...")
         val top: ITheOneProbe = TheOneProbe.theOneProbeImp
         top.registerProvider(DelegatorInfoProvider())
+        top.registerProvider(WirelessHatchInfoProvider())
+        top.registerProvider(EnergyDistributorInfoProvider())
     }
 
     override fun getLogger(): Logger = Companion.logger

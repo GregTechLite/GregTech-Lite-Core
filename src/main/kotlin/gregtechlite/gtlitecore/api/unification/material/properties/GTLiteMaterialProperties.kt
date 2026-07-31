@@ -172,6 +172,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BFGF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Baddeleyite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BeanPhospholipid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzyltrimethylammoniumBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BiphenylTetracarboxylicAcidDianhydride
@@ -209,6 +210,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylhexylPhosphoricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diethylthiourea
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophenone
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylacetamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylamineHydrochloride
@@ -247,6 +249,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydroxyquinolineA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indanone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Iron3Sulfate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsobutyricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isochloropropane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
@@ -263,6 +266,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumEmbedded
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFullereneMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumFullereneNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadNitrate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lecithin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Limestone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
@@ -376,8 +380,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZincRichSphalerit
  */
 object GTLiteMaterialProperties
 {
-
-    fun init()
+    internal fun init()
     {
         setMaterialProperties()
         setOreProperties()
@@ -385,7 +388,7 @@ object GTLiteMaterialProperties
         setChemicalFormula()
     }
 
-    fun setMaterialProperties()
+    private fun setMaterialProperties()
     {
         // region State Properties
 
@@ -419,11 +422,10 @@ object GTLiteMaterialProperties
         // endregion
 
         // region Magnetic Properties
-        ChromiumGermaniumTelluride.getProperty(PropertyKey.INGOT)
-            .magneticMaterial = ChromiumGermaniumTellurideMagnetic
 
-        Europium.getProperty(PropertyKey.INGOT)
-            .magneticMaterial = Magnetium
+        ChromiumGermaniumTelluride.getProperty(PropertyKey.INGOT).magneticMaterial = ChromiumGermaniumTellurideMagnetic
+
+        Europium.getProperty(PropertyKey.INGOT).magneticMaterial = Magnetium
 
         // endregion
 
@@ -481,12 +483,10 @@ object GTLiteMaterialProperties
 
         // region Fluid Pipe Properties
         Inconel718.setProperty(PropertyKey.FLUID_PIPE,
-                               FluidPipeProperties(2010, 175,
-                                                   true, true, true, false))
+                               FluidPipeProperties(2010, 175, true, true, true, false))
 
         RhodiumPlatedPalladium.setProperty(PropertyKey.FLUID_PIPE,
-                                           FluidPipeProperties(6120, 225,
-                                                               true, true, true, false))
+                                           FluidPipeProperties(6120, 225, true, true, true, false))
 
         // endregion
 
@@ -503,10 +503,9 @@ object GTLiteMaterialProperties
         Iridium.setProperty(PropertyKey.TOOL, MaterialToolProperty(4.8F, 10.0F, 2560, 4))
 
         // endregion
-
     }
 
-    fun setOreProperties()
+    private fun setOreProperties()
     {
         // Ores which generated in world.
         Andradite.setProperty(PropertyKey.ORE, OreProperty())
@@ -634,7 +633,7 @@ object GTLiteMaterialProperties
         oreProp.directSmeltResult = null
     }
 
-    fun setMaterialColors()
+    private fun setMaterialColors()
     {
         Promethium.materialRGB = 0x24B535
         Dysprosium.materialRGB = 0xDD79DD
@@ -649,9 +648,10 @@ object GTLiteMaterialProperties
         Meitnerium.materialRGB = 0x9C1E55
     }
 
-    fun setChemicalFormula()
+    private fun setChemicalFormula()
     {
         // region GTCEu Materials
+
         Biotite.setFormula("KMg3Al2(AlSi3O10)F2", true)
         Mica.setFormula("KAl2(AlSi3O10)F2", true)
         Bauxite.setFormula("(Al2O3)3(TiO2)2(H2O)2?", true)
@@ -659,13 +659,17 @@ object GTLiteMaterialProperties
         PalladiumRaw.setFormula("PdCl2", true)
         RarestMetalMixture.setFormula("IrOs?", true)
         IridiumMetalResidue.setFormula("Ir2O3", true)
+
         // endregion
 
         // region Element Materials
+
         DegenerateRhenium.setFormula("§cR§de", true)
+
         // endregion
 
         // region First Degree Materials
+
         Dolomite.setFormula("CaMg(CO3)2", true)
         Azurite.setFormula("Cu3(CO3)2(OH)2", true)
         Forsterite.setFormula("Mg2(SiO4)", true)
@@ -763,9 +767,11 @@ object GTLiteMaterialProperties
         ChromaticGlass.setFormula("(SiO2)64", true)
         PlutoniumDioxide.setFormula("PuO2", true)
         MOX.setFormula("(PuO2)(UO2)2", true)
+
         // endregion
 
         // region Second Degree Materials
+
         Kovar.setFormula("Fe10Ni5Co3", true)
         HalkoniteSteel.setFormula("SpNt2((FeW)8*Nq*7?4C4(VCrFe7)3Fr)2P8(((WC)(TiC)2)3(CaMg5(OH)2(Si4O11)2)3Tr2)If", true)
         TantalumHafniumSeaborgiumCarbide.setFormula("Ta12Hf3SgC16", true)
@@ -776,9 +782,11 @@ object GTLiteMaterialProperties
                                + "AsSeBrKrRbSrYZrNbMoTcRuRhPdAgCdInSnSbTeIXeCsBaLaCePrNdPm"
                                + "SmEuGdTbDyHoErTmYbLuHfTaWReOsIrPtAuHgTlPbBiPoAtRnFrRaAcTh"
                                + "PaUNpPuAmCmBkCfEsFmMdNoLrRfDbSgBhHsMtDsRgCnNhFlMcLvTsOg")
+
         // endregion
 
         // region Third Degree Materials
+
         Limestone.setFormula("(CaCO3)4(CaMg(CO3)2)?", true)
         Komatiite.setFormula("(Mg2Fe(SiO2)2)2(MgCO3)(SiO2)?", true)
         GreenSchist.setFormula("(Ca2Al3Si3HO13)2(SiO2)2(Mg3Si4H2O12)?", true)
@@ -787,9 +795,11 @@ object GTLiteMaterialProperties
         Slate.setFormula("(SiO2)5(KAl2(AlSi3O10)(OH)2)2(Mg5Al2Si3O10(OH)8)2?", true)
         Shale.setFormula("(CaCO3)6(Na2LiAl2Si2(H2O)6)2(SiO2)(CaF2)?", true)
         GelidCryotheum.setFormula("((Si(FeS2)5(CrAl2O3)Hg3)(AgAu))(H2O)3", true)
+
         // endregion
 
         // region Organic Chemistry Materials
+
         ParaXylene.setFormula("C6H4(CH3)2", true)
         Nitrotoluene.setFormula("C6H4CH3NO2", true)
         Butanediol.setFormula("C4H8(OH)2", true)
@@ -871,9 +881,13 @@ object GTLiteMaterialProperties
         Trisaminoethylamine.setFormula("(NH2CH2CH2)3N", true)
         Ethylamine.setFormula("C2H5NH2", true)
         Diethylthiourea.setFormula("(C2H5NH)2CS", true)
+        DimethylCarbonate.setFormula("(CH3O)2CO", true)
+        IsobutyricAcid.setFormula("(CH3)2CHCO2H", true)
+
         // endregion
 
         // region Unknown Composition Materials
+
         BFGF.setFormula("bFGF", false)
         EGF.setFormula("EGF", false)
         CAT.setFormula("CAT", false)
@@ -884,8 +898,9 @@ object GTLiteMaterialProperties
         UnprocessedNdYAGSolution.setFormula("Nd:YAG?", false)
         AxinoFusedRedMatter.setFormula("gtlitecore.material.axino_fused_red_matter.formula",
             "Hot Dark Matter formed by the Aggregation of Dark Matter and Supersymmetric Axions")
+        BeanPhospholipid.setFormula("C42H80NO8P", true)
+        Lecithin.setFormula("C40H80NO8P", true)
+
         // endregion
-
     }
-
 }

@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.api.pattern
 import gregtech.api.GTValues
 import gregtech.api.block.VariantActiveBlock
 import gregtech.api.capability.GregtechCapabilities
+import gregtech.api.capability.IEnergyContainer
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import gregtech.api.pattern.BlockWorldState
@@ -201,5 +202,10 @@ object TraceabilityPredicates
             return@TraceabilityPredicate blockWorldState.matchContext.getOrPut(symbol, true)
         return@TraceabilityPredicate blockWorldState.matchContext.get<String>(symbol) == null
     }.also { allowedStates.map(::BlockInfo) }
+
+    @JvmField
+    val WIRELESS_ENERGY_STORAGE = MultiblockAbility(
+        "wireless_energy_storage", IEnergyContainer::class.java
+    ).also { MultiblockAbility.REGISTRY[it] = ArrayList() }
 
 }

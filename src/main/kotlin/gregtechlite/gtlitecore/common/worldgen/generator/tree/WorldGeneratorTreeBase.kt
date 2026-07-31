@@ -22,51 +22,33 @@ import kotlin.math.abs
 
 abstract class WorldGeneratorTreeBase(val name: String, private val seed: Int) : AbstractWorldGenerator(seed)
 {
+    lateinit var logState: IBlockState
+    lateinit var leaveState: IBlockState
+    lateinit var saplingState: IBlockState
 
-    // region Construct and Generation contents
-
-    var logState: IBlockState? = null
-    var leaveState: IBlockState? = null
-    var saplingState: IBlockState? = null
-
-    /**
-     * The natural generating leave block state, the value is based on [leaveState] but be decayable.
-     * Updated with [gregtechlite.magicbook.util.LeafDecayUpdate].
-     */
     open val placedLeaveState: IBlockState
-        get() = this.leaveState!!
-            .withProperty(BlockLeaves.DECAYABLE, true)
-            .withProperty(BlockLeaves.CHECK_DECAY, true)
+        get() = leaveState.withProperty(BlockLeaves.DECAYABLE, true).withProperty(BlockLeaves.CHECK_DECAY, true)
 
-    /**
-     * The natural generating sapling block, this block is used for placed a tree for [net.minecraftforge.common.IPlantable] interface.
-     */
     open val placedSaplingBlock: IPlantable
-        get() = this.saplingState!!.block as IPlantable
-
-    // endregion
-
-    // region Correspondenced Generators
+        get() = saplingState.block as IPlantable
 
     override var innerGenerator: CustomWorldGeneratorImpl?
         get() = CustomWorldGeneratorTree(false, this)
-        set(value)
+        set(newGenerator)
         {
-            innerGenerator = value
+            innerGenerator = newGenerator
         }
 
     var outerGenerator: CustomWorldGeneratorImpl?
         get() = CustomWorldGeneratorTree(true, this)
-        set(value)
+        set(newGenerator)
         {
-            outerGenerator = value
+            outerGenerator = newGenerator
         }
-
-    // endregion
 
     init
     {
-        WorldGeneratorTreeRegistry.generators.add(this)
+        WorldGeneratorTreeRegistry.add(this)
     }
 
     abstract fun getItemColor(stack: ItemStack?, tintIndex: Int): Int
@@ -88,8 +70,7 @@ abstract class WorldGeneratorTreeBase(val name: String, private val seed: Int) :
             {
                 val blockState = worldIn.getBlockState(blockPos.down())
                 val block = blockState.block
-                if (block.canSustainPlant(blockState, worldIn, blockPos.down(),
-                       EnumFacing.UP, this.placedSaplingBlock)
+                if (block.canSustainPlant(blockState, worldIn, blockPos.down(), EnumFacing.UP, placedSaplingBlock)
                     && blockPos.y < worldIn.height - minHeight - 1)
                 {
                     block.onPlantGrow(blockState, worldIn, blockPos.down(), blockPos)
@@ -130,7 +111,7 @@ abstract class WorldGeneratorTreeBase(val name: String, private val seed: Int) :
                         if (leavesBlock.isReplaceable(worldIn, blockPos)
                             || leavesBlock.canBeReplacedByLeaves(leavesBlockState, worldIn, blockPos))
                         {
-                            notifier(worldIn, leavesBlockPos, this.leaveState)
+                            notifier(worldIn, leavesBlockPos, leaveState)
                         }
                     }
                 }
@@ -145,41 +126,37 @@ abstract class WorldGeneratorTreeBase(val name: String, private val seed: Int) :
                                      notifier: (World?, BlockPos?, IBlockState?) -> Unit)
     {
         val upNBlockPos = blockPos.copy()
-        for (height in 0 ..< maxHeight)
+        for (height in 0 until maxHeight)
         {
             val blockState = worldIn.getBlockState(upNBlockPos)
             val block = blockState.block
-            if (block.isAir(blockState, worldIn, upNBlockPos)
-                || block.isLeaves(blockState, worldIn, upNBlockPos))
+            if (block.isAir(blockState, worldIn, upNBlockPos) || block.isLeaves(blockState, worldIn, upNBlockPos))
             {
-                notifier(worldIn, blockPos.up(height), this.logState!!
-                    .withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y))
+                notifier(worldIn, blockPos.up(height), logState.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y))
             }
             upNBlockPos.move(EnumFacing.UP)
         }
     }
 
     @Suppress("Deprecation")
-    fun setupBlocks()
+    internal fun setupBlocks()
     {
-        val leaves = GTLiteBlocks.LEAVES[this.seed / 4]
-        this.leaveState = leaves.getStateFromMeta(this.seed % 4 shl 2)
+        val leaves = GTLiteBlocks.LEAVES[seed / 4]
+        leaveState = leaves.getStateFromMeta(seed % 4 shl 2)
 
-        val logs = GTLiteBlocks.LOGS[this.seed / 4]
-        this.logState = logs.getStateFromMeta(this.seed % 4 shl 2)
+        val logs = GTLiteBlocks.LOGS[seed / 4]
+        logState = logs.getStateFromMeta(seed % 4 shl 2)
 
-        val saplings = GTLiteBlocks.SAPLINGS[this.seed / 8]
-        this.saplingState = saplings.getStateFromMeta(this.seed % 8 shl 1)
+        val saplings = GTLiteBlocks.SAPLINGS[seed / 8]
+        saplingState = saplings.getStateFromMeta(seed % 8 shl 1)
     }
 
-    fun isReplaceable(worldIn: World, blockPos: BlockPos): Boolean
-    {
-        return canGrowInto(worldIn.getBlockState(blockPos).getBlock())
-    }
+    private fun isReplaceable(worldIn: World, blockPos: BlockPos): Boolean
+        = canGrowInto(worldIn.getBlockState(blockPos).block)
 
     protected fun canGrowInto(block: Block): Boolean
     {
-        val material = block.defaultState.getMaterial()
+        val material = block.defaultState.material
         return material === Material.AIR || material === Material.LEAVES
                 || block === Blocks.GRASS || block === Blocks.DIRT
                 || block === Blocks.LOG || block === Blocks.LOG2
@@ -204,15 +181,22 @@ abstract class WorldGeneratorTreeBase(val name: String, private val seed: Int) :
         return true
     }
 
-    open fun getMinTrunkHeight(random: Random): Int = random.nextInt(3) + 5
+    open fun getMinTrunkHeight(rand: Random): Int = rand.nextInt(3) + 5
 
     /**
+     * Sets the Moore radius at the height value which the tree can take up at.
+     *
      * @param height      The block height at which this radius is being taken (starting from 0).
      * @param trunkHeight The height of the trunk.
      * @return            The maximum radius outside the center block that the tree can take up at this height value.
      */
     protected open fun getMooreRadiusAtHeight(height: Int, trunkHeight: Int): Int = 0
 
-    open fun getFruitDrop(chance: Int): ItemStack? = ItemStack.EMPTY
-
+    /**
+     * Sets the chanced drop items for the tree.
+     *
+     * @param chance The base chance of the drop items dependent.
+     * @return       The item with stack format, or [ItemStack.EMPTY] by default.
+     */
+    open fun getFruitDrop(chance: Int): ItemStack = ItemStack.EMPTY
 }

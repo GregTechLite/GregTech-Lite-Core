@@ -39,7 +39,6 @@ import java.util.Map;
 @Mixin(value = FluidPipeRenderer.class, remap = false)
 public abstract class MixinFluidPipeRenderer
 {
-
     @Unique
     private final Table<FluidPipeType, MaterialIconSet, TextureAtlasSprite> gtlitecore$pipeTextures = HashBasedTable.create();
 
@@ -69,14 +68,14 @@ public abstract class MixinFluidPipeRenderer
             ResourceLocation iconSetPipeSideLocation = GTUtility.gregtechId("blocks/material_sets/"
                     + iconSet.getName().toLowerCase() + "/pipe_side");
 
-            this.gtlitecore$pipeTextures.put(FluidPipeType.TINY, iconSet, map.registerSprite(iconSetPipeTinyLocation));
-            this.gtlitecore$pipeTextures.put(FluidPipeType.SMALL, iconSet, map.registerSprite(iconSetPipeSmallLocation));
-            this.gtlitecore$pipeTextures.put(FluidPipeType.NORMAL, iconSet, map.registerSprite(iconSetPipeNormalLocation));
-            this.gtlitecore$pipeTextures.put(FluidPipeType.LARGE, iconSet, map.registerSprite(iconSetPipeLargeLocation));
-            this.gtlitecore$pipeTextures.put(FluidPipeType.HUGE, iconSet, map.registerSprite(iconSetPipeHugeLocation));
-            this.gtlitecore$pipeTextures.put(FluidPipeType.QUADRUPLE, iconSet, map.registerSprite(iconSetPipeQuadrupleLocation));
-            this.gtlitecore$pipeTextures.put(FluidPipeType.NONUPLE, iconSet, map.registerSprite(iconSetPipeNonupleLocation));
-            this.gtlitecore$pipeSideTextures.put(iconSet, map.registerSprite(iconSetPipeSideLocation));
+            gtlitecore$pipeTextures.put(FluidPipeType.TINY, iconSet, map.registerSprite(iconSetPipeTinyLocation));
+            gtlitecore$pipeTextures.put(FluidPipeType.SMALL, iconSet, map.registerSprite(iconSetPipeSmallLocation));
+            gtlitecore$pipeTextures.put(FluidPipeType.NORMAL, iconSet, map.registerSprite(iconSetPipeNormalLocation));
+            gtlitecore$pipeTextures.put(FluidPipeType.LARGE, iconSet, map.registerSprite(iconSetPipeLargeLocation));
+            gtlitecore$pipeTextures.put(FluidPipeType.HUGE, iconSet, map.registerSprite(iconSetPipeHugeLocation));
+            gtlitecore$pipeTextures.put(FluidPipeType.QUADRUPLE, iconSet, map.registerSprite(iconSetPipeQuadrupleLocation));
+            gtlitecore$pipeTextures.put(FluidPipeType.NONUPLE, iconSet, map.registerSprite(iconSetPipeNonupleLocation));
+            gtlitecore$pipeSideTextures.put(iconSet, map.registerSprite(iconSetPipeSideLocation));
         }
     }
 
@@ -93,11 +92,10 @@ public abstract class MixinFluidPipeRenderer
         if (material == null || !(pipeType instanceof FluidPipeType))
             return;
         MaterialIconSet iconSet = material.getMaterialIconSet();
-        TextureAtlasSprite pipeTexture = this.gtlitecore$pipeTextures.get(pipeType, iconSet);
-        TextureAtlasSprite pipeSideTexture = this.gtlitecore$pipeSideTextures.get(iconSet);
+        TextureAtlasSprite pipeTexture = gtlitecore$pipeTextures.get(pipeType, iconSet);
+        TextureAtlasSprite pipeSideTexture = gtlitecore$pipeSideTextures.get(iconSet);
         renderContext.addOpenFaceRender(new IconTransformation(pipeTexture))
                 .addSideRender(new IconTransformation(pipeSideTexture));
         ci.cancel();
     }
-
 }

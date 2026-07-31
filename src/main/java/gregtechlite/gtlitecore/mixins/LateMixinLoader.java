@@ -5,13 +5,11 @@ import zone.rong.mixinbooter.ILateMixinLoader;
 import java.util.List;
 
 @SuppressWarnings("unused")
-public final class LateMixinLoader implements ILateMixinLoader
+public final class LateMixinLoader implements CustomMixinLoader, ILateMixinLoader
 {
-
     @Override
     public List<String> getMixinConfigs()
     {
-        return MixinUtil.getMixinConfigs("gregtech", "jei", "modularui");
+        return createMixinConfigs("gregtech", "jei", "modularui");
     }
-
 }

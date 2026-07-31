@@ -1,10 +1,12 @@
 package gregtechlite.gtlitecore.integration.justenoughitems
 
 import com.morphismmc.morphismlib.util.SidedLogger
+import gregtech.api.GTValues.HV
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials
 import gregtech.api.unification.ore.OrePrefix
+import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.module.Module
@@ -67,6 +69,9 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
         blacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dust, Materials.Phosphate))
         blacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustSmall, Materials.Phosphate))
         blacklist.addIngredientToBlacklist(OreDictUnifier.get(OrePrefix.dustTiny, Materials.Phosphate))
+
+        // Hide EV fisher and change it to our large machine.
+        blacklist.addIngredientToBlacklist(MetaTileEntities.FISHER[HV].stack())
     }
     
     override fun registerCategories(registry: IRecipeCategoryRegistration)

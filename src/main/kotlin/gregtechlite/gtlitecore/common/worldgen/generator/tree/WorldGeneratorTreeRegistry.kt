@@ -1,33 +1,34 @@
 package gregtechlite.gtlitecore.common.worldgen.generator.tree
 
-object WorldGeneratorTreeRegistry
+/**
+ * Will register all generators by corresponding block class automatically.
+ */
+private val treeGenerators: MutableList<WorldGeneratorTreeBase> = mutableListOf()
+
+object WorldGeneratorTreeRegistry : Iterable<WorldGeneratorTreeBase> by treeGenerators
 {
+    @JvmStatic
+    val size: Int
+        get() = treeGenerators.size
 
-    val generators: MutableList<WorldGeneratorTreeBase> = arrayListOf()
+    @JvmStatic
+    operator fun get(index: Int): WorldGeneratorTreeBase = treeGenerators[index]
 
-    fun addGenerator(treeGenerator: WorldGeneratorTreeBase)
+    @JvmStatic
+    fun add(treeGenerator: WorldGeneratorTreeBase)
     {
-        this.generators.add(treeGenerator)
+        treeGenerators.add(treeGenerator)
     }
 
-    fun addGenerators(treeGenerators: Array<WorldGeneratorTreeBase>)
+    @JvmStatic
+    fun remove(treeGenerator: WorldGeneratorTreeBase)
     {
-        this.generators.addAll(treeGenerators)
+        treeGenerators.remove(treeGenerator)
     }
 
-    fun removeGenerator(treeGenerator: WorldGeneratorTreeBase)
-    {
-        this.generators.remove(treeGenerator)
-    }
-
-    fun removeGenerators(treeGenerators: Array<WorldGeneratorTreeBase>)
-    {
-        this.generators.removeAll(treeGenerators)
-    }
-
+    @JvmStatic
     fun clear()
     {
-        this.generators.clear()
+        treeGenerators.clear()
     }
-
 }

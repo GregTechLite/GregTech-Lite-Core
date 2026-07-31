@@ -1,17 +1,134 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
-import gregtech.api.GTValues.*
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.L
+import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.ULV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
+import gregtech.api.GTValues.VA
+import gregtech.api.GTValues.VH
+import gregtech.api.GTValues.VN
+import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Tier
-import gregtech.api.unification.material.Materials.*
-import gregtech.api.unification.ore.OrePrefix.*
+import gregtech.api.unification.material.Materials.Aluminium
+import gregtech.api.unification.material.Materials.Americium
+import gregtech.api.unification.material.Materials.Bronze
+import gregtech.api.unification.material.Materials.Chrome
+import gregtech.api.unification.material.Materials.Copper
+import gregtech.api.unification.material.Materials.Darmstadtium
+import gregtech.api.unification.material.Materials.Diamond
+import gregtech.api.unification.material.Materials.Electrum
+import gregtech.api.unification.material.Materials.Europium
+import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.HSSG
+import gregtech.api.unification.material.Materials.HSSS
+import gregtech.api.unification.material.Materials.Iridium
+import gregtech.api.unification.material.Materials.Iron
+import gregtech.api.unification.material.Materials.Lead
+import gregtech.api.unification.material.Materials.Lubricant
+import gregtech.api.unification.material.Materials.NaquadahAlloy
+import gregtech.api.unification.material.Materials.Neutronium
+import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.Osmiridium
+import gregtech.api.unification.material.Materials.Osmium
+import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
+import gregtech.api.unification.material.Materials.Seaborgium
+import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.StainlessSteel
+import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Sulfur
+import gregtech.api.unification.material.Materials.TinAlloy
+import gregtech.api.unification.material.Materials.Titanium
+import gregtech.api.unification.material.Materials.Tritanium
+import gregtech.api.unification.material.Materials.Tungsten
+import gregtech.api.unification.material.Materials.TungstenSteel
+import gregtech.api.unification.material.Materials.WroughtIron
+import gregtech.api.unification.material.Materials.YttriumBariumCuprate
+import gregtech.api.unification.ore.OrePrefix.cableGtOctal
+import gregtech.api.unification.ore.OrePrefix.cableGtQuadruple
+import gregtech.api.unification.ore.OrePrefix.cableGtSingle
+import gregtech.api.unification.ore.OrePrefix.circuit
+import gregtech.api.unification.ore.OrePrefix.gear
+import gregtech.api.unification.ore.OrePrefix.gearSmall
+import gregtech.api.unification.ore.OrePrefix.gem
+import gregtech.api.unification.ore.OrePrefix.pipeHugeItem
+import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
+import gregtech.api.unification.ore.OrePrefix.pipeNormalItem
+import gregtech.api.unification.ore.OrePrefix.pipeSmallFluid
+import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
+import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.plateDense
+import gregtech.api.unification.ore.OrePrefix.plateDouble
+import gregtech.api.unification.ore.OrePrefix.rotor
+import gregtech.api.unification.ore.OrePrefix.spring
+import gregtech.api.unification.ore.OrePrefix.springSmall
+import gregtech.api.unification.ore.OrePrefix.stick
+import gregtech.api.unification.ore.OrePrefix.stickLong
+import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
+import gregtech.api.unification.ore.OrePrefix.wireGtHex
+import gregtech.api.unification.ore.OrePrefix.wireGtOctal
+import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.BlockSteamCasing
 import gregtech.common.blocks.MetaBlocks
-import gregtech.common.items.MetaItems.*
-import gregtech.common.metatileentities.MetaTileEntities.*
+import gregtech.common.items.MetaItems.BLACKLIGHT
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_EV
+import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
+import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_OpV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_UXV
+import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
+import gregtech.common.items.MetaItems.ITEM_FILTER
+import gregtech.common.items.MetaItems.ROBOT_ARM_UV
+import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.CLEANING_MAINTENANCE_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_16A
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_INPUT_HATCH_4A
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_16A
+import gregtech.common.metatileentities.MetaTileEntities.ENERGY_OUTPUT_HATCH_4A
+import gregtech.common.metatileentities.MetaTileEntities.FLUID_IMPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.HULL
+import gregtech.common.metatileentities.MetaTileEntities.ITEM_EXPORT_BUS
+import gregtech.common.metatileentities.MetaTileEntities.ITEM_IMPORT_BUS
+import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_EXPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_IMPORT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_CHEST
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
+import gregtech.common.metatileentities.MetaTileEntities.ROTOR_HOLDER
+import gregtech.common.metatileentities.MetaTileEntities.STAINLESS_STEEL_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.STEEL_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_OUTPUT_HATCH
+import gregtech.common.metatileentities.MetaTileEntities.TITANIUM_DRUM
+import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
+import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_DRUM
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
 import gregtechlite.gtlitecore.api.MINUTE
@@ -19,6 +136,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
 import gregtechlite.gtlitecore.api.recipe.util.TieredAdhesiveFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
@@ -29,14 +147,12 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MaragingSteel250
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Periodicium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RealizedQuantumFoamShard
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Rhugnor
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaborgiumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Shirabon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpaceTime
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuperheavyAlloyA
@@ -47,11 +163,9 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Universium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
-import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AIR_VENT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_EMPTY
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FIELD_GENERATOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_OpV
@@ -74,11 +188,11 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CRYO
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DIAMOND_CRATE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DUAL_EXPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DUAL_IMPORT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ENERGY_DISTRIBUTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.EXTREME_AIR_INTAKE_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FOOD_PROCESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.GOLD_CRATE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.GREENHOUSE
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.HUGE_ITEM_IMPORT_BUS
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INFINITE_AIR_INTAKE_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INVENTORY_BRIDGE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.INVENTORY_EXTENDER
@@ -92,11 +206,13 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LEAD
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LOOM
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MASS_FABRICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_EXTRACTOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_SLAUGHTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MULTICOOKER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NAQUADAH_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.POLISHER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_EXPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_IMPORT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUANTUM_ITEM_IMPORT_BUS
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.REPLICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ROASTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ROCKET_ENGINE
@@ -431,6 +547,16 @@ internal object GTMetaTileEntityLoader
             'X', CraftingComponent.CIRCUIT,
             'W', CraftingComponent.CABLE,
             'B', CraftingComponent.PIPE_REACTOR)
+
+        // Mob Slaughter
+        MetaTileEntityLoader.registerMachineRecipe(true, MOB_SLAUGHTER,
+            "BBB", "CSR", "WHW",
+            'H', CraftingComponent.HULL,
+            'W', CraftingComponent.CABLE,
+            'S', OreDictUnifier.get(toolHeadDrill, Steel),
+            'R', CraftingComponent.ROTOR,
+            'C', CraftingComponent.CONVEYOR,
+            'B', ItemStack(Blocks.IRON_BARS))
 
         // -------------------------------------------------------------------------------------------------------------
 
@@ -1282,200 +1408,130 @@ internal object GTMetaTileEntityLoader
             'G', UnificationEntry(gear, MagnetohydrodynamicallyConstrainedStarMatter),
             'S', UnificationEntry(gearSmall, BlackDwarfMatter))
 
-        // ULV Huge Import Bus
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(9)
-            input(ITEM_IMPORT_BUS[ULV])
-            input(QUANTUM_CHEST[ULV], 2) // Super Chest I
-            input(FIELD_GENERATOR_LV, 4)
-            input(plateDense, WroughtIron, 6)
-            input(pipeHugeItem, Electrum, 16)
-            fluidInputs(TinAlloy.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[ULV])
-            EUt(VA[LV])
-            duration(5 * MINUTE)
-        }
-
-        // LV Huge Item Import Bus
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(9)
-            input(ITEM_IMPORT_BUS[LV])
-            input(QUANTUM_CHEST[LV], 2) // Super Chest II
-            input(FIELD_GENERATOR_MV, 4)
-            input(plateDense, Steel, 6)
-            input(pipeHugeItem, SterlingSilver, 16)
-            fluidInputs(TinAlloy.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[LV])
-            EUt(VA[MV])
-            duration(5 * MINUTE)
-        }
-
-        // MV Huge Item Import Bus
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(9)
-            input(ITEM_IMPORT_BUS[MV])
-            input(QUANTUM_CHEST[MV], 2) // Super Chest III
-            input(FIELD_GENERATOR_HV, 4)
-            input(plateDense, Aluminium, 6)
-            input(pipeHugeItem, Ultimet, 16)
-            fluidInputs(Kanthal.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[MV])
-            EUt(VA[HV])
-            duration(5 * MINUTE)
-        }
-
-        // HV Huge Item Import Bus
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(9)
-            input(ITEM_IMPORT_BUS[HV])
-            input(QUANTUM_CHEST[HV], 2) // Super Chest IV
-            input(FIELD_GENERATOR_EV, 4)
-            input(plateDense, StainlessSteel, 6)
-            input(pipeHugeItem, MaragingSteel250, 16)
-            fluidInputs(Nichrome.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[HV])
-            EUt(VA[EV])
-            duration(5 * MINUTE)
-        }
-
-        // EV Huge Item Import Bus
-        ASSEMBLER_RECIPES.addRecipe {
-            circuitMeta(9)
-            input(ITEM_IMPORT_BUS[EV])
-            input(QUANTUM_CHEST[EV], 2) // Super Chest V
-            input(FIELD_GENERATOR_IV, 4)
-            input(plateDense, Titanium, 6)
-            input(pipeHugeItem, Osmium, 16)
-            fluidInputs(RTMAlloy.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[EV])
-            EUt(VA[IV])
-            duration(5 * MINUTE)
-        }
-
-        // IV Huge Item Import Bus
+        // IV Quantum Item Import Bus
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(9)
             input(ITEM_IMPORT_BUS[IV])
-            input(QUANTUM_CHEST[IV], 2) // Quantum Chest I
-            input(FIELD_GENERATOR_LuV, 4)
-            input(plateDense, TungstenSteel, 6)
-            input(pipeHugeItem, Osmiridium, 16)
+            input(QUANTUM_CHEST[IV])
+            input(FIELD_GENERATOR_IV)
+            input(plateDense, TungstenSteel, 2)
+            input(pipeHugeItem, Osmium, 4)
             fluidInputs(HSSG.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[IV])
-            EUt(VA[LuV])
-            duration(5 * MINUTE)
+            output(QUANTUM_ITEM_IMPORT_BUS[IV - IV])
+            EUt(VA[IV])
+            duration(2 * MINUTE + 30 * SECOND)
         }
 
-        // LuV Huge Item Import Bus
+        // LuV Quantum Item Import Bus
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(9)
             input(ITEM_IMPORT_BUS[LuV])
-            input(QUANTUM_CHEST[LuV], 2) // Quantum Chest II
-            input(FIELD_GENERATOR_ZPM, 4)
-            input(plateDense, RhodiumPlatedPalladium, 6)
-            input(pipeHugeItem, Americium, 16)
+            input(QUANTUM_CHEST[LuV])
+            input(FIELD_GENERATOR_LuV)
+            input(plateDense, RhodiumPlatedPalladium, 2)
+            input(pipeHugeItem, Osmiridium, 4)
             fluidInputs(HSSS.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[LuV])
-            EUt(VA[ZPM])
-            duration(5 * MINUTE)
+            output(QUANTUM_ITEM_IMPORT_BUS[LuV - IV])
+            EUt(VA[LuV])
+            duration(2 * MINUTE + 30 * SECOND)
         }
 
-        // ZPM Huge Item Import Bus
+        // ZPM Quantum Item Import Bus
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(9)
             input(ITEM_IMPORT_BUS[ZPM])
-            input(QUANTUM_CHEST[ZPM], 2) // Quantum Chest III
-            input(FIELD_GENERATOR_UV, 4)
-            input(plateDense, NaquadahAlloy, 6)
-            input(pipeHugeItem, SeaborgiumCarbide, 16)
+            input(QUANTUM_CHEST[ZPM])
+            input(FIELD_GENERATOR_ZPM)
+            input(plateDense, NaquadahAlloy, 2)
+            input(pipeHugeItem, Americium, 4)
             fluidInputs(Tritanium.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[ZPM])
-            EUt(VA[UV])
-            duration(5 * MINUTE)
+            output(QUANTUM_ITEM_IMPORT_BUS[ZPM - IV])
+            EUt(VA[ZPM])
+            duration(2 * MINUTE + 30 * SECOND)
         }
 
-        // UV Huge Item Import Bus
+        // UV Quantum Item Import Bus
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(9)
             input(ITEM_IMPORT_BUS[UV])
-            input(QUANTUM_CHEST[UV], 2) // Quantum Chest IV
-            input(FIELD_GENERATOR_UHV, 4)
-            input(plateDense, Darmstadtium, 6)
-            input(pipeHugeItem, TitanSteel, 16)
+            input(QUANTUM_CHEST[UV])
+            input(FIELD_GENERATOR_UV)
+            input(plateDense, Darmstadtium, 2)
+            input(pipeHugeItem, QuantumAlloy, 4)
             fluidInputs(Adamantium.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[UV])
-            EUt(VA[UHV])
-            duration(5 * MINUTE)
+            output(QUANTUM_ITEM_IMPORT_BUS[UV - IV])
+            EUt(VA[UV])
+            duration(2 * MINUTE + 30 * SECOND)
         }
 
-        // UHV Huge Item Import Bus
+        // UHV Quantum Item Import Bus
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(9)
             input(ITEM_IMPORT_BUS[UHV])
-            input(QUANTUM_CHEST[UHV], 2) // Quantum Chest V
-            input(FIELD_GENERATOR_UEV, 4)
-            input(plateDense, Neutronium, 6)
-            input(pipeHugeItem, QuantumAlloy, 16)
+            input(QUANTUM_CHEST[UHV])
+            input(FIELD_GENERATOR_UHV)
+            input(plateDense, Neutronium, 2)
+            input(pipeHugeItem, TitanSteel, 4)
             fluidInputs(Vibranium.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[UHV])
-            EUt(VA[UEV])
-            duration(5 * MINUTE)
+            output(QUANTUM_ITEM_IMPORT_BUS[UHV - IV])
+            EUt(VA[UHV])
+            duration(2 * MINUTE + 30 * SECOND)
         }
 
-        // UEV Huge Item Import Bus
+        // UEV Quantum Item Import Bus
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(9)
             input(ITEM_IMPORT_BUS[UEV])
-            inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(2))
-            input(FIELD_GENERATOR_UIV, 4)
-            input(plateDense, Vibranium, 6)
-            input(pipeHugeItem, MetastableHassium, 16)
+            input(QUANTUM_CHEST[UHV], 4)
+            input(FIELD_GENERATOR_UEV)
+            input(plateDense, Vibranium, 2)
+            input(pipeHugeItem, MetastableHassium, 4)
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[UEV])
-            EUt(VA[UIV])
-            duration(5 * MINUTE)
+            output(QUANTUM_ITEM_IMPORT_BUS[UEV - IV])
+            EUt(VA[UEV])
+            duration(2 * MINUTE + 30 * SECOND)
         }
 
-        // UIV Huge Item Import Bus
+        // UIV Quantum Item Import Bus
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(9)
             input(ITEM_IMPORT_BUS[UIV])
-            inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(4))
-            input(FIELD_GENERATOR_UXV, 4)
-            input(plateDense, Shirabon, 6)
-            input(pipeHugeItem, Rhugnor, 16)
+            input(QUANTUM_CHEST[UHV], 16)
+            input(FIELD_GENERATOR_UIV)
+            input(plateDense, Shirabon, 2)
+            input(pipeHugeItem, Rhugnor, 4)
             fluidInputs(SpaceTime.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[UIV])
-            EUt(VA[UXV])
-            duration(5 * MINUTE)
+            output(QUANTUM_ITEM_IMPORT_BUS[UIV - IV])
+            EUt(VA[UIV])
+            duration(2 * MINUTE + 30 * SECOND)
         }
 
         // UXV Huge Item Import Bus
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(9)
             input(ITEM_IMPORT_BUS[UXV])
-            inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(8))
-            input(FIELD_GENERATOR_OpV, 4)
-            input(plateDense, Creon, 6)
-            input(pipeHugeItem, Abyssalloy, 16)
+            input(QUANTUM_CHEST[UHV], 32)
+            input(FIELD_GENERATOR_UXV)
+            input(plateDense, Creon, 2)
+            input(pipeHugeItem, Abyssalloy, 4)
             fluidInputs(WhiteDwarfMatter.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[UXV])
-            EUt(VA[OpV])
-            duration(5 * MINUTE)
+            output(QUANTUM_ITEM_IMPORT_BUS[UXV - IV])
+            EUt(VA[UXV])
+            duration(2 * MINUTE + 30 * SECOND)
         }
 
         // OpV Huge Item Import Bus
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(9)
             input(ITEM_IMPORT_BUS[OpV])
-            inputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(16))
-            input(FIELD_GENERATOR_MAX, 4)
-            input(plateDense, BlackDwarfMatter, 6)
-            input(pipeHugeItem, Mellion, 16)
+            input(QUANTUM_CHEST[UHV], 64)
+            input(FIELD_GENERATOR_OpV)
+            input(plateDense, BlackDwarfMatter, 2)
+            input(pipeHugeItem, Mellion, 4)
             fluidInputs(Universium.getFluid(L * 4))
-            output(HUGE_ITEM_IMPORT_BUS[OpV])
-            EUt(VA[MAX])
-            duration(5 * MINUTE)
+            output(QUANTUM_ITEM_IMPORT_BUS[OpV - IV])
+            EUt(VA[OpV])
+            duration(2 * MINUTE + 30 * SECOND)
         }
 
         // Sterile Cleaning Maintenance Hatch
@@ -1584,6 +1640,17 @@ internal object GTMetaTileEntityLoader
                 EUt(VA[voltage])
                 duration(20 * SECOND)
             }
+        }
+
+        // Energy Distributor
+        for (tier in ULV..OpV) // TODO: MAX when cable tier up is known.
+        {
+            ModHandler.addShapedRecipe(true, "energy_distributor_${VN[tier].lowercase()}", ENERGY_DISTRIBUTOR[tier].stack(),
+                "WPW", "BEB", "WPW",
+                'E', POWER_TRANSFORMER[tier].stack(),
+                'W', CraftingComponent.WIRE_HEX.getIngredient(tier) as ItemStack,
+                'P', CraftingComponent.DOUBLE_PLATE.getIngredient(tier) as ItemStack,
+                'B', CraftingComponents.CABLE_OCT_TIER_UP.getIngredient(tier) as ItemStack)
         }
     }
 

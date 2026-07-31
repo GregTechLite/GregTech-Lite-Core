@@ -11,11 +11,13 @@ import gregtech.api.unification.material.Materials.Benzene
 import gregtech.api.unification.material.Materials.Boron
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Butene
+import gregtech.api.unification.material.Materials.Butyraldehyde
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Dimethylamine
 import gregtech.api.unification.material.Materials.Dimethylhydrazine
 import gregtech.api.unification.material.Materials.EXT_METAL
+import gregtech.api.unification.material.Materials.Ethenone
 import gregtech.api.unification.material.Materials.Ethylene
 import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Gallium
@@ -79,6 +81,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AscorbicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Azafullerene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETS
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BPAPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Benzaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylChloride
@@ -96,6 +99,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bromomethane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanediol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butyllithium
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CBDOPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Carbamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cellulose
@@ -132,14 +136,17 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diiodobiphenyl
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diisopropylcarbodiimide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diketopyrrolopyrrole
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylSulfide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylTerephthalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylacetamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylamineHydrochloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylaminopyridine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylformamide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylketene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dinitrodipropanyloxybenzene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dinitrotoluene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiphenylCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DirectBrown77
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DitertbutylDicarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Durene
@@ -173,6 +180,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GammaButyrolacton
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GeodesicPolyarene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glucose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glutamine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GlycidylStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Glyoxal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GrignardReagent
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Guaiacol
@@ -191,6 +199,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydroxyquinoline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indanone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indigo
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsobutyricAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsobutyricAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isochloropropane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Isophthaloylbisdiethylthiourea
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylAlcohol
@@ -204,11 +214,13 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MalonicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mauveine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methoxycreosol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylFormate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylhydrazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylparatoluate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methyltrichlorosilane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Monoglyceride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NDifluorophenylpyrrole
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NHydroxysuccinimide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NMethylPyrrolidone
@@ -260,8 +272,10 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RhodamineB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SacchariaAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sarcosine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Silane
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumSulfanilate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sorbose
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StearicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Succinimide
@@ -280,6 +294,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetraethylammoniu
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrahydrofuran
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetramethylcyclobutanediol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetrasodiumEDTA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThionylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TolueneDiisocyanate
@@ -329,7 +344,9 @@ object GTLiteOrganicChemistryMaterials
         Polyisoprene = addMaterial(8003, "polyisoprene")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(423)
+            }
             color(0x575757).iconSet(SHINY)
             components(Carbon, 5, Hydrogen, 8)
             flags(NO_SMASHING, NO_SMELTING, DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
@@ -555,7 +572,9 @@ object GTLiteOrganicChemistryMaterials
         KaptonK = addMaterial(8030, "kapton_k")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(673)
+            }
             color(0xFFCE52)
             components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -589,7 +608,9 @@ object GTLiteOrganicChemistryMaterials
         KaptonE = addMaterial(8034, "kapton_e")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(873)
+            }
             color(0xFFDF8C)
             components(Carbon, 12, Hydrogen, 12, Nitrogen, 2, Oxygen, 1)
             flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, NO_SMASHING, NO_SMELTING, GENERATE_FOIL)
@@ -623,7 +644,9 @@ object GTLiteOrganicChemistryMaterials
         Polymethylmethacrylate = addMaterial(8038, "polymethylmethacrylate")
         {
             ingot()
-            liquid()
+            liquid {
+                temperature(473)
+            }
             color(0x91CAE1)
             components(Carbon, 5, Hydrogen, 8, Oxygen, 2)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE,
@@ -666,7 +689,9 @@ object GTLiteOrganicChemistryMaterials
         Polystyrene = addMaterial(8043, "polystyrene")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(423)
+            }
             color(0xE1C2C2)
             components(Carbon, 8, Hydrogen, 8)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -676,7 +701,9 @@ object GTLiteOrganicChemistryMaterials
         PolystyreneSulfonate = addMaterial(8044, "polystyrene_sulfonate")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(293)
+            }
             color(0xE17C72)
             components(Carbon, 8, Hydrogen, 8, Sulfur, 1, Oxygen, 3)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -688,7 +715,7 @@ object GTLiteOrganicChemistryMaterials
             polymer()
             liquid()
             color(0xE165A7)
-            flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
+            flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
             components(Edot, 1, PolystyreneSulfonate, 1)
             cableProp(V[ZPM], 6, 1)
         }
@@ -886,7 +913,9 @@ object GTLiteOrganicChemistryMaterials
         PolyphosphonitrileFluoroRubber = addMaterial(8068, "polyphosphonitrile_fluoro_rubber")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(593)
+            }
             color(0x372B28)
             components(Carbon, 24, Hydrogen, 16, Oxygen, 8, Nitrogen, 4, Phosphorus, 4, Fluorine, 40)
             flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_FOIL)
@@ -956,7 +985,9 @@ object GTLiteOrganicChemistryMaterials
         PolytetramethyleneGlycolRubber = addMaterial(8076, "polytetramethylene_glycol_rubber")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(423)
+            }
             color(0xFFFFFF)
             components(Carbon, 23, Hydrogen, 23, Oxygen, 5, Nitrogen, 2)
             flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_ROD, GENERATE_RING, GENERATE_FOIL)
@@ -1024,7 +1055,9 @@ object GTLiteOrganicChemistryMaterials
         Polyetheretherketone = addMaterial(8084, "polyetheretherketone")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(673)
+            }
             color(0x45433D)
             components(Carbon, 20, Hydrogen, 12, Oxygen, 3)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -1237,7 +1270,9 @@ object GTLiteOrganicChemistryMaterials
         PolyethyleneTerephthalate = addMaterial(8108, "polyethylene_terephthalate")
         {
             polymer()
-            liquid()
+            liquid {
+                temperature(523)
+            }
             color(0x1E5C58)
             components(Carbon, 10, Hydrogen, 6, Oxygen, 4)
             flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING, GENERATE_PLATE, GENERATE_FOIL)
@@ -2351,6 +2386,118 @@ object GTLiteOrganicChemistryMaterials
             flags(DISABLE_DECOMPOSITION)
         }
 
+        // 8235 Stearic Acid
+        StearicAcid = addMaterial(8235, "stearic_acid")
+        {
+            liquid()
+            color(0xF5E8E8)
+            components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8236 Sodium Stearate
+        SodiumStearate = addMaterial(8236, "sodium_stearate")
+        {
+            liquid()
+            color(0xFFF5F5)
+            components(Carbon, 18, Hydrogen, 35, Oxygen, 2, Sodium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8237 Methyl Stearate
+        MethylStearate = addMaterial(8237, "methyl_stearate")
+        {
+            liquid()
+            color(0xF6E2E2)
+            components(Carbon, 19, Hydrogen, 38, Oxygen, 2)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8238 Glycidyl Stearate
+        GlycidylStearate = addMaterial(8238, "glycidyl_stearate")
+        {
+            liquid()
+            color(0x64E1BF)
+            components(Carbon, 21, Hydrogen, 40, Oxygen, 3)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8239 Monoglyceride
+        Monoglyceride = addMaterial(8239, "monoglyceride")
+        {
+            liquid()
+            color(0x30C09A)
+            components(Carbon, 21, Hydrogen, 42, Oxygen, 4)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8240 Dimethyl Carbonate
+        DimethylCarbonate = addMaterial(8240, "dimethyl_carbonate")
+        {
+            liquid()
+            color(0xC5EB9E)
+            components(Carbon, 3, Hydrogen, 6, Oxygen, 3)
+        }
+        
+        // 8241 Diphenyl Carbonate
+        DiphenylCarbonate = addMaterial(8241, "diphenyl_carbonate")
+        {
+            liquid()
+            colorAverage(DimethylCarbonate, Benzene)
+            components(Carbon, 13, Hydrogen, 10, Oxygen, 3)
+        }
+
+        // 8242 BPA Polycarbonate
+        BPAPolycarbonate = addMaterial(8242, "bpa_polycarbonate")
+        {
+            polymer()
+            liquid()
+            color(0xE3EBDA)
+            flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING)
+            components(Carbon, 16, Hydrogen, 14, Oxygen, 3)
+        }
+
+        // 8243 Isobutyric Acid
+        IsobutyricAcid = addMaterial(8243, "isobutyric_acid")
+        {
+            liquid()
+            colorAverage(Butyraldehyde, Oxygen)
+            components(Carbon, 4, Hydrogen, 8, Oxygen, 2)
+        }
+
+        // 8244 Isobutyric Anhydride
+        IsobutyricAnhydride = addMaterial(8244, "isobutyric_anhydride")
+        {
+            liquid()
+            colorAverage(IsobutyricAcid, AceticAnhydride)
+            components(Carbon, 8, Hydrogen, 14, Oxygen, 3)
+        }
+
+        // 8245 Dimethylketene
+        Dimethylketene = addMaterial(8245, "dimethylketene")
+        {
+            liquid()
+            colorAverage(Ethenone, IsobutyricAnhydride)
+            components(Carbon, 4, Hydrogen, 6, Oxygen, 2)
+        }
+
+        // 8246 Tetramethylcyclobutanediol (CBDO)
+        Tetramethylcyclobutanediol = addMaterial(8246, "tetramethylcyclobutanediol")
+        {
+            liquid()
+            colorAverage(Dimethylketene, Butanediol)
+            components(Carbon, 8, Hydrogen, 16, Oxygen, 2)
+        }
+
+        // 8247 CBDO Polycarbonate
+        CBDOPolycarbonate = addMaterial(8247, "cbdo_polycarbonate")
+        {
+            polymer()
+            liquid()
+            color(0xDFDFDF)
+            flags(DISABLE_DECOMPOSITION, NO_SMASHING, NO_SMELTING)
+            components(Carbon, 9, Hydrogen, 14, Oxygen, 3)
+        }
     }
 
     // @formatter:on

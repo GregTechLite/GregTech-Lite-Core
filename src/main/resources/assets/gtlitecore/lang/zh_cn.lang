@@ -436,6 +436,7 @@ tile.gtlitecore.active_unique_casing_01.heat_vent.name=散热片
 tile.gtlitecore.active_unique_casing_01.temperature_controller.name=反应堆温度控制器
 tile.gtlitecore.active_unique_casing_01.nano_precise_assembly_unit.name=纳米精密装配单元
 tile.gtlitecore.active_unique_casing_01.nanite_control_casing.name=纳米蜂群控制机械方块
+tile.gtlitecore.active_unique_casing_01.crushing_wheel.name=粉碎轮
 
 tile.gtlitecore.turbine_casing_01.rhodium_plated_palladium_turbine.name=镀铑钯涡轮机器外壳
 
@@ -581,7 +582,7 @@ tile.gtlitecore.acceleration_track.mk5.tooltip=解锁更多模块槽位与等级
 
 tile.gtlitecore.wire_coil.adamantium.name=精金线圈方块
 tile.gtlitecore.wire_coil.infinity.name=无尽线圈方块
-tile.gtlitecore.wire_coil.halkonite_steel.name=赫利孔钢线圈方块
+tile.gtlitecore.wire_coil.halkonite_steel.name=星脊钢线圈方块
 tile.gtlitecore.wire_coil.space_time.name=时空线圈方块
 tile.gtlitecore.wire_coil.eternity.name=永恒线圈方块
 
@@ -647,6 +648,8 @@ tile.gtlitecore.glass_casing_01.neutronium_borosilicate.name=中子强化硼硅�
 tile.gtlitecore.glass_casing_01.cosmic_neutronium_borosilicate.name=宇宙中子强化硼硅酸盐玻璃
 tile.gtlitecore.glass_casing_01.infinity_borosilicate.name=无尽强化硼硅酸盐玻璃
 tile.gtlitecore.glass_casing_01.transcendent_metal_borosilicate.name=超时空强化硼硅酸盐玻璃
+tile.gtlitecore.glass_casing_01.space_time_borosilicate.name=时空强化硼硅酸盐玻璃
+tile.gtlitecore.glass_casing_01.red_matter_borosilicate.name=红物质强化硼硅酸盐玻璃
 
 tile.gtlitecore.glass_casing_02.pmma.name=PMMA玻璃
 tile.gtlitecore.glass_casing_02.pmma.tooltip=亚克力玻璃
@@ -687,18 +690,25 @@ tile.gtlitecore.glass_casing_03.nano_shielding_frame.tooltip=绝对领域力场
 tile.gtlitecore.naquadria_charge.name=超能硅岩爆弹
 tile.gtlitecore.naquadria_charge.tooltip.1=以高能爆炸物诱导超能硅岩释放巨量的能量。
 tile.gtlitecore.naquadria_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.naquadria_charge.name=超能硅岩爆弹
 
 tile.gtlitecore.taranium_charge.name=塔兰金属爆弹
 tile.gtlitecore.taranium_charge.tooltip.1=驱役已知宇宙中能量密度最高的物质塔兰金属产生爆炸。
 tile.gtlitecore.taranium_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.taranium_charge.name=塔兰金属爆弹
 
 tile.gtlitecore.leptonic_charge.name=轻子爆弹
 tile.gtlitecore.leptonic_charge.tooltip.1=在微观层面上彻底撕裂强相互作用以带来实质性的毁灭。
 tile.gtlitecore.leptonic_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.leptonic_charge.name=轻子爆弹
 
 tile.gtlitecore.quantum_chromodynamic_charge.name=量子色动力学爆弹
 tile.gtlitecore.quantum_chromodynamic_charge.tooltip.1=将夸克禁闭爆破以破坏原子核的基本结构来彻底抹杀物质。
 tile.gtlitecore.quantum_chromodynamic_charge.tooltip.2=§c警告：§f被爆炸摧毁的方块将被§4彻底摧毁§f。
+entity.gtlitecore.quantum_chromodynamic_charge.name=量子色动力学爆弹
+
+tile.gtlitecore.bottlecrate.name=瓶筐
+tile.gtlitecore.bottlecrate.tooltip.1=可以放置各种液体容器与饮品
 
 # Items
 metaitem.shape.mold.screw.name=模具（螺丝）
@@ -862,6 +872,12 @@ metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell6
 
 metaitem.tool.magnetron.name=磁控管
 
+metaitem.tool.laser_destroyer.name=激光拆解器
+metaitem.tool.laser_destroyer.mode=潜行右击以切换§f精准模式§7，在§f精准模式§7下自动启用精准采集
+metaitem.tool.laser_destroyer.energy_cost=挖掘方块时消耗§e%s EU§7，处于§f精准模式§7下消耗双倍
+metaitem.tool.laser_destroyer.silk_mode.disabled=精准模式：§c禁用§f
+metaitem.tool.laser_destroyer.silk_mode.enabled=精准模式：§a启用§f
+
 metaitem.tool.petri_dish.dirty.name=污浊的培养皿
 metaitem.tool.petri_dish.brevibacterium_flavum.name=黄色短杆菌培养皿
 metaitem.tool.petri_dish.cupriavidus_necator.name=贪铜钩虫菌培养皿
@@ -884,6 +900,21 @@ metaitem.tool.memory_card.ghast.name=恶魂意识存储卡
 metaitem.tool.memory_card.shulker.name=潜影壳意识存储卡
 metaitem.tool.memory_card.wither.name=凋零意识存储卡
 metaitem.tool.memory_card.ender_dragon.name=末影龙意识存储卡
+metaitem.tool.memory_card.chicken.name=鸡意识存储卡
+metaitem.tool.memory_card.cow.name=牛意识存储卡
+metaitem.tool.memory_card.pig.name=猪意识存储卡
+metaitem.tool.memory_card.sheep.name=羊意识存储卡
+metaitem.tool.memory_card.horse.name=马意识存储卡
+metaitem.tool.memory_card.donkey.name=驴意识存储卡
+metaitem.tool.memory_card.mule.name=骡意识存储卡
+metaitem.tool.memory_card.ocelot.name=豹猫意识存储卡
+metaitem.tool.memory_card.wolf.name=狼意识存储卡
+metaitem.tool.memory_card.rabbit.name=兔子意识存储卡
+metaitem.tool.memory_card.llama.name=羊驼意识存储卡
+metaitem.tool.memory_card.mooshroom.name=哞菇意识存储卡
+metaitem.tool.memory_card.bat.name=蝙蝠意识存储卡
+metaitem.tool.memory_card.villager.name=村民意识存储卡
+metaitem.tool.memory_card.trader.name=流浪商人意识存储卡
 
 metaitem.tool.catalyst.base.name=催化剂载体
 metaitem.tool.catalyst.rubber_polymer.name=橡胶聚合催化剂
@@ -895,7 +926,7 @@ metaitem.tool.catalyst.platinum_group.name=铂族金属催化剂
 metaitem.tool.catalyst.radioactive.name=放射活化催化剂
 metaitem.tool.catalyst.advanced_radioactive.name=裂变激发催化剂
 metaitem.tool.catalyst.ultimate_radioactive.name=超重反应催化剂
-metaitem.tool.catalyst.titanium_tungsten_indium.name=钛钨铟催化剂
+metaitem.tool.catalyst.transition_metal.name=过渡金属催化剂
 metaitem.tool.catalyst.adhesion_promoter.name=粘合促进催化剂
 metaitem.tool.catalyst.rare_earth_group.name=稀土金属催化剂
 metaitem.tool.catalyst.rare_metal_group.name=金属萃取催化剂
@@ -1094,7 +1125,7 @@ metaitem.mining_drone.max.name=§c§lMAX§f 采矿无人机
 metaitem.mining_drone.max.tooltip=行星带资源提取器
 
 metaitem.tool.component.grinder.boron_nitride.name=氮化硼磨头
-metaitem.tool.component.grinder.halkonite_steel.name=赫利孔钢磨头
+metaitem.tool.component.grinder.halkonite_steel.name=星脊钢磨头
 
 metaitem.tool.disposable.saw.name=一次性锯
 metaitem.tool.disposable.saw.tooltip=仅用于合成的一次性工具
@@ -1516,6 +1547,7 @@ metaitem.food.tableware.paper_cone.name=滤纸
 metaitem.food.tableware.component.clay_cup.name=粘土杯
 metaitem.food.tableware.ceramic_cup.name=瓷杯
 metaitem.food.tableware.plastic_bottle.name=塑料瓶
+metaitem.food.tableware.pvc_can.name=聚氯乙烯罐
 
 metaitem.food.drink.grape_juice.name=葡萄汁
 metaitem.food.drink.grape_juice.tooltip=富含糖分
@@ -1545,6 +1577,9 @@ metaitem.food.polenta.tooltip.2=在非洲东部也有更浓稠的玉米糊恩希
 metaitem.food.graham_cracker.name=全麦饼干
 metaitem.food.graham_cracker.tooltip=富含饱腹感
 
+metaitem.food.horse_meat.name=生马肉
+metaitem.food.cooked_horse_meat.name=熟马肉
+
 metaitem.food.hard_apple_candy.name=苹果硬糖
 metaitem.food.hard_apple_candy.tooltip=或许有点硌牙
 
@@ -1558,6 +1593,11 @@ metaitem.fruit.product.rainbow_berry.name=彩虹草莓
 metaitem.fruit.product.rainbow_berry.tooltip=多彩
 metaitem.fruit.product.moon_berry.name=月莓
 metaitem.fruit.product.moon_berry.tooltip=哇哦！
+
+metaitem.food.nutrient_paste_meal.name=营养膏
+metaitem.food.nutrient_paste_meal.tooltip.1=食用起来非常恶心
+metaitem.food.rich_nutrient_paste_meal.name=营养膏（富营养）
+metaitem.food.rich_nutrient_paste_meal.tooltip.1=恶心程度也许小于营养价值
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=玉米粒
@@ -1582,6 +1622,10 @@ metaitem.apple_pulp_dust.name=苹果果肉末
 metaitem.hard_apple_candy_chunk_plate_dense.name=苹果硬糖胚
 metaitem.hard_apple_candy_plate.name=苹果硬糖片
 metaitem.hard_apple_candy_dust.name=苹果硬糖碎
+metaitem.soybean_meal_dust_small.name=大豆豆粕
+metaitem.plant_protein_dust_small.name=植物蛋白
+metaitem.eggshell_dust_small.name=蛋壳
+metaitem.wet_egg_white_cake_crushed_centrifuged.name=湿鸡蛋蛋白饼
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
@@ -1647,6 +1691,8 @@ recipemap.integrated_ore_processor.name=集成矿石处理厂
 recipemap.matter_reshaping_framework.name=物质重塑
 recipemap.solidification_submodule.name=锻压固化模组
 recipemap.recombination_submodule.name=分离重构模组
+recipemap.mob_collecting_mode.name=繁育模式
+recipemap.mob_slaughtering_mode.name=屠宰模式
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -1693,17 +1739,6 @@ gtlitecore.recipe.component_assembly_line_tier.14=部件装配外壳等级：MAX
 
 gtlitecore.recipe.min_height=最低高度：%s
 
-gtlitecore.recipe.pcb_factory_tier=结构等级：错误
-gtlitecore.recipe.pcb_factory_tier.1=结构等级：1
-gtlitecore.recipe.pcb_factory_tier.2=结构等级：2
-gtlitecore.recipe.pcb_factory_tier.3=结构等级：3
-gtlitecore.recipe.pcb_factory_auxiliary_tier=需要生物仓升级
-
-gtlitecore.recipe.nano_forge_tier=结构等级：错误
-gtlitecore.recipe.nano_forge_tier.1=结构等级：1
-gtlitecore.recipe.nano_forge_tier.2=结构等级：2
-gtlitecore.recipe.nano_forge_tier.3=结构等级：3
-
 gtlitecore.recipe.quantum_force_transformer_tier=结构等级：错误
 gtlitecore.recipe.quantum_force_transformer_tier.1=结构等级：1（中子）
 gtlitecore.recipe.quantum_force_transformer_tier.2=结构等级：2（寰宇）
@@ -1716,6 +1751,14 @@ gtlitecore.recipe.acceleration_track_tier.2=加速轨道等级：MK2
 gtlitecore.recipe.acceleration_track_tier.3=加速轨道等级：MK3
 gtlitecore.recipe.acceleration_track_tier.4=加速轨道等级：MK4
 gtlitecore.recipe.acceleration_track_tier.5=加速轨道等级：MK5
+
+gtlitecore.recipe.request_additional_structures=需要：%s
+
+# Machine API contexts
+gtlitecore.machine.additional_structure.data_stick.name=§o附属结构配置数据
+gtlitecore.machine.additional_structure.pos_saved=已将附属结构控制器坐标（%s，%s，%s）保存到闪存
+gtlitecore.machine.additional_structure.connected=已将附属结构连接至主结构
+gtlitecore.machine.additional_structure.not_found=未发现有效的附属结构
 
 # Machines
 gtlitecore.machine.polisher.lv.name=§7基础§f抛光机
@@ -2216,26 +2259,6 @@ gtlitecore.machine.mob_extractor.mv.name=§b优良§f生物资源提取器
 gtlitecore.machine.mob_extractor.mv.tooltip=鸡蛋收集器
 gtlitecore.machine.mob_extractor.hv.name=§6高级§f生物资源提取器
 gtlitecore.machine.mob_extractor.hv.tooltip=鸡蛋收集器
-gtlitecore.machine.mob_extractor.ev.name=§5数字化§f生物资源提取器
-gtlitecore.machine.mob_extractor.ev.tooltip=鸡蛋收集器
-gtlitecore.machine.mob_extractor.iv.name=§1精英§f生物资源提取器
-gtlitecore.machine.mob_extractor.iv.tooltip=无痛采血站
-gtlitecore.machine.mob_extractor.luv.name=§d先锋§f生物资源提取器
-gtlitecore.machine.mob_extractor.luv.tooltip=无痛采血站
-gtlitecore.machine.mob_extractor.zpm.name=§c大师§f生物资源提取器
-gtlitecore.machine.mob_extractor.zpm.tooltip=无痛采血站
-gtlitecore.machine.mob_extractor.uv.name=§3终极§f生物资源提取器
-gtlitecore.machine.mob_extractor.uv.tooltip=活体陈列室
-gtlitecore.machine.mob_extractor.uhv.name=§4高科技§f生物资源提取器
-gtlitecore.machine.mob_extractor.uhv.tooltip=活体陈列室
-gtlitecore.machine.mob_extractor.uev.name=§a次世代§f生物资源提取器
-gtlitecore.machine.mob_extractor.uev.tooltip=活体陈列室
-gtlitecore.machine.mob_extractor.uiv.name=§2史诗§f生物资源提取器
-gtlitecore.machine.mob_extractor.uiv.tooltip=活体陈列室
-gtlitecore.machine.mob_extractor.uxv.name=§e传奇§f生物资源提取器
-gtlitecore.machine.mob_extractor.uxv.tooltip=活体陈列室
-gtlitecore.machine.mob_extractor.opv.name=§9超凡§f生物资源提取器
-gtlitecore.machine.mob_extractor.opv.tooltip=活体陈列室
 
 gtlitecore.machine.bio_simulator.lv.name=§7基础§f生物模拟室
 gtlitecore.machine.bio_simulator.lv.tooltip=怪物意识模拟器
@@ -2270,6 +2293,16 @@ gtlitecore.machine.acid_generator.hv.name=§6进阶§f酸性发电机
 gtlitecore.machine.acid_generator.hv.tooltip=需要酸性物质
 gtlitecore.machine.acid_generator.ev.name=§5涡轮§f酸性发电机
 gtlitecore.machine.acid_generator.ev.tooltip=需要酸性物质
+
+gtlitecore.machine.mob_slaughter.lv.name=§7基础§f生物屠宰机
+gtlitecore.machine.mob_slaughter.lv.tooltip=屠夫的最爱
+gtlitecore.machine.mob_slaughter.mv.name=§b优良§f生物屠宰机
+gtlitecore.machine.mob_slaughter.mv.tooltip=屠夫的最爱
+gtlitecore.machine.mob_slaughter.hv.name=§6高级§f生物屠宰机
+gtlitecore.machine.mob_slaughter.hv.tooltip=屠夫的最爱
+
+gtlitecore.machine.mob_slaughter.tooltip.1=工作时每秒对§a9×9§7范围内的§l至多4个生物§r§7造成40点伤害并产生%s次掉落
+gtlitecore.machine.mob_slaughter.tooltip.2=每次造成伤害消耗§c%s§7 EU的能量，输入§b一氧化二氮§7来将最大目标数提升到§l12个§r§7
 
 gtlitecore.machine.coagulation_tank.name=凝固缸
 gtlitecore.machine.coagulation_tank.tooltip.1=凝固你的胶乳！
@@ -2307,8 +2340,13 @@ gtlitecore.machine.large_turbine.hot_coolant.name=大型热冷却液涡轮
 gtlitecore.machine.large_turbine.supercritical_fluid.name=大型超临界流体涡轮
 
 gtlitecore.machine.hydraulic_fracker.name=压裂机
+gtlitecore.machine.hydraulic_fracker.vein_full=流体矿脉已满
+gtlitecore.machine.hydraulic_fracker.insufficient_power=输入更多能量来提高压裂压力
+gtlitecore.machine.hydraulic_fracker.multiplier=当前倍率：%d/%d
 gtlitecore.machine.hydraulic_fracker.tooltip.1=使用§b压裂液§7补充基岩下的区块流体，每次消耗§f1000L§7。
-gtlitecore.machine.hydraulic_fracker.tooltip.2=§e能量消耗：§f%s EU/t
+gtlitecore.machine.hydraulic_fracker.tooltip.2=提供至多§f%s倍§7的基础能量输入来提高压裂压力
+gtlitecore.machine.hydraulic_fracker.tooltip.3=§e基础能量消耗：§f%s EU/t
+gtlitecore.machine.hydraulic_fracker.tooltip.4=输入每增加§f%s EU/t§7，效率就提升§f100%%§7
 
 gtlitecore.machine.catalytic_reformer.name=催化重整机
 
@@ -2375,39 +2413,60 @@ gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=兼容所有普通§2化�
 
 gtlitecore.machine.pcb_factory.name=PCB工厂
 gtlitecore.machine.pcb_factory.tooltip.1=专门用于生产电路基板的大型工厂
-gtlitecore.machine.pcb_factory.tooltip.2=带有多级附属结构，附属结构的等级限制了最大配方等级。
-gtlitecore.machine.pcb_factory.tooltip.3=2级与3级PCB工厂支持放置额外的§f纳米蜂群§7来增加并行数：
-gtlitecore.machine.pcb_factory.tooltip.4=- 2级：每放入1个§6银纳米蜂群§7，并行数增加2；
-gtlitecore.machine.pcb_factory.tooltip.5=- 3级：每放入1个§a金纳米蜂群§7，并行数增加4；
-gtlitecore.machine.pcb_factory.tooltip.6=需要升级§d冷却结构§7才能解锁机器的超频功能：
-gtlitecore.machine.pcb_factory.tooltip.7=- 建造§b水冷塔§7后，解锁配方的§f默认超频§7功能；
-gtlitecore.machine.pcb_factory.tooltip.8=- 建造§9空冻塔§7后，解锁配方的§5无损超频§7功能；
-gtlitecore.machine.pcb_factory.tooltip.9=建造§2生物室§7以解锁高级电路板配方。
-gtlitecore.machine.pcb_factory.tooltip.10=调整机器的线宽（默认§f100μm§7，每次±§f25μm§7）以获得特殊效果：
-gtlitecore.machine.pcb_factory.tooltip.11=- 线宽每缩短§f25μm§7，配方时间就减少§f20%%§7，耗能就增加§f50%%§7；
-gtlitecore.machine.pcb_factory.tooltip.12=- 线宽每放宽§f25μm§7，配方时间就增加§f20%%§7，耗能就减少§f10%%§7；
-gtlitecore.machine.pcb_factory.tooltip.13=机器的最小线宽为§f25μm§7，最大线宽为§f200μm§7。
-gtlitecore.machine.pcb_factory.tooltip.14=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
-gtlitecore.machine.pcb_factory.tooltip.15=§f如果你不知道如何获得纳米蜂群，请搜索§3纳米锻炉§f。
+gtlitecore.machine.pcb_factory.tooltip.2=建造§e附属模块§7来解锁高阶配方或增强机器性能
+gtlitecore.machine.pcb_factory.tooltip.3=默认情况下§f不会进行超频§7，需要建造对应的附属模块来解锁
 
-gtlitecore.machine.pcb_factory.structure_info=结构等级：%s (线宽：%sμm)
-gtlitecore.machine.pcb_factory.structure_cooling=冷却已启用
-gtlitecore.machine.pcb_factory.structure_thermosink=内部温度正在逼近绝对零度
-gtlitecore.machine.pcb_factory.structure_bio_chamber=有机黏菌充斥于生物仓中
+gtlitecore.machine.pcb_factory.structure.t2=纳米光刻集群：§a启用
+gtlitecore.machine.pcb_factory.structure.t3=微尺度电路元件检测器：§a启用
+gtlitecore.machine.pcb_factory.structure.oc=水冷塔：§a启用
+gtlitecore.machine.pcb_factory.structure.perfect_oc=空冻塔：§a启用
+gtlitecore.machine.pcb_factory.structure.bio=生物元件培养室：§a启用
 
-gtlitecore.machine.pcb_factory.trace_size.decrement=§c放宽25μm线宽 /n§7配方时间增加20%%，耗电量减少10%%
-gtlitecore.machine.pcb_factory.trace_size.increment=§a缩短25μm线宽 /n§7配方时间减少20%%，耗电量增加50%%
+gtlitecore.machine.pcb_factory.additional_structure_name=PCB工厂附属模块
+
+gtlitecore.machine.nanolithography_array.name=纳米光刻集群
+gtlitecore.machine.nanolithography_array.tooltip.1=将纳米光刻功能添加到PCB工厂
+gtlitecore.machine.nanolithography_array.tooltip.2=在本结构中的§f输入总线§7中每有1个§d银纳米蜂群§7，最大并行数§e+2§7
+
+gtlitecore.machine.microscale_circuit_detector.name=微尺度电路元件检测器
+gtlitecore.machine.microscale_circuit_detector.tooltip.1=将微尺度检测功能添加到PCB工厂
+gtlitecore.machine.microscale_circuit_detector.tooltip.2=在本结构中的§f输入总线§7中每有1个§6金纳米蜂群§7，最大并行数§e+4§7
+
+gtlitecore.machine.bio_cultivation_chamber.name=生物元件培养室
+gtlitecore.machine.bio_cultivation_chamber.tooltip.1=将生物培养功能添加到PCB工厂
+
+gtlitecore.machine.water_cooling_tower.name=水冷塔
+gtlitecore.machine.water_cooling_tower.tooltip.1=将冷却功能添加到PCB工厂
+gtlitecore.machine.water_cooling_tower.tooltip.2=当§6PCB工厂§7安装此模块时为其解锁§a常规超频§7功能
+gtlitecore.machine.water_cooling_tower.tooltip.3=可以输入§b蒸馏水§7来使PCB工厂获得§9+400%%§7的速度加成
+
+gtlitecore.machine.thermosink_cooling_tower.name=空冻塔
+gtlitecore.machine.thermosink_cooling_tower.tooltip.1=将超级冷却功能添加到PCB工厂
+gtlitecore.machine.thermosink_cooling_tower.tooltip.2=当§6PCB工厂§7安装此模块时为其解锁§b无损超频§7功能
 
 gtlitecore.machine.nano_forge.name=纳米锻炉
 gtlitecore.machine.nano_forge.tooltip.1=以极高的能量融合金属与电路，进而淬炼出纳米蜂群
-gtlitecore.machine.nano_forge.tooltip.2=你需要先制作§3碳纳米蜂群§7来塑造纳米锻炉，第一批纳米蜂群将引导金属与电路的融合过程。
-gtlitecore.machine.nano_forge.tooltip.3=纳米锻炉无视§f最大配方等级§7限制，只要能源仓的功率超过了配方标称功率，机器就可以工作。
-gtlitecore.machine.nano_forge.tooltip.4=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
-gtlitecore.machine.nano_forge.tooltip.5=带有多级附属结构，附属结构的等级限制了最大配方等级。
-gtlitecore.machine.nano_forge.tooltip.6=2级与3级纳米锻炉分别具有§e64§7与§e256§7并行。
-gtlitecore.machine.nano_forge.tooltip.7=当结构等级大于配方要求等级时，进行§d无损超频§7。
+gtlitecore.machine.nano_forge.tooltip.2=需要先制作§6碳纳米蜂群§7来塑造纳米锻炉，第一批纳米蜂群将引导金属与电路的融合过程。
 
-gtlitecore.machine.nano_forge.structure_info=结构等级：%s
+gtlitecore.machine.nano_forge.structure.t2=多象限意识存储中心：§a启用
+gtlitecore.machine.nano_forge.structure.t3=纳米蜂群自复制解限器：§a启用
+gtlitecore.machine.nano_forge.structure.t4=虚拟化格式塔计算上行链路：§a启用
+
+gtlitecore.machine.nano_forge.additional_structure_name=纳米锻炉附属模块
+
+gtlitecore.machine.consciousness_storage_center.name=多象限意识存储中心
+gtlitecore.machine.consciousness_storage_center.tooltip.1=将分布式集中意识存储功能添加到纳米锻炉
+gtlitecore.machine.consciousness_storage_center.tooltip.2=当§6纳米锻炉§7安装此模块时使其最大并行数为§e64§7
+
+gtlitecore.machine.nanite_replication_unrestricor.name=纳米蜂群自复制解限器
+gtlitecore.machine.nanite_replication_unrestricor.tooltip.1=将蜂群自复制功能添加到纳米锻炉
+gtlitecore.machine.nanite_replication_unrestricor.tooltip.2=当§6纳米锻炉§7安装此模块时使其最大并行数为§e256§7
+gtlitecore.machine.nanite_replication_unrestricor.tooltip.3=当§6纳米锻炉§7安装此模块时为其解锁§b无损超频§7功能
+
+gtlitecore.machine.virtual_gestalt_computing_uplink.name=虚拟化格式塔计算上行链路
+gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.1=将虚拟化意识存储与计算功能添加到纳米锻炉
+gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.2=当§6纳米锻炉§7安装此模块时使其最大并行数§e无限制§7
+gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.3=当§6纳米锻炉§7安装此模块时为其解锁§b双倍无损超频§7功能
 
 gtlitecore.machine.quantum_force_transformer.name=量子操纵者
 gtlitecore.machine.quantum_force_transformer.tooltip.1=让复杂的化学过程一步到位
@@ -2483,17 +2542,21 @@ gtlitecore.machine.space_pump_module.tooltip.2=设定行星与流体类型以决
 gtlitecore.machine.space_pump_module.tooltip.3=升级钻井模块等级以解锁更多的流体输出
 gtlitecore.machine.space_pump_module.tooltip.4=可以同时设定4种输出流体类型
 gtlitecore.machine.space_pump_module.tooltip.5=工作速度提高4倍
-gtlitecore.machine.space_pump_module.max_parallel=运行电压：%s§7
+gtlitecore.machine.space_pump_module.max_parallel=运行电压：%s§7，最大并行数：§e%s§7
 gtlitecore.machine.space_pump_module.track_tier=需要§f%s§7或更高等级的加速轨道。
 
+gtlitecore.machine.space_pump_module.config_button.closed=打开配置面板
+gtlitecore.machine.space_pump_module.config_button.opened=关闭配置面板
 gtlitecore.machine.space_pump_module.configuration=配置界面
 gtlitecore.machine.space_pump_module.planet_setter=设置抽取流体的目标行星
 gtlitecore.machine.space_pump_module.fluid_setter=设置抽取流体的目标参数
+gtlitecore.machine.space_pump_module.parallel_setter=设置抽取流体的并行数量
 gtlitecore.machine.space_pump_module.fluid_row.1=流体输出 #%s
 gtlitecore.machine.space_pump_module.fluid_row.2=在输入框中设置行星ID和流体ID，
 gtlitecore.machine.space_pump_module.fluid_row.3=泵将从对应的行星抽取对应的流体。
 gtlitecore.machine.space_pump_module.fluid=输出流体 %d:
-gtlitecore.machine.space_pump_module.fluid.empty=无效的行星ID或流体ID！请检查JEI以获取正确的ID。
+gtlitecore.machine.space_pump_module.fluid.empty=无效的行星ID或流体ID！ 请检查JEI以获取正确的ID。
+gtlitecore.machine.space_pump_module.fluid.efficient=§a%sL §7每路并行
 
 gtlitecore.machine.energy_infuser.name=能量注入器
 gtlitecore.machine.energy_infuser.tooltip.1=使用能量为可充能的物品充电，也支持使用§fFE/EU/RF§7的物品。
@@ -2626,6 +2689,19 @@ gtlitecore.machine.large_acid_generator.name=大型酸性发电机
 gtlitecore.machine.large_transformer.name=大型变压器
 gtlitecore.machine.large_transformer.tooltip.1=比单方块变压器更好
 gtlitecore.machine.large_transformer.tooltip.2=必须同时安装§a能源仓§7与§b动力仓§7才可以工作。
+
+gtlitecore.machine.large_slaughter.name=大型屠宰机
+
+gtlitecore.machine.large_fisher.name=大型捕鱼机
+gtlitecore.machine.large_fisher.tooltip.1=需要在结构中§9填满水§7来保持捕捞环境，使用§f输入仓§7可以自动输入
+gtlitecore.machine.large_fisher.tooltip.2=使用§f螺丝刀§7单击以切换捕捞模式（§b捕鱼§7/§8垃圾§7/§6宝藏§7）
+gtlitecore.machine.large_fisher.tooltip.3=最大并行数：
+gtlitecore.machine.large_fisher.tooltip.4=- §b捕鱼§f模式§7：§e(1.8^电压等级)×(8×泵外壳等级+1))
+gtlitecore.machine.large_fisher.tooltip.5=- §8垃圾§f/§6宝藏§f模式§7：§e(1.2^电压等级×泵外壳等级)+((8×电压等级+1)×0.67)
+gtlitecore.machine.large_fisher.mode.0=当前模式：§b捕鱼§7
+gtlitecore.machine.large_fisher.mode.1=当前模式：§8垃圾§7
+gtlitecore.machine.large_fisher.mode.2=当前模式：§6宝藏§7
+gtlitecore.machine.large_fisher.inventory_full=输出已满
 
 gtlitecore.machine.entrodynamically_phase_changer.name=熵动力学相变发生器
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
@@ -2849,23 +2925,20 @@ gtlitecore.machine.fluid_hatch.export_9x.lv.name=§7LV§f 九重输出仓
 gtlitecore.machine.fluid_hatch.export_9x.mv.name=§bMV§f 九重输出仓
 gtlitecore.machine.fluid_hatch.export_9x.hv.name=§6HV§f 九重输出仓
 
-gtlitecore.machine.huge_item_bus.import.ulv.name=§8ULV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.lv.name=§7LV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.mv.name=§bMV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.hv.name=§6HV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.ev.name=§5EV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.iv.name=§1IV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.luv.name=§dLuV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.zpm.name=§cZPM§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.uv.name=§3UV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.uhv.name=§4UHV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.uev.name=§aUEV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.uiv.name=§2UIV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.uxv.name=§eUXV§f 巨型输入总线
-gtlitecore.machine.huge_item_bus.import.opv.name=§9OpV§f 巨型输入总线
+gtlitecore.machine.quantum_item_bus.import.iv.name=§1IV§f 量子输入总线
+gtlitecore.machine.quantum_item_bus.import.luv.name=§dLuV§f 量子输入总线
+gtlitecore.machine.quantum_item_bus.import.zpm.name=§cZPM§f 量子输入总线
+gtlitecore.machine.quantum_item_bus.import.uv.name=§3UV§f 量子输入总线
+gtlitecore.machine.quantum_item_bus.import.uhv.name=§4UHV§f 量子输入总线
+gtlitecore.machine.quantum_item_bus.import.uev.name=§aUEV§f 量子输入总线
+gtlitecore.machine.quantum_item_bus.import.uiv.name=§2UIV§f 量子输入总线
+gtlitecore.machine.quantum_item_bus.import.uxv.name=§eUXV§f 量子输入总线
+gtlitecore.machine.quantum_item_bus.import.opv.name=§9OpV§f 量子输入总线
 
-gtlitecore.machine.huge_item_bus.import.tooltip=特化存储空间的输入总线
-gtlitecore.machine.huge_item_bus.tooltip=§c注意：当内部存储物品过多时会造成卡顿，请避免不必要的过量物品存储
+gtlitecore.machine.quantum_item_bus.import.tooltip.1=极端特化单槽位存储空间的输入总线
+gtlitecore.machine.quantum_item_bus.import.tooltip.2=可以在界面中配置单个槽位的§f最大堆叠数§7
+gtlitecore.machine.quantum_item_bus.import.tooltip.3=§a单槽最大堆叠数：§f%s§7
+gtlitecore.machine.quantum_item_bus.import.configuration=配置单槽最大堆叠数
 
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=自动无菌过滤维护仓
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=可以自动维护多方块结构，附带无菌清洁功能！
@@ -2907,6 +2980,113 @@ gtlitecore.machine.dual_hatch.export.uiv.name=§2UIV§f 输出总成
 gtlitecore.machine.dual_hatch.export.uxv.name=§eUXV§f 输出总成
 gtlitecore.machine.dual_hatch.export.opv.name=§9OpV§f 输出总成
 
+gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.mv.name=§bMV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.hv.name=§6HV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.ev.name=§5EV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.iv.name=§1IV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.luv.name=§dLuV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.zpm.name=§cZPM§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.uv.name=§3UV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.uhv.name=§4UHV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.uev.name=§aUEV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.uiv.name=§2UIV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.uxv.name=§eUXV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.opv.name=§9OpV§f 无线能源仓
+gtlitecore.machine.wireless_energy_hatch.input.max.name=§cMAX§f 无线能源仓
+
+gtlitecore.machine.wireless_energy_hatch.output.ulv.name=§8ULV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.lv.name=§7LV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.mv.name=§bMV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.hv.name=§6HV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.ev.name=§5EV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.iv.name=§1IV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.luv.name=§dLuV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.zpm.name=§cZPM§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.uv.name=§3UV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.uhv.name=§4UHV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.uev.name=§aUEV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.uiv.name=§2UIV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.uxv.name=§eUXV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.opv.name=§9OpV§f 无线动力仓
+gtlitecore.machine.wireless_energy_hatch.output.max.name=§cMAX§f 无线动力仓
+
+gtlitecore.machine.wireless_energy_hatch.storage.iv.name=§1IV§f 无线能量存储器
+gtlitecore.machine.wireless_energy_hatch.storage.luv.name=§dLuV§f 无线能量存储器
+gtlitecore.machine.wireless_energy_hatch.storage.zpm.name=§cZPM§f 无线能量存储器
+gtlitecore.machine.wireless_energy_hatch.storage.uv.name=§3UV§f 无线能量存储器
+gtlitecore.machine.wireless_energy_hatch.storage.uhv.name=§4UHV§f 无线能量存储器
+gtlitecore.machine.wireless_energy_hatch.storage.uev.name=§aUEV§f 无线能量存储器
+gtlitecore.machine.wireless_energy_hatch.storage.uiv.name=§2UIV§f 无线能量存储器
+gtlitecore.machine.wireless_energy_hatch.storage.uxv.name=§eUXV§f 无线能量存储器
+gtlitecore.machine.wireless_energy_hatch.storage.opv.name=§9OpV§f 无线能量存储器
+gtlitecore.machine.wireless_energy_hatch.storage.max.name=§cMAX§f 无线能量存储器
+
+gtlitecore.machine.energy_distributor.ulv.name=§7ULV§f 能量分配器
+gtlitecore.machine.energy_distributor.lv.name=§7LV§f 能量分配器
+gtlitecore.machine.energy_distributor.mv.name=§bMV§f 能量分配器
+gtlitecore.machine.energy_distributor.hv.name=§6HV§f 能量分配器
+gtlitecore.machine.energy_distributor.ev.name=§5EV§f 能量分配器
+gtlitecore.machine.energy_distributor.iv.name=§1IV§f 能量分配器
+gtlitecore.machine.energy_distributor.luv.name=§dLuV§f 能量分配器
+gtlitecore.machine.energy_distributor.zpm.name=§cZPM§f 能量分配器
+gtlitecore.machine.energy_distributor.uv.name=§3UV§f 能量分配器
+gtlitecore.machine.energy_distributor.uhv.name=§4UHV§f 能量分配器
+gtlitecore.machine.energy_distributor.uev.name=§aUEV§f 能量分配器
+gtlitecore.machine.energy_distributor.uiv.name=§2UIV§f 能量分配器
+gtlitecore.machine.energy_distributor.uxv.name=§eUXV§f 能量分配器
+gtlitecore.machine.energy_distributor.opv.name=§9OpV§f 能量分配器
+gtlitecore.machine.energy_distributor.max.name=§cMAX§f 能量分配器
+
+gtlitecore.machine.energy_distributor.tooltip.1=§e最大输入电流：§f320 A
+gtlitecore.machine.energy_distributor.tooltip.2=从正面分流到5个输出面，或从5个输入面汇聚到正面
+gtlitecore.machine.energy_distributor.tooltip.3=使用§f扳手§7更改正面朝向
+gtlitecore.machine.energy_distributor.tooltip.4=使用§f软锤§7切换§a分流§7/§c汇聚§7模式
+
+gtlitecore.top.energy_distributor.mode_distribute=模式： §a分流
+gtlitecore.top.energy_distributor.mode_combine=模式： §c汇聚
+
+gtlitecore.machine.wireless_energy_hatch.tooltip.1=从无线网络接收能量
+gtlitecore.machine.wireless_energy_hatch.tooltip.2=设置§f频道§7以将仓室加入§d无线网络§7中
+gtlitecore.machine.wireless_energy_hatch.tooltip.3=设置更高的§f优先级§7将使仓室优先于其他网络中仓室拉入能量
+gtlitecore.machine.wireless_energy_hatch.tooltip.4=可以自由配置仓室的§e电流数§7，默认为§e2A§7
+gtlitecore.machine.wireless_energy_hatch.tooltip.5=使用§f螺丝刀§7右击仓室可以翻倍§e电流数§7设置，潜行时改为减半
+gtlitecore.machine.wireless_energy_hatch.tooltip.6=可以自由配置仓室的§f缓存能量时间§7，默认为§f10秒§7。
+
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.1=向无线网络输出能量
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.2=设置§f频道§7以将仓室加入§d无线网络§7中
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.3=设置更高的§f优先级§7将使仓室优先于其他网络中仓室抽取能量
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.4=可以自由配置仓室的§e电流数§7，默认为§e2A§7
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.5=使用§f螺丝刀§7右击仓室可以翻倍§e电流数§7设置，潜行时改为减半
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.6=可以自由配置仓室的§f缓存能量时间§7，默认为§f10秒§7。
+
+gtlitecore.machine.wireless_storage_hatch.tooltip.1=通过§6蓄能变电站§7缓冲无线网络能量
+gtlitecore.machine.wireless_storage_hatch.tooltip.2=设置§f频道§7以将仓室加入§d无线网络§7中
+gtlitecore.machine.wireless_storage_hatch.tooltip.3=设置更高的§f优先级§7将使仓室优先于其他网络中仓室交互能量
+gtlitecore.machine.wireless_storage_hatch.tooltip.4=可以自由配置仓室的§e电流数§7，默认为§e2A§7
+gtlitecore.machine.wireless_storage_hatch.tooltip.5=使用§f螺丝刀§7右击仓室可以翻倍§e电流数§7设置，潜行时改为减半
+gtlitecore.machine.wireless_storage_hatch.tooltip.6=可以自由配置仓室的§f缓存能量时间§7，默认为§f10秒§7。
+
+gtlitecore.machine.wireless_energy_hatch.interactive_voltage=§a交互电压：§f%,d EU/t（%s§f）
+gtlitecore.machine.wireless_energy_hatch.interactive_amperage=§e交互电流上限：§f%,dA
+gtlitecore.machine.wireless_energy_hatch.channel=频道
+gtlitecore.machine.wireless_energy_hatch.connections=连接数：%d
+gtlitecore.machine.wireless_energy_hatch.priority=优先级
+gtlitecore.machine.wireless_energy_hatch.amperage=电流
+gtlitecore.machine.wireless_energy_hatch.buffer_duration=缓存时长
+
+gtlitecore.top.wireless_hatch.role_input=输入
+gtlitecore.top.wireless_hatch.role_output=输出
+gtlitecore.top.wireless_hatch.role_storage=存储
+gtlitecore.top.wireless_hatch.channel=频道: %s
+gtlitecore.top.wireless_hatch.connections=连接数: %d
+gtlitecore.top.wireless_hatch.priority=优先级: %d
+gtlitecore.top.wireless_hatch.no_channel=未连接频道
+gtlitecore.top.wireless_hatch.error_unknown=未知错误
+gtlitecore.top.wireless_hatch.amperage=电流: %sA
+gtlitecore.top.wireless_hatch.overflow=溢出: %s EU
+
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s
 item.material.oreprefix.oreLimestone=石灰岩%s矿石
@@ -2917,7 +3097,6 @@ item.material.oreprefix.oreKimberlite=金伯利岩%s矿石
 item.material.oreprefix.oreQuartzite=石英岩%s矿石
 item.material.oreprefix.oreSlate=板岩%s矿石
 item.material.oreprefix.oreShale=页岩%s矿石
-item.material.oreprefix.sheetedFrame=%s板框箱
 item.material.oreprefix.sheetedFrame=%s板框箱
 item.material.oreprefix.wallGt=%s壁面
 item.material.oreprefix.seedCrystal=%s晶种
@@ -3025,10 +3204,10 @@ gtlitecore.material.titanium_nitrate=硝酸钛
 gtlitecore.material.lithium_titanate=钛酸锂
 gtlitecore.material.palladium_nitrate=硝酸钯
 gtlitecore.material.palladium_acetate=乙酸钯
-gtlitecore.material.palladium_loaded_rutile_nanoparticles=钯负载金红石纳米粒子
-item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dust=钯负载金红石纳米粒子颗粒
-item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustSmall=钯负载金红石纳米微粒
-item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustTiny=钯负载金红石纳米细微粒
+gtlitecore.material.palladium_loaded_rutile_nanoparticles=钯负载金红石纳米颗粒
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dust=钯负载金红石纳米颗粒
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustSmall=小堆钯负载金红石纳米颗粒
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustTiny=小撮钯负载金红石纳米颗粒
 gtlitecore.material.lithium_oxide=氧化锂
 gtlitecore.material.lithium_carbonate=碳酸锂
 gtlitecore.material.blue_vitriol=蓝矾溶液
@@ -3101,6 +3280,7 @@ gtlitecore.material.copper_nitrate=硝酸铜
 gtlitecore.material.yttrium_barium_copper_oxides_mixture=钇钡铜氧混合物
 gtlitecore.material.gst_glass=GST玻璃
 item.gtlitecore.material.gst_glass.ingot=GST玻璃条
+item.gtlitecore.material.gst_glass.wireFine=GST玻璃纤维
 gtlitecore.material.germanium_dioxide=二氧化锗
 gtlitecore.material.roasted_sphalerite=焙烧闪锌矿
 gtlitecore.material.zinc_rich_sphalerite=富锌闪锌矿
@@ -3303,7 +3483,10 @@ gtlitecore.material.hydromoscovic_acid=氢镆酸
 gtlitecore.material.strontium_europium_nihonate=钅尔酸锶铕
 gtlitecore.material.neutronium_doped_carbon_nanotube=中子掺杂的碳纳米管
 gtlitecore.material.cosmic_fabric=寰宇织网
-gtlitecore.material.silicon_nanoparticles=硅纳米粒子
+gtlitecore.material.silicon_nanoparticles=硅纳米颗粒
+item.gtlitecore.material.silicon_nanoparticles.dust=硅纳米颗粒
+item.gtlitecore.material.silicon_nanoparticles.dustSmall=小堆硅纳米颗粒
+item.gtlitecore.material.silicon_nanoparticles.dustTiny=小撮硅纳米颗粒
 gtlitecore.material.sodium_alginate=海藻酸钠
 gtlitecore.material.calcium_alginate=海藻酸钙
 gtlitecore.material.chromatic_glass=彩色玻璃
@@ -3361,7 +3544,7 @@ gtlitecore.material.quantum_alloy=量子合金
 gtlitecore.material.hdcs=高强度复合钢（HDCS）
 gtlitecore.material.titan_steel=泰坦精钢
 gtlitecore.material.tairitsium=对立合金
-gtlitecore.material.halkonite_steel=赫利孔钢
+gtlitecore.material.halkonite_steel=星脊钢
 gtlitecore.material.hastelloy_x_78=哈斯特洛伊合金-X78
 gtlitecore.material.hastelloy_k_243=哈斯特洛伊合金-K243
 gtlitecore.material.pikyonium_64_b=皮卡优合金64B
@@ -3671,6 +3854,19 @@ gtlitecore.material.diethylthiourea=二乙硫脲
 gtlitecore.material.isophthaloylbisdiethylthiourea=间苯二甲酰二乙硫脲
 gtlitecore.material.silane=硅烷
 gtlitecore.material.ethylene_vinyl_acetate_polymer=乙烯-乙酸乙烯酯共聚物（EVA）
+gtlitecore.material.stearic_acid=硬脂酸
+gtlitecore.material.sodium_stearate=硬脂酸钠
+gtlitecore.material.methyl_stearate=硬脂酸甲酯
+gtlitecore.material.glycidyl_stearate=硬脂酸缩水甘油酯
+gtlitecore.material.monoglyceride=单硬脂酸甘油酯
+gtlitecore.material.dimethyl_carbonate=碳酸二甲酯
+gtlitecore.material.diphenyl_carbonate=碳酸二苯酯
+gtlitecore.material.bpa_polycarbonate=双酚A聚碳酸酯
+gtlitecore.material.isobutyric_acid=异丁酸
+gtlitecore.material.isobutyric_anhydride=异丁酸酐
+gtlitecore.material.dimethylketene=二甲基乙烯酮
+gtlitecore.material.tetramethylcyclobutanediol=四甲基环丁二醇（CBDO）
+gtlitecore.material.cbdo_polycarbonate=CBDO聚碳酸酯
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -3719,6 +3915,25 @@ gtlitecore.material.cane_syrup=甘蔗糖浆
 gtlitecore.material.apple_cane_syrup=苹果-甘蔗糖浆
 gtlitecore.material.hard_apple_candy_syrup=苹果硬糖糖浆
 gtlitecore.material.fracturing_fluid=压裂液
+gtlitecore.material.crude_soybean_oil=大豆毛油
+gtlitecore.material.soybean_oil=大豆油
+gtlitecore.material.bean_phospholipid=豆磷脂
+gtlitecore.material.nutrient_paste_water_phase_mixture=营养膏水相混合物
+gtlitecore.material.rich_nutrient_paste_water_phase_mixture=营养膏水相混合物（富营养）
+gtlitecore.material.food_oil_phase_mixture=食品用油相混合物
+gtlitecore.material.nutrient_paste_crude_emulsion=营养膏粗乳液
+gtlitecore.material.rich_nutrient_paste_crude_emulsion=营养膏粗乳液（富营养）
+gtlitecore.material.nutrient_paste_emulsion=营养膏乳液
+gtlitecore.material.rich_nutrient_paste_emulsion=营养膏乳液（富营养）
+gtlitecore.material.sterilized_nutrient_paste_emulsion=灭菌营养膏乳液
+gtlitecore.material.sterilized_rich_nutrient_paste_emulsion=灭菌营养膏乳液（富营养）
+gtlitecore.material.egg_liquid=鸡蛋蛋液
+gtlitecore.material.egg_white=鸡蛋蛋白
+gtlitecore.material.egg_white.fluid=鸡蛋蛋清
+gtlitecore.material.egg_yolk=鸡蛋蛋黄
+gtlitecore.material.sugar_free_egg_white=脱糖鸡蛋蛋清
+gtlitecore.material.phospholipid_ethanol_emulsion=含磷脂乙醇浊液
+gtlitecore.material.lecithin=卵磷脂
 
 gtlitecore.material.free_electron_gas=自由电子气体
 gtlitecore.material.fermionic_uu_matter=费米子UU物质
@@ -3820,9 +4035,11 @@ gtlitecore.material.eternity_plus_token=永恒+
 item.gregtech.material.graphite.fuelRod=石墨慢化棒
 item.gregtech.material.graphite.fuelRodEnriched=浓缩石墨慢化棒
 item.gregtech.material.graphite.fuelRodHighDensity=高密度石墨慢化棒
+item.gregtech.material.polycaprolactam.wireFine=聚己内酰胺纤维
 
 # Fluids
 gtlitecore.fluid.molten=熔融%s
+gtlitecore.fluid.slurry=%s浆
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=石灰岩球
@@ -3955,6 +4172,9 @@ gtlitecore.tooltip.machine.excess_mode=可以在机器界面中切换§b溢能�
 gtlitecore.tooltip.gui.excess_mode.enabled=溢能模式：§a启用§7\n当动力仓的缓存充满时机器继续运行，销毁多余的能量。
 gtlitecore.tooltip.gui.excess_mode.disabled=溢能模式：§c禁用§7\n当动力仓的缓存充满时机器停机，保持配方进度不再运行。
 
+gtlitecore.tooltip.contributor_item=§a§l贡献者物品
+gtlitecore.tooltip.contributor_item.owner=该物品专属于§l贡献者§r§6%s§7，感谢你对本整合包做出的贡献
+
 # Creative Tabs
 itemGroup.gtlite.main=格雷科技精简版
 itemGroup.gtlite.machine=格雷科技精简版 | 机器
@@ -3975,6 +4195,7 @@ gtlitecore.subtitle.tick.stellar_forge.name=恒星炎炀锻炉：超新星爆发
 gtlitecore.message.berry_bush_blocked=这会导致位于%s处的浆果丛无法生长
 
 death.attack.ore_crushing=%s被当作矿石粉碎了
+death.attack.mob_slaughtering=%s被屠宰了
 
 # Enchantment Levels
 enchantment.level.0=I

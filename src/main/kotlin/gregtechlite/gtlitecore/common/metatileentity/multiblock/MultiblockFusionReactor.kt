@@ -56,7 +56,7 @@ import gregtech.client.utils.TooltipHelper
 import gregtech.common.ConfigHolder
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
-import gregtechlite.gtlitecore.client.renderer.handler.FusionBloomSetup
+import gregtechlite.gtlitecore.client.renderer.handler.bloom.FusionBloomSetup
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCasing

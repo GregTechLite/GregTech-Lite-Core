@@ -6,6 +6,7 @@ import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
@@ -76,7 +77,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockNanoFo
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockNanoscaleFabricator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockPCBFactory
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockPlasmaEnhancedCVDUnit
-import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockQuantumForceTransformer
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockQuantumForceTransformer
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockSonicator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockSpaceElevator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockStellarForge
@@ -100,6 +101,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.Multibl
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockElectromagnet
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockExtractor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockExtruder
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFisher
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFluidSolidifier
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFoodProcessor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockForgeHammer
@@ -114,6 +116,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.Multibl
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockReplicator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockRockBreaker
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockSifter
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockMobSlaughter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockTransformer
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockVolcanus
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockWiremill
@@ -128,8 +131,13 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockE
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockMatterReshapingFramework
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockNanoAssemblyComplex
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockPlasmaArcTransmitter
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockBioCultivationChamber
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockMicroscaleCircuitDetector
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNanolithographyArray
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpaceAssembler
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockSpacePump
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockThermosinkCoolingTower
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockWaterCoolingTower
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive.MultiblockAdvancedPrimitiveBlastFurnace
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.primitive.MultiblockCoagulationTank
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.steam.SteamMultiblockAlloySmelter
@@ -138,9 +146,17 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedLas
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedMultiFluidHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAirIntakeHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
-import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineHugeItemBus
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumItemBus
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileCleaningMaintenanceHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessDynamoHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessEnergyHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessStorageHatch
+import gregtechlite.gtlitecore.common.metatileentity.electric.MachineEnergyDistributor
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockConsciousnessStorageCenter
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNaniteReplicationUnrestricor
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockVirtualGestaltComputingUplink
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobExtractor
+import gregtechlite.gtlitecore.common.metatileentity.single.MachineMobSlaughter
 import gregtechlite.gtlitecore.common.metatileentity.single.MachineSapCollector
 import gregtechlite.gtlitecore.common.metatileentity.single.SteamMachineSapCollector
 import gregtechlite.gtlitecore.common.metatileentity.storage.MetaTileEntityBridge
@@ -196,6 +212,8 @@ object GTLiteMetaTileEntities
     lateinit var ROCKET_ENGINE: Array<SimpleGeneratorMetaTileEntity>
     lateinit var NAQUADAH_REACTOR: Array<SimpleGeneratorMetaTileEntity>
     lateinit var ACID_GENERATOR: Array<SimpleGeneratorMetaTileEntity>
+    lateinit var MOB_SLAUGHTER: Array<MachineMobSlaughter>
+    lateinit var ENERGY_DISTRIBUTOR: Array<MachineEnergyDistributor>
 
     // endregion
 
@@ -253,7 +271,7 @@ object GTLiteMetaTileEntities
     lateinit var NONUPLE_FLUID_IMPORT_HATCH: Array<PartMachineAdvancedMultiFluidHatch>
     lateinit var NONUPLE_FLUID_EXPORT_HATCH: Array<PartMachineAdvancedMultiFluidHatch>
 
-    lateinit var HUGE_ITEM_IMPORT_BUS: Array<PartMachineHugeItemBus>
+    lateinit var QUANTUM_ITEM_IMPORT_BUS: Array<PartMachineQuantumItemBus>
     lateinit var STERILE_CLEANING_MAINTENANCE_HATCH: PartMachineSterileCleaningMaintenanceHatch
     lateinit var AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
     lateinit var EXTREME_AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
@@ -261,6 +279,10 @@ object GTLiteMetaTileEntities
 
     lateinit var DUAL_IMPORT_HATCH: Array<PartMachineDualHatch>
     lateinit var DUAL_EXPORT_HATCH: Array<PartMachineDualHatch>
+
+    lateinit var WIRELESS_ENERGY_INPUT_HATCH: Array<PartMachineWirelessEnergyHatch>
+    lateinit var WIRELESS_ENERGY_OUTPUT_HATCH: Array<PartMachineWirelessDynamoHatch>
+    lateinit var WIRELESS_STORAGE_HATCH: Array<PartMachineWirelessStorageHatch>
 
     // endregion
 
@@ -290,8 +312,16 @@ object GTLiteMetaTileEntities
     lateinit var COSMIC_RAY_DETECTOR: MultiblockCosmicRayDetector
     lateinit var STELLAR_FORGE: MultiblockStellarForge
     lateinit var PLASMA_ENHANCED_CVD_UNIT: MultiblockPlasmaEnhancedCVDUnit
-    lateinit var PCB_FACTORY: MultiblockPCBFactory
-    lateinit var NANO_FORGE: MultiblockNanoForge
+    lateinit var PCB_FACTORY: MultiblockPCBFactory<*>
+    lateinit var NANOLITHOGRAPHY_ARRAY: MultiblockNanolithographyArray<*>
+    lateinit var MICROSCALE_CIRCUIT_DETECTOR: MultiblockMicroscaleCircuitDetector<*>
+    lateinit var BIO_CULTIVATION_CHAMBER: MultiblockBioCultivationChamber<*>
+    lateinit var WATER_COOLING_TOWER: MultiblockWaterCoolingTower<*>
+    lateinit var THERMOSINK_COOLING_TOWER: MultiblockThermosinkCoolingTower<*>
+    lateinit var NANO_FORGE: MultiblockNanoForge<*>
+    lateinit var CONSCIOUSNESS_STORAGE_CENTER: MultiblockConsciousnessStorageCenter<*>
+    lateinit var NANITE_REPLICATION_UNRESTRICOR: MultiblockNaniteReplicationUnrestricor<*>
+    lateinit var VIRTUAL_GESTALT_COMPUTING_UPLINK: MultiblockVirtualGestaltComputingUplink<*>
     lateinit var QUANTUM_FORCE_TRANSFORMER: MultiblockQuantumForceTransformer
     lateinit var ANTIMATTER_FORGE: MultiblockAntimatterForge
     lateinit var ANTIMATTER_GENERATOR: MultiblockAntimatterGenerator
@@ -347,6 +377,8 @@ object GTLiteMetaTileEntities
     lateinit var LARGE_NAQUADAH_REACTOR: MultiblockNaquadahReactor
     lateinit var LARGE_ACID_GENERATOR: MultiblockAcidGenerator
     lateinit var LARGE_TRANSFORMER: MultiblockTransformer
+    lateinit var LARGE_SLAUGHTER: MultiblockMobSlaughter
+    lateinit var LARGE_FISHER: MultiblockFisher
 
     lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
     lateinit var PLASMA_ARC_TRANSMITTER: MultiblockPlasmaArcTransmitter
@@ -501,12 +533,11 @@ object GTLiteMetaTileEntities
                                GTLiteOverlays.MULTICOOKER_OVERLAY, true,
                                genericGeneratorTankSizeFunction)
 
-        // 286-300: Mob Extractor (LV-OpV)
-        MOB_EXTRACTOR = register(288, 0..12) {
+        // 286-300: Mob Extractor (LV-HV)
+        MOB_EXTRACTOR = register(288, 0..2) {
             MachineMobExtractor(GTLiteMod.id("mob_extractor.${VN[it + 1].lowercase()}"),
                                 GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES,
-                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false,
-                                largeTankSizeFunction)
+                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false) { largeTankSizeFunction.apply(it) }
         }
 
         // 301-315: Bio Simulator (LV-IV)
@@ -537,6 +568,16 @@ object GTLiteMetaTileEntities
                                           GTLiteRecipeMaps.ACID_GENERATOR_FUELS,
                                           GTLiteOverlays.ACID_GENERATOR_OVERLAY, it + MV,
                                           genericGeneratorTankSizeFunction)
+        }
+
+        // 361-375: Mob Slaughter (LV-HV)
+        MOB_SLAUGHTER = register(363, 0..2) {
+            MachineMobSlaughter(GTLiteMod.id("mob_slaughter.${VN[it + 1].lowercase()}"), it + 1)
+        }
+
+        // 376-390: Energy Distributors (ULV-MAX)
+        ENERGY_DISTRIBUTOR = register(376, 0..14) {
+            MachineEnergyDistributor(GTLiteMod.id("energy_distributor.${VN[it].lowercase()}"), it)
         }
 
         // endregion
@@ -700,7 +741,20 @@ object GTLiteMetaTileEntities
                                           it + IV, 16_777_216, true)
         }
 
-        // TODO Wireless Energy/Dynamo Hatches
+        // 4146-4160: Wireless Energy Hatches (ULV-MAX)
+        WIRELESS_ENERGY_INPUT_HATCH = register(4146, 0..14) {
+            PartMachineWirelessEnergyHatch(GTLiteMod.id("wireless_energy_hatch.input.${VN[it].lowercase()}"), it)
+        }
+
+        // 4161-4175: Wireless Dynamo Hatches (ULV-MAX)
+        WIRELESS_ENERGY_OUTPUT_HATCH = register(4161, 0..14) {
+            PartMachineWirelessDynamoHatch(GTLiteMod.id("wireless_energy_hatch.output.${VN[it].lowercase()}"), it)
+        }
+
+        // 4176-4190: Wireless Storage Hatches (IV-MAX)
+        WIRELESS_STORAGE_HATCH = register(4176, 0..9) {
+            PartMachineWirelessStorageHatch(GTLiteMod.id("wireless_energy_hatch.storage.${VN[it + IV].lowercase()}"), it + IV)
+        }
 
         // 5001-5100: Item Import/Export Buses and Fluid Import/Export Hatches
 
@@ -729,8 +783,8 @@ object GTLiteMetaTileEntities
         }
 
         // 5017-5032: ULV-OpV Huge Item Import Buses
-        HUGE_ITEM_IMPORT_BUS = register(5017, 0..13) {
-            PartMachineHugeItemBus(GTLiteMod.id("huge_item_bus.import.${VN[it].lowercase()}"), it)
+        QUANTUM_ITEM_IMPORT_BUS = register(5017, IV..OpV) {
+            PartMachineQuantumItemBus(GTLiteMod.id("quantum_item_bus.import.${VN[it].lowercase()}"), it)
         }
 
         // 5033: Sterile Cleaning Maintenance Hatch
@@ -793,27 +847,38 @@ object GTLiteMetaTileEntities
         STELLAR_FORGE = register(10023, MultiblockStellarForge(GTLiteMod.id("stellar_forge")))
         PLASMA_ENHANCED_CVD_UNIT = register(10024, MultiblockPlasmaEnhancedCVDUnit(GTLiteMod.id("plasma_enhanced_cvd_unit")))
         PCB_FACTORY = register(10025, MultiblockPCBFactory(GTLiteMod.id("pcb_factory")))
-        NANO_FORGE = register(10026, MultiblockNanoForge(GTLiteMod.id("nano_forge")))
-        QUANTUM_FORCE_TRANSFORMER = register(10027, MultiblockQuantumForceTransformer(GTLiteMod.id("quantum_force_transformer")))
-        ANTIMATTER_FORGE = register(10028, MultiblockAntimatterForge(GTLiteMod.id("antimatter_forge")))
-        ANTIMATTER_GENERATOR = register(10029, MultiblockAntimatterGenerator(GTLiteMod.id("antimatter_generator")))
-        SPACE_ELEVATOR = register(10030, MultiblockSpaceElevator(GTLiteMod.id("space_elevator")))
-        SPACE_ASSEMBLER_MK1 = register(10031, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk1"), UHV, 1, 1))
-        SPACE_ASSEMBLER_MK2 = register(10032, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk2"), UEV, 2, 3))
-        SPACE_ASSEMBLER_MK3 = register(10033, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk3"), UIV, 3, 5))
+        NANOLITHOGRAPHY_ARRAY = register(10026, MultiblockNanolithographyArray(GTLiteMod.id("nanolithography_array")))
+        MICROSCALE_CIRCUIT_DETECTOR = register(10027, MultiblockMicroscaleCircuitDetector(GTLiteMod.id("microscale_circuit_detector")))
+        BIO_CULTIVATION_CHAMBER = register(10028, MultiblockBioCultivationChamber(GTLiteMod.id("bio_cultivation_chamber")))
+        // Gooware 29
+        // Optic 30
+        // Spintronic 31
+        WATER_COOLING_TOWER = register(10032, MultiblockWaterCoolingTower(GTLiteMod.id("water_cooling_tower")))
+        THERMOSINK_COOLING_TOWER = register(10033, MultiblockThermosinkCoolingTower(GTLiteMod.id("thermosink_cooling_tower")))
+        NANO_FORGE = register(10034, MultiblockNanoForge(GTLiteMod.id("nano_forge")))
+        CONSCIOUSNESS_STORAGE_CENTER = register(10035, MultiblockConsciousnessStorageCenter(GTLiteMod.id("consciousness_storage_center")))
+        NANITE_REPLICATION_UNRESTRICOR = register(10036, MultiblockNaniteReplicationUnrestricor(GTLiteMod.id("nanite_replication_unrestricor")))
+        VIRTUAL_GESTALT_COMPUTING_UPLINK = register(10037, MultiblockVirtualGestaltComputingUplink(GTLiteMod.id("virtual_gestalt_computing_uplink")))
+        QUANTUM_FORCE_TRANSFORMER = register(10038, MultiblockQuantumForceTransformer(GTLiteMod.id("quantum_force_transformer")))
+        ANTIMATTER_FORGE = register(10039, MultiblockAntimatterForge(GTLiteMod.id("antimatter_forge")))
+        ANTIMATTER_GENERATOR = register(10040, MultiblockAntimatterGenerator(GTLiteMod.id("antimatter_generator")))
+        SPACE_ELEVATOR = register(10041, MultiblockSpaceElevator(GTLiteMod.id("space_elevator")))
+        SPACE_ASSEMBLER_MK1 = register(10042, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk1"), UHV, 1, 1))
+        SPACE_ASSEMBLER_MK2 = register(10043, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk2"), UEV, 2, 3))
+        SPACE_ASSEMBLER_MK3 = register(10044, MultiblockSpaceAssembler(GTLiteMod.id("space_assembler_module.mk3"), UIV, 3, 5))
 
-        // 10034 TODO SPACE_MINER_MK1
-        // 10035 TODO SPACE_MINER_MK2
-        // 10036 TODO SPACE_MINER_MK3
+        // 10045 TODO SPACE_MINER_MK1
+        // 10046 TODO SPACE_MINER_MK2
+        // 10047 TODO SPACE_MINER_MK3
 
-        SPACE_PUMP_MK1 = register(10037, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk1"), UV, 1, 1))
-        SPACE_PUMP_MK2 = register(10038, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk2"), UHV, 2, 2))
-        SPACE_PUMP_MK3 = register(10039, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk3"), UEV, 3, 4))
+        SPACE_PUMP_MK1 = register(10048, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk1"), UV, 1, 1))
+        SPACE_PUMP_MK2 = register(10049, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk2"), UHV, 2, 2))
+        SPACE_PUMP_MK3 = register(10050, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk3"), UEV, 3, 4))
 
-        // 10040 TODO DYSON_SWARM_GROUND_UNIT
+        // 10051 TODO DYSON_SWARM_GROUND_UNIT
 
-        ENERGY_INFUSER = register(10041, MultiblockEnergyInfuser(GTLiteMod.id("energy_infuser")))
-        INTEGRATED_ORE_PROCESSOR = register(10042, MultiblockIntegratedOreProcessor(GTLiteMod.id("integrated_ore_processor")))
+        ENERGY_INFUSER = register(10052, MultiblockEnergyInfuser(GTLiteMod.id("energy_infuser")))
+        INTEGRATED_ORE_PROCESSOR = register(10053, MultiblockIntegratedOreProcessor(GTLiteMod.id("integrated_ore_processor")))
 
         // ...
 
@@ -857,6 +922,8 @@ object GTLiteMetaTileEntities
         LARGE_NAQUADAH_REACTOR = register(10138, MultiblockNaquadahReactor(GTLiteMod.id("large_naquadah_reactor")))
         LARGE_ACID_GENERATOR = register(10139, MultiblockAcidGenerator(GTLiteMod.id("large_acid_generator")))
         LARGE_TRANSFORMER = register(10140, MultiblockTransformer(GTLiteMod.id("large_transformer")))
+        LARGE_SLAUGHTER = register(10141, MultiblockMobSlaughter(GTLiteMod.id("large_slaughter")))
+        LARGE_FISHER = register(10142, MultiblockFisher(GTLiteMod.id("large_fisher")))
 
         // ...
 

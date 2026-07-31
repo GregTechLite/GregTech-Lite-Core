@@ -12,9 +12,9 @@ class GTLiteWoodStairBlock(state: IBlockState) : BlockStairs(state)
 
     init
     {
-        this.setHarvestLevel("axe", 0)
-        this.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
-        this.useNeighborBrightness = true
+        setHarvestLevel("axe", 0)
+        setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
+        useNeighborBrightness = true
     }
 
     override fun doesSideBlockChestOpening(blockState: IBlockState, world: IBlockAccess,

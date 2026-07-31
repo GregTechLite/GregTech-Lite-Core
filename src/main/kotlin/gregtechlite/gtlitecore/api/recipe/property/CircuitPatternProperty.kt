@@ -11,7 +11,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 object CircuitPatternProperty : RecipeProperty<ItemStack>("circuit", ItemStack::class.java)
 {
-
     val registeredCircuits = hashSetOf<ItemStack>()
 
     override fun serialize(value: Any): NBTBase = NBTTagString(castValue(value).displayName)
@@ -28,5 +27,4 @@ object CircuitPatternProperty : RecipeProperty<ItemStack>("circuit", ItemStack::
     {
         registeredCircuits.add(stack)
     }
-
 }

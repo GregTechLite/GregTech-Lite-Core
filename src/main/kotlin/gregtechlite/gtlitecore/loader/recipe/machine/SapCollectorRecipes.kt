@@ -27,7 +27,7 @@ internal object SapCollectorRecipes
             fluidOutputs(Resin.getFluid(100))
             EUt(VA[ULV].toLong())
             duration(1 * SECOND)
-            blockStates("common", arrayListOf(
+            blockStates("common", listOf(
                 Blocks.LOG.getStateFromMeta(0),
                 Blocks.LOG.getStateFromMeta(1),
                 Blocks.LOG.getStateFromMeta(2),
@@ -42,8 +42,7 @@ internal object SapCollectorRecipes
             fluidOutputs(RainbowSap.getFluid(100))
             EUt(VA[ULV])
             duration(1 * SECOND)
-            blockStates("rainbow", arrayListOf(
-                GTLiteBlocks.LOGS[2].getStateFromMeta(5)))
+            blockStates("rainbow", listOf(GTLiteBlocks.LOGS[2].getStateFromMeta(5)))
         }
     }
 

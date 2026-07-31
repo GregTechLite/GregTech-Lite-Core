@@ -436,6 +436,7 @@ tile.gtlitecore.active_unique_casing_01.heat_vent.name=Heat Vent
 tile.gtlitecore.active_unique_casing_01.temperature_controller.name=Fission Reactor Temperature Controller
 tile.gtlitecore.active_unique_casing_01.nano_precise_assembly_unit.name=Nano Precise Assembly Unit
 tile.gtlitecore.active_unique_casing_01.nanite_control_casing.name=Nanite Control Machine Casing
+tile.gtlitecore.active_unique_casing_01.crushing_wheel.name=Crushing Wheel Casing
 
 tile.gtlitecore.turbine_casing_01.rhodium_plated_palladium_turbine.name=Rhodium Plated Palladium Turbine Casing
 
@@ -646,7 +647,9 @@ tile.gtlitecore.glass_casing_01.tritanium_borosilicate.name=Tritanium reinforced
 tile.gtlitecore.glass_casing_01.neutronium_borosilicate.name=Neutronium reinforced Borosilicate Glass
 tile.gtlitecore.glass_casing_01.cosmic_neutronium_borosilicate.name=Cosmic Neutronium reinforced Borosilicate Glass
 tile.gtlitecore.glass_casing_01.infinity_borosilicate.name=Infinity reinforced Borosilicate Glass
-tile.gtlitecore.glass_casing_01.transcendent_metal_borosilicate.name=Transcendent Metal Borosilicate Glass
+tile.gtlitecore.glass_casing_01.transcendent_metal_borosilicate.name=Transcendent Metal reinforced Borosilicate Glass
+tile.gtlitecore.glass_casing_01.space_time_borosilicate.name=Space Time reinforced Borosilicate Glass
+tile.gtlitecore.glass_casing_01.red_matter_borosilicate.name=Red Matter reinforced Borosilicate Glass
 
 tile.gtlitecore.glass_casing_02.pmma.name=PMMA Glass
 tile.gtlitecore.glass_casing_02.pmma.tooltip=Acrylic Glass
@@ -686,19 +689,26 @@ tile.gtlitecore.glass_casing_03.nano_shielding_frame.tooltip=Absolute AT Field
 
 tile.gtlitecore.naquadria_charge.name=Naquadria Charge
 tile.gtlitecore.naquadria_charge.tooltip.1=Inducing High-Energy Explosives to release Massive Amounts of Energy from High-Energy Naquadah.
-tile.gtlitecore.naquadria_charge.tooltip.2=§cWarning: §fThe Blocks destroyed by the Explosion will be§4Completely Destroyed§f.
+tile.gtlitecore.naquadria_charge.tooltip.2=§cWarning: §fThe Blocks destroyed by the Explosion will be §4Completely Destroyed§f.
+entity.gtlitecore.naquadria_charge.name=Naquadria Charge
 
 tile.gtlitecore.taranium_charge.name=Taranium Charge
 tile.gtlitecore.taranium_charge.tooltip.1=Ordered Taranium, which the Highest Energy Density Matter in the Universe, Explosion.
-tile.gtlitecore.taranium_charge.tooltip.2=§cWarning: §fThe Blocks destroyed by the Explosion will be§4Completely Destroyed§f.
+tile.gtlitecore.taranium_charge.tooltip.2=§cWarning: §fThe Blocks destroyed by the Explosion will be §4Completely Destroyed§f.
+entity.gtlitecore.taranium_charge.name=Taranium Charge
 
 tile.gtlitecore.leptonic_charge.name=Leptonic Charge
 tile.gtlitecore.leptonic_charge.tooltip.1=Thoroughly tearing apart Strong Interactions at the Microscopic Level to bring about Substantial Destruction.
-tile.gtlitecore.leptonic_charge.tooltip.2=§cWarning: §fThe Blocks destroyed by the Explosion will be§4Completely Destroyed§f.
+tile.gtlitecore.leptonic_charge.tooltip.2=§cWarning: §fThe Blocks destroyed by the Explosion will be §4Completely Destroyed§f.
+entity.gtlitecore.leptonic_charge.name=Leptonic Charge
 
 tile.gtlitecore.quantum_chromodynamic_charge.name=Quantum Chromodynamic Charge
 tile.gtlitecore.quantum_chromodynamic_charge.tooltip.1=Exploded Quark Confinement to destroyed the Basic Structure of Atomic Nuclei and completely erase matter.
-tile.gtlitecore.quantum_chromodynamic_charge.tooltip.2=§cWarning: §fThe Blocks destroyed by the Explosion will be§4Completely Destroyed§f.
+tile.gtlitecore.quantum_chromodynamic_charge.tooltip.2=§cWarning: §fThe Blocks destroyed by the Explosion will be §4Completely Destroyed§f.
+entity.gtlitecore.quantum_chromodynamic_charge.name=Quantum Chromodynamic Charge
+
+tile.gtlitecore.bottlecrate.name=Bottlecrate
+tile.gtlitecore.bottlecrate.tooltip.1=Can hold various fluid containers and drinks.
 
 # Items
 metaitem.shape.mold.screw.name=Mold (Screw)
@@ -862,6 +872,12 @@ metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell6
 
 metaitem.tool.magnetron.name=Magnetron
 
+metaitem.tool.laser_destroyer.name=Laser Destroyer
+metaitem.tool.laser_destroyer.mode=Use while sneaking to toggle §fSilk Mode§7, will enabled Silk Touch when in §fSilk Mode§7
+metaitem.tool.laser_destroyer.energy_cost=Consume §e%s EU§7 for each block breaking, consume twice when in §fSilk Mode§7
+metaitem.tool.laser_destroyer.silk_mode.disabled=Silk Mode: §cDisabled§f
+metaitem.tool.laser_destroyer.silk_mode.enabled=Silk Mode: §aEnabled§f
+
 metaitem.tool.petri_dish.dirty.name=Dirty Petri Dish
 metaitem.tool.petri_dish.brevibacterium_flavum.name=Brevibacterium Flavum Petri Dish
 metaitem.tool.petri_dish.cupriavidus_necator.name=Cupriavidus Necator Petri Dish
@@ -884,6 +900,21 @@ metaitem.tool.memory_card.ghast.name=Memory Card (Ghast)
 metaitem.tool.memory_card.shulker.name=Memory Card (Shulker)
 metaitem.tool.memory_card.wither.name=Memory Card (Wither)
 metaitem.tool.memory_card.ender_dragon.name=Memory Card (Ender Dragon)
+metaitem.tool.memory_card.chicken=Memory Card (Chicken)
+metaitem.tool.memory_card.cow.name=Memory Card (Cow)
+metaitem.tool.memory_card.pig.name=Memory Card (Pig)
+metaitem.tool.memory_card.sheep.name=Memory Card (Sheep)
+metaitem.tool.memory_card.horse.name=Memory Card (Horse)
+metaitem.tool.memory_card.donkey.name=Memory Card (Donkey)
+metaitem.tool.memory_card.mule.name=Memory Card (Mule)
+metaitem.tool.memory_card.ocelot.name=Memory Card (Ocelot)
+metaitem.tool.memory_card.wolf.name=Memory Card (Wolf)
+metaitem.tool.memory_card.rabbit.name=Memory Card (Rabbit)
+metaitem.tool.memory_card.llama.name=Memory Card (Llama)
+metaitem.tool.memory_card.mooshroom.name=Memory Card (Mooshroom)
+metaitem.tool.memory_card.bat.name=Memory Card (Bat)
+metaitem.tool.memory_card.villager.name=Memory Card (Villager)
+metaitem.tool.memory_card.trader.name=Memory Card (Wandering Trader)
 
 metaitem.tool.catalyst.base.name=Catalyst Base
 metaitem.tool.catalyst.rubber_polymer.name=Rubber Polymer Catalyst
@@ -895,7 +926,7 @@ metaitem.tool.catalyst.platinum_group.name=Platinum Group Catalyst
 metaitem.tool.catalyst.radioactive.name=Radioactive Catalyst
 metaitem.tool.catalyst.advanced_radioactive.name=Advanced Radioactive Catalyst
 metaitem.tool.catalyst.ultimate_radioactive.name=Ultimate Radioactive Catalyst
-metaitem.tool.catalyst.titanium_tungsten_indium.name=Titanium Tungsten Indium Catalyst
+metaitem.tool.catalyst.transition_metal.name=Transition Metal Catalyst
 metaitem.tool.catalyst.adhesion_promoter.name=Adhesion Promoter Catalyst
 metaitem.tool.catalyst.rare_earth_group.name=Rare Earth Group Catalyst
 metaitem.tool.catalyst.rare_metal_group.name=Rare Metal Group Catalyst
@@ -1516,6 +1547,7 @@ metaitem.food.tableware.paper_cone.name=Paper Cone
 metaitem.food.tableware.component.clay_cup.name=Clay Cup
 metaitem.food.tableware.ceramic_cup.name=Ceramic Cup
 metaitem.food.tableware.plastic_bottle.name=Plastic Bottle
+metaitem.food.tableware.pvc_can.name=PVC Can
 
 metaitem.food.drink.grape_juice.name=Grape Juice
 metaitem.food.drink.grape_juice.tooltip=Rich in Sugar
@@ -1545,6 +1577,9 @@ metaitem.food.polenta.tooltip.2=Also a thicker corn paste called Eshima in East 
 metaitem.food.graham_cracker.name=Graham Cracker
 metaitem.food.graham_cracker.tooltip=Rich in Satiety
 
+metaitem.food.horse_meat.name=Horse Meat
+metaitem.food.cooked_horse_meat.name=Cooked Horse Meat
+
 metaitem.food.hard_apple_candy.name=Hard Apple Candy
 metaitem.food.hard_apple_candy.tooltip=Maybe it hurts a bit
 
@@ -1558,6 +1593,11 @@ metaitem.fruit.product.rainbow_berry.name=Rainbow Berry
 metaitem.fruit.product.rainbow_berry.tooltip=Chromatic
 metaitem.fruit.product.moon_berry.name=Moon Berry
 metaitem.fruit.product.moon_berry.tooltip=Wow!
+
+metaitem.food.nutrient_paste_meal.name=Nutrient Paste Meal
+metaitem.food.nutrient_paste_meal.tooltip.1=Eating it is very disgusting
+metaitem.food.rich_nutrient_paste_meal.name=Nutrient Paste Meal (Rich Nutrient)
+metaitem.food.rich_nutrient_paste_meal.tooltip.1=Nausea Degree may be less than its Nutritional Value
 
 # Ore Dictionary Items
 metaitem.corn_kernel_gem_chipped.name=Corn Kernal
@@ -1582,6 +1622,10 @@ metaitem.apple_pulp_dust.name=Apple Pulp Dust
 metaitem.hard_apple_candy_chunk_plate_dense.name=Hard Apple Candy Chunk
 metaitem.hard_apple_candy_plate.name=Hard Apple Candy Plate
 metaitem.hard_apple_candy_dust.name=Hard Apple Candy Dust
+metaitem.soybean_meal_dust_small.name=Soybean Meal
+metaitem.plant_protein_dust_small.name=Plant Protein
+metaitem.eggshell_dust_small.name=Eggshell
+metaitem.wet_egg_white_cake_crushed_centrifuged.name=Wet Egg White Cake
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
@@ -1647,6 +1691,8 @@ recipemap.integrated_ore_processor.name=Integrated Ore Processor
 recipemap.matter_reshaping_framework.name=Matter Reshaping
 recipemap.solidification_submodule.name=Forging Solidification Submodule
 recipemap.recombination_submodule.name=Separating Recombination Submodule
+recipemap.mob_collecting_mode.name=Collecting
+recipemap.mob_slaughtering_mode.name=Slaughtering
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -1693,17 +1739,6 @@ gtlitecore.recipe.component_assembly_line_tier.14=Component Assembly Casing Tier
 
 gtlitecore.recipe.min_height=Minimum Height: %s
 
-gtlitecore.recipe.pcb_factory_tier=Structure Tier: Error
-gtlitecore.recipe.pcb_factory_tier.1=Structure Tier: 1
-gtlitecore.recipe.pcb_factory_tier.2=Structure Tier: 2
-gtlitecore.recipe.pcb_factory_tier.3=Structure Tier: 3
-gtlitecore.recipe.pcb_factory_auxiliary_tier=Required Bio Chamber Upgrade
-
-gtlitecore.recipe.nano_forge_tier=Structure Tier: Error
-gtlitecore.recipe.nano_forge_tier.1=Structure Tier: 1
-gtlitecore.recipe.nano_forge_tier.2=Structure Tier: 2
-gtlitecore.recipe.nano_forge_tier.3=Structure Tier: 3
-
 gtlitecore.recipe.quantum_force_transformer_tier=Structure Tier: Error
 gtlitecore.recipe.quantum_force_transformer_tier.1=Structure Tier: 1 (Neutron)
 gtlitecore.recipe.quantum_force_transformer_tier.2=Structure Tier: 2 (Cosmic)
@@ -1716,6 +1751,14 @@ gtlitecore.recipe.acceleration_track_tier.2=Acceleration Track Tier: MK2
 gtlitecore.recipe.acceleration_track_tier.3=Acceleration Track Tier: MK3
 gtlitecore.recipe.acceleration_track_tier.4=Acceleration Track Tier: MK4
 gtlitecore.recipe.acceleration_track_tier.5=Acceleration Track Tier: MK5
+
+gtlitecore.recipe.request_additional_structures=Required: %s
+
+# Machine API contexts
+gtlitecore.machine.additional_structure.data_stick.name=§oAdditional Structure Configuration Data
+gtlitecore.machine.additional_structure.pos_saved=Saved Controller Pos (%s，%s，%s) of Additional Structure to Data Stick
+gtlitecore.machine.additional_structure.connected=Connected Additional Structure to Main Structure
+gtlitecore.machine.additional_structure.not_found=Not found any effective Additional Structure
 
 # Machines
 gtlitecore.machine.polisher.lv.name=§7Basic§f Polisher
@@ -2216,26 +2259,6 @@ gtlitecore.machine.mob_extractor.mv.name=§bGood§f Mob Extractor
 gtlitecore.machine.mob_extractor.mv.tooltip=Egg Collector
 gtlitecore.machine.mob_extractor.hv.name=§6Advanced§f Mob Extractor
 gtlitecore.machine.mob_extractor.hv.tooltip=Egg Collector
-gtlitecore.machine.mob_extractor.ev.name=§5Digitized§f Mob Extractor
-gtlitecore.machine.mob_extractor.ev.tooltip=Egg Collector
-gtlitecore.machine.mob_extractor.iv.name=§1Elite§f Mob Extractor
-gtlitecore.machine.mob_extractor.iv.tooltip=Painless Blood Extractor
-gtlitecore.machine.mob_extractor.luv.name=§dAvant§f Mob Extractor
-gtlitecore.machine.mob_extractor.luv.tooltip=Painless Blood Extractor
-gtlitecore.machine.mob_extractor.zpm.name=§cMaster§f Mob Extractor
-gtlitecore.machine.mob_extractor.zpm.tooltip=Painless Blood Extractor
-gtlitecore.machine.mob_extractor.uv.name=§3Ultimate§f Mob Extractor
-gtlitecore.machine.mob_extractor.uv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uhv.name=§4Hi-Tech§f Mob Extractor
-gtlitecore.machine.mob_extractor.uhv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uev.name=§aNew Era§f Mob Extractor
-gtlitecore.machine.mob_extractor.uev.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uiv.name=§2Epic§f Mob Extractor
-gtlitecore.machine.mob_extractor.uiv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.uxv.name=§eLegendary§f Mob Extractor
-gtlitecore.machine.mob_extractor.uxv.tooltip=Bio-Trophy Chamber
-gtlitecore.machine.mob_extractor.opv.name=§9Exotic§f Mob Extractor
-gtlitecore.machine.mob_extractor.opv.tooltip=Bio-Trophy Chamber
 
 gtlitecore.machine.bio_simulator.lv.name=§7Basic§f Mob Simulator
 gtlitecore.machine.bio_simulator.lv.tooltip=Mobware Simulator
@@ -2271,6 +2294,16 @@ gtlitecore.machine.acid_generator.hv.tooltip=Required Acid Matters
 gtlitecore.machine.acid_generator.ev.name=§5Turbine§f Acid Generator
 gtlitecore.machine.acid_generator.ev.tooltip=Required Acid Matters
 
+gtlitecore.machine.mob_slaughter.lv.name=§7Basic§f Mob Slaughter
+gtlitecore.machine.mob_slaughter.lv.tooltip=Butcher's favorite
+gtlitecore.machine.mob_slaughter.mv.name=§bGood§f Mob Slaughter
+gtlitecore.machine.mob_slaughter.mv.tooltip=Butcher's favorite
+gtlitecore.machine.mob_slaughter.hv.name=§6Advanced§f Mob Slaughter
+gtlitecore.machine.mob_slaughter.hv.tooltip=Butcher's favorite
+
+gtlitecore.machine.mob_slaughter.tooltip.1=Deal 40 damage and generate %s drops per second to §lup to 4 mobs§r§7 within §a9×9§7 range while working
+gtlitecore.machine.mob_slaughter.tooltip.2=Each damage deal consume §c%s§7 EU, input §bNitrous Oxide§7 to increase the maximum number of target mobs to §l12§r§7
+
 gtlitecore.machine.coagulation_tank.name=Coagulation Tank
 gtlitecore.machine.coagulation_tank.tooltip.1=Coagulate your Latex!
 gtlitecore.machine.coagulation_tank.tooltip.2=Allowed to use §fFluid Import Hatch§7 and §fItem Export Bus§7 for automation
@@ -2294,21 +2327,26 @@ gtlitecore.machine.mining_drone_airport.tooltip.3=Increasing number or tier of M
 gtlitecore.machine.mining_drone_airport.tooltip.4=Each work requires fuel §consumption§7, but drills and sticks §fdoes not§7consume.
 
 gtlitecore.machine.nuclear_reactor.name=Nuclear Reactor
-gtlitecore.machine.nuclear_reactor.tooltip.1=将核素裂变以产生巨量的电力洪流，核素以§a燃料棒§7形式插入反应堆中。
-gtlitecore.machine.nuclear_reactor.tooltip.2=需要输入§d反应堆慢化剂§7来控制反应足够稳定，反应后将会输出其的过热/超临界流体。
-gtlitecore.machine.nuclear_reactor.tooltip.3=热冷却液的状态取决于裂变核素的重量，当其处于核素裂变链中的中后部分时才会输出超临界流体。
-gtlitecore.machine.nuclear_reactor.tooltip.4=核反应堆将会尝试并行裂变所有的燃料棒，同时需要输入更多的冷却液来稳定反应。
-gtlitecore.machine.nuclear_reactor.tooltip.5=换用更高的§c反应堆堆芯§7以获取更高的能量输出。
-gtlitecore.machine.nuclear_reactor.tooltip.6=倍率：§f钍（1.05），镤（1.1），铀（1.3），镎（1.4），钚（1.5），镅（1.8），§7
-gtlitecore.machine.nuclear_reactor.tooltip.7=§f锔（1.85），锫（1.9），锎（2.0），锿（2.5），镄（3），钔（3.2）。
+gtlitecore.machine.nuclear_reactor.tooltip.1=Nuclear Fission produces massive energy and nuclides are inserted into the reactor by fuel rods.
+gtlitecore.machine.nuclear_reactor.tooltip.2=Need to input §dReactor Moderator§7 to control the reaction to be stable, and its superheated/supercritical fluid will output after the reaction.
+gtlitecore.machine.nuclear_reactor.tooltip.3=The state of hot coolant depends on the weight of fission nuclide, and it will only output supercritical fluid when it is in the middle and end part of the fission chain.
+gtlitecore.machine.nuclear_reactor.tooltip.4=Nuclear Reactor will attempt to fission all fuel rods in parallel, while requiring more coolant input to stabilize the reaction.
+gtlitecore.machine.nuclear_reactor.tooltip.5=Switch to a higher §cReactor Core§7 to achieve higher energy output.
+gtlitecore.machine.nuclear_reactor.tooltip.6=Factor: §fThorium (1.05), Protactinium (1.1), Uranium (1.3), Neptunium (1.4), Plutonium (1.5), Americium (1.8),§7
+gtlitecore.machine.nuclear_reactor.tooltip.7=§fCurium (1.85), Berkelium (1.9), Californium (2.0), Einsteinium (2.5), Fermium (3), Mendelevium (3.2).
 
 gtlitecore.machine.large_turbine.hot_coolant.name=Large Hot Coolant Turbine
 
 gtlitecore.machine.large_turbine.supercritical_fluid.name=Large Supercritical Fluid Turbine
 
 gtlitecore.machine.hydraulic_fracker.name=Hydraulic Fracker
-gtlitecore.machine.hydraulic_fracker.tooltip.1=使用§b压裂液§7补充基岩下的区块流体，每次消耗§f1000L§7。
-gtlitecore.machine.hydraulic_fracker.tooltip.2=§eEnergy Usage: §f%s EU/t
+gtlitecore.machine.hydraulic_fracker.vein_full=Vein Full
+gtlitecore.machine.hydraulic_fracker.multiplier=Current Multiplier: %d/%d
+gtlitecore.machine.hydraulic_fracker.insufficient_power=Provide more energy to boost the pressure.
+gtlitecore.machine.hydraulic_fracker.tooltip.1=Use §bFracturing Fluid§7 to supplement bedrock fluid vein, consuming §f1000L§7 each time.
+gtlitecore.machine.hydraulic_fracker.tooltip.2=Supply up to §f%sx§7 of the base energy to boost the hydraulic pressure
+gtlitecore.machine.hydraulic_fracker.tooltip.3=§eBase Energy Usage: §f%s EU/t
+gtlitecore.machine.hydraulic_fracker.tooltip.4=Every §f%s EU/t§7 of the input voltage adds §f100%% efficiency§7
 
 gtlitecore.machine.catalytic_reformer.name=Catalytic Reformer
 
@@ -2319,9 +2357,9 @@ gtlitecore.machine.crystallization_crucible.name=Crystallization Crucible
 gtlitecore.machine.crystallization_crucible.tooltip.1=Artificial Gemstone Technology
 
 gtlitecore.machine.nanoscale_fabricator.name=Nanoscale Fabricator
-gtlitecore.machine.nanoscale_fabricator.tooltip.1=配方温度受到结构中的所有坩埚的平均温度限制。
-gtlitecore.machine.nanoscale_fabricator.tooltip.2=平均温度必须在配方要求的±§c250K§7以内方可使配方成功运行。
-gtlitecore.machine.nanoscale_fabricator.tooltip.3=只能使用ULV输入总线在指定坩埚位置的下方输入物品。
+gtlitecore.machine.nanoscale_fabricator.tooltip.1=Recipe temperature is limited by average temperature of all crucibles in structure.
+gtlitecore.machine.nanoscale_fabricator.tooltip.2=Average temperature must be within ±§c250K§7 as required by recipe in order for successfully working
+gtlitecore.machine.nanoscale_fabricator.tooltip.3=Only ULV Item Input Bus can be used to input items below the specified crucible position.
 
 gtlitecore.machine.nanoscale_fabricator.average_temperature=Average Temperature: %s
 gtlitecore.machine.nanoscale_fabricator.temperature_range=Workable Temperature Range: %s-%s
@@ -2331,7 +2369,7 @@ gtlitecore.machine.sonicator.name=Sonicator
 
 gtlitecore.machine.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition Unit
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=Promoting Gas-Phase Deposition Reaction with High-Energy Laser Beam
-gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，但需要放入不消耗的§9激光传输气体§7。
+gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=Compatible with all standard §2CVD§7 recipes, but requires the insertion of non-consumable §9Laser Transmissive Gas§7.
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=Supported Laser Transmissive Gas: §fHe, Ne, Ar, Kr, Xe§7
 
 gtlitecore.machine.bedrock_drilling_rig.name=Bedrock Drilling Rig
@@ -2374,40 +2412,61 @@ gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=驱使等离子体增强�
 gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，拥有§f激光诱导化学气相沉积§r配方对应的高级配方。
 
 gtlitecore.machine.pcb_factory.name=PCB Factory
-gtlitecore.machine.pcb_factory.tooltip.1=专门用于生产电路基板的大型工厂
-gtlitecore.machine.pcb_factory.tooltip.2=带有多级附属结构，附属结构的等级限制了最大配方等级。
-gtlitecore.machine.pcb_factory.tooltip.3=2级与3级PCB工厂支持放置额外的§f纳米蜂群§7来增加并行数：
-gtlitecore.machine.pcb_factory.tooltip.4=- 2级：每放入1个§6银纳米蜂群§7，并行数增加2；
-gtlitecore.machine.pcb_factory.tooltip.5=- 3级：每放入1个§a金纳米蜂群§7，并行数增加4；
-gtlitecore.machine.pcb_factory.tooltip.6=需要升级§d冷却结构§7才能解锁机器的超频功能：
-gtlitecore.machine.pcb_factory.tooltip.7=- 建造§b水冷塔§7后，解锁配方的§f默认超频§7功能；
-gtlitecore.machine.pcb_factory.tooltip.8=- 建造§9空冻塔§7后，解锁配方的§5无损超频§7功能；
-gtlitecore.machine.pcb_factory.tooltip.9=建造§2生物室§7以解锁高级电路板配方。
-gtlitecore.machine.pcb_factory.tooltip.10=调整机器的线宽（默认§f100μm§7，每次±§f25μm§7）以获得特殊效果：
-gtlitecore.machine.pcb_factory.tooltip.11=- 线宽每缩短§f25μm§7，配方时间就减少§f20%%§7，耗能就增加§f50%%§7；
-gtlitecore.machine.pcb_factory.tooltip.12=- 线宽每放宽§f25μm§7，配方时间就增加§f20%%§7，耗能就减少§f10%%§7；
-gtlitecore.machine.pcb_factory.tooltip.13=机器的最小线宽为§f25μm§7，最大线宽为§f200μm§7。
-gtlitecore.machine.pcb_factory.tooltip.14=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
-gtlitecore.machine.pcb_factory.tooltip.15=§f如果你不知道如何获得纳米蜂群，请搜索§3纳米锻炉§f。
+gtlitecore.machine.pcb_factory.tooltip.1=Large Factory for Circuit Board Producing
+gtlitecore.machine.pcb_factory.tooltip.2=Add §eAdditional Module§7 to unlock high tier recipes or enhance machine efficiency
+gtlitecore.machine.pcb_factory.tooltip.3=§fCannot overclock§7 by default only if add corresponding Additional Module
 
-gtlitecore.machine.pcb_factory.structure_info=Structure Tier: %s (Trace Size: %sμm)
-gtlitecore.machine.pcb_factory.structure_cooling=冷却已启用
-gtlitecore.machine.pcb_factory.structure_thermosink=内部温度正在逼近绝对零度
-gtlitecore.machine.pcb_factory.structure_bio_chamber=有机黏菌充斥于生物仓中
+gtlitecore.machine.pcb_factory.structure.t2=Nanolithography Array: §aEnabled
+gtlitecore.machine.pcb_factory.structure.t3=Microscale Circuit Component Detector: §aEnabled
+gtlitecore.machine.pcb_factory.structure.oc=Water Cooling Tower: §aEnabled
+gtlitecore.machine.pcb_factory.structure.perfect_oc=Thermosink Cooling Tower: §aEnabled
+gtlitecore.machine.pcb_factory.structure.bio=Bio Component Cultivation Chamber: §aEnabled
 
-gtlitecore.machine.pcb_factory.trace_size.decrement=§c放宽25μm线宽 /n§7配方时间增加20%%，耗电量减少10%%
-gtlitecore.machine.pcb_factory.trace_size.increment=§a缩短25μm线宽 /n§7配方时间减少20%%，耗电量增加50%%
+gtlitecore.machine.pcb_factory.additional_structure_name=PCB Factory Additional Module
+
+gtlitecore.machine.nanolithography_array.name=Nanolithography Array
+gtlitecore.machine.nanolithography_array.tooltip.1=Add Nanolithography functionality to the PCB Factory.
+gtlitecore.machine.nanolithography_array.tooltip.2=Each 1 §dSilver Nanite§7 in §fItem Import Bus§7 will cause Parallel §e+2§7
+
+gtlitecore.machine.microscale_circuit_detector.name=Microscale Circuit Component Detector
+gtlitecore.machine.microscale_circuit_detector.tooltip.1=Add Microscale Detecting functionality to the PCB Factory
+gtlitecore.machine.microscale_circuit_detector.tooltip.2=Each 1 §6Gold Nanite§7 in §fItem Import Bus§7 will cause Parallel §e+4§7
+
+gtlitecore.machine.bio_cultivation_chamber.name=Bio Component Cultivation Chamber
+gtlitecore.machine.bio_cultivation_chamber.tooltip.1=Add Bio Cultivation functionality to the PCB Factory
+
+gtlitecore.machine.water_cooling_tower.name=Water Cooling Tower
+gtlitecore.machine.water_cooling_tower.tooltip.1=Add Cooling functionality to the PCB Factory.
+gtlitecore.machine.water_cooling_tower.tooltip.2=Unlocked §aStandard Overclock§7 when §6PCB Factory§7 has this module
+gtlitecore.machine.water_cooling_tower.tooltip.3=Can input §bDistilled Water§7 to get §9+400%%§7 Speed Bonus for PCB Factory
+
+gtlitecore.machine.thermosink_cooling_tower.name=Thermosink Cooling Tower
+gtlitecore.machine.thermosink_cooling_tower.tooltip.1=Add Extremely Cooling functionality to the PCB Factory.
+gtlitecore.machine.thermosink_cooling_tower.tooltip.2=Unlocked §bPerfect Overclock§7 when §6PCB Factory§7 has this module
 
 gtlitecore.machine.nano_forge.name=Nano Forge
-gtlitecore.machine.nano_forge.tooltip.1=以极高的能量融合金属与电路，进而淬炼出纳米蜂群
-gtlitecore.machine.nano_forge.tooltip.2=你需要先制作§3碳纳米蜂群§7来塑造纳米锻炉，第一批纳米蜂群将引导金属与电路的融合过程。
-gtlitecore.machine.nano_forge.tooltip.3=纳米锻炉无视§f最大配方等级§7限制，只要能源仓的功率超过了配方标称功率，机器就可以工作。
-gtlitecore.machine.nano_forge.tooltip.4=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
-gtlitecore.machine.nano_forge.tooltip.5=带有多级附属结构，附属结构的等级限制了最大配方等级。
-gtlitecore.machine.nano_forge.tooltip.6=2级与3级纳米锻炉分别具有§e64§7与§e256§7并行。
-gtlitecore.machine.nano_forge.tooltip.7=当结构等级大于配方要求等级时，进行§d无损超频§7。
+gtlitecore.machine.nano_forge.tooltip.1=Fuse Metal and Circuit with Extremely High Energy to refine Nanites
+gtlitecore.machine.nano_forge.tooltip.2=Need to craft a §6Carbon Nanite§7 to craft Nano Forge first, it will guide Fusion Process of Metal and Circuit
 
-gtlitecore.machine.nano_forge.structure_info=Structure Tier: %s
+gtlitecore.machine.nano_forge.structure.t2=Multi-Quadrant Consciousness Storage Center: §aEnabled
+gtlitecore.machine.nano_forge.structure.t3=Nanite Self-Replication Unrestrictor: §aEnabled
+gtlitecore.machine.nano_forge.structure.t4=Virtual Gestalt Computing Uplink: §aEnabled
+
+gtlitecore.machine.nano_forge.additional_structure_name=Nano Forge Additional Module
+
+gtlitecore.machine.consciousness_storage_center.name=Multi-Quadrant Consciousness Storage Center
+gtlitecore.machine.consciousness_storage_center.tooltip.1=Add Distributed-Centralized Consciousness Storage functionality to the Nano Forge
+gtlitecore.machine.consciousness_storage_center.tooltip.2=Make Maximum Parallel Limit be §e64§7 when §6Nano Forge§7 has this module
+
+gtlitecore.machine.nanite_replication_unrestricor.name=Nanite Self-Replication Unrestrictor
+gtlitecore.machine.nanite_replication_unrestricor.tooltip.1=Add Nanite Self-Replication functionality to the Nano Forge
+gtlitecore.machine.nanite_replication_unrestricor.tooltip.2=Make Maximum Parallel Limit be §e256§7 when §6Nano Forge§7 has this module
+gtlitecore.machine.nanite_replication_unrestricor.tooltip.3=Unlocked §bPerfect Overclock§7 when §6Nano Forge§7 has this module
+
+gtlitecore.machine.virtual_gestalt_computing_uplink.name=Virtual Gestalt Computing Uplink
+gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.1=Add Virtual Consciousness Storage and Computing functionality to the Nano Forge
+gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.2=Make Maximum Parallel Limit be §eInfinity§7 when §6Nano Forge§7 has this module
+gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.3=Unlocked §bDouble Perfect Overclock§7 when §6Nano Forge§7 has this module
 
 gtlitecore.machine.quantum_force_transformer.name=Quantum Force Transformer
 gtlitecore.machine.quantum_force_transformer.tooltip.1=让复杂的化学过程一步到位
@@ -2483,17 +2542,21 @@ gtlitecore.machine.space_pump_module.tooltip.2=Set the Planet ID and Fluid ID to
 gtlitecore.machine.space_pump_module.tooltip.3=Upgrade module tier to unlock more fluid output slot
 gtlitecore.machine.space_pump_module.tooltip.4=Allowed to set 4 slots of fluid output simultaneously
 gtlitecore.machine.space_pump_module.tooltip.5=Working speed increased by 4 times than original speed
-gtlitecore.machine.space_pump_module.max_parallel=Workable Voltage: %s§7
+gtlitecore.machine.space_pump_module.max_parallel=Workable Voltage: %s§7, Max Parallel: §e%s§7
 gtlitecore.machine.space_pump_module.track_tier=Needs §f%s§7 or higher tier Acceleration Track.
 
+gtlitecore.machine.space_pump_module.config_button.closed=Open Configuration Panel
+gtlitecore.machine.space_pump_module.config_button.opened=Close Configuration Panel
 gtlitecore.machine.space_pump_module.configuration=Configurations
 gtlitecore.machine.space_pump_module.planet_setter=Set the target Planet ID for extracting fluids
 gtlitecore.machine.space_pump_module.fluid_setter=Set the target Fluid ID for extracting fluids
+gtlitecore.machine.space_pump_module.parallel_setter=Set the parallel number for extracting fluids
 gtlitecore.machine.space_pump_module.fluid_row.1=Fluid Output #%s
 gtlitecore.machine.space_pump_module.fluid_row.2=Set the Planet ID and Fluid ID in the box,
 gtlitecore.machine.space_pump_module.fluid_row.3=Space Pump will extract the fluid from the corresponding planet.
 gtlitecore.machine.space_pump_module.fluid=Fluid %d:
 gtlitecore.machine.space_pump_module.fluid.empty=Invalid Planet ID or Fluid ID! please check JEI for correct IDs.
+gtlitecore.machine.space_pump_module.fluid.efficient=§a%sL §7per parallel
 
 gtlitecore.machine.energy_infuser.name=Energy Infuser
 gtlitecore.machine.energy_infuser.tooltip.1=Charging rechargeable items with energy, §fFE/EU/RF§7 format electric items is also supported.
@@ -2516,8 +2579,6 @@ gtlitecore.machine.integrated_ore_processor.tooltip.12=Mode 10: §aMacerator-Che
 gtlitecore.machine.integrated_ore_processor.tooltip.13=Max Parallel:
 gtlitecore.machine.integrated_ore_processor.tooltip.14=- Voltage Tier >= §1IV§7: §e1,024§7
 gtlitecore.machine.integrated_ore_processor.tooltip.15=- Voltage Tier >= §dLuV§7: §e[1024×(Current 'EU/t'/8,192)]^(log4(1.5))§7
-
-gtlitecore.machine.integrated_ore_processor.name=Integrated Ore Processor
 
 gtlitecore.machine.large_forge_hammer.name=Large Forge Hammer
 gtlitecore.machine.large_bender.name=Large Bender
@@ -2626,8 +2687,21 @@ gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=氧等离子体�
 gtlitecore.machine.large_acid_generator.name=Large Acid Generator
 
 gtlitecore.machine.large_transformer.name=Large Transformer
-gtlitecore.machine.large_transformer.tooltip.1=比单方块变压器更好
-gtlitecore.machine.large_transformer.tooltip.2=必须同时安装§a能源仓§7与§b动力仓§7才可以工作。
+gtlitecore.machine.large_transformer.tooltip.1=Better than singleblock transformer
+gtlitecore.machine.large_transformer.tooltip.2=Must both use §aEnergy Hatch§7 and §bDynamo Hatch§7 for work.
+
+gtlitecore.machine.large_slaughter.name=Large Slaughter
+
+gtlitecore.machine.large_fisher.name=Large Fisher
+gtlitecore.machine.large_fisher.tooltip.1=Require §9fill water§7 in multiblock to maintain environment, use §fFluid Import Hatch§7 for automation
+gtlitecore.machine.large_fisher.tooltip.2=Use §fScrewdriver§7 click to change fishing mode (§bFish§7/§8Jerk§7/§6Treasure§7)
+gtlitecore.machine.large_fisher.tooltip.3=Maximum Parallel:
+gtlitecore.machine.large_fisher.tooltip.4=- In §bFish§f Mode§7: §e(1.8^(Voltage Tier) × (8 × (Pump Casing Tier) + 1))
+gtlitecore.machine.large_fisher.tooltip.5=- In §8Jerk§f / §6Treasure§f Mode§7: §e(1.2^(Voltage Tier) × Pump Casing Tier) + ((8 × (Voltage Tier) + 1) × 0.67)
+gtlitecore.machine.large_fisher.mode.0=Current Mode: §bFish§7
+gtlitecore.machine.large_fisher.mode.1=Current Mode: §8Jerk§7
+gtlitecore.machine.large_fisher.mode.2=Current Mode: §6Treasure§7
+gtlitecore.machine.large_fisher.inventory_full=Output Full
 
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
@@ -2658,10 +2732,10 @@ gtlitecore.machine.matter_reshaping_framework.name=Matter Reshaping Framework
 gtlitecore.machine.matter_reshaping_framework.tooltip.1=在§f锻压固化模组§7的§f锻造锤§7模式下使用§f物质重塑§7特殊配方
 gtlitecore.machine.matter_reshaping_framework.tooltip.2=§f物质重塑§7模式兼容所有§f锻造锤§7配方，且具有一部分独占配方
 gtlitecore.machine.matter_reshaping_framework.tooltip.3=在§f输入总线§7内指定不同的§f编程电路§7以运行不同机器配方
-gtlitecore.machine.matter_reshaping_framework.tooltip.4=- §f20号§7 -> §e流体固化机§7 / §e提取机§7
-gtlitecore.machine.matter_reshaping_framework.tooltip.5=- §f21号§7 -> §e锻造锤§7 / §e装罐机§7
-gtlitecore.machine.matter_reshaping_framework.tooltip.6=- §f22号§7 -> §e压缩机§7 / §e过胶机§7
-gtlitecore.machine.matter_reshaping_framework.tooltip.7=- §f23号§7 -> §e工具铸造机§7 / §e硫化机§7
+gtlitecore.machine.matter_reshaping_framework.tooltip.4=- §f20§7 -> §eForge Hammer§7 / §eExtractor§7
+gtlitecore.machine.matter_reshaping_framework.tooltip.5=- §f21§7 -> §eFluid Solidifier§7 / §eCanner§7
+gtlitecore.machine.matter_reshaping_framework.tooltip.6=- §f22§7 -> §eCompressor§7 / §eLaminator§7
+gtlitecore.machine.matter_reshaping_framework.tooltip.7=- §f23§7 -> §eTool Caster§7 / §eVulcanizer§7
 gtlitecore.machine.matter_reshaping_framework.tooltip.8=§a256^((Fusion Coil Tier + 1) * Voltage Tier)
 
 gtlitecore.machine.drum.iron.name=Iron Drum
@@ -2851,23 +2925,20 @@ gtlitecore.machine.fluid_hatch.export_9x.lv.name=§7LV§f Nonuple Fluid Export H
 gtlitecore.machine.fluid_hatch.export_9x.mv.name=§bMV§f Nonuple Fluid Export Hatch
 gtlitecore.machine.fluid_hatch.export_9x.hv.name=§6HV§f Nonuple Fluid Export Hatch
 
-gtlitecore.machine.huge_item_bus.import.ulv.name=§8ULV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.lv.name=§7LV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.mv.name=§bMV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.hv.name=§6HV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.ev.name=§5EV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.iv.name=§1IV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.luv.name=§dLuV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.zpm.name=§cZPM§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uv.name=§3UV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uhv.name=§4UHV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uev.name=§aUEV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uiv.name=§2UIV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.uxv.name=§eUXV§f Huge Item Import Bus
-gtlitecore.machine.huge_item_bus.import.opv.name=§9OpV§f Huge Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.iv.name=§1IV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.luv.name=§dLuV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.zpm.name=§cZPM§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uv.name=§3UV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uhv.name=§4UHV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uev.name=§aUEV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uiv.name=§2UIV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.uxv.name=§eUXV§f Quantum Item Import Bus
+gtlitecore.machine.quantum_item_bus.import.opv.name=§9OpV§f Quantum Item Import Bus
 
-gtlitecore.machine.huge_item_bus.import.tooltip=特化存储空间的输入总线
-gtlitecore.machine.huge_item_bus.tooltip=§c注意：当内部存储物品过多时会造成卡顿，请避免不必要的过量物品存储
+gtlitecore.machine.quantum_item_bus.import.tooltip.1=Input bus for Extremely Specialized Single-Slot Storage
+gtlitecore.machine.quantum_item_bus.import.tooltip.2=Can configure the Maximum Stack Size for every slots in GUI
+gtlitecore.machine.quantum_item_bus.import.tooltip.3=§aMaximum Stack Size per Slot: §f%s§7
+gtlitecore.machine.quantum_item_bus.import.configuration=Configure Maximum Stack Size per Slot
 
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.name=Automatic Sterile Filtration Maintenance Hatch
 gtlitecore.machine.maintenance_hatch_sterile_cleanroom_auto.tooltip.1=For automatically maintaining Multiblocks with Sterile Cleaning!
@@ -2908,6 +2979,113 @@ gtlitecore.machine.dual_hatch.export.uev.name=§aUEV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.uiv.name=§2UIV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.uxv.name=§eUXV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.opv.name=§9OpV§f Dual Export Hatch
+
+gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.mv.name=§bMV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.hv.name=§6HV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.ev.name=§5EV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.iv.name=§1IV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.luv.name=§dLuV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.zpm.name=§cZPM§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.uv.name=§3UV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.uhv.name=§4UHV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.uev.name=§aUEV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.uiv.name=§2UIV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.uxv.name=§eUXV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.opv.name=§9OpV§f Wireless Energy Hatch
+gtlitecore.machine.wireless_energy_hatch.input.max.name=§cMAX§f Wireless Energy Hatch
+
+gtlitecore.machine.wireless_energy_hatch.output.ulv.name=§8ULV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.lv.name=§7LV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.mv.name=§bMV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.hv.name=§6HV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.ev.name=§5EV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.iv.name=§1IV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.luv.name=§dLuV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.zpm.name=§cZPM§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.uv.name=§3UV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.uhv.name=§4UHV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.uev.name=§aUEV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.uiv.name=§2UIV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.uxv.name=§eUXV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.opv.name=§9OpV§f Wireless Dynamo Hatch
+gtlitecore.machine.wireless_energy_hatch.output.max.name=§cMAX§f Wireless Dynamo Hatch
+
+gtlitecore.machine.wireless_energy_hatch.storage.iv.name=§1IV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.luv.name=§dLuV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.zpm.name=§cZPM§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.uv.name=§3UV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.uhv.name=§4UHV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.uev.name=§aUEV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.uiv.name=§2UIV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.uxv.name=§eUXV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.opv.name=§9OpV§f Wireless Energy Buffer
+gtlitecore.machine.wireless_energy_hatch.storage.max.name=§cMAX§f Wireless Energy Buffer
+
+gtlitecore.machine.energy_distributor.ulv.name=§7ULV§f Energy Distributor
+gtlitecore.machine.energy_distributor.lv.name=§7LV§f Energy Distributor
+gtlitecore.machine.energy_distributor.mv.name=§bMV§f Energy Distributor
+gtlitecore.machine.energy_distributor.hv.name=§6HV§f Energy Distributor
+gtlitecore.machine.energy_distributor.ev.name=§5EV§f Energy Distributor
+gtlitecore.machine.energy_distributor.iv.name=§1IV§f Energy Distributor
+gtlitecore.machine.energy_distributor.luv.name=§dLuV§f Energy Distributor
+gtlitecore.machine.energy_distributor.zpm.name=§cZPM§f Energy Distributor
+gtlitecore.machine.energy_distributor.uv.name=§3UV§f Energy Distributor
+gtlitecore.machine.energy_distributor.uhv.name=§4UHV§f Energy Distributor
+gtlitecore.machine.energy_distributor.uev.name=§aUEV§f Energy Distributor
+gtlitecore.machine.energy_distributor.uiv.name=§2UIV§f Energy Distributor
+gtlitecore.machine.energy_distributor.uxv.name=§eUXV§f Energy Distributor
+gtlitecore.machine.energy_distributor.opv.name=§9OpV§f Energy Distributor
+gtlitecore.machine.energy_distributor.max.name=§cMAX§f Energy Distributor
+
+gtlitecore.machine.energy_distributor.tooltip.1=§eMaximum Input Amperage: §f320 A
+gtlitecore.machine.energy_distributor.tooltip.2=Distributes energy from front face to 5 output faces, or combines from 5 input faces to front face
+gtlitecore.machine.energy_distributor.tooltip.3=Use §fWrench§7 to change front facing
+gtlitecore.machine.energy_distributor.tooltip.4=Use §fSoft Mallet§7 to toggle §aDistribute§7/§cCombine§7 mode
+
+gtlitecore.top.energy_distributor.mode_distribute=Mode: §aDistribute
+gtlitecore.top.energy_distributor.mode_combine=Mode: §cCombine
+
+gtlitecore.machine.wireless_energy_hatch.tooltip.1=Receives energy from Wireless Network
+gtlitecore.machine.wireless_energy_hatch.tooltip.2=Set a §fChannel§7 to add hatch to §dWireless Energy Network§7.
+gtlitecore.machine.wireless_energy_hatch.tooltip.3=A higher §fPriority§7 will make hatch extract energy before others in network.
+gtlitecore.machine.wireless_energy_hatch.tooltip.4=The §eAmperage§7 of the hatch can configure freely, default is §e2A§7.
+gtlitecore.machine.wireless_energy_hatch.tooltip.5=Right-click hatch with §fScrewdriver§f7 to double the §eAmperage§7, sneak while right-clicking to halve it.
+gtlitecore.machine.wireless_energy_hatch.tooltip.6=The §fBuffer Energy Duration§7 can configure freely, default is §f10s§7.
+
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.1=Outputs energy to Wireless Network
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.2=Set a §fChannel§7 to add hatch to §dWireless Energy Network§7.
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.3=A higher §fPriority§7 will make hatch pull energy before others in network.
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.4=The §eAmperage§7 of the hatch can configure freely, default is §e2A§7.
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.5=Right-click hatch with §fScrewdriver§f7 to double the §eAmperage§7, sneak while right-clicking to halve it.
+gtlitecore.machine.wireless_dynamo_hatch.tooltip.6=The §fBuffer Energy Duration§7 can configure freely, default is §f10s§7.
+
+gtlitecore.machine.wireless_storage_hatch.tooltip.1=Buffers Wireless Network energy via §6Power Substation§7
+gtlitecore.machine.wireless_storage_hatch.tooltip.2=Set a §fChannel§7 to add hatch to §dWireless Energy Network§7.
+gtlitecore.machine.wireless_storage_hatch.tooltip.3=A higher §fPriority§7 will make hatch interact with energy before others in network.
+gtlitecore.machine.wireless_storage_hatch.tooltip.4=The §eAmperage§7 of the hatch can configure freely, default is §e2A§7.
+gtlitecore.machine.wireless_storage_hatch.tooltip.5=Right-click hatch with §fScrewdriver§f7 to double the §eAmperage§7, sneak while right-clicking to halve it.
+gtlitecore.machine.wireless_storage_hatch.tooltip.6=The §fBuffer Energy Duration§7 can configure freely, default is §f10s§7.
+
+gtlitecore.machine.wireless_energy_hatch.interactive_voltage=§aInteractive Voltage: §f%,d EU/t (%s§f)
+gtlitecore.machine.wireless_energy_hatch.interactive_amperage=§eInteractive Amperage: §f%,dA
+gtlitecore.machine.wireless_energy_hatch.channel=Channel
+gtlitecore.machine.wireless_energy_hatch.connections=Connections: %d
+gtlitecore.machine.wireless_energy_hatch.priority=Priority
+gtlitecore.machine.wireless_energy_hatch.amperage=Amperage
+gtlitecore.machine.wireless_energy_hatch.buffer_duration=Buffer Duration
+
+gtlitecore.top.wireless_hatch.role_input=Input
+gtlitecore.top.wireless_hatch.role_output=Output
+gtlitecore.top.wireless_hatch.role_storage=Storage
+gtlitecore.top.wireless_hatch.channel=Channel: %s
+gtlitecore.top.wireless_hatch.connections=Connections: %d
+gtlitecore.top.wireless_hatch.priority=Priority: %d
+gtlitecore.top.wireless_hatch.no_channel=Not connected to channel
+gtlitecore.top.wireless_hatch.error_unknown=Unknown Error
+gtlitecore.top.wireless_hatch.amperage=Amperage: %sA
+gtlitecore.top.wireless_hatch.overflow=Overflow: %s EU
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s
@@ -2995,6 +3173,7 @@ gtlitecore.material.heavy_alkali_chlorides_solution=Heavy Alkali Chlorides Solut
 gtlitecore.material.tin_dichloride=Tin Dichloride
 gtlitecore.material.tin_tetrachloride=Tin Tetrachloride
 gtlitecore.material.caesium_hexachlorotinate=Caesium Hexachlorotinate
+gtlitecore.material.rubidium_hexachlorotinate=Rubidium Hexachlorotinate
 gtlitecore.material.cryolite=Cryolite
 gtlitecore.material.aluminium_hydroxide=Aluminium Hydroxide
 gtlitecore.material.sodium_aluminate=Sodium Aluminate
@@ -3026,6 +3205,9 @@ gtlitecore.material.lithium_titanate=Lithium Titanate
 gtlitecore.material.palladium_nitrate=Palladium Nitrate
 gtlitecore.material.palladium_acetate=Palladium Acetate
 gtlitecore.material.palladium_loaded_rutile_nanoparticles=Palladium Loaded Rutile Nanoparticles
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dust=Palladium Loaded Rutile Nanoparticles
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustSmall=Small Palladium Loaded Rutile Nanoparticles
+item.gtlitecore.material.palladium_loaded_rutile_nanoparticles.dustTiny=Tiny Palladium Loaded Rutile Nanoparticles
 gtlitecore.material.lithium_oxide=Lithium Oxide
 gtlitecore.material.lithium_carbonate=Lithium Carbonate
 gtlitecore.material.blue_vitriol=Blue Vitriol
@@ -3090,6 +3272,7 @@ gtlitecore.material.rhodium_trioxide=Rhodium Trioxide
 gtlitecore.material.sulfur_dichloride=Sulfur Dichloride
 gtlitecore.material.osmium_tetrachloride=Osmium Tetrachloride
 gtlitecore.material.beryllium_oxide=Beryllium Oxide
+gtlitecore.material.hydrogen_peroxide=Hydrogen Peroxide
 gtlitecore.material.graphene_oxide=Graphene Oxide
 gtlitecore.material.yttrium_nitrate=Yttrium Nitrate
 gtlitecore.material.barium_nitrate=Barium Nitrate
@@ -3097,6 +3280,7 @@ gtlitecore.material.copper_nitrate=Copper Nitrate
 gtlitecore.material.yttrium_barium_copper_oxides_mixture=Yttrium Barium Copper Oxides Mixture
 gtlitecore.material.gst_glass=GST Glass
 item.gtlitecore.material.gst_glass.ingot=GST Glass Bar
+item.gtlitecore.material.gst_glass.wireFine=GST Glass Fiber
 gtlitecore.material.germanium_dioxide=Germanium Dioxide
 gtlitecore.material.roasted_sphalerite=Roasted Sphalerite
 gtlitecore.material.zinc_rich_sphalerite=Zinc-rich Sphalerite
@@ -3279,7 +3463,7 @@ gtlitecore.material.seaborgium_doped_carbon_nanotube=Seaborgium-doped Carbon Nan
 gtlitecore.material.pr_ho_y_nitrates_solution=Praseodymium-Holmium-Yttrium Nitrates Solution
 gtlitecore.material.pr_ho_ylf=Praseodymium/Holmium-doped Yttrium Lithium Fluoride
 gtlitecore.material.harmonic_phonon_matter=Harmonic Phonon Matter (HPM)
-gtlitecore.material.gtlitecore.material.trichlorocyclopentadienyl_titanium=Trichlorocyclopentadienyl Titanium
+gtlitecore.material.trichlorocyclopentadienyl_titanium=Trichlorocyclopentadienyl Titanium
 gtlitecore.material.silver_perchlorate=Silver Perchlorate
 gtlitecore.material.photopolymer_solution=Photopolymer Solution
 gtlitecore.material.sodium_bromide=Sodium Bromide
@@ -3300,6 +3484,9 @@ gtlitecore.material.strontium_europium_nihonate=Strontium Europium Nihonate
 gtlitecore.material.neutronium_doped_carbon_nanotube=Neutronium-doped Carbon Nanotube
 gtlitecore.material.cosmic_fabric=Cosmic Fabric
 gtlitecore.material.silicon_nanoparticles=Silicon Nanoparticles
+item.gtlitecore.material.silicon_nanoparticles.dust=Silicon Nanoparticles
+item.gtlitecore.material.silicon_nanoparticles.dustSmall=Small Silicon Nanoparticles
+item.gtlitecore.material.silicon_nanoparticles.dustTiny=Tiny Silicon Nanoparticles
 gtlitecore.material.sodium_alginate=Sodium Alginate
 gtlitecore.material.calcium_alginate=Calcium Alginate
 gtlitecore.material.chromatic_glass=Chromatic Glass
@@ -3442,7 +3629,6 @@ gtlitecore.material.thionyl_chloride=Thionyl Chloride
 gtlitecore.material.phthalic_anhydride=Phthalic Anhydride
 gtlitecore.material.ethylanthraquinone=2-Ethylanthraquinone
 gtlitecore.material.ethylanthrahydroquinone=2-Ethylanthrahydroquinone
-gtlitecore.material.hydrogen_peroxide=Hydrogen Peroxide
 gtlitecore.material.hydrazine=Hydrazine
 gtlitecore.material.citric_acid=Citric Acid
 gtlitecore.material.glutamine=Glutamine
@@ -3660,6 +3846,7 @@ gtlitecore.material.azafullerene=Azafullerene
 gtlitecore.material.fulvic_acid=Fulvic Acid
 gtlitecore.material.mauveine=Mauveine
 gtlitecore.material.diketopyrrolopyrrole=Diketopyrrolopyrrole
+gtlitecore.material.isopropyl_succinate=Isopropyl Succinate
 gtlitecore.material.eosin_y=Eosin Y
 gtlitecore.material.phenylenedioxydiacetic_acid=Phenylenedioxydiacetic Acid
 gtlitecore.material.ethylamine=Ethylamine
@@ -3667,6 +3854,19 @@ gtlitecore.material.diethylthiourea=Diethylthiourea
 gtlitecore.material.isophthaloylbisdiethylthiourea=Isophthaloylbisdiethylthiourea
 gtlitecore.material.silane=Silane
 gtlitecore.material.ethylene_vinyl_acetate_polymer=Ethylene-Vinyl Acetate Polymer (EVA)
+gtlitecore.material.stearic_acid=Stearic Acid
+gtlitecore.material.sodium_stearate=Sodium Stearate
+gtlitecore.material.methyl_stearate=Methyl Stearate
+gtlitecore.material.glycidyl_stearate=Glycidyl Stearate
+gtlitecore.material.monoglyceride=Monoglyceride
+gtlitecore.material.dimethyl_carbonate=Dimethyl Carbonate
+gtlitecore.material.diphenyl_carbonate=Diphenyl Carbonate
+gtlitecore.material.bpa_polycarbonate=Bisphenol A Polycarbonate
+gtlitecore.material.isobutyric_acid=Isobutyric Acid
+gtlitecore.material.isobutyric_anhydride=Isobutyric Anhydride
+gtlitecore.material.dimethylketene=Dimethylketene
+gtlitecore.material.tetramethylcyclobutanediol=Tetramethylcyclobutanediol (CBDO)
+gtlitecore.material.cbdo_polycarbonate=CBDO Polycarbonate
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -3715,6 +3915,9 @@ gtlitecore.material.cane_syrup=Cane Syrup
 gtlitecore.material.apple_cane_syrup=Apple-Cane Syrup
 gtlitecore.material.hard_apple_candy_syrup=Hard Apple Candy Syrup
 gtlitecore.material.fracturing_fluid=Fracturing Fluid
+gtlitecore.material.crude_soybean_oil=Crude Soybean Oil
+gtlitecore.material.soybean_oil=Soybean Oil
+gtlitecore.material.bean_phospholipid=Bean Phospholipid
 
 gtlitecore.material.free_electron_gas=Free Electron Gas
 gtlitecore.material.fermionic_uu_matter=Fermionic UU Matter
@@ -3784,6 +3987,22 @@ gtlitecore.material.mutated_living_solder=Mutated Living Solder
 gtlitecore.material.sodio_indene=Sodio-Indene Mixture
 gtlitecore.material.steam_cracked_sodio_indene=Steam-Cracked Sodio-Indene Mixture
 gtlitecore.material.phosphorene_solution=Phosphorene Solution
+gtlitecore.material.nutrient_paste_water_phase_mixture=Nutrient Paste Water Phase Mixture
+gtlitecore.material.rich_nutrient_paste_water_phase_mixture=Nutrient Paste Water Phase Mixture (Rich Nutrient)
+gtlitecore.material.food_oil_phase_mixture=Food Oil Phase Mixture
+gtlitecore.material.nutrient_paste_crude_emulsion=Nutrient Paste Crude Emulsion
+gtlitecore.material.rich_nutrient_paste_crude_emulsion=Nutrient Paste Crude Emulsion (Rich Nutrient)
+gtlitecore.material.nutrient_paste_emulsion=Nutrient Paste Emulsion
+gtlitecore.material.rich_nutrient_paste_emulsion=Nutrient Paste Emulsion (Rich Nutrient)
+gtlitecore.material.sterilized_nutrient_paste_emulsion=Sterilized Nutrient Paste Emulsion
+gtlitecore.material.sterilized_rich_nutrient_paste_emulsion=Sterilized Nutrient Paste Emulsion (Rich Nutrient)
+gtlitecore.material.egg_liquid=Egg Liquid
+gtlitecore.material.egg_white=Egg Protein
+gtlitecore.material.egg_white.fluid=Egg White
+gtlitecore.material.egg_yolk=Egg Yolk
+gtlitecore.material.sugar_free_egg_white=Sugar Free Egg White
+gtlitecore.material.phospholipid_ethanol_emulsion=Phospholipid Ethanol Emulsion
+gtlitecore.material.lecithin=Lecithin
 
 gtlitecore.material.neutron_proton_fermi_superfluid=Neutron-Proton Fermi Superfluid
 gtlitecore.material.heavy_lepton_mixture=Heavy Lepton Mixture
@@ -3816,9 +4035,11 @@ gtlitecore.material.eternity_plus_token=Eternity+
 item.gregtech.material.graphite.fuelRod=Graphite Moderate Rod
 item.gregtech.material.graphite.fuelRodEnriched=Enriched Graphite Moderate Rod
 item.gregtech.material.graphite.fuelRodHighDensity=High Density Graphite Moderate Rod
+item.gregtech.material.polycaprolactam.wireFine=Polycaprolactam Fiber
 
 # Fluids
 gtlitecore.fluid.molten=Molten %s
+gtlitecore.fluid.slurry=%s Slurry
 
 # Veins
 gtlitecore.veins.ore.limestone_sphere=Limestone Sphere
@@ -3951,6 +4172,9 @@ gtlitecore.tooltip.machine.excess_mode=Switch the §bExcess Mode§7 to choose wh
 gtlitecore.tooltip.gui.excess_mode.enabled=Excess Mode: §aEnabled§r\nWhen Dynamo Hatch is full, continues working and destroys excess energy.
 gtlitecore.tooltip.gui.excess_mode.disabled=Excess Mode: §cDisabled§r\nWhen Dynamo Hatch is full, stop recipe working and maintain progress time.
 
+gtlitecore.tooltip.contributor_item=§a§lContributor Item
+gtlitecore.tooltip.contributor_item.owner=This item is exclusively owned by §lContributor§r§6%s§7, thank your contribution for modpack!
+
 # Creative Tabs
 itemGroup.gtlite.main=GregTech Lite
 itemGroup.gtlite.machine=GregTech Lite | Machines
@@ -3971,6 +4195,7 @@ gtlitecore.subtitle.tick.stellar_forge.name=Stellar Forge: Supernova Explosion
 gtlitecore.message.berry_bush_blocked=Will cause Berry Bush unable to grow at %s
 
 death.attack.ore_crushing=%s was crushed as ore
+death.attack.mob_slaughtering=%s was slaughtered
 
 # Enchantment Levels
 enchantment.level.0=I

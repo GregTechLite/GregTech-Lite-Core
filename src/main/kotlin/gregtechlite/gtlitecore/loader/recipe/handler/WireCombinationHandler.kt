@@ -5,7 +5,6 @@ import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.PACKER_RECIPES
-import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Rubber
@@ -27,6 +26,7 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LOOM_RECIPES
 import kotlin.math.pow
 

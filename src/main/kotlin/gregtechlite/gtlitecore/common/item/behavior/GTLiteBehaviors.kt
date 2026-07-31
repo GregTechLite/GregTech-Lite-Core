@@ -113,6 +113,7 @@ object GTLiteBehaviors
             ItemStack(Items.GLASS_BOTTLE),
             RandomPotionEffect(MobEffects.HASTE, 800, 1, 10),
             RandomPotionEffect(MobEffects.WITHER, 800, 5, 10)))
+        MetaItems.BOTTLE_PURPLE_DRINK.addComponents(BottlecrateBehavior(0xFFB405FF))
 
         // endregion
 

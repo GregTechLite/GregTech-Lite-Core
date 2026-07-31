@@ -9,6 +9,7 @@ import gregtech.api.capability.GregtechDataCodes
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.unification.material.Material
 import gregtech.api.util.GTUtility
+import gregtechlite.gtlitecore.api.collection.to
 import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntityDelegator
 import gregtechlite.gtlitecore.client.renderer.texture.custom.ExtenderRenderer
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
@@ -59,7 +60,7 @@ class MetaTileEntityExtender(id: ResourceLocation,
         val color = GTUtility.convertOpaqueRGBA_CLtoRGB(ColourRGBA.multiply(
             GTUtility.convertRGBtoOpaqueRGBA_CL(baseColor),
             GTUtility.convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
-        return Pair.of(renderer.getParticleTexture(), color)
+        return renderer.getParticleTexture() to color
     }
 
     override fun onWrenchClick(playerIn: EntityPlayer,

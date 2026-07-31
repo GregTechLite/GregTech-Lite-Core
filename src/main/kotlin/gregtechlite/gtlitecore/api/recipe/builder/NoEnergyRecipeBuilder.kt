@@ -6,15 +6,12 @@ import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.properties.impl.PrimitiveProperty
 import gregtech.api.util.ValidationResult
 
+@Suppress("unused")
 class NoEnergyRecipeBuilder : RecipeBuilder<NoEnergyRecipeBuilder>
 {
-
-    @Suppress("unused")
     constructor()
 
-    @Suppress("unused")
-    constructor(recipe: Recipe,
-                recipeMap: RecipeMap<NoEnergyRecipeBuilder>) : super(recipe, recipeMap)
+    constructor(recipe: Recipe, recipeMap: RecipeMap<NoEnergyRecipeBuilder>) : super(recipe, recipeMap)
 
     constructor(recipeBuilder: NoEnergyRecipeBuilder) : super(recipeBuilder)
 
@@ -26,5 +23,4 @@ class NoEnergyRecipeBuilder : RecipeBuilder<NoEnergyRecipeBuilder>
         applyProperty(PrimitiveProperty.getInstance(), true)
         return super.build()
     }
-
 }

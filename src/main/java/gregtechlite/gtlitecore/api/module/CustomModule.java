@@ -17,13 +17,11 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 public interface CustomModule
 {
-
     /**
      * What other modules this module depends on.
      * <p>
@@ -82,8 +80,7 @@ public interface CustomModule
      *
      * @return A list of classes to subscribe to the Forge Event Bus.
      */
-    @NotNull
-    default List<Class<?>> getEventBusSubscribers()
+    default @NotNull List<Class<?>> getEventBusSubscribers()
     {
         return ListOps.of();
     }
@@ -94,8 +91,7 @@ public interface CustomModule
      *
      * @return A list of classes to subscribe to the Forge Terrain Gen Bus.
      */
-    @NotNull
-    default List<Class<?>> getTerrainGenBusSubscribers()
+    default @NotNull List<Class<?>> getTerrainGenBusSubscribers()
     {
         return ListOps.of();
     }
@@ -106,8 +102,7 @@ public interface CustomModule
      *
      * @return A list of classes to subscribe to the Forge Ore Gen Bus.
      */
-    @NotNull
-    default List<Class<?>> getOreGenBusSubscribers()
+    default @NotNull List<Class<?>> getOreGenBusSubscribers()
     {
         return ListOps.of();
     }
@@ -127,5 +122,4 @@ public interface CustomModule
      */
     @NotNull
     Logger getLogger();
-
 }

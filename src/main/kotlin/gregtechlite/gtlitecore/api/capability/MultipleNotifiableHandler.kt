@@ -1,9 +1,9 @@
 package gregtechlite.gtlitecore.api.capability
 
 import gregtech.api.capability.INotifiableHandler
-import gregtechlite.gtlitecore.mixins.MixinExtension
+import gregtechlite.gtlitecore.mixins.hooks.Extension
 
-@MixinExtension
+@Extension
 interface MultipleNotifiableHandler
 {
 

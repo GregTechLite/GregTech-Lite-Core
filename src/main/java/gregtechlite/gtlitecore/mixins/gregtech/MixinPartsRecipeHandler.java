@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = PartsRecipeHandler.class, remap = false)
 public abstract class MixinPartsRecipeHandler
 {
-
     /**
      * Disabled stick and lens recipes initialization.
      *
@@ -43,5 +42,4 @@ public abstract class MixinPartsRecipeHandler
 
         ci.cancel();
     }
-
 }

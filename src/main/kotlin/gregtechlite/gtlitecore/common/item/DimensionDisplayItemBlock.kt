@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.item
 
 import codechicken.lib.model.ModelRegistryHelper
 import gregtechlite.gtlitecore.client.renderer.ItemRendererManager
-import gregtechlite.gtlitecore.client.renderer.handler.DimensionDisplayItemRenderer
+import gregtechlite.gtlitecore.client.renderer.handler.item.DimensionDisplayItemRenderer
 import gregtechlite.gtlitecore.common.block.BlockDimensionDisplay
 import net.minecraft.block.Block
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
