@@ -115,8 +115,7 @@ object GTLiteMaterialIconSet
     val ETERNITY = iconSet("eternity", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
 
     @JvmField
-    val TRANSCENDENT = MaterialIconSetWithRenderer("transcendent", MaterialIconSet.METALLIC, false,
-        TranscendentRenderItemBehavior())
+    val TRANSCENDENT = iconSet("transcendent", MaterialIconSet.METALLIC, TranscendentRenderItemBehavior())
 
     // endregion
 
@@ -133,6 +132,9 @@ object GTLiteMaterialIconSet
 
     private fun iconSet(name: String, rendererManager: ItemRendererManager? = null): MaterialIconSet
         = rendererManager?.let { RenderedMaterialIconSet(name, null, true, it) } ?: MaterialIconSet(name, null, true)
+
+    private fun iconSet(name: String, defaultIconSet: MaterialIconSet? = null, rendererManager: ItemRendererManager? = null): MaterialIconSet
+        = rendererManager?.let { RenderedMaterialIconSet(name, defaultIconSet, false, it) } ?: MaterialIconSet(name, defaultIconSet, false)
 
     // @formatter:on
 }
