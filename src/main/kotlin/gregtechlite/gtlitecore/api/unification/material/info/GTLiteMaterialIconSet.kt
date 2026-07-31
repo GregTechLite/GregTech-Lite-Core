@@ -11,6 +11,7 @@ import gregtech.api.unification.material.info.MaterialIconSet
 import gregtechlite.gtlitecore.client.renderer.ItemRendererManager
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.item.behavior.HaloRenderItemBehavior
+import gregtechlite.gtlitecore.common.item.behavior.TranscendentRenderItemBehavior
 
 object GTLiteMaterialIconSet
 {
@@ -113,6 +114,9 @@ object GTLiteMaterialIconSet
     @JvmField
     val ETERNITY = iconSet("eternity", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
 
+    @JvmField
+    val TRANSCENDENT = iconSet("transcendent", MaterialIconSet.METALLIC, TranscendentRenderItemBehavior())
+
     // endregion
 
     fun setMaterialIconSets()
@@ -128,6 +132,9 @@ object GTLiteMaterialIconSet
 
     private fun iconSet(name: String, rendererManager: ItemRendererManager? = null): MaterialIconSet
         = rendererManager?.let { RenderedMaterialIconSet(name, null, true, it) } ?: MaterialIconSet(name, null, true)
+
+    private fun iconSet(name: String, defaultIconSet: MaterialIconSet? = null, rendererManager: ItemRendererManager? = null): MaterialIconSet
+        = rendererManager?.let { RenderedMaterialIconSet(name, defaultIconSet, false, it) } ?: MaterialIconSet(name, defaultIconSet, false)
 
     // @formatter:on
 }
