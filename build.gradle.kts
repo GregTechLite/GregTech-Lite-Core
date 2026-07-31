@@ -132,13 +132,13 @@ dependencies {
     implementation(deobf(libs.ae2ExtendedLife))
     implementation(libs.jei)
     implementation(libs.theOneProbe)
-    implementation(libs.baubles)
 
     compileOnly(libs.groovyScript) {
         isTransitive = false
     }
 
     compileOnly(libs.craftTweaker2)
+    compileOnly(libs.baubles)
 
     runtimeOnly(deobf(libs.catalogue))
 
