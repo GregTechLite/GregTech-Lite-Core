@@ -878,6 +878,10 @@ metaitem.tool.laser_destroyer.energy_cost=挖掘方块时消耗§e%s EU§7，处
 metaitem.tool.laser_destroyer.silk_mode.disabled=精准模式：§c禁用§f
 metaitem.tool.laser_destroyer.silk_mode.enabled=精准模式：§a启用§f
 
+metaitem.tool.magicbook.name=“一本书”
+metaitem.tool.magicbook.tooltip.1=书页均呈现如现实般的场景的魔法书，持有之人将受到未知来源的注视
+metaitem.tool.magicbook.tooltip.2=使玩家获得§c创§6造§e模§a式§3飞§9行§d能§5力§7且不受到§f任何来源的伤害§7
+
 metaitem.tool.petri_dish.dirty.name=污浊的培养皿
 metaitem.tool.petri_dish.brevibacterium_flavum.name=黄色短杆菌培养皿
 metaitem.tool.petri_dish.cupriavidus_necator.name=贪铜钩虫菌培养皿

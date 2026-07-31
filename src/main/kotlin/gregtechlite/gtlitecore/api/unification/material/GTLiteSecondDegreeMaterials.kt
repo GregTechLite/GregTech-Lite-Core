@@ -406,7 +406,8 @@ object GTLiteSecondDegreeMaterials
             fluid()
             color(0xFFB20F).iconSet(SHINY)
             components(Gold, 7, Bronze, 3)
-            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
+            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
+                  GENERATE_RING)
             blastProp(1200, GasTier.LOW, // Cupronickel
                       VA[MV], 24 * SECOND)
         }

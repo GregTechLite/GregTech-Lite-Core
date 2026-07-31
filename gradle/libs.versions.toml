@@ -20,6 +20,7 @@ theOneProbe = "2667280" # 1.4.28
 smoothFonts = "3944565" # 2.1.4
 betterQuestingUnofficial = "5875712" # 4.2.6
 catalogue = "7652301" # 1.0.1
+baubles = "2518667" # 1.5.2
 
 # Plugins
 ideaExt = "1.1.7"
@@ -49,6 +50,7 @@ theOneProbe              = { group = "curse.maven",                   name = "to
 smoothFonts              = { group = "curse.maven",                   name = "smooth-font-285742",                version.ref = "smoothFonts"              }
 betterQuestingUnofficial = { group = "curse.maven",                   name = "better-questing-unofficial-629629", version.ref = "betterQuestingUnofficial" }
 catalogue                = { group = "curse.maven",                   name = "catalogue-vintage-1465746",         version.ref = "catalogue"                }
+baubles                  = { group = "curse.maven",                   name = "baubles-227083",                    version.ref = "baubles"                  }
 
 [plugins]
 ideaExt           = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaExt"           }

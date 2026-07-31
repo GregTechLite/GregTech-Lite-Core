@@ -20,6 +20,7 @@ import gregtech.api.util.SmallDigits
 import gregtech.client.utils.TooltipHelper
 import gregtech.common.creativetab.GTCreativeTabs
 import gregtech.common.items.behaviors.TooltipBehavior
+import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
 import gregtechlite.gtlitecore.api.item.GTLiteMetaItem
 import gregtechlite.gtlitecore.client.event.TextAnimations
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -180,6 +181,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_DECORATION
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_FOOD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_MACHINE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MACROWORMHOLE_GENERATOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGICBOOK
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETRON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MANIFOLD_OSCILLATORY_POWER_CELL
@@ -902,7 +904,17 @@ object GTLiteMetaItem1
             .setMaxStackSize(1)
             .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS)
 
-        // ...
+        MAGICBOOK = item(624, "tool.magicbook")
+            .addComponents(TooltipBehavior {
+                if (TooltipHelper.isShiftDown())
+                    it.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.MAGIC_SWEEPY.userName))
+                else
+                    it.add(I18n.format("gtlitecore.tooltip.contributor_item"))
+                it.add(I18n.format("metaitem.tool.magicbook.tooltip.1"))
+                it.add(I18n.format("metaitem.tool.magicbook.tooltip.2"))
+            })
+            .setMaxStackSize(1)
+            .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS)
 
         DIRTY_PETRI_DISH = item(631, "tool.petri_dish.dirty")
         BREVIBACTERIUM_FLAVUM_PETRI_DISH = item(632, "tool.petri_dish.brevibacterium_flavum")
