@@ -878,6 +878,10 @@ metaitem.tool.laser_destroyer.energy_cost=Consume §e%s EU§7 for each block bre
 metaitem.tool.laser_destroyer.silk_mode.disabled=Silk Mode: §cDisabled§f
 metaitem.tool.laser_destroyer.silk_mode.enabled=Silk Mode: §aEnabled§f
 
+metaitem.tool.magicbook.name="A Book"
+metaitem.tool.magicbook.tooltip.1=Magic Book full of Realistic Scenes, you will be watched from an Unknown Source
+metaitem.tool.magicbook.tooltip.2=Grant player with §cCr§6ea§eti§ave§3Fly§9Ab§dili§5ty§7 and §fnot damaged with any source§7
+
 metaitem.tool.petri_dish.dirty.name=Dirty Petri Dish
 metaitem.tool.petri_dish.brevibacterium_flavum.name=Brevibacterium Flavum Petri Dish
 metaitem.tool.petri_dish.cupriavidus_necator.name=Cupriavidus Necator Petri Dish

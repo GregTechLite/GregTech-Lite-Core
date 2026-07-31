@@ -132,6 +132,7 @@ dependencies {
     implementation(deobf(libs.ae2ExtendedLife))
     implementation(libs.jei)
     implementation(libs.theOneProbe)
+    implementation(libs.baubles)
 
     compileOnly(libs.groovyScript) {
         isTransitive = false
