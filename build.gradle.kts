@@ -271,12 +271,10 @@ if (usesShadowJar.toBoolean()) {
     }
 }
 
-// Add JavaDocs/KDocs generate merger in Java/Kotlin mixed programming environment.
 tasks.withType<DokkaTask> {
     outputDirectory.set(projectDir.resolve("docs"))
     dokkaSourceSets {
         configureEach {
-            // Allowed Dokka read two sourceSets.
             sourceRoots.from(file("src/main/java"), file("src/main/kotlin"))
         }
     }
