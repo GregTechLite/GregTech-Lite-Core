@@ -40,27 +40,38 @@ abstract class WrappedItemRenderer : PerspectiveAwareItemRenderer
         @JvmOverloads
         fun renderModel(model: IBakedModel, stack: ItemStack, alphaOverride: Float = 1.0f)
         {
-            val itemColorProvider = Games.itemColors()
-            val tess = Tessellator.getInstance()
-            val buffer = tess.buffer
-            buffer.begin(0x07, DefaultVertexFormats.ITEM)
             val quads = mutableListOf<BakedQuad>()
             for (face in EnumFacing.VALUES)
                 quads.addAll(model.getQuads(null, face, 0))
-
             quads.addAll(model.getQuads(null, null, 0))
+            renderQuads(quads, stack, alphaOverride)
+        }
+
+        /**
+         * Renders a list of quads basically the same as `RenderItem` does, except allows overriding the alpha.
+         *
+         * @param quads         The quads to render.
+         * @param stack         The stack being renderer. Used for quad tinting.
+         * @param alphaOverride The alpha override value (0.0 -> 1.0).
+         */
+        fun renderQuads(quads: List<BakedQuad>, stack: ItemStack, alphaOverride: Float = 1.0f)
+        {
+            val itemColors = Games.itemColors()
+            val tess = Tessellator.getInstance()
+            val buffer = tess.buffer
+            buffer.begin(0x07, DefaultVertexFormats.ITEM)
             val alpha = (alphaOverride * 255f).toInt() and 0xFF
             for (quad in quads)
             {
-                var colour = -1
+                var color = -1
                 if (quad.hasTintIndex())
                 {
-                    colour = itemColorProvider.colorMultiplier(stack, quad.getTintIndex())
-
-                    if (EntityRenderer.anaglyphEnable) colour = TextureUtil.anaglyphColor(colour)
+                    color = itemColors.colorMultiplier(stack, quad.getTintIndex())
+                    if (EntityRenderer.anaglyphEnable)
+                        color = TextureUtil.anaglyphColor(color)
                 }
-                colour = (colour and 0x00FFFFFF) or (alpha shl 24)
-                LightUtil.renderQuadColor(buffer, quad, colour)
+                color = (color and 0x00FFFFFF) or (alpha shl 24)
+                LightUtil.renderQuadColor(buffer, quad, color)
             }
             tess.draw()
         }

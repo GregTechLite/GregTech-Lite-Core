@@ -9,10 +9,12 @@ import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper.releaseShader
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper.setLightLevel
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper.useShader
 import net.minecraft.client.renderer.GlStateManager
+import net.minecraft.client.renderer.block.model.BakedQuad
 import net.minecraft.client.renderer.block.model.IBakedModel
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.item.ItemStack
+import net.minecraft.util.EnumFacing
 import net.minecraftforge.common.model.IModelState
 import org.lwjgl.opengl.GL11
 
@@ -59,7 +61,8 @@ class UniversiumItemRenderer : WrappedItemRenderer
 
         val world = player?.world
         val model = wrapped!!.overrides.handleItemState(wrapped!!, stack, world, player)
-        renderModel(model, stack)
+        val (baseQuads, overlayQuads) = splitIconSetQuads(model)
+        renderQuads(baseQuads, stack)
 
         if (renderBehavior != null)
         {
@@ -68,11 +71,16 @@ class UniversiumItemRenderer : WrappedItemRenderer
 
             CosmicShaderHelper.cosmicOpacity = renderBehavior.getCosmicOpacity(stack)
             useShader()
-            renderModel(model, stack)
+            renderQuads(baseQuads, stack)
             releaseShader()
 
             GlStateManager.depthFunc(GL11.GL_LEQUAL)
             GlStateManager.enableAlpha()
+        }
+
+        if (overlayQuads.isNotEmpty())
+        {
+            renderQuads(overlayQuads, stack)
         }
 
         GlStateManager.disableBlend()
@@ -89,7 +97,8 @@ class UniversiumItemRenderer : WrappedItemRenderer
 
         val world = player?.world
         val model = wrapped!!.overrides.handleItemState(wrapped!!, stack, world, player)
-        renderModel(model, stack)
+        val (baseQuads, overlayQuads) = splitIconSetQuads(model)
+        renderQuads(baseQuads, stack)
 
         if (renderBehavior != null)
         {
@@ -103,17 +112,37 @@ class UniversiumItemRenderer : WrappedItemRenderer
             CosmicShaderHelper.cosmicOpacity = renderBehavior.getCosmicOpacity(stack)
             CosmicShaderHelper.inventoryRender = true
             useShader()
-            renderModel(model, stack)
+            renderQuads(baseQuads, stack)
             releaseShader()
             CosmicShaderHelper.inventoryRender = false
 
             GlStateManager.popMatrix()
         }
+
+        if (overlayQuads.isNotEmpty())
+        {
+            renderQuads(overlayQuads, stack)
+        }
+
         GlStateManager.enableAlpha()
         GlStateManager.enableRescaleNormal()
         GlStateManager.enableDepth()
         GlStateManager.disableBlend()
         GlStateManager.popMatrix()
+    }
+
+    private fun splitIconSetQuads(model: IBakedModel): Pair<List<BakedQuad>, List<BakedQuad>>
+    {
+        val base = mutableListOf<BakedQuad>()
+        val overlay = mutableListOf<BakedQuad>()
+        for (face in EnumFacing.VALUES)
+            for (quad in model.getQuads(null, face, 0))
+                if (quad.sprite.iconName.endsWith("_overlay"))
+                    overlay.add(quad) else base.add(quad)
+        for (quad in model.getQuads(null, null, 0))
+            if (quad.sprite.iconName.endsWith("_overlay"))
+                overlay.add(quad) else base.add(quad)
+        return base to overlay
     }
 
     private fun processLightLevel(transformType: TransformType)
