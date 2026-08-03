@@ -7,13 +7,15 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "AccessorMultiblockUIFactory",
+    "AccessorMultiblockWithDisplayBase",
     "AccessorTraceabilityPredicate",
+    "AccessorMetaTileEntityPowerSubstation",
     "MixinBlockPattern",
     "MixinMultiblockUIBuilder",
     "MixinMultiblockUIFactory",
-    "MixinCoreModule",
-    "MixinDualHandler",
     "MixinFuelRecipeLogic",
+    "MixinMultiblockFuelRecipeLogic",
+    "MixinDualHandler",
     "MixinItemHandlerList",
     "MixinMaterialProperties",
     "MixinBaseFilterContainer",
@@ -25,8 +27,12 @@
     "MixinMetaTileEntityMultiblockNotifiablePart",
     "MixinMetaTileEntityNetworkSwitch",
     "MixinMetaTileEntityLargeBoiler",
+    "MixinMetaTileEntityLargeChemicalReactor",
     "MixinMultiblockControllerBase",
     "MixinMultiblockRecipeLogic",
+    "MixinBQuDataFixer",
+    "MixinMetaTileEntityPowerSubstation",
+    "MixinTextFormattingUtil",
     "MixinMultiMapMultiblockController",
     "MixinOreConfigUtils",
     "MixinOreRecipeHandler",
@@ -46,6 +52,7 @@
     "client.MixinMetaPrefixItem",
     "client.MixinMetaTileEntityFusionReactor",
     "client.MixinMetaValueItem",
-    "client.MixinJustEnoughItemsModule"
+    "client.MixinJustEnoughItemsModule",
+    "client.MixinProspectingTexture"
   ]
 }

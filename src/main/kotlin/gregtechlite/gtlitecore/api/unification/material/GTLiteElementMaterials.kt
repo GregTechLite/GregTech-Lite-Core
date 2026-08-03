@@ -96,6 +96,7 @@ import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconS
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.MAGNETIUM
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.OMNIUM
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.SPACETIME
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.TRANSCENDENT
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.UNIVERSIUM
 import net.minecraft.init.Enchantments
 
@@ -159,7 +160,8 @@ object GTLiteElementMaterials
             liquid()
             color(0x4F404F).iconSet(METALLIC)
             element(Tn)
-            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_SPRING_SMALL, GENERATE_DENSE)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_SPRING_SMALL,
+                  GENERATE_DENSE, GENERATE_FRAME)
             blastProp(7000, GasTier.HIGH, // Naquadah
                       VA[ZPM], 22 * SECOND,
                       VA[IV], 11 * SECOND)
@@ -341,17 +343,17 @@ object GTLiteElementMaterials
             color(0xE0156D).iconSet(BRIGHT)
             element(Sh)
             flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_ROTOR,
-                  GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_FRAME, GENERATE_ROUND, GENERATE_NANITE)
+                  GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_RING, GENERATE_FRAME, GENERATE_ROUND, GENERATE_NANITE,
+                  GENERATE_FOIL, GENERATE_FINE_WIRE)
             rotorProp(144.0F, 2.4F, 786_432)
         }
 
-        // TODO: New renderer with rotate animation.
         // 15 Transcendent Metal
         TranscendentMetal = addMaterial(15, "transcendent_metal")
         {
             ingot()
             liquid()
-            color(0x1A1A1A).iconSet(METALLIC)
+            color(0x1A1A1A).iconSet(TRANSCENDENT)
             element(Tsx)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR,
                   GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE,

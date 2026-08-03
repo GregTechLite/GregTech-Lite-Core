@@ -8,13 +8,13 @@ import gregtech.api.unification.material.Materials.Terbium
 import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.info.MaterialIconSet
+import gregtechlite.gtlitecore.client.renderer.ItemRendererManager
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.item.behavior.HaloRenderItemBehavior
 import gregtechlite.gtlitecore.common.item.behavior.UniversiumRenderItemBehavior
 
 object GTLiteMaterialIconSet
 {
-
     // @formatter:off
 
     // region Single Texture IconSets
@@ -98,28 +98,25 @@ object GTLiteMaterialIconSet
     // region Renderer Suitable Texture IconSets
 
     @JvmField
-    val COSMIC = MaterialIconSetWithRenderer("cosmic", null, true,
-        HaloRenderItemBehavior(10, 0x33FFFFFF, {{ GTLiteTextures.HALO_NOISE }},true))
+    val COSMIC = iconSet("cosmic", HaloRenderItemBehavior(10, 0x33FFFFFF, {{ GTLiteTextures.HALO_NOISE }}, true))
 
     @JvmField
-    val INFINITY = MaterialIconSetWithRenderer("infinity", null, true,
-        HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
+    val INFINITY = iconSet("infinity", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
 
     @JvmField
-    val HALKONITE = MaterialIconSetWithRenderer("halkonite", null, true,
-        HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
+    val HALKONITE = iconSet("halkonite", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
 
     @JvmField
-    val MAGMATTER = MaterialIconSetWithRenderer("magmatter", null, true,
-        HaloRenderItemBehavior(10, 0x33FFFFFF, {{ GTLiteTextures.HALO_NOISE }}, true))
+    val MAGMATTER = iconSet("magmatter", HaloRenderItemBehavior(10, 0x33FFFFFF, {{ GTLiteTextures.HALO_NOISE }}, true))
 
     @JvmField
-    val GLITCH = MaterialIconSetWithRenderer("glitch", null, true,
-        HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
+    val GLITCH = iconSet("glitch", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
 
     @JvmField
-    val ETERNITY = MaterialIconSetWithRenderer("eternity", null, true,
-        HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
+    val ETERNITY = iconSet("eternity", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
+
+    @JvmField
+    val TRANSCENDENT = iconSet("transcendent", MaterialIconSet.METALLIC, TranscendentRenderItemBehavior())
 
     // endregion
 
@@ -134,8 +131,11 @@ object GTLiteMaterialIconSet
         Nobelium.materialIconSet = MaterialIconSet.SHINY
     }
 
-    private fun iconSet(name: String) = MaterialIconSet(name, null, true)
+    private fun iconSet(name: String, rendererManager: ItemRendererManager? = null): MaterialIconSet
+        = rendererManager?.let { RenderedMaterialIconSet(name, null, true, it) } ?: MaterialIconSet(name, null, true)
+
+    private fun iconSet(name: String, defaultIconSet: MaterialIconSet? = null, rendererManager: ItemRendererManager? = null): MaterialIconSet
+        = rendererManager?.let { RenderedMaterialIconSet(name, defaultIconSet, false, it) } ?: MaterialIconSet(name, defaultIconSet, false)
 
     // @formatter:on
-
 }

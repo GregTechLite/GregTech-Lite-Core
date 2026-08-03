@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = OreRecipeHandler.class, remap = false)
 public abstract class MixinOreRecipeHandler
 {
-
     /**
      * Disabled crushedPurified recipes initialization.
      *
@@ -27,8 +26,8 @@ public abstract class MixinOreRecipeHandler
     private static void stopInit(CallbackInfo ci)
     {
         OrePrefix.ore.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-        OrePrefix.oreEndstone.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOreDouble);
-        OrePrefix.oreNetherrack.addProcessingHandler(PropertyKey.ORE, MixinOreRecipeHandler::gtlitecore$processOreQuadruple);
+        OrePrefix.oreEndstone.addProcessingHandler(PropertyKey.ORE, MixinOreRecipeHandler::gtlitecore$processOreQuadruple);
+        OrePrefix.oreNetherrack.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOreDouble);
 
         if (ConfigHolder.worldgen.allUniqueStoneTypes)
         {
@@ -56,5 +55,4 @@ public abstract class MixinOreRecipeHandler
     {
         OreRecipeHandler.processOre(prefix, material, property, 4);
     }
-
 }

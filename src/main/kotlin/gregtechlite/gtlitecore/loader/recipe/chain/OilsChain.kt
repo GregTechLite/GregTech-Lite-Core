@@ -157,7 +157,7 @@ internal object OilsChain
         DISTILLATION_RECIPES.addRecipe {
             fluidInputs(HydroCrackedEthylene.getFluid(1000))
             fluidOutputs(Carbon5Fraction.getFluid(200))
-            fluidOutputs(Ethane.getFluid(8000)) // C2H6
+            fluidOutputs(Ethane.getFluid(800)) // C2H6
             EUt(VA[MV])
             duration(6 * SECOND)
         }

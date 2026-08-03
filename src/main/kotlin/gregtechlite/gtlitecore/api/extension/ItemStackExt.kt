@@ -3,10 +3,13 @@ package gregtechlite.gtlitecore.api.extension
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.MetaOreDictItem
 import gregtech.api.metatileentity.MetaTileEntity
+import gregtechlite.gtlitecore.client.util.ItemStackMap.Companion.WILDCARD_TAG
 import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NBTTagCompound
+import net.minecraftforge.oredict.OreDictionary
 
 // region Item Stack Copying
 
@@ -57,6 +60,20 @@ fun Item.stack(meta: Int = 0): ItemStack = getStack(meta = meta)
 fun Item.getStack(count: Int = 1, meta: Int = 0): ItemStack {
     return ItemStack(this, count, meta)
 }
+
+/**
+ * Gets the [ItemStack] of the standard [Item] with nbt.
+ *
+ * @param count The stack size of the [ItemStack].
+ * @param meta  The metadata of the [ItemStack].
+ * @param tag   The nbt data of the [ItemStack].
+ */
+fun Item.getStack(count: Int = 1, meta: Int = 0, tag: NBTTagCompound?): ItemStack {
+    return ItemStack(this, count, meta).apply { tagCompound = tag }
+}
+
+fun Item.getWildcardStack(nbtSensitive: Boolean): ItemStack
+    = getStack(1, OreDictionary.WILDCARD_VALUE, if (nbtSensitive) WILDCARD_TAG else null)
 
 fun MetaItem<*>.MetaValueItem.stack(): ItemStack = getStack()
 

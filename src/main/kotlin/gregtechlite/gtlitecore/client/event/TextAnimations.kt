@@ -63,9 +63,9 @@ object TextAnimations
  *
  * @author TTFTCUTS, glowredman
  */
-class GradientAnimation (val step: @Range(from = 0, to = Int.MAX_VALUE.toLong()) Int,
-                         val delay: @Range(from = 1, to = Int.MAX_VALUE.toLong()) Int,
-                         vararg formats: String)
+class GradientAnimation(val step: @Range(from = 0, to = Int.MAX_VALUE.toLong()) Int,
+                        val delay: @Range(from = 1, to = Int.MAX_VALUE.toLong()) Int,
+                        vararg formats: String)
 {
     private val formats = formats.toList()
 
@@ -81,20 +81,13 @@ class GradientAnimation (val step: @Range(from = 0, to = Int.MAX_VALUE.toLong())
         return GradientAnimation(step, delay, *newFormats)
     }
 
-    operator fun invoke(text: String, vararg args: Any) : String
-    {
+    operator fun invoke(text: String, vararg args: Any): String {
         if (text.isBlank() || formats.isEmpty()) return text
         val translated = I18nUtil.format(text, *args)
-        val stringBuilder = StringBuilder(translated.length * 3)
         val offset = ((System.currentTimeMillis() / delay) % formats.size).toInt()
-        for (i in 0..<translated.length)
-        {
-            val c = translated[i]
+        return translated.mapIndexed { i, c ->
             val indexColorArray = (i * step + formats.size - offset) % formats.size
-            stringBuilder.append(formats[indexColorArray])
-            stringBuilder.append(c)
-        }
-        return stringBuilder.toString()
+            formats[indexColorArray] + c
+        }.joinToString("")
     }
-
 }

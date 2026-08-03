@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.block
 
+import gregtech.api.GTValues.RNG
 import gregtechlite.gtlitecore.api.extension.copy
 import net.minecraft.block.properties.PropertyInteger
 import net.minecraft.block.state.IBlockState
@@ -11,11 +12,11 @@ import net.minecraft.util.NonNullList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
-import java.util.*
 
-@Suppress("unused")
 class GTLiteRootCropBlock private constructor(name: String) : GTLiteCropBlock(name)
 {
+    val minHarvestingAge: Int = 4
+    val maxHarvestingAge: Int = 5
 
     companion object
     {
@@ -24,72 +25,55 @@ class GTLiteRootCropBlock private constructor(name: String) : GTLiteCropBlock(na
         fun create(name: String) = GTLiteRootCropBlock(name)
     }
 
-    override fun getDrops(drops: NonNullList<ItemStack?>,
-                          worldIn: IBlockAccess,
-                          pos: BlockPos,
-                          state: IBlockState, fortune: Int)
+    override fun getDrops(drops: NonNullList<ItemStack>, worldIn: IBlockAccess, pos: BlockPos, state: IBlockState,
+                          fortune: Int)
     {
-        val random = if (worldIn is World) worldIn.rand else Random()
+        val random = if (worldIn is World) worldIn.rand else RNG
 
-        val age = this.getAge(state)
-        if (age >= this.minHarvestingAge && age <= this.maxHarvestingAge)
+        val age = getAge(state)
+        if (age >= minHarvestingAge && age <= maxHarvestingAge)
         {
             repeat(1 + fortune)
             {
-                drops.add(this.cropStack.copy())
+                drops.add(cropStack.copy())
             }
         }
-        else if (age >= this.maxAge)
+        else if (age >= maxAge)
         {
             var cropCount = 0
             repeat(3 + fortune)
             {
-                if (random.nextInt(2 * this.maxAge) <= age)
+                if (random.nextInt(2 * maxAge) <= age)
                     cropCount++
             }
             if (cropCount > 0)
             {
-                val cropStack = this.cropStack.copy()
-                cropStack.setCount(cropCount)
+                val cropStack = cropStack.copy(cropCount)
                 drops.add(cropStack)
             }
-            drops.add(this.seedStack.copy(3 + fortune))
+            drops.add(seedStack.copy(3 + fortune))
         }
     }
 
-    override fun onBlockActivated(worldIn: World,
-                                  blockPos: BlockPos, blockState: IBlockState,
-                                  player: EntityPlayer, hand: EnumHand, facing: EnumFacing,
-                                  hitX: Float, hitY: Float, hitZ: Float): Boolean
+    override fun onBlockActivated(worldIn: World, blockPos: BlockPos, blockState: IBlockState, player: EntityPlayer,
+                                  hand: EnumHand, facing: EnumFacing, hitX: Float, hitY: Float, hitZ: Float): Boolean
     {
-        if (this.getAge(blockState) >= this.maxAge)
+        if (getAge(blockState) >= maxAge)
         {
             val random = worldIn.rand
-            spawnAsEntity(worldIn, blockPos, this.seedStack.copy(random.nextInt(2) + 1))
+            spawnAsEntity(worldIn, blockPos, seedStack.copy(random.nextInt(2) + 1))
             worldIn.setBlockState(blockPos, withAge(getAge(blockState) - 1), 2)
         }
         return super.onBlockActivated(worldIn, blockPos, blockState, player, hand, facing, hitX, hitY, hitZ)
     }
 
-    val minHarvestingAge: Int
-        get() = 4
-
-    val maxHarvestingAge: Int
-        get() = 5
-
     override fun getMaxAge() = 7
 
     fun seedHarvestable(state: IBlockState): Boolean
-    {
-        return getAge(state) == this.maxAge
-    }
+        = getAge(state) == maxAge
 
     fun cropHarvestable(state: IBlockState): Boolean
-    {
-        return getAge(state) <= this.maxHarvestingAge
-                && getAge(state) >= this.minHarvestingAge
-    }
+        = getAge(state) <= maxHarvestingAge && getAge(state) >= minHarvestingAge
 
     override fun getAgeProperty(): PropertyInteger = DEFAULT_AGE_ROOT
-
 }

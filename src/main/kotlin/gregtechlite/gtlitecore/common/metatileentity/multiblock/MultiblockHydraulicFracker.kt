@@ -3,6 +3,9 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
+import com.cleanroommc.modularui.api.drawable.IKey
+import com.cleanroommc.modularui.value.sync.IntSyncValue
+import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import gregtech.api.GTValues.VA
 import gregtech.api.capability.GregtechDataCodes.WORKABLE_ACTIVE
 import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
@@ -20,10 +23,14 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
+import gregtech.api.metatileentity.multiblock.ProgressBarMultiblock
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
+import gregtech.api.metatileentity.multiblock.ui.TemplateBarBuilder
+import gregtech.api.mui.GTGuiTextures
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.util.KeyUtil
 import gregtech.api.util.TextFormattingUtil.formatNumbers
 import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinHandler
 import gregtech.client.renderer.ICubeRenderer
@@ -41,20 +48,25 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import java.util.function.UnaryOperator
 import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.round
 
 class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
-    : MultiblockWithDisplayBase(id), IWorkable, ITieredMetaTileEntity
+    : MultiblockWithDisplayBase(id), IWorkable, ITieredMetaTileEntity, ProgressBarMultiblock
 {
 
     companion object
     {
         private const val FLUID_USE_AMOUNT = 1000
         private const val MAX_PROGRESS = 5 * SECOND
+        private const val MAX_MULTIPLIER = 20
 
         private val casingState = MetalCasing.WATERTIGHT_STEEL.state
         private val secondCasingState = GTMetalCasing.STAINLESS_CLEAN.state
@@ -69,7 +81,6 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     private var isActive: Boolean = true
     private var isWorkingEnabled: Boolean = true
     private var wasActiveAndNeedsUpdate: Boolean = false
-    private var hasNotEnoughEnergy: Boolean = false
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = MultiblockHydraulicFracker(metaTileEntityId, tier)
@@ -111,7 +122,9 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         .where('X', states(casingState)
             .or(autoAbilities())
             .or(abilities(INPUT_ENERGY)
-                    .setExactLimit(1))
+                    .setMinGlobalLimited(1)
+                    .setMaxGlobalLimited(2)
+                    .setPreviewCount(1))
             .or(abilities(IMPORT_FLUIDS)
                     .setMinGlobalLimited(1)))
         .where('C', states(secondCasingState))
@@ -178,7 +191,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         if (drainTanks(FLUID_USE_AMOUNT, true))
         {
             drainTanks(FLUID_USE_AMOUNT, false)
-            replenishVein(false)
+            replenishVein(false, getCurrentMultiplier())
         }
     }
 
@@ -187,40 +200,28 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
      */
     private fun checkCanDrain(): Boolean
     {
-        if (!drainEnergy(true))
-        {
-            if (progressTime >= (2 * TICK))
-            {
-                if (ConfigHolder.machines.recipeProgressLowEnergy)
-                    progressTime = 1 * TICK
-                else
-                    progressTime = max(1 * TICK, progressTime - 2 * TICK)
-
-                hasNotEnoughEnergy = true
+        var canRun = true
+        if (!drainEnergy(true)) {
+            if (progressTime >= (2 * TICK)) {
+                progressTime = if (ConfigHolder.machines.recipeProgressLowEnergy)
+                    1 * TICK else max(1 * TICK, progressTime - 2 * TICK)
             }
-            return false
-        }
-        else if (drainTanks(FLUID_USE_AMOUNT, true))
-        {
-            return true
+            canRun = false
         }
 
-        if (hasNotEnoughEnergy && getEnergyInputPerSecond() > 19L * VA[tier])
-        {
-            hasNotEnoughEnergy = false
-        }
+        if (!drainTanks(FLUID_USE_AMOUNT, true)) canRun = false
 
-        if (isActive())
-        {
+        if (isActive() && !canRun) {
             setActive(false)
             wasActiveAndNeedsUpdate = true
         }
-        return false
+        return canRun
     }
 
     fun drainEnergy(simulate: Boolean): Boolean
     {
-        val energyToDrain = VA[tier].toLong()
+        val energyToDrain = getCurrentMultiplier().toLong() * VA[tier]
+        if (energyToDrain <= 0) return false
         val resultEnergy = energyContainer!!.energyStored - energyToDrain
         if (resultEnergy >= 0L && resultEnergy <= energyContainer!!.energyCapacity)
         {
@@ -231,7 +232,29 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         return false
     }
 
-    fun getEnergyInputPerSecond(): Long = energyContainer!!.inputPerSec
+    override fun configureWarningText(builder: MultiblockUIBuilder)
+    {
+        super.configureWarningText(builder)
+        builder.addCustom { keyManager, uiSyncer ->
+            if (isStructureFormed)
+            {
+                val currentMultiplier = uiSyncer.syncInt { getCurrentMultiplier() }
+                if (currentMultiplier <= 0)
+                {
+                    val warnKey = KeyUtil.lang(TextFormatting.YELLOW, "gregtech.multiblock.not_enough_energy")
+                    keyManager.add(warnKey)
+                }
+            }
+        }
+    }
+
+    private fun getCurrentMultiplier(): Int
+    {
+        val energyContainer = energyContainer ?: return 0
+        return min(MAX_MULTIPLIER, (energyContainer.inputVoltage / VA[tier]).toInt())
+    }
+
+    private fun needsMoreVoltage(): Boolean = getCurrentMultiplier() != MAX_MULTIPLIER
 
     @Suppress("SameParameterValue")
     private fun drainTanks(amount: Int, simulate: Boolean): Boolean
@@ -241,7 +264,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
                 && stack.amount == FLUID_USE_AMOUNT
     }
 
-    private fun replenishVein(simulate: Boolean): Boolean
+    private fun replenishVein(simulate: Boolean, multiplier: Int = 1): Boolean
     {
         val entry = BedrockFluidVeinHandler.getFluidVeinWorldEntry(world, pos.x / 16, pos.z / 16)
         if (entry == null) return false
@@ -249,8 +272,11 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
         val definition = entry.definition
         if (definition == null) return false
 
-        val amount = entry.operationsRemaining + definition.depletionAmount
-        if (amount <= BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS)
+        val amount = min(
+            BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS,
+            entry.operationsRemaining + definition.depletionAmount * multiplier
+        )
+        if (amount > entry.operationsRemaining)
         {
             if (simulate) return true
             entry.operationsRemaining = amount
@@ -262,9 +288,25 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     override fun configureDisplayText(builder: MultiblockUIBuilder)
     {
         builder.addEnergyUsageLine(energyContainer)
+            .setWorkingStatus(this.isWorkingEnabled, this.isActive)
             .addWorkingStatusLine()
             .addProgressLine(progress, maxProgress)
-            .addLowPowerLine(hasNotEnoughEnergy)
+            .addCustom { manager, syncer ->
+                val showVoltageWarning = syncer.syncBoolean { needsMoreVoltage() }
+                if (showVoltageWarning)
+                {
+                    manager.add(
+                        KeyUtil.lang(TextFormatting.YELLOW, "gtlitecore.machine.hydraulic_fracker.insufficient_power")
+                    )
+                }
+
+                val currentMultiplier = syncer.syncInt { getCurrentMultiplier() }
+                manager.add(
+                    IKey.lang("gtlitecore.machine.hydraulic_fracker.multiplier",
+                        currentMultiplier, MAX_MULTIPLIER
+                    )
+                )
+            }
     }
 
     @SideOnly(Side.CLIENT)
@@ -272,7 +314,9 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.2", formatNumbers(VA[tier])))
+        tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.2", formatNumbers(MAX_MULTIPLIER)))
+        tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.3", formatNumbers(VA[tier])))
+        tooltip.add(I18n.format("gtlitecore.machine.hydraulic_fracker.tooltip.4", formatNumbers(VA[tier])))
     }
 
     override fun getProgress(): Int = progressTime
@@ -371,5 +415,64 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     override fun shouldShowVoidingModeButton(): Boolean = false
 
     override fun getTier(): Int = this.tier
+
+    override fun getProgressBarCount(): Int = 1
+
+    @Suppress("unstableApiUsage")
+    override fun registerBars(
+        templateBars: MutableList<UnaryOperator<TemplateBarBuilder>>,
+        guiSyncManager: PanelSyncManager
+    )
+    {
+        val veinValue = IntSyncValue {
+            BedrockFluidVeinHandler.getOperationsRemaining(world, pos.x / 16, pos.z / 16)
+        }
+
+        guiSyncManager.syncValue("veinRemaining", veinValue)
+
+        templateBars.add {
+                it.progress {
+                    veinValue.value * 1.0 / BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS
+                }
+                .texture(GTGuiTextures.PROGRESS_BAR_FLUID_RIG_DEPLETION)
+                .tooltipBuilder { t ->
+                    if (isStructureFormed) {
+                        t.addLine(createVeinTooltip(veinValue))
+                    } else {
+                        t.addLine(IKey.lang("gregtech.multiblock.invalid_structure"))
+                    }
+                }
+        }
+    }
+
+    private fun createVeinTooltip(veinValue: IntSyncValue): String
+    {
+        if (veinValue.value == BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS)
+        {
+            return IKey.lang("gtlitecore.machine.hydraulic_fracker.vein_full").get()
+        }
+        else
+        {
+            val percent: Int = round(
+                100.0 * veinValue.value /
+                        BedrockFluidVeinHandler.MAXIMUM_VEIN_OPERATIONS
+            ).toInt()
+            return if (percent > 40)
+            {
+                TextFormatting.GREEN.toString() + IKey
+                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.high", percent).get()
+            }
+            else if (percent > 10)
+            {
+                TextFormatting.YELLOW.toString() + IKey
+                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.medium", percent).get()
+            }
+            else
+            {
+                TextFormatting.RED.toString() + IKey
+                    .lang("gregtech.multiblock.fluid_rig.vein_depletion.low", percent).get()
+            }
+        }
+    }
 
 }

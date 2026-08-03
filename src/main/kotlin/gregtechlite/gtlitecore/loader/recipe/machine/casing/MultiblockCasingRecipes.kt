@@ -11,10 +11,12 @@ import gregtech.api.unification.material.Materials.NaquadahAlloy
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Ruridit
+import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.gear
+import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.rotor
@@ -23,6 +25,7 @@ import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems.COMPONENT_GRINDER_TUNGSTEN
+import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
 import gregtech.common.metatileentities.MetaTileEntities.HULL
@@ -33,6 +36,7 @@ import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MolybdenumDisilicide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
+import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 
@@ -101,9 +105,9 @@ internal object MultiblockCasingRecipes
             "PGP", "MHM", "SSS",
             'P', ELECTRIC_PISTON_UV.stack(),
             'G', UnificationEntry(gear, Tritanium),
-            'M', ELECTRIC_MOTOR_UV.stackForm,
-            'H', HULL[UV].stackForm,
-            'S', COMPONENT_GRINDER_TUNGSTEN.stack())
+            'M', ELECTRIC_MOTOR_UV,
+            'H', HULL[UV].stack(),
+            'S', COMPONENT_GRINDER_TUNGSTEN)
 
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(8)
@@ -113,6 +117,25 @@ internal object MultiblockCasingRecipes
             input(ELECTRIC_PISTON_UV, 2)
             input(COMPONENT_GRINDER_TUNGSTEN, 3)
             outputs(MultiblockCasing.DRILL_HEAD.stack)
+            EUt(VH[LV])
+            duration(2 * SECOND + 10 * TICK)
+        }
+
+        // Crushing Wheel Casing
+        ModHandler.addShapedRecipe(true, "crushing_wheel", ActiveUniqueCasing.CRUSHING_WHEEL.stack,
+            "SSS", "GCG", "GMG",
+            'S', UnificationEntry(gearSmall, Steel),
+            'G', UnificationEntry(gear, Steel),
+            'C', GTMetalCasing.STEEL_SOLID.stack,
+            'M', ELECTRIC_MOTOR_LV)
+
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(8)
+            inputs(GTMetalCasing.STEEL_SOLID.stack)
+            input(gear, Steel, 4)
+            input(gearSmall, Steel, 3)
+            input(ELECTRIC_MOTOR_LV)
+            outputs(ActiveUniqueCasing.CRUSHING_WHEEL.stack)
             EUt(VH[LV])
             duration(2 * SECOND + 10 * TICK)
         }

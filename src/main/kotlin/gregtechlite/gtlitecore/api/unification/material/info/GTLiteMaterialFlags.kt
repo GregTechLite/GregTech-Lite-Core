@@ -12,6 +12,7 @@ import gregtech.api.unification.material.Materials.BlackBronze
 import gregtech.api.unification.material.Materials.BlueSteel
 import gregtech.api.unification.material.Materials.BlueTopaz
 import gregtech.api.unification.material.Materials.Bohrium
+import gregtech.api.unification.material.Materials.BorosilicateGlass
 import gregtech.api.unification.material.Materials.Brass
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Cadmium
@@ -37,6 +38,8 @@ import gregtech.api.unification.material.Materials.Emerald
 import gregtech.api.unification.material.Materials.Erbium
 import gregtech.api.unification.material.Materials.Europium
 import gregtech.api.unification.material.Materials.Fermium
+import gregtech.api.unification.material.Materials.Francium
+import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.GarnetRed
 import gregtech.api.unification.material.Materials.GarnetYellow
 import gregtech.api.unification.material.Materials.Germanium
@@ -50,6 +53,7 @@ import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.HSSG
 import gregtech.api.unification.material.Materials.HSSS
 import gregtech.api.unification.material.Materials.Hafnium
+import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.Inconel718
 import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
@@ -93,11 +97,13 @@ import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium239
 import gregtech.api.unification.material.Materials.Polybenzimidazole
+import gregtech.api.unification.material.Materials.Polycaprolactam
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.PolyvinylButyral
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.Powellite
+import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Pyrope
@@ -153,6 +159,7 @@ import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.material.Materials.Wulfenite
 import gregtech.api.unification.material.Materials.Ytterbium
+import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zircaloy4
@@ -184,7 +191,6 @@ import gregtechlite.gtlitecore.api.unification.material.GTMaterialBuilder.addMat
 
 object GTLiteMaterialFlags
 {
-
     // @formatter:off
 
     // Used to disabled ABS recipes for automatically generate handler.
@@ -254,6 +260,7 @@ object GTLiteMaterialFlags
         Seaborgium.addFlags(GENERATE_BOLT_SCREW)
         Mendelevium.addFlags(GENERATE_BOLT_SCREW)
         VanadiumGallium.addFlags(GENERATE_BOLT_SCREW)
+        Palladium.addFlags(GENERATE_BOLT_SCREW)
 
         // boule
         Diamond.addFlags(GENERATE_BOULE)
@@ -309,6 +316,8 @@ object GTLiteMaterialFlags
         Cadmium.addFlags(GENERATE_FOIL)
         Rhenium.addFlags(GENERATE_FOIL)
         Californium.addFlags(GENERATE_FOIL)
+        SterlingSilver.addFlags(GENERATE_FOIL)
+        Nihonium.addFlags(GENERATE_FOIL)
 
         // frameGt
         Potin.addFlags(GENERATE_FRAME)
@@ -330,6 +339,8 @@ object GTLiteMaterialFlags
         Dubnium.addFlags(GENERATE_FRAME)
         Curium.addFlags(GENERATE_FRAME)
         VanadiumGallium.addFlags(GENERATE_FRAME)
+        Francium.addFlags(GENERATE_FRAME)
+        Mendelevium.addFlags(GENERATE_FRAME)
 
         // fuelRod
         Thorium.addFlags(GENERATE_FUEL_ROD)
@@ -359,6 +370,7 @@ object GTLiteMaterialFlags
         Brass.addFlags(GENERATE_GEAR)
         Berkelium.addFlags(GENERATE_GEAR)
         Roentgenium.addFlags(GENERATE_GEAR)
+        Moscovium.addFlags(GENERATE_GEAR)
 
         // gearSmall
         Neutronium.addFlags(GENERATE_SMALL_GEAR)
@@ -405,6 +417,7 @@ object GTLiteMaterialFlags
         GarnetYellow.addFlags(GENERATE_LENS)
         Monazite.addFlags(GENERATE_LENS)
         Zircon.addFlags(GENERATE_LENS)
+        BorosilicateGlass.addFlags(GENERATE_LENS)
 
         // nanite
         Carbon.addFlags(GENERATE_NANITE)
@@ -415,6 +428,7 @@ object GTLiteMaterialFlags
         Copper.addFlags(GENERATE_NANITE)
         Iron.addFlags(GENERATE_NANITE)
         Chrome.addFlags(GENERATE_NANITE)
+        Zinc.addFlags(GENERATE_NANITE)
 
         // plate
         Clay.addFlags(GENERATE_PLATE)
@@ -464,6 +478,9 @@ object GTLiteMaterialFlags
         Copernicium.addFlags(GENERATE_PLATE)
         Sulfur.addFlags(GENERATE_PLATE)
         Roentgenium.addFlags(GENERATE_PLATE)
+        Gadolinium.addFlags(GENERATE_PLATE)
+        Holmium.addFlags(GENERATE_PLATE)
+        Praseodymium.addFlags(GENERATE_PLATE)
 
         // plateDouble
         Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -551,6 +568,7 @@ object GTLiteMaterialFlags
         Neutronium.addFlags(GENERATE_ROTOR)
         Duranium.addFlags(GENERATE_ROTOR)
         VanadiumGallium.addFlags(GENERATE_ROTOR)
+        Palladium.addFlags(GENERATE_ROTOR)
 
         // round
         Steel.addFlags(GENERATE_ROUND)
@@ -582,6 +600,9 @@ object GTLiteMaterialFlags
         Roentgenium.addFlags(GENERATE_ROD)
         Nickel.addFlags(GENERATE_ROD)
         Nihonium.addFlags(GENERATE_ROD)
+        Francium.addFlags(GENERATE_ROD)
+        Moscovium.addFlags(GENERATE_ROD)
+        Yttrium.addFlags(GENERATE_ROD)
 
         // stickLong
         Chrome.addFlags(GENERATE_LONG_ROD)
@@ -661,6 +682,10 @@ object GTLiteMaterialFlags
         Moscovium.addFlags(GENERATE_FINE_WIRE)
         Duranium.addFlags(GENERATE_FINE_WIRE)
         Rhenium.addFlags(GENERATE_FINE_WIRE)
+        Polycaprolactam.addFlags(GENERATE_FINE_WIRE)
+        Holmium.addFlags(GENERATE_FINE_WIRE)
+        Neutronium.addFlags(GENERATE_FINE_WIRE)
+        Nihonium.addFlags(GENERATE_FINE_WIRE)
 
         // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
         Pyrochlore.addFlags(DISABLE_DECOMPOSITION)
@@ -681,5 +706,4 @@ object GTLiteMaterialFlags
     }
 
     // @formatter:on
-
 }

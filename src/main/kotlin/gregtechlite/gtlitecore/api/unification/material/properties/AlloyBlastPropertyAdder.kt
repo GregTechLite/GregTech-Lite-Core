@@ -10,8 +10,6 @@ import gregtechlite.gtlitecore.loader.recipe.producer.CustomAlloyBlastRecipeProd
 
 object AlloyBlastPropertyAdder
 {
-
-    // The first start point of ABS property adder.
     fun preInit()
     {
         GregTechAPI.materialManager.registeredMaterials
@@ -20,7 +18,7 @@ object AlloyBlastPropertyAdder
     }
 
     // Used to process special recipes to resolve conflicts of ABS recipes.
-    fun init()
+    internal fun init()
     {
         // NbN
         var property = Materials.NiobiumNitride.getProperty(GTLitePropertyKey.ALLOY_BLAST)
@@ -39,16 +37,12 @@ object AlloyBlastPropertyAdder
         if (!material.hasProperty(PropertyKey.BLAST) || !material.hasProperty(PropertyKey.FLUID)) return
 
         // If there are more than 2 fluid-only components in the material, do not generate fluid.
-        if (components.filter(this::isMaterialStackFluidOnly).take(3).count() > 2)
+        if (components.filter(::isMaterialStackFluidOnly).take(3).count() > 2)
             return
 
         material.setProperty(GTLitePropertyKey.ALLOY_BLAST, AlloyBlastProperty(material.blastTemperature))
     }
 
     private fun isMaterialStackFluidOnly(materialStack: MaterialStack): Boolean
-    {
-        return (!materialStack.material.hasProperty(PropertyKey.DUST)
-                && materialStack.material.hasProperty(PropertyKey.FLUID))
-    }
-
+        = (!materialStack.material.hasProperty(PropertyKey.DUST) && materialStack.material.hasProperty(PropertyKey.FLUID))
 }

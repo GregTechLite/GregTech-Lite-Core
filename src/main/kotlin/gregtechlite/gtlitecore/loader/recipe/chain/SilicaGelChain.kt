@@ -3,7 +3,6 @@ package gregtechlite.gtlitecore.loader.recipe.chain
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
-import gregtech.api.metatileentity.multiblock.CleanroomType
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Salt

@@ -1363,8 +1363,9 @@ object GTLiteFirstDegreeMaterials
         {
             dust()
             liquid()
-            color(0x983034).iconSet(METALLIC)
+            color(0x983034).iconSet(NANOPARTICLES)
             components(Cadmium, 1, Selenium, 1)
+            flags(DISABLE_DECOMPOSITION)
         }
 
         // 2086 Prasiolite
@@ -1791,7 +1792,8 @@ object GTLiteFirstDegreeMaterials
             fluid()
             color(0xCFFFFF).iconSet(SHINY)
             components(Germanium, 2, Antimony, 2, Tellurium, 5)
-            flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_LENS)
+            flags(NO_SMASHING, NO_WORKING, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_PLATE, GENERATE_FOIL,
+                  GENERATE_LENS, GENERATE_FINE_WIRE)
             blastProp(873, GasTier.MID)
         }
 
@@ -2051,6 +2053,7 @@ object GTLiteFirstDegreeMaterials
             }
             color(0xCC3300)
             flags(DISABLE_DECOMPOSITION)
+            components(Hydrogen, 1, Technetium, 1, Oxygen, 4)
         }
 
         // 2163 Ammonium Nitrate
@@ -2703,7 +2706,9 @@ object GTLiteFirstDegreeMaterials
         // 2231 Scandium-Titanium Mixture
         ScandiumTitaniumMixture = addMaterial(2231, "scandium_titanium_mixture")
         {
-            liquid()
+            liquid {
+                temperature(1800)
+            }
             colorAverage()
             components(Scandium, 1, Titanium, 1)
             flags(DISABLE_DECOMPOSITION)
@@ -2712,7 +2717,9 @@ object GTLiteFirstDegreeMaterials
         // 2232 Radium-Radon Mixture
         RadiumRadonMixture = addMaterial(2232, "radium_radon_mixture")
         {
-            liquid()
+            liquid {
+                temperature(1200)
+            }
             colorAverage()
             components(Radium, 1, Radon, 1)
             flags(DISABLE_DECOMPOSITION)
@@ -3420,7 +3427,7 @@ object GTLiteFirstDegreeMaterials
             polymer()
             color(0x2C2C8C).iconSet(SHINY)
             components(Carbon, 48, Seaborgium, 1)
-            flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL)
+            flags(DISABLE_DECOMPOSITION, GENERATE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE)
         }
 
         // 2307 Praseodymium-Holmium-Yttrium Nitrates Solution
@@ -3687,6 +3694,7 @@ object GTLiteFirstDegreeMaterials
         ChromaticGlass = addMaterial(2333, "chromatic_glass")
         {
             ingot()
+            liquid()
             iconSet(CHROMATIC)
             components(Glass, 64)
             flags(STD_METAL, DISABLE_DECOMPOSITION, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_LENS, GENERATE_FRAME)

@@ -3,58 +3,52 @@ package gregtechlite.gtlitecore.api.recipe.builder
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
-import gregtech.api.util.EnumValidationResult
-import gregtechlite.gtlitecore.api.GTLiteLog
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import org.apache.commons.lang3.builder.ToStringBuilder
+import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.extension.buildToString
+import gregtechlite.gtlitecore.api.recipe.property.RequestAdditionalProperty
+import gregtechlite.gtlitecore.api.recipe.property.value.RequestAdditionalPropertyValue
+import net.minecraft.util.ResourceLocation
 
 class NanoForgeRecipeBuilder : RecipeBuilder<NanoForgeRecipeBuilder>
 {
+    val requests
+        get() = recipePropertyStorage?.let { recipePropertyStorage.get(RequestAdditionalProperty, null) }
 
-    val tier: Int
-        get() = (if (this.recipePropertyStorage == null) 0
-            else this.recipePropertyStorage.get(GTLiteRecipeProperties.NANO_FORGE_TIER, 0))!!
+    companion object
+    {
+        val structT2 = GTLiteMod.id("consciousness_storage_center")
+        val structT3 = GTLiteMod.id("nanite_replication_unrestricor")
+        val structT4 = GTLiteMod.id("virtual_gestalt_computing_uplink")
+    }
 
     constructor()
 
     @Suppress("unused")
-    constructor(recipe: Recipe,
-                recipeMap: RecipeMap<NanoForgeRecipeBuilder>) : super(recipe, recipeMap)
+    constructor(recipe: Recipe, recipeMap: RecipeMap<NanoForgeRecipeBuilder>) : super(recipe, recipeMap)
 
     constructor(recipeBuilder: RecipeBuilder<NanoForgeRecipeBuilder>) : super(recipeBuilder)
 
-    override fun copy(): NanoForgeRecipeBuilder
-    {
-        return NanoForgeRecipeBuilder(this)
+    override fun copy(): NanoForgeRecipeBuilder = NanoForgeRecipeBuilder(this)
+
+    fun requireStruct(vararg ids: ResourceLocation): NanoForgeRecipeBuilder = apply {
+        recipePropertyStorage?.get(RequestAdditionalProperty, null)?.additionalStructures?.addAll(ids)
+            ?: applyProperty(RequestAdditionalProperty, RequestAdditionalPropertyValue(mutableListOf(*ids)))
     }
 
     override fun applyPropertyCT(key: String, value: Any): Boolean
     {
-        if (key == GTLiteRecipeProperties.NANO_FORGE_TIER.key)
+        if (key == RequestAdditionalProperty.key)
         {
-            this.tier((value as Number).toInt())
+            (value as RequestAdditionalPropertyValue).additionalStructures.forEach {
+                requireStruct(ResourceLocation(it.toString()))
+            }
             return true
         }
         return super.applyPropertyCT(key, value)
     }
 
-    fun tier(tier: Int): NanoForgeRecipeBuilder
-    {
-        if (tier <= 0)
-        {
-            GTLiteLog.logger.error("Tier cannot be less than or equal to 0", IllegalArgumentException())
-            this.recipeStatus = EnumValidationResult.INVALID
-        }
-        this.applyProperty(GTLiteRecipeProperties.NANO_FORGE_TIER, tier)
-        return this
+    override fun toString(): String = buildToString {
+        appendSuper(super.toString())
+        append(RequestAdditionalProperty.key, requests?.additionalStructures?.joinToString())
     }
-
-    override fun toString(): String
-    {
-        return ToStringBuilder(this)
-            .appendSuper(super.toString())
-            .append(GTLiteRecipeProperties.NANO_FORGE_TIER.key, this.tier)
-            .toString()
-    }
-
 }

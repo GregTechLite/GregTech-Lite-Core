@@ -4,6 +4,7 @@ import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.MOD_NAME
+import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
 import gregtechlite.gtlitecore.api.entity.GTLiteDamageSources
 import gregtechlite.gtlitecore.api.module.CustomModule
 import gregtechlite.gtlitecore.api.module.Module
@@ -16,8 +17,10 @@ import gregtechlite.gtlitecore.common.cover.GTLiteCoverBehaviors
 import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems
+import gregtechlite.gtlitecore.common.item.ToolEventHandlers
 import gregtechlite.gtlitecore.common.item.behavior.GTLiteBehaviors
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import gregtechlite.gtlitecore.common.tileentity.GTLiteTileEntities
 import gregtechlite.gtlitecore.core.advancement.AdvancementManagerImpl
 import gregtechlite.gtlitecore.core.advancement.AdvancementTriggers
 import gregtechlite.gtlitecore.core.command.CommandManagerImpl
@@ -70,12 +73,17 @@ internal class CoreModule : CustomModule
     {
         logger.debug("Starting to construct EventHandlers of the mod")
         MinecraftForge.EVENT_BUS.register(EventHandlers)
+        MinecraftForge.EVENT_BUS.register(ToolEventHandlers)
+        MinecraftForge.EVENT_BUS.register(VanillaDropsLoader)
 
         logger.debug("Modifying configurations of GregTech mod")
         GTLiteConfigModifier.init()
 
         logger.debug("Adding custom CreativeTabs of the mod to GregTech machines")
         GTLiteMetaTileEntities.preInit()
+
+        logger.debug("Initializing contributors for cosmetics")
+        GTLiteContributor.init()
     }
     
     override fun preInit(event: FMLPreInitializationEvent)
@@ -108,6 +116,7 @@ internal class CoreModule : CustomModule
 
         logger.debug("Loading all MetaTileEntities and MetaEntities")
         GTLiteMetaTileEntities.init()
+        GTLiteTileEntities.init()
         GTLiteMetaEntities.init()
 
         logger.debug("Starting to load Pre-Load contents by Proxies")

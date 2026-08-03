@@ -80,7 +80,11 @@ internal object TieredGlassOreDicts
         OreDictUnifier.registerOre(GlassCasing.TRANSCENDENT_METAL_BOROSILICATE.stack, GTLiteOrePrefix.glass, Tier.UXV)
         OreDictUnifier.registerOre(GlassCasing.NANO_SHIELDING_FRAME.stack, GTLiteOrePrefix.glass, Tier.UXV)
 
-        // TODO OpV and MAX
+        // OpV: Space Time reinforced Borosilicate Glass
+        OreDictUnifier.registerOre(GlassCasing.SPACE_TIME_BOROSILICATE.stack, GTLiteOrePrefix.glass, Tier.OpV)
+
+        // MAX: Red Matter reinforced Borosilicate Glass
+        OreDictUnifier.registerOre(GlassCasing.RED_MATTER_BOROSILICATE.stack, GTLiteOrePrefix.glass, Tier.MAX)
     }
 
     // @formatter:on

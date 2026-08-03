@@ -962,6 +962,33 @@ object GTLiteRecipeMaps
         .fluidOutputs(1)
         .build()
 
+    /**
+     * @zenProp mob_collecting_mode
+     */
+    @ZenProperty
+    @JvmField
+    val MOB_COLLECTING_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("mob_collecting_mode", SimpleRecipeBuilder())
+        .itemInputs(1)
+        .itemOutputs(2)
+        .fluidOutputs(2)
+        .progressBar(GuiTextures.PROGRESS_BAR_EXTRACT)
+        .sound(GTSoundEvents.COMPRESSOR)
+        .build()
+        .setSmallRecipeMap(MOB_EXTRACTOR_RECIPES)
+
+    /**
+     * @zenProp mob_slaughtering_mode
+     */
+    @ZenProperty
+    @JvmField
+    val MOB_SLAUGHTERING_RECIPES = RecipeMapBuilder("mob_slaughtering_mode", SimpleRecipeBuilder())
+        .itemInputs(2)
+        .itemOutputs(4)
+        .fluidOutputs(2)
+        .progressBar(GTLiteGuiTextures.PROGRESS_BAR_SWORD)
+        .sound(SoundEvents.BLOCK_ANVIL_DESTROY)
+        .build()
+
     // endregion
 
     // region Generator Fuel RecipeMaps

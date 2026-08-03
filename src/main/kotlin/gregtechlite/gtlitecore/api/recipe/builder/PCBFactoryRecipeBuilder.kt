@@ -3,81 +3,56 @@ package gregtechlite.gtlitecore.api.recipe.builder
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeBuilder
 import gregtech.api.recipes.RecipeMap
-import gregtech.api.util.EnumValidationResult
-import gregtechlite.gtlitecore.api.GTLiteLog
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
-import org.apache.commons.lang3.builder.ToStringBuilder
+import gregtechlite.gtlitecore.GTLiteMod
+import gregtechlite.gtlitecore.api.extension.buildToString
+import gregtechlite.gtlitecore.api.recipe.property.RequestAdditionalProperty
+import gregtechlite.gtlitecore.api.recipe.property.value.RequestAdditionalPropertyValue
+import net.minecraft.util.ResourceLocation
 
 class PCBFactoryRecipeBuilder : RecipeBuilder<PCBFactoryRecipeBuilder>
 {
+    val requests
+        get() = recipePropertyStorage?.let { recipePropertyStorage.get(RequestAdditionalProperty, null) }
 
-    val tier: Int
-        get() = (if (this.recipePropertyStorage == null) 0 else
-            this.recipePropertyStorage.get(GTLiteRecipeProperties.PCB_FACTORY_TIER, 0))!!
+    companion object
+    {
+        val structT2 = GTLiteMod.id("nanolithography_array")
+        val structT3 = GTLiteMod.id("microscale_circuit_detector")
+        val structBio = GTLiteMod.id("bio_cultivation_chamber")
 
-    val upgradeTier: Int
-        get() = (if (this.recipePropertyStorage == null) 0
-            else this.recipePropertyStorage.get(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, 0))!!
+        // TODO: Gooware: Nonlinear Thermodynamic Cycle Unit, Optical: Optoelectronic Carving Room,
+        //       Spintronic: Electromagnetic Effect Generator
+        //       These additional structures are some idea for high tier circuit boards, maybe add it in the future.
+    }
 
     constructor()
 
     @Suppress("unused")
-    constructor(recipe: Recipe,
-                recipeMap: RecipeMap<PCBFactoryRecipeBuilder>) : super(recipe, recipeMap)
+    constructor(recipe: Recipe, recipeMap: RecipeMap<PCBFactoryRecipeBuilder>) : super(recipe, recipeMap)
 
     constructor(recipeBuilder: PCBFactoryRecipeBuilder) : super(recipeBuilder)
 
-    override fun copy(): PCBFactoryRecipeBuilder
-    {
-        return PCBFactoryRecipeBuilder(this)
+    override fun copy(): PCBFactoryRecipeBuilder = PCBFactoryRecipeBuilder(this)
+
+    fun requireStruct(vararg ids: ResourceLocation): PCBFactoryRecipeBuilder = apply {
+        recipePropertyStorage?.get(RequestAdditionalProperty, null)?.additionalStructures?.addAll(ids)
+            ?: applyProperty(RequestAdditionalProperty, RequestAdditionalPropertyValue(mutableListOf(*ids)))
     }
 
     override fun applyPropertyCT(key: String, value: Any): Boolean
     {
-        if (key == GTLiteRecipeProperties.PCB_FACTORY_TIER.key)
+        if (key == RequestAdditionalProperty.key)
         {
-            this.tier((value as Number).toInt())
-            return true
-        }
-        if (key == GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE.key)
-        {
-            this.upgradeTier((value as Number).toInt())
+            (value as RequestAdditionalPropertyValue).additionalStructures.forEach {
+                requireStruct(ResourceLocation(it.toString()))
+            }
             return true
         }
         return super.applyPropertyCT(key, value)
     }
 
-
-
-    fun tier(tier: Int): PCBFactoryRecipeBuilder
-    {
-        if (tier <= 0)
-        {
-            GTLiteLog.logger.error("PCB Factory Tier cannot be less than 0", IllegalArgumentException())
-            this.recipeStatus = EnumValidationResult.INVALID
-        }
-        this.applyProperty(GTLiteRecipeProperties.PCB_FACTORY_TIER, tier)
-        return this
+    override fun toString(): String = buildToString {
+        appendSuper(super.toString())
+        append(RequestAdditionalProperty.key, requests?.additionalStructures?.joinToString())
     }
-
-    fun upgradeTier(tier: Int): PCBFactoryRecipeBuilder
-    {
-        if (tier <= 0)
-        {
-            GTLiteLog.logger.error("PCB Factory Auxiliary Tier cannot be less than 0", IllegalArgumentException())
-            this.recipeStatus = EnumValidationResult.INVALID
-        }
-        this.applyProperty(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE, tier)
-        return this
-    }
-
-    override fun toString(): String
-    {
-        return ToStringBuilder(this)
-            .appendSuper(super.toString())
-            .append(GTLiteRecipeProperties.PCB_FACTORY_TIER.key, this.tier)
-            .append(GTLiteRecipeProperties.PCB_FACTORY_BIO_CHAMBER_UPGRADE.key, this.upgradeTier)
-            .toString()
-    }
-
 }

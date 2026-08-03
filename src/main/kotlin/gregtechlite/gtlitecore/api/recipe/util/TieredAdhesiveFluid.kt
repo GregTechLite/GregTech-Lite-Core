@@ -84,21 +84,25 @@ enum class TieredAdhesiveFluid(val material: Material, val costOffset: Int = 0)
         @JvmStatic
         fun generateRecipeFluidStacks(tier: Int): ArrayList<FluidStack>
         {
-            val fluidStacks = ArrayList<FluidStack>()
+            val fluidStacks = arrayListOf<FluidStack>()
             val current = fromTier(tier)
 
             // Add all fluids from current tier and above
             entries.dropWhile { it != current }
                 .forEach {
-                    fluidStacks.add(
-                            it.material.getFluid(
-                                    if (tier > LV)
-                                        getGTHatchFluidAmount(tier + it.costOffset)
-                                    else if (tier == ULV) 250 else 500
-                            )
-                    )
-                }
+                    val offsetTier = tier + it.costOffset
 
+                    // Exceptional check for LV_OR_BELOW fluid
+                    // Since fluid for ULV machine is 250L, LV machine for 500L
+                    if (it == LV_OR_BELOW)
+                    {
+                        fluidStacks.add(it.material.getFluid(if (tier == ULV) 250 else 500))
+                    }
+                    else
+                    {
+                        fluidStacks.add(it.material.getFluid(getGTHatchFluidAmount(offsetTier)))
+                    }
+                }
             return fluidStacks
         }
 

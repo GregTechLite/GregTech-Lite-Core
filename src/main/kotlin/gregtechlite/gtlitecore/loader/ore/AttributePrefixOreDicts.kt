@@ -2,7 +2,10 @@ package gregtechlite.gtlitecore.loader.ore
 
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.ore.OrePrefix
+import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EggWhite
 import gregtechlite.gtlitecore.api.unification.material.info.MaterialInfoCache
+import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.PLANT_PROTEIN
 import net.minecraftforge.oredict.OreDictionary
 
 internal object AttributePrefixOreDicts
@@ -19,12 +22,13 @@ internal object AttributePrefixOreDicts
             OreDictionary.registerOre("dustTinyRadioactive", OreDictUnifier.get(OrePrefix.dustTiny, material))
         }
 
-        // "Bacterial": consists of all bacterial dusts, used for biological reactor recipes as default.
         for (material in MaterialInfoCache.bacterialMaterials)
         {
             OreDictionary.registerOre("dustBacterial", OreDictUnifier.get(OrePrefix.dust, material))
         }
 
+        OreDictionary.registerOre("dustSmallProtein", PLANT_PROTEIN.stack())
+        OreDictionary.registerOre("dustSmallProtein", OreDictUnifier.get(OrePrefix.dust, EggWhite))
     }
 
     // @formatter:on

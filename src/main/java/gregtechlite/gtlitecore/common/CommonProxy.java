@@ -2,13 +2,12 @@ package gregtechlite.gtlitecore.common;
 
 import gregtech.api.block.VariantItemBlock;
 import gregtech.common.blocks.MaterialItemBlock;
+import gregtechlite.gtlitecore.api.GTLiteValues;
 import gregtechlite.gtlitecore.api.block.TranslatableVariantItemBlock;
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeBackends;
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps;
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix;
-import gregtechlite.gtlitecore.api.GTLiteLog;
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks;
-import gregtechlite.gtlitecore.common.block.GTLiteCropBlock;
 import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock;
 import gregtechlite.gtlitecore.common.item.DimensionDisplayItemBlock;
 import gregtechlite.gtlitecore.common.item.SheetedFrameItemBlock;
@@ -69,20 +68,19 @@ public class CommonProxy
     public static void registerBlocks(@NotNull RegistryEvent.Register<Block> event)
     {
         IForgeRegistry<Block> registry = event.getRegistry();
-        GTLiteLog.logger.info("Registering Blocks...");
+        GTLiteValues.LOGGER.info("Registering Blocks...");
 
         // Register all stones in GTLiteStoneVariant.
         for (GTLiteStoneVariantBlock stone : GTLiteBlocks.STONES.values())
             registry.register(stone);
 
-        // Register all tree components.
+        // Register all tree and crop components.
         GTLiteBlocks.LEAVES.forEach(registry::register);
         GTLiteBlocks.LOGS.forEach(registry::register);
         GTLiteBlocks.PLANKS.forEach(registry::register);
         GTLiteBlocks.SAPLINGS.forEach(registry::register);
-        // Register all crops.
-        GTLiteCropBlock.CROPS.forEach(registry::register);
-        // TODO berries registrate?
+        GTLiteBlocks.CROPS.forEach(registry::register);
+
         // Wooden slabs.
         registry.register(GTLiteBlocks.WOOD_SLABS);
         registry.register(GTLiteBlocks.DOUBLE_WOOD_SLABS);
@@ -124,12 +122,11 @@ public class CommonProxy
         registry.register(GTLiteBlocks.DIMENSION_DISPLAY_OVERWORLD);
         registry.register(GTLiteBlocks.DIMENSION_DISPLAY_NETHER);
         registry.register(GTLiteBlocks.DIMENSION_DISPLAY_END);
+        registry.register(GTLiteBlocks.BOTTLECRATE);
         registry.register(GTLiteBlocks.NAQUADRIA_CHARGE);
         registry.register(GTLiteBlocks.TARANIUM_CHARGE);
         registry.register(GTLiteBlocks.LEPTONIC_CHARGE);
         registry.register(GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE);
-
-        // TODO Crops?...
 
         // Sheeted frames.
         GTLiteBlocks.SHEETED_FRAMES.values().stream()
@@ -187,13 +184,14 @@ public class CommonProxy
         registry.register(GTLiteBlocks.TRANSPARENT_CASING_01);
         registry.register(GTLiteBlocks.TRANSPARENT_CASING_02);
         registry.register(GTLiteBlocks.TRANSPARENT_CASING_03);
+
     }
 
     @SubscribeEvent
     public static void registerItems(@NotNull RegistryEvent.Register<Item> event)
     {
         IForgeRegistry<Item> registry = event.getRegistry();
-        GTLiteLog.logger.info("Registering Items...");
+        GTLiteValues.LOGGER.info("Registering Items...");
         // Register all items.
         GTLiteMetaItems.register();
         // Register all item blocks.
@@ -248,6 +246,7 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_OVERWORLD, DimensionDisplayItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_NETHER, DimensionDisplayItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.DIMENSION_DISPLAY_END, DimensionDisplayItemBlock::new));
+        registry.register(createItemBlock(GTLiteBlocks.BOTTLECRATE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.NAQUADRIA_CHARGE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.TARANIUM_CHARGE, ItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.LEPTONIC_CHARGE, ItemBlock::new));
@@ -308,6 +307,7 @@ public class CommonProxy
         registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_01, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_02, VariantItemBlock::new));
         registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_03, VariantItemBlock::new));
+
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block,

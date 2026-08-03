@@ -43,6 +43,7 @@ import gregtech.api.unification.ore.OrePrefix.craftingLens
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.gemExquisite
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.lens
@@ -75,8 +76,8 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HexagonalSiliconN
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Jade
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nephelite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tanzanite
-import gregtechlite.gtlitecore.api.unification.material.properties.GTLitePropertyKey
 import gregtechlite.gtlitecore.api.unification.material.properties.AmorphousLensProperty
+import gregtechlite.gtlitecore.api.unification.material.properties.GTLitePropertyKey
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.gemSolitary
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.sheetedFrame
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.wallGt
@@ -123,7 +124,7 @@ object PartsRecipeHandler
         {
             // Delete safety checking of original processing, because this is unused at this time.
             val builder = LATHE_RECIPES.recipeBuilder()
-                .input(ingot, material)
+                .input(gem, material)
                 .EUt(scaleVoltage(VH[LV], workingTier))
                 .duration(max(material.mass * 2, 1))
 

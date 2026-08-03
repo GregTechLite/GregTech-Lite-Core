@@ -2,23 +2,33 @@ package gregtechlite.gtlitecore.loader.recipe.foodprocessing
 
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.GTValues.VH
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
+import gregtech.api.recipes.RecipeMaps.BREWING_RECIPES
+import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.MACERATOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
+import gregtech.api.unification.material.Materials.BioDiesel
 import gregtech.api.unification.material.Materials.Biomass
 import gregtech.api.unification.material.Materials.Bone
 import gregtech.api.unification.material.Materials.Chloroform
 import gregtech.api.unification.material.Materials.DistilledWater
+import gregtech.api.unification.material.Materials.Glycerol
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Meat
 import gregtech.api.unification.material.Materials.Methanol
+import gregtech.api.unification.material.Materials.Redstone
+import gregtech.api.unification.material.Materials.Soapstone
 import gregtech.api.unification.material.Materials.SodaAsh
+import gregtech.api.unification.material.Materials.SodiumHydroxide
+import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.TricalciumPhosphate
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
@@ -26,6 +36,7 @@ import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
@@ -34,9 +45,12 @@ import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mud
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StearicAcid
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OLIVE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.ANIMAL_FAT
@@ -53,6 +67,13 @@ internal object AnimalFatProcessing
     // @formatter:off
 
     fun init()
+    {
+        oilFatProcess()
+        meatProcess()
+        stearicAcidProcess()
+    }
+
+    private fun oilFatProcess()
     {
         // Olive oil
         EXTRACTOR_RECIPES.addRecipe {
@@ -93,10 +114,12 @@ internal object AnimalFatProcessing
             EUt(VA[LV])
             duration(8 * SECOND)
         }
+    }
 
+    private fun meatProcess()
+    {
         // Redo all meats macerating, add animal fats to outputs.
         MACERATOR_RECIPES.removeRecipe(PORKCHOP)
-
         MACERATOR_RECIPES.addRecipe {
             inputs(PORKCHOP)
             output(dust, Meat, 2)
@@ -107,7 +130,6 @@ internal object AnimalFatProcessing
         }
 
         MACERATOR_RECIPES.removeRecipe(BEEF)
-
         MACERATOR_RECIPES.addRecipe {
             inputs(BEEF)
             output(dust, Meat, 2)
@@ -119,7 +141,6 @@ internal object AnimalFatProcessing
         }
 
         MACERATOR_RECIPES.removeRecipe(CHICKEN)
-
         MACERATOR_RECIPES.addRecipe {
             inputs(CHICKEN)
             output(dust, Meat)
@@ -130,7 +151,6 @@ internal object AnimalFatProcessing
         }
 
         MACERATOR_RECIPES.removeRecipe(RABBIT)
-
         MACERATOR_RECIPES.addRecipe {
             inputs(RABBIT)
             output(dust, Meat)
@@ -142,7 +162,6 @@ internal object AnimalFatProcessing
         }
 
         MACERATOR_RECIPES.removeRecipe(MUTTON)
-
         MACERATOR_RECIPES.addRecipe {
             inputs(MUTTON)
             output(dust, Meat, 2)
@@ -259,6 +278,60 @@ internal object AnimalFatProcessing
             fluidOutputs(Mud.getFluid(100))
             EUt(7) // ULV
             duration(2 * SECOND + 10 * TICK)
+        }
+    }
+
+    private fun stearicAcidProcess()
+    {
+        // C57H110O6 + 3H2O -> C3H8O3 + 3C18H36O2
+        CHEMICAL_RECIPES.addRecipe {
+            fluidInputs(Fat.getFluid(1000))
+            fluidInputs(Water.getFluid(3000))
+            fluidOutputs(Glycerol.getFluid(1000))
+            fluidOutputs(StearicAcid.getFluid(3000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
+        }
+
+        // C18H36O2 + NaOH -> C18H35O2Na + H2O
+        BURNER_REACTOR_RECIPES.addRecipe {
+            input(dust, SodiumHydroxide, 3)
+            fluidInputs(StearicAcid.getFluid(1000))
+            fluidOutputs(SodiumStearate.getFluid(1000))
+            fluidOutputs(Steam.getFluid(1 * SU))
+            EUt(VA[MV])
+            duration(2 * SECOND + 10 * TICK)
+        }
+
+        // Stearic Acid -> Lubricant
+        for (lubricant in arrayOf(Talc, Soapstone, Redstone))
+        {
+            BREWING_RECIPES.addRecipe {
+                input(dust, lubricant)
+                fluidInputs(StearicAcid.getFluid(1000))
+                fluidOutputs(Lubricant.getFluid(1000))
+                EUt(4) // ULV
+                duration(6 * SECOND + 8 * TICK)
+            }
+        }
+
+        // Stearic Acid -> Bio Diesel
+        MIXER_RECIPES.addRecipe {
+            input(dustTiny, SodiumHydroxide)
+            fluidInputs(StearicAcid.getFluid(3000))
+            fluidInputs(Glycerol.getFluid(1000))
+            fluidOutputs(BioDiesel.getFluid(4000))
+            EUt(VA[MV])
+            duration(1 * SECOND + 12 * TICK)
+        }
+
+        LARGE_CHEMICAL_RECIPES.addRecipe {
+            input(dust, SodiumHydroxide)
+            fluidInputs(StearicAcid.getFluid(12000))
+            fluidInputs(Glycerol.getFluid(4000))
+            fluidOutputs(BioDiesel.getFluid(16000))
+            EUt(VA[HV])
+            duration(5 * SECOND)
         }
     }
 

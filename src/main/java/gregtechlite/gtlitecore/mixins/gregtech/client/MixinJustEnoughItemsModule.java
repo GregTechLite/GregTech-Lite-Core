@@ -72,7 +72,7 @@ import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING;
 
 /**
- * Feature: Let {@code MetaTileEntity} has priority in JEI multiblock structure page.
+ * Let {@code MetaTileEntity} has priority in JEI multiblock structure page.
  * <p>
  * This class improved the priority of Gregtech {@code JustEnoughItemsModule}, if an addon mod's
  * first letter is "faster" than Gregtech, then its machines will on top in JustEnoughItems Recipe
@@ -84,9 +84,8 @@ import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
  */
 @SuppressWarnings("UnstableApiUsage")
 @Mixin(value = JustEnoughItemsModule.class, remap = false)
-public abstract class MixinJustEnoughItemsModule implements InjectableModRegistry
+public abstract class MixinJustEnoughItemsModule implements InjectableModRegistry // TODO: Find a better method to add this.
 {
-
     @Shadow
     public static IIngredientRegistry ingredientRegistry;
 
@@ -307,6 +306,7 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
      * register it at there to contained sort.
      */
     @SuppressWarnings("AddedMixinMembersNamePattern")
+    @Unique
     @Override
     public void registerPostContext(@NotNull IModRegistry registry)
     {
@@ -343,6 +343,26 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
                     gtlitecore$getRecipeMapName(GTLiteRecipeMaps.LAMINATOR_RECIPES));
             registry.addRecipeCatalyst(GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK.getStackForm(),
                     gtlitecore$getRecipeMapName(GTLiteRecipeMaps.VULCANIZATION_RECIPES));
+
+            // PCB Factory
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.NANOLITHOGRAPHY_ARRAY.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.PCB_FACTORY_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.MICROSCALE_CIRCUIT_DETECTOR.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.PCB_FACTORY_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.BIO_CULTIVATION_CHAMBER.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.PCB_FACTORY_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.WATER_COOLING_TOWER.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.PCB_FACTORY_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.THERMOSINK_COOLING_TOWER.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.PCB_FACTORY_RECIPES));
+
+            // Nano Forge
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.CONSCIOUSNESS_STORAGE_CENTER.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.NANO_FORGE_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.NANITE_REPLICATION_UNRESTRICOR.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.NANO_FORGE_RECIPES));
+            registry.addRecipeCatalyst(GTLiteMetaTileEntities.VIRTUAL_GESTALT_COMPUTING_UPLINK.getStackForm(),
+                    gtlitecore$getRecipeMapName(GTLiteRecipeMaps.NANO_FORGE_RECIPES));
         }
     }
 
@@ -385,6 +405,7 @@ public abstract class MixinJustEnoughItemsModule implements InjectableModRegistr
     }
 
     @Shadow
-    protected abstract void registerRecipeMapCatalyst(IModRegistry registry, RecipeMap<?> recipeMap, MetaTileEntity metaTileEntity);
-
+    protected abstract void registerRecipeMapCatalyst(IModRegistry registry,
+                                                      RecipeMap<?> recipeMap,
+                                                      MetaTileEntity metaTileEntity);
 }

@@ -14,19 +14,20 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.List;
 
 @Mixin(BlockGlassCasing.class)
 public abstract class MixinBlockGlassCasing extends VariantActiveBlock<BlockGlassCasing.CasingType>
 {
-
     public MixinBlockGlassCasing(Material materialIn)
     {
         super(materialIn);
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
+    @Unique
     @Override
     public void addInformation(@NotNull ItemStack stack,
                                @Nullable World player,
@@ -39,5 +40,4 @@ public abstract class MixinBlockGlassCasing extends VariantActiveBlock<BlockGlas
         Object casingType = this.getState(stackState);
         tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", GTValues.VOCNF[((StateTier) casingType).getTier()]));
     }
-
 }

@@ -78,6 +78,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenPeroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LinoleicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PiranhaSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RedAlgae
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sorbose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StreptococcusPyogenes
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SuccinicAcid
@@ -235,6 +236,14 @@ internal object GrowthMediumChain
         CHEMICAL_BATH_RECIPES.addRecipe {
             input(DIRTY_PETRI_DISH)
             fluidInputs(PiranhaSolution.getFluid(100))
+            output(PETRI_DISH)
+            EUt(VA[LV])
+            duration(1 * SECOND + 5 * TICK)
+        }
+
+        CHEMICAL_BATH_RECIPES.addRecipe {
+            input(DIRTY_PETRI_DISH)
+            fluidInputs(SodiumStearate.getFluid(100))
             output(PETRI_DISH)
             EUt(VA[LV])
             duration(1 * SECOND + 5 * TICK)

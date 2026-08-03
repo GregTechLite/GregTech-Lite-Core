@@ -341,6 +341,16 @@ internal object FusionReactorRecipes
             EUToStart(480_000_000) // 480M EU (MK3)
         }
 
+        // Po + Cr -> Mt
+        FUSION_RECIPES.addRecipe {
+            fluidInputs(Polonium.getFluid(L * 2))
+            fluidInputs(Chrome.getFluid(L * 2))
+            fluidOutputs(Meitnerium.getFluid(L * 4))
+            EUt(VA[UV] / 3)
+            duration(4 * SECOND + 8 * TICK)
+            EUToStart(400_000_000L) // 400M EU (MK3)
+        }
+
         // endregion
 
         // region MK4 Fusion
@@ -422,16 +432,6 @@ internal object FusionReactorRecipes
             EUt(VA[UHV])
             duration(5 * SECOND)
             EUToStart(1_200_000_000L) // 1,200M EU (MK4)
-        }
-
-        // Po + Cr -> Mt
-        FUSION_RECIPES.addRecipe {
-            fluidInputs(Polonium.getFluid(L * 2))
-            fluidInputs(Chrome.getFluid(L * 2))
-            fluidOutputs(Meitnerium.getFluid(L * 4))
-            EUt(VA[UHV] / 3)
-            duration(4 * SECOND + 8 * TICK)
-            EUToStart(400_000_000L) // 400M EU (MK4)
         }
 
         // Zn + Ni -> Cn

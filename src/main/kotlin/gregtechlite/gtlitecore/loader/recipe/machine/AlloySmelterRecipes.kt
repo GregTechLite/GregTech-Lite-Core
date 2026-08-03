@@ -4,6 +4,8 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UIV
@@ -26,10 +28,12 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PraseodymiumDopedZBLANGlass
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpaceTime
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZBLANGlass
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
@@ -185,6 +189,24 @@ internal object AlloySmelterRecipes
             input(plate, TranscendentMetal, 4)
             outputs(GlassCasing.TRANSCENDENT_METAL_BOROSILICATE.stack)
             EUt(VA[UXV])
+            duration(5 * SECOND)
+        }
+
+        // Space Time reinforced Borosilicate Glass
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, SpaceTime, 4)
+            outputs(GlassCasing.SPACE_TIME_BOROSILICATE.stack)
+            EUt(VA[OpV])
+            duration(5 * SECOND)
+        }
+
+        // Red Matter reinforced Borosilicate glass
+        ALLOY_SMELTER_RECIPES.addRecipe {
+            inputs(GlassCasing.BOROSILICATE.stack)
+            input(plate, AxinoFusedRedMatter, 4)
+            outputs(GlassCasing.RED_MATTER_BOROSILICATE.stack)
+            EUt(VA[MAX])
             duration(5 * SECOND)
         }
     }

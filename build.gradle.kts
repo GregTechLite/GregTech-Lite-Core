@@ -138,6 +138,7 @@ dependencies {
     }
 
     compileOnly(libs.craftTweaker2)
+    compileOnly(libs.baubles)
 
     runtimeOnly(deobf(libs.catalogue))
 

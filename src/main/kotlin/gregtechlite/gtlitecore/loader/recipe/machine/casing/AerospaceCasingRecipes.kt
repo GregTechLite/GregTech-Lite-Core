@@ -69,6 +69,7 @@ import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
@@ -316,7 +317,7 @@ internal object AerospaceCasingRecipes
             EUt(VA[UHV])
             duration(30 * SECOND)
             stationResearch {
-                it.researchStack(POWER_TRANSFORMER[UHV].stackForm)
+                it.researchStack(POWER_TRANSFORMER[UHV].stack())
                     .EUt(VA[UHV])
                     .CWUt(24)
             }
@@ -338,7 +339,7 @@ internal object AerospaceCasingRecipes
             EUt(VA[UHV])
             duration(30 * SECOND)
             stationResearch {
-                it.researchStack(QUANTUM_CHEST[UHV].stackForm)
+                it.researchStack(QUANTUM_CHEST[UHV].stack())
                     .EUt(VA[UHV])
                     .CWUt(32)
             }
@@ -364,7 +365,7 @@ internal object AerospaceCasingRecipes
             EUt(VA[UHV])
             duration(1 * MINUTE)
             stationResearch {
-                it.researchStack(QUANTUM_STORAGE_CONTROLLER.stackForm)
+                it.researchStack(QUANTUM_STORAGE_CONTROLLER.stack())
                     .EUt(VA[UHV])
                     .CWUt(48)
             }
@@ -384,7 +385,7 @@ internal object AerospaceCasingRecipes
             EUt(VA[UHV])
             duration(30 * SECOND)
             stationResearch {
-                it.researchStack(POLARIZER[UHV].stackForm)
+                it.researchStack(POLARIZER[UHV].stack())
                     .EUt(VA[UHV])
                     .CWUt(16)
             }
@@ -403,7 +404,7 @@ internal object AerospaceCasingRecipes
             EUt(VA[UHV])
             duration(30 * SECOND)
             stationResearch {
-                it.researchStack(HIGH_PERFORMANCE_COMPUTING_ARRAY.stackForm)
+                it.researchStack(HIGH_PERFORMANCE_COMPUTING_ARRAY.stack())
                     .EUt(VA[UHV])
                     .CWUt(64)
             }
@@ -425,7 +426,7 @@ internal object AerospaceCasingRecipes
             EUt(VA[UHV])
             duration(30 * SECOND)
             stationResearch {
-                it.researchStack(VOLTAGE_COIL_UHV.stackForm)
+                it.researchStack(VOLTAGE_COIL_UHV.stack())
                     .EUt(VA[UHV])
                     .CWUt(8)
             }
@@ -443,7 +444,7 @@ internal object AerospaceCasingRecipes
             EUt(VA[UHV])
             duration(7 * SECOND + 10 * SECOND)
             stationResearch {
-                it.researchStack(VOLTAGE_COIL_UHV.stackForm)
+                it.researchStack(VOLTAGE_COIL_UHV.stack())
                     .EUt(VA[UHV])
                     .CWUt(8)
             }

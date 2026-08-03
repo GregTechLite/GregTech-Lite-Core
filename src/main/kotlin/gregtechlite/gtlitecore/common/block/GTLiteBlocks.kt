@@ -83,13 +83,15 @@ object GTLiteBlocks
 
     // Tree related blocks.
     @JvmField
-    val LEAVES = ArrayList<GTLiteLeaveBlock>()
+    val LEAVES = arrayListOf<GTLiteLeaveBlock>()
     @JvmField
-    val LOGS = ArrayList<GTLiteLogBlock>()
+    val LOGS = arrayListOf<GTLiteLogBlock>()
     @JvmField
-    val PLANKS = ArrayList<GTLitePlankBlock>()
+    val PLANKS = arrayListOf<GTLitePlankBlock>()
     @JvmField
-    val SAPLINGS = ArrayList<GTLiteSaplingBlock>()
+    val SAPLINGS = arrayListOf<GTLiteSaplingBlock>()
+    @JvmField
+    var CROPS = arrayListOf<GTLiteCropBlock>()
 
     // Wooden slabs.
     lateinit var WOOD_SLABS: GTLiteWoodSlabBlock
@@ -140,6 +142,7 @@ object GTLiteBlocks
     lateinit var TARANIUM_CHARGE: BlockTaraniumCharge
     lateinit var LEPTONIC_CHARGE: BlockLeptonicCharge
     lateinit var QUANTUM_CHROMODYNAMIC_CHARGE: BlockQuantumChromodynamicCharge
+    lateinit var BOTTLECRATE: BlockBottlecrate
 
     // GT format material blocks.
     @JvmField
@@ -196,6 +199,7 @@ object GTLiteBlocks
     lateinit var TRANSPARENT_CASING_02: VariantBlock<GlassCasing.Enum02>
     lateinit var TRANSPARENT_CASING_03: VariantBlock<GlassCasing.Enum03>
 
+
     fun init()
     {
         // Initialized stones and its variant blocks.
@@ -206,22 +210,22 @@ object GTLiteBlocks
         WorldGeneratorTreeManager.init()
 
         // Initialized tree related blocks.
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 4)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 4)
         {
             val leaves = GTLiteLeaveBlock(i)
             leaves.setRegistryName("leaves_$i")
         }
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 4)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 4)
         {
             val log = GTLiteLogBlock(i)
             log.setRegistryName("log_$i")
         }
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 8)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 8)
         {
             val sapling = GTLiteSaplingBlock(i)
             sapling.setRegistryName("sapling_$i")
         }
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 16)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 16)
         {
             val planks = GTLitePlankBlock(i)
             planks.setRegistryName("planks_$i")
@@ -232,7 +236,7 @@ object GTLiteBlocks
         WorldGeneratorBerryManager.init()
 
         // Setup tree related blocks to its world generator features.
-        WorldGeneratorTreeRegistry.generators.forEach { it.setupBlocks() }
+        WorldGeneratorTreeRegistry.forEach { it.setupBlocks() }
 
         // Initialized wooden slabs.
         WOOD_SLABS = GTLiteWoodSlabBlock.Half()
@@ -389,6 +393,11 @@ object GTLiteBlocks
         DIMENSION_DISPLAY_END.setTranslationKey("gtlitecore.dimension_display.end")
         DIMENSION_DISPLAY_END.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
 
+        BOTTLECRATE = BlockBottlecrate()
+        BOTTLECRATE.setTranslationKey("gtlitecore.bottlecrate")
+        BOTTLECRATE.setRegistryName("bottlecrate")
+        BOTTLECRATE.setCreativeTab(GTLiteCreativeTabs.TAB_DECORATION)
+
         NAQUADRIA_CHARGE = BlockNaquadriaCharge()
         NAQUADRIA_CHARGE.setTranslationKey("gtlitecore.naquadria_charge")
         NAQUADRIA_CHARGE.setRegistryName("naquadria_charge")
@@ -536,6 +545,7 @@ object GTLiteBlocks
         setModelLocation(DIMENSION_DISPLAY_OVERWORLD)
         setModelLocation(DIMENSION_DISPLAY_NETHER)
         setModelLocation(DIMENSION_DISPLAY_END)
+        setModelLocation(BOTTLECRATE)
 
         registerItemModel(NAQUADRIA_CHARGE)
         registerItemModel(TARANIUM_CHARGE)

@@ -10,36 +10,32 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 import java.util.List;
 
 @Mixin({ BlockGlass.class, BlockStainedGlass.class })
 public abstract class MixinBlockGlass extends BlockBreakable implements StateTier
 {
-
     protected MixinBlockGlass(Material materialIn, boolean ignoreSimilarityIn)
     {
         super(materialIn, ignoreSimilarityIn);
     }
 
     @Override
-    public void addInformation(@NotNull ItemStack stack,
-                               @Nullable World player,
-                               @NotNull List<String> tooltip,
-                               @NotNull ITooltipFlag advanced)
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced)
     {
         super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", GTValues.VOCNF[this.getTier()]));
+        tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", GTValues.VOCNF[getTier()]));
     }
 
     @SuppressWarnings("AddedMixinMembersNamePattern")
+    @Unique
     @Override
     public int getTier()
     {
         return GTValues.LV;
     }
-
 }

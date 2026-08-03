@@ -1,9 +1,9 @@
 package gregtechlite.gtlitecore.api.integration
 
-import gregtechlite.gtlitecore.mixins.MixinExtension
+import gregtechlite.gtlitecore.mixins.hooks.Extension
 import mezz.jei.api.IModRegistry
 
-@MixinExtension
+@Extension
 interface InjectableModRegistry
 {
 

@@ -1,19 +1,34 @@
 package gregtechlite.gtlitecore.api.unification.ore
 
 import gregtech.api.GTValues.M
+import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Materials.BorosilicateGlass
+import gregtech.api.unification.material.Materials.Charcoal
+import gregtech.api.unification.material.Materials.EnderEye
+import gregtech.api.unification.material.Materials.EnderPearl
+import gregtech.api.unification.material.Materials.Flint
 import gregtech.api.unification.material.Materials.Graphite
+import gregtech.api.unification.material.Materials.Lapotron
+import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.Quartzite
+import gregtech.api.unification.material.Materials.Steel
+import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
+import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.nugget
+import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
+import gregtech.api.unification.ore.OrePrefix.turbineBlade
 import gregtech.api.unification.stack.MaterialStack
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlazingPyrotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
@@ -235,6 +250,12 @@ object GTLiteOrePrefix
 
     fun setOrePrefixInfos()
     {
+        // region Material Amount
+
+        setMaterialAmount(turbineBlade, M * 6)
+
+        // endregion
+
         // region Stack Size
 
         gemSolitary.maxStackSize = 8
@@ -249,19 +270,22 @@ object GTLiteOrePrefix
 
         if (ConfigHolder.worldgen.allUniqueStoneTypes)
         {
-            oreLimestone.addSecondaryMaterial(MaterialStack(Limestone, M))
-            oreKomatiite.addSecondaryMaterial(MaterialStack(Komatiite, M))
-            oreGreenSchist.addSecondaryMaterial(MaterialStack(GreenSchist, M))
-            oreBlueSchist.addSecondaryMaterial(MaterialStack(BlueSchist, M))
-            oreKimberlite.addSecondaryMaterial(MaterialStack(Kimberlite, M))
-            oreQuartzite.addSecondaryMaterial(MaterialStack(Quartzite, M))
-            oreSlate.addSecondaryMaterial(MaterialStack(Slate, M))
-            oreShale.addSecondaryMaterial(MaterialStack(Shale, M))
+            oreLimestone.addSecondaryMaterial(Limestone, M)
+            oreKomatiite.addSecondaryMaterial(Komatiite, M)
+            oreGreenSchist.addSecondaryMaterial(GreenSchist, M)
+            oreBlueSchist.addSecondaryMaterial(BlueSchist, M)
+            oreKimberlite.addSecondaryMaterial(Kimberlite, M)
+            oreQuartzite.addSecondaryMaterial(Quartzite, M)
+            oreSlate.addSecondaryMaterial(Slate, M)
+            oreShale.addSecondaryMaterial(Shale, M)
         }
+
+        toolHeadDrill.removeSecondaryMaterial(Steel, M * 4)
 
         // endregion
 
         // region Ignored Prefix
+
         dust.setIgnored(ZSM5)
         dust.setIgnored(HalkoniteSteel)
         dust.setIgnored(Magnetium)
@@ -308,6 +332,16 @@ object GTLiteOrePrefix
 
         fuelRodHighDensityDepleted.setIgnored(Graphite)
 
+        gemSolitary.setIgnored(Charcoal)
+        gemSolitary.setIgnored(EnderPearl)
+        gemSolitary.setIgnored(EnderEye)
+        gemSolitary.setIgnored(Flint)
+        gemSolitary.setIgnored(Lapotron)
+        gemSolitary.setIgnored(NetherStar)
+        gemSolitary.setIgnored(Sugar)
+
+        plate.removeIgnored(BorosilicateGlass)
+
         // endregion
     }
 
@@ -324,5 +358,51 @@ object GTLiteOrePrefix
         MetaItems.addOrePrefix(fuelRodHighDensityDepleted)
         MetaItems.addOrePrefix(nanite)
     }
-
 }
+
+/**
+ * Adds secondary materials for the prefix.
+ *
+ * @param material The material of the material stack for the secondary material.
+ * @param amount   The material amount of the material stack for the secondary material, use magic number.
+ */
+private fun OrePrefix.addSecondaryMaterial(material: Material, amount: Long)
+{
+    val ms = MaterialStack(material, amount)
+    if (!secondaryMaterials.contains(ms))
+        secondaryMaterials.add(ms)
+}
+
+/**
+ * Removes existed secondary material for the prefix.
+ *
+ * @param material The material of the material stack in the secondary material.
+ * @param amount   The material amount of the material stack in the secondary material, use magic number.
+ */
+private fun OrePrefix.removeSecondaryMaterial(material: Material, amount: Long)
+{
+    val ms = MaterialStack(material, amount)
+    if (secondaryMaterials.contains(ms)) {
+        secondaryMaterials.remove(ms)
+    }
+}
+
+/**
+ * Modifies material amount of the existed prefix.
+ *
+ * This method is used to adjust recycling recipe outputs for specific prefixes, and it is unsafe
+ * for common material amount modification, please see the safe methods in original prefix operations.
+ *
+ * @param prefix    The prefix to modified.
+ * @param newAmount The new material amount value.
+ *
+ * @see OrePrefix.modifyMaterialAmount
+ * @see OrePrefix.isAmountModified
+ */
+@Suppress("SameParameterValue")
+private fun setMaterialAmount(prefix: OrePrefix, newAmount: Long) = runCatching {
+    OrePrefix::class.java.getDeclaredField("materialAmount").apply {
+        isAccessible = true
+        setLong(prefix, newAmount)
+    }
+}.onFailure { LOGGER.error("Cannot set materialAmount for the OrePrefix $prefix with new amount $newAmount") }

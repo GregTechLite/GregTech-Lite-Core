@@ -13,9 +13,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Map;
 
 /**
- * Feature: Let {@code MaterialProperty} can be overriden at addon mod.
+ * Let {@code MaterialProperty} can be overriden at addon mod.
  * <p>
- * This class make {@code MaterialProperties} can be overriden, if material has {@code DustProperty},
+ * This class make {@link MaterialProperties} can be overriden, if material has {@code DustProperty},
  * then this class allowed to overriden it with a {@code IngotProperty} or {@code GemProperty}.
  *
  * @author Magic_Sweepy
@@ -23,20 +23,22 @@ import java.util.Map;
 @Mixin(value = MaterialProperties.class, remap = false)
 public abstract class MixinMaterialProperties
 {
-
     @Shadow
     @Final
     private Map<PropertyKey<? extends IMaterialProperty>, IMaterialProperty> propertyMap;
 
     /**
+     * If a material has {@code DustProperty} but you want to set its {@link MaterialProperties}
+     * to {@code IngotProperty} or {@code GemProperty}, this method allowed to remove it and
+     * add the newest one to {@link MaterialProperties}.
+     *
      * @author Magic_Sweepy
-     * @reason Change MaterialProperties can be overriden with bottom to top.
+     * @reason Change {@link MaterialProperties} can be overriden with bottom to top.
      */
     @Inject(method = "setProperty",
             at = @At("HEAD"),
             cancellable = true)
-    public <T extends IMaterialProperty> void setProperty(PropertyKey<T> key, IMaterialProperty value,
-                                                          CallbackInfo ci)
+    public <T extends IMaterialProperty> void setProperty(PropertyKey<T> key, IMaterialProperty value, CallbackInfo ci)
     {
         if (value == null)
         {
@@ -44,19 +46,14 @@ public abstract class MixinMaterialProperties
         }
         else if (hasProperty(key))
         {
-            // If a material has DustProperty but you want to set its MaterialProperties
-            // to IngotProperty or GemProperty, then remove DustProperty and add the newest
-            // one for setProperty() method calling and the newest MaterialProperties.
-            if ((key.equals(PropertyKey.INGOT) || key.equals(PropertyKey.GEM))
-                    && hasProperty(PropertyKey.DUST))
+            if ((key.equals(PropertyKey.INGOT) || key.equals(PropertyKey.GEM)) && hasProperty(PropertyKey.DUST))
             {
                 propertyMap.remove(PropertyKey.DUST);
                 propertyMap.put(key, value);
             }
             else
             {
-                throw new IllegalArgumentException("Material Property " + key
-                        + " already registered!");
+                throw new IllegalArgumentException("Material Property " + key + " already registered!");
             }
         }
         else
@@ -69,5 +66,4 @@ public abstract class MixinMaterialProperties
 
     @Shadow
     public abstract <T extends IMaterialProperty> boolean hasProperty(PropertyKey<T> key);
-
 }

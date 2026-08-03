@@ -153,6 +153,8 @@ object GTLiteMetaItems
 
     lateinit var CIRCUIT_PATTERN: MetaItem<*>.MetaValueItem
     lateinit var MAGNETRON: MetaItem<*>.MetaValueItem
+    lateinit var LASER_DESTROYER: MetaItem<*>.MetaValueItem
+    lateinit var MAGICBOOK: MetaItem<*>.MetaValueItem
 
     lateinit var DIRTY_PETRI_DISH: MetaItem<*>.MetaValueItem
     lateinit var BREVIBACTERIUM_FLAVUM_PETRI_DISH: MetaItem<*>.MetaValueItem
@@ -176,6 +178,21 @@ object GTLiteMetaItems
     lateinit var MEMORY_CARD_SHULKER: MetaItem<*>.MetaValueItem
     lateinit var MEMORY_CARD_WITHER: MetaItem<*>.MetaValueItem
     lateinit var MEMORY_CARD_ENDER_DRAGON: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_CHICKEN: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_COW: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_PIG: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_SHEEP: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_HORSE: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_DONKEY: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_MULE: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_OCELOT: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_WOLF: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_RABBIT: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_LLAMA: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_MOOSHROOM: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_BAT: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_VILLAGER: MetaItem<*>.MetaValueItem
+    lateinit var MEMORY_CARD_TRADER: MetaItem<*>.MetaValueItem
 
     lateinit var CATALYST_BASE: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_RUBBER_POLYMER: MetaItem<*>.MetaValueItem
@@ -187,7 +204,7 @@ object GTLiteMetaItems
     lateinit var CATALYST_RADIOACTIVE: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_ADVANCED_RADIOACTIVE: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_ULTIMATE_RADIOACTIVE: MetaItem<*>.MetaValueItem
-    lateinit var CATALYST_TITANIUM_TUNGSTEN_INDIUM: MetaItem<*>.MetaValueItem
+    lateinit var CATALYST_TRANSITION_METAL: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_ADHESION_PROMOTER: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_RARE_EARTH_GROUP: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_RARE_METAL_GROUP: MetaItem<*>.MetaValueItem
@@ -528,6 +545,7 @@ object GTLiteMetaItems
     lateinit var CLAY_CUP: MetaItem<*>.MetaValueItem
     lateinit var CERAMIC_CUP: MetaItem<*>.MetaValueItem
     lateinit var PLASTIC_BOTTLE: MetaItem<*>.MetaValueItem
+    lateinit var PVC_CAN: MetaItem<*>.MetaValueItem
 
     lateinit var GRAPE_JUICE: MetaItem<*>.MetaValueItem
     lateinit var RED_WINE: MetaItem<*>.MetaValueItem
@@ -544,6 +562,9 @@ object GTLiteMetaItems
 
     lateinit var GRAHAM_CRACKER: MetaItem<*>.MetaValueItem
 
+    lateinit var HORSE_MEAT: MetaItem<*>.MetaValueItem
+    lateinit var COOKED_HORSE_MEAT: MetaItem<*>.MetaValueItem
+
     lateinit var HARD_APPLE_CANDY: MetaItem<*>.MetaValueItem
 
     lateinit var SILVER_APPLE: MetaItem<*>.MetaValueItem
@@ -551,6 +572,9 @@ object GTLiteMetaItems
     lateinit var GOLDEN_STRAWBERRY: MetaItem<*>.MetaValueItem
     lateinit var RAINBOW_BERRY: MetaItem<*>.MetaValueItem
     lateinit var MOON_BERRY: MetaItem<*>.MetaValueItem
+
+    lateinit var NUTRIENT_PASTE_MEAL: MetaItem<*>.MetaValueItem
+    lateinit var RICH_NUTRIENT_PASTE_MEAL: MetaItem<*>.MetaValueItem
 
     fun init()
     {

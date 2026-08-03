@@ -16,10 +16,8 @@ import java.util.List;
 @Mixin(value = MultiblockControllerBase.class, remap = false)
 public abstract class MixinMultiblockControllerBase
 {
-
     @Shadow
-    @Nullable
-    public BlockPattern structurePattern;
+    public @Nullable BlockPattern structurePattern;
 
     @Inject(method = "getMatchingShapes()Ljava/util/List;",
             at = @At(value = "INVOKE",
@@ -30,5 +28,4 @@ public abstract class MixinMultiblockControllerBase
         // noinspection ConstantConditions
         cir.setReturnValue(BlockPatterns.INSTANCE.getMatchingShapes(structurePattern));
     }
-
 }
