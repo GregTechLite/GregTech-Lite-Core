@@ -1,4 +1,5 @@
 import org.gradle.api.internal.artifacts.dependencies.DependencyVariant
+import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.gradle.ext.Gradle
 import org.jetbrains.gradle.ext.compiler
@@ -253,6 +254,23 @@ tasks {
 
     processIdeaSettings {
         dependsOn(injectTags)
+    }
+
+    // MacOS or linux not support powershell, so only process it when development environment in Windows.
+    if (OperatingSystem.current().isWindows) {
+        register<Exec>("processManuscriptalResources") {
+            workingDir = projectDir
+            commandLine("powershell.exe",
+                        "-NoProfile",
+                        "-ExecutionPolicy", "Bypass",
+                        "-File", "scripts/manuscripts.ps1",
+                        "-Move",
+                        "-Force")
+        }
+
+        named("processResources") {
+            dependsOn("processManuscriptalResources")
+        }
     }
 }
 
