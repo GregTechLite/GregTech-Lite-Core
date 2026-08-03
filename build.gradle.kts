@@ -257,19 +257,23 @@ tasks {
 }
 
 tasks.register("processManuscriptalResources") {
+    val resources = layout.projectDirectory.dir("src/main/resources")
+    val manuscripts = layout.projectDirectory.dir("manuscripts")
+
+    inputs.files(resources.asFileTree.matching {
+        include("**/textures/**/*.sai2")
+    })
+    outputs.dir(manuscripts)
+
     doLast {
-        val resources = layout.projectDirectory.dir("src/main/resources")
-        val manuscripts = layout.projectDirectory.dir("manuscripts")
-        resources.asFileTree
-            .matching { include("**/textures/**/*.sai2") }
-            .forEach {
-                val relPath = resources.asFile.toPath().relativize(it.toPath()).toString()
-                val file = manuscripts.file(relPath).asFile
-                file.parentFile.mkdirs()
-                it.copyTo(file, overwrite = true)
-                it.delete()
-                logger.lifecycle("move  $relPath")
-            }
+        inputs.files.files.forEach {
+            val relPath = resources.asFile.toPath().relativize(it.toPath()).toString()
+            val file = manuscripts.file(relPath).asFile
+            file.parentFile.mkdirs()
+            it.copyTo(file, overwrite = true)
+            it.delete()
+            logger.lifecycle("move  $relPath")
+        }
     }
 }
 
