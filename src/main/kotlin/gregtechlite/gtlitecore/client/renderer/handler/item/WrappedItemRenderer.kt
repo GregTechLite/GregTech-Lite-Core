@@ -59,7 +59,7 @@ abstract class WrappedItemRenderer : PerspectiveAwareItemRenderer
 
                     if (EntityRenderer.anaglyphEnable) colour = TextureUtil.anaglyphColor(colour)
                 }
-                colour = colour or (alpha shl 24)
+                colour = (colour and 0x00FFFFFF) or (alpha shl 24)
                 LightUtil.renderQuadColor(buffer, quad, colour)
             }
             tess.draw()
