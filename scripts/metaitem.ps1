@@ -39,10 +39,10 @@ Overwrite JSON files that already exist.
 Print what would be written without touching the disk.
 
 .EXAMPLE
-powershell -ExecutionPolicy Bypass -File scripts/generate-metaitems.ps1 tool.disposable.saw circuit.advanced
+powershell -ExecutionPolicy Bypass -File scripts/metaitem.ps1 tool.disposable.saw circuit.advanced
 
 .EXAMPLE
-.\scripts\generate-metaitems.ps1 battery.x=items/metaitems/battery.x/1 -Parent item/handheld -Force
+.\scripts\metaitem.ps1 battery.x=items/metaitems/battery.x/1 -Parent item/handheld -Force
 #>
 [CmdletBinding()]
 param(
