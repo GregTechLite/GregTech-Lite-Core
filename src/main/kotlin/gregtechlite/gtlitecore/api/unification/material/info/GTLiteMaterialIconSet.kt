@@ -12,6 +12,7 @@ import gregtechlite.gtlitecore.client.renderer.ItemRendererManager
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.item.behavior.HaloRenderItemBehavior
 import gregtechlite.gtlitecore.common.item.behavior.TranscendentRenderItemBehavior
+import gregtechlite.gtlitecore.common.item.behavior.UniversiumRenderItemBehavior
 
 object GTLiteMaterialIconSet
 {
@@ -69,9 +70,6 @@ object GTLiteMaterialIconSet
     val WHITE_DWARF = iconSet("white_dwarf")
 
     @JvmField
-    val UNIVERSIUM = iconSet("universium")
-
-    @JvmField
     val CHROMATIC = iconSet("chromatic")
 
     @JvmField
@@ -101,6 +99,9 @@ object GTLiteMaterialIconSet
 
     @JvmField
     val INFINITY = iconSet("infinity", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
+
+    @JvmField
+    val UNIVERSIUM = iconSet("universium", UniversiumRenderItemBehavior())
 
     @JvmField
     val HALKONITE = iconSet("halkonite", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))

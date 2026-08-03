@@ -7,7 +7,7 @@ import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer
 import gregtechlite.gtlitecore.client.renderer.TranscendentRenderBehavior
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.block.model.IBakedModel
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.model.IModelState
@@ -21,7 +21,7 @@ class TranscendentItemRenderer : WrappedItemRenderer
 
     constructor(state: IModelState?, getter: WrappedModelGetter) : super(state, getter)
 
-    override fun renderItem(stack: ItemStack, transformType: ItemCameraTransforms.TransformType?)
+    override fun renderItem(stack: ItemStack, transformType: TransformType?)
     {
         if (stack.item is MetaItem<*>)
         {
@@ -37,7 +37,7 @@ class TranscendentItemRenderer : WrappedItemRenderer
                 return
             }
 
-            if (transformType == ItemCameraTransforms.TransformType.GUI)
+            if (transformType == TransformType.GUI)
             {
                 renderInventory(stack, renderEntity, renderBehavior)
             }
