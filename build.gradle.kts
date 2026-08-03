@@ -283,8 +283,7 @@ tasks.withType<DokkaTask> {
 idea {
     module {
         inheritOutputDirs = true
-        // IDEA no longer automatically downloads sources/javadoc jars for dependencies,
-        // so we need to explicitly enable the behavior.
+        // IDEA no longer automatically downloads source jars for dependencies, so we need to explicitly enable the behavior.
         isDownloadSources = true
         isDownloadJavadoc = true
     }
@@ -302,6 +301,12 @@ idea {
                 })
                 add(Gradle("4. Run Obfuscated Server").apply {
                     setProperty("taskNames", listOf("runObfServer"))
+                })
+                add(Gradle("5. Build Jars").apply {
+                    setProperty("taskNames", listOf("build"))
+                })
+                add(Gradle("6. Generate Docs").apply {
+                    setProperty("taskNames", listOf("dokkaGfm"))
                 })
             }
             compiler.javac {
