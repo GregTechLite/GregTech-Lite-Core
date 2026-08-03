@@ -1,5 +1,4 @@
 import org.gradle.api.internal.artifacts.dependencies.DependencyVariant
-import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.gradle.ext.Gradle
 import org.jetbrains.gradle.ext.compiler
@@ -247,6 +246,23 @@ if (usesAccessTransformer.toBoolean()) {
     }
 }
 
+tasks.register("processManuscriptalResources") {
+    doLast {
+        val resources = layout.projectDirectory.dir("src/main/resources")
+        val manuscripts = layout.projectDirectory.dir("manuscripts")
+        resources.asFileTree
+            .matching { include("**/textures/**/*.sai2") }
+            .forEach {
+                val relPath = resources.asFile.toPath().relativize(it.toPath()).toString()
+                val file = manuscripts.file(relPath).asFile
+                file.parentFile.mkdirs()
+                it.copyTo(file, overwrite = true)
+                it.delete()
+                logger.lifecycle("move  $relPath")
+            }
+    }
+}
+
 tasks {
     injectTags {
         outputClassName.set(generateTokenPath)
@@ -256,21 +272,8 @@ tasks {
         dependsOn(injectTags)
     }
 
-    // MacOS or linux not support powershell, so only process it when development environment in Windows.
-    if (OperatingSystem.current().isWindows) {
-        register<Exec>("processManuscriptalResources") {
-            workingDir = projectDir
-            commandLine("powershell.exe",
-                        "-NoProfile",
-                        "-ExecutionPolicy", "Bypass",
-                        "-File", "scripts/manuscripts.ps1",
-                        "-Move",
-                        "-Force")
-        }
-
-        named("processResources") {
-            dependsOn("processManuscriptalResources")
-        }
+    processResources {
+        dependsOn("processManuscriptalResources")
     }
 }
 
