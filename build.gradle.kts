@@ -23,16 +23,12 @@ val embed = "embed"
 group = modGroup
 version = modVersion
 
-// Mixed programming environment not supported Jabel or other same functional dependencies, we used Java 8
-// as default. Do not change this settings otherwise you know what you are doing.
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
         // Azul covers the most platforms for Java 8 toolchains, crucially including MacOS arm64.
         vendor.set(JvmVendorSpec.AZUL)
     }
-    // Generate sources and Javadocs jars when building and publishing.
-    // withSourcesJar()
 }
 
 kotlin {
@@ -43,8 +39,6 @@ tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
 }
 
-// Used specified sourceSet of two languages as default, should put all Java class in 'java' and all Kotlin
-// class to 'kotlin' sourceSets. Do not change these settings, this is only for javaCompiler and kotlinCompiler.
 sourceSets {
     main {
         java {
@@ -72,11 +66,11 @@ minecraft {
     // Set username here, the UUID will be looked up automatically.
     username.set(userName)
 
-    // Add any additional tweaker classes here.
-    // extraTweakClasses.add("org.spongepowered.asm.launch.MixinTweaker")
-
-    // Add various JVM arguments here for runtime.
-    val args = mutableListOf("-ea:${group}")
+    // Add various JVM arguments for runtime.
+    val args = mutableListOf<String>()
+    // Enable assertions for the mod group.
+    args += "-ea:${modGroup}"
+    // Initialize core mod and mixins when its enabled.
     if (usesCoreMod.toBoolean()) {
         args += "-Dfml.coreMods.load=$coreModPluginPath"
     }
@@ -85,23 +79,44 @@ minecraft {
         args += "-Dmixin.checks.interfaces=true"
         args += "-Dmixin.debug.export=true"
     }
-    // args += "-XXaltjvm=dcevm"
-    // args += "-XX:+AllowEnhancedClassRedefinition"
+    // Add colored line support for the terminal in development environment.
     args += "-Dterminal.jline=true"
     extraRunJvmArguments.addAll(args)
 
-    // Include and use dependencies' Access Transformer files
+    // Include and use AT files in dependencies.
     useDependencyAccessTransformers.set(true)
 
-    // Add any properties you want to swap out for a dynamic value at build time here.
-    // Any properties here will be added to a class at build time, the name can be configured below.
-
+    // Inner parameter name and value by RFG injectedTags task.
     injectedTags.put("MOD_VERSION", modVersion)
     injectedTags.put("MOD_ID", modId)
     injectedTags.put("MOD_NAME", modName)
 }
 
-repositories()
+repositories {
+    maven {
+        name = "CleanroomMC Maven"
+        url = uri("https://maven.cleanroommc.com")
+    }
+    maven {
+        name = "SpongePowered Maven"
+        url = uri("https://repo.spongepowered.org/maven")
+    }
+    maven {
+        name = "CurseMaven"
+        url = uri("https://cursemaven.com")
+        content {
+            includeGroup("curse.maven")
+        }
+    }
+    maven {
+        name = "BlameJared Maven"
+        url = uri("https://maven.blamejared.com")
+    }
+    maven {
+        name = "GTCEu Maven"
+        url = uri("https://maven.gtceu.com")
+    }
+}
 
 dependencies {
     if (usesMixins.toBoolean()) {
@@ -137,13 +152,30 @@ dependencies {
         isTransitive = false
     }
 
-    compileOnly(libs.craftTweaker2)
+    compileOnly(libs.craftTweaker2) {
+        exclude("com.google.code.gson", "gson")
+        exclude("org.ow2.asm", "asm-debug-all")
+    }
+
     compileOnly(libs.baubles)
 
     runtimeOnly(deobf(libs.catalogue))
 
     compileOnlyApi(libs.jetbrainsAnnotations)
     annotationProcessor(libs.jetbrainsAnnotations)
+}
+
+configurations {
+    compileOnly {
+        // For collections, we use kotlin native or fastutil and guava but not trove4j.
+        exclude(group = "net.sf.trove4j", module = "trove4j")
+        // For java part, we use jetbrains annotations for nullability mark but not javax.annotation.
+        exclude(group = "com.google.code.findbugs", module = "jsr305")
+        // We don't use scala in this repository, so we just exclude those forge native groups.
+        exclude(group = "org.scala-lang")
+        exclude(group = "org.scala-lang.modules")
+        exclude(group = "org.scala-lang.plugins")
+    }
 }
 
 fun DependencyHandler.deobf(dependencyNotation: Any): Any {
@@ -161,11 +193,9 @@ fun DependencyHandler.deobf(dependencyNotation: Any): Any {
     return rfg.deobf(depSpec)
 }
 
-// Adds Access Transformer files to tasks.
-@Suppress("Deprecation")
 if (usesAccessTransformer.toBoolean()) {
     for (at in sourceSets.getByName("main").resources.files) {
-        if (at.name.toLowerCase().endsWith("_at.cfg")) {
+        if (at.name.lowercase().endsWith("_at.cfg")) {
             tasks.deobfuscateMergedJarToSrg.get().accessTransformerFiles.from(at)
             tasks.srgifyBinpatchedJar.get().accessTransformerFiles.from(at)
         }
@@ -173,7 +203,6 @@ if (usesAccessTransformer.toBoolean()) {
 }
 
 tasks {
-    // Generate a RFG Tags class.
     injectTags {
         outputClassName.set(generateTokenPath)
     }
@@ -183,41 +212,39 @@ tasks {
     }
 }
 
-@Suppress("UnstableApiUsage")
-tasks.withType<ProcessResources> {
-    // This will ensure that this task is redone when the versions change.
-    inputs.property("version", modVersion)
-    inputs.property("mcversion", minecraft.mcVersion)
-
+tasks.processResources {
+    // Ensure that this task is redone when the versions change.
+    val props = mutableMapOf<String, String>()
+    props.put("mod_id"     , modId)
+    props.put("mod_name"   , modName)
+    props.put("mod_version", modVersion)
+    props.put("mc_version" , minecraftVersion)
+    inputs.properties(props)
     // Replace various properties in mcmod.info and pack.mcmeta if applicable.
-    filesMatching(arrayListOf("mcmod.info", "pack.mcmeta")) {
-        expand(
-            "version" to modVersion,
-            "mcversion" to minecraft.mcVersion,
-            "modid" to modId
-        )
+    filesMatching(listOf("mcmod.info", "pack.mcmeta")) {
+        expand(props)
     }
 
+    // Make sure AT files are in correct folder ("META-INF/..." by default).
     if (usesAccessTransformer.toBoolean()) {
-        rename("(.+_at.cfg)", "META-INF/$1") // Make sure Access Transformer files are in META-INF folder.
+        rename("(.+_at.cfg)", "META-INF/$1")
     }
 }
 
 tasks.withType<Jar> {
     manifest {
-        val attributeMap = mutableMapOf<String, String>()
+        val attributes = mutableMapOf<String, String>()
         if (usesCoreMod.toBoolean()) {
-            attributeMap["FMLCorePlugin"] = coreModPluginPath
+            attributes["FMLCorePlugin"] = coreModPluginPath
             if (includeMod.toBoolean()) {
-                attributeMap["FMLCorePluginContainsFMLMod"] = true.toString()
-                attributeMap["ForceLoadAsMod"] =
-                    (project.gradle.startParameter.taskNames.getOrNull(0) == "build").toString()
+                attributes["FMLCorePluginContainsFMLMod"] = true.toString()
+                attributes["ForceLoadAsMod"] = (project.gradle.startParameter.taskNames.getOrNull(0) == "build").toString()
             }
         }
         if (usesAccessTransformer.toBoolean()) {
-            attributeMap["FMLAT"] = modId + "_at.cfg"
+            attributes["FMLAT"] = modId + "_at.cfg"
         }
-        attributes(attributeMap)
+        attributes(attributes)
     }
 }
 
