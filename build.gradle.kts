@@ -246,6 +246,16 @@ if (usesAccessTransformer.toBoolean()) {
     }
 }
 
+tasks {
+    injectTags {
+        outputClassName.set(generateTokenPath)
+    }
+
+    processIdeaSettings {
+        dependsOn(injectTags)
+    }
+}
+
 tasks.register("processManuscriptalResources") {
     doLast {
         val resources = layout.projectDirectory.dir("src/main/resources")
@@ -260,20 +270,6 @@ tasks.register("processManuscriptalResources") {
                 it.delete()
                 logger.lifecycle("move  $relPath")
             }
-    }
-}
-
-tasks {
-    injectTags {
-        outputClassName.set(generateTokenPath)
-    }
-
-    processIdeaSettings {
-        dependsOn(injectTags)
-    }
-
-    processResources {
-        dependsOn("processManuscriptalResources")
     }
 }
 
@@ -294,6 +290,8 @@ tasks.processResources {
     if (usesAccessTransformer.toBoolean()) {
         rename("(.+_at.cfg)", "META-INF/$1")
     }
+
+    dependsOn("processManuscriptalResources")
 }
 
 tasks.withType<Jar> {
