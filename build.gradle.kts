@@ -4,6 +4,7 @@ import org.jetbrains.gradle.ext.Gradle
 import org.jetbrains.gradle.ext.compiler
 import org.jetbrains.gradle.ext.runConfigurations
 import org.jetbrains.gradle.ext.settings
+import kotlin.reflect.KProperty
 
 plugins {
     id("java")
@@ -18,10 +19,48 @@ plugins {
     alias(libs.plugins.shadow)
 }
 
+// region Gradle Properties
+
+val Project.modGroup by StringDelegator()
+val Project.modId by StringDelegator()
+val Project.modName by StringDelegator()
+val Project.modVersion by StringDelegator()
+
+val Project.minecraftVersion: String by StringDelegator()
+val Project.userName: String by StringDelegator()
+
+val Project.usesMixins: String by StringDelegator()
+val Project.usesAccessTransformer: String by StringDelegator()
+val Project.usesCoreMod: String by StringDelegator()
+val Project.includeMod: String by StringDelegator()
+val Project.coreModPluginPath: String by StringDelegator()
+
+val Project.generateTokenPath: String by StringDelegator()
+
+class StringDelegator {
+    operator fun getValue(thisRef: Project, property: KProperty<*>): String
+        = thisRef.findProperty(property.name)?.toString() ?: error("Property '${property.name}' not found in gradle.properties")
+}
+
+// endregion
+
+// region Repository
+
 val embed = "embed"
 
 group = modGroup
 version = modVersion
+
+configurations {
+    val embed = create(embed)
+    implementation {
+        extendsFrom(embed)
+    }
+}
+
+// endregion
+
+// region Java/Kotlin Toolchain
 
 java {
     toolchain {
@@ -50,12 +89,9 @@ sourceSets {
     }
 }
 
-configurations {
-    val embed = create(embed)
-    implementation {
-        extendsFrom(embed)
-    }
-}
+// endregion
+
+// region Minecraft
 
 minecraft {
     mcVersion.set(minecraftVersion)
@@ -91,6 +127,10 @@ minecraft {
     injectedTags.put("MOD_ID", modId)
     injectedTags.put("MOD_NAME", modName)
 }
+
+// endregion
+
+// region Repositories & Dependencies
 
 repositories {
     maven {
@@ -165,19 +205,6 @@ dependencies {
     annotationProcessor(libs.jetbrainsAnnotations)
 }
 
-configurations {
-    compileOnly {
-        // For collections, we use kotlin native or fastutil and guava but not trove4j.
-        exclude(group = "net.sf.trove4j", module = "trove4j")
-        // For java part, we use jetbrains annotations for nullability mark but not javax.annotation.
-        exclude(group = "com.google.code.findbugs", module = "jsr305")
-        // We don't use scala in this repository, so we just exclude those forge native groups.
-        exclude(group = "org.scala-lang")
-        exclude(group = "org.scala-lang.modules")
-        exclude(group = "org.scala-lang.plugins")
-    }
-}
-
 fun DependencyHandler.deobf(dependencyNotation: Any): Any {
     if (dependencyNotation is Provider<*>) {
         return deobf(dependencyNotation.get())
@@ -192,6 +219,23 @@ fun DependencyHandler.deobf(dependencyNotation: Any): Any {
     }
     return rfg.deobf(depSpec)
 }
+
+configurations {
+    compileOnly {
+        // For collections, we use kotlin native or fastutil and guava but not trove4j.
+        exclude(group = "net.sf.trove4j", module = "trove4j")
+        // For java part, we use jetbrains annotations for nullability mark but not javax.annotation.
+        exclude(group = "com.google.code.findbugs", module = "jsr305")
+        // We don't use scala in this repository, so we just exclude those forge native groups.
+        exclude(group = "org.scala-lang")
+        exclude(group = "org.scala-lang.modules")
+        exclude(group = "org.scala-lang.plugins")
+    }
+}
+
+// endregion
+
+// region AT & Core Mod
 
 if (usesAccessTransformer.toBoolean()) {
     for (at in sourceSets.getByName("main").resources.files) {
@@ -235,10 +279,11 @@ tasks.withType<Jar> {
     manifest {
         val attributes = mutableMapOf<String, String>()
         if (usesCoreMod.toBoolean()) {
+            val taskName = project.gradle.startParameter.taskNames.getOrNull(0)
             attributes["FMLCorePlugin"] = coreModPluginPath
             if (includeMod.toBoolean()) {
                 attributes["FMLCorePluginContainsFMLMod"] = true.toString()
-                attributes["ForceLoadAsMod"] = (project.gradle.startParameter.taskNames.getOrNull(0) == "build").toString()
+                attributes["ForceLoadAsMod"] = (taskName == "build").toString()
             }
         }
         if (usesAccessTransformer.toBoolean()) {
@@ -248,12 +293,14 @@ tasks.withType<Jar> {
     }
 }
 
+// endregion
+
+// region IDEA & Docs & Publication
+
 tasks.withType<DokkaTask> {
     outputDirectory.set(projectDir.resolve("docs"))
-    dokkaSourceSets {
-        configureEach {
-            sourceRoots.from(file("src/main/java"), file("src/main/kotlin"))
-        }
+    dokkaSourceSets.configureEach {
+        sourceRoots.from(file("src/main/java"), file("src/main/kotlin"))
     }
 }
 
@@ -289,19 +336,16 @@ idea {
             compiler.javac {
                 afterEvaluate {
                     javacAdditionalOptions = "-encoding utf8"
-                    moduleJavacAdditionalOptions = mutableMapOf(
-                        (project.name + ".main") to tasks.compileJava.get().options.compilerArgs.joinToString(" ") { "\"$it\"" }
-                    )
+                    moduleJavacAdditionalOptions = mutableMapOf((project.name + ".main")
+                        to tasks.compileJava.get().options.compilerArgs.joinToString(" ") { "\"$it\"" })
                 }
             }
         }
     }
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("mavenJava") {
-            from(components["java"])
-        }
-    }
+publishing.publications.register<MavenPublication>("mavenJava") {
+    from(components["java"])
 }
+
+// endregion
