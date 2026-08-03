@@ -54,6 +54,7 @@ abstract class WrappedItemRenderer : PerspectiveAwareItemRenderer
          * @param stack         The stack being renderer. Used for quad tinting.
          * @param alphaOverride The alpha override value (0.0 -> 1.0).
          */
+        @JvmOverloads
         fun renderQuads(quads: List<BakedQuad>, stack: ItemStack, alphaOverride: Float = 1.0f)
         {
             val itemColors = Games.itemColors()
