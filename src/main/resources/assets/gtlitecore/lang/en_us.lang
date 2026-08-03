@@ -2377,9 +2377,9 @@ gtlitecore.machine.laser_induced_cvd_unit.tooltip.2=Compatible with all standard
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.3=Supported Laser Transmissive Gas: §fHe, Ne, Ar, Kr, Xe§7
 
 gtlitecore.machine.bedrock_drilling_rig.name=Bedrock Drilling Rig
-gtlitecore.machine.bedrock_drilling_rig.tooltip.1=深度钻取基岩以提取特殊的矿石资源，基岩需要位于§6钻头§7方块之下。
-gtlitecore.machine.bedrock_drilling_rig.tooltip.2=钻头方块位于结构最底层的中心，钻机将会按照配方钻取基岩方块以运行。
-gtlitecore.machine.bedrock_drilling_rig.tooltip.3=目标方块在配方中作为非消耗品时不会被破坏。
+gtlitecore.machine.bedrock_drilling_rig.tooltip.1=Deep drilling Bedrock to extract Special Mineral Materials, Bedrock needs to located below §6Drill Head§7.
+gtlitecore.machine.bedrock_drilling_rig.tooltip.2=Drill Block at the bottom center of structure, and it will drill the block according to recipe.
+gtlitecore.machine.bedrock_drilling_rig.tooltip.3=Target Block will not be destroyed when used Non-Consumable Input in recipe.
 
 gtlitecore.machine.fusion_reactor.uhv.name=Fusion Reactor Computer MK4
 gtlitecore.machine.fusion_reactor.uhv.tooltip=The Silver River pours down from the Highest Heaven
@@ -2387,15 +2387,15 @@ gtlitecore.machine.fusion_reactor.uhv.tooltip=The Silver River pours down from t
 gtlitecore.machine.fusion_reactor.uev.name=Fusion Reactor Computer MK5
 gtlitecore.machine.fusion_reactor.uev.tooltip=Household Neutron Star
 
-gtlitecore.machine.fusion_reactor.energy_cost=每个能源仓提供§b%s EU/t§7的能量输入与§a%dM EU§7的容量。
-gtlitecore.machine.fusion_reactor.recipe_request=当合成启动能量高于§e(能源仓数×容量)§7时，聚变将无法进行。
-gtlitecore.machine.fusion_reactor.tier=可以运行%s§7电压等级及以下的配方
+gtlitecore.machine.fusion_reactor.energy_cost=Each Energy Hatch provide §b%s EU/t§7 energy input and §a%dM EU§7 capacity.
+gtlitecore.machine.fusion_reactor.recipe_request=Fusion cannot start when the recipe's startup energy exceeds §e(Energy Hatch count × Capacity)§7.
+gtlitecore.machine.fusion_reactor.tier=Can process recipes of §7%s§7 tier and below.
 
 gtlitecore.machine.advanced_fusion_reactor.name=Advanced Fusion Reactor Computer
-gtlitecore.machine.advanced_fusion_reactor.tooltip.1=异于托卡马克构型的仿星器聚变反应堆
-gtlitecore.machine.advanced_fusion_reactor.tooltip.2=由于仿星器直接通过外部线圈产生环形磁笼，所以不需要提供§a合成启动能量§7
-gtlitecore.machine.advanced_fusion_reactor.tooltip.3=更换更高级的外壳以解锁更高级的聚变反应。
-gtlitecore.machine.advanced_fusion_reactor.tooltip.4=所有部件均限制配方能够运行的最大聚变等级，且所有部件必须保持同一等级。
+gtlitecore.machine.advanced_fusion_reactor.tooltip.1=Star-Like Fusion Reactor with configuration different from Tokamak
+gtlitecore.machine.advanced_fusion_reactor.tooltip.2=Due to directly generates circular magnetic cage, not need to provide §aStarting EU§7.
+gtlitecore.machine.advanced_fusion_reactor.tooltip.3=Replace higher casings to unlock more higher fusion recipes.
+gtlitecore.machine.advanced_fusion_reactor.tooltip.4=All casings limited maximum fusion level, and all casings must have same tier.
 
 gtlitecore.machine.component_assembly_line.name=Component Assembly Line
 gtlitecore.machine.component_assembly_line.tooltip.1=批量装配各式各样的零部件，效率碾压同等级组装机/装配线！
@@ -2405,7 +2405,7 @@ gtlitecore.machine.component_assembly_line.tooltip.4=部件装配外壳限制了
 
 gtlitecore.machine.cosmic_ray_detector.name=Cosmic Ray Detector
 gtlitecore.machine.cosmic_ray_detector.tooltip.1=Radio Radiation Reflective Detection Telescope
-gtlitecore.machine.cosmic_ray_detector.tooltip.2=需要放置在指定的§f高度§7（即Y轴位置）来进行天文学探测。
+gtlitecore.machine.cosmic_ray_detector.tooltip.2=Needs to placed at designated §fHight§7 (Y-axis position) for Astronomical Exploration.
 
 gtlitecore.machine.stellar_forge.name=Stellar Forge
 gtlitecore.machine.stellar_forge.tooltip.1=Harness the power of stars
@@ -2473,9 +2473,9 @@ gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.2=Make Maximum Paral
 gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.3=Unlocked §bDouble Perfect Overclock§7 when §6Nano Forge§7 has this module
 
 gtlitecore.machine.quantum_force_transformer.name=Quantum Force Transformer
-gtlitecore.machine.quantum_force_transformer.tooltip.1=让复杂的化学过程一步到位
-gtlitecore.machine.quantum_force_transformer.tooltip.2=每种配方都具有各自的催化剂，它们不会被消耗，仅用于为量子操纵者提供配方识别。
-gtlitecore.machine.quantum_force_transformer.tooltip.3=脉冲控制方块决定了最大的可执行配方等级，屏蔽核心方块决定了配方产出的概率。
+gtlitecore.machine.quantum_force_transformer.tooltip.1=Make Complex Chemical Processes happen in One-Step
+gtlitecore.machine.quantum_force_transformer.tooltip.2=Each recipe has its own not consumed Catalyst, only used to provide recipe token.
+gtlitecore.machine.quantum_force_transformer.tooltip.3=Manipulator determines maximum executable recipe tier, Shielding Core determines chances of output.
 gtlitecore.machine.quantum_force_transformer.tooltip.4=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
 gtlitecore.machine.quantum_force_transformer.tooltip.5=每提高1个§e脉冲控制方块等级§7，配方所需时间就变为原本的§l75%%§r§7。
 gtlitecore.machine.quantum_force_transformer.tooltip.6=每提高1个§e屏蔽核心方块等级§7，每次运行可以多处理§l16§r§7个物品。
@@ -2485,24 +2485,22 @@ gtlitecore.machine.quantum_force_transformer.manipulator_info=Manipulator Tier: 
 gtlitecore.machine.quantum_force_transformer.shielding_core_info=Shielding Core Tier: %s
 
 gtlitecore.machine.antimatter_forge.name=Semistable Antimatter Stabilization Sequencer
-gtlitecore.machine.antimatter_forge.tooltip.1=使用巨量的能量稳定化原始物质，并使之成为半稳态反物质。
-gtlitecore.machine.antimatter_forge.tooltip.2=需要尽可能多地输入不同种类的§f等离子体§7来使得原始物质的质量变大。
-gtlitecore.machine.antimatter_forge.tooltip.3=输入的等离子体的种类越多，原始物质向半稳态反物质的转换比率就越高。
-gtlitecore.machine.antimatter_forge.tooltip.4=无视§f最大配方等级§7限制，只要能源仓的功率超过了配方标称功率，机器就可以工作。
-gtlitecore.machine.antimatter_forge.tooltip.5=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量。
-gtlitecore.machine.antimatter_forge.tooltip.6=没有并行上限，机器将会尽可能尝试多地进行并行。
+gtlitecore.machine.antimatter_forge.tooltip.1=Using massive amounts of energy to stabilize Protomatter to Semistable Antimatter.
+gtlitecore.machine.antimatter_forge.tooltip.2=Required to input as many different types of §fPlasma§7 as possible to increase mass of Protomatter.
+gtlitecore.machine.antimatter_forge.tooltip.3=More types of Plasma input, the higher the conversion rate of Protomatter to Semistable Antimatter.
+gtlitecore.machine.antimatter_forge.tooltip.4=Parallel Limit is unlimited, the machine will try to parallelize as much as possible.
 
 gtlitecore.machine.antimatter_generator.name=Shielded Lagrangian Annihilation Matrix
-gtlitecore.machine.antimatter_generator.tooltip.1=通过湮灭物质与反物质的方式发电，需要按一定比例消耗两种物质。
-gtlitecore.machine.antimatter_generator.tooltip.2=每次工作将会消耗§6所有输入§7的物质与反物质。
-gtlitecore.machine.antimatter_generator.tooltip.3=允许使用任意种类的§f动力仓§7或§f激光源仓§7输出能量，可以使用多个激光源仓进行输出。
-gtlitecore.machine.antimatter_generator.tooltip.4=每单位反物质的基础发电量为§e1,000,000,000,000EU§7，而具体发电量取决于提供的物质：
-gtlitecore.machine.antimatter_generator.tooltip.5=- §a铅等离子体§7：1.0
-gtlitecore.machine.antimatter_generator.tooltip.6=- §a熔融无尽§7：1.5
-gtlitecore.machine.antimatter_generator.tooltip.7=- §a熔融调律源金§7：2.0
-gtlitecore.machine.antimatter_generator.tooltip.8=- §a原始恒星等离子体物质§7：4.0
-gtlitecore.machine.antimatter_generator.tooltip.9=使用§f原始物质§7或§f半稳态反物质§7作为反物质湮灭时会§c降低§7基础发电量。
-gtlitecore.machine.antimatter_generator.tooltip.10=每次工作输出的能量不会超过§e9.2e18EU§7，但机器将会尽可能尝试多地进行并行。
+gtlitecore.machine.antimatter_generator.tooltip.1=Generates Energy by Annihilating Matter and Antimatter, requires to consume two Materials in a Certain Proportion.
+gtlitecore.machine.antimatter_generator.tooltip.2=Will consume §6All Input Matters and Antimatters§7 per run.
+gtlitecore.machine.antimatter_generator.tooltip.3=Allowed to use any §fDynamo Hatch§7 or §fLaser Source Hatch§7 to output energy, can use multiple output hatches.
+gtlitecore.machine.antimatter_generator.tooltip.4=Base EU Output per Antimatter is §e1,000,000,000,000EU§7, actual EU Output dependent to other fluid input:
+gtlitecore.machine.antimatter_generator.tooltip.5=- §aLead Plasma§7: 1.0
+gtlitecore.machine.antimatter_generator.tooltip.6=- §aInfinity§7: 1.5
+gtlitecore.machine.antimatter_generator.tooltip.7=- §aShirabon§7: 2.0
+gtlitecore.machine.antimatter_generator.tooltip.8=- §aCondensed Raw Stellar Plasma Mixture§7: 4.0
+gtlitecore.machine.antimatter_generator.tooltip.9=Use §fProtomatter§7 or §fSemistable Antimatter§7 will §cDecreasing§7 Base EU Output.
+gtlitecore.machine.antimatter_generator.tooltip.10=Energy Output will not exceed §e9.2e18EU§7, but the machine will try to parallelize as much as possible.
 
 gtlitecore.machine.space_elevator.name=Space Elevator
 gtlitecore.machine.space_elevator.tooltip.1=Allowed to use several §aSpace Elevator Module§7 and asynchronous working.
@@ -2651,42 +2649,42 @@ gtlitecore.machine.large_mass_fabricator.name=Large Mass Fabricator
 gtlitecore.machine.large_replicator.name=Large Replicator
 
 gtlitecore.machine.circuit_assembly_line.name=Circuit Assembly Line
-gtlitecore.machine.circuit_assembly_line.tooltip.1=批量装配各式各样的电路，效率碾压同等级电路组装机！
-gtlitecore.machine.circuit_assembly_line.tooltip.2=支持一般的§a电路组装机§7配方与批量化的§d电路装配线§7配方。
-gtlitecore.machine.circuit_assembly_line.tooltip.3=在§d电路装配线§7模式下，需要提供对应种类的§b电路模板§7来识别配方。
-gtlitecore.machine.circuit_assembly_line.tooltip.4=使用对应种类的电路板与空的电路模板在§2扫描仪§7中蚀刻以记入数据。
-gtlitecore.machine.circuit_assembly_line.tooltip.5=将已被蚀刻数据的电路模板放入输入总线中以令电路装配线识别。
-gtlitecore.machine.circuit_assembly_line.tooltip.6=一台§e电路装配线§7可装载的电路模板数量无上限，
-gtlitecore.machine.circuit_assembly_line.tooltip.7=但开启§3总线隔离§7时，电路模板数据不会被隔离。
-gtlitecore.machine.circuit_assembly_line.tooltip.8=允许使用§r任意等级§7的输入/输出仓室且物品/流体均§f§l不需要§7有序输入。
-gtlitecore.machine.circuit_assembly_line.tooltip.9=运行一般的§e电路组装机§7配方时，只需要配方要求时间的一半。
-gtlitecore.machine.circuit_assembly_line.tooltip.10=根据多方块结构中存在的§9片数§7计算机器的最大并行数。
-gtlitecore.machine.circuit_assembly_line.tooltip.11=无论使用哪种模式，机器的最大并行数均为§e4×(片数-4)§7。
-gtlitecore.machine.circuit_assembly_line.tooltip.12=当使用默认结构（即不做任何扩展）时，此时片数为4，机器不会获得并行。
-gtlitecore.machine.circuit_assembly_line.tooltip.13=而扩展到允许的最大长度时片数为16，机器会获得§e48§7次并行。
+gtlitecore.machine.circuit_assembly_line.tooltip.1=Batch assembly various circuits, efficiency surpasses all Circuit Assembler in same tier!
+gtlitecore.machine.circuit_assembly_line.tooltip.2=Support §aCircuit Assembler§7 and batch based §dCircuit Assembly Line (CAL)§7 Recipe Maps.
+gtlitecore.machine.circuit_assembly_line.tooltip.3=In §dCAL§7 Mode, required to provide corresponding §bCircuit Pattern§7 to identify recipe.
+gtlitecore.machine.circuit_assembly_line.tooltip.4=Etch corresponding circuit and empty Circuit Patteern in §2Scanner§7 to record data in it.
+gtlitecore.machine.circuit_assembly_line.tooltip.5=Place the Circuit Pattern with etched data into the Input Bus for recognition by CAL.
+gtlitecore.machine.circuit_assembly_line.tooltip.6=One §eCAL§7 can contain various Circuit Patterns no upper limit,
+gtlitecore.machine.circuit_assembly_line.tooltip.7=But when enabled §3Distinct Bus§7, Circuit Pattern will not be distincted.
+gtlitecore.machine.circuit_assembly_line.tooltip.8=Allow to use §fAny Tier§7 I/O Buses/Hatches and §f§lnot required§7 ordered inputs.
+gtlitecore.machine.circuit_assembly_line.tooltip.9=Run general §eCircuit Assembler§7 recipe only use half of duration required.
+gtlitecore.machine.circuit_assembly_line.tooltip.10=Calculate parallel by §9Layer Count§7 of the Multiblock Structure.
+gtlitecore.machine.circuit_assembly_line.tooltip.11=Regardless of which mode is used, the Maximum Parallel is §e4 × (Layer Count - 4)§7.
+gtlitecore.machine.circuit_assembly_line.tooltip.12=When using Default Structure (i.e. without any extension), the layer count is 4 and machine will not obtain parallel.
+gtlitecore.machine.circuit_assembly_line.tooltip.13=When extended to maximum allowed Layer Count with 16 layers, the machine will obtain §e48§7 parallel.
 
 gtlitecore.machine.large_food_processor.name=Large Food Processor
 
 gtlitecore.machine.large_rocket_engine.name=Large Rocket Engine
-gtlitecore.machine.large_rocket_engine.tooltip=探索化学能燃料的极限
+gtlitecore.machine.large_rocket_engine.tooltip=Exploring the limits of Chemical Fuels
 gtlitecore.machine.large_rocket_engine.tooltip.1=工作时消耗§f8000L/s§7的液态空气与§f200L/s§f的二氧化碳气体
 gtlitecore.machine.large_rocket_engine.tooltip.2=提供§f80L/s§7的氢气并消耗§f双倍燃料§7以产生§f§l3§r§7倍能量输出
 gtlitecore.machine.large_rocket_engine.tooltip.3=竖侧中层的片状结构可以伸缩，当存在§f§l10§r§7片及以上的中层结构时，火箭引擎将会尝试进行超频。
 
-gtlitecore.machine.large_rocket_engine.hydrogen_boosted=氢气促燃中。
-gtlitecore.machine.large_rocket_engine.hydrogen_amount=氢气存量：%s
-gtlitecore.machine.large_rocket_engine.liquid_air_amount=液态空气存量：%s
-gtlitecore.machine.large_rocket_engine.carbon_dioxide_amount=二氧化碳存量：%s
+gtlitecore.machine.large_rocket_engine.hydrogen_boosted=Hydrogen boosted.
+gtlitecore.machine.large_rocket_engine.hydrogen_amount=Hydrogen Amount: %s
+gtlitecore.machine.large_rocket_engine.liquid_air_amount=Liquid Air Amount: %s
+gtlitecore.machine.large_rocket_engine.carbon_dioxide_amount=Carbon Dioxide Amount: %s
 
 gtlitecore.machine.large_naquadah_reactor.name=Large Naquadah Reactor
-gtlitecore.machine.large_naquadah_reactor.tooltip=取之不尽，用之不竭
+gtlitecore.machine.large_naquadah_reactor.tooltip=Endless and Inexhaustible
 gtlitecore.machine.large_naquadah_reactor.tooltip.1=比小型硅岩反应堆输出高§f§l4§r§7倍，且允许使用任意种类的§f动力仓§7或§f激光源仓§7输入能量。
 gtlitecore.machine.large_naquadah_reactor.tooltip.2=提供§f50L/s§7的氧等离子体并消耗§f双倍燃料§7以产生§f§l4§r§7倍能量输出
 gtlitecore.machine.large_naquadah_reactor.tooltip.3=在结构上没有§f动力仓§7/§f激光源仓§7等级限制
 gtlitecore.machine.large_naquadah_reactor.tooltip.4=反应堆会尝试尽可能超频多次，超频的上限可以超过§c§lM§e§lA§a§lX§7级电压。
 
-gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_boosted=氧等离子体正在催化硅岩释放能量。
-gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=氧等离子体存量：%s
+gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_boosted=Plasma Oxygen is catalyzing energy from Naquadah.
+gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=Plasma Oxygen Amount: %s
 
 gtlitecore.machine.large_acid_generator.name=Large Acid Generator
 
@@ -2708,18 +2706,18 @@ gtlitecore.machine.large_fisher.mode.2=Current Mode: §6Treasure§7
 gtlitecore.machine.large_fisher.inventory_full=Output Full
 
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
-gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
+gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=Stimulate Catalytic Phase Transition with Extremely High Entropy Change and Topological Order
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§f最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.3=每工作/完成配方1次，温度都会（在线圈方块温度的基础上）升高§f100K§7。
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.4=每超过配方要求温度§f450K§7，耗能均将乘以§f50%%§7（不计超频）。
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.5=输入电压超过§fLV§7级后，每级电压都会使§f基础温度§7提高§f1000K§7。
 
 gtlitecore.machine.plasma_arc_transmitter.name=Plasma Arc Transmitter
-gtlitecore.machine.plasma_arc_transmitter.tooltip.1=以超高能电弧熔炼金属
+gtlitecore.machine.plasma_arc_transmitter.tooltip.1=Melting Metals with Ultra-High Energy Arc
 gtlitecore.machine.plasma_arc_transmitter.tooltip.2=在§f输入总线§7内指定不同的§f编程电路§7以运行不同机器配方
-gtlitecore.machine.plasma_arc_transmitter.tooltip.3=- §f20号§7 -> §e电弧炉§7
-gtlitecore.machine.plasma_arc_transmitter.tooltip.4=- §f21号§7 -> §e合金炉§7
-gtlitecore.machine.plasma_arc_transmitter.tooltip.5=§a1024+(F(压缩时空场等级))，其中F(x)=x^x
+gtlitecore.machine.plasma_arc_transmitter.tooltip.3=- §f20§7 -> §eArc Furnace§7
+gtlitecore.machine.plasma_arc_transmitter.tooltip.4=- §f21§7 -> §eAlloy Smelter§7
+gtlitecore.machine.plasma_arc_transmitter.tooltip.5=§a1024+(F(Spacetime Compression Tier)), where F(x)=x^x
 
 gtlitecore.machine.ep_coupling_accelerator.name=Electron-Phonon Coupling Accelerator
 gtlitecore.machine.ep_coupling_accelerator.tooltip.1=Quantum Lattice Vibration
@@ -4095,12 +4093,12 @@ gtlitecore.tooltip.crop.type.standard=§aStandard
 gtlitecore.tooltip.crop.type.root=§aRoot
 gtlitecore.tooltip.crop.type.berry=§aBerry
 
-gtlitecore.jei.standard_crop_info=这是一种作物的种子，种植它并等待成熟可收获其果实。
-gtlitecore.jei.root_crop_info=这种作物是块根类作物，种植后需要更多的时间生长，且仅可在成熟前一阶段收获。
-gtlitecore.jei.berry_crop_info.1=这是一种浆果类作物的种子，它会以浆果丛的形式生长。
-gtlitecore.jei.berry_crop_info.2=当附近只有一个浆果丛时，生长速度极其缓慢。
-gtlitecore.jei.berry_crop_info.3=当附近8格内存在至少两丛与自身生长阶段相同的浆果丛时，生长速度会加速。
-gtlitecore.jei.berry_crop_info.4=附近8格内至少需要一格空气，它也需要呼吸！
+gtlitecore.jei.standard_crop_info=This is a seed of a crop, planted and waiting for maturity to harvest its fruit.
+gtlitecore.jei.root_crop_info=This crop is a root crop that requires more time to grow after planting, can only harvest in the stage before maturity.
+gtlitecore.jei.berry_crop_info.1=This ia a seed of a barry crop, it grows in the form of berry bushes.
+gtlitecore.jei.berry_crop_info.2=When there is only one berry bush nearby, the growth rate is extremely slow.
+gtlitecore.jei.berry_crop_info.3=When there are at least two berry bushes with the same growth stage as itself within the vicinity of 8 blocks, the growth rate will accelerate.
+gtlitecore.jei.berry_crop_info.4=At least 1 air is needed within nearby 8 blocks, berry bushes also need to breathe!
 
 gtlitecore.tooltip.quit_message=Are you sure you want to exit the game?
 gtlitecore.tooltip.modpack_name=GregTech Lite
