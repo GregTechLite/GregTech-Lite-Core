@@ -8,7 +8,7 @@ import gregtechlite.gtlitecore.client.renderer.HaloRenderBehavior
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.block.model.IBakedModel
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.model.IModelState
@@ -23,13 +23,13 @@ class HaloItemRenderer : WrappedItemRenderer
 
     constructor(state: IModelState?, getter: WrappedModelGetter) : super(state, getter)
 
-    override fun renderItem(stack: ItemStack, transformType: ItemCameraTransforms.TransformType?)
+    override fun renderItem(stack: ItemStack, transformType: TransformType?)
     {
         if (stack.item is MetaItem<*>)
         {
             val tess = Tessellator.getInstance()
             val buffer = tess.buffer
-            if (transformType == ItemCameraTransforms.TransformType.GUI)
+            if (transformType == TransformType.GUI)
             {
                 val valueItem = (stack.item as MetaItem<*>).getItem(stack)
                 var renderBehavior: HaloRenderBehavior? = null

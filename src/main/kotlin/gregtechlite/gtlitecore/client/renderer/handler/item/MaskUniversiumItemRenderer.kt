@@ -12,14 +12,14 @@ import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.block.model.IBakedModel
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.model.IModelState
 import org.lwjgl.opengl.GL11
 
-class CosmicItemRenderer : WrappedItemRenderer
+class MaskUniversiumItemRenderer : WrappedItemRenderer
 {
     @Suppress("unused")
     constructor(state: IModelState?, wrapped: IBakedModel?): super(state, wrapped)
@@ -42,10 +42,10 @@ class CosmicItemRenderer : WrappedItemRenderer
         }
     }
 
-    override fun renderItem(item: ItemStack, transformType: ItemCameraTransforms.TransformType)
+    override fun renderItem(item: ItemStack, transformType: TransformType)
     {
         processLightLevel(transformType)
-        if (transformType == ItemCameraTransforms.TransformType.GUI)
+        if (transformType == TransformType.GUI)
         {
             renderInventory(item, renderEntity)
         }
@@ -144,12 +144,12 @@ class CosmicItemRenderer : WrappedItemRenderer
         GlStateManager.popMatrix()
     }
 
-    private fun processLightLevel(transformType: ItemCameraTransforms.TransformType)
+    private fun processLightLevel(transformType: TransformType)
     {
         when (transformType)
         {
             // Ground
-            ItemCameraTransforms.TransformType.GROUND -> {
+            TransformType.GROUND -> {
                 if (entityPos != null)
                 {
                     CosmicShaderHelper.setLightFromLocation(world, entityPos!!)
@@ -157,11 +157,11 @@ class CosmicItemRenderer : WrappedItemRenderer
                 }
             }
             // Player
-            ItemCameraTransforms.TransformType.THIRD_PERSON_LEFT_HAND,
-            ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND,
-            ItemCameraTransforms.TransformType.FIRST_PERSON_LEFT_HAND,
-            ItemCameraTransforms.TransformType.FIRST_PERSON_RIGHT_HAND,
-            ItemCameraTransforms.TransformType.HEAD -> {
+            TransformType.THIRD_PERSON_LEFT_HAND,
+            TransformType.THIRD_PERSON_RIGHT_HAND,
+            TransformType.FIRST_PERSON_LEFT_HAND,
+            TransformType.FIRST_PERSON_RIGHT_HAND,
+            TransformType.HEAD -> {
                 if (renderEntity != null)
                 {
                     CosmicShaderHelper.setLightFromLocation(world, entityPos!!)
@@ -169,7 +169,7 @@ class CosmicItemRenderer : WrappedItemRenderer
                 }
             }
             // Gui
-            ItemCameraTransforms.TransformType.GUI ->
+            TransformType.GUI ->
             {
                 CosmicShaderHelper.setLightLevel(1.2f)
                 return

@@ -120,6 +120,7 @@ class UniversiumItemRenderer : WrappedItemRenderer
     {
         when (transformType)
         {
+            // Ground
             TransformType.GROUND -> {
                 if (entityPos != null)
                 {
@@ -127,7 +128,7 @@ class UniversiumItemRenderer : WrappedItemRenderer
                     return
                 }
             }
-
+            // Inventory
             TransformType.THIRD_PERSON_LEFT_HAND,
             TransformType.THIRD_PERSON_RIGHT_HAND,
             TransformType.FIRST_PERSON_LEFT_HAND,
@@ -139,6 +140,7 @@ class UniversiumItemRenderer : WrappedItemRenderer
                     return
                 }
             }
+            // Gui
             TransformType.GUI ->
             {
                 setLightLevel(1.2f)

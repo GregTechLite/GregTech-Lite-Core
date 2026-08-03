@@ -5,7 +5,6 @@ import codechicken.lib.util.TransformUtils
 import gregtechlite.gtlitecore.client.renderer.UniversiumRenderBehavior
 import gregtechlite.gtlitecore.client.renderer.handler.item.UniversiumItemRenderer
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
-import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
