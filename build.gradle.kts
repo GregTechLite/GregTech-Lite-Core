@@ -248,29 +248,6 @@ tasks.withType<Jar> {
     }
 }
 
-// Shadowed external packages to internal packages to resolved class not found when
-// the mod is running at other environments.
-if (usesShadowJar.toBoolean()) {
-    tasks {
-        shadowJar {
-            configurations = listOf(project.configurations["embed"])
-            mergeServiceFiles()
-            mergeGroovyExtensionModules()
-            minimize()
-        }
-
-        reobfJar {
-            inputJar.set(shadowJar.get().archiveFile)
-        }
-    }
-
-    // Remove shadow jar from java component
-    val javaComponent = components["java"] as AdhocComponentWithVariants
-    javaComponent.withVariantsFromConfiguration(configurations.shadowRuntimeElements.get()) {
-        skip()
-    }
-}
-
 tasks.withType<DokkaTask> {
     outputDirectory.set(projectDir.resolve("docs"))
     dokkaSourceSets {
