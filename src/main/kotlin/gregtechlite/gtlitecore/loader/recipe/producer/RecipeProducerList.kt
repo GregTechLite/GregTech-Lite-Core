@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.loader.recipe.producer
 
 import com.morphismmc.morphismlib.integration.Mods
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder
-import gregtechlite.gtlitecore.integration.appliedenergistics2.recipe.AppEngCALRecipeProducer
+import gregtechlite.gtlitecore.integration.appeng.recipe.AppEngCALRecipeProducer
 
 internal object RecipeProducerList
 {

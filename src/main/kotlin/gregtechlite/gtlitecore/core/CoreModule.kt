@@ -50,7 +50,6 @@ import org.apache.logging.log4j.Logger
         isCore = true)
 internal class CoreModule : CustomModule
 {
-
     init
     {
         GTLiteAPI.networkHandler = NetworkHandlerImpl.getInstance()
@@ -183,6 +182,5 @@ internal class CoreModule : CustomModule
 
     // endregion
 
-    override fun getLogger(): Logger = Companion.logger
-
+    override val logger: Logger = Companion.logger
 }

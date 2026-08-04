@@ -32,16 +32,11 @@ import kotlin.streams.asSequence
         descriptions = "World Generator Module of GregTech Lite Core Mod.")
 class WorldGenModule : BaseModule()
 {
-
     companion object
     {
-
-        @get:JvmName("_logger")
-        @get:JvmSynthetic
-        @JvmStatic
+        @JvmField
         val logger: Logger = SidedLogger("$MOD_ID-world-generator")
     }
-
 
     override fun preInit(event: FMLPreInitializationEvent)
     {
@@ -64,9 +59,9 @@ class WorldGenModule : BaseModule()
         WorldGeneratorManager.init()
     }
 
-    override fun getTerrainGenBusSubscribers() = listOf(WorldGenModule::class.java)
+    override val terrainGenBusSubscribers = listOf(WorldGenModule::class.java)
 
-    override fun getOreGenBusSubscribers() = listOf(WorldGenModule::class.java)
+    override val oreGenBusSubscribers = listOf(WorldGenModule::class.java)
 
     /**
      * An internal files extract methods, this method is used "LICENSE" file as token in the mod folder,
@@ -145,6 +140,5 @@ class WorldGenModule : BaseModule()
         }
     }
 
-    override fun getLogger(): Logger = Companion.logger
-
+    override val logger: Logger = Companion.logger
 }

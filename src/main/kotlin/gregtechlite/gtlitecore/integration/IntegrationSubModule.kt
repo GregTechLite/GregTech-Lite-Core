@@ -8,12 +8,7 @@ import org.apache.logging.log4j.Logger
 
 abstract class IntegrationSubModule : BaseModule()
 {
+    override val logger: Logger = IntegrationModule.logger
 
-    override fun getLogger(): Logger = IntegrationModule.logger
-
-    override fun getDependencyUids(): MutableSet<ResourceLocation>
-    {
-        return mutableSetOf(GTLiteMod.id(GTLiteModules.MODULE_INTEGRATION))
-    }
-
+    override val dependencyUids: Set<ResourceLocation> = mutableSetOf(GTLiteMod.id(GTLiteModules.MODULE_INTEGRATION))
 }
