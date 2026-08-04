@@ -37,7 +37,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
     companion object
     {
         @JvmField
-        val instance: ModuleManagerImpl = ModuleManagerImpl()
+        internal val instance: ModuleManagerImpl = ModuleManagerImpl()
 
         private const val MODULE_CFG_FILE_NAME = "modules.cfg"
         private const val MODULE_CFG_CATEGORY_NAME = "modules"
@@ -411,10 +411,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in modules)
         {
             val annotation = module.javaClass.getAnnotation(Module::class.java)
-            if (annotation.isCore)
-            {
-                return module
-            }
+            if (annotation.isCore) return module
         }
         return null
     }

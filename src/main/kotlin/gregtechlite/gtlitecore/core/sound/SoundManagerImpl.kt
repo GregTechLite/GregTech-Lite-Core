@@ -19,9 +19,8 @@ class SoundManagerImpl private constructor(): SoundManager
 {
     companion object
     {
-        private val instance = SoundManagerImpl()
-
-        fun getInstance(): SoundManagerImpl = instance
+        @JvmField
+        internal val instance = SoundManagerImpl()
     }
 
     /**

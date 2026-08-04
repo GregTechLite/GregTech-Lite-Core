@@ -26,9 +26,8 @@ class NetworkHandlerImpl : NetworkHandler
 
     companion object
     {
-        private val instance = NetworkHandlerImpl()
-
-        fun getInstance(): NetworkHandlerImpl = instance
+        @JvmField
+        internal val instance = NetworkHandlerImpl()
     }
 
     private constructor()

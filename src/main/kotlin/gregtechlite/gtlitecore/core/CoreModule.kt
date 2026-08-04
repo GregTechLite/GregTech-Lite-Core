@@ -52,7 +52,7 @@ internal class CoreModule : CustomModule
 {
     init
     {
-        GTLiteAPI.networkHandler = NetworkHandlerImpl.getInstance()
+        GTLiteAPI.networkHandler = NetworkHandlerImpl.instance
     }
 
     companion object
@@ -89,11 +89,11 @@ internal class CoreModule : CustomModule
     {
 
         logger.debug("Starting to construct Advancements and its AdvancementTriggers")
-        GTLiteAPI.advancementManager = AdvancementManagerImpl.getInstance()
+        GTLiteAPI.advancementManager = AdvancementManagerImpl.instance
         AdvancementTriggers.register()
 
         logger.debug("Loading SoundEvents and Sound files")
-        GTLiteAPI.soundManager = SoundManagerImpl.getInstance()
+        GTLiteAPI.soundManager = SoundManagerImpl.instance
         GTLiteSoundEvents.register()
 
         logger.debug("Loading custom Damage Sources for Entity Interactions")
@@ -154,7 +154,7 @@ internal class CoreModule : CustomModule
     override fun serverStarting(event: FMLServerStartingEvent)
     {
         logger.debug("Starting to construct Commands of the mod")
-        val commandManager = CommandManagerImpl.getInstance()
+        val commandManager = CommandManagerImpl.instance
         GTLiteAPI.commandManager = commandManager
         commandManager.registerServerCommand(event)
         GTLiteAPI.commandManager.addCommand(CommandMaterialComponent())
