@@ -21,15 +21,13 @@ import org.apache.logging.log4j.Logger
         descriptions = "The One Probe (TOP) Module of GregTech Lite Core Mod.")
 class TheOneProbeModule : IntegrationSubModule()
 {
-
     companion object
     {
-
         @JvmField
         val logger: Logger = SidedLogger("$MOD_ID-top-module")
     }
 
-    override fun init(event: FMLInitializationEvent?)
+    override fun init(event: FMLInitializationEvent)
     {
         logger.info("Registering TheOneProbe Providers...")
         val top: ITheOneProbe = TheOneProbe.theOneProbeImp
@@ -39,5 +37,4 @@ class TheOneProbeModule : IntegrationSubModule()
     }
 
     override fun getLogger(): Logger = Companion.logger
-
 }

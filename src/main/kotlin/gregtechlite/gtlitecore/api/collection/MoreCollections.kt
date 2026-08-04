@@ -11,6 +11,8 @@ import com.google.gson.internal.LinkedTreeMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ReferenceLinkedOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ReferenceMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
 import it.unimi.dsi.fastutil.objects.ObjectList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
@@ -183,5 +185,19 @@ fun <K, V> openArrayMapOf(vararg pairs: Pair<K, V>): Object2ObjectMap<K, V> = Ob
 }
 
 fun <K, V> Map<K, V>.toOpenArrayMap(): Object2ObjectMap<K, V> = Object2ObjectArrayMap<K, V>(this)
+
+// endregion
+
+// region FastUtil: Object2ReferenceMap & Object2ReferenceLinkedOpenHashMap
+
+fun <K, V> openRefLinkedMapOf(): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap()
+
+fun <K, V> openRefLinkedMapOf(map: Map<K, V>): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap(map)
+
+fun <K, V> openRefLinkedMapOf(vararg pairs: Pair<K, V>): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap<K, V>().apply {
+    pairs.forEach { put(it.first, it.second) }
+}
+
+fun <K, V> Map<K, V>.toOpenRefLinkedMap(): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap(this)
 
 // endregion

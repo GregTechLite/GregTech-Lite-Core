@@ -33,7 +33,7 @@ class SoundManagerImpl private constructor(): SoundManager
 
     override fun registerSound(soundName: String): SoundEvent
     {
-        var containerId = GTLiteAPI.moduleManager.loadedContainer.id
+        var containerId = GTLiteAPI.moduleManager.getLoadedContainer().id
         if (containerId == null)
             containerId = MOD_ID
         return registerSound(containerId, soundName)
