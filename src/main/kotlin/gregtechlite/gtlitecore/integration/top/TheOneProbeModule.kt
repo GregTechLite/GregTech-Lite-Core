@@ -1,13 +1,13 @@
-package gregtechlite.gtlitecore.integration.theoneprobe
+package gregtechlite.gtlitecore.integration.top
 
 import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_TOP
 import gregtechlite.gtlitecore.integration.IntegrationSubModule
-import gregtechlite.gtlitecore.integration.theoneprobe.provider.DelegatorInfoProvider
-import gregtechlite.gtlitecore.integration.theoneprobe.provider.EnergyDistributorInfoProvider
-import gregtechlite.gtlitecore.integration.theoneprobe.provider.WirelessHatchInfoProvider
+import gregtechlite.gtlitecore.integration.top.provider.DelegatorInfoProvider
+import gregtechlite.gtlitecore.integration.top.provider.EnergyDistributorInfoProvider
+import gregtechlite.gtlitecore.integration.top.provider.WirelessHatchInfoProvider
 import mcjty.theoneprobe.TheOneProbe
 import mcjty.theoneprobe.api.ITheOneProbe
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
@@ -36,5 +36,5 @@ class TheOneProbeModule : IntegrationSubModule()
         top.registerProvider(EnergyDistributorInfoProvider())
     }
 
-    override fun getLogger(): Logger = Companion.logger
+    override val logger: Logger = Companion.logger
 }

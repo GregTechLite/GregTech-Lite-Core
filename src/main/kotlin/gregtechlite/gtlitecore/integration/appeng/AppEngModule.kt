@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.integration.appliedenergistics2
+package gregtechlite.gtlitecore.integration.appeng
 
 import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.api.MOD_ID
@@ -15,14 +15,11 @@ import org.apache.logging.log4j.Logger
         descriptions = "Applied Energistics 2 (AE2) Module of GregTech Lite Core Mod.")
 class AppEngModule : IntegrationSubModule()
 {
-
     companion object
     {
-
         @JvmField
         val logger: Logger = SidedLogger("$MOD_ID-ae2-module")
     }
 
-    override fun getLogger(): Logger = Companion.logger
-
+    override val logger: Logger get() = Companion.logger
 }

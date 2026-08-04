@@ -1,17 +1,14 @@
-package gregtechlite.gtlitecore.integration.justenoughitems.category
+package gregtechlite.gtlitecore.integration.jei.category
 
 import gregtech.api.gui.GuiTextures
-import gregtech.api.util.GTStringUtils.drawCenteredStringWithCutoff
 import gregtech.integration.jei.basic.BasicRecipeCategory
 import gregtechlite.gtlitecore.api.MOD_ID
-import gregtechlite.gtlitecore.integration.justenoughitems.info.SpacePumpRecipeWrapper
+import gregtechlite.gtlitecore.integration.jei.info.SpacePumpRecipeWrapper
 import mezz.jei.api.IGuiHelper
 import mezz.jei.api.gui.IRecipeLayout
 import mezz.jei.api.ingredients.IIngredients
 import mezz.jei.api.recipe.IRecipeWrapper
 import net.minecraft.client.Minecraft
-import net.minecraft.client.resources.I18n
-import net.minecraftforge.fluids.FluidStack
 
 class SpacePumpRecipeCategory(guiHelper: IGuiHelper) : BasicRecipeCategory<SpacePumpRecipeWrapper, SpacePumpRecipeWrapper>(
     "space_pump_module", "gtlitecore.jei.space_pump_module.name",

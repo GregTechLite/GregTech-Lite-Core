@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.integration.theoneprobe.provider
+package gregtechlite.gtlitecore.integration.top.provider
 
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.util.TextComponentUtil.translationWithColor

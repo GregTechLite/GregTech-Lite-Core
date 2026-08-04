@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.integration.appliedenergistics2.recipe
+package gregtechlite.gtlitecore.integration.appeng.recipe
 
 import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.GTValues.L

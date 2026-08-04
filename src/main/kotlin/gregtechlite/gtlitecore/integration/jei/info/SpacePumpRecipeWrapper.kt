@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.integration.justenoughitems.info
+package gregtechlite.gtlitecore.integration.jei.info
 
 import gregtech.api.util.GTStringUtils.drawCenteredStringWithCutoff
 import mezz.jei.api.ingredients.IIngredients

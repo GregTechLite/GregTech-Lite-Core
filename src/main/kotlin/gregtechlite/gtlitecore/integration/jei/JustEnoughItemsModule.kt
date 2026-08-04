@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.integration.justenoughitems
+package gregtechlite.gtlitecore.integration.jei
 
 import com.morphismmc.morphismlib.util.SidedLogger
 import gregtech.api.GTValues.HV
@@ -17,8 +17,8 @@ import gregtechlite.gtlitecore.common.item.behavior.CropSeedBehavior
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_JEI
 import gregtechlite.gtlitecore.integration.IntegrationSubModule
-import gregtechlite.gtlitecore.integration.justenoughitems.category.SpacePumpRecipeCategory
-import gregtechlite.gtlitecore.integration.justenoughitems.info.SpacePumpRecipeWrapper
+import gregtechlite.gtlitecore.integration.jei.category.SpacePumpRecipeCategory
+import gregtechlite.gtlitecore.integration.jei.info.SpacePumpRecipeWrapper
 import mezz.jei.api.IGuiHelper
 import mezz.jei.api.IJeiRuntime
 import mezz.jei.api.IModPlugin
@@ -40,19 +40,16 @@ import org.apache.logging.log4j.Logger
         descriptions = "Just Enough Items (JEI) Module of GregTech Lite Core Mod.")
 class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
 {
-
-    companion object
-    {
-
-        @JvmField
-        val logger: Logger = SidedLogger("$MOD_ID-jei-module")
-
-    }
-
     private lateinit var runtime: IJeiRuntime
     private lateinit var blacklist: IIngredientBlacklist
     private lateinit var guiHelper: IGuiHelper
     private lateinit var ingredientRegistry: IIngredientRegistry
+
+    companion object
+    {
+        @JvmField
+        val logger: Logger = SidedLogger("$MOD_ID-jei-module")
+    }
 
     @Suppress("Deprecation", "UnstableApiUsage")
     override fun onRuntimeAvailable(availableRuntime: IJeiRuntime)
@@ -117,6 +114,5 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
         }
     }
 
-    override fun getLogger(): Logger = Companion.logger
-
+    override val logger: Logger get() = Companion.logger
 }

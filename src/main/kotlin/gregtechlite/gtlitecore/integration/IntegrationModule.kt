@@ -19,7 +19,7 @@ class IntegrationModule : BaseModule()
         val logger: Logger = SidedLogger("$MOD_ID-integration")
     }
 
-    override fun getEventBusSubscribers(): List<Class<*>> = listOf(IntegrationModule::class.java)
+    override val eventBusSubscribers: List<Class<*>> = listOf(IntegrationModule::class.java)
 
-    override fun getLogger(): Logger = Companion.logger
+    override val logger: Logger = Companion.logger
 }

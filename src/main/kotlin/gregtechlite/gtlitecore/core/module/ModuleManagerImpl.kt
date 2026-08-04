@@ -109,12 +109,12 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in loadedModules)
         {
             currentContainer = containers[getContainerId(module)]
-            module.getLogger().debug("Registering Event Handlers")
-            for (eventClass in module.getEventBusSubscribers())
+            module.logger.debug("Registering Event Handlers")
+            for (eventClass in module.eventBusSubscribers)
                 MinecraftForge.EVENT_BUS.register(eventClass)
-            for (terrainGenClass in module.getTerrainGenBusSubscribers())
+            for (terrainGenClass in module.terrainGenBusSubscribers)
                 MinecraftForge.TERRAIN_GEN_BUS.register(terrainGenClass)
-            for (oreGenClass in module.getOreGenBusSubscribers())
+            for (oreGenClass in module.oreGenBusSubscribers)
                 MinecraftForge.ORE_GEN_BUS.register(oreGenClass)
         }
         currentContainer = null
@@ -129,9 +129,9 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in loadedModules)
         {
             currentContainer = containers[getContainerId(module)]
-            module.getLogger().debug("Construction start")
+            module.logger.debug("Construction start")
             module.construction(event)
-            module.getLogger().debug("Construction complete")
+            module.logger.debug("Construction complete")
         }
     }
 
@@ -142,15 +142,15 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in loadedModules)
         {
             currentContainer = containers[getContainerId(module)]
-            module.getLogger().debug("Registering packets")
+            module.logger.debug("Registering packets")
             module.registerPackets()
         }
         for (module in loadedModules)
         {
             currentContainer = containers[getContainerId(module)]
-            module.getLogger().debug("Pre-Init start")
+            module.logger.debug("Pre-Init start")
             module.preInit(event)
-            module.getLogger().debug("Pre-Init complete")
+            module.logger.debug("Pre-Init complete")
         }
     }
 
@@ -161,9 +161,9 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in loadedModules)
         {
             currentContainer = containers[getContainerId(module)]
-            module.getLogger().debug("Init start")
+            module.logger.debug("Init start")
             module.init(event)
-            module.getLogger().debug("Init complete")
+            module.logger.debug("Init complete")
         }
     }
 
@@ -175,9 +175,9 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in loadedModules)
         {
             currentContainer = containers[getContainerId(module)]
-            module.getLogger().debug("Post-Init start")
+            module.logger.debug("Post-Init start")
             module.postInit(event)
-            module.getLogger().debug("Post-Init complete")
+            module.logger.debug("Post-Init complete")
         }
     }
 
@@ -188,9 +188,9 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in loadedModules)
         {
             currentContainer = containers[getContainerId(module)]
-            module.getLogger().debug("Load Complete start")
+            module.logger.debug("Load Complete start")
             module.loadComplete(event)
-            module.getLogger().debug("Load Complete complete")
+            module.logger.debug("Load Complete complete")
         }
     }
 
@@ -201,9 +201,9 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in loadedModules)
         {
             currentContainer = containers[getContainerId(module)]
-            module.getLogger().debug("Server About To Start start")
+            module.logger.debug("Server About To Start start")
             module.serverAboutToStart(event)
-            module.getLogger().debug("Server About To Start complete")
+            module.logger.debug("Server About To Start complete")
         }
     }
 
@@ -214,9 +214,9 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in loadedModules)
         {
             currentContainer = containers[getContainerId(module)]
-            module.getLogger().debug("Server Starting start")
+            module.logger.debug("Server Starting start")
             module.serverStarting(event)
-            module.getLogger().debug("Server Starting complete")
+            module.logger.debug("Server Starting complete")
         }
     }
 
@@ -227,9 +227,9 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in loadedModules)
         {
             currentContainer = containers[getContainerId(module)]
-            module.getLogger().debug("Server Started start")
+            module.logger.debug("Server Started start")
             module.serverStarted(event)
-            module.getLogger().debug("Server Started complete")
+            module.logger.debug("Server Started complete")
         }
     }
 
@@ -281,7 +281,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
         val annotation = module.javaClass.getAnnotation(Module::class.java)
 
         val comment = StringBuilder(annotation.descriptions)
-        val dependencies = module.getDependencyUids()
+        val dependencies = module.dependencyUids
         if (dependencies.isNotEmpty())
         {
             comment.append("\n")
@@ -410,7 +410,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
                 val module = iterator.next()
 
                 // Check module dependencies.
-                val dependencies = module.getDependencyUids()
+                val dependencies = module.dependencyUids
                 if (!toLoad.containsAll(dependencies))
                 {
                     iterator.remove()
@@ -432,7 +432,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
             while (iterator.hasNext())
             {
                 val module = iterator.next()
-                if (sortedModules.keys.containsAll(module.getDependencyUids()))
+                if (sortedModules.keys.containsAll(module.dependencyUids))
                 {
                     iterator.remove()
 
@@ -528,5 +528,4 @@ class ModuleManagerImpl private constructor() : ModuleManager
         }
         return modules
     }
-
 }

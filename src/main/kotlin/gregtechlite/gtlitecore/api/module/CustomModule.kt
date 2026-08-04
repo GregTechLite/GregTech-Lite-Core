@@ -22,7 +22,8 @@ interface CustomModule
      * For example, `ResourceLocation("gtlitecore", "module_name")` represents a dependency on the
      * module `module_name` in the container `gtlitecore`.
      */
-    fun getDependencyUids(): Set<ResourceLocation> = emptySet()
+    val dependencyUids: Set<ResourceLocation>
+        get() = emptySet()
 
     // region FML Life cycle Events
 
@@ -71,7 +72,8 @@ interface CustomModule
      *
      * @return A list of classes to subscribe to the Forge Event Bus.
      */
-    fun getEventBusSubscribers(): List<Class<*>> = emptyList()
+    val eventBusSubscribers: List<Class<*>>
+        get() = emptyList()
 
     /**
      * The class itself gets subscribed, instead of a class instance, so event
@@ -79,7 +81,8 @@ interface CustomModule
      *
      * @return A list of classes to subscribe to the Forge Terrain Gen Bus.
      */
-    fun getTerrainGenBusSubscribers(): List<Class<*>> = emptyList()
+    val terrainGenBusSubscribers: List<Class<*>>
+        get() = emptyList()
 
     /**
      * The class itself gets subscribed, instead of a class instance, so event
@@ -87,7 +90,8 @@ interface CustomModule
      *
      * @return A list of classes to subscribe to the Forge Ore Gen Bus.
      */
-    fun getOreGenBusSubscribers(): List<Class<*>> = emptyList()
+    val oreGenBusSubscribers: List<Class<*>>
+        get() = emptyList()
 
     /**
      * @param message The message to process.
@@ -99,5 +103,5 @@ interface CustomModule
     /**
      * @return A logger to use for this module.
      */
-    fun getLogger(): Logger
+    val logger: Logger
 }
