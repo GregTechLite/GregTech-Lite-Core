@@ -4,13 +4,12 @@ import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.client.event.ClientEventHandlers
 import gregtechlite.gtlitecore.client.event.GTLiteTooltips
 import gregtechlite.gtlitecore.client.renderer.handler.tesr.TESRBottlecrate
-import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures.preInit
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
-import gregtechlite.gtlitecore.client.shader.CosmicShaderProgram.initShaders
+import gregtechlite.gtlitecore.client.shader.CosmicShaderProgram
 import gregtechlite.gtlitecore.common.CommonProxy
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
-import gregtechlite.gtlitecore.common.block.GTLiteBlocks.registerItemModels
-import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities.initRenderers
+import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities
 import gregtechlite.gtlitecore.common.tileentity.TileEntityBlockcrate
 import gregtechlite.gtlitecore.core.network.ClientNetworkHandler
 import gregtechlite.gtlitecore.core.network.NetworkHandlerImpl
@@ -27,16 +26,15 @@ import net.minecraftforge.fml.relauncher.SideOnly
 @SideOnly(Side.CLIENT)
 class ClientProxy : CommonProxy()
 {
-
     override fun onPreInit()
     {
         super.onPreInit()
-        preInit()
+        GTLiteTextures.preInit()
         MinecraftForge.EVENT_BUS.register(CosmicShaderHelper)
         MinecraftForge.EVENT_BUS.register(GTLiteTooltips)
         MinecraftForge.EVENT_BUS.register(ClientEventHandlers)
-        initShaders()
-        initRenderers()
+        CosmicShaderProgram.initShaders()
+        GTLiteMetaEntities.initRenderers()
         NetworkHandlerImpl.getInstance().registerEventListener(ClientNetworkHandler(PacketHandler.getInstance()))
     }
 
@@ -48,10 +46,11 @@ class ClientProxy : CommonProxy()
 
     companion object
     {
+        @Suppress("unused")
         @SubscribeEvent
         fun registerModels(event: ModelRegistryEvent)
         {
-            registerItemModels()
+            GTLiteBlocks.registerItemModels()
             ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockcrate::class.java, TESRBottlecrate())
         }
     }
