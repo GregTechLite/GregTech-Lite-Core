@@ -114,5 +114,5 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
         }
     }
 
-    override val logger: Logger get() = Companion.logger
+    override val logger: Logger = Companion.logger
 }

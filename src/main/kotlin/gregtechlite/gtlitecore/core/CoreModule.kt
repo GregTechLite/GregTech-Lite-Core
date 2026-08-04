@@ -182,5 +182,5 @@ internal class CoreModule : CustomModule
 
     // endregion
 
-    override val logger: Logger get() = Companion.logger
+    override val logger: Logger = Companion.logger
 }

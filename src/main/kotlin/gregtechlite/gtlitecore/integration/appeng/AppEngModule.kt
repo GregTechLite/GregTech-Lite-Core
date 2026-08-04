@@ -21,5 +21,5 @@ class AppEngModule : IntegrationSubModule()
         val logger: Logger = SidedLogger("$MOD_ID-ae2-module")
     }
 
-    override val logger: Logger get() = Companion.logger
+    override val logger: Logger = Companion.logger
 }
