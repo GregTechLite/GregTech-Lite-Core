@@ -1,6 +1,6 @@
-package gregtechlite.gtlitecore.api.module;
+package gregtechlite.gtlitecore.api.module
 
-public enum ModuleStage
+enum class ModuleStage
 {
     C_SETUP,               // Initializing Module Containers, "C" means "Container".
     M_SETUP,               // Initializing Modules, "M" means "Module".
@@ -11,5 +11,5 @@ public enum ModuleStage
     LOAD_COMPLETE,         // FML Load Complete Event stage.
     SERVER_ABOUT_TO_START, // FML Server About To Start Event stage.
     SERVER_STARTING,       // FML Server Starting Event stage.
-    SERVER_STARTED;        // FML Server Started Event stage.
+    SERVER_STARTED         // FML Server Started Event stage.
 }
