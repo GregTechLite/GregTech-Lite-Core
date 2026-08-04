@@ -1,6 +1,5 @@
-package gregtechlite.gtlitecore
+package gregtechlite.gtlitecore.mixins
 
-import gregtechlite.gtlitecore.mixins.CustomMixinLoader
 import zone.rong.mixinbooter.ILateMixinLoader
 
 @Suppress("unused")
