@@ -3,6 +3,8 @@ package gregtechlite.gtlitecore.core.module
 import com.google.common.collect.ImmutableList
 import com.morphismmc.morphismlib.util.SidedLogger
 import gregtechlite.gtlitecore.api.MOD_ID
+import gregtechlite.gtlitecore.api.collection.openLinkedSetOf
+import gregtechlite.gtlitecore.api.collection.openRefLinkedSetOf
 import gregtechlite.gtlitecore.api.collection.openRefLinkedMapOf
 import gregtechlite.gtlitecore.api.module.CustomModule
 import gregtechlite.gtlitecore.api.module.CustomModuleContainer
@@ -10,9 +12,6 @@ import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.api.module.ModuleContainer
 import gregtechlite.gtlitecore.api.module.ModuleManager
 import gregtechlite.gtlitecore.api.module.ModuleStage
-import it.unimi.dsi.fastutil.objects.Object2ReferenceLinkedOpenHashMap
-import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
-import it.unimi.dsi.fastutil.objects.ReferenceLinkedOpenHashSet
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.common.config.Configuration
@@ -57,8 +56,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
 
     private var config: Configuration? = null
 
-    override fun isModuleEnabled(namespace: ResourceLocation): Boolean
-        = sortedModules.containsKey(namespace)
+    override fun isModuleEnabled(namespace: ResourceLocation): Boolean = sortedModules.containsKey(namespace)
 
     fun isModuleEnabled(module: CustomModule): Boolean
     {
@@ -279,25 +277,15 @@ class ModuleManagerImpl private constructor() : ModuleManager
     private fun getComment(module: CustomModule): String
     {
         val annotation = module.javaClass.getAnnotation(Module::class.java)
-
-        val comment = StringBuilder(annotation.descriptions)
         val dependencies = module.dependencyUids
-        if (dependencies.isNotEmpty())
-        {
-            comment.append("\n")
-            comment.append("Module Dependencies: [ ")
-            comment.append(dependencies.joinToString(", "))
-            comment.append(" ] ")
-        }
         val modDependencies = annotation.modDependencies
-        if (modDependencies != null && modDependencies.isNotEmpty())
-        {
-            comment.append("\n")
-            comment.append("Mod Dependencies: [ ")
-            comment.append(modDependencies.joinToString(", "))
-            comment.append(" ]")
+        return buildString(annotation.descriptions.length) {
+            append(annotation.descriptions)
+            if (dependencies.isNotEmpty())
+                append("\nModule Dependencies: [ ${dependencies.joinToString(", ")} ] ")
+            if (modDependencies.isNotEmpty())
+                append("\nMod Dependencies: [ ${modDependencies.joinToString(", ")} ]")
         }
-        return comment.toString()
     }
 
     /**
@@ -334,9 +322,9 @@ class ModuleManagerImpl private constructor() : ModuleManager
                     logger.error("Module Container class '{}' is not an instanceof correspondenced interface", clazz.name)
                 }
             }
-            catch (exception: ReflectiveOperationException)
+            catch (e: ReflectiveOperationException)
             {
-                logger.error("Could not initialize Module Container '{}'", data.className, exception)
+                logger.error("Could not initialize Module Container '{}'", data.className, e)
             }
         }
     }
@@ -358,8 +346,8 @@ class ModuleManagerImpl private constructor() : ModuleManager
         val locale = Locale.getDefault()
         Locale.setDefault(Locale.ENGLISH)
 
-        val toLoad: MutableSet<ResourceLocation> = ObjectLinkedOpenHashSet()
-        val modulesToLoad: MutableSet<CustomModule> = ReferenceLinkedOpenHashSet()
+        val toLoad = openLinkedSetOf<ResourceLocation>()
+        val modulesToLoad = openRefLinkedSetOf<CustomModule>()
 
         val config = getConfiguration()
         config.load()
@@ -479,7 +467,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
     private fun getInstances(dataTable: ASMDataTable): List<CustomModule>
     {
         val dataSet = dataTable.getAll(Module::class.java.canonicalName)
-        val instances: MutableList<CustomModule> = ArrayList()
+        val instances = arrayListOf<CustomModule>()
         for (data in dataSet)
         {
             val moduleId = data.annotationInfo["moduleId"] as String
@@ -498,9 +486,9 @@ class ModuleManagerImpl private constructor() : ModuleManager
                         logger.error("Module of class '{}' with id '{}' is not an instanceof Custom Module", clazz.name, moduleId)
                     }
                 }
-                catch (exception: ReflectiveOperationException)
+                catch (e: ReflectiveOperationException)
                 {
-                    logger.error("Could not initialize Module '{}'", moduleId, exception)
+                    logger.error("Could not initialize Module '{}'", moduleId, e)
                 }
             }
             else
@@ -520,7 +508,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
     private fun getModules(dataTable: ASMDataTable): MutableMap<String, MutableList<CustomModule>>
     {
         val instances = getInstances(dataTable)
-        val modules: MutableMap<String, MutableList<CustomModule>> = Object2ReferenceLinkedOpenHashMap()
+        val modules = openRefLinkedMapOf<String, MutableList<CustomModule>>()
         for (module in instances)
         {
             val annotation = module.javaClass.getAnnotation(Module::class.java)

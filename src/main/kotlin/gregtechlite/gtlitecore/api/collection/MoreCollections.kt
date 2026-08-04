@@ -14,9 +14,12 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ReferenceLinkedOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ReferenceMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import it.unimi.dsi.fastutil.objects.ObjectList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import it.unimi.dsi.fastutil.objects.ObjectSet
+import it.unimi.dsi.fastutil.objects.ReferenceLinkedOpenHashSet
+import it.unimi.dsi.fastutil.objects.ReferenceSet
 import net.minecraft.util.IntIdentityHashBiMap
 import java.util.TreeMap
 
@@ -32,7 +35,7 @@ fun <E> Iterable<E>.toImmutableSet(): ImmutableSet<E> = ImmutableSet.copyOf(this
 
 // endregion
 
-// region FastUtil: ObjectSet & ObjectOpenHashSet
+// region FastUtil: ObjectOpenHashSet
 
 fun <E> openHashSetOf(): ObjectSet<E> = ObjectOpenHashSet()
 
@@ -41,6 +44,30 @@ fun <E> openHashSetOf(vararg elements: E): ObjectSet<E> = ObjectOpenHashSet(elem
 fun <E> Collection<E>.toOpenHashSet(): ObjectSet<E> = ObjectOpenHashSet(this)
 
 fun <E> Iterator<E>.toOpenHashSet(): ObjectSet<E> = ObjectOpenHashSet(this)
+
+// endregion
+
+// region FastUtil: ObjectLinkedOpenHashSet
+
+fun <E> openLinkedSetOf(): ObjectSet<E> = ObjectLinkedOpenHashSet()
+
+fun <E> openLinkedSetOf(vararg elements: E): ObjectSet<E> = ObjectLinkedOpenHashSet(elements)
+
+fun <E> Collection<E>.toOpenLinkedSet(): ObjectSet<E> = ObjectLinkedOpenHashSet(this)
+
+fun <E> Iterator<E>.toOpenLinkedSet(): ObjectSet<E> = ObjectLinkedOpenHashSet(this)
+
+// endregion
+
+// region FastUtil: ReferenceLinkedOpenHashSet
+
+fun <E> openRefLinkedSetOf(): ReferenceSet<E> = ReferenceLinkedOpenHashSet()
+
+fun <E> openRefLinkedSetOf(vararg elements: E): ReferenceSet<E> = ReferenceLinkedOpenHashSet(elements)
+
+fun <E> Collection<E>.toOpenRefLinkedSetOf(): ReferenceSet<E> = ReferenceLinkedOpenHashSet(this)
+
+fun <E> Iterator<E>.toOpenRefLinkedSetOf(): ReferenceSet<E> = ReferenceLinkedOpenHashSet(this)
 
 // endregion
 
@@ -114,7 +141,7 @@ fun <K, V> Iterable<Pair<K, V>>.toImmutableMap(): ImmutableMap<K, V> = Immutable
 
 // endregion
 
-// region Guava: BiMap & HashBiMap
+// region Guava: HashBiMap
 
 fun <K, V> hashBiMapOf(): HashBiMap<K, V> = HashBiMap.create()
 
@@ -142,7 +169,7 @@ fun <K> intIdHashBiMapOf(initialCapacity: Int = Short.MAX_VALUE.toInt(), vararg 
 
 // endregion
 
-// region Guava: Table & HashBasedTable
+// region Guava: HashBasedTable
 
 fun <R, C, V> hashTableOf(): HashBasedTable<R, C, V> = HashBasedTable.create()
 
@@ -160,7 +187,7 @@ fun <R, C, V> Iterable<Triple<R, C, V>>.toTable(): HashBasedTable<R, C, V> = Has
 
 // endregion
 
-// region FastUtil: Object2ObjectMap & Object2ObjectOpenHashMap
+// region FastUtil: Object2ObjectOpenHashMap
 
 fun <K, V> openHashMapOf(): Object2ObjectMap<K, V> = Object2ObjectOpenHashMap()
 
@@ -174,7 +201,7 @@ fun <K, V> Map<K, V>.toOpenHashMap(): Object2ObjectMap<K, V> = Object2ObjectOpen
 
 // endregion
 
-// region FastUtil: Object2ObjectMap & Object2ObjectArrayMap
+// region FastUtil: Object2ObjectArrayMap
 
 fun <K, V> openArrayMapOf(): Object2ObjectMap<K, V> = Object2ObjectArrayMap()
 
@@ -188,7 +215,7 @@ fun <K, V> Map<K, V>.toOpenArrayMap(): Object2ObjectMap<K, V> = Object2ObjectArr
 
 // endregion
 
-// region FastUtil: Object2ReferenceMap & Object2ReferenceLinkedOpenHashMap
+// region FastUtil: Object2ReferenceLinkedOpenHashMap
 
 fun <K, V> openRefLinkedMapOf(): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap()
 
