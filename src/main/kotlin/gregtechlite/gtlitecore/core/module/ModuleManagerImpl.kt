@@ -341,7 +341,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
      *
      * @param modules The modules to configure.
      */
-    private fun configureModules(modules: MutableMap<String, MutableList<CustomModule>>)
+    private fun configureModules(modules: Map<String, List<CustomModule>>)
     {
         val locale = Locale.getDefault()
         Locale.setDefault(Locale.ENGLISH)
@@ -351,94 +351,54 @@ class ModuleManagerImpl private constructor() : ModuleManager
 
         val config = getConfiguration()
         config.load()
-        config.addCustomCategoryComment(MODULE_CFG_CATEGORY_NAME, "Module configuration file. "
-                + "Can individually enable/disable modules from the mod and its addons")
+        config.addCustomCategoryComment(MODULE_CFG_CATEGORY_NAME,
+            "Module configuration file. Can individually enable/disable modules from the mod and its addons")
 
         for (container in containers.values)
         {
-            val containerId = container.id
-            val containerModules = modules[containerId] ?: continue
-            val coreModule = getCoreModule(containerModules)
-            if (coreModule == null)
+            val containerModules = modules[container.id] ?: continue
+            val coreModule = getCoreModule(containerModules) ?: throw IllegalStateException("Could not find Core Module for Module Container ${container.id}")
+            val orderedModules = listOf(coreModule) + (containerModules - coreModule)
+            for (module in orderedModules)
             {
-                throw IllegalStateException("Could not find Core Module for Module Container $containerId")
-            }
-            else
-            {
-                containerModules.remove(coreModule)
-                containerModules.add(0, coreModule)
-            }
-
-            // Remove disabled modules and gather potential modules to load.
-            val iterator = containerModules.iterator()
-            while (iterator.hasNext())
-            {
-                val module = iterator.next()
                 if (!isModuleEnabled(module))
                 {
-                    iterator.remove()
                     logger.debug("Module disabled: {}", module)
                     continue
                 }
-
                 val annotation = module.javaClass.getAnnotation(Module::class.java)
-                toLoad.add(ResourceLocation(containerId, annotation.moduleId))
+                toLoad.add(ResourceLocation(container.id, annotation.moduleId))
                 modulesToLoad.add(module)
             }
         }
 
-        // Check any module dependencies.
-        var changed: Boolean
         do
         {
-            changed = false
-            val iterator = modulesToLoad.iterator()
-            while (iterator.hasNext())
-            {
-                val module = iterator.next()
-
-                // Check module dependencies.
-                val dependencies = module.dependencyUids
-                if (!toLoad.containsAll(dependencies))
+            val removed = modulesToLoad.removeAll {
+                val dependencies = it.dependencyUids
+                val missing = !toLoad.containsAll(dependencies)
+                if (missing)
                 {
-                    iterator.remove()
-                    changed = true
-
-                    val annotation = module.javaClass.getAnnotation(Module::class.java)
-                    val moduleId = annotation.moduleId
+                    val moduleId = it.javaClass.getAnnotation(Module::class.java).moduleId
                     toLoad.remove(ResourceLocation(moduleId))
-                    logger.info("Module '{}' is missing at least one of Module dependencies: '{}', skipping loading...", moduleId, dependencies)
+                    logger.info("Module '{}' is missing at least one of Module dependencies: '{}', skipping loading...",
+                        moduleId, dependencies)
                 }
+                return@removeAll missing
             }
-        } while (changed)
+        } while (removed)
 
-        // Sort modules by their module dependencies.
-        do
+        while (true)
         {
-            changed = false
-            val iterator = modulesToLoad.iterator()
-            while (iterator.hasNext())
-            {
-                val module = iterator.next()
-                if (sortedModules.keys.containsAll(module.dependencyUids))
-                {
-                    iterator.remove()
-
-                    val annotation = module.javaClass.getAnnotation(Module::class.java)
-                    sortedModules[ResourceLocation(annotation.containerId, annotation.moduleId)] = module
-                    changed = true
-                    break
-                }
-            }
-        } while (changed)
+            val module = modulesToLoad.firstOrNull { sortedModules.keys.containsAll(it.dependencyUids) } ?: break
+            val annotation = module.javaClass.getAnnotation(Module::class.java)
+            sortedModules[ResourceLocation(annotation.containerId, annotation.moduleId)] = module
+            modulesToLoad.remove(module)
+        }
 
         loadedModules.addAll(sortedModules.values)
 
-        if (config.hasChanged())
-        {
-            config.save()
-        }
-
+        if (config.hasChanged()) config.save()
         Locale.setDefault(locale)
     }
 
