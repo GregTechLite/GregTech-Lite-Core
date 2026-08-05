@@ -32,7 +32,6 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SOLAR_PANEL_UXV
 
 internal object GTLiteCoverBehaviors
 {
-
     fun init()
     {
         // MAX Conveyor Module
@@ -106,5 +105,4 @@ internal object GTLiteCoverBehaviors
         placerItem.addComponents(CoverItemBehavior(CoverBehaviors.registerCover(
             GTLiteMod.id(name), placerItem.stackForm, behaviorCreator)))
     }
-
 }

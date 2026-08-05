@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation
 class AdvancementTriggerImpl<T : AdvancementCriterion>(private val id: ResourceLocation,
                                                        private val criterion: T) : AdvancementTrigger<T>
 {
-    private val listeners: MutableMap<PlayerAdvancements, AdvancementListeners<T>> = openHashMapOf()
+    private val listeners = openHashMapOf<PlayerAdvancements, AdvancementListeners<T>>()
 
     constructor(name: String, criterion: T) : this(GTLiteMod.id(name), criterion)
 

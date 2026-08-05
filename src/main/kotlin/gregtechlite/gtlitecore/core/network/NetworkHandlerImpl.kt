@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.network.FMLEventChannel
 import net.minecraftforge.fml.common.network.FMLNetworkEvent
 import net.minecraftforge.fml.common.network.NetworkRegistry
 import net.minecraftforge.fml.common.network.internal.FMLProxyPacket
+
 class NetworkHandlerImpl : NetworkHandler
 {
     private var channel: FMLEventChannel? = null
@@ -34,7 +35,7 @@ class NetworkHandlerImpl : NetworkHandler
     {
         channel = NetworkRegistry.INSTANCE.newEventDrivenChannel(MOD_ID)
         channel?.register(this)
-        packetHandler = PacketHandler.getInstance()
+        packetHandler = PacketHandler.instance
     }
 
     override fun registerPacket(packetClass: Class<out NetworkPacket>)

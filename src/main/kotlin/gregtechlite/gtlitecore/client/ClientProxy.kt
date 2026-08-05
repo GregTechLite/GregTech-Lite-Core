@@ -35,7 +35,7 @@ class ClientProxy : CommonProxy()
         MinecraftForge.EVENT_BUS.register(ClientEventHandlers)
         CosmicShaderProgram.initShaders()
         GTLiteMetaEntities.initRenderers()
-        NetworkHandlerImpl.instance.registerEventListener(ClientNetworkHandler(PacketHandler.getInstance()))
+        NetworkHandlerImpl.instance.registerEventListener(ClientNetworkHandler(PacketHandler.instance))
     }
 
     override fun onInit()

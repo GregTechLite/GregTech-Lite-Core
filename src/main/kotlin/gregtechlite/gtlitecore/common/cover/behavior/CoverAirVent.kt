@@ -70,7 +70,5 @@ class CoverAirVent(definition: CoverDefinition,
         }
 
         fluidHandler.fill(this.airType!!.copy(), true)
-
     }
-
 }

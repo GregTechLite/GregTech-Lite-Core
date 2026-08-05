@@ -7,7 +7,7 @@ import codechicken.lib.util.ResourceUtils
 import codechicken.lib.util.TransformUtils
 import gregtech.api.items.metaitem.MetaItem
 import gregtechlite.gtlitecore.client.model.WrappedModelGetter
-import gregtechlite.gtlitecore.client.renderer.CosmicRenderBehavior
+import gregtechlite.gtlitecore.client.renderer.MaskUniversiumRenderBehavior
 import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
 import net.minecraft.client.renderer.GlStateManager
@@ -67,10 +67,10 @@ class MaskUniversiumItemRenderer : WrappedItemRenderer
         renderModel(model, stack)
 
         val valueItem = (stack.item as MetaItem<*>).getItem(stack)
-        var renderBehavior: CosmicRenderBehavior? = null
+        var renderBehavior: MaskUniversiumRenderBehavior? = null
         if (valueItem != null)
         {
-            renderBehavior = (valueItem as CustomItemRenderer).rendererManager as CosmicRenderBehavior
+            renderBehavior = (valueItem as CustomItemRenderer).rendererManager as MaskUniversiumRenderBehavior
         }
         if (renderBehavior != null)
         {
@@ -107,10 +107,10 @@ class MaskUniversiumItemRenderer : WrappedItemRenderer
         renderModel(model, stack)
 
         val valueItem = (stack.item as MetaItem<*>).getItem(stack)
-        var renderBehavior: CosmicRenderBehavior? = null
+        var renderBehavior: MaskUniversiumRenderBehavior? = null
         if (valueItem != null)
         {
-            renderBehavior = (valueItem as CustomItemRenderer).rendererManager as CosmicRenderBehavior
+            renderBehavior = (valueItem as CustomItemRenderer).rendererManager as MaskUniversiumRenderBehavior
         }
 
         if (renderBehavior != null)

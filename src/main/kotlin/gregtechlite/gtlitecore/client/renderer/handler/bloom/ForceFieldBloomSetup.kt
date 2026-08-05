@@ -11,7 +11,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 @SideOnly(Side.CLIENT)
 enum class ForceFieldBloomSetup : IRenderSetup
 {
-
     INSTANCE;
 
     var lastBrightnessX: Float = 0f
