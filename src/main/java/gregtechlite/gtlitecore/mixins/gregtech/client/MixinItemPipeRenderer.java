@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.mixins.gregtech.client;
 
-import codechicken.lib.vec.uv.IconTransformation;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import gregtech.api.pipenet.block.BlockPipe;
@@ -11,23 +10,25 @@ import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.pipe.ItemPipeRenderer;
 import gregtech.client.renderer.pipe.PipeRenderer;
-import gregtech.client.renderer.texture.Textures;
 import gregtech.common.pipelike.itempipe.ItemPipeType;
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Feature: Add {@link MaterialIconSet} supported for {@link ItemPipeRenderer}.
+ * Add {@link MaterialIconSet} supported for {@link ItemPipeRenderer}.
  * <p>
  * This class implement a feature that make material pipes rendered its iconSet textures
  * but not default textures.
@@ -41,10 +42,12 @@ import java.util.Map;
 public abstract class MixinItemPipeRenderer
 {
     @Unique
-    private final Table<ItemPipeType, MaterialIconSet, TextureAtlasSprite> gtlitecore$pipeTextures = HashBasedTable.create();
+    private final Table<ItemPipeType, MaterialIconSet, TextureAtlasSprite> gtlitecore$pipeTextures
+            = HashBasedTable.create();
 
     @Unique
-    private final Map<MaterialIconSet, TextureAtlasSprite> gtlitecore$pipeSideTextures = new HashMap<>();
+    private final Object2ObjectMap<MaterialIconSet, TextureAtlasSprite> gtlitecore$pipeSideTextures
+            = new Object2ObjectOpenHashMap<>();
 
     @Inject(method = "registerIcons",
             at = @At(value = "TAIL"))
@@ -78,29 +81,24 @@ public abstract class MixinItemPipeRenderer
         }
     }
 
-    @Inject(method = "buildRenderer",
-            at = @At(value = "HEAD"),
-            cancellable = true)
-    private void buildRenderer(PipeRenderer.PipeRenderContext renderContext,
-                               BlockPipe<?, ?, ?> blockPipe,
-                               IPipeTile<?, ?> pipeTile,
-                               IPipeType<?> pipeType,
-                               @Nullable Material material,
-                               CallbackInfo ci)
+    @Redirect(method = "buildRenderer",
+            at = @At(value = "INVOKE",
+                    target = "Ljava/util/EnumMap;get(Ljava/lang/Object;)Ljava/lang/Object;"))
+    private Object gtlitecore$getPipeTexture(EnumMap<ItemPipeType, TextureAtlasSprite> enumMap, Object key,
+                                             PipeRenderer.PipeRenderContext renderContext,
+                                             BlockPipe<?, ?, ?> blockPipe, IPipeTile<?, ?> pipeTile,
+                                             IPipeType<?> pipeType, Material material)
     {
-        if (material != null && pipeType instanceof ItemPipeType)
-        {
-            MaterialIconSet iconSet = material.getMaterialIconSet();
-            TextureAtlasSprite pipeTexture = gtlitecore$pipeTextures.get(pipeType, iconSet);
-            TextureAtlasSprite pipeSideTexture = gtlitecore$pipeSideTextures.get(iconSet);
-            renderContext.addOpenFaceRender(new IconTransformation(pipeTexture))
-                    .addSideRender(new IconTransformation(pipeSideTexture));
-            if (((ItemPipeType) pipeType).isRestrictive())
-            {
-                renderContext.addSideRender(false, new IconTransformation(Textures.RESTRICTIVE_OVERLAY));
-            }
-        }
+        return gtlitecore$pipeTextures.get((ItemPipeType) key, material.getMaterialIconSet());
+    }
 
-        ci.cancel();
+    @Redirect(method = "buildRenderer",
+            at = @At(value = "FIELD",
+                    target = "Lgregtech/client/renderer/texture/Textures;PIPE_SIDE:Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;"))
+    private TextureAtlasSprite gtlitecore$getPipeSideTexture(PipeRenderer.PipeRenderContext renderContext,
+                                                             BlockPipe<?, ?, ?> blockPipe, IPipeTile<?, ?> pipeTile,
+                                                             IPipeType<?> pipeType, Material material)
+    {
+        return gtlitecore$pipeSideTextures.get(material.getMaterialIconSet());
     }
 }

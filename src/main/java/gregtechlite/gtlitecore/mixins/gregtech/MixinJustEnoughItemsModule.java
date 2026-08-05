@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.mixins.gregtech.client;
+package gregtechlite.gtlitecore.mixins.gregtech;
 
 import gregtech.api.GTValues;
 import gregtech.api.metatileentity.registry.MTERegistry;
