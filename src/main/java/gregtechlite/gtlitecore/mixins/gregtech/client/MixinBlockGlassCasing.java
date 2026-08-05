@@ -11,7 +11,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -29,15 +28,15 @@ public abstract class MixinBlockGlassCasing extends VariantActiveBlock<BlockGlas
     @SuppressWarnings({"unchecked", "rawtypes"})
     @Unique
     @Override
-    public void addInformation(@NotNull ItemStack stack,
+    public void addInformation(ItemStack stack,
                                @Nullable World player,
-                               @NotNull List<String> tooltip,
-                               @NotNull ITooltipFlag advanced)
+                               List<String> tooltip,
+                               ITooltipFlag advanced)
     {
         super.addInformation(stack, player, tooltip, advanced);
         VariantItemBlock itemBlock = (VariantItemBlock<BlockGlassCasing.CasingType, BlockGlassCasing>) stack.getItem();
         IBlockState stackState = itemBlock.getBlockState(stack);
-        Object casingType = this.getState(stackState);
+        Object casingType = getState(stackState);
         tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", GTValues.VOCNF[((StateTier) casingType).getTier()]));
     }
 }

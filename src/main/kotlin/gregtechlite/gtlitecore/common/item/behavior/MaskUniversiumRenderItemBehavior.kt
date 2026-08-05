@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.item.behavior
 
 import codechicken.lib.model.ModelRegistryHelper
 import codechicken.lib.util.TransformUtils
-import gregtechlite.gtlitecore.client.renderer.CosmicRenderBehavior
+import gregtechlite.gtlitecore.client.renderer.MaskUniversiumRenderBehavior
 import gregtechlite.gtlitecore.client.renderer.handler.item.MaskUniversiumItemRenderer
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
 class MaskUniversiumRenderItemBehavior(private val maskTexture: () -> TextureAtlasSprite,
-                                       private val maskOpacity: Int) : CosmicRenderBehavior
+                                       private val maskOpacity: Int) : MaskUniversiumRenderBehavior
 {
     @SideOnly(Side.CLIENT)
     override fun getMaskTexture(stack: ItemStack, player: EntityLivingBase?): TextureAtlasSprite? = maskTexture.invoke()

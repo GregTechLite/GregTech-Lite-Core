@@ -54,7 +54,7 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
     @Suppress("Deprecation", "UnstableApiUsage")
     override fun onRuntimeAvailable(availableRuntime: IJeiRuntime)
     {
-        this.runtime = availableRuntime
+        runtime = availableRuntime
         logger.info("Registering JEI Blacklist...")
 
         // Zirconia => Baddeleyite
@@ -73,7 +73,7 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
     
     override fun registerCategories(registry: IRecipeCategoryRegistration)
     {
-        this.guiHelper = registry.jeiHelpers.guiHelper
+        guiHelper = registry.jeiHelpers.guiHelper
         logger.info("Registering JEI Recipe Categories...")
 
         registry.addRecipeCategories(SpacePumpRecipeCategory(registry.jeiHelpers.guiHelper))
@@ -81,13 +81,13 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
     
     override fun register(registry: IModRegistry)
     {
-        this.blacklist = registry.jeiHelpers.ingredientBlacklist
-        this.ingredientRegistry = registry.ingredientRegistry
+        blacklist = registry.jeiHelpers.ingredientBlacklist
+        ingredientRegistry = registry.ingredientRegistry
 
         logger.info("Registering JEI Recipe Wrappers and Catalysts...")
 
         val spacePumpId = SpacePumpRecipeCategory.UID
-        val spacePumpInfo = SpacePumpRecipeFrontend.RECIPES.entries
+        val spacePumpInfo = SpacePumpRecipeFrontend.entries
             .sortedWith(compareBy<Map.Entry<Pair<Int, Int>, FluidStack>> { it.key.first }.thenBy { it.key.second })
             .map { SpacePumpRecipeWrapper(it.key.first, it.key.second, it.value) }
             .distinct()

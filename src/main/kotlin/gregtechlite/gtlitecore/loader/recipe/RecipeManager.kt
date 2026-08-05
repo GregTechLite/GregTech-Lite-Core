@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.loader.recipe
 
-import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
 import gregtechlite.gtlitecore.loader.recipe.chain.ChemistryRecipeList
 import gregtechlite.gtlitecore.loader.recipe.circuit.CircuitRecipeList
 import gregtechlite.gtlitecore.loader.recipe.component.ComponentRecipeList
@@ -49,9 +48,6 @@ internal object RecipeManager
 
         // Post Recipe Producers.
         RecipeProducerList.postInit()
-
-        // Pseudo Recipes (Recipe Frontends).
-        SpacePumpRecipeFrontend.init()
     }
 
     // @formatter:on

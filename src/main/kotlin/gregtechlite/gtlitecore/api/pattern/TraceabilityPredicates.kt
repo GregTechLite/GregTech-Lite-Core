@@ -21,9 +21,8 @@ import java.util.*
 
 object TraceabilityPredicates
 {
-
     @JvmStatic
-    val SNOW_LAYER = TraceabilityPredicate { bws -> GTUtility.isBlockSnow(bws.blockState) }
+    val SNOW_LAYER = TraceabilityPredicate { GTUtility.isBlockSnow(it.blockState) }
 
     // region Block Attribute Suitable Tiered Stats
 
@@ -147,17 +146,18 @@ object TraceabilityPredicates
 
     @JvmStatic
     fun <T> PatternMatchContext.getAttributeOrDefault(registry: BlockAttributeRegistry<T>, default: T): T
-    {
-        return getOrDefault(registry.name, default)
-    }
+        = getOrDefault(registry.name, default)
 
     @JvmStatic
     fun <T : StateTier> PatternMatchContext.getTierOrDefault(registry: BlockAttributeRegistry<T>, default: Int): Int
-    {
-        return getOrDefault<T>(registry.name, null)?.tier ?: default
-    }
+        = getOrDefault<T>(registry.name, null)?.tier ?: default
 
     // endregion
+
+    @JvmField
+    val WIRELESS_ENERGY_STORAGE = MultiblockAbility("wireless_energy_storage", IEnergyContainer::class.java).also {
+        MultiblockAbility.REGISTRY[it] = arrayListOf()
+    }
 
     // region Specified Block Counter
 
@@ -167,11 +167,9 @@ object TraceabilityPredicates
     @JvmStatic
     fun counter(name: String, delegate: TraceabilityPredicate) = object : TraceabilityPredicate(delegate)
     {
-
         override fun test(blockWorldState: BlockWorldState?) = super.test(blockWorldState).also {
             if (it) blockWorldState!!.matchContext.increment(name, 1)
         }
-
     }
 
     // endregion
@@ -202,10 +200,4 @@ object TraceabilityPredicates
             return@TraceabilityPredicate blockWorldState.matchContext.getOrPut(symbol, true)
         return@TraceabilityPredicate blockWorldState.matchContext.get<String>(symbol) == null
     }.also { allowedStates.map(::BlockInfo) }
-
-    @JvmField
-    val WIRELESS_ENERGY_STORAGE = MultiblockAbility(
-        "wireless_energy_storage", IEnergyContainer::class.java
-    ).also { MultiblockAbility.REGISTRY[it] = ArrayList() }
-
 }

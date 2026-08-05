@@ -6,7 +6,6 @@ import net.minecraft.util.registry.IRegistry
 
 fun interface WrappedModelGetter
 {
-
     /**
      * A callback from the `ModelLoadEvent` to grad the wrapped model.
      *
@@ -14,5 +13,4 @@ fun interface WrappedModelGetter
      * @return              The wrapped model.
      */
     fun getWrappedModel(modelRegistry: IRegistry<ModelResourceLocation, IBakedModel>): IBakedModel?
-
 }

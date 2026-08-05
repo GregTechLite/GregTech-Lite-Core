@@ -33,7 +33,6 @@ import net.minecraft.world.World
 
 object StructureWriterBehavior : IItemBehaviour, ItemUIFactory
 {
-
     fun isItemStructureWriter(stack: ItemStack?): Boolean
     {
         if (stack!!.isEmpty) return false
@@ -186,22 +185,13 @@ object StructureWriterBehavior : IItemBehaviour, ItemUIFactory
         if (getPos(guiData.mainHandItem) != null)
         {
             val blockPos = getPos(guiData.mainHandItem)!!
-            val builder = StringBuilder()
             val blockPattern = JsonBlockPattern(guiData.player.world,
                 blockPos[0].x, blockPos[0].y, blockPos[0].z,
-                blockPos[1].x, blockPos[1].y, blockPos[1].z
-            )
-            for (i in 0 ..< blockPattern.blockPattern.size)
-            {
-                val strings = blockPattern.blockPattern[i]
-                builder.append(".aisle(")
-                for (string in strings)
-                {
-                    builder.append(String.format("\"%s\", ", string))
-                }
-                builder.append(")\n")
+                blockPos[1].x, blockPos[1].y, blockPos[1].z)
+            val text = blockPattern.blockPattern.joinToString("\n") { strings ->
+                ".aisle(" + strings.joinToString(", ") { "\"$it\"" } + ")"
             }
-            LOGGER.info(builder.toString())
+            LOGGER.info(text)
             return true
         }
         return false
@@ -213,8 +203,6 @@ object StructureWriterBehavior : IItemBehaviour, ItemUIFactory
         if (!tag.hasKey("minX")) return null
         return arrayOf(
             BlockPos(tag.getInteger("minX"), tag.getInteger("minY"), tag.getInteger("minZ")),
-            BlockPos(tag.getInteger("maxX"), tag.getInteger("maxY"), tag.getInteger("maxZ"))
-        )
+            BlockPos(tag.getInteger("maxX"), tag.getInteger("maxY"), tag.getInteger("maxZ")))
     }
-
 }

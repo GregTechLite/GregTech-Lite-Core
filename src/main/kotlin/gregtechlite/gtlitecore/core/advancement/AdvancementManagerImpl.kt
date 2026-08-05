@@ -13,9 +13,8 @@ class AdvancementManagerImpl private constructor() : AdvancementManager
 {
     companion object
     {
-        private val instance = AdvancementManagerImpl()
-
-        fun getInstance(): AdvancementManagerImpl = instance
+        @JvmField
+        internal val instance = AdvancementManagerImpl()
     }
 
     override fun <T : AdvancementCriterion> registerTrigger(id: String, criterion: T): AdvancementTrigger<T>?

@@ -54,5 +54,4 @@ class CoverDrain(definition: CoverDefinition,
             fluidHandler.fill(this.waterStack.copy(), true)
         }
     }
-
 }

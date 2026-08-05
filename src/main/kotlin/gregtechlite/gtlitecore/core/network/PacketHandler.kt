@@ -10,9 +10,8 @@ class PacketHandler(initialCapacity: Int = 10)
 
     companion object
     {
-        private val instance = PacketHandler()
-
-        fun getInstance(): PacketHandler = instance
+        @JvmField
+        internal val instance = PacketHandler()
     }
 
     fun registerPacket(packetClass: Class<out NetworkPacket>)

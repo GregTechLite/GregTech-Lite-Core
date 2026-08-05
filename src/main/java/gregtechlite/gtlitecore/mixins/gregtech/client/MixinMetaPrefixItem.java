@@ -18,7 +18,7 @@ import java.util.Map;
 @Mixin(value = MetaPrefixItem.class, remap = false)
 public abstract class MixinMetaPrefixItem extends StandardMetaItem
 {
-    @SuppressWarnings("rawtypes")
+    @SuppressWarnings({ "rawtypes", "InvalidInjectorMethodSignature" })
     @Inject(
             method = "registerModels()V",
             at = @At(value = "INVOKE",
