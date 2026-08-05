@@ -87,7 +87,7 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
         logger.info("Registering JEI Recipe Wrappers and Catalysts...")
 
         val spacePumpId = SpacePumpRecipeCategory.UID
-        val spacePumpInfo = SpacePumpRecipeFrontend.RECIPES.entries
+        val spacePumpInfo = SpacePumpRecipeFrontend.entries
             .sortedWith(compareBy<Map.Entry<Pair<Int, Int>, FluidStack>> { it.key.first }.thenBy { it.key.second })
             .map { SpacePumpRecipeWrapper(it.key.first, it.key.second, it.value) }
             .distinct()
