@@ -8,6 +8,8 @@ import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSet
 import com.google.gson.internal.LinkedTreeMap
+import it.unimi.dsi.fastutil.chars.Char2ObjectMap
+import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
@@ -198,6 +200,18 @@ fun <K, V> openHashMapOf(vararg pairs: Pair<K, V>): Object2ObjectMap<K, V> = Obj
 }
 
 fun <K, V> Map<K, V>.toOpenHashMap(): Object2ObjectMap<K, V> = Object2ObjectOpenHashMap(this)
+
+// endregion
+
+// region FastUtil: Char2ObjectOpenHashMap
+
+fun <V> charHashMapOf(): Char2ObjectMap<V> = Char2ObjectOpenHashMap()
+
+fun <V> charHashMapOf(vararg pairs: Pair<Char, V>): Char2ObjectMap<V> = Char2ObjectOpenHashMap<V>().apply {
+    pairs.forEach { put(it.first, it.second) }
+}
+
+fun <V> Map<Char, V>.toCharHashMap(): Char2ObjectMap<V> = Char2ObjectOpenHashMap(this)
 
 // endregion
 

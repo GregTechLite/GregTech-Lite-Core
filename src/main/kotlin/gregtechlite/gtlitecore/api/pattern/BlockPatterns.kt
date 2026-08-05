@@ -6,7 +6,6 @@ import java.util.*
 
 object BlockPatterns
 {
-
     fun getMatchingShapes(blockPattern: BlockPattern): List<MultiblockShapeInfo>
     {
         val aisleRepetitions = blockPattern.aisleRepetitions
@@ -19,7 +18,7 @@ object BlockPatterns
             {
                 repetition[i] = aisleRepetitions[i]!![1]
             }
-            for (i in pages.size ..< maxPages)
+            for (i in pages.size until maxPages)
             {
                 pages.add(MultiblockShapeInfo(blockPattern.getPreview(repetition, i)))
             }
@@ -79,5 +78,4 @@ object BlockPatterns
         }
         return pages
     }
-
 }
