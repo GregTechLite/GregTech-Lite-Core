@@ -44,17 +44,13 @@ import org.apache.commons.lang3.tuple.Pair
 class MetaTileEntityPlasticCan(id: ResourceLocation, private val fluidFilter: IPropertyFluidFilter<*>?,
                                private val color: Int, private val tankSize: Int) : MetaTileEntity(id)
 {
-
     private var fluidTank: FilteredFluidHandler? = null
     private var isAutoOutput = false
 
     init
     {
         // Protective validation for `fluidFilter`, if addon mod sent null `fluidFilter`, then throws exception.
-        requireNotNull(fluidFilter) {
-            "Material requires FluidPipeProperty for Plastic Cans"
-        }
-
+        requireNotNull(fluidFilter) { "Material requires FluidPipeProperty for Plastic Cans" }
         initializeInventory()
     }
 
@@ -85,14 +81,12 @@ class MetaTileEntityPlasticCan(id: ResourceLocation, private val fluidFilter: IP
     }
 
     override fun initItemStackCapabilities(itemStack: ItemStack): ICapabilityProvider
-    {
-        return (GTFluidHandlerItemStack(itemStack, tankSize)).setFilter(fluidTank!!.filter)
-    }
+        = (GTFluidHandlerItemStack(itemStack, tankSize)).setFilter(fluidTank!!.filter)
 
     override fun writeItemStackData(itemStack: NBTTagCompound)
     {
         super.writeItemStackData(itemStack)
-        val fluidStack = fluidTank!!.getFluid()
+        val fluidStack = fluidTank!!.fluid
         if (fluidStack != null && fluidStack.amount > 0)
         {
             val tagCompound = NBTTagCompound()
@@ -104,7 +98,7 @@ class MetaTileEntityPlasticCan(id: ResourceLocation, private val fluidFilter: IP
     override fun writeInitialSyncData(buf: PacketBuffer)
     {
         super.writeInitialSyncData(buf)
-        val fluidStack = fluidTank!!.getFluid()
+        val fluidStack = fluidTank!!.fluid
         buf.writeBoolean(fluidStack != null)
         if (fluidStack != null)
         {
@@ -112,7 +106,6 @@ class MetaTileEntityPlasticCan(id: ResourceLocation, private val fluidFilter: IP
             fluidStack.writeToNBT(tagCompound)
             buf.writeCompoundTag(tagCompound)
         }
-
         buf.writeBoolean(isAutoOutput)
     }
 
@@ -126,7 +119,7 @@ class MetaTileEntityPlasticCan(id: ResourceLocation, private val fluidFilter: IP
             fluidStack = FluidStack.loadFluidStackFromNBT(tagCompound)
         }
 
-        fluidTank!!.setFluid(fluidStack)
+        fluidTank!!.fluid = fluidStack
         isAutoOutput = buf.readBoolean()
     }
 
@@ -271,5 +264,4 @@ class MetaTileEntityPlasticCan(id: ResourceLocation, private val fluidFilter: IP
             markDirty()
         }
     }
-
 }

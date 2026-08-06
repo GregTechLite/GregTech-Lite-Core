@@ -15,15 +15,22 @@ import net.minecraft.util.EnumHand
 import net.minecraft.util.ResourceLocation
 import java.util.function.Function
 
-open class PseudoMultiMachineMetaTileEntity(metaTileEntityId: ResourceLocation?, recipeMap: RecipeMap<*>?, renderer: ICubeRenderer?, tier: Int, hasFrontFacing: Boolean, tankScalingFunction: Function<Int, Int>) : SimpleMachineMetaTileEntity(metaTileEntityId, recipeMap, renderer, tier, hasFrontFacing, tankScalingFunction)
+open class PseudoMultiMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
+                                            recipeMap: RecipeMap<*>?,
+                                            renderer: ICubeRenderer?,
+                                            tier: Int,
+                                            hasFrontFacing: Boolean,
+                                            tankScalingFunction: (Int) -> Int)
+    : SimpleMachineMetaTileEntity(metaTileEntityId, recipeMap, renderer, tier, hasFrontFacing, tankScalingFunction)
 {
-
     var targetBlockState: IBlockState? = null
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = PseudoMultiMachineMetaTileEntity(metaTileEntityId,
-        workable.recipeMap, renderer, tier, hasFrontFacing(), tankScalingFunction)
+    override fun createMetaTileEntity(te: IGregTechTileEntity)
+        = PseudoMultiMachineMetaTileEntity(metaTileEntityId, workable.recipeMap, renderer, tier,
+                                           hasFrontFacing(), { tankScalingFunction.apply(it) })
 
-    override fun createWorkable(recipeMap: RecipeMap<*>?): AbstractRecipeLogic = PseudoMultiRecipeLogic(this, recipeMap, { energyContainer })
+    override fun createWorkable(recipeMap: RecipeMap<*>?): AbstractRecipeLogic
+        = PseudoMultiRecipeLogic(this, recipeMap, { energyContainer })
 
     override fun onLoad()
     {
@@ -43,14 +50,19 @@ open class PseudoMultiMachineMetaTileEntity(metaTileEntityId: ResourceLocation?,
         checkAdjacentBlocks()
     }
 
-    override fun onWrenchClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing, hitResult: CuboidRayTraceResult): Boolean
+    override fun onWrenchClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing,
+                               hitResult: CuboidRayTraceResult): Boolean
     {
         val wrenchClickSucceeded = super.onWrenchClick(playerIn, hand, facing, hitResult)
-        if (wrenchClickSucceeded)
-            checkAdjacentBlocks()
+        if (wrenchClickSucceeded) checkAdjacentBlocks()
         return wrenchClickSucceeded
     }
 
+    /**
+     * The traditional "back" side of this type of `MetaTileEntity` is actually treated
+     * as its front for recipe purposes, making wrench movement feel as though you are
+     * holding onto or manipulating the back side to point the `MetaTileEntity`.
+     */
     fun checkAdjacentBlocks()
     {
         if (world == null || world.isRemote)
@@ -58,10 +70,6 @@ open class PseudoMultiMachineMetaTileEntity(metaTileEntityId: ResourceLocation?,
             targetBlockState = null
             return
         }
-        // The traditional "back" side of this type of MetaTileEntity is actually treated
-        // as its front for recipe purposes, making wrench movement feel as though you are
-        // holding onto or manipulating the back side to point the MetaTileEntity.
-        targetBlockState = world.getBlockState(pos.offset(getFrontFacing().opposite))
+        targetBlockState = world.getBlockState(pos.offset(frontFacing.opposite))
     }
-
 }

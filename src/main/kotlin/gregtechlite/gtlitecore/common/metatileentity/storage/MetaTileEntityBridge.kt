@@ -18,13 +18,13 @@ class MetaTileEntityBridge(id: ResourceLocation,
                            private val renderer: ICubeRenderer,
                            baseColor: Int) : MetaTileEntityDelegator(id, capabilityFilter, baseColor)
 {
-
     constructor(metaTileEntityId: ResourceLocation,
                 capabilityFilter: (Capability<*>) -> Boolean,
                 renderer: ICubeRenderer,
                 baseMaterial: Material) : this(metaTileEntityId, capabilityFilter, renderer, baseMaterial.materialRGB)
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity) = MetaTileEntityBridge(metaTileEntityId, capabilityFilter, renderer, baseColor)
+    override fun createMetaTileEntity(te: IGregTechTileEntity)
+        = MetaTileEntityBridge(metaTileEntityId, capabilityFilter, renderer, baseColor)
 
     override fun getDelegatingFacing(facing: EnumFacing?) = facing?.opposite
 
@@ -38,5 +38,4 @@ class MetaTileEntityBridge(id: ResourceLocation,
         super.renderMetaTileEntity(renderState, translation, pipeline)
         renderer.render(renderState, translation, pipeline)
     }
-
 }

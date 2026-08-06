@@ -10,9 +10,7 @@ import java.util.function.Supplier
 
 class MobExtractorRecipeLogic(metaTileEntity: MetaTileEntity, recipeMap: RecipeMap<*>, energyContainer: Supplier<IEnergyContainer>) : RecipeLogicEnergy(metaTileEntity, recipeMap, energyContainer)
 {
-
     override fun checkPreviousRecipe() = super.checkPreviousRecipe() && this.checkRecipe(this.previousRecipe)
 
     override fun checkRecipe(recipe: Recipe) = (metaTileEntity as MachineMobExtractor).checkRecipe(recipe)
-
 }

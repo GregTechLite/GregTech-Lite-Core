@@ -20,6 +20,10 @@ class ExtenderRenderer(private val basePath: String) : IconRegistrar
     @SideOnly(Side.CLIENT)
     private lateinit var textures: Array<TextureAtlasSprite>
 
+    @get:SideOnly(Side.CLIENT)
+    val particleTexture: TextureAtlasSprite?
+        get() = textures[0]
+
     init
     {
         Textures.iconRegisters.add(this)
@@ -53,7 +57,4 @@ class ExtenderRenderer(private val basePath: String) : IconRegistrar
                                 baseSprite, BlockRenderLayer.CUTOUT_MIPPED)
         }
     }
-
-    @SideOnly(Side.CLIENT)
-    fun getParticleTexture(): TextureAtlasSprite? = textures[0]
 }

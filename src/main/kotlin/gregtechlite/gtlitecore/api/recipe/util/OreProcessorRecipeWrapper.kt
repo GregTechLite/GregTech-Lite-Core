@@ -12,7 +12,6 @@ import kotlin.math.ceil
 
 object OreProcessorRecipeWrapper
 {
-
     val orePrefixes : Array<String> = arrayOf(
         "crushedPurified", "crushedCentrifuged", "crushed", "dustImpure", "dustPure", "ore")
 
@@ -110,5 +109,4 @@ object OreProcessorRecipeWrapper
         }
         return compressOutput(output)
     }
-
 }

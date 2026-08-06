@@ -8,7 +8,6 @@ import gregtech.api.capability.IWorkable
 import gregtech.api.metatileentity.multiblock.IMaintenance
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFisher
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder
@@ -21,8 +20,6 @@ import net.minecraft.world.WorldServer
 import net.minecraft.world.storage.loot.LootContext
 import net.minecraftforge.fluids.FluidRegistry
 import net.minecraftforge.fluids.FluidStack
-import kotlin.math.log2
-import kotlin.math.sqrt
 
 class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, IControllable
 {
@@ -284,15 +281,15 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
 
     fun getProgressPercent(): Double = progressTime * 1.0 / MAX_PROGRESS
 
-    override fun setWorkingEnabled(isWorkingEnabled: Boolean)
+    override fun setWorkingEnabled(workingEnabled: Boolean)
     {
-        if (this.isWorkingEnabled != isWorkingEnabled)
+        if (isWorkingEnabled != workingEnabled)
         {
-            this.isWorkingEnabled = isWorkingEnabled
+            isWorkingEnabled = workingEnabled
             mte.markDirty()
             if (mte.world != null && !mte.world.isRemote)
             {
-                mte.writeCustomData(WORKING_ENABLED) { it.writeBoolean(isWorkingEnabled) }
+                mte.writeCustomData(WORKING_ENABLED) { it.writeBoolean(workingEnabled) }
             }
         }
     }

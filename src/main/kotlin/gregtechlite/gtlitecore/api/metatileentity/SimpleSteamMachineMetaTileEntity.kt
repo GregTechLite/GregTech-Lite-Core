@@ -56,21 +56,17 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
     init
     {
         // If steam machine has ghost circuit settings, then initialized ghost circuit stack handler.
-        if (this.hasGhostCircuitInventory())
+        if (hasGhostCircuitInventory())
         {
-            this.circuitInventory = GhostCircuitItemStackHandler(this)
-            this.circuitInventory!!.addNotifiableMetaTileEntity(this)
+            circuitInventory = GhostCircuitItemStackHandler(this)
+            circuitInventory!!.addNotifiableMetaTileEntity(this)
         }
-        this.initializeInventory()
-        this.workableHandler = RecipeLogicSteam(
-            this, recipeMap, isHighPressure,
-            this.steamFluidTank, 1.0
-        )
+        initializeInventory()
+        workableHandler = RecipeLogicSteam(this, recipeMap, isHighPressure, steamFluidTank, 1.0)
     }
 
     companion object
     {
-
         protected fun determineSlotsGrid(itemInputCount: Int): IntArray
         {
             if (itemInputCount == 3) return intArrayOf(3, 1)
@@ -78,54 +74,47 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
             val slotsDown = ceil(itemInputCount / slotsLeft.toDouble()).toInt()
             return intArrayOf(slotsLeft, slotsDown)
         }
-
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?): MetaTileEntity
-    {
-        return SimpleSteamMachineMetaTileEntity(this.metaTileEntityId, this.workableHandler.recipeMap,
-            this.progressBarIndicator, this.renderer, this.isBrickedCasing,
-            this.isHighPressure)
-    }
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = SimpleSteamMachineMetaTileEntity(metaTileEntityId, workableHandler.recipeMap,
+                                           progressBarIndicator, renderer, isBrickedCasing, isHighPressure)
 
     override fun initializeInventory()
     {
         super.initializeInventory()
-        this.outputItemInventory = ItemHandlerProxy(ItemStackHandler(0), this.exportItems)
-        this.outputFluidInventory = FluidHandlerProxy(FluidTankList(false), this.exportFluids)
-        this.actualImportItems = null
+        outputItemInventory = ItemHandlerProxy(ItemStackHandler(0), exportItems)
+        outputFluidInventory = FluidHandlerProxy(FluidTankList(false), exportFluids)
+        actualImportItems = null
     }
 
     override fun getImportItems(): IItemHandlerModifiable?
     {
-        if (this.actualImportItems == null) this.actualImportItems = if (this.circuitInventory == null)
-            super.getImportItems()
-        else
-            ItemHandlerList(listOf(super.getImportItems(), this.circuitInventory))
-        return this.actualImportItems
+        if (actualImportItems == null)
+            actualImportItems = if (this.circuitInventory == null) super<SteamMetaTileEntity>.importItems
+                else ItemHandlerList(listOf(super<SteamMetaTileEntity>.importItems, circuitInventory))
+        return actualImportItems
     }
 
     override fun createImportItemHandler(): IItemHandlerModifiable
     {
-        if (this.workableHandler == null) return ItemStackHandler(0)
-        return NotifiableItemStackHandler(this,
-            this.workableHandler.recipeMap!!.maxInputs, this, false)
+        if (workableHandler == null) return ItemStackHandler(0)
+        return NotifiableItemStackHandler(this, workableHandler.recipeMap!!.maxInputs, this, false)
     }
 
     override fun createExportItemHandler(): IItemHandlerModifiable
     {
-        if (this.workableHandler == null) return ItemStackHandler(0)
-        return NotifiableItemStackHandler(this,
-            this.workableHandler.recipeMap!!.maxOutputs, this, true)
+        if (workableHandler == null) return ItemStackHandler(0)
+        return NotifiableItemStackHandler(this, workableHandler.recipeMap!!.maxOutputs, this, true)
     }
 
     override fun createImportFluidHandler(): FluidTankList
     {
         super.createImportFluidHandler()
-        if (this.workableHandler == null) return FluidTankList(false, this.steamFluidTank)
-        val importFluids = arrayOfNulls<IFluidTank>(this.workableHandler.recipeMap!!.maxFluidInputs + 1)
-        importFluids[0] = this.steamFluidTank
-        for (i in 1..<importFluids.size)
+        if (workableHandler == null) return FluidTankList(false, steamFluidTank)
+        val importFluids = arrayOfNulls<IFluidTank>(workableHandler.recipeMap!!.maxFluidInputs + 1)
+        importFluids[0] = steamFluidTank
+        for (i in 1 until importFluids.size)
         {
             importFluids[i] = NotifiableFluidTank(8000, this, false)
         }
@@ -134,8 +123,8 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
 
     override fun createExportFluidHandler(): FluidTankList
     {
-        if (this.workableHandler == null) return FluidTankList(false)
-        val exportFluids = arrayOfNulls<FluidTank>(this.workableHandler.recipeMap!!.maxFluidOutputs)
+        if (workableHandler == null) return FluidTankList(false)
+        val exportFluids = arrayOfNulls<FluidTank>(workableHandler.recipeMap!!.maxFluidOutputs)
         for (i in exportFluids.indices)
         {
             exportFluids[i] = NotifiableFluidTank(8000, this, true)
@@ -143,41 +132,33 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
         return FluidTankList(false, *exportFluids)
     }
 
-    public override fun isBrickedCasing(): Boolean
-    {
-        return this.isBrickedCasing
-    }
+    public override fun isBrickedCasing(): Boolean = isBrickedCasing
 
     @Deprecated("Deprecated in Java")
-    override fun createUI(player: EntityPlayer?): ModularUI?
-    {
-        return createGuiTemplate(player).build(getHolder(), player)
-    }
+    override fun createUI(player: EntityPlayer?): ModularUI = createGuiTemplate(player).build(holder, player)
 
     protected fun createGuiTemplate(player: EntityPlayer?): ModularUI.Builder
     {
-        val recipeMap = this.workableHandler.recipeMap
-
+        val recipeMap = workableHandler.recipeMap
         // Original Gui from SteamMetaTileEntity.
         val builder = super.createUITemplate(player)
-
         // Progress Bar and Ghost Circuit Inventory components.
-        this.addRecipeProgressBar(builder, recipeMap)
-        this.addInventorySlotGroup(builder, this.importItems, this.importFluids, false)
-        this.addInventorySlotGroup(builder, this.exportItems, this.exportFluids, true)
-        this.addGhostCircuitSlot(builder)
+        addRecipeProgressBar(builder, recipeMap)
+        addInventorySlotGroup(builder, importItems, importFluids, false)
+        addInventorySlotGroup(builder, exportItems, exportFluids, true)
+        addGhostCircuitSlot(builder)
         return builder
     }
 
     protected fun addRecipeProgressBar(builder: ModularUI.Builder, recipeMap: RecipeMap<*>?)
     {
-        val x = 89 - this.progressBarIndicator.width / 2
-        val y = 42 - this.progressBarIndicator.height / 2
+        val x = 89 - progressBarIndicator.width / 2
+        val y = 42 - progressBarIndicator.height / 2
         builder.widget(RecipeProgressWidget(
-            { this.workableHandler.progressPercent },
-            x, y, this.progressBarIndicator.width, this.progressBarIndicator.height,
-            this.progressBarIndicator.progressBarTexture.get(isHighPressure),
-            this.progressBarIndicator.progressBarMoveType, recipeMap))
+            { workableHandler.progressPercent },
+            x, y, progressBarIndicator.width, progressBarIndicator.height,
+            progressBarIndicator.progressBarTexture.get(isHighPressure),
+            progressBarIndicator.progressBarMoveType, recipeMap))
     }
 
     protected fun addInventorySlotGroup(builder: ModularUI.Builder,
@@ -186,7 +167,7 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
                                         isOutputs: Boolean)
     {
         var offsetY = 0
-        var itemSlotCount = itemHandler.getSlots()
+        var itemSlotCount = itemHandler.slots
         var fluidSlotCount = fluidHandler.tanks - (if (isOutputs) 0 else 1) // Remove input steam tank.
         // Redundant to store item slots count if you know it's going to be 0.
         var invertFluids = false
@@ -211,21 +192,22 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
         if (fullGridHeight >= 3) offsetY += 4
 
         val startInputsX = if (isOutputs)
-            89 + this.progressBarIndicator.width / 2 + 9
+            89 + progressBarIndicator.width / 2 + 9
         else
-            89 - (this.progressBarIndicator.width / 2 + 9 + itemSlotLeft * 18)
+            89 - (progressBarIndicator.width / 2 + 9 + itemSlotLeft * 18)
+
         var startInputsY = offsetY + (if (isVerticalFluid)
             42 - ((itemSlotDown * 18) / 2)
         else
             42 - (((fluidSlotCount - 1) / 3 + 1) * 18))
 
-        val wasGroup = itemHandler.getSlots() + fluidHandler.tanks == 12
+        val wasGroup = itemHandler.slots + fluidHandler.tanks == 12
         if (wasGroup) startInputsY -= 9
-        else if (itemHandler.getSlots() >= 6 && fluidHandler.tanks >= 2 && !isOutputs) startInputsY -= 9
+        else if (itemHandler.slots >= 6 && fluidHandler.tanks >= 2 && !isOutputs) startInputsY -= 9
 
-        for (i in 0..<itemSlotDown)
+        for (i in 0 until itemSlotDown)
         {
-            for (j in 0..<itemSlotLeft)
+            for (j in 0 until itemSlotLeft)
             {
                 val slotIndex = i * itemSlotLeft + j
                 if (slotIndex >= itemSlotCount) break
@@ -241,7 +223,7 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
             if (isVerticalFluid)
             {
                 val startSpecX = if (isOutputs) startInputsX + itemSlotLeft * 18 else startInputsX - 18
-                for (i in 0..<fluidSlotCount)
+                for (i in 0 until fluidSlotCount)
                 {
                     addSlot(builder, startSpecX, startInputsY + 18 * i, i,
                             itemHandler, fluidHandler, !invertFluids, isOutputs)
@@ -250,7 +232,7 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
             else
             {
                 val startSpecY = startInputsY + itemSlotDown * 18
-                for (i in 0..<fluidSlotCount)
+                for (i in 0 until fluidSlotCount)
                 {
                     val x = if (isOutputs)
                         startInputsX + 18 * (i % 3)
@@ -265,29 +247,31 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
 
     protected fun addGhostCircuitSlot(builder: ModularUI.Builder)
     {
-        if (this.exportItems.getSlots() + this.exportFluids.tanks <= 9)
+        if (exportItems.slots + exportFluids.tanks <= 9)
         {
-            if (this.circuitInventory != null)
+            if (circuitInventory != null)
             {
                 val circuitSlot = GhostCircuitSlotWidget(circuitInventory, 0, 124, 62)
-                    .setBackgroundTexture(GuiTextures.SLOT_STEAM.get(isHighPressure), this.circuitSlotOverlay)
-                builder.widget(circuitSlot.setConsumer { widget -> getCircuitSlotTooltip(widget) })
-                    .widget(ClickButtonWidget(115, 62, 9, 9, "") { click ->
-                        this.circuitInventory?.addCircuitValue(if (click.isShiftClick) 5 else 1) }
-                            .setShouldClientCallback(true)
-                            .setButtonTexture(GTLiteGuiTextures.BUTTON_INT_CIRCUIT_PLUS_STEAM.get(isHighPressure))
-                            .setDisplayFunction {
-                                this.circuitInventory!!.hasCircuitValue()
-                                        && this.circuitInventory!!.circuitValue < IntCircuitIngredient.CIRCUIT_MAX
-                            })
-                    .widget(
-                        ClickButtonWidget(115, 71, 9, 9, "") { click ->
-                            this.circuitInventory?.addCircuitValue(if (click!!.isShiftClick) -5 else -1) }.setShouldClientCallback(true)
-                            .setButtonTexture(GTLiteGuiTextures.BUTTON_INT_CIRCUIT_MINUS_STEAM.get(isHighPressure))
-                            .setDisplayFunction {
-                                this.circuitInventory!!.hasCircuitValue()
-                                        && this.circuitInventory!!.circuitValue > IntCircuitIngredient.CIRCUIT_MIN
-                            })
+                    .setBackgroundTexture(GuiTextures.SLOT_STEAM.get(isHighPressure), circuitSlotOverlay)
+                builder.widget(circuitSlot.setConsumer { getCircuitSlotTooltip(it) })
+                    .widget(ClickButtonWidget(115, 62, 9, 9, "") {
+                        circuitInventory?.addCircuitValue(if (it.isShiftClick) 5 else 1)
+                    }
+                        .setShouldClientCallback(true)
+                        .setButtonTexture(GTLiteGuiTextures.BUTTON_INT_CIRCUIT_PLUS_STEAM.get(isHighPressure))
+                        .setDisplayFunction {
+                            circuitInventory!!.hasCircuitValue()
+                                    && circuitInventory!!.circuitValue < IntCircuitIngredient.CIRCUIT_MAX
+                        })
+                    .widget(ClickButtonWidget(115, 71, 9, 9, "") {
+                        circuitInventory?.addCircuitValue(if (it.isShiftClick) -5 else -1)
+                    }
+                        .setShouldClientCallback(true)
+                        .setButtonTexture(GTLiteGuiTextures.BUTTON_INT_CIRCUIT_MINUS_STEAM.get(isHighPressure))
+                        .setDisplayFunction {
+                            circuitInventory!!.hasCircuitValue()
+                                    && circuitInventory!!.circuitValue > IntCircuitIngredient.CIRCUIT_MIN
+                        })
             }
         }
     }
@@ -299,7 +283,7 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
     {
         val configString = if (circuitInventory == null
             || circuitInventory!!.circuitValue == GhostCircuitItemStackHandler.NO_CONFIG)
-            TextComponentTranslation("gregtech.gui.configurator_slot.no_value").getFormattedText()
+            TextComponentTranslation("gregtech.gui.configurator_slot.no_value").formattedText
         else
             circuitInventory!!.circuitValue.toString()
         widget.setTooltipText("gregtech.gui.configurator_slot.tooltip", configString)
@@ -313,7 +297,6 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
     {
         var slotIndex = slotIndex
         if (!isOutputs && isFluid) slotIndex++ // Skip steam slot.
-
         if (!isFluid)
         {
             builder.widget(SlotWidget(itemHandler, slotIndex, x, y, true, !isOutputs)
@@ -329,41 +312,35 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
     }
 
     protected fun getOverlaysForSlot(isFluid: Boolean): Array<TextureArea?>
-    {
-        return arrayOf(
-            if (isFluid)
-                GTLiteGuiTextures.FLUID_SLOT_STEAM.get(isHighPressure)
-            else
-                GuiTextures.SLOT_STEAM.get(isHighPressure)
-        )
-    }
+        = arrayOf(if (isFluid) GTLiteGuiTextures.FLUID_SLOT_STEAM.get(isHighPressure)
+                  else GuiTextures.SLOT_STEAM.get(isHighPressure))
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
     {
         super.writeToNBT(data)
-        if (this.circuitInventory != null) this.circuitInventory!!.write(data)
+        if (circuitInventory != null) circuitInventory!!.write(data)
         return data
     }
 
     override fun readFromNBT(data: NBTTagCompound)
     {
         super.readFromNBT(data)
-        if (this.circuitInventory != null)
+        if (circuitInventory != null)
         {
             if (data.hasKey("CircuitInventory", Constants.NBT.TAG_COMPOUND))
             {
                 val circuitStackHandler = ItemStackHandler()
-                for (i in 0 ..< circuitStackHandler.slots)
+                for (i in 0 until circuitStackHandler.slots)
                 {
                     var stack = circuitStackHandler.getStackInSlot(i)
                     if (stack.isEmpty) continue
-                    stack = GTTransferUtils.insertItem(this.importItems, stack, false)
-                    this.circuitInventory!!.setCircuitValueFromStack(stack)
+                    stack = GTTransferUtils.insertItem(importItems, stack, false)
+                    circuitInventory!!.setCircuitValueFromStack(stack)
                 }
             }
             else
             {
-                this.circuitInventory!!.read(data)
+                circuitInventory!!.read(data)
             }
         }
     }
@@ -372,10 +349,8 @@ open class SimpleSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
 
     override fun setGhostCircuitConfig(config: Int)
     {
-        if (this.circuitInventory == null
-            || this.circuitInventory!!.circuitValue == config) return
-        this.circuitInventory!!.circuitValue = config
+        if (circuitInventory == null || circuitInventory!!.circuitValue == config) return
+        circuitInventory!!.circuitValue = config
         if (!world.isRemote) markDirty()
     }
-
 }

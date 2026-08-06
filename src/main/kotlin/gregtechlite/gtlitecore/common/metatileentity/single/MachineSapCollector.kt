@@ -23,10 +23,10 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 import net.minecraftforge.items.ItemStackHandler
 
-class MachineSapCollector(id: ResourceLocation?, tier: Int) : PseudoMultiMachineMetaTileEntity(id, SAP_COLLECTOR_RECIPES, GTLiteOverlays.SAP_COLLECTOR_OVERLAY, tier, true, collectorTankSizeFunction)
+class MachineSapCollector(id: ResourceLocation, tier: Int) : PseudoMultiMachineMetaTileEntity(id, SAP_COLLECTOR_RECIPES, GTLiteOverlays.SAP_COLLECTOR_OVERLAY, tier, true, collectorTankSizeFunction)
 {
-
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity): PseudoMultiMachineMetaTileEntity = MachineSapCollector(metaTileEntityId, tier)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): PseudoMultiMachineMetaTileEntity
+        = MachineSapCollector(metaTileEntityId, tier)
 
     override fun createImportItemHandler(): IItemHandlerModifiable = ItemStackHandler(1)
 
@@ -46,33 +46,24 @@ class MachineSapCollector(id: ResourceLocation?, tier: Int) : PseudoMultiMachine
                 && facing != outputFacingFluids.opposite && facing != outputFacingItems.opposite
     }
 
-    @Suppress("Deprecation")
+
     override fun setFrontFacing(frontFacing: EnumFacing)
     {
         super.setFrontFacing(frontFacing)
-        if (outputFacingFluids == frontFacing.opposite
-            || outputFacingItems == frontFacing.opposite)
-            outputFacing = frontFacing.rotateY()
+        if (outputFacingFluids == frontFacing.opposite || outputFacingItems == frontFacing.opposite)
+            outputFacingItems = frontFacing.rotateY()
     }
 
-    @Suppress("deprecation")
-    override fun onWrenchClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing, hitResult: CuboidRayTraceResult): Boolean
+    override fun onWrenchClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing,
+                               hitResult: CuboidRayTraceResult): Boolean
     {
         if (!playerIn.isSneaking)
         {
-            if (outputFacing == facing)
-            {
-                return false
-            }
-            else if (hasFrontFacing() && facing == getFrontFacing()
-                || facing == getFrontFacing().opposite)
-            {
-                return false
-            }
+            if (outputFacingItems == facing) return false
+            else if (hasFrontFacing() && facing == frontFacing || facing == frontFacing.opposite) return false
             else
             {
-                if (!world.isRemote)
-                    outputFacing = facing
+                if (!world.isRemote) outputFacingItems = facing
                 return true
             }
         }
@@ -83,7 +74,8 @@ class MachineSapCollector(id: ResourceLocation?, tier: Int) : PseudoMultiMachine
     }
 
     @SideOnly(Side.CLIENT)
-    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?, pipeline: Array<IVertexOperation?>?)
+    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?,
+                                      pipeline: Array<IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
         GTLiteOverlays.SAP_COLLECTOR_OVERLAY.renderOrientedState(renderState, translation, pipeline,
@@ -97,5 +89,4 @@ class MachineSapCollector(id: ResourceLocation?, tier: Int) : PseudoMultiMachine
     }
 
     override fun getIsWeatherOrTerrainResistant() = true
-
 }

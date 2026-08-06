@@ -1,6 +1,10 @@
 package gregtechlite.gtlitecore.api.metatileentity.multiblock
 
 import gregtech.api.capability.*
+import gregtech.api.capability.GregtechDataCodes.WORKABLE_ACTIVE
+import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
+import gregtech.api.capability.GregtechTileCapabilities.CAPABILITY_CONTROLLABLE
+import gregtech.api.capability.GregtechTileCapabilities.CAPABILITY_WORKABLE
 import gregtech.api.capability.impl.EnergyContainerHandler
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -24,10 +28,9 @@ import kotlin.math.pow
 abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
                                     protected val tier: Int,
                                     protected val moduleTier: Int,
-                                    protected val minCasingTier: Int) : MultiblockWithDisplayBase(metaTileEntityId),
-    ModuleReceiver, IWorkable, IControllable
+                                    protected val minCasingTier: Int)
+    : MultiblockWithDisplayBase(metaTileEntityId), ModuleReceiver, IWorkable, IControllable
 {
-
     override var moduleProvider: ModuleProvider? = null
 
     override val displayCountName: String
@@ -56,15 +59,12 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
      * @param tier          The voltage tier of this mte.
      * @param moduleTier    The inner tier of the module.
      * @param minCasingTier The minimum casing tier of this module required, this is useful for some
-     * tiered status predicate.
+     *                      tiered status predicate.
      */
     init
     {
-        this.energyContainer = EnergyContainerHandler(
-                this,
-                (160008000L * 4.0.pow((this.tier - 9).toDouble())).toLong(), this.energyConsumed,
-                1, 0, 0
-        )
+        energyContainer = EnergyContainerHandler(this, (160008000L * 4.0.pow((tier - 9).toDouble())).toLong(),
+            energyConsumed, 1, 0, 0)
     }
 
     override fun formStructure(context: PatternMatchContext?)
@@ -99,8 +99,7 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
         if (offsetTimer % SECOND == 0L && moduleProvider != null)
         {
             if (energyContainer.energyCapacity != energyContainer.energyStored
-                && moduleProvider!!.subEnergyContainer!!.energyStored > energyConsumed * SECOND
-            )
+                && moduleProvider!!.subEnergyContainer!!.energyStored > energyConsumed * SECOND)
             {
                 val maxModuleReceive = energyContainer.energyCapacity - energyContainer.energyStored
                 val energyDrained = min(moduleProvider!!.subEnergyContainer!!.energyStored, maxModuleReceive)
@@ -116,43 +115,17 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
     }
 
     fun getEnergyContainer(): IEnergyContainer?
-    {
-        return if (moduleProvider?.subEnergyContainer == null)
-        {
-            EnergyContainerHandler(this, 0, 0, 0, 0, 0)
-        }
-        else
-        {
-            energyContainer
-        }
-    }
+        = if (moduleProvider?.subEnergyContainer == null) EnergyContainerHandler(this, 0, 0, 0, 0, 0) else energyContainer
 
     fun getCombinedEnergyContainer(): IEnergyContainer
-    {
-        return if (moduleProvider?.subEnergyContainer == null)
-        {
-            EnergyContainerHandler(this, 0, 0, 0, 0, 0)
-        }
-        else
-        {
-            EnergyContainerList(
-                    listOf(
-                            this.moduleProvider!!.subEnergyContainer,
-                            this.energyContainer
-                    )
-            )
-        }
-    }
+    = if (moduleProvider?.subEnergyContainer == null) EnergyContainerHandler(this, 0, 0, 0, 0, 0)
+        else EnergyContainerList(listOf(moduleProvider!!.subEnergyContainer, energyContainer))
 
     override fun <T : Any> getCapability(capability: Capability<T>, side: EnumFacing?): T?
     {
-        if (capability === GregtechTileCapabilities.CAPABILITY_WORKABLE) return GregtechTileCapabilities.CAPABILITY_WORKABLE.cast(
-                this
-        )
-        if (capability === GregtechTileCapabilities.CAPABILITY_CONTROLLABLE) return GregtechTileCapabilities.CAPABILITY_CONTROLLABLE.cast(
-                this
-        )
-        return super.getCapability<T>(capability, side)
+        if (capability === CAPABILITY_WORKABLE) return CAPABILITY_WORKABLE.cast(this)
+        if (capability === CAPABILITY_CONTROLLABLE) return CAPABILITY_CONTROLLABLE.cast(this)
+        return super.getCapability(capability, side)
     }
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
@@ -195,22 +168,22 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
     override fun receiveCustomData(dataId: Int, buf: PacketBuffer)
     {
         super.receiveCustomData(dataId, buf)
-        if (dataId == GregtechDataCodes.WORKABLE_ACTIVE)
+        when (dataId)
         {
-            setActive(buf.readBoolean())
-            scheduleRenderUpdate()
-        }
-        else if (dataId == GregtechDataCodes.WORKING_ENABLED)
-        {
-            isWorkingEnabled = buf.readBoolean()
-            scheduleRenderUpdate()
+            WORKABLE_ACTIVE ->
+            {
+                setActive(buf.readBoolean())
+                scheduleRenderUpdate()
+            }
+            WORKING_ENABLED ->
+            {
+                isWorkingEnabled = buf.readBoolean()
+                scheduleRenderUpdate()
+            }
         }
     }
 
-    override fun isActive(): Boolean
-    {
-        return isActive && isWorkingEnabled
-    }
+    override fun isActive(): Boolean = isActive && isWorkingEnabled
 
     fun setActive(active: Boolean)
     {
@@ -218,18 +191,16 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
         {
             isActive = active
             markDirty()
-            if (world != null && !world.isRemote) writeCustomData(
-                    GregtechDataCodes.WORKABLE_ACTIVE
-            ) { buf: PacketBuffer? -> buf!!.writeBoolean(active) }
+            if (world != null && !world.isRemote)
+            {
+                writeCustomData(WORKABLE_ACTIVE) { it.writeBoolean(active) }
+            }
         }
     }
 
-    override fun getProgress(): Int
-    {
-        return progress
-    }
+    override fun getProgress(): Int = progress
 
-    protected fun drainEnergy(simulate: Boolean, energy: Long): Boolean
+    protected fun drainEnergy(simulate: Boolean, energy: Long = energyContainer.inputVoltage): Boolean
     {
         val container = getCombinedEnergyContainer()
         val result = container.energyStored - energy
@@ -239,11 +210,6 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
             return true
         }
         return false
-    }
-
-    protected fun drainEnergy(simulate: Boolean): Boolean
-    {
-        return drainEnergy(simulate, energyContainer.inputVoltage)
     }
 
     @SideOnly(Side.CLIENT)
@@ -269,14 +235,13 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
     override fun setWorkingEnabled(workingEnabled: Boolean)
     {
         initializeAbilities()
-        this.isWorkingEnabled = workingEnabled
+        isWorkingEnabled = workingEnabled
         markDirty()
-        if (world?.isRemote == false) writeCustomData(GregtechDataCodes.WORKING_ENABLED)
+        if (world != null && !world.isRemote)
         {
-            it.writeBoolean(this.isWorkingEnabled)
+            writeCustomData(WORKING_ENABLED) { it.writeBoolean(isWorkingEnabled) }
         }
     }
 
     override fun getMaxProgress() = maxProgress
-
 }
