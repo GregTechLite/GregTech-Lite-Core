@@ -10,15 +10,12 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplayBase)
 {
-
     companion object
     {
-
         fun MultiblockWithDisplayBase.addTooltip(tooltip: MutableList<String>, builder: MultiblockTooltipBuilder.() -> Unit)
         {
             tooltip += MultiblockTooltipBuilder(this).apply(builder).tooltips
         }
-
     }
 
     private val _tooltips = mutableListOf<String>()
@@ -119,5 +116,4 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
         is RecipeMapMultiblockController -> metaTileEntity.recipeMap.localizedName
         else -> metaTileEntity.metaFullName
     }
-
 }

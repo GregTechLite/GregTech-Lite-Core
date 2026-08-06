@@ -22,7 +22,6 @@ open class PseudoMultiSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocat
                                                  isHighPressure: Boolean)
     : SimpleSteamMachineMetaTileEntity(metaTileEntityId, recipeMap, progressBarIndicator, renderer, isBrickedCasing, isHighPressure)
 {
-
     var targetBlockState: IBlockState? = null
 
     init
@@ -30,7 +29,7 @@ open class PseudoMultiSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocat
         workableHandler = PseudoMultiSteamRecipeLogic(this, recipeMap, isHighPressure, steamFluidTank, 1.0)
     }
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?): MetaTileEntity
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = PseudoMultiSteamMachineMetaTileEntity(metaTileEntityId, workableHandler.recipeMap, progressBarIndicator, renderer, isBrickedCasing, isHighPressure)
 
     override fun onLoad()
@@ -61,6 +60,11 @@ open class PseudoMultiSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocat
 
     override fun getIsWeatherOrTerrainResistant() = true
 
+    /**
+     * The traditional "back" side of this type of `MetaTileEntity` is actually treated
+     * as its front for recipe purposes, making wrench movement feel as though you are
+     * holding onto or manipulating the back side to point the `MetaTileEntity`.
+     */
     fun checkAdjacentBlocks()
     {
         if (world == null || world.isRemote)
@@ -68,10 +72,6 @@ open class PseudoMultiSteamMachineMetaTileEntity(metaTileEntityId: ResourceLocat
             targetBlockState = null
             return
         }
-        // The traditional "back" side of this type of MetaTileEntity is actually treated
-        // as its front for recipe purposes, making wrench movement feel as though you are
-        // holding onto or manipulating the back side to point the MetaTileEntity.
-        targetBlockState = world.getBlockState(pos.offset(getFrontFacing().opposite))
+        targetBlockState = world.getBlockState(pos.offset(frontFacing.opposite))
     }
-
 }
