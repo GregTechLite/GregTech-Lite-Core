@@ -10,7 +10,6 @@ import net.minecraftforge.fluids.IFluidTank
 
 class PseudoMultiSteamRecipeLogic(val pseudoMetaTileEntity: PseudoMultiSteamMachineMetaTileEntity, recipeMap: RecipeMap<*>?, isHighPressure: Boolean, steamFluidTank: IFluidTank?, conversionRate: Double) : RecipeLogicSteam(pseudoMetaTileEntity, recipeMap, isHighPressure, steamFluidTank, conversionRate)
 {
-
     override fun checkRecipe(recipe: Recipe): Boolean
     {
         if (pseudoMetaTileEntity.targetBlockState == null)
@@ -37,5 +36,4 @@ class PseudoMultiSteamRecipeLogic(val pseudoMetaTileEntity: PseudoMultiSteamMach
             || ventingSide == pseudoMetaTileEntity.getFrontFacing().opposite)
             ventingSide = newFrontFacing.rotateY()
     }
-
 }

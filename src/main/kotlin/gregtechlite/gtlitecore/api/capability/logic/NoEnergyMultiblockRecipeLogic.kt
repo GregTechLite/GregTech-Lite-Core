@@ -10,7 +10,6 @@ import gregtech.api.recipes.properties.RecipePropertyStorage
 
 open class NoEnergyMultiblockRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : MultiblockRecipeLogic(metaTileEntity)
 {
-
     override fun getEnergyInputPerSecond(): Long = Int.MAX_VALUE.toLong()
 
     override fun getEnergyStored(): Long = Int.MAX_VALUE.toLong()
@@ -30,5 +29,4 @@ open class NoEnergyMultiblockRecipeLogic(metaTileEntity: RecipeMapMultiblockCont
         OverclockingLogic.standardOC(ocParams.apply { recipeEUt = 1 }, ocResult,
             getMaxVoltage(), overclockingDurationFactor, overclockingVoltageFactor)
     }
-
 }

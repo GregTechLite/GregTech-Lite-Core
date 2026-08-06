@@ -15,7 +15,6 @@ import kotlin.math.max
  */
 open class ExtendedPowerMultiblockRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : MultiblockRecipeLogic(metaTileEntity)
 {
-
     override fun getMaximumOverclockVoltage() = maxVoltage
 
     override fun getMaxVoltage(): Long
@@ -51,5 +50,4 @@ open class ExtendedPowerMultiblockRecipeLogic(metaTileEntity: RecipeMapMultibloc
         }
         return max(energyContainer.inputVoltage.toDouble(), energyContainer.outputVoltage.toDouble()).toLong()
     }
-
 }

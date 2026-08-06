@@ -6,7 +6,5 @@ import gregtechlite.gtlitecore.mixins.hooks.Extension
 @Extension
 interface MultipleNotifiableHandler
 {
-
     fun getBackingNotifiers(): Collection<INotifiableHandler>
-
 }

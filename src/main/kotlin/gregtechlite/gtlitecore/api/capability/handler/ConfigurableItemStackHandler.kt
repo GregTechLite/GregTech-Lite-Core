@@ -17,7 +17,6 @@ open class ConfigurableItemStackHandler(mte: MetaTileEntity?,
                                         private val slotCapacity: () -> Int)
     : NotifiableItemStackHandler(mte, slotSize, entityToNotify, isExport)
 {
-
     constructor(mte: MetaTileEntity?, slotSize: Int, entityToNotify: MetaTileEntity?, isExport: Boolean) : this(mte, slotSize, entityToNotify, isExport, { Int.MAX_VALUE })
 
     override fun getSlotLimit(slot: Int): Int = slotCapacity.invoke()
@@ -50,5 +49,4 @@ open class ConfigurableItemStackHandler(mte: MetaTileEntity?,
             return existedStack.copy(amount)
         }
     }
-
 }
