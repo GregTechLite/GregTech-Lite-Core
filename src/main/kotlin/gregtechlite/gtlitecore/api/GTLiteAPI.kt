@@ -44,7 +44,6 @@ import gregtechlite.gtlitecore.common.block.variant.science.TimeAccelerationFiel
 
 object GTLiteAPI
 {
-
     // @formatter:off
 
     // region API Objects
@@ -221,5 +220,4 @@ object GTLiteAPI
     }
 
     // @formatter:on
-
 }

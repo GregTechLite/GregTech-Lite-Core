@@ -168,11 +168,10 @@ import java.util.function.Function
 
 object GTLiteMetaTileEntities
 {
-
     // @formatter:off
 
     @JvmField
-    var collectorTankSizeFunction = Function<Int, Int> { tier ->
+    var collectorTankSizeFunction = { tier: Int ->
         when
         {
             tier <= LV -> 16000
@@ -937,7 +936,6 @@ object GTLiteMetaTileEntities
     }
 
     // @formatter:on
-
 }
 
 // @formatter:off
