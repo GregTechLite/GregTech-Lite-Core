@@ -14,6 +14,7 @@ import gregtech.api.metatileentity.MetaTileEntityHolder
 import gregtech.api.util.GTUtility.convertRGBtoOpaqueRGBA_CL
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.capability.Delegator
+import gregtechlite.gtlitecore.api.collection.openArrayMapOf
 import gregtechlite.gtlitecore.api.collection.to
 import gregtechlite.gtlitecore.api.extension.add
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
@@ -39,22 +40,16 @@ abstract class MetaTileEntityDelegator(metaTileEntityId: ResourceLocation,
                                        protected val capabilityFilter: (Capability<*>) -> Boolean,
                                        protected val baseColor: Int) : MetaTileEntity(metaTileEntityId), Delegator
 {
+    @get:SideOnly(Side.CLIENT)
+    protected val baseTexture: TextureAtlasSprite?
+        get() = Textures.PIPE_SIDE
 
     override fun <T> getCapability(capability: Capability<T?>, side: EnumFacing?): T?
-    {
-        val delegatedCapability = getDelegatedCapability<T?>(capability, side)
-        return delegatedCapability ?: getDefaultCapability<T?>(capability, side)
-    }
+        = getDelegatedCapability(capability, side) ?: getDefaultCapability(capability, side)
 
     protected fun <T> getDefaultCapability(capability: Capability<T?>, side: EnumFacing?): T?
-    {
-        return if (side != null && capabilityFilter(capability)
-            && DefaultCapabilities.hasCapability(capability)
-        )
-            DefaultCapabilities.getCapability<T?>(capability)
-        else
-            super.getCapability<T?>(capability, side)
-    }
+        = if (side != null && capabilityFilter(capability) && DefaultCapabilities.hasCapability(capability))
+            DefaultCapabilities.getCapability(capability) else super.getCapability(capability, side)
 
     protected fun <T> getDelegatedCapability(capability: Capability<T?>?, side: EnumFacing?): T?
     {
@@ -62,51 +57,38 @@ abstract class MetaTileEntityDelegator(metaTileEntityId: ResourceLocation,
         val delegatingFacing = getDelegatingFacing(side)
         if (delegatingFacing == null) return null
         val te = world.getTileEntity(pos.offset(delegatingFacing))
-        if (te == null || (te is MetaTileEntityHolder && te.getMetaTileEntity() is Delegator)) return null
+        if (te == null || (te is MetaTileEntityHolder && te.metaTileEntity is Delegator)) return null
         return te.getCapability(capability, delegatingFacing.opposite)
     }
 
     @SideOnly(Side.CLIENT)
-    override fun renderMetaTileEntity(renderState: CCRenderState?,
-                                      translation: Matrix4?,
+    override fun renderMetaTileEntity(renderState: CCRenderState?, translation: Matrix4?,
                                       pipeline: Array<IVertexOperation?>?)
     {
         val colouredPipeline = pipeline?.add(ColourMultiplier(
-            convertRGBtoOpaqueRGBA_CL(this.paintingColorForRendering)))
+            convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
         for (facing in EnumFacing.entries)
             Textures.renderFace(renderState, translation, colouredPipeline, facing,
-            Cuboid6.full, this.baseTexture, BlockRenderLayer.CUTOUT_MIPPED)
+            Cuboid6.full, baseTexture, BlockRenderLayer.CUTOUT_MIPPED)
     }
 
-    @get:SideOnly(Side.CLIENT)
-    protected val baseTexture: TextureAtlasSprite?
-        get() = Textures.PIPE_SIDE
-
     @SideOnly(Side.CLIENT)
-    override fun addInformation(stack: ItemStack?,
-                                world: World?,
-                                tooltip: MutableList<String?>,
-                                advanced: Boolean)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.delegator.tooltip.non_recursion"))
     }
 
     @SideOnly(Side.CLIENT)
-    override fun getParticleTexture(): Pair<TextureAtlasSprite?, Int?>
-        = baseTexture to paintingColorForRendering
+    override fun getParticleTexture(): Pair<TextureAtlasSprite?, Int> = baseTexture to paintingColorForRendering
 
-    override fun getDefaultPaintingColor(): Int = this.baseColor
+    override fun getDefaultPaintingColor(): Int = baseColor
 
     override fun openGUIOnRightClick(): Boolean = false
 
-    @Deprecated("Deprecated in Java")
-    override fun createUI(entityPlayer: EntityPlayer?): ModularUI? = null
-
     object DefaultCapabilities
     {
-
-        private val DEFAULT_CAPABILITIES = Object2ObjectArrayMap<Capability<*>?, Any?>()
+        private val DEFAULT_CAPABILITIES = openArrayMapOf<Capability<*>?, Any?>()
 
         init
         {
@@ -114,15 +96,9 @@ abstract class MetaTileEntityDelegator(metaTileEntityId: ResourceLocation,
             addCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY,
                 CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(object : ItemStackHandler(1)
                 {
+                    override fun insertItem(slot: Int, stack: ItemStack, simulate: Boolean): ItemStack = stack
 
-                    override fun insertItem(slot: Int,
-                                            stack: ItemStack,
-                                            simulate: Boolean): ItemStack = stack
-
-                    override fun extractItem(slot: Int,
-                                             amount: Int,
-                                             simulate: Boolean): ItemStack = ItemStack.EMPTY
-
+                    override fun extractItem(slot: Int, amount: Int, simulate: Boolean): ItemStack = ItemStack.EMPTY
                 })
             )
 
@@ -130,11 +106,9 @@ abstract class MetaTileEntityDelegator(metaTileEntityId: ResourceLocation,
             addCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY,
                 CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(object : FluidTank(10000)
                 {
-
                     override fun fill(resource: FluidStack?, doFill: Boolean): Int = 0
 
                     override fun drainInternal(maxDrain: Int, doDrain: Boolean): FluidStack? = null
-
                 })
             )
 
@@ -143,21 +117,14 @@ abstract class MetaTileEntityDelegator(metaTileEntityId: ResourceLocation,
                 GregtechCapabilities.CAPABILITY_ENERGY_CONTAINER.cast(IEnergyContainer.DEFAULT))
         }
 
-        fun hasCapability(capability: Capability<*>): Boolean
-        {
-            return DEFAULT_CAPABILITIES.containsKey(capability)
-        }
+        fun hasCapability(capability: Capability<*>): Boolean = DEFAULT_CAPABILITIES.containsKey(capability)
 
         fun <T> getCapability(capability: Capability<T?>): T?
-        {
-            return DEFAULT_CAPABILITIES.getOrDefault(capability, null)?.let { Unchecks.cast(it) }
-        }
+            = DEFAULT_CAPABILITIES.getOrDefault(capability, null)?.let { Unchecks.cast(it) }
 
         fun <T> addCapability(capability: Capability<T?>, value: T)
         {
             DEFAULT_CAPABILITIES.put(capability, capability.cast(value))
         }
-
     }
-
 }
