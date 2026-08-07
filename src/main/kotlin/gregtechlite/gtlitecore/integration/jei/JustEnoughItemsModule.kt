@@ -18,7 +18,9 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_JEI
 import gregtechlite.gtlitecore.integration.IntegrationSubModule
 import gregtechlite.gtlitecore.integration.jei.category.SpacePumpRecipeCategory
+import gregtechlite.gtlitecore.integration.jei.group.GTCollapsibleGroups
 import gregtechlite.gtlitecore.integration.jei.info.SpacePumpRecipeWrapper
+import mezz.jei.api.ICollapsibleGroupRegistry
 import mezz.jei.api.IGuiHelper
 import mezz.jei.api.IJeiRuntime
 import mezz.jei.api.IModPlugin
@@ -77,6 +79,12 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
         logger.info("Registering JEI Recipe Categories...")
 
         registry.addRecipeCategories(SpacePumpRecipeCategory(registry.jeiHelpers.guiHelper))
+    }
+
+    override fun registerCollapsibleGroups(registry: ICollapsibleGroupRegistry)
+    {
+        logger.info("Registering JEI Collapsible Groups...")
+        GTCollapsibleGroups.registerGroup(registry)
     }
     
     override fun register(registry: IModRegistry)
