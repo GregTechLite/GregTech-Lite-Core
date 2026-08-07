@@ -4157,6 +4157,16 @@ gtlitecore.jei.group.prefix.fuelRodDepleted=枯竭燃料棒
 gtlitecore.jei.group.prefix.fuelRodEnrichedDepleted=枯竭浓缩燃料棒
 gtlitecore.jei.group.prefix.fuelRodHighDensityDepleted=枯竭高密度燃料棒
 gtlitecore.jei.group.prefix.nanite=纳米蜂群
+gtlitecore.jei.group.cable=导线 & 线缆
+gtlitecore.jei.group.item_pipe=物品管道
+gtlitecore.jei.group.fluid_pipe=流体管道
+gtlitecore.jei.group.ore=矿石
+gtlitecore.jei.group.frame=框架
+gtlitecore.jei.group.lamp=灯
+gtlitecore.jei.group.material_block=材料块
+
+gtlitecore.jei.group.sheeted_frame=板框箱
+gtlitecore.jei.group.metal_wall=金属壁面
 
 gtlitecore.tooltip.machine.machine_type=机器类型：§e%s
 gtlitecore.tooltip.machine.overclock_mode=超频模式：

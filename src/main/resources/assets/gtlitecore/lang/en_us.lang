@@ -4157,6 +4157,16 @@ gtlitecore.jei.group.prefix.fuelRodDepleted=Depleted Fuel Rods
 gtlitecore.jei.group.prefix.fuelRodEnrichedDepleted=Depleted Enriched Fuel Rods
 gtlitecore.jei.group.prefix.fuelRodHighDensityDepleted=Depleted High Density Fuel Rods
 gtlitecore.jei.group.prefix.nanite=Nanites
+gtlitecore.jei.group.cable=Wires & Cables
+gtlitecore.jei.group.item_pipe=Item Pipes
+gtlitecore.jei.group.fluid_pipe=Fluid Pipes
+gtlitecore.jei.group.ore=Ores
+gtlitecore.jei.group.frame=Frames
+gtlitecore.jei.group.lamp=Lamps
+gtlitecore.jei.group.material_block=Material Blocks
+
+gtlitecore.jei.group.sheeted_frame=Sheeted Frames
+gtlitecore.jei.group.metal_wall=Metal Walls
 
 gtlitecore.tooltip.machine.machine_type=Machine Type: §e%s
 gtlitecore.tooltip.machine.overclock_mode=Overclocking Mode:
