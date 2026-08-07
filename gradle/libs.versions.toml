@@ -15,7 +15,7 @@ groovyScript = "1.2.0-hotfix1"
 craftTweaker2 = "1.12-4.1.20.700"
 ctm = "2915363" # 1.0.2.31
 ae2ExtendedLife = "6302098" # 0.56.7
-jei = "4.16.1.302"
+jei = "4.32.0"
 theOneProbe = "2667280" # 1.4.28
 smoothFonts = "3944565" # 2.1.4
 betterQuestingUnofficial = "5875712" # 4.2.6
@@ -45,7 +45,7 @@ groovyScript             = { group = "com.cleanroommc",               name = "gr
 craftTweaker2            = { group = "CraftTweaker2",                 name = "CraftTweaker2-MC1120-Main",         version.ref = "craftTweaker2"            }
 ctm                      = { group = "curse.maven",                   name = "ctm-267602",                        version.ref = "ctm"                      }
 ae2ExtendedLife          = { group = "curse.maven",                   name = "ae2-extended-life-570458",          version.ref = "ae2ExtendedLife"          }
-jei                      = { group = "mezz.jei",                      name = "jei_1.12.2",                        version.ref = "jei"                      }
+jei                      = { group = "mezz",                          name = "jei",                               version.ref = "jei"                      }
 theOneProbe              = { group = "curse.maven",                   name = "top-245211",                        version.ref = "theOneProbe"              }
 smoothFonts              = { group = "curse.maven",                   name = "smooth-font-285742",                version.ref = "smoothFonts"              }
 betterQuestingUnofficial = { group = "curse.maven",                   name = "better-questing-unofficial-629629", version.ref = "betterQuestingUnofficial" }
