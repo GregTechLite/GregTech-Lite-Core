@@ -22,8 +22,10 @@ import gregtechlite.gtlitecore.common.block.variant.component.SensorCasing
 import gregtechlite.gtlitecore.common.block.variant.science.SpacetimeCompressionFieldGenerator
 import gregtechlite.gtlitecore.common.block.variant.science.StabilizationFieldGenerator
 import gregtechlite.gtlitecore.common.block.variant.science.TimeAccelerationFieldGenerator
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItem1
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import mezz.jei.api.ICollapsibleGroupRegistry
+import net.minecraft.item.ItemStack
 
 object GTLiteCollapsibleGroups
 {
@@ -32,6 +34,7 @@ object GTLiteCollapsibleGroups
         buildStorageGroups(registry)
         registry.addGroup("sheeted_frame", GTLiteBlocks.SHEETED_FRAME_BLOCKS.unzipSubBlocks())
         registry.addGroup("metal_wall", GTLiteBlocks.METAL_WALL_BLOCKS.unzipSubVariants())
+
         registry.addCasingGroup<MotorCasing>("motor_casing")
         registry.addCasingGroup<PistonCasing>("piston_casing")
         registry.addCasingGroup<PumpCasing>("pump_casing")
@@ -50,6 +53,14 @@ object GTLiteCollapsibleGroups
         registry.addCasingGroup<GlassCasing.Enum01>("borosilicate_glass")
         registry.addCasingGroup<Manipulator>("manipulator")
         registry.addCasingGroup<ShieldingCore>("shielding_core")
+
+        registry.addGroupBy("additional_mold", "shape.mold")
+        registry.addGroupBy("additional_extruder", "shape.extruder")
+        registry.addGroupBy("slicer_blade", "shape.slicer_blade")
+        registry.addGroupBy("petri_dish", "tool.petri_dish")
+        registry.addGroupBy("memory_card", "tool.memory_card")
+        registry.addGroupBy("catalyst", "tool.catalyst")
+        registry.addGroupBy("wrap", "wrap")
     }
 
     private fun buildStorageGroups(registry: ICollapsibleGroupRegistry)
@@ -62,4 +73,9 @@ object GTLiteCollapsibleGroups
             GTLiteMetaTileEntities.SILVER_CRATE, GTLiteMetaTileEntities.GOLD_CRATE, GTLiteMetaTileEntities.DIAMOND_CRATE)
             .map { it.stack() })
     }
+
+    private fun ICollapsibleGroupRegistry.addGroupBy(id: String, prefix: String = id): Unit = addGroup(id, filterBy(prefix))
+
+    private fun filterBy(prefix: String): List<ItemStack>
+        = GTLiteMetaItem1.META_ITEMS_1.allItems.filter { it.unlocalizedName.startsWith(prefix) }.map { it.stack() }
 }

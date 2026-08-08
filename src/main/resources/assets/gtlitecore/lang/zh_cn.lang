@@ -4275,6 +4275,13 @@ gtlitecore.jei.group.nuclear_reactor_core=反应堆堆芯
 gtlitecore.jei.group.borosilicate_glass=硼硅酸盐玻璃
 gtlitecore.jei.group.manipulator=脉冲控制方块
 gtlitecore.jei.group.shielding_core=屏蔽核心方块
+gtlitecore.jei.group.additional_mold=模具
+gtlitecore.jei.group.additional_extruder=模头
+gtlitecore.jei.group.slicer_blade=切片机刀片
+gtlitecore.jei.group.petri_dish=培养皿
+gtlitecore.jei.group.memory_card=意识存储卡
+gtlitecore.jei.group.catalyst=催化剂
+gtlitecore.jei.group.wrap=封装物品
 
 gtlitecore.jei.group.machine.polisher=抛光机
 gtlitecore.jei.group.machine.slicer=切片机
