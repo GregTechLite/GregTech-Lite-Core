@@ -60,8 +60,11 @@ object GTLiteCollapsibleGroups
         registry.addGroupBy("petri_dish", "tool.petri_dish")
         registry.addGroupBy("memory_card", "tool.memory_card")
         registry.addGroupBy("catalyst", "tool.catalyst")
-        registry.addGroupBy("wrap", "wrap")
+        registry.addGroupBy("wrap")
         registry.addGroupBy("additional_voltage_coil", "additional_voltage_coil")
+        registry.addGroupBy("suprachronal_circuit", "circuit.suprachronal")
+        registry.addGroupBy("generic_circuit", "circuit.generic")
+        registry.addGroupBy("mining_drone")
     }
 
     private fun buildStorageGroups(registry: ICollapsibleGroupRegistry)

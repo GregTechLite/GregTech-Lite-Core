@@ -119,6 +119,36 @@ object GTLiteMetaItems
     lateinit var SUPRACAUSAL_ASSEMBLY_UXV: MetaItem<*>.MetaValueItem
     lateinit var SUPRACAUSAL_COMPUTER_OpV: MetaItem<*>.MetaValueItem
     lateinit var SUPRACAUSAL_MAINFRAME_MAX: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_ULV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_LV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_MV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_HV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_EV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_IV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_LuV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_ZPM: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_UV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_UHV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_UEV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_UIV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_UXV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_OpV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_MAX: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_ULV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_LV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_MV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_HV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_EV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_IV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_LuV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_ZPM: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_UV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_UHV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_UEV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_UIV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_UXV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_OpV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_MAX: MetaItem<*>.MetaValueItem
 
     lateinit var MINING_DRONE_LV: MetaItem<*>.MetaValueItem
     lateinit var MINING_DRONE_MV: MetaItem<*>.MetaValueItem
