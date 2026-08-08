@@ -52,6 +52,12 @@ object GTCollapsibleGroups
         registry.addGroup("frame", MetaBlocks.FRAME_BLOCKS.unzipSubVariants())
         registry.addGroup("lamp", (MetaBlocks.LAMPS.values + MetaBlocks.BORDERLESS_LAMPS.values).unzipSubBlocks())
         registry.addGroup("material_block", MetaBlocks.COMPRESSED_BLOCKS.unzipSubVariants())
+        registry.addGroup("hermetic_casing", MetaBlocks.HERMETIC_CASING.unzipSubBlocks())
+        registry.addGroup("battery_block", MetaBlocks.BATTERY_BLOCK.unzipSubBlocks())
+        registry.addGroup("warning_sign", listOf(MetaBlocks.WARNING_SIGN, MetaBlocks.WARNING_SIGN_1).unzipSubBlocks())
+        registry.addGroup("metal_sheet", listOf(MetaBlocks.METAL_SHEET, MetaBlocks.LARGE_METAL_SHEET).unzipSubBlocks())
+        registry.addGroup("studs", MetaBlocks.STUDS.unzipSubBlocks())
+        registry.addGroup("machine_casing", MetaBlocks.MACHINE_CASING.unzipSubBlocks())
 
         registry.addGroupBy("mold", "shape.mold")
         registry.addGroupBy("extruder", "shape.extruder")
