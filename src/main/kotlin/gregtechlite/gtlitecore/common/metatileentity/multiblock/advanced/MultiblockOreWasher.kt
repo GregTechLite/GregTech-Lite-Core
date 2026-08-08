@@ -21,6 +21,7 @@ import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
+import gregtechlite.gtlitecore.api.GTLiteLog
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
@@ -30,8 +31,11 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CATALYTIC_REFORMER_RE
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
+import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
+import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
@@ -110,6 +114,83 @@ class MultiblockOreWasher(id: ResourceLocation)
     }
 
     override fun canBeDistinct() = true
+
+    override fun update()
+    {
+        super.update()
+        // We disable rotation of the controller by override allowsExtendedFacing,
+        // this is a fallback for some edge case.
+        val backFacing = frontFacing.opposite.takeIf { it.axis.isHorizontal } ?: EnumFacing.NORTH
+
+        val offsets = buildList {
+            // y = 0 | x = 2, z ∈ [1, 5]
+            for (z in 1..5)
+            {
+                add(BlockPos(0, 0, z))
+            }
+
+            // y = 1 | x ∈ [1, 3], z ∈ [1, 5]
+            for (z in 1..5)
+            {
+                for (x in 1..3)
+                {
+                    add(BlockPos(x - 2, 1, z))
+                }
+            }
+        }
+
+        val forward = backFacing.directionVec
+        val rightVec = backFacing.rotateY()
+
+        var waterCount = 0
+        val countToFill = offsets.size
+
+        for (relPos in offsets)
+        {
+            val dx = relPos.x
+            val dy = relPos.y
+            val dz = relPos.z
+
+            val relX = dx * rightVec.xOffset + dz * forward.x
+            val relY = dy
+            val relZ = dx * rightVec.zOffset + dz * forward.z
+
+            val checkPos = pos.add(relX, relY, relZ)
+            val checkBlock = world.getBlockState(checkPos).block
+
+            val isWater = checkBlock == Blocks.WATER
+            val isAirOrFlowingWater = checkBlock == Blocks.AIR || checkBlock == Blocks.FLOWING_WATER
+
+            if (isStructureFormed)
+            {
+                if (isWater)
+                {
+                    waterCount++
+                    continue
+                }
+
+                if (isAirOrFlowingWater)
+                {
+                    world.setBlockState(checkPos, Blocks.WATER.defaultState)
+                    waterCount++
+                }
+            }
+            else
+            {
+                if (isWater || isAirOrFlowingWater)
+                {
+                    world.setBlockState(checkPos, Blocks.AIR.defaultState)
+                }
+            }
+        }
+
+        if (waterCount < countToFill)
+        {
+            GTLiteLog.logger.debug("Actual fill water count: $waterCount, require fill water count: $countToFill")
+        }
+    }
+
+    override fun allowsExtendedFacing(): Boolean = false
 
     private inner class LargeOreWasherRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
