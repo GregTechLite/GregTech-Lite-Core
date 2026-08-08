@@ -40,18 +40,9 @@ class WorldGenModule : BaseModule()
 
     override fun preInit(event: FMLPreInitializationEvent)
     {
-        // Ordered initialized all worldgen definitions to override GTCEu WorldGenRegistry.
-
-        // Order 1: Extracted all worldgen definitions from original gregtech folder.
-        FileUtility.extractJarFiles("/assets/gregtech/worldgen/",
-                                    Loader.instance().configDir.toPath().resolve(GTValues.MODID).toFile(), false)
-
-        // Order 2: Extracted all worldgen definitions from gtlitecore folder.
-        // This step is enabled "replace" setting to override some configurations, for example,
-        // the fluid is salt water in the original definition "salt_water_deposit.json", and
-        // seawater as an instanceof in new definition.
-        extractWorldGenFiles("/assets/gtlitecore/worldgen/",
-                             Loader.instance().configDir.toPath().resolve(GTValues.MODID).toFile(), false)
+        val worldGenPath = Loader.instance().configDir.toPath().resolve(GTValues.MODID).resolve("worldgen").toFile()
+        FileUtility.extractJarFiles("/assets/gregtech/worldgen/", worldGenPath, false)
+        extractWorldGenFiles("/assets/gtlitecore/worldgen/", worldGenPath, true)
     }
 
     override fun init(event: FMLInitializationEvent)
