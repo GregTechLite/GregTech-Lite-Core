@@ -4271,6 +4271,10 @@ gtlitecore.jei.group.spacetime_compression_field_generator=压缩时空场发生
 gtlitecore.jei.group.time_acceleration_field_generator=时间膨胀场发生器
 gtlitecore.jei.group.stabilization_field_generator=稳定力场发生器
 gtlitecore.jei.group.acceleration_track=太空电梯加速轨道
+gtlitecore.jei.group.nuclear_reactor_core=反应堆堆芯
+gtlitecore.jei.group.borosilicate_glass=硼硅酸盐玻璃
+gtlitecore.jei.group.manipulator=脉冲控制方块
+gtlitecore.jei.group.shielding_core=屏蔽核心方块
 
 gtlitecore.jei.group.machine.polisher=抛光机
 gtlitecore.jei.group.machine.slicer=切片机

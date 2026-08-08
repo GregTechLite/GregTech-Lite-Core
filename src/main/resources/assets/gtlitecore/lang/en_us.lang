@@ -4271,6 +4271,10 @@ gtlitecore.jei.group.spacetime_compression_field_generator=Spacetime Compression
 gtlitecore.jei.group.time_acceleration_field_generator=Time Acceleration Field Generators
 gtlitecore.jei.group.stabilization_field_generator=Stabilization Field Generators
 gtlitecore.jei.group.acceleration_track=Space Elevator Acceleration Tracks
+gtlitecore.jei.group.nuclear_reactor_core=Nuclear Reactor Cores
+gtlitecore.jei.group.borosilicate_glass=Borosilicate Glasses
+gtlitecore.jei.group.manipulator=Manipulator Blocks
+gtlitecore.jei.group.shielding_core=Shielding Core Blocks
 
 gtlitecore.jei.group.machine.polisher=Polishers
 gtlitecore.jei.group.machine.slicer=Slicers

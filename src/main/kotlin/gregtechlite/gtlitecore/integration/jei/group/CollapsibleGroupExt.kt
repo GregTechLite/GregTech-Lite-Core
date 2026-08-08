@@ -16,3 +16,7 @@ fun ICollapsibleGroupRegistry.addGroup(id: String, stacks: Collection<ItemStack>
 
 inline fun <reified T> ICollapsibleGroupRegistry.addCasingGroup(id: String) where T : Enum<T>, T : BlockVariant, T : StateTier
     = addGroup(id, enumValues<T>().sortedWith(StateTier.COMPARATOR).map { it.stack })
+
+// TODO: Seems this supertype intersection inline will cause some problems, but at least it looks fine now...
+inline fun <reified T> ICollapsibleGroupRegistry.addCasingGroup(id: String, vararg variants: List<out T>) where T : BlockVariant, T : StateTier
+    = addGroup(id, variants.asSequence().flatten().sortedWith(StateTier.COMPARATOR).map { it.stack }.toList())

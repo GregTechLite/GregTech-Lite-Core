@@ -5,6 +5,10 @@ import gregtechlite.gtlitecore.api.extension.unzipSubBlocks
 import gregtechlite.gtlitecore.api.extension.unzipSubVariants
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.variant.ComponentAssemblyCasing
+import gregtechlite.gtlitecore.common.block.variant.GlassCasing
+import gregtechlite.gtlitecore.common.block.variant.Manipulator
+import gregtechlite.gtlitecore.common.block.variant.NuclearReactorCore
+import gregtechlite.gtlitecore.common.block.variant.ShieldingCore
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AccelerationTrack
 import gregtechlite.gtlitecore.common.block.variant.component.ConveyorCasing
 import gregtechlite.gtlitecore.common.block.variant.component.EmitterCasing
@@ -42,6 +46,10 @@ object GTLiteCollapsibleGroups
         registry.addCasingGroup<TimeAccelerationFieldGenerator>("time_acceleration_field_generator")
         registry.addCasingGroup<StabilizationFieldGenerator>("stabilization_field_generator")
         registry.addCasingGroup<AccelerationTrack>("acceleration_track")
+        registry.addCasingGroup("nuclear_reactor_core", NuclearReactorCore.Enum01.entries, NuclearReactorCore.Enum02.entries)
+        registry.addCasingGroup<GlassCasing.Enum01>("borosilicate_glass")
+        registry.addCasingGroup<Manipulator>("manipulator")
+        registry.addCasingGroup<ShieldingCore>("shielding_core")
     }
 
     private fun buildStorageGroups(registry: ICollapsibleGroupRegistry)
