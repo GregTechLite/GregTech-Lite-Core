@@ -156,6 +156,21 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_WAFER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FIELD_GENERATOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FUEL_ROD_EMPTY
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_EV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_HV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_IV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_LV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_LuV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_MV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_OpV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_UEV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_UHV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_UIV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_ULV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_UV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_UXV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_ZPM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_ASSEMBLY_UV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_COMPUTER_UHV
@@ -321,6 +336,21 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_INDUC
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SPACETIME_CONDENSER
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_EV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_HV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_IV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_LV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_LuV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_MV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_OpV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_UEV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_UHV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_UIV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_ULV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_UV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_UXV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_ZPM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TEMPORAL_SCALE_WORLDSHEET_LOGICAL_GATE_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TIMEPIECE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TIME_DILATION_CONTAINMENT_CELL
@@ -788,6 +818,96 @@ object GTLiteMetaItem1
                 it.add(I18n.format("metaitem.circuit.supracausal_mainframe.tooltip.1"))
                 it.add(TextAnimations.GRADIENT_RAINBOW_BOLD("metaitem.circuit.supracausal_mainframe.tooltip.2"))
             })
+
+        SUPRACHRONAL_CIRCUIT_ULV = item(271, "circuit.suprachronal.ulv")
+            .setUnificationData(OrePrefix.circuit, Tier.ULV)
+
+        SUPRACHRONAL_CIRCUIT_LV = item(272, "circuit.suprachronal.lv")
+            .setUnificationData(OrePrefix.circuit, Tier.LV)
+
+        SUPRACHRONAL_CIRCUIT_MV = item(273, "circuit.suprachronal.mv")
+            .setUnificationData(OrePrefix.circuit, Tier.MV)
+
+        SUPRACHRONAL_CIRCUIT_HV = item(274, "circuit.suprachronal.hv")
+            .setUnificationData(OrePrefix.circuit, Tier.HV)
+
+        SUPRACHRONAL_CIRCUIT_EV = item(275, "circuit.suprachronal.ev")
+            .setUnificationData(OrePrefix.circuit, Tier.EV)
+
+        SUPRACHRONAL_CIRCUIT_IV = item(276, "circuit.suprachronal.iv")
+            .setUnificationData(OrePrefix.circuit, Tier.IV)
+
+        SUPRACHRONAL_CIRCUIT_LuV = item(277, "circuit.suprachronal.luv")
+            .setUnificationData(OrePrefix.circuit, Tier.LuV)
+
+        SUPRACHRONAL_CIRCUIT_ZPM = item(278, "circuit.suprachronal.zpm")
+            .setUnificationData(OrePrefix.circuit, Tier.ZPM)
+
+        SUPRACHRONAL_CIRCUIT_UV = item(279, "circuit.suprachronal.uv")
+            .setUnificationData(OrePrefix.circuit, Tier.UV)
+
+        SUPRACHRONAL_CIRCUIT_UHV = item(280, "circuit.suprachronal.uhv")
+            .setUnificationData(OrePrefix.circuit, Tier.UHV)
+
+        SUPRACHRONAL_CIRCUIT_UEV = item(281, "circuit.suprachronal.uev")
+            .setUnificationData(OrePrefix.circuit, Tier.UEV)
+
+        SUPRACHRONAL_CIRCUIT_UIV = item(282, "circuit.suprachronal.uiv")
+            .setUnificationData(OrePrefix.circuit, Tier.UIV)
+
+        SUPRACHRONAL_CIRCUIT_UXV = item(283, "circuit.suprachronal.uxv")
+            .setUnificationData(OrePrefix.circuit, Tier.UXV)
+
+        SUPRACHRONAL_CIRCUIT_OpV = item(284, "circuit.suprachronal.opv")
+            .setUnificationData(OrePrefix.circuit, Tier.OpV)
+
+        SUPRACHRONAL_CIRCUIT_MAX = item(285, "circuit.suprachronal.max")
+            .setUnificationData(OrePrefix.circuit, Tier.MAX)
+
+        GENERIC_CIRCUIT_ULV = item(286, "circuit.generic.ulv")
+            .setUnificationData(OrePrefix.circuit, Tier.ULV)
+
+        GENERIC_CIRCUIT_LV = item(287, "circuit.generic.lv")
+            .setUnificationData(OrePrefix.circuit, Tier.LV)
+
+        GENERIC_CIRCUIT_MV = item(288, "circuit.generic.mv")
+            .setUnificationData(OrePrefix.circuit, Tier.MV)
+
+        GENERIC_CIRCUIT_HV = item(289, "circuit.generic.hv")
+            .setUnificationData(OrePrefix.circuit, Tier.HV)
+
+        GENERIC_CIRCUIT_EV = item(290, "circuit.generic.ev")
+            .setUnificationData(OrePrefix.circuit, Tier.EV)
+
+        GENERIC_CIRCUIT_IV = item(291, "circuit.generic.iv")
+            .setUnificationData(OrePrefix.circuit, Tier.IV)
+
+        GENERIC_CIRCUIT_LuV = item(292, "circuit.generic.luv")
+            .setUnificationData(OrePrefix.circuit, Tier.LuV)
+
+        GENERIC_CIRCUIT_ZPM = item(293, "circuit.generic.zpm")
+            .setUnificationData(OrePrefix.circuit, Tier.ZPM)
+
+        GENERIC_CIRCUIT_UV = item(294, "circuit.generic.uv")
+            .setUnificationData(OrePrefix.circuit, Tier.UV)
+
+        GENERIC_CIRCUIT_UHV = item(295, "circuit.generic.uhv")
+            .setUnificationData(OrePrefix.circuit, Tier.UHV)
+
+        GENERIC_CIRCUIT_UEV = item(296, "circuit.generic.uev")
+            .setUnificationData(OrePrefix.circuit, Tier.UEV)
+
+        GENERIC_CIRCUIT_UIV = item(297, "circuit.generic.uiv")
+            .setUnificationData(OrePrefix.circuit, Tier.UIV)
+
+        GENERIC_CIRCUIT_UXV = item(298, "circuit.generic.uxv")
+            .setUnificationData(OrePrefix.circuit, Tier.UXV)
+
+        GENERIC_CIRCUIT_OpV = item(299, "circuit.generic.opv")
+            .setUnificationData(OrePrefix.circuit, Tier.OpV)
+
+        GENERIC_CIRCUIT_MAX = item(300, "circuit.generic.max")
+            .setUnificationData(OrePrefix.circuit, Tier.MAX)
 
         // endregion
 
