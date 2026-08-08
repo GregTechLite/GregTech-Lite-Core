@@ -4164,6 +4164,8 @@ gtlitecore.jei.group.ore=矿石
 gtlitecore.jei.group.frame=框架
 gtlitecore.jei.group.lamp=灯
 gtlitecore.jei.group.material_block=材料块
+gtlitecore.jei.group.drum=桶
+gtlitecore.jei.group.crate=板条箱
 
 gtlitecore.jei.group.machine.electric_furnace=电炉
 gtlitecore.jei.group.machine.macerator=研磨机
@@ -4253,6 +4255,8 @@ gtlitecore.jei.group.machine.battery_buffer.16=16x电池箱
 
 gtlitecore.jei.group.sheeted_frame=板框箱
 gtlitecore.jei.group.metal_wall=金属壁面
+gtlitecore.jei.group.additional_drum=桶
+gtlitecore.jei.group.additional_crate=板条箱
 
 gtlitecore.jei.group.machine.polisher=抛光机
 gtlitecore.jei.group.machine.slicer=切片机

@@ -29,6 +29,10 @@ import gregtechlite.gtlitecore.api.extension.unzipSubVariants
 import gregtechlite.gtlitecore.mixins.hooks.Implemented
 import mezz.jei.api.ICollapsibleGroupRegistry
 
+/**
+ * This class references `CollapsibleGroups` class in SussyPatches by [MCTian-mi](https://github.com/MCTian-mi),
+ * after obtaining permission, we adapted it with current GTCEu version.
+ */
 @Implemented(at = ["https://github.com/MCTian-mi/SussyPatches/blob/main/src/main/java/dev/tianmi/sussypatches/common/helper/CollapsibleGroups.java"])
 object GTCollapsibleGroups
 {
@@ -37,6 +41,7 @@ object GTCollapsibleGroups
         buildPrefixGroups(registry)
         buildMachineGroups(registry)
         buildBatteryBufferGroups(registry)
+        buildStorageGroups(registry)
         registry.addGroup("cable", MetaBlocks.CABLES.unzipSubBlocks())
         registry.addGroup("item_pipe", MetaBlocks.ITEM_PIPES.unzipSubBlocks())
         registry.addGroup("fluid_pipe", MetaBlocks.FLUID_PIPES.unzipSubBlocks())
@@ -78,5 +83,16 @@ object GTCollapsibleGroups
                 registry.newGroup("${MOD_ID}:${_key}", "${MOD_ID}.jei.group.${_key}")
                     .add(*list.sortedBy { it.tier }.map { it.stack() }.toTypedArray()).build()
             }
+    }
+
+    private fun buildStorageGroups(registry: ICollapsibleGroupRegistry)
+    {
+        registry.addGroup("drum", arrayOf(MetaTileEntities.WOODEN_DRUM, MetaTileEntities.BRONZE_DRUM,
+            MetaTileEntities.STEEL_DRUM, MetaTileEntities.ALUMINIUM_DRUM, MetaTileEntities.STAINLESS_STEEL_DRUM,
+            MetaTileEntities.TITANIUM_DRUM, MetaTileEntities.TUNGSTENSTEEL_DRUM, MetaTileEntities.GOLD_DRUM)
+            .map { it.stack() })
+        registry.addGroup("crate", arrayOf(MetaTileEntities.WOODEN_CRATE, MetaTileEntities.BRONZE_CRATE,
+            MetaTileEntities.STEEL_CRATE, MetaTileEntities.ALUMINIUM_CRATE, MetaTileEntities.STAINLESS_STEEL_CRATE,
+            MetaTileEntities.TITANIUM_CRATE, MetaTileEntities.TUNGSTENSTEEL_CRATE).map { it.stack() })
     }
 }
