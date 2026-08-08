@@ -4246,6 +4246,10 @@ gtlitecore.jei.group.machine.laser_hatch.target_4096a=4096A Laser Target Hatches
 gtlitecore.jei.group.machine.laser_hatch.source_4096a=4096A Laser Source Hatches
 gtlitecore.jei.group.machine.rotor_holder=Rotor Holders
 gtlitecore.jei.group.machine.muffler_hatch=Muffler Hatches
+gtlitecore.jei.group.machine.fluid_drilling_rig=Fluid Drilling Rigs
+gtlitecore.jei.group.machine.battery_buffer.4=4x Battery Buffer
+gtlitecore.jei.group.machine.battery_buffer.8=8x Battery Buffer
+gtlitecore.jei.group.machine.battery_buffer.16=16x Battery Buffer
 
 gtlitecore.jei.group.sheeted_frame=Sheeted Frames
 gtlitecore.jei.group.metal_wall=Metal Walls

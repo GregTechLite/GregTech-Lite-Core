@@ -21,6 +21,7 @@ import gregtech.api.metatileentity.ITieredMetaTileEntity
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
+import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.extension.unzipSubBlocks
@@ -35,6 +36,7 @@ object GTCollapsibleGroups
     {
         buildPrefixGroups(registry)
         buildMachineGroups(registry)
+        buildBatteryBufferGroups(registry)
         registry.addGroup("cable", MetaBlocks.CABLES.unzipSubBlocks())
         registry.addGroup("item_pipe", MetaBlocks.ITEM_PIPES.unzipSubBlocks())
         registry.addGroup("fluid_pipe", MetaBlocks.FLUID_PIPES.unzipSubBlocks())
@@ -57,11 +59,24 @@ object GTCollapsibleGroups
     {
         GregTechAPI.mteManager.registries.forEach { mteRegistry ->
             mteRegistry.filterIsInstance<ITieredMetaTileEntity>()
+                .filter { it.tierlessTooltipKey != it.metaName }
                 .groupBy { it.tierlessTooltipKey }
                 .forEach { (key, list) ->
                     registry.newGroup("${MOD_ID}:$key", "${MOD_ID}.jei.group.${key.substringAfter('.')}")
                         .add(*list.sortedBy { it.tier }.map { (it as MetaTileEntity).stack() }.toTypedArray()).build()
                 }
         }
+    }
+
+    private fun buildBatteryBufferGroups(registry: ICollapsibleGroupRegistry)
+    {
+        MetaTileEntities.BATTERY_BUFFER
+            .flatMap { it.filterNotNull() }
+            .groupBy { it.metaName.substringAfterLast('.') }
+            .forEach { (key, list) ->
+                val _key = "machine.battery_buffer.$key"
+                registry.newGroup("${MOD_ID}:${_key}", "${MOD_ID}.jei.group.${_key}")
+                    .add(*list.sortedBy { it.tier }.map { it.stack() }.toTypedArray()).build()
+            }
     }
 }

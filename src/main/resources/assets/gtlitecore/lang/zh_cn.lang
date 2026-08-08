@@ -4246,6 +4246,10 @@ gtlitecore.jei.group.machine.laser_hatch.target_4096a=4096安激光靶仓
 gtlitecore.jei.group.machine.laser_hatch.source_4096a=4096安激光源仓
 gtlitecore.jei.group.machine.rotor_holder=转子支架
 gtlitecore.jei.group.machine.muffler_hatch=消声仓
+gtlitecore.jei.group.machine.fluid_drilling_rig=流体钻机
+gtlitecore.jei.group.machine.battery_buffer.4=4x电池箱
+gtlitecore.jei.group.machine.battery_buffer.8=8x电池箱
+gtlitecore.jei.group.machine.battery_buffer.16=16x电池箱
 
 gtlitecore.jei.group.sheeted_frame=板框箱
 gtlitecore.jei.group.metal_wall=金属壁面
