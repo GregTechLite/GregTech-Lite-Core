@@ -4164,6 +4164,8 @@ gtlitecore.jei.group.ore=Ores
 gtlitecore.jei.group.frame=Frames
 gtlitecore.jei.group.lamp=Lamps
 gtlitecore.jei.group.material_block=Material Blocks
+gtlitecore.jei.group.drum=Drums
+gtlitecore.jei.group.crate=Crates
 
 gtlitecore.jei.group.machine.electric_furnace=Electric Furnaces
 gtlitecore.jei.group.machine.macerator=Macerators
@@ -4253,6 +4255,22 @@ gtlitecore.jei.group.machine.battery_buffer.16=16x Battery Buffer
 
 gtlitecore.jei.group.sheeted_frame=Sheeted Frames
 gtlitecore.jei.group.metal_wall=Metal Walls
+gtlitecore.jei.group.additional_drum=Drums
+gtlitecore.jei.group.additional_crate=Crates
+gtlitecore.jei.group.motor_casing=Electric Motor Blocks
+gtlitecore.jei.group.piston_casing=Electric Piston Blocks
+gtlitecore.jei.group.pump_casing=Electric Pump Blocks
+gtlitecore.jei.group.conveyor_casing=Conveyor Module Blocks
+gtlitecore.jei.group.robot_arm_casing=Robot Arm Blocks
+gtlitecore.jei.group.emitter_casing=Emitter Blocks
+gtlitecore.jei.group.sensor_casing=Sensor Blocks
+gtlitecore.jei.group.field_gen_casing=Field Generator Blocks
+gtlitecore.jei.group.processor_casing=Processor Blocks
+gtlitecore.jei.group.component_assembly_casing=Component Assembly Casings
+gtlitecore.jei.group.spacetime_compression_field_generator=Spacetime Compression Field Generators
+gtlitecore.jei.group.time_acceleration_field_generator=Time Acceleration Field Generators
+gtlitecore.jei.group.stabilization_field_generator=Stabilization Field Generators
+gtlitecore.jei.group.acceleration_track=Space Elevator Acceleration Tracks
 
 gtlitecore.jei.group.machine.polisher=Polishers
 gtlitecore.jei.group.machine.slicer=Slicers
