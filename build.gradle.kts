@@ -180,12 +180,17 @@ dependencies {
         isTransitive = false
     }
 
-    api(libs.codeChickenLib)
+    api(libs.codeChickenLib) {
+        isTransitive = false
+    }
+
     api(libs.ctm)
     implementation(deobf(files("libs/morphismlib-1.12.2-1.0.0.jar")))
     implementation(deobf(files("libs/gregtech-1.12.2-master-#2901.jar")))
+
     implementation(deobf(libs.ae2ExtendedLife))
-    implementation(libs.jei)
+
+    implementation(deobf(libs.jei))
     implementation(libs.theOneProbe)
 
     compileOnly(libs.groovyScript) {

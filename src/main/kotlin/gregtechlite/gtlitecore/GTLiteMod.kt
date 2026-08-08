@@ -33,7 +33,8 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent
                     "required:forgelin_continuous@[2.1.0.0,);" +
                     "required-after:morphismlib@[1.0.0,);" +
                     "required-after:modularui@[2.5.0-rc4,);" +
-                    "required-after:gregtech@[2.8.7-beta,);",
+                    "required-after:gregtech@[2.8.7-beta,);" +
+                    "after:jei@[4.30.0,);",
      modLanguageAdapter = "io.github.chaosunity.forgelin.KotlinAdapter",
      customProperties = [
           Mod.CustomProperty(k = "license", v = "Apache 2.0"),
