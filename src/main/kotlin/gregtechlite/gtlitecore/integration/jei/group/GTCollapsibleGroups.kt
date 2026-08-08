@@ -20,6 +20,7 @@ import gregtech.api.items.materialitem.MetaPrefixItem
 import gregtech.api.metatileentity.ITieredMetaTileEntity
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.common.blocks.MetaBlocks
+import gregtech.common.items.MetaItem1
 import gregtech.common.items.MetaItems
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.MOD_ID
@@ -28,6 +29,7 @@ import gregtechlite.gtlitecore.api.extension.unzipSubBlocks
 import gregtechlite.gtlitecore.api.extension.unzipSubVariants
 import gregtechlite.gtlitecore.mixins.hooks.Implemented
 import mezz.jei.api.ICollapsibleGroupRegistry
+import net.minecraft.item.ItemStack
 
 /**
  * This class references `CollapsibleGroups` class in SussyPatches by [MCTian-mi](https://github.com/MCTian-mi),
@@ -42,6 +44,7 @@ object GTCollapsibleGroups
         buildMachineGroups(registry)
         buildBatteryBufferGroups(registry)
         buildStorageGroups(registry)
+
         registry.addGroup("cable", MetaBlocks.CABLES.unzipSubBlocks())
         registry.addGroup("item_pipe", MetaBlocks.ITEM_PIPES.unzipSubBlocks())
         registry.addGroup("fluid_pipe", MetaBlocks.FLUID_PIPES.unzipSubBlocks())
@@ -49,6 +52,21 @@ object GTCollapsibleGroups
         registry.addGroup("frame", MetaBlocks.FRAME_BLOCKS.unzipSubVariants())
         registry.addGroup("lamp", (MetaBlocks.LAMPS.values + MetaBlocks.BORDERLESS_LAMPS.values).unzipSubBlocks())
         registry.addGroup("material_block", MetaBlocks.COMPRESSED_BLOCKS.unzipSubVariants())
+
+        registry.addGroupBy("mold", "shape.mold")
+        registry.addGroupBy("extruder", "shape.extruder")
+        registry.addGroupBy("spray", "spray")
+        registry.addGroupBy("voltage_coil", "voltage_coil")
+        registry.addGroupBy("electric_motor", "electric.motor")
+        registry.addGroupBy("electric_pump", "electric.pump")
+        registry.addGroupBy("conveyor_module", "conveyor.module")
+        registry.addGroupBy("electric_piston", "electric.piston")
+        registry.addGroupBy("robot_arm", "robot.arm")
+        registry.addGroupBy("emitter", "emitter")
+        registry.addGroupBy("sensor", "sensor")
+        registry.addGroupBy("field_generator", "field.generator")
+        registry.addGroupBy("fluid_regulator", "fluid.regulator")
+        registry.addGroupBy("dye", "dye")
     }
 
     private fun buildPrefixGroups(registry: ICollapsibleGroupRegistry)
@@ -95,4 +113,9 @@ object GTCollapsibleGroups
             MetaTileEntities.STEEL_CRATE, MetaTileEntities.ALUMINIUM_CRATE, MetaTileEntities.STAINLESS_STEEL_CRATE,
             MetaTileEntities.TITANIUM_CRATE, MetaTileEntities.TUNGSTENSTEEL_CRATE).map { it.stack() })
     }
+
+    private fun ICollapsibleGroupRegistry.addGroupBy(id: String, prefix: String = id) = addGroup(id, filterBy(prefix))
+
+    private fun filterBy(prefix: String): List<ItemStack>
+        = MetaItems.ITEMS.filterIsInstance<MetaItem1>().flatMap { it.allItems }.filter { it.unlocalizedName.startsWith(prefix) }.map { it.stack() }
 }

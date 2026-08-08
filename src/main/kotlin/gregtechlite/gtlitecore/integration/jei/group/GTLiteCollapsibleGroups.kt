@@ -61,6 +61,7 @@ object GTLiteCollapsibleGroups
         registry.addGroupBy("memory_card", "tool.memory_card")
         registry.addGroupBy("catalyst", "tool.catalyst")
         registry.addGroupBy("wrap", "wrap")
+        registry.addGroupBy("additional_voltage_coil", "additional_voltage_coil")
     }
 
     private fun buildStorageGroups(registry: ICollapsibleGroupRegistry)
