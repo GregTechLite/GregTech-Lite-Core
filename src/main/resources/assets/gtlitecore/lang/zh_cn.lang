@@ -4365,6 +4365,9 @@ gtlitecore.jei.group.memory_card=意识存储卡
 gtlitecore.jei.group.catalyst=催化剂
 gtlitecore.jei.group.wrap=封装物品
 gtlitecore.jei.group.additional_voltage_coil=小型线圈
+gtlitecore.jei.group.suprachronal_circuit=超时空电路
+gtlitecore.jei.group.generic_circuit=通用电路
+gtlitecore.jei.group.mining_drone=采矿无人机
 
 gtlitecore.jei.group.machine.polisher=抛光机
 gtlitecore.jei.group.machine.slicer=切片机

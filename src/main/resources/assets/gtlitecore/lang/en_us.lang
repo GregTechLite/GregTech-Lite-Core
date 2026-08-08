@@ -4365,6 +4365,9 @@ gtlitecore.jei.group.memory_card=Memory Cards
 gtlitecore.jei.group.catalyst=Catalysts
 gtlitecore.jei.group.wrap=Wrap Items
 gtlitecore.jei.group.additional_voltage_coil=Voltage Coils
+gtlitecore.jei.group.suprachronal_circuit=Suprachronal Circuits
+gtlitecore.jei.group.generic_circuit=Generic Circuits
+gtlitecore.jei.group.mining_drone=Mining Drones
 
 gtlitecore.jei.group.machine.polisher=Polishers
 gtlitecore.jei.group.machine.slicer=Slicers
