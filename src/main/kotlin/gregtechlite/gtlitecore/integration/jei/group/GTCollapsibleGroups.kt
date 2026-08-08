@@ -1,5 +1,6 @@
 /**
  * GNU LGPL 3.0
+ *
  * Copyright (C) MCTian-mi
  *
  * This program is free software; you can redistribute it and/or
@@ -11,16 +12,16 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 package gregtechlite.gtlitecore.integration.jei.group
 
+import gregtech.api.GregTechAPI
 import gregtech.api.items.materialitem.MetaPrefixItem
+import gregtech.api.metatileentity.ITieredMetaTileEntity
+import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems
+import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.extension.unzipSubBlocks
 import gregtechlite.gtlitecore.api.extension.unzipSubVariants
@@ -33,6 +34,7 @@ object GTCollapsibleGroups
     internal fun registerGroup(registry: ICollapsibleGroupRegistry)
     {
         buildPrefixGroups(registry)
+        buildMachineGroups(registry)
         registry.addGroup("cable", MetaBlocks.CABLES.unzipSubBlocks())
         registry.addGroup("item_pipe", MetaBlocks.ITEM_PIPES.unzipSubBlocks())
         registry.addGroup("fluid_pipe", MetaBlocks.FLUID_PIPES.unzipSubBlocks())
@@ -49,5 +51,17 @@ object GTCollapsibleGroups
             .flatMap { item -> item.allItems.map { item.orePrefix to it.stack() } }
             .groupBy({ it.first }, { it.second })
             .forEach { prefix, stacks -> registry.addGroup("prefix.${prefix.name}", stacks) }
+    }
+
+    private fun buildMachineGroups(registry: ICollapsibleGroupRegistry)
+    {
+        GregTechAPI.mteManager.registries.forEach { mteRegistry ->
+            mteRegistry.filterIsInstance<ITieredMetaTileEntity>()
+                .groupBy { it.tierlessTooltipKey }
+                .forEach { (key, list) ->
+                    registry.newGroup("${MOD_ID}:$key", "${MOD_ID}.jei.group.${key.substringAfter('.')}")
+                        .add(*list.sortedBy { it.tier }.map { (it as MetaTileEntity).stack() }.toTypedArray()).build()
+                }
+        }
     }
 }
