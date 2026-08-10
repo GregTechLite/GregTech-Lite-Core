@@ -13,7 +13,8 @@ class StringPayload(var value: String = "") : TypedPayload<String>
 
     override val type: Byte = TYPE_ID
 
-    override val payload: String = value
+    override val payload: String
+        get() = value
 
     override fun writePayload(buf: PacketBuffer)
     {

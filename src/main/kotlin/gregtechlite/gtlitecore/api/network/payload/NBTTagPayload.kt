@@ -13,7 +13,8 @@ class NBTTagPayload(var value: NBTBase? = null) : TypedPayload<NBTBase?>
 
     override val type: Byte = TYPE_ID
 
-    override val payload: NBTBase? = value
+    override val payload: NBTBase?
+        get() = value
 
     override fun writePayload(buf: PacketBuffer)
     {

@@ -14,7 +14,8 @@ class EnumFacingPayload(var value: EnumFacing = EnumFacing.DOWN) : TypedPayload<
 
     override val type: Byte = TYPE_ID
 
-    override val payload: EnumFacing = value
+    override val payload: EnumFacing
+        get() = value
 
     override fun writePayload(buf: PacketBuffer)
     {

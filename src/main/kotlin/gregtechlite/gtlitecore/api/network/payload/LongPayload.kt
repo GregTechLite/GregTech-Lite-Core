@@ -13,7 +13,8 @@ class LongPayload(var value: Long = 0L) : TypedPayload<Long>
 
     override val type: Byte = TYPE_ID
 
-    override val payload: Long = value
+    override val payload: Long
+        get() = value
 
     override fun writePayload(buf: PacketBuffer)
     {

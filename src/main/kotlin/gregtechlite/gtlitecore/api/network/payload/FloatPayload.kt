@@ -13,7 +13,8 @@ class FloatPayload(var value: Float = 0f) : TypedPayload<Float>
 
     override val type: Byte = TYPE_ID
 
-    override val payload: Float = value
+    override val payload: Float
+        get() = value
 
     override fun writePayload(buf: PacketBuffer) { buf.writeFloat(value) }
 

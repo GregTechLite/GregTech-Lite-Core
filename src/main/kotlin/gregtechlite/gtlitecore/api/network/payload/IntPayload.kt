@@ -13,7 +13,8 @@ class IntPayload(var value: Int = 0) : TypedPayload<Int>
 
     override val type: Byte = TYPE_ID
 
-    override val payload: Int = value
+    override val payload: Int
+        get() = value
 
     override fun writePayload(buf: PacketBuffer)
     {

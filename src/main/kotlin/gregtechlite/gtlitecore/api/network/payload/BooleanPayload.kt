@@ -13,7 +13,8 @@ class BooleanPayload(var value: Boolean = false) : TypedPayload<Boolean>
 
     override val type: Byte = TYPE_ID
 
-    override val payload: Boolean = value
+    override val payload: Boolean
+        get() = value
 
     override fun writePayload(buf: PacketBuffer)
     {

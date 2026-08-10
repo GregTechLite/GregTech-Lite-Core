@@ -13,7 +13,8 @@ class ShortPayload(var value: Short = 0) : TypedPayload<Short>
 
     override val type: Byte = TYPE_ID
 
-    override val payload: Short = value
+    override val payload: Short
+        get() = value
 
     override fun writePayload(buf: PacketBuffer)
     {

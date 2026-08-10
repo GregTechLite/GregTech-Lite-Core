@@ -13,7 +13,8 @@ class CharPayload(var value: Char = '\u0000') : TypedPayload<Char>
 
     override val type: Byte = TYPE_ID
 
-    override val payload: Char = value
+    override val payload: Char
+        get() = value
 
     override fun writePayload(buf: PacketBuffer)
     {
