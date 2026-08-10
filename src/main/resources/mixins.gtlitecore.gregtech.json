@@ -32,6 +32,8 @@
     "MixinMultiblockRecipeLogic",
     "MixinBQuDataFixer",
     "MixinMetaTileEntityPowerSubstation",
+    "MixinMetaTileEntity",
+    "MixinMetaTileEntityHolder",
     "MixinTextFormattingUtil",
     "MixinMultiMapMultiblockController",
     "MixinOreConfigUtils",

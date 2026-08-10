@@ -10,6 +10,10 @@ import com.google.common.collect.ImmutableSet
 import com.google.gson.internal.LinkedTreeMap
 import it.unimi.dsi.fastutil.chars.Char2ObjectMap
 import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ByteMap
+import it.unimi.dsi.fastutil.objects.Object2ByteOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
@@ -23,6 +27,7 @@ import it.unimi.dsi.fastutil.objects.ObjectSet
 import it.unimi.dsi.fastutil.objects.ReferenceLinkedOpenHashSet
 import it.unimi.dsi.fastutil.objects.ReferenceSet
 import net.minecraft.util.IntIdentityHashBiMap
+import java.util.IdentityHashMap
 import java.util.TreeMap
 
 // region Guava: ImmutableSet
@@ -161,6 +166,24 @@ fun <K, V> Iterable<Pair<K, V>>.toBiMap(): HashBiMap<K, V> = HashBiMap.create<K,
 
 // endregion
 
+// region Java: IdentityHashMap
+
+fun <K, V> idHashMapOf(): IdentityHashMap<K, V> = IdentityHashMap()
+
+fun <K, V> idHashMapOf(vararg pairs: Pair<K, V>): IdentityHashMap<K, V> = IdentityHashMap<K, V>().apply {
+    pairs.forEach { put(it.first, it.second) }
+}
+
+fun <K, V> Map<K, V>.toIdHashMap(): IdentityHashMap<K, V> = IdentityHashMap<K, V>().apply {
+    forEach { put(it.key, it.value) }
+}
+
+fun <K, V> Iterable<Pair<K, V>>.toIdHashMap(): IdentityHashMap<K, V> = IdentityHashMap<K, V>().apply {
+    forEach { put(it.key, it.value) }
+}
+
+// endregion
+
 // region Minecraft: IntIdentityHashBiMap
 
 fun <K> intIdHashBiMapOf(initialCapacity: Int = Short.MAX_VALUE.toInt()): IntIdentityHashBiMap<K>
@@ -240,5 +263,33 @@ fun <K, V> openRefLinkedMapOf(vararg pairs: Pair<K, V>): Object2ReferenceMap<K, 
 }
 
 fun <K, V> Map<K, V>.toOpenRefLinkedMap(): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap(this)
+
+// endregion
+
+// region FastUtil: Int2ObjectOpenHashMap
+
+fun <V> intOpenHashMapOf(): Int2ObjectMap<V> = Int2ObjectOpenHashMap()
+
+fun <V> intOpenHashMapOf(map: Map<Int, V>): Int2ObjectMap<V> = Int2ObjectOpenHashMap(map)
+
+fun <V> intOpenHashMapOf(vararg pairs: Pair<Int, V>): Int2ObjectMap<V> = Int2ObjectOpenHashMap<V>().apply {
+    pairs.forEach { put(it.first, it.second) }
+}
+
+fun <V> Map<Int, V>.toIntOpenHashMap(): Int2ObjectMap<V> = Int2ObjectOpenHashMap<V>(this)
+
+// endregion
+
+// region FastUtil: Object2ByteOpenHashMap
+
+fun <K> byteVOpenHashMapOf(): Object2ByteMap<K> = Object2ByteOpenHashMap()
+
+fun <K> byteVOpenHashMapOf(map: Map<K, Byte>): Object2ByteMap<K> = Object2ByteOpenHashMap(map)
+
+fun <K> byteVOpenHashMapOf(vararg pairs: Pair<K, Byte>): Object2ByteMap<K> = Object2ByteOpenHashMap<K>().apply {
+    pairs.forEach { put(it.first, it.second) }
+}
+
+fun <K> Map<K, Byte>.toByteVOpenHashMap(): Object2ByteOpenHashMap<K> = Object2ByteOpenHashMap<K>(this)
 
 // endregion

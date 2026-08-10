@@ -54,6 +54,7 @@ import gregtechlite.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEnti
 import gregtechlite.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity
 import gregtechlite.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
+import gregtechlite.gtlitecore.api.network.sync.ManagedFields
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
@@ -387,6 +388,8 @@ object GTLiteMetaTileEntities
 
     // endregion
 
+    lateinit var TEST_MANAGED: MetaTileEntityTestManaged
+
     fun preInit()
     {
         MachineItemBlock.addCreativeTab(GTLiteCreativeTabs.TAB_MACHINE)
@@ -395,6 +398,8 @@ object GTLiteMetaTileEntities
     @JvmStatic
     fun init()
     {
+        ManagedFields.init()
+
         // region 1-2000: Simple Machines
 
         // 1-15: Polisher (LV-OpV)
@@ -931,6 +936,9 @@ object GTLiteMetaTileEntities
         EP_COUPLING_ACCELERATOR = register(10203, MultiblockEPCouplingAccelerator(GTLiteMod.id("ep_coupling_accelerator")))
         NANO_ASSEMBLY_COMPLEX = register(10204, MultiblockNanoAssemblyComplex(GTLiteMod.id("nano_assembly_complex")))
         MATTER_RESHAPING_FRAMEWORK = register(10205, MultiblockMatterReshapingFramework(GTLiteMod.id("matter_reshaping_framework")))
+
+        // TODO: Remove it when test finished.
+        TEST_MANAGED = register(10206, MetaTileEntityTestManaged(GTLiteMod.id("test_managed_mte")))
 
         // endregion
     }
