@@ -7,7 +7,6 @@ import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.network.sync.ManageableMachine
 import gregtechlite.gtlitecore.api.network.sync.DescSynced
 import gregtechlite.gtlitecore.api.network.sync.Persisted
 import gregtechlite.gtlitecore.api.network.sync.UpdateListener
@@ -18,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import org.jetbrains.annotations.TestOnly
 
 @TestOnly
-class MetaTileEntityTestManaged(id: ResourceLocation) : MetaTileEntity(id), ManageableMachine
+class MetaTileEntityTestManaged(id: ResourceLocation) : MetaTileEntityTestManagedBase(id)
 {
     @field:Persisted
     @field:DescSynced
@@ -61,8 +60,11 @@ class MetaTileEntityTestManaged(id: ResourceLocation) : MetaTileEntity(id), Mana
                 testBool = !testBool
                 testString = "tick-$offsetTimer"
                 testFacing = testFacing.rotateAround(EnumFacing.Axis.Y)
-                LOGGER.debug("Managed server update @ {} mutating: testInt={} testBool={} testString={} testFacing={}",
-                    pos, testInt, testBool, testString, testFacing)
+                // Inherited managed fields (declared on the base class).
+                inheritedInt += 1
+                inheritedMode = (inheritedMode + 1) % 4
+                LOGGER.debug("Managed server update @ {} mutating: testInt={} testBool={} testString={} testFacing={} inheritedInt={} inheritedMode={}",
+                    pos, testInt, testBool, testString, testFacing, inheritedInt, inheritedMode)
             }
             runtimeOnly = ((offsetTimer / SECOND) % 1000L).toInt()
         }
