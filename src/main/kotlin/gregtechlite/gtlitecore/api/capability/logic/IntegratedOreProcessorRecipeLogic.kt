@@ -90,14 +90,14 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
 
         for (inputStack in inputStacks)
         {
-            if (processedCount > parallelLimit) break
+            if (processedCount >= parallelLimit) break
 
             val recipe = INTEGRATED_ORE_PROCESSOR_RECIPES.findRecipe(V[LV],
                 listOf<ItemStack>(inputStack, IntCircuitIngredient.getIntegratedCircuit(mode)),
                 inputFluid.toList())
             if (recipe != null)
             {
-                val countToProcess = inputStack.count.toLong()
+                var countToProcess = inputStack.count.toLong()
                     .coerceAtMost(parallelLimit - processedCount + 0L)
                     .coerceAtMost(remainingVoltage / recipe.eUt).toInt()
 
@@ -105,7 +105,7 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
                 for (fluidInput in recipe.fluidInputs)
                     fluidInputStacks.add(fluidInput.inputFluidStack)
 
-                countToProcess.coerceAtMost(getMaxFluidDeductionMultiplier(fluidInputStacks))
+                countToProcess = countToProcess.coerceAtMost(getMaxFluidDeductionMultiplier(fluidInputStacks))
 
                 if (countToProcess == 0)
                     return
@@ -116,7 +116,7 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
                 val consumedItemStack = inputStack.copy()
                 consumedItemStack.count = countToProcess
 
-                consumedItemStacks.add(inputStack)
+                consumedItemStacks.add(consumedItemStack)
                 for (inputFluidStack in fluidInputStacks)
                 {
                     val consumedFluidStack = inputFluidStack.copy()
