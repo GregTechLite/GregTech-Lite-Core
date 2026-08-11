@@ -177,8 +177,21 @@ class ManagedFieldCache(private val holder: ManagedFieldHolder, val mte: MetaTil
         return map
     }
 
-    private fun findListenerMethod(methodName: String): Method? =
-        mte.javaClass.declaredMethods.firstOrNull { it.name == methodName && it.parameterCount == 2 }
+    private fun findListenerMethod(methodName: String): Method?
+    {
+        var current: Class<*>? = mte.javaClass
+        while (current != null && current != Any::class.java)
+        {
+            val method = current.declaredMethods.firstOrNull { it.name == methodName && it.parameterCount == 2 }
+            if (method != null)
+            {
+                method.isAccessible = true
+                return method
+            }
+            current = current.superclass
+        }
+        return null
+    }
 
     private fun invokeListener(method: Method, newVal: Any?, oldVal: Any?)
     {

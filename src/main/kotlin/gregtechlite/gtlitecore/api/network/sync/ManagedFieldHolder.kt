@@ -15,23 +15,7 @@ class ManagedFieldHolder private constructor(val ownerClass: Class<*>)
 
     init
     {
-        val found = ownerClass.declaredFields.asSequence()
-            .filter { !Modifier.isStatic(it.modifiers) && !it.isSynthetic }
-            .filter { it.isAnnotationPresent(Persisted::class.java) || it.isAnnotationPresent(DescSynced::class.java) }
-            .filter {
-                if (isSupportedType(it.type))
-                {
-                    return@filter true
-                }
-                else
-                {
-                    LOGGER.warn("Managed skipping managed field {} on {}: unsupported type {}.",
-                                it.name, ownerClass.simpleName, it.type)
-                    return@filter false
-                }
-            }
-            .map { buildKey(it) }
-            .toList()
+        val found = collectManagedKeys(ownerClass)
 
         keys = found.toTypedArray()
         syncKeys = found.filter { it.isSync }.toTypedArray()
@@ -48,6 +32,43 @@ class ManagedFieldHolder private constructor(val ownerClass: Class<*>)
     }
 
     fun getKeyByName(name: String): ManagedFieldKey? = byName[name]
+
+    private fun collectManagedKeys(clazz: Class<*>): List<ManagedFieldKey>
+    {
+        val targets = arrayListOf<Class<*>>()
+        var current: Class<*>? = clazz
+        while (current != null && current != Any::class.java)
+        {
+            targets.add(current)
+            current = current.superclass
+        }
+
+        val result = linkedMapOf<String, ManagedFieldKey>()
+        for (target in targets.asReversed())
+        {
+            for (field in target.declaredFields)
+            {
+                if (Modifier.isStatic(field.modifiers) || field.isSynthetic) continue
+                if (!field.isAnnotationPresent(Persisted::class.java)
+                    && !field.isAnnotationPresent(DescSynced::class.java)) continue
+
+                if (!isSupportedType(field.type))
+                {
+                    LOGGER.warn("Managed skipping managed field {} on {}: unsupported type {}.",
+                                field.name, clazz.simpleName, field.type)
+                    continue
+                }
+                if (result.containsKey(field.name))
+                {
+                    LOGGER.warn("Managed duplicate managed field {} on {}; ignoring the one declared on {}.",
+                                field.name, clazz.simpleName, target.simpleName)
+                    continue
+                }
+                result[field.name] = buildKey(field)
+            }
+        }
+        return result.values.toList()
+    }
 
     private fun buildKey(field: Field): ManagedFieldKey
     {
