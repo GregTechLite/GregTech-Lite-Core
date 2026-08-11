@@ -169,10 +169,8 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
     
     override fun setGhostCircuitConfig(config: Int)
     {
-        if (circuitInventory == null || circuitInventory!!.circuitValue == config)
-            return
+        if (circuitInventory == null || circuitInventory!!.circuitValue == config) return
         circuitInventory!!.circuitValue = config
-
         if (!world.isRemote) markDirty()
     }
 
@@ -182,7 +180,15 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
     
     override fun registerAbilities(abilityInstances: AbilityInstances)
     {
-        abilityInstances.add(dualHandler)
+        if (abilityInstances.isKey(if (isExportHatch) MultiblockAbility.EXPORT_ITEMS else MultiblockAbility.IMPORT_ITEMS))
+        {
+            abilityInstances.add(dualHandler)
+            return
+        }
+        if (isExportHatch && abilityInstances.isKey(MultiblockAbility.EXPORT_FLUIDS))
+        {
+            abilityInstances.add(dualHandler)
+        }
     }
 
     @Suppress("UnstableApiUsage")
@@ -194,11 +200,11 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
         val rowSize = sqrt(itemSize.toDouble()).toInt()
         syncManager.registerSlotGroup("item_inv", rowSize)
         
-        val backgroundWidth = max(199, rowSize * 18 + 32) // (Player Inv Width, Bus Inv Width)
+        val backgroundWidth = max(199, rowSize * 18 + 32)
         val backgroundHeight = 112 + 18 * rowSize
         
         val widgets = arrayListOf<MutableList<IWidget>>()
-        for (i in 0 ..< rowSize)
+        for (i in 0 until rowSize)
         {
             widgets.add(arrayListOf())
             for (j in 0 ..< rowSize)
