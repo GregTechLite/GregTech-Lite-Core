@@ -30,7 +30,6 @@
     "MixinMetaTileEntityLargeChemicalReactor",
     "MixinMultiblockControllerBase",
     "MixinMultiblockRecipeLogic",
-    "MixinRecipeMapMultiblockController",
     "MixinBQuDataFixer",
     "MixinMetaTileEntityPowerSubstation",
     "MixinTextFormattingUtil",

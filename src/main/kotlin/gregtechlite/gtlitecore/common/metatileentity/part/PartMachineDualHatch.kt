@@ -182,7 +182,15 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
     
     override fun registerAbilities(abilityInstances: AbilityInstances)
     {
-        abilityInstances.add(dualHandler)
+        if (abilityInstances.isKey(if (isExportHatch) MultiblockAbility.EXPORT_ITEMS else MultiblockAbility.IMPORT_ITEMS))
+        {
+            abilityInstances.add(dualHandler)
+            return
+        }
+        if (isExportHatch && abilityInstances.isKey(MultiblockAbility.EXPORT_FLUIDS))
+        {
+            abilityInstances.add(dualHandler)
+        }
     }
 
     @Suppress("UnstableApiUsage")
