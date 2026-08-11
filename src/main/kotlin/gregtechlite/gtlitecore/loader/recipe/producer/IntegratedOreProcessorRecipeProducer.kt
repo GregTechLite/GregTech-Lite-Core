@@ -149,7 +149,7 @@ internal object IntegratedOreProcessorRecipeProducer
             if (name.startsWith("ore"))
             {
                 val itemStack = OreDictUnifier.get(name)
-                if (OreDictUnifier.getMaterial(itemStack) != null)
+                if (OreDictUnifier.getPrefix(itemStack) == ore && OreDictUnifier.getMaterial(itemStack) != null)
                     oreItems.add(itemStack)
             }
         }
