@@ -54,7 +54,7 @@ import gregtechlite.gtlitecore.api.metatileentity.PseudoMultiMachineMetaTileEnti
 import gregtechlite.gtlitecore.api.metatileentity.PseudoMultiSteamMachineMetaTileEntity
 import gregtechlite.gtlitecore.api.metatileentity.SimpleSteamMachineMetaTileEntity
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
-import gregtechlite.gtlitecore.api.network.sync.ManagedFields
+import gregtechlite.gtlitecore.api.network.sync.ManagedFieldRegistry
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
@@ -398,7 +398,7 @@ object GTLiteMetaTileEntities
     @JvmStatic
     fun init()
     {
-        ManagedFields.init()
+        ManagedFieldRegistry.init()
 
         // region 1-2000: Simple Machines
 

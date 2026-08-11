@@ -8,5 +8,5 @@ interface ManageableMachine
         get() = ManagedFieldHolder.get(this.javaClass)
 
     val managedCache: ManagedFieldCache
-        get() = ManagedFields.getStorage(this as MetaTileEntity)
+        get() = ManagedFieldRegistry.getCache(this as MetaTileEntity)
 }

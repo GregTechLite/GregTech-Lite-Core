@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.mixins.gregtech;
 
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtechlite.gtlitecore.api.network.sync.ManageableMachine;
-import gregtechlite.gtlitecore.api.network.sync.ManagedFields;
+import gregtechlite.gtlitecore.api.network.sync.ManagedFieldRegistry;
 import net.minecraft.nbt.NBTTagCompound;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,7 +20,7 @@ public abstract class MixinMetaTileEntity
         final MetaTileEntity self = (MetaTileEntity) (Object) this;
         if (self instanceof ManageableMachine)
         {
-            ManagedFields.writeToNBT(self, data);
+            ManagedFieldRegistry.writeToNBT(self, data);
         }
     }
 
@@ -31,7 +31,7 @@ public abstract class MixinMetaTileEntity
         final MetaTileEntity self = (MetaTileEntity) (Object) this;
         if (self instanceof ManageableMachine)
         {
-            ManagedFields.readFromNBT(self, data);
+            ManagedFieldRegistry.readFromNBT(self, data);
         }
     }
 
@@ -42,7 +42,18 @@ public abstract class MixinMetaTileEntity
         final MetaTileEntity self = (MetaTileEntity) (Object) this;
         if (self instanceof ManageableMachine && self.getWorld() != null && !self.getWorld().isRemote)
         {
-            ManagedFields.tickSync(self);
+            ManagedFieldRegistry.tickSync(self);
+        }
+    }
+
+    @Inject(method = "invalidate",
+            at = @At("HEAD"))
+    private void gtlitecore$managedInvalidate(CallbackInfo ci)
+    {
+        final MetaTileEntity self = (MetaTileEntity) (Object) this;
+        if (self instanceof ManageableMachine)
+        {
+            ManagedFieldRegistry.removeCache(self);
         }
     }
 }

@@ -39,15 +39,15 @@ class ManagedFieldCache(private val holder: ManagedFieldHolder, val mte: MetaTil
             val nbt = ref.toPayload().serializeNBT()
             if (nbt != null) managedTag.setTag(ref.key.persistentKey, nbt)
         }
-        tag.setTag(ManagedFields.MANAGED_NBT_KEY, managedTag)
+        tag.setTag(ManagedFieldRegistry.MANAGED_NBT_KEY, managedTag)
         LOGGER.debug("Managed writeToNBT @ {}: {}", mte.pos, printFields(persistRefs))
     }
 
     fun readNBT(tag: NBTTagCompound)
     {
-        if (tag.hasKey(ManagedFields.MANAGED_NBT_KEY))
+        if (tag.hasKey(ManagedFieldRegistry.MANAGED_NBT_KEY))
         {
-            val managedTag = tag.getCompoundTag(ManagedFields.MANAGED_NBT_KEY)
+            val managedTag = tag.getCompoundTag(ManagedFieldRegistry.MANAGED_NBT_KEY)
             for (ref in persistRefs)
             {
                 if (managedTag.hasKey(ref.key.persistentKey))
@@ -119,7 +119,7 @@ class ManagedFieldCache(private val holder: ManagedFieldHolder, val mte: MetaTil
         LOGGER.debug("Managed tickSync @ {}: changed=[{}], sending {} payloads",
             mte.pos, changed.joinToString(", ") { it.key.name }, changed.size)
 
-        mte.writeCustomData(ManagedFields.MANAGED_SYNC_CODE) {
+        mte.writeCustomData(ManagedFieldRegistry.MANAGED_SYNC_CODE) {
             it.writeVarInt(changed.size)
             for (ref in changed)
             {

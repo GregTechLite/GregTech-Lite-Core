@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.mixins.gregtech;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtechlite.gtlitecore.api.network.sync.ManageableMachine;
-import gregtechlite.gtlitecore.api.network.sync.ManagedFields;
+import gregtechlite.gtlitecore.api.network.sync.ManagedFieldRegistry;
 import net.minecraft.network.PacketBuffer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,7 +23,7 @@ public abstract class MixinMetaTileEntityHolder
     {
         if (metaTileEntity instanceof ManageableMachine)
         {
-            ManagedFields.writeInitialSync(metaTileEntity, buf);
+            ManagedFieldRegistry.writeInitialSync(metaTileEntity, buf);
         }
     }
 
@@ -33,7 +33,7 @@ public abstract class MixinMetaTileEntityHolder
     {
         if (metaTileEntity instanceof ManageableMachine)
         {
-            ManagedFields.readInitialSync(metaTileEntity, buf);
+            ManagedFieldRegistry.readInitialSync(metaTileEntity, buf);
         }
     }
 
@@ -43,7 +43,7 @@ public abstract class MixinMetaTileEntityHolder
     private void gtlitecore$managedReceiveCustomData(int discriminator, PacketBuffer buffer, CallbackInfo ci)
     {
         if (metaTileEntity instanceof ManageableMachine
-                && ManagedFields.handleCustomData(metaTileEntity, discriminator, buffer))
+                && ManagedFieldRegistry.handleCustomData(metaTileEntity, discriminator, buffer))
         {
             ci.cancel();
         }
