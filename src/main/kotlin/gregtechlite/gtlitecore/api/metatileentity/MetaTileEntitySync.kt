@@ -1,7 +1,9 @@
 package gregtechlite.gtlitecore.api.metatileentity
 
+import com.morphismmc.morphismlib.util.Unchecks
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtechlite.gtlitecore.api.LOGGER
+import gregtechlite.gtlitecore.api.data.Schema
 import gregtechlite.gtlitecore.api.data.handle.CheckStrategy
 import gregtechlite.gtlitecore.api.data.handle.DiffHandle
 import gregtechlite.gtlitecore.api.data.handle.DiffObservable
@@ -11,7 +13,7 @@ import gregtechlite.gtlitecore.api.data.serialize.SerializerManagement
 import gregtechlite.gtlitecore.api.network.expose.DiffExpose
 import gregtechlite.gtlitecore.api.network.expose.ExposeManagement
 import gregtechlite.gtlitecore.api.network.expose.HandleExpose
-import gregtechlite.gtlitecore.api.data.Schema
+import kotlin.reflect.KProperty
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
 
@@ -25,20 +27,22 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
 
     private val serializers = SerializerManagement()
     private val exposes = ExposeManagement()
+    private val handles = hashMapOf<String, Handle<*>>()
 
-    fun <T> synced(schema: Schema<T>, persist: Boolean = true): Handle<T>
+    fun <T> synced(schema: Schema<T>): SyncedField<T> = SyncedField(this, schema)
+
+    fun <T> serialize(schema: Schema<T>, handle: Handle<T>): Handle<T>
     {
-        val handle = handleOf(schema.initial, schema.strategy)
-        if (persist) serializers.register(schema, handle)
-        exposes.register(HandleExpose(schema.name, schema, handle))
-        handle.onChange { _, _ -> markDirty() }
+        serializers.register(schema, handle)
+        handles[schema.name] = handle
         return handle
     }
 
-    fun <T> persistedOnly(schema: Schema<T>): Handle<T>
+    fun <T> expose(schema: Schema<T>, handle: Handle<T>): Handle<T>
     {
-        val handle = handleOf(schema.initial, schema.strategy)
-        serializers.register(schema, handle)
+        exposes.register(HandleExpose(schema.name, schema, handle))
+        handle.onChange { _, _ -> markDirty() }
+        handles[schema.name] = handle
         return handle
     }
 
@@ -48,7 +52,18 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
         if (persist) serializers.register(schema, handle)
         exposes.register(DiffExpose(schema.name, schema, DiffHandle(handle)))
         handle.onChange { _, _ -> markDirty() }
+        handles[schema.name] = handle
         return DiffHandle(handle)
+    }
+
+    fun <T> handle(name: String): Handle<T> = Unchecks.cast(handles[name] ?: error("No handle declared with name '$name'"))
+
+    internal fun <T> declare(schema: Schema<T>): Handle<T>
+    {
+        val handle = handleOf(schema.initial, schema.strategy)
+        serialize(schema, handle)
+        expose(schema, handle)
+        return handle
     }
 
     fun flushChanges()
@@ -91,4 +106,20 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
     {
         if (tag.hasKey(NBT_KEY)) serializers.loadAll(tag.getCompoundTag(NBT_KEY))
     }
+
+    class SyncedField<T> internal constructor(private val sync: MetaTileEntitySync, private val schema: Schema<T>)
+    {
+        operator fun provideDelegate(thisRef: Any?, property: KProperty<*>): Handle<T>
+                = sync.declare(schema.copy(name = schema.name.ifEmpty { property.name }))
+    }
 }
+
+fun MetaTileEntitySync.syncedInt(initial: Int = 0) = synced(Schema.int(initial = initial))
+fun MetaTileEntitySync.syncedLong(initial: Long = 0L) = synced(Schema.long(initial = initial))
+fun MetaTileEntitySync.syncedShort(initial: Short = 0) = synced(Schema.short(initial = initial))
+fun MetaTileEntitySync.syncedByte(initial: Byte = 0) = synced(Schema.byte(initial = initial))
+fun MetaTileEntitySync.syncedFloat(initial: Float = 0.0f) = synced(Schema.float(initial = initial))
+fun MetaTileEntitySync.syncedDouble(initial: Double = 0.0) = synced(Schema.double(initial = initial))
+fun MetaTileEntitySync.syncedBoolean(initial: Boolean = false) = synced(Schema.boolean(initial = initial))
+fun MetaTileEntitySync.syncedString(initial: String = "") = synced(Schema.string(initial = initial))
+fun MetaTileEntitySync.syncedNBT(initial: NBTTagCompound = NBTTagCompound()) = synced(Schema.nbt(initial = initial))

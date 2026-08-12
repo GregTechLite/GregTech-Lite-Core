@@ -6,10 +6,13 @@ import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.data.handle.getValue
 import gregtechlite.gtlitecore.api.data.handle.setValue
+import gregtechlite.gtlitecore.api.data.handle.handleOf
 import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySync
 import gregtechlite.gtlitecore.api.data.Schema
 import gregtechlite.gtlitecore.api.data.handle.DiffObservable
 import gregtechlite.gtlitecore.api.metatileentity.SyncedMetaTileEntity
+import gregtechlite.gtlitecore.api.metatileentity.syncedInt
+import gregtechlite.gtlitecore.api.metatileentity.syncedString
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.ResourceLocation
 import org.jetbrains.annotations.TestOnly
@@ -19,22 +22,22 @@ class MetaTileEntityTestSynced(id: ResourceLocation) : MetaTileEntity(id), Synce
 {
     override val sync = MetaTileEntitySync(this)
 
-    private val countHandle = sync.synced(Schema.int("count", 0))
-    private val labelHandle = sync.synced(Schema.string("label", ""))
-    private val diskOnlyHandle = sync.persistedOnly(Schema.string("disk_only", ""))
+    var count by sync.syncedInt()
+    var label by sync.syncedString()
+
+    var diskOnly by sync.serialize(Schema.string("disk_only", ""), handleOf(""))
+    var runtimeOnly by sync.expose(Schema.int("runtime_only", 0), handleOf(0))
+
     private val progressHandle = sync.syncedDiff(Schema.diff("progress", FloatProgressValue(0f),
         { buf, value -> buf.writeFloat(value.value) },
         { buf -> FloatProgressValue(buf.readFloat()) }), persist = false)
 
-    var count: Int by countHandle
-    var label: String by labelHandle
-    var diskOnly: String by diskOnlyHandle
     val progress: Float
         get() = progressHandle.current.value
 
     init
     {
-        countHandle.onChange { newVal, oldVal ->
+        sync.handle<Int>("count").onChange { newVal, oldVal ->
             if (world != null && world.isRemote)
             {
                 LOGGER.info("Client count synced @ $pos: $oldVal -> $newVal")
@@ -54,8 +57,9 @@ class MetaTileEntityTestSynced(id: ResourceLocation) : MetaTileEntity(id), Synce
             {
                 count += 1
                 label = "tick-$offsetTimer"
+                runtimeOnly = count
                 progressHandle.current.value = ((offsetTimer / SECOND) % 100f)
-                LOGGER.info("Server update @ $pos: count=$count label=$label progress=$progress")
+                LOGGER.info("Server update @ $pos: count=$count label=$label runtime=$runtimeOnly progress=$progress")
             }
         }
     }
