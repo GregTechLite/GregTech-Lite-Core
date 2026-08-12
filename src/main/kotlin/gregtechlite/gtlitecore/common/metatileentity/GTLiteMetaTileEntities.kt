@@ -385,6 +385,8 @@ object GTLiteMetaTileEntities
     lateinit var NANO_ASSEMBLY_COMPLEX: MultiblockNanoAssemblyComplex
     lateinit var MATTER_RESHAPING_FRAMEWORK: MultiblockMatterReshapingFramework
 
+    lateinit var TEST_SYNCED: MetaTileEntityTestSynced
+
     // endregion
 
     fun preInit()
@@ -931,6 +933,8 @@ object GTLiteMetaTileEntities
         EP_COUPLING_ACCELERATOR = register(10203, MultiblockEPCouplingAccelerator(GTLiteMod.id("ep_coupling_accelerator")))
         NANO_ASSEMBLY_COMPLEX = register(10204, MultiblockNanoAssemblyComplex(GTLiteMod.id("nano_assembly_complex")))
         MATTER_RESHAPING_FRAMEWORK = register(10205, MultiblockMatterReshapingFramework(GTLiteMod.id("matter_reshaping_framework")))
+
+        TEST_SYNCED = register(10206, MetaTileEntityTestSynced(GTLiteMod.id("test_synced_mte")))
 
         // endregion
     }
