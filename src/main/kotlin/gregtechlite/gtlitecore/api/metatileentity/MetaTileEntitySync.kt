@@ -31,6 +31,7 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
         val handle = handleOf(schema.initial, schema.strategy)
         if (persist) serializers.register(schema, handle)
         exposes.register(HandleExpose(schema.name, schema, handle))
+        handle.onChange { _, _ -> markDirty() }
         return handle
     }
 
@@ -46,15 +47,23 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
         val handle = handleOf(schema.initial, CheckStrategy.ALWAYS_UPDATE)
         if (persist) serializers.register(schema, handle)
         exposes.register(DiffExpose(schema.name, schema, DiffHandle(handle)))
+        handle.onChange { _, _ -> markDirty() }
         return DiffHandle(handle)
     }
 
-    fun tickServer()
+    fun flushChanges()
     {
+        if (mte.world?.isRemote != false) return
         if (!exposes.hasChanges()) return
         mte.writeCustomData(SYNC_CODE) { exposes.writeChangesToClient(it) }
         exposes.clearAllDirty()
-        LOGGER.info("Sent '${mte.metaTileEntityId}' sync custom data", )
+        LOGGER.info("Sent '${mte.metaTileEntityId}' sync custom data")
+    }
+
+    private fun markDirty()
+    {
+        val world = mte.world ?: return
+        if (!world.isRemote) MetaTileEntitySyncBatcher.get(world.provider.dimension).markDirty(this)
     }
 
     fun writeInitialSync(buf: PacketBuffer) = exposes.writeAllToClient(buf)

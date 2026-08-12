@@ -44,14 +44,4 @@ public abstract class MixinMetaTileEntityHolder
             ci.cancel();
         }
     }
-
-    @Inject(method = "update", at = @At("RETURN"))
-    private void gtlitecore$syncTick(CallbackInfo ci)
-    {
-        final MetaTileEntityHolder self = (MetaTileEntityHolder) (Object) this;
-        if (metaTileEntity instanceof SyncedMetaTileEntity && !self.getWorld().isRemote)
-        {
-            ((SyncedMetaTileEntity) metaTileEntity).getSync().tickServer();
-        }
-    }
 }
