@@ -12,7 +12,7 @@ import gregtech.api.metatileentity.TieredMetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.PipelineUtil
-import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySync
+import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySyncer
 import gregtechlite.gtlitecore.api.metatileentity.SyncedMetaTileEntity
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
@@ -26,9 +26,9 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTileEntity(id, tier), SyncedMetaTileEntity
 {
-    override val sync: MetaTileEntitySync = MetaTileEntitySync(this)
+    override val syncer: MetaTileEntitySyncer = MetaTileEntitySyncer(this)
 
-    var isDistributeMode by sync.syncedBoolean(true)
+    var isDistributeMode by syncer.syncedBoolean(true)
 
     override fun createMetaTileEntity(te: IGregTechTileEntity) = MachineEnergyDistributor(metaTileEntityId, tier)
 

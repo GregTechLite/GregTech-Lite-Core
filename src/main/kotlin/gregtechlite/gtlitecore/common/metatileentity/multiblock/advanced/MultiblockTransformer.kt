@@ -3,8 +3,6 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
-import gregtech.api.capability.GregtechDataCodes.WORKABLE_ACTIVE
-import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
 import gregtech.api.capability.GregtechTileCapabilities.CAPABILITY_CONTROLLABLE
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IEnergyContainer
@@ -25,11 +23,11 @@ import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySyncer
+import gregtechlite.gtlitecore.api.metatileentity.SyncedMetaTileEntity
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.network.PacketBuffer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.TextFormatting
@@ -38,11 +36,12 @@ import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id), IControllable
+class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id), IControllable, SyncedMetaTileEntity
 {
+    override val syncer: MetaTileEntitySyncer = MetaTileEntitySyncer(this)
 
-    private var isWorkingEnabled: Boolean = false
-    private var isActive: Boolean = false
+    private var _isWorkingEnabled by syncer.syncedBoolean()
+    private var _isActive by syncer.syncedBoolean()
 
     private var inputEnergy: IEnergyContainer = EnergyContainerList(arrayListOf())
     private var outputEnergy: IEnergyContainer = EnergyContainerList(arrayListOf())
@@ -108,7 +107,7 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
                 averageIOLastSec = netIOLastSec / SECOND
                 netIOLastSec = 0
             }
-            if (isWorkingEnabled())
+            if (this@MultiblockTransformer.isWorkingEnabled())
             {
                 val drainableEnergy = inputEnergy.energyStored
                 val totalDrainedEnergy = outputEnergy.changeEnergy(drainableEnergy)
@@ -127,12 +126,12 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
                                       pipeline: Array<out IVertexOperation?>?)
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
-        frontOverlay.renderOrientedState(renderState, translation, pipeline, frontFacing, isActive, isWorkingEnabled)
+        frontOverlay.renderOrientedState(renderState, translation, pipeline, frontFacing, _isActive, _isWorkingEnabled)
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)
     {
-        builder.setWorkingStatus(true, isActive)
+        builder.setWorkingStatus(true, _isActive)
             .setWorkingStatusKeys("gregtech.multiblock.idling",
                                   "gregtech.multiblock.idling",
                                   "gregtech.machine.active_transformer.routing")
@@ -163,77 +162,23 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
 
     override fun shouldShowVoidingModeButton(): Boolean = false
 
-    override fun isWorkingEnabled(): Boolean = this.isWorkingEnabled
+    override fun isWorkingEnabled(): Boolean = _isWorkingEnabled
 
     override fun setWorkingEnabled(workingStatus: Boolean)
     {
-        this.isWorkingEnabled = workingStatus
-        markDirty()
-        if (world != null && !world.isRemote)
-            writeCustomData(WORKING_ENABLED) { it.writeBoolean(this.isWorkingEnabled) }
+        _isWorkingEnabled = workingStatus
     }
 
-    override fun isActive(): Boolean = super.isActive() && this.isWorkingEnabled
+    override fun isActive(): Boolean = super.isActive() && _isWorkingEnabled
 
     fun setActive(active: Boolean)
     {
-        if (this.isActive != active)
-        {
-            this.isActive = active
-            markDirty()
-            if (world != null && !world.isRemote)
-                writeCustomData(WORKABLE_ACTIVE) { it.writeBoolean(active) }
-        }
-    }
-
-    override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
-    {
-        super.writeToNBT(data)
-        data.setBoolean("isActive", this.isActive)
-        data.setBoolean("isWorkingEnabled", this.isWorkingEnabled)
-        return data
-    }
-
-    override fun readFromNBT(data: NBTTagCompound)
-    {
-        super.readFromNBT(data)
-        this.isActive = data.getBoolean("isActive")
-        this.isWorkingEnabled = data.getBoolean("isWorkingEnabled")
-    }
-
-    override fun writeInitialSyncData(buf: PacketBuffer)
-    {
-        super.writeInitialSyncData(buf)
-        buf.writeBoolean(this.isActive)
-        buf.writeBoolean(this.isWorkingEnabled)
-    }
-
-    override fun receiveInitialSyncData(buf: PacketBuffer)
-    {
-        super.receiveInitialSyncData(buf)
-        this.isActive = buf.readBoolean()
-        this.isWorkingEnabled = buf.readBoolean()
-    }
-
-    override fun receiveCustomData(dataId: Int, buf: PacketBuffer)
-    {
-        super.receiveCustomData(dataId, buf)
-        if (dataId == WORKABLE_ACTIVE)
-        {
-            this.isActive = buf.readBoolean()
-            scheduleRenderUpdate()
-        }
-        else if (dataId == WORKING_ENABLED)
-        {
-            this.isWorkingEnabled = buf.readBoolean()
-            scheduleRenderUpdate()
-        }
+        _isActive = active
     }
 
     override fun <T : Any?> getCapability(capability: Capability<T>, side: EnumFacing?): T?
     {
-        if (capability === CAPABILITY_CONTROLLABLE)
-            return CAPABILITY_CONTROLLABLE.cast(this)
+        if (capability === CAPABILITY_CONTROLLABLE) return CAPABILITY_CONTROLLABLE.cast(this)
         return super.getCapability(capability, side)
     }
 
@@ -243,5 +188,4 @@ class MultiblockTransformer(id: ResourceLocation) : MultiblockWithDisplayBase(id
         tooltip.add(I18n.format("gtlitecore.machine.large_transformer.tooltip.1"))
         tooltip.add(I18n.format("gtlitecore.machine.large_transformer.tooltip.2"))
     }
-
 }

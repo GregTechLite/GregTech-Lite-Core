@@ -17,7 +17,7 @@ import kotlin.reflect.KProperty
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
 
-class MetaTileEntitySync(private val mte: MetaTileEntity)
+class MetaTileEntitySyncer(private val mte: MetaTileEntity)
 {
     companion object
     {
@@ -138,7 +138,7 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
         if (tag.hasKey(NBT_KEY)) serializers.loadAll(tag.getCompoundTag(NBT_KEY))
     }
 
-    class SyncedField<T> internal constructor(private val sync: MetaTileEntitySync, private val schema: Schema<T>)
+    class SyncedField<T> internal constructor(private val sync: MetaTileEntitySyncer, private val schema: Schema<T>)
     {
         operator fun provideDelegate(thisRef: Any?, property: KProperty<*>): FlowHandler<T>
             = sync.declare(schema.copy(name = schema.name.ifEmpty { property.name }))

@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.mixins.gregtech;
 
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
-import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySync;
+import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySyncer;
 import gregtechlite.gtlitecore.api.metatileentity.SyncedMetaTileEntity;
 import net.minecraft.network.PacketBuffer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +22,7 @@ public abstract class MixinMetaTileEntityHolder
     {
         if (metaTileEntity instanceof SyncedMetaTileEntity)
         {
-            ((SyncedMetaTileEntity) metaTileEntity).getSync().writeInitialSync(buf);
+            ((SyncedMetaTileEntity) metaTileEntity).getSyncer().writeInitialSync(buf);
         }
     }
 
@@ -31,16 +31,16 @@ public abstract class MixinMetaTileEntityHolder
     {
         if (metaTileEntity instanceof SyncedMetaTileEntity)
         {
-            ((SyncedMetaTileEntity) metaTileEntity).getSync().receiveInitialSync(buf);
+            ((SyncedMetaTileEntity) metaTileEntity).getSyncer().receiveInitialSync(buf);
         }
     }
 
     @Inject(method = "receiveCustomData", at = @At("HEAD"), cancellable = true)
     private void gtlitecore$syncReceiveCustomData(int discriminator, PacketBuffer buffer, CallbackInfo ci)
     {
-        if (metaTileEntity instanceof SyncedMetaTileEntity && discriminator == MetaTileEntitySync.SYNC_CODE)
+        if (metaTileEntity instanceof SyncedMetaTileEntity && discriminator == MetaTileEntitySyncer.SYNC_CODE)
         {
-            ((SyncedMetaTileEntity) metaTileEntity).getSync().receiveCustomData(buffer);
+            ((SyncedMetaTileEntity) metaTileEntity).getSyncer().receiveCustomData(buffer);
             ci.cancel();
         }
     }

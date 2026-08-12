@@ -5,11 +5,11 @@ import java.util.concurrent.ConcurrentHashMap
 object MetaTileEntitySyncBatcher
 {
     private val batchers = ConcurrentHashMap<Int, MetaTileEntitySyncBatcher>()
-    private val dirty = ConcurrentHashMap.newKeySet<MetaTileEntitySync>()
+    private val dirty = ConcurrentHashMap.newKeySet<MetaTileEntitySyncer>()
 
     fun get(dimension: Int): MetaTileEntitySyncBatcher = batchers.getOrPut(dimension) { MetaTileEntitySyncBatcher }
 
-    fun markDirty(sync: MetaTileEntitySync)
+    fun markDirty(sync: MetaTileEntitySyncer)
     {
         dirty.add(sync)
     }

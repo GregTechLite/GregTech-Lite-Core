@@ -18,7 +18,7 @@ public abstract class MixinMetaTileEntity
         final MetaTileEntity self = (MetaTileEntity) (Object) this;
         if (self instanceof SyncedMetaTileEntity)
         {
-            ((SyncedMetaTileEntity) self).getSync().saveToNBT(data);
+            ((SyncedMetaTileEntity) self).getSyncer().saveToNBT(data);
         }
     }
 
@@ -28,7 +28,7 @@ public abstract class MixinMetaTileEntity
         final MetaTileEntity self = (MetaTileEntity) (Object) this;
         if (self instanceof SyncedMetaTileEntity)
         {
-            ((SyncedMetaTileEntity) self).getSync().loadFromNBT(data);
+            ((SyncedMetaTileEntity) self).getSyncer().loadFromNBT(data);
         }
     }
 }
