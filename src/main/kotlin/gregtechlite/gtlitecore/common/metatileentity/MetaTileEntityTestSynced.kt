@@ -4,8 +4,6 @@ import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.data.handler.getValue
-import gregtechlite.gtlitecore.api.data.handler.setValue
 import gregtechlite.gtlitecore.api.data.handler.handlerOf
 import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySync
 import gregtechlite.gtlitecore.api.data.Schema

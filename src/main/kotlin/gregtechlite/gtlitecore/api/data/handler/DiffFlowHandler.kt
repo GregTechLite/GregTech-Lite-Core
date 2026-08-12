@@ -25,6 +25,6 @@ class DiffHandler<T : DiffObservable<D>, D>(private val delegate: FlowHandler<T>
     fun onChange(listener: (T) -> Unit): Subscription = delegate.onChange(listener)
 
     fun onChange(listener: (old: T, new: T) -> Unit): Subscription = delegate.onChange(listener)
-}
 
-operator fun <T : DiffObservable<D>, D> DiffHandler<T, D>.getValue(thisRef: Any?, property: KProperty<*>): T = value
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): T = value
+}

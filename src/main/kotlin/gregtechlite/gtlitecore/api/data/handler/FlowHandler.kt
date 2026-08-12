@@ -22,11 +22,11 @@ interface FlowHandler<T> : StateFlow<T>
     fun onChange(listener: (old: T, new: T) -> Unit): Subscription
 
     fun readOnly(): ReadOnlyFlowHandler<T>
+
+    operator fun getValue(thisRef: Any?, property: KProperty<*>): T = value
+
+    operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) { set(value) }
 }
 
 fun <T> handlerOf(initial: T, strategy: CheckStrategy<T> = CheckStrategy.Equals): FlowHandler<T>
     = BasicFlowHandler(initial, strategy)
-
-operator fun <T> FlowHandler<T>.getValue(thisRef: Any?, property: KProperty<*>): T = value
-
-operator fun <T> FlowHandler<T>.setValue(thisRef: Any?, property: KProperty<*>, value: T) { set(value) }
