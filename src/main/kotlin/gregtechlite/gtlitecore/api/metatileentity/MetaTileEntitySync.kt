@@ -29,11 +29,16 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
     private val exposes = ExposeManagement()
     private val handlers = hashMapOf<String, FlowHandler<*>>()
 
+    // region Delegator
+
     fun <T> synced(schema: Schema<T>): SyncedField<T> = SyncedField(this, schema)
 
     fun <T> serialize(schema: Schema<T>, handler: FlowHandler<T>): FlowHandler<T>
     {
         serializers.register(schema, handler)
+        handler.onChange { _, _ ->
+            if (mte.world?.isRemote == false) mte.markDirty()
+        }
         handlers[schema.name] = handler
         return handler
     }
@@ -65,6 +70,32 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
         expose(schema, handle)
         return handle
     }
+
+    // endregion
+
+    // region Sync Shortcut
+
+    fun syncedInt(initial: Int = 0) = synced(Schema.int(initial = initial))
+
+    fun syncedLong(initial: Long = 0L) = synced(Schema.long(initial = initial))
+
+    fun syncedShort(initial: Short = 0) = synced(Schema.short(initial = initial))
+
+    fun syncedByte(initial: Byte = 0) = synced(Schema.byte(initial = initial))
+
+    fun syncedFloat(initial: Float = 0.0f) = synced(Schema.float(initial = initial))
+
+    fun syncedDouble(initial: Double = 0.0) = synced(Schema.double(initial = initial))
+
+    fun syncedBoolean(initial: Boolean = false) = synced(Schema.boolean(initial = initial))
+
+    fun syncedString(initial: String = "") = synced(Schema.string(initial = initial))
+
+    fun syncedNBT(initial: NBTTagCompound = NBTTagCompound()) = synced(Schema.nbt(initial = initial))
+
+    // endregion
+
+    // region Operation
 
     fun flushChanges()
     {
@@ -112,14 +143,6 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
         operator fun provideDelegate(thisRef: Any?, property: KProperty<*>): FlowHandler<T>
             = sync.declare(schema.copy(name = schema.name.ifEmpty { property.name }))
     }
-}
 
-fun MetaTileEntitySync.syncedInt(initial: Int = 0) = synced(Schema.int(initial = initial))
-fun MetaTileEntitySync.syncedLong(initial: Long = 0L) = synced(Schema.long(initial = initial))
-fun MetaTileEntitySync.syncedShort(initial: Short = 0) = synced(Schema.short(initial = initial))
-fun MetaTileEntitySync.syncedByte(initial: Byte = 0) = synced(Schema.byte(initial = initial))
-fun MetaTileEntitySync.syncedFloat(initial: Float = 0.0f) = synced(Schema.float(initial = initial))
-fun MetaTileEntitySync.syncedDouble(initial: Double = 0.0) = synced(Schema.double(initial = initial))
-fun MetaTileEntitySync.syncedBoolean(initial: Boolean = false) = synced(Schema.boolean(initial = initial))
-fun MetaTileEntitySync.syncedString(initial: String = "") = synced(Schema.string(initial = initial))
-fun MetaTileEntitySync.syncedNBT(initial: NBTTagCompound = NBTTagCompound()) = synced(Schema.nbt(initial = initial))
+    // endregion
+}
