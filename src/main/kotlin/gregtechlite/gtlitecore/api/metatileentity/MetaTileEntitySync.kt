@@ -48,7 +48,7 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
 
     fun <T : DiffObservable<D>, D> syncedDiff(schema: Schema<T>, persist: Boolean = true): DiffHandle<T, D>
     {
-        val handle = handleOf(schema.initial, CheckStrategy.ALWAYS_UPDATE)
+        val handle = handleOf(schema.initial, CheckStrategy.AlwaysUpdate)
         if (persist) serializers.register(schema, handle)
         exposes.register(DiffExpose(schema.name, schema, DiffHandle(handle)))
         handle.onChange { _, _ -> markDirty() }
@@ -110,7 +110,7 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
     class SyncedField<T> internal constructor(private val sync: MetaTileEntitySync, private val schema: Schema<T>)
     {
         operator fun provideDelegate(thisRef: Any?, property: KProperty<*>): Handle<T>
-                = sync.declare(schema.copy(name = schema.name.ifEmpty { property.name }))
+            = sync.declare(schema.copy(name = schema.name.ifEmpty { property.name }))
     }
 }
 

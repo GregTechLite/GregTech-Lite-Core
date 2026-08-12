@@ -2,27 +2,20 @@ package gregtechlite.gtlitecore.api.data.handle
 
 sealed class CheckStrategy<in T>
 {
-    companion object
+    object Equals : CheckStrategy<Any?>()
     {
-        val EQUALS: CheckStrategy<Any?> = EqualsStrategy
-        val IDENTITY: CheckStrategy<Any?> = IdentityStrategy
-        val ALWAYS_UPDATE: CheckStrategy<Any?> = AlwaysUpdateStrategy
+        override fun matches(prev: Any?, cur: Any?) = prev == cur
+    }
+
+    object Identity : CheckStrategy<Any?>()
+    {
+        override fun matches(prev: Any?, cur: Any?) = prev === cur
+    }
+
+    object AlwaysUpdate : CheckStrategy<Any?>()
+    {
+        override fun matches(prev: Any?, cur: Any?) = false
     }
 
     abstract fun matches(prev: T, cur: T): Boolean
-}
-
-private object EqualsStrategy : CheckStrategy<Any?>()
-{
-    override fun matches(prev: Any?, cur: Any?) = prev == cur
-}
-
-private object IdentityStrategy : CheckStrategy<Any?>()
-{
-    override fun matches(prev: Any?, cur: Any?) = prev === cur
-}
-
-private object AlwaysUpdateStrategy : CheckStrategy<Any?>()
-{
-    override fun matches(prev: Any?, cur: Any?) = false
 }

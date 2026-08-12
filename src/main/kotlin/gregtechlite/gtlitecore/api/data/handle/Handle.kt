@@ -23,7 +23,7 @@ interface Handle<T>
     fun readOnly(): ReadOnlyHandle<T>
 }
 
-fun <T> handleOf(initial: T, strategy: CheckStrategy<T> = CheckStrategy.EQUALS): Handle<T> = BasicHandle(initial, strategy)
+fun <T> handleOf(initial: T, strategy: CheckStrategy<T> = CheckStrategy.Equals): Handle<T> = BasicHandle(initial, strategy)
 
 operator fun <T> Handle<T>.getValue(thisRef: Any?, property: KProperty<*>): T = current
 
