@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.api.data.serialize
 
-import gregtechlite.gtlitecore.api.data.handle.Handle
+import gregtechlite.gtlitecore.api.data.handler.FlowHandler
 import gregtechlite.gtlitecore.api.data.Schema
 import net.minecraft.nbt.NBTTagCompound
 
@@ -8,9 +8,9 @@ class SerializerManagement
 {
     private val serializers = linkedMapOf<String, Serialize<*>>()
 
-    fun <T> register(schema: Schema<T>, handle: Handle<T>)
+    fun <T> register(schema: Schema<T>, handler: FlowHandler<T>)
     {
-        require(serializers.putIfAbsent(schema.name, Serialize(schema, handle)) == null) {
+        require(serializers.putIfAbsent(schema.name, Serialize(schema, handler)) == null) {
             "Duplicate serializer '${schema.name}'"
         }
     }
@@ -27,14 +27,14 @@ class SerializerManagement
             serialize.load(tag, name)
     }
 
-    private class Serialize<T>(private val schema: Schema<T>, private val handle: Handle<T>)
+    private class Serialize<T>(private val schema: Schema<T>, private val handler: FlowHandler<T>)
     {
-        fun save(tag: NBTTagCompound, name: String) = schema.nbtWriter(tag, name, handle.current)
+        fun save(tag: NBTTagCompound, name: String) = schema.nbtWriter(tag, name, handler.value)
 
         fun load(tag: NBTTagCompound, name: String)
         {
             if (tag.hasKey(name))
-                handle.load(schema.nbtReader(tag, name))
+                handler.load(schema.nbtReader(tag, name))
         }
     }
 }

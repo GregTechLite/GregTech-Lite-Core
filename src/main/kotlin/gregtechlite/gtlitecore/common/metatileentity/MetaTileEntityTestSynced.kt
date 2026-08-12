@@ -4,12 +4,12 @@ import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.data.handle.getValue
-import gregtechlite.gtlitecore.api.data.handle.setValue
-import gregtechlite.gtlitecore.api.data.handle.handleOf
+import gregtechlite.gtlitecore.api.data.handler.getValue
+import gregtechlite.gtlitecore.api.data.handler.setValue
+import gregtechlite.gtlitecore.api.data.handler.handlerOf
 import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySync
 import gregtechlite.gtlitecore.api.data.Schema
-import gregtechlite.gtlitecore.api.data.handle.DiffObservable
+import gregtechlite.gtlitecore.api.data.handler.DiffObservable
 import gregtechlite.gtlitecore.api.metatileentity.SyncedMetaTileEntity
 import gregtechlite.gtlitecore.api.metatileentity.syncedInt
 import gregtechlite.gtlitecore.api.metatileentity.syncedString
@@ -25,15 +25,15 @@ class MetaTileEntityTestSynced(id: ResourceLocation) : MetaTileEntity(id), Synce
     var count by sync.syncedInt()
     var label by sync.syncedString()
 
-    var diskOnly by sync.serialize(Schema.string("disk_only", ""), handleOf(""))
-    var runtimeOnly by sync.expose(Schema.int("runtime_only", 0), handleOf(0))
+    var diskOnly by sync.serialize(Schema.string("disk_only", ""), handlerOf(""))
+    var runtimeOnly by sync.expose(Schema.int("runtime_only", 0), handlerOf(0))
 
     private val progressHandle = sync.syncedDiff(Schema.diff("progress", FloatProgressValue(0f),
         { buf, value -> buf.writeFloat(value.value) },
         { buf -> FloatProgressValue(buf.readFloat()) }), persist = false)
 
     val progress: Float
-        get() = progressHandle.current.value
+        get() = progressHandle.value.value
 
     init
     {
@@ -58,7 +58,7 @@ class MetaTileEntityTestSynced(id: ResourceLocation) : MetaTileEntity(id), Synce
                 count += 1
                 label = "tick-$offsetTimer"
                 runtimeOnly = count
-                progressHandle.current.value = ((offsetTimer / SECOND) % 100f)
+                progressHandle.value.value = ((offsetTimer / SECOND) % 100f)
                 LOGGER.info("Server update @ $pos: count=$count label=$label runtime=$runtimeOnly progress=$progress")
             }
         }

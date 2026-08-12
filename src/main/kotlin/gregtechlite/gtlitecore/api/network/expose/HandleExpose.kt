@@ -1,22 +1,22 @@
 package gregtechlite.gtlitecore.api.network.expose
 
-import gregtechlite.gtlitecore.api.data.handle.Handle
+import gregtechlite.gtlitecore.api.data.handler.FlowHandler
 import gregtechlite.gtlitecore.api.data.Schema
 import net.minecraft.network.PacketBuffer
 
 class HandleExpose<T>(override val name: String,
                       private val schema: Schema<T>,
-                      private val handle: Handle<T>) : Expose
+                      private val handler: FlowHandler<T>) : Expose
 {
-    override fun isChanged(): Boolean = handle.dirty()
+    override fun isChanged(): Boolean = handler.dirty()
 
-    override fun clearDirty() = handle.clearDirty()
+    override fun clearDirty() = handler.clearDirty()
 
-    override fun writeValue(buf: PacketBuffer) = schema.dataWriter(buf, handle.current)
+    override fun writeValue(buf: PacketBuffer) = schema.dataWriter(buf, handler.value)
 
     override fun readValue(buf: PacketBuffer)
     {
-        handle.apply(schema.dataReader(buf))
+        handler.apply(schema.dataReader(buf))
     }
 
     override fun isDifferential(): Boolean = false

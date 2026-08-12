@@ -4,11 +4,11 @@ import com.morphismmc.morphismlib.util.Unchecks
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.data.Schema
-import gregtechlite.gtlitecore.api.data.handle.CheckStrategy
-import gregtechlite.gtlitecore.api.data.handle.DiffHandle
-import gregtechlite.gtlitecore.api.data.handle.DiffObservable
-import gregtechlite.gtlitecore.api.data.handle.Handle
-import gregtechlite.gtlitecore.api.data.handle.handleOf
+import gregtechlite.gtlitecore.api.data.handler.CheckStrategy
+import gregtechlite.gtlitecore.api.data.handler.DiffHandler
+import gregtechlite.gtlitecore.api.data.handler.DiffObservable
+import gregtechlite.gtlitecore.api.data.handler.FlowHandler
+import gregtechlite.gtlitecore.api.data.handler.handlerOf
 import gregtechlite.gtlitecore.api.data.serialize.SerializerManagement
 import gregtechlite.gtlitecore.api.network.expose.DiffExpose
 import gregtechlite.gtlitecore.api.network.expose.ExposeManagement
@@ -27,40 +27,40 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
 
     private val serializers = SerializerManagement()
     private val exposes = ExposeManagement()
-    private val handles = hashMapOf<String, Handle<*>>()
+    private val handlers = hashMapOf<String, FlowHandler<*>>()
 
     fun <T> synced(schema: Schema<T>): SyncedField<T> = SyncedField(this, schema)
 
-    fun <T> serialize(schema: Schema<T>, handle: Handle<T>): Handle<T>
+    fun <T> serialize(schema: Schema<T>, handler: FlowHandler<T>): FlowHandler<T>
     {
-        serializers.register(schema, handle)
-        handles[schema.name] = handle
-        return handle
+        serializers.register(schema, handler)
+        handlers[schema.name] = handler
+        return handler
     }
 
-    fun <T> expose(schema: Schema<T>, handle: Handle<T>): Handle<T>
+    fun <T> expose(schema: Schema<T>, handler: FlowHandler<T>): FlowHandler<T>
     {
-        exposes.register(HandleExpose(schema.name, schema, handle))
-        handle.onChange { _, _ -> markDirty() }
-        handles[schema.name] = handle
-        return handle
+        exposes.register(HandleExpose(schema.name, schema, handler))
+        handler.onChange { _, _ -> markDirty() }
+        handlers[schema.name] = handler
+        return handler
     }
 
-    fun <T : DiffObservable<D>, D> syncedDiff(schema: Schema<T>, persist: Boolean = true): DiffHandle<T, D>
+    fun <T : DiffObservable<D>, D> syncedDiff(schema: Schema<T>, persist: Boolean = true): DiffHandler<T, D>
     {
-        val handle = handleOf(schema.initial, CheckStrategy.AlwaysUpdate)
+        val handle = handlerOf(schema.initial, CheckStrategy.AlwaysUpdate)
         if (persist) serializers.register(schema, handle)
-        exposes.register(DiffExpose(schema.name, schema, DiffHandle(handle)))
+        exposes.register(DiffExpose(schema.name, schema, DiffHandler(handle)))
         handle.onChange { _, _ -> markDirty() }
-        handles[schema.name] = handle
-        return DiffHandle(handle)
+        handlers[schema.name] = handle
+        return DiffHandler(handle)
     }
 
-    fun <T> handle(name: String): Handle<T> = Unchecks.cast(handles[name] ?: error("No handle declared with name '$name'"))
+    fun <T> handle(name: String): FlowHandler<T> = Unchecks.cast(handlers[name] ?: error("No handle declared with name '$name'"))
 
-    internal fun <T> declare(schema: Schema<T>): Handle<T>
+    internal fun <T> declare(schema: Schema<T>): FlowHandler<T>
     {
-        val handle = handleOf(schema.initial, schema.strategy)
+        val handle = handlerOf(schema.initial, schema.strategy)
         serialize(schema, handle)
         expose(schema, handle)
         return handle
@@ -109,7 +109,7 @@ class MetaTileEntitySync(private val mte: MetaTileEntity)
 
     class SyncedField<T> internal constructor(private val sync: MetaTileEntitySync, private val schema: Schema<T>)
     {
-        operator fun provideDelegate(thisRef: Any?, property: KProperty<*>): Handle<T>
+        operator fun provideDelegate(thisRef: Any?, property: KProperty<*>): FlowHandler<T>
             = sync.declare(schema.copy(name = schema.name.ifEmpty { property.name }))
     }
 }

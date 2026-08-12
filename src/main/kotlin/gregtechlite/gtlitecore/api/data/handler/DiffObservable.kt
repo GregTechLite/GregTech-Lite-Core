@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.api.data.handle
+package gregtechlite.gtlitecore.api.data.handler
 
 import net.minecraft.network.PacketBuffer
 

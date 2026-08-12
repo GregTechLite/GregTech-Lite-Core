@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.api.data
 
-import gregtechlite.gtlitecore.api.data.handle.CheckStrategy
-import gregtechlite.gtlitecore.api.data.handle.DiffObservable
+import gregtechlite.gtlitecore.api.data.handler.CheckStrategy
+import gregtechlite.gtlitecore.api.data.handler.DiffObservable
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
 
