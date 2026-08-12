@@ -7,17 +7,16 @@ import codechicken.lib.vec.Matrix4
 import gregtech.api.GTValues
 import gregtech.api.GTValues.VC
 import gregtech.api.GTValues.VNF
-import gregtech.api.capability.GregtechDataCodes.SYNC_TILE_MODE
 import gregtech.api.capability.impl.EnergyContainerHandler
 import gregtech.api.metatileentity.TieredMetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.PipelineUtil
+import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySyncer
+import gregtechlite.gtlitecore.api.metatileentity.SyncedMetaTileEntity
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.network.PacketBuffer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.EnumHand
 import net.minecraft.util.ResourceLocation
@@ -25,10 +24,11 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTileEntity(id, tier)
+class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTileEntity(id, tier), SyncedMetaTileEntity
 {
-    var isDistributeMode = true
-        private set
+    override val syncer: MetaTileEntitySyncer = MetaTileEntitySyncer(this)
+
+    var isDistributeMode by syncer.syncedBoolean(true)
 
     override fun createMetaTileEntity(te: IGregTechTileEntity) = MachineEnergyDistributor(metaTileEntityId, tier)
 
@@ -36,6 +36,7 @@ class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTile
     {
         val tierVoltage = GTValues.V[tier]
         energyContainer = EnergyContainerHandler(this, tierVoltage * 320, tierVoltage, 320, tierVoltage, 320)
+        if (world == null) return
         if (isDistributeMode)
         {
             (energyContainer as EnergyContainerHandler).setSideInputCondition { it == frontFacing }
@@ -52,42 +53,6 @@ class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTile
 
     override fun openGUIOnRightClick() = false
 
-    override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
-    {
-        super.writeToNBT(data)
-        data.setBoolean("DistributeMode", isDistributeMode)
-        return data
-    }
-
-    override fun readFromNBT(data: NBTTagCompound)
-    {
-        super.readFromNBT(data)
-        isDistributeMode = data.getBoolean("DistributeMode")
-        reinitializeEnergyContainer()
-    }
-
-    override fun writeInitialSyncData(buf: PacketBuffer)
-    {
-        super.writeInitialSyncData(buf)
-        buf.writeBoolean(isDistributeMode)
-    }
-
-    override fun receiveInitialSyncData(buf: PacketBuffer)
-    {
-        super.receiveInitialSyncData(buf)
-        isDistributeMode = buf.readBoolean()
-    }
-
-    override fun receiveCustomData(dataId: Int, buf: PacketBuffer)
-    {
-        super.receiveCustomData(dataId, buf)
-        if (dataId == SYNC_TILE_MODE)
-        {
-            isDistributeMode = buf.readBoolean()
-            scheduleRenderUpdate()
-        }
-    }
-
     override fun onSoftMalletClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing,
                                    hitResult: CuboidRayTraceResult): Boolean
     {
@@ -98,9 +63,7 @@ class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTile
         }
         isDistributeMode = !isDistributeMode
         reinitializeEnergyContainer()
-        writeCustomData(SYNC_TILE_MODE) { it.writeBoolean(isDistributeMode) }
         notifyBlockUpdate()
-        markDirty()
         return true
     }
 

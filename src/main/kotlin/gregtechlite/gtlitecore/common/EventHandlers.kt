@@ -7,6 +7,7 @@ import gregtech.api.unification.material.event.MaterialRegistryEvent
 import gregtech.api.unification.material.event.PostMaterialEvent
 import gregtech.loaders.recipe.CraftingComponent
 import gregtechlite.gtlitecore.api.MOD_ID
+import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySyncBatcher
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags
@@ -28,6 +29,7 @@ import net.minecraft.item.crafting.IRecipe
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
+import net.minecraftforge.fml.common.gameevent.TickEvent
 
 @Suppress("unused")
 object EventHandlers
@@ -82,5 +84,14 @@ object EventHandlers
     fun registerRecipeHandlers(event: RegistryEvent.Register<IRecipe>)
     {
         RecipeHandlers.init()
+    }
+
+    @SubscribeEvent
+    fun onWorldTickEnd(event: TickEvent.WorldTickEvent)
+    {
+        if (event.phase == TickEvent.Phase.END && !event.world.isRemote)
+        {
+            MetaTileEntitySyncBatcher.get(event.world.provider.dimension).flush()
+        }
     }
 }
