@@ -128,8 +128,8 @@ class MultiblockAlloyBlastSmelter(id: ResourceLocation)
                                "gregtech.machine.electric_blast_furnace.tooltip.2",
                                "gregtech.machine.electric_blast_furnace.tooltip.3")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
-            addDurationInfo(UpgradeMode.WIRE_COIL, 350)
+            addParallelInfo(16, UpgradeMode.PUMP_CASING)
+            addDurationInfo(350, UpgradeMode.WIRE_COIL)
             addEnergyInfo(30)
         }
     }

@@ -105,8 +105,8 @@ class MultiblockCryogenicFreezer(id: ResourceLocation) : RecipeMapMultiblockCont
             addDescriptionLine("gtlitecore.machine.cryogenic_freezer.tooltip.1",
                                "gtlitecore.machine.cryogenic_freezer.tooltip.2")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.MOTOR_CASING, 16)
-            addDurationInfo(UpgradeMode.PUMP_CASING, 300)
+            addParallelInfo(16, UpgradeMode.MOTOR_CASING)
+            addDurationInfo(300, UpgradeMode.PUMP_CASING)
             addEnergyInfo(20)
         }
     }

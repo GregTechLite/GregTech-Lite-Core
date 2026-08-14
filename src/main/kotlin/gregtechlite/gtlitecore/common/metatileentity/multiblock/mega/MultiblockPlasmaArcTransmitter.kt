@@ -31,7 +31,6 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.standardTimeAc
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PLASMA_ARC_TRANSMITTER_RECIPES
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -139,10 +138,9 @@ class MultiblockPlasmaArcTransmitter(id: ResourceLocation) : RecipeMapMultiblock
                                "gtlitecore.machine.plasma_arc_transmitter.tooltip.3",
                                "gtlitecore.machine.plasma_arc_transmitter.tooltip.4")
             addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
-            addDescriptionLine(I18n.format("gtlitecore.tooltip.machine.parallel_mode")
-                                       + I18n.format("gtlitecore.machine.plasma_arc_transmitter.tooltip.5"))
-            addDurationInfo(UpgradeMode.TIME_ACCELERATION_FIELD_GEN, 3600)
-            addEnergyInfo(UpgradeMode.STABILIZATION_FIELD_GEN, 10)
+            addParallelInfo("gtlitecore.machine.plasma_arc_transmitter.tooltip.5")
+            addDurationInfo(3600, UpgradeMode.TIME_ACCELERATION_FIELD_GEN)
+            addEnergyInfo(10, UpgradeMode.STABILIZATION_FIELD_GEN)
             addMaxVoltageInfo()
             addLaserHatchInfo()
         }

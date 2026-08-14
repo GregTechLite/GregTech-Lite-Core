@@ -90,8 +90,8 @@ class MultiblockForgeHammer(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PISTON_CASING, 4)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 100)
+            addParallelInfo(4, UpgradeMode.PISTON_CASING)
+            addDurationInfo(100, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(20)
         }
     }

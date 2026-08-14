@@ -114,8 +114,8 @@ class MultiblockBioReactor(id: ResourceLocation)
             addMachineTypeLine()
             addDescriptionLine("gtlitecore.machine.large_bio_reactor.tooltip.1")
             addOverclockInfo("gtlitecore.machine.large_bio_reactor.tooltip.2")
-            addParallelInfo(UpgradeMode.VOLTAGE_TIER, 16)
-            addDurationInfo(UpgradeMode.SENSOR_CASING, 375)
+            addParallelInfo(16, UpgradeMode.VOLTAGE_TIER)
+            addDurationInfo(375, UpgradeMode.SENSOR_CASING)
             addEnergyInfo(35)
         }
     }

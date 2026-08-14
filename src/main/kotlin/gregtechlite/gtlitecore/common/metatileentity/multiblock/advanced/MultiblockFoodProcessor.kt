@@ -111,8 +111,8 @@ class MultiblockFoodProcessor(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT)
-            addParallelInfo(UpgradeMode.ROBOT_ARM_CASING, 8)
-            addDurationInfo(UpgradeMode.PUMP_CASING, 250)
+            addParallelInfo(8, UpgradeMode.ROBOT_ARM_CASING)
+            addDurationInfo(250, UpgradeMode.PUMP_CASING)
             addEnergyInfo(30)
         }
     }

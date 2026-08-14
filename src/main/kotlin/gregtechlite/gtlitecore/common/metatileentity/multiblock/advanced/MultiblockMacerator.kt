@@ -97,8 +97,8 @@ class MultiblockMacerator(id: ResourceLocation) : RecipeMapMultiblockController(
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PISTON_CASING, 8)
-            addDurationInfo(UpgradeMode.MOTOR_CASING, 375)
+            addParallelInfo(8, UpgradeMode.PISTON_CASING)
+            addDurationInfo(375, UpgradeMode.MOTOR_CASING)
             addEnergyInfo(30)
         }
     }

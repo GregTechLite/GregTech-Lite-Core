@@ -149,8 +149,8 @@ class MultiblockBedrockDrillingRig(id: ResourceLocation) : RecipeMapMultiblockCo
                                "gtlitecore.machine.bedrock_drilling_rig.tooltip.2",
                                "gtlitecore.machine.bedrock_drilling_rig.tooltip.3")
             addOverclockInfo(OverclockMode.PERFECT)
-            addParallelInfo(UpgradeMode.PISTON_CASING, 16)
-            addDurationInfo(UpgradeMode.MOTOR_CASING, 250)
+            addParallelInfo(16, UpgradeMode.PISTON_CASING)
+            addDurationInfo(250, UpgradeMode.MOTOR_CASING)
             addEnergyInfo(20)
         }
     }

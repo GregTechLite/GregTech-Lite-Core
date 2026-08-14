@@ -91,8 +91,8 @@ class MultiblockSifter(id: ResourceLocation) : RecipeMapMultiblockController(id,
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT)
-            addParallelInfo(UpgradeMode.CONVEYOR_CASING, 8)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 400)
+            addParallelInfo(8, UpgradeMode.CONVEYOR_CASING)
+            addDurationInfo(400, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(10)
         }
     }

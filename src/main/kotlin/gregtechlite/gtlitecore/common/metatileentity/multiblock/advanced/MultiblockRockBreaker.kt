@@ -97,8 +97,8 @@ class MultiblockRockBreaker(id: ResourceLocation) : RecipeMapMultiblockControlle
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PISTON_CASING, 16)
-            addDurationInfo(UpgradeMode.CONVEYOR_CASING, 250)
+            addParallelInfo(16, UpgradeMode.PISTON_CASING)
+            addDurationInfo(250, UpgradeMode.CONVEYOR_CASING)
             addEnergyInfo(20)
         }
     }

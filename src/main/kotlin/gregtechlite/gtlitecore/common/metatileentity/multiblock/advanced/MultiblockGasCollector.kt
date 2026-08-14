@@ -104,8 +104,8 @@ class MultiblockGasCollector(id: ResourceLocation) : RecipeMapMultiblockControll
             addMachineTypeLine()
             addDescriptionLine("gtlitecore.machine.large_gas_collector.tooltip.1")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 300)
+            addParallelInfo(16, UpgradeMode.PUMP_CASING)
+            addDurationInfo(300, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(10)
         }
     }

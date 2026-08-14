@@ -167,8 +167,8 @@ class MultiblockNanoscaleFabricator(id: ResourceLocation) : RecipeMapMultiblockC
                                "gtlitecore.machine.nanoscale_fabricator.tooltip.2",
                                "gtlitecore.machine.nanoscale_fabricator.tooltip.3")
             addOverclockInfo(OverclockMode.PERFECT)
-            addParallelInfo(UpgradeMode.ROBOT_ARM_CASING, 4)
-            addDurationInfo(UpgradeMode.EMITTER_CASING, 325)
+            addParallelInfo(4, UpgradeMode.ROBOT_ARM_CASING)
+            addDurationInfo(325, UpgradeMode.EMITTER_CASING)
             addEnergyInfo(20)
         }
     }

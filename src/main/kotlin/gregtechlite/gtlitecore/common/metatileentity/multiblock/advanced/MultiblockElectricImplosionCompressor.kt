@@ -113,8 +113,8 @@ class MultiblockElectricImplosionCompressor(id: ResourceLocation)
             addMachineTypeLine()
             addDescriptionLine("gtlitecore.machine.electric_implosion_compressor.tooltip.1")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PISTON_CASING, 16)
-            addDurationInfo(UpgradeMode.EMITTER_CASING, 350)
+            addParallelInfo(16, UpgradeMode.PISTON_CASING)
+            addDurationInfo(350, UpgradeMode.EMITTER_CASING)
             addEnergyInfo(35)
         }
     }

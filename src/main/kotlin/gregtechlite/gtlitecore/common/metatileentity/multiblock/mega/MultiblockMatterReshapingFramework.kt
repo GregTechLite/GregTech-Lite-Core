@@ -41,7 +41,6 @@ import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -167,10 +166,9 @@ class MultiblockMatterReshapingFramework(id: ResourceLocation)
             addDescriptionLine("gtlitecore.machine.matter_reshaping_framework.tooltip.6")
             addDescriptionLine("gtlitecore.machine.matter_reshaping_framework.tooltip.7")
             addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
-            addDescriptionLine(I18n.format("gtlitecore.tooltip.machine.parallel_mode")
-                                       + I18n.format("gtlitecore.machine.matter_reshaping_framework.tooltip.8"))
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 1200)
-            addEnergyInfo(UpgradeMode.FUSION_COIL, 10)
+            addParallelInfo("gtlitecore.machine.matter_reshaping_framework.tooltip.8")
+            addDurationInfo(1200, UpgradeMode.VOLTAGE_TIER)
+            addEnergyInfo(10, UpgradeMode.FUSION_COIL)
             addMaxVoltageInfo()
             addLaserHatchInfo()
         }

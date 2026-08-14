@@ -155,8 +155,8 @@ class MultiblockCosmicRayDetector(id: ResourceLocation)
             addDescriptionLine("gtlitecore.machine.cosmic_ray_detector.tooltip.1",
                                "gtlitecore.machine.cosmic_ray_detector.tooltip.2")
             addOverclockInfo(OverclockMode.PERFECT)
-            addMultiParallelInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.FIELD_GEN_CASING, number = 32)
-            addMultiDurationInfo(UpgradeMode.SENSOR_CASING, UpgradeMode.PROCESSOR_CASING, percent = 400)
+            addParallelInfo(32, UpgradeMode.EMITTER_CASING, UpgradeMode.FIELD_GEN_CASING)
+            addDurationInfo(400, UpgradeMode.SENSOR_CASING, UpgradeMode.PROCESSOR_CASING)
             addEnergyInfo(30)
         }
     }

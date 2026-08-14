@@ -96,8 +96,8 @@ class MultiblockFluidSolidifier(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT)
-            addParallelInfo(UpgradeMode.VOLTAGE_TIER, 4)
-            addDurationInfo(UpgradeMode.PUMP_CASING, 150)
+            addParallelInfo(4, UpgradeMode.VOLTAGE_TIER)
+            addDurationInfo(150, UpgradeMode.PUMP_CASING)
             addEnergyInfo(10)
         }
     }

@@ -171,7 +171,7 @@ class MultiblockEntrodynamicallyPhaseChanger(id: ResourceLocation)
                                "gtlitecore.machine.entrodynamically_phase_changer.tooltip.4",
                                "gtlitecore.machine.entrodynamically_phase_changer.tooltip.5")
             addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
-            addParallelInfo(UpgradeMode.WIRE_COIL_TEMPERATURE, 256)
+            addParallelInfo(256, UpgradeMode.WIRE_COIL_TEMPERATURE)
             addMaxVoltageInfo()
             addLaserHatchInfo()
         }

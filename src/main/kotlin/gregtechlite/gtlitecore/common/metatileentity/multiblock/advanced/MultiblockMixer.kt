@@ -93,8 +93,8 @@ class MultiblockMixer(id: ResourceLocation) : RecipeMapMultiblockController(id, 
             addMachineTypeLine()
             addDescriptionLine("gtlitecore.machine.large_mixer.tooltip.1")
             addOverclockInfo(OverclockMode.PERFECT)
-            addParallelInfo(UpgradeMode.MOTOR_CASING, 8)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 400)
+            addParallelInfo(8, UpgradeMode.MOTOR_CASING)
+            addDurationInfo(400, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(25)
         }
     }
