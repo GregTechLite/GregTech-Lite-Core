@@ -112,8 +112,8 @@ class MultiblockBrewery(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
-            addDurationInfo(UpgradeMode.MOTOR_CASING, 250)
+            addParallelInfo(16, UpgradeMode.PUMP_CASING)
+            addDurationInfo(250, UpgradeMode.MOTOR_CASING)
             addEnergyInfo(40)
         }
     }

@@ -1,8 +1,7 @@
-package gregtechlite.gtlitecore.api.metatileentity
+package gregtechlite.gtlitecore.api.metatileentity.sync
 
 import com.morphismmc.morphismlib.util.Unchecks
 import gregtech.api.metatileentity.MetaTileEntity
-import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.data.Schema
 import gregtechlite.gtlitecore.api.data.handler.CheckStrategy
 import gregtechlite.gtlitecore.api.data.handler.DiffHandler
@@ -103,7 +102,6 @@ class MetaTileEntitySyncer(private val mte: MetaTileEntity)
         if (!exposes.hasChanges()) return
         mte.writeCustomData(SYNC_CODE) { exposes.writeChangesToClient(it) }
         exposes.clearAllDirty()
-        LOGGER.info("Sent '${mte.metaTileEntityId}' sync custom data")
     }
 
     private fun markDirty()
@@ -117,13 +115,11 @@ class MetaTileEntitySyncer(private val mte: MetaTileEntity)
     fun receiveInitialSync(buf: PacketBuffer)
     {
         exposes.receiveFromServer(buf)
-        LOGGER.info("Received initial sync")
     }
 
     fun receiveCustomData(buf: PacketBuffer)
     {
         exposes.receiveFromServer(buf)
-        LOGGER.info("Received custom data sync")
     }
 
     fun saveToNBT(tag: NBTTagCompound)

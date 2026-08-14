@@ -113,8 +113,8 @@ class MultiblockCryogenicReactor(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 350)
+            addParallelInfo(16, UpgradeMode.PUMP_CASING)
+            addDurationInfo(350, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(25)
         }
     }

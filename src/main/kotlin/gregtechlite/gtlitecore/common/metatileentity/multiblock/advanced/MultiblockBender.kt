@@ -103,8 +103,8 @@ class MultiblockBender(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PISTON_CASING, 16)
-            addDurationInfo(UpgradeMode.MOTOR_CASING, 300)
+            addParallelInfo(16, UpgradeMode.PISTON_CASING)
+            addDurationInfo(300, UpgradeMode.MOTOR_CASING)
             addEnergyInfo(20)
         }
     }

@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.mixins.gregtech;
 
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtechlite.gtlitecore.api.metatileentity.SyncedMetaTileEntity;
+import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity;
 import net.minecraft.nbt.NBTTagCompound;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

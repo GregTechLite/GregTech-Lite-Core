@@ -110,8 +110,8 @@ class MultiblockAutoclave(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PISTON_CASING, 16)
-            addDurationInfo(UpgradeMode.PUMP_CASING, 350)
+            addParallelInfo(16, UpgradeMode.PISTON_CASING)
+            addDurationInfo(350, UpgradeMode.PUMP_CASING)
             addEnergyInfo(30)
         }
     }

@@ -143,7 +143,7 @@ class MultiblockEPCouplingAccelerator(id: ResourceLocation) : RecipeMapMultibloc
                                "gtlitecore.machine.ep_coupling_accelerator.tooltip.2")
             addOverclockInfo(OverclockMode.PERFECT_DOUBLE)
             addParallelInfo(Int.MAX_VALUE)
-            addEnergyInfo(UpgradeMode.FUSION_COIL, 10)
+            addEnergyInfo(10, UpgradeMode.FUSION_COIL)
             addMaxVoltageInfo()
             addLaserHatchInfo()
         }

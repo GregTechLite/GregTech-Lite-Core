@@ -100,8 +100,8 @@ class MultiblockElectromagnet(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.FIELD_GEN_CASING, 8)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 125)
+            addParallelInfo(8, UpgradeMode.FIELD_GEN_CASING)
+            addDurationInfo(125, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(15)
         }
     }

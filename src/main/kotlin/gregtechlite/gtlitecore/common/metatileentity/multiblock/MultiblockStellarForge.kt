@@ -134,8 +134,8 @@ class MultiblockStellarForge(id: ResourceLocation) : RecipeMapMultiblockControll
             addDescriptionLine("gtlitecore.machine.stellar_forge.tooltip.1",
                                "gtlitecore.machine.stellar_forge.tooltip.2")
             addOverclockInfo(OverclockMode.PERFECT)
-            addParallelInfo(UpgradeMode.FIELD_GEN_CASING, 32)
-            addDurationInfo(UpgradeMode.EMITTER_CASING, 400)
+            addParallelInfo(32, UpgradeMode.FIELD_GEN_CASING)
+            addDurationInfo(400, UpgradeMode.EMITTER_CASING)
             addEnergyInfo(30)
         }
     }

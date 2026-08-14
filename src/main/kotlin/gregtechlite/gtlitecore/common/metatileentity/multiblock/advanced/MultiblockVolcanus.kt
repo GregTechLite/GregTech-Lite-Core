@@ -124,8 +124,8 @@ class MultiblockVolcanus(id: ResourceLocation) : RecipeMapMultiblockController(i
                                "gregtech.machine.electric_blast_furnace.tooltip.2",
                                "gregtech.machine.electric_blast_furnace.tooltip.3")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.MOTOR_CASING, 16)
-            addDurationInfo(UpgradeMode.WIRE_COIL, 250)
+            addParallelInfo(16, UpgradeMode.MOTOR_CASING)
+            addDurationInfo(250, UpgradeMode.WIRE_COIL)
             addEnergyInfo(30)
         }
     }

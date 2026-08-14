@@ -94,8 +94,8 @@ class MultiblockExtruder(id: ResourceLocation) : RecipeMapMultiblockController(i
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PISTON_CASING, 16)
-            addDurationInfo(UpgradeMode.PISTON_CASING, 375)
+            addParallelInfo(16, UpgradeMode.PISTON_CASING)
+            addDurationInfo(375, UpgradeMode.PISTON_CASING)
             addEnergyInfo(25)
         }
     }

@@ -90,8 +90,8 @@ class MultiblockPacker(id: ResourceLocation) : RecipeMapMultiblockController(id,
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.ROBOT_ARM_CASING, 8)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 350)
+            addParallelInfo(8, UpgradeMode.ROBOT_ARM_CASING)
+            addDurationInfo(350, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(20)
         }
     }

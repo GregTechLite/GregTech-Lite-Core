@@ -103,8 +103,8 @@ class MultiblockOreWasher(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 300)
+            addParallelInfo(16, UpgradeMode.PUMP_CASING)
+            addDurationInfo(300, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(20)
         }
     }

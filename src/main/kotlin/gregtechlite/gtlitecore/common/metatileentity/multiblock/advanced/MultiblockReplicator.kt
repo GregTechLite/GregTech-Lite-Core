@@ -126,8 +126,8 @@ class MultiblockReplicator(id: ResourceLocation) : RecipeMapMultiblockController
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addMultiParallelInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, number = 16)
-            addMultiDurationInfo(UpgradeMode.FIELD_GEN_CASING, UpgradeMode.PROCESSOR_CASING, percent = 200)
+            addParallelInfo(16, UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING)
+            addDurationInfo(200, UpgradeMode.FIELD_GEN_CASING, UpgradeMode.PROCESSOR_CASING)
             addEnergyInfo(25)
         }
     }

@@ -104,8 +104,8 @@ class MultiblockCutter(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.CONVEYOR_CASING, 16)
-            addDurationInfo(UpgradeMode.MOTOR_CASING, 350)
+            addParallelInfo(16, UpgradeMode.CONVEYOR_CASING)
+            addDurationInfo(350, UpgradeMode.MOTOR_CASING)
             addEnergyInfo(30)
         }
     }

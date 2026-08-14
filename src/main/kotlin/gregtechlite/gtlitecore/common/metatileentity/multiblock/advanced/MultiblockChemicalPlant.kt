@@ -105,8 +105,8 @@ class MultiblockChemicalPlant(id: ResourceLocation)
             addMachineTypeLine()
             addDescriptionLine("gtlitecore.machine.chemical_plant.tooltip.1")
             addOverclockInfo(OverclockMode.PERFECT)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
-            addDurationInfo(UpgradeMode.WIRE_COIL, 400)
+            addParallelInfo(16, UpgradeMode.PUMP_CASING)
+            addDurationInfo(400, UpgradeMode.WIRE_COIL)
             addEnergyInfo(50)
         }
     }
