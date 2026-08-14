@@ -4439,7 +4439,6 @@ gtlitecore.tooltip.machine.energy_mode.label=Energy Request Reduction:
 gtlitecore.tooltip.machine.energy_mode=§6-%s%%/%s
 gtlitecore.tooltip.machine.energy_mode.flat=§6-%s%%
 
-# en labels and list separators carry a trailing space after the colon; other languages decide their own spacing.
 gtlitecore.tooltip.machine.list.and= and 
 gtlitecore.tooltip.machine.list.comma=, 
 
