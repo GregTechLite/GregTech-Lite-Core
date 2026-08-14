@@ -13,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.EnumHand
 import net.minecraft.util.ResourceLocation
-import java.util.function.Function
 
 open class PseudoMultiMachineMetaTileEntity(metaTileEntityId: ResourceLocation,
                                             recipeMap: RecipeMap<*>?,

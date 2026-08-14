@@ -23,7 +23,7 @@ import it.unimi.dsi.fastutil.objects.ObjectSet
 import it.unimi.dsi.fastutil.objects.ReferenceLinkedOpenHashSet
 import it.unimi.dsi.fastutil.objects.ReferenceSet
 import net.minecraft.util.IntIdentityHashBiMap
-import java.util.TreeMap
+import java.util.*
 
 // region Guava: ImmutableSet
 

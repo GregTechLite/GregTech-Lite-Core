@@ -12,9 +12,9 @@ import gregtechlite.gtlitecore.api.data.serialize.SerializerManagement
 import gregtechlite.gtlitecore.api.network.expose.DiffExpose
 import gregtechlite.gtlitecore.api.network.expose.ExposeManagement
 import gregtechlite.gtlitecore.api.network.expose.HandleExpose
-import kotlin.reflect.KProperty
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
+import kotlin.reflect.KProperty
 
 class MetaTileEntitySyncer(private val mte: MetaTileEntity)
 {

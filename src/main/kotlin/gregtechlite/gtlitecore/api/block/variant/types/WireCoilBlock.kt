@@ -25,42 +25,30 @@ fun VariantBlockFactory.makeWireCoilBlock() : VariantActiveBlock<WireCoil>
 {
     return object : VariantActiveBlock<WireCoil>(Material.IRON)
     {
-
         init
         {
-            this.setSoundType(SoundType.METAL)
-            this.setDefaultState(getState(WireCoil.ADAMANTIUM))
+            setSoundType(SoundType.METAL)
+            setDefaultState(getState(WireCoil.ADAMANTIUM))
         }
 
         override fun computeVariants(): Collection<WireCoil> = enumValues<WireCoil>().toList()
 
-        override fun canCreatureSpawn(state: IBlockState,
-                                      world: IBlockAccess,
-                                      pos: BlockPos,
-                                      type: EntityLiving.SpawnPlacementType): Boolean
-        {
-            return false
-        }
+        override fun canCreatureSpawn(state: IBlockState, world: IBlockAccess, pos: BlockPos,
+                                      type: EntityLiving.SpawnPlacementType): Boolean = false
 
         override fun getRenderLayer(): BlockRenderLayer = BlockRenderLayer.SOLID
 
         override fun getRenderLayer(value: WireCoil): BlockRenderLayer = BlockRenderLayer.SOLID
 
-        override fun isBloomEnabled(value: WireCoil): Boolean
-        {
-            return ConfigHolder.client.coilsActiveEmissiveTextures
-        }
+        override fun isBloomEnabled(value: WireCoil): Boolean = ConfigHolder.client.coilsActiveEmissiveTextures
 
         @SideOnly(Side.CLIENT)
-        override fun addInformation(itemStack: ItemStack,
-                                    worldIn: World?,
-                                    lines: MutableList<String?>,
-                                    tooltipFlag: ITooltipFlag)
+        override fun addInformation(stack: ItemStack, worldIn: World?, lines: MutableList<String>, flag: ITooltipFlag)
         {
-            super.addInformation(itemStack, worldIn, lines, tooltipFlag)
-            val itemBlock: VariantItemBlock<*, *> = itemStack.item as VariantItemBlock<*, *>
-            val stackState = itemBlock.getBlockState(itemStack)
-            val coilType = this.getState(stackState)
+            super.addInformation(stack, worldIn, lines, flag)
+            val itemBlock = stack.item as VariantItemBlock<*, *>
+            val stackState = itemBlock.getBlockState(stack)
+            val coilType = getState(stackState)
             lines.add(I18n.format("tile.wire_coil.tooltip_heat", coilType.coilTemperature))
             if (TooltipHelper.isShiftDown())
             {
@@ -81,7 +69,5 @@ fun VariantBlockFactory.makeWireCoilBlock() : VariantActiveBlock<WireCoil>
                 lines.add(I18n.format("tile.wire_coil.tooltip_extended_info"))
             }
         }
-
     }
-
 }

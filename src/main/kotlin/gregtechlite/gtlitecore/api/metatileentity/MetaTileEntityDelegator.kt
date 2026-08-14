@@ -8,7 +8,6 @@ import codechicken.lib.vec.Matrix4
 import com.morphismmc.morphismlib.util.Unchecks
 import gregtech.api.capability.GregtechCapabilities
 import gregtech.api.capability.IEnergyContainer
-import gregtech.api.gui.ModularUI
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.MetaTileEntityHolder
 import gregtech.api.util.GTUtility.convertRGBtoOpaqueRGBA_CL
@@ -17,10 +16,8 @@ import gregtechlite.gtlitecore.api.capability.Delegator
 import gregtechlite.gtlitecore.api.collection.openArrayMapOf
 import gregtechlite.gtlitecore.api.collection.to
 import gregtechlite.gtlitecore.api.extension.add
-import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.resources.I18n
-import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.EnumFacing

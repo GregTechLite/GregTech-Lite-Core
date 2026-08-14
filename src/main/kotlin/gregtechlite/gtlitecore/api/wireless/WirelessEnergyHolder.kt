@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.api.wireless
 
 import net.minecraft.util.math.BlockPos
-import java.util.Objects
+import java.util.*
 
 /**
  * Wireless role for the energy network.

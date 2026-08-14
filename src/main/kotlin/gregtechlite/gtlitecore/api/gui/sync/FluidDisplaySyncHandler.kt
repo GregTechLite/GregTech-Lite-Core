@@ -9,45 +9,37 @@ import net.minecraftforge.fluids.FluidStack
 class FluidDisplaySyncHandler(val getter: (() -> FluidStack?)?,
                               val setter: ((FluidStack?) -> Unit)?) : ValueSyncHandler<FluidStack>()
 {
-
     private var cache: FluidStack? = null
 
     constructor(getter: (() -> FluidStack?)?) : this(getter, null)
 
     override fun setValue(value: FluidStack?, setSource: Boolean, sync: Boolean)
     {
-        this.cache = FluidSlotSyncHandler.copyFluid(value)
-        if (setSource && this.setter != null)
+        cache = FluidSlotSyncHandler.copyFluid(value)
+        if (setSource && setter != null)
         {
-            this.setter.invoke(FluidSlotSyncHandler.copyFluid(value))
+            setter.invoke(FluidSlotSyncHandler.copyFluid(value))
         }
         if (sync)
         {
-            if (NetworkUtils.isClient())
-            {
-                syncToServer(0, this::write)
-            }
-            else
-            {
-                syncToClient(0, this::write)
-            }
+            if (NetworkUtils.isClient()) syncToServer(0, ::write) else syncToClient(0, ::write)
         }
         onValueChanged()
     }
 
     fun needsSync(): Boolean
     {
-        val current: FluidStack? = this.getter?.invoke()
-        if (current == this.cache) return false
-        if (current == null || this.cache == null) return true
-        return current.amount != this.cache!!.amount || !current.isFluidEqual(this.cache)
+        val current = getter?.invoke()
+        if (current == cache) return false
+        if (current == null || cache == null) return true
+        return current.amount != cache!!.amount || !current.isFluidEqual(cache)
     }
 
     override fun updateCacheFromSource(isFirstSync: Boolean): Boolean
     {
         if (isFirstSync || needsSync())
         {
-            setValue(this.getter?.invoke(), setSource = false, sync = false)
+            setValue(getter?.invoke(), setSource = false, sync = false)
             return true
         }
         return false
@@ -60,19 +52,15 @@ class FluidDisplaySyncHandler(val getter: (() -> FluidStack?)?,
 
     override fun write(buffer: PacketBuffer?)
     {
-        NetworkUtils.writeFluidStack(buffer, this.cache)
+        NetworkUtils.writeFluidStack(buffer, cache)
     }
 
     override fun read(buffer: PacketBuffer?)
     {
-        setValue(NetworkUtils.readFluidStack(buffer), true, false)
+        setValue(NetworkUtils.readFluidStack(buffer), setSource = true, sync = false)
     }
 
-    override fun getValue(): FluidStack?
-    {
-        return if (this.cache == null) null else FluidSlotSyncHandler.copyFluid(this.cache)
-    }
+    override fun getValue(): FluidStack? = if (cache == null) null else FluidSlotSyncHandler.copyFluid(cache)
 
     override fun getValueType(): Class<FluidStack> = FluidStack::class.java
-
 }

@@ -7,23 +7,16 @@ import net.minecraft.item.ItemStack
 
 class TranslatableVariantItemBlock<T>(block: T) : ItemBlock(block) where T : Block, T : TranslatableBlock
 {
-
     init
     {
-        this.setHasSubtypes(true)
+        setHasSubtypes(true)
     }
 
     override fun getMetadata(damage: Int): Int = damage
 
     override fun getTranslationKey(stack: ItemStack): String
-    {
-        return (block as TranslatableBlock).getTranslation(getBlockState(stack))
-    }
+        = (block as TranslatableBlock).getTranslation(getBlockState(stack))
 
     @Suppress("Deprecation")
-    fun getBlockState(stack: ItemStack): IBlockState
-    {
-        return this.block.getStateFromMeta(stack.getItemDamage())
-    }
-
+    fun getBlockState(stack: ItemStack): IBlockState = block.getStateFromMeta(stack.itemDamage)
 }

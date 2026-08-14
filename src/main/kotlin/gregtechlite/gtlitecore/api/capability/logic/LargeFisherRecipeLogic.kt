@@ -11,7 +11,6 @@ import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFisher
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder
-import kotlin.math.pow
 import net.minecraft.init.Blocks
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
@@ -20,6 +19,7 @@ import net.minecraft.world.WorldServer
 import net.minecraft.world.storage.loot.LootContext
 import net.minecraftforge.fluids.FluidRegistry
 import net.minecraftforge.fluids.FluidStack
+import kotlin.math.pow
 
 class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, IControllable
 {
