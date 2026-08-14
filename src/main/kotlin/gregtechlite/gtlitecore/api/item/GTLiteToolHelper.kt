@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack
 
 object GTLiteToolHelper
 {
-
     /**
      * Gets maximum durability of the material from its `ToolProperty`.
      *
@@ -49,5 +48,4 @@ object GTLiteToolHelper
         val item = stack.item
         return !item.isRepairable || item.getDamage(stack) <= 0
     }
-
 }

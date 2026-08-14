@@ -8,9 +8,8 @@ import java.util.*
 
 class DefaultBlockAttributeRegistry<T>(override val name: String, comparator: Comparator<in T>) : BlockAttributeRegistry<T>
 {
-
-    private val attributeLookup: MutableMap<IBlockState, T> = openHashMapOf()
-    private val blockLookup: NavigableMap<T, MutableList<IBlockState>> = treeMapOf(comparator)
+    private val attributeLookup = openHashMapOf<IBlockState, T>()
+    private val blockLookup = treeMapOf<T, MutableList<IBlockState>>(comparator)
 
     private var _ascendingBlocks: LazyValue<List<IBlockState>> = LazyValue { blockLookup.values.flatten() }
     private var _descendingBlocks: LazyValue<List<IBlockState>> = LazyValue { blockLookup.values.reversed().flatten() }
@@ -44,20 +43,13 @@ class DefaultBlockAttributeRegistry<T>(override val name: String, comparator: Co
         }
     }
 
-    override fun getAttribute(state: IBlockState): T?
-    {
-        return attributeLookup[state]
-    }
+    override fun getAttribute(state: IBlockState): T? = attributeLookup[state]
 
-    override fun getBlock(attribute: T): List<IBlockState>?
-    {
-        return blockLookup[attribute]
-    }
+    override fun getBlock(attribute: T): List<IBlockState>? = blockLookup[attribute]
 
     private fun invalidate()
     {
         _ascendingBlocks.invalidate()
         _descendingBlocks.invalidate()
     }
-
 }

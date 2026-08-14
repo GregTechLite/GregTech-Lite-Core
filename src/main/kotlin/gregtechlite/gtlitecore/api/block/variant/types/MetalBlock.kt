@@ -14,22 +14,15 @@ inline fun <reified T> VariantBlockFactory.makeMetalBlock() : VariantBlock<T> wh
 {
     return object: VariantBlock<T>(Material.IRON)
     {
-
         init
         {
-            this.setSoundType(SoundType.METAL)
-            this.setDefaultState(getState(VALUES[0]))
+            setSoundType(SoundType.METAL)
+            setDefaultState(getState(VALUES[0]))
         }
 
         override fun computeVariants(): Collection<T> = enumValues<T>().toList()
 
-        override fun canCreatureSpawn(state: IBlockState,
-                                      world: IBlockAccess,
-                                      pos: BlockPos,
-                                      type: EntityLiving.SpawnPlacementType): Boolean
-        {
-            return false
-        }
-
+        override fun canCreatureSpawn(state: IBlockState, world: IBlockAccess, pos: BlockPos,
+                                      type: EntityLiving.SpawnPlacementType): Boolean = false
     }
 }

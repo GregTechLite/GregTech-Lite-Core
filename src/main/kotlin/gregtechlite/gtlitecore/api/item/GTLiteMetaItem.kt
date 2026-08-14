@@ -7,8 +7,6 @@ import net.minecraft.util.ResourceLocation
 
 class GTLiteMetaItem() : StandardMetaItem(0)
 {
-
     override fun createItemModelPath(metaValueItem: MetaItem<*>.MetaValueItem, postfix: String): ResourceLocation
         = GTLiteMod.id(formatModelPath(metaValueItem) + postfix)
-
 }

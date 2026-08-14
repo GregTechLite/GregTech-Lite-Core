@@ -10,6 +10,6 @@ object GTLiteDamageSources
     internal fun init()
     {
         ORE_CRUSHING = DamageSource("ore_crushing")
-        MOB_SLAUGHTERING = DamageSource("mob_slaughtering").setDamageBypassesArmor().setDamageAllowedInCreativeMode()
+        MOB_SLAUGHTERING = DamageSource("mob_slaughtering").setDamageBypassesArmor()
     }
 }

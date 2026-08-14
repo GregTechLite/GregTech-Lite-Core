@@ -27,7 +27,7 @@ enum class GTLiteContributor(val userName: String, internal val uuid: UUID, inte
 
     companion object
     {
-        internal val contributors: MutableMap<UUID, String> = openHashMapOf()
+        internal val contributors = openHashMapOf<UUID, String>()
 
         internal fun init()
         {
@@ -38,5 +38,4 @@ enum class GTLiteContributor(val userName: String, internal val uuid: UUID, inte
             }
         }
     }
-
 }

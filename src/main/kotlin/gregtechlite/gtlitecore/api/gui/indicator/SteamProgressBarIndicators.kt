@@ -7,7 +7,6 @@ import gregtechlite.gtlitecore.api.gui.GTLiteGuiTextures
 @Suppress("unused")
 object SteamProgressBarIndicators
 {
-
     // @formatter:off
 
     // region Wrapped GTCEu Steam Textures
@@ -103,5 +102,4 @@ object SteamProgressBarIndicators
     // endregion
 
     // @formatter:on
-
 }

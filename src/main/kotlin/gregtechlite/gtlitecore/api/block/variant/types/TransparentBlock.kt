@@ -18,30 +18,22 @@ inline fun <reified T> VariantBlockFactory.makeTransparentBlock() : VariantBlock
 {
     return object : VariantBlock<T>(Material.GLASS)
     {
-
         init
         {
-            this.setSoundType(SoundType.GLASS)
-            this.setDefaultState(getState(VALUES[0]))
-            this.useNeighborBrightness = true
+            setSoundType(SoundType.GLASS)
+            setDefaultState(getState(VALUES[0]))
+            useNeighborBrightness = true
         }
 
         override fun computeVariants(): Collection<T> = enumValues<T>().toList()
 
-        override fun canCreatureSpawn(state: IBlockState,
-                                      world: IBlockAccess,
-                                      pos: BlockPos,
-                                      type: EntityLiving.SpawnPlacementType): Boolean
-        {
-            return false
-        }
+        override fun canCreatureSpawn(state: IBlockState, world: IBlockAccess, pos: BlockPos,
+                                      type: EntityLiving.SpawnPlacementType): Boolean = false
 
         override fun getRenderLayer() = BlockRenderLayer.CUTOUT
 
         override fun canRenderInLayer(state: IBlockState, layer: BlockRenderLayer): Boolean
-        {
-            return layer == BlockRenderLayer.TRANSLUCENT
-        }
+            = layer == BlockRenderLayer.TRANSLUCENT
 
         @Deprecated("Deprecated in Java")
         override fun isOpaqueCube(state: IBlockState) = false
@@ -51,17 +43,11 @@ inline fun <reified T> VariantBlockFactory.makeTransparentBlock() : VariantBlock
 
         @Suppress("Deprecation")
         @SideOnly(Side.CLIENT)
-        override fun shouldSideBeRendered(state: IBlockState,
-                                          world: IBlockAccess,
-                                          pos: BlockPos,
-                                          side: EnumFacing): Boolean
+        override fun shouldSideBeRendered(state: IBlockState, world: IBlockAccess, pos: BlockPos, side: EnumFacing): Boolean
         {
             val sideState = world.getBlockState(pos.offset(side))
-            return if (sideState.getBlock() === this)
-                this.getState(sideState) != getState(state)
-            else
-                super.shouldSideBeRendered(state, world, pos, side)
+            return if (sideState.getBlock() === this) getState(sideState) != getState(state)
+                   else super.shouldSideBeRendered(state, world, pos, side)
         }
-
     }
 }

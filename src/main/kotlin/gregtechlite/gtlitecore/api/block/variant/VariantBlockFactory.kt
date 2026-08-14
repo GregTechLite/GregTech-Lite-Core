@@ -12,7 +12,6 @@ import net.minecraft.util.IStringSerializable
 
 object VariantBlockFactory
 {
-
     inline fun <reified T> make(type: BlockVariantType) : VariantBlock<T> where T : Enum<T>, T : IStringSerializable
     {
         return when(type)
@@ -25,5 +24,4 @@ object VariantBlockFactory
             BlockVariantType.CRUCIBLE_BLOCK -> Unchecks.cast<VariantBlock<T>>(makeCrucibleBlock())
         }
     }
-
 }
