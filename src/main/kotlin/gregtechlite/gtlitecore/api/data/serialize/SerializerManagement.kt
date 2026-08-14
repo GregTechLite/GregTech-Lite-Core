@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.api.data.serialize
 
-import gregtechlite.gtlitecore.api.data.handler.FlowHandler
 import gregtechlite.gtlitecore.api.data.Schema
+import gregtechlite.gtlitecore.api.data.handler.FlowHandler
 import net.minecraft.nbt.NBTTagCompound
 
 class SerializerManagement

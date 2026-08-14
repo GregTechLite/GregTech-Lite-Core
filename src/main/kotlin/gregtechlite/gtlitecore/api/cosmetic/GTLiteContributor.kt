@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.api.cosmetic
 
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
-import java.util.UUID
+import java.util.*
 
 /**
  * The contributor of GregTech Lite Modpack and all Addon Mods development.

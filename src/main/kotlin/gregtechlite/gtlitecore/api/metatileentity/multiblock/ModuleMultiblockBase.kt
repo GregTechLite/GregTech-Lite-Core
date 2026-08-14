@@ -1,10 +1,12 @@
 package gregtechlite.gtlitecore.api.metatileentity.multiblock
 
-import gregtech.api.capability.*
 import gregtech.api.capability.GregtechDataCodes.WORKABLE_ACTIVE
 import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
 import gregtech.api.capability.GregtechTileCapabilities.CAPABILITY_CONTROLLABLE
 import gregtech.api.capability.GregtechTileCapabilities.CAPABILITY_WORKABLE
+import gregtech.api.capability.IControllable
+import gregtech.api.capability.IEnergyContainer
+import gregtech.api.capability.IWorkable
 import gregtech.api.capability.impl.EnergyContainerHandler
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.metatileentity.multiblock.IMultiblockPart

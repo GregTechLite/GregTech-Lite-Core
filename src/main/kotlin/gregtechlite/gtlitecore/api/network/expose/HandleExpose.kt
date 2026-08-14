@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.api.network.expose
 
-import gregtechlite.gtlitecore.api.data.handler.FlowHandler
 import gregtechlite.gtlitecore.api.data.Schema
+import gregtechlite.gtlitecore.api.data.handler.FlowHandler
 import net.minecraft.network.PacketBuffer
 
 class HandleExpose<T>(override val name: String,

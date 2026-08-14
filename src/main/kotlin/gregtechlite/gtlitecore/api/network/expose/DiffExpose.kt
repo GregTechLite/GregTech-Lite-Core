@@ -1,8 +1,8 @@
 package gregtechlite.gtlitecore.api.network.expose
 
+import gregtechlite.gtlitecore.api.data.Schema
 import gregtechlite.gtlitecore.api.data.handler.DiffHandler
 import gregtechlite.gtlitecore.api.data.handler.DiffObservable
-import gregtechlite.gtlitecore.api.data.Schema
 import net.minecraft.network.PacketBuffer
 
 class DiffExpose<T : DiffObservable<D>, D>(override val name: String,

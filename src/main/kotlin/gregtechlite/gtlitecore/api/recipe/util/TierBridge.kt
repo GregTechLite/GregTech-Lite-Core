@@ -3,6 +3,10 @@ package gregtechlite.gtlitecore.api.recipe.util
 import gregtech.api.GTValues
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Material
+import gregtechlite.gtlitecore.api.recipe.util.TierBridge.fromIndex
+import gregtechlite.gtlitecore.api.recipe.util.TierBridge.fromMaterial
+import gregtechlite.gtlitecore.api.recipe.util.TierBridge.next
+import gregtechlite.gtlitecore.api.recipe.util.TierBridge.previous
 
 /**
  * Bridges GregTech voltage tier indexes and tier marker materials.
