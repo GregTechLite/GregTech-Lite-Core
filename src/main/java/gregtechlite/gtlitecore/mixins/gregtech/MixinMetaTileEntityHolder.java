@@ -2,8 +2,8 @@ package gregtechlite.gtlitecore.mixins.gregtech;
 
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
-import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySyncer;
-import gregtechlite.gtlitecore.api.metatileentity.SyncedMetaTileEntity;
+import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer;
+import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity;
 import net.minecraft.network.PacketBuffer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

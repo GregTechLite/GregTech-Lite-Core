@@ -12,8 +12,8 @@ import gregtech.api.metatileentity.TieredMetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.PipelineUtil
-import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySyncer
-import gregtechlite.gtlitecore.api.metatileentity.SyncedMetaTileEntity
+import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
+import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack

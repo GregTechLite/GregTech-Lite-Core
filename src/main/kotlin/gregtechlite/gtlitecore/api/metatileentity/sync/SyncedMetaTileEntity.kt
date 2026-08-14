@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.api.metatileentity
+package gregtechlite.gtlitecore.api.metatileentity.sync
 
 interface SyncedMetaTileEntity
 {

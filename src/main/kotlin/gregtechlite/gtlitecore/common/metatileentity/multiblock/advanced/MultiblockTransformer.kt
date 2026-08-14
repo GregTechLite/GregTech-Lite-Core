@@ -23,8 +23,8 @@ import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySyncer
-import gregtechlite.gtlitecore.api.metatileentity.SyncedMetaTileEntity
+import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
+import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack

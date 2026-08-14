@@ -1,4 +1,4 @@
-package gregtechlite.gtlitecore.api.metatileentity
+package gregtechlite.gtlitecore.api.metatileentity.sync
 
 import com.morphismmc.morphismlib.util.Unchecks
 import gregtech.api.metatileentity.MetaTileEntity

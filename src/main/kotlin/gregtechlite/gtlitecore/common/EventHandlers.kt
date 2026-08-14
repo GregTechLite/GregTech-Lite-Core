@@ -7,7 +7,7 @@ import gregtech.api.unification.material.event.MaterialRegistryEvent
 import gregtech.api.unification.material.event.PostMaterialEvent
 import gregtech.loaders.recipe.CraftingComponent
 import gregtechlite.gtlitecore.api.MOD_ID
-import gregtechlite.gtlitecore.api.metatileentity.MetaTileEntitySyncBatcher
+import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncBatcher
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags
