@@ -4420,27 +4420,28 @@ gtlitecore.jei.group.machine.dual_hatch.import=Dual Import Hatches
 gtlitecore.jei.group.machine.dual_hatch.export=Dual Export Hatches
 
 gtlitecore.tooltip.machine.machine_type=Machine Type: §e%s
-gtlitecore.tooltip.machine.overclock_mode=Overclocking Mode:
+gtlitecore.tooltip.machine.overclock_mode=Overclocking Mode: 
 gtlitecore.tooltip.machine.overclock_mode.standard=§bStandard Overclocking
 gtlitecore.tooltip.machine.overclock_mode.perfect=§bPerfect Overclocking
 gtlitecore.tooltip.machine.overclock_mode.perfect_after=§bPerfect Overclocking§7 (Unlocked at §3UV§7-Tier)
 gtlitecore.tooltip.machine.overclock_mode.perfect_double=§bDoubling Perfect Overclocking
 
-gtlitecore.tooltip.machine.parallel_mode.label=Maximum Parallel Number:
+gtlitecore.tooltip.machine.parallel_mode.label=Maximum Parallel Number: 
 gtlitecore.tooltip.machine.parallel_mode=§a%s×%s
 gtlitecore.tooltip.machine.parallel_mode.flat=§a%s
 gtlitecore.tooltip.machine.parallel_mode.unlimited=§a∞
 
-gtlitecore.tooltip.machine.duration_mode.label=Working Speed Buff:
+gtlitecore.tooltip.machine.duration_mode.label=Working Speed Buff: 
 gtlitecore.tooltip.machine.duration_mode=§d+%s%%/%s
 gtlitecore.tooltip.machine.duration_mode.flat=§d+%s%%
 
-gtlitecore.tooltip.machine.energy_mode.label=Energy Request Reduction:
+gtlitecore.tooltip.machine.energy_mode.label=Energy Request Reduction: 
 gtlitecore.tooltip.machine.energy_mode=§6-%s%%/%s
 gtlitecore.tooltip.machine.energy_mode.flat=§6-%s%%
 
-gtlitecore.tooltip.machine.list.and=and
-gtlitecore.tooltip.machine.list.comma=,
+# en labels and list separators carry a trailing space after the colon; other languages decide their own spacing.
+gtlitecore.tooltip.machine.list.and= and 
+gtlitecore.tooltip.machine.list.comma=, 
 
 gtlitecore.tooltip.machine.laser_hatch=Laser Hatch Support: §9Enabled
 gtlitecore.tooltip.machine.special_max_voltage=Max Recipe Tier Predicate: §3Disabled

@@ -78,13 +78,13 @@ class MultiblockTooltipBuilder(private val metaTileEntity: MultiblockWithDisplay
     // endregion
 
     private fun statLine(labelKey: String, valueKey: String, vararg args: Any): String
-        = I18n.format(labelKey) + " " + I18n.format(valueKey, *args)
+        = I18n.format(labelKey) + I18n.format(valueKey, *args)
 
     private fun joinModeNames(modes: Array<out UpgradeMode>): String
     {
         if (modes.isEmpty()) return ""
-        val and = " " + I18n.format(Keys.LIST_AND) + " "
-        val comma = I18n.format(Keys.LIST_COMMA) + " "
+        val and = I18n.format(Keys.LIST_AND)
+        val comma = I18n.format(Keys.LIST_COMMA)
         val names = modes.map { I18n.format("${Keys.UPGRADE}.${it.name.lowercase()}") }
         return when (names.size)
         {
