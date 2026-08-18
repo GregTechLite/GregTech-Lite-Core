@@ -17,6 +17,7 @@ import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.EnumHand
 import net.minecraft.util.ResourceLocation
@@ -36,6 +37,11 @@ class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTile
     {
         val tierVoltage = GTValues.V[tier]
         energyContainer = EnergyContainerHandler(this, tierVoltage * 320, tierVoltage, 320, tierVoltage, 320)
+        applyMode()
+    }
+
+    private fun applyMode()
+    {
         if (world == null) return
         if (isDistributeMode)
         {
@@ -47,6 +53,12 @@ class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTile
             (energyContainer as EnergyContainerHandler).setSideInputCondition { it != frontFacing }
             (energyContainer as EnergyContainerHandler).setSideOutputCondition { it == frontFacing }
         }
+    }
+
+    override fun readFromNBT(data: NBTTagCompound)
+    {
+        super.readFromNBT(data)
+        applyMode()
     }
 
     override fun getMaxInputOutputAmperage(): Long = 320
