@@ -61,6 +61,12 @@ class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTile
         applyMode()
     }
 
+    override fun update()
+    {
+        super.update()
+        if (isFirstTick && !world.isRemote) applyMode()
+    }
+
     override fun getMaxInputOutputAmperage(): Long = 320
 
     override fun openGUIOnRightClick() = false
