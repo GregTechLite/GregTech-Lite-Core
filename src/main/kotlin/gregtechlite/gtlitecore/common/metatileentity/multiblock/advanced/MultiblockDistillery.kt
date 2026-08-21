@@ -249,7 +249,6 @@ class MultiblockDistillery(id: ResourceLocation)
                 val advancedTanks = workableHandler?.fluidTanks
                 if (advancedTanks != null)
                     return advancedTanks
-                return super.getOutputTank()
             }
             return super.getOutputTank()
         }
