@@ -28,9 +28,10 @@ Browse raw source code instead of guessing APIs:
 MorphismLib sources are not provided in this repository; find and add them yourself if needed.
 Note: `libs/*.jar` (GregTech, MorphismLib) are **build dependencies only — do not use them as reference source code**.
 
-### Non-Official Mods
+### Lesser-Known Dependencies
 
-This repository depends on the following mods which differ from their upstream / official versions:
+Model knowledge about the following dependencies is unreliable — treat their sources
+(see External Sources) as the reference instead of guessing their APIs:
 
 - **GTCEu** (GregTech CE Unofficial) — the maintained fork of GTCE / GregTech Community Edition.
 - **AE2UEL** (Applied Energistics 2 Unofficial Extended Life) — the 1.12.2 continuation of Applied Energistics 2.
