@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**GregTech Lite Core** is a Minecraft 1.12.2 Mod for the same name modpack **GregTech Lite**, it has written by Kotlin
+**GregTech Lite Core** is a Minecraft 1.12.2 Mod for the same name modpack **GregTech Lite**, it has written in Kotlin
 language (Kotlin 2.1.0) which provides by **Forgelin Continuous** mod (a lib which use shadow jar to provide Kotlin
 support for Minecraft 1.12.2).
 
@@ -66,3 +66,84 @@ At the beginning and most importantly, we **use Kotlin language to write everyth
 10. Use `MetaTileEntitySyncer` (`gregtechlite.gtlitecore.api.metatileentity.sync`) and its related system by default, not hand-written `writeToNBT` / `readFromNBT`, e.t.c.
 11. Do not change `docs/*`, it is **Dokka**-generated API reference.
 12. Do not change `manuscripts/*`, it is manuscriptal asset sources.
+
+### Examples
+
+**Exam 1: Sealed class + Contravariant Singleton**
+```kotlin
+sealed class CheckStrategy<in T>
+{
+    object Equals : CheckStrategy<Any?>()
+    {
+        override fun matches(prev: Any?, cur: Any?) = prev == cur
+    }
+
+    object Identity : CheckStrategy<Any?>()
+    {
+        override fun matches(prev: Any?, cur: Any?) = prev === cur
+    }
+
+    object AlwaysUpdate : CheckStrategy<Any?>()
+    {
+        override fun matches(prev: Any?, cur: Any?) = false
+    }
+
+    abstract fun matches(prev: T, cur: T): Boolean
+}
+```
+
+**Exam 2: VariantBlock -> BlockVariant**
+Create blocks by `BlockVariant` instead of `VariantBlock`.
+```kotlin
+enum class TestBlock(private val serialName: String) : BlockVariant, IStringSerializable {
+    BLOCK_1("block_1");
+
+    override val state: IBlockState
+        get() = GTLiteBlocks.TEST_BLOCK.getState(this)
+
+    override fun getStack(count: Int): ItemStack = GTLiteBlocks.TEST_BLOCK.getItemVariant(this, count)
+}
+```
+
+Use adapter for GregTech's blocks, must use same enum name to provide a hook for `valueOf` method.
+```kotlin
+enum class GTBatteryBlock : BlockVariant
+{
+  EMPTY_TIER_I;
+
+  override val state: IBlockState 
+      get() = MetaBlocks.BATTERY_BLOCK.getStateFromMeta(ordinal)
+
+  override fun getStack(count: Int): ItemStack
+      = MetaBlocks.BATTERY_BLOCK.getItemVariant(BlockBatteryPart.BatteryPartType.valueOf(name), count)
+}
+```
+
+**Exam 3: GregTech Block Tier -> Block Attribute API**
+
+For our block attribute:
+```kotlin
+val MOTOR_CASING_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("motor_casing_tier")
+
+fun init()
+{
+    MOTOR_CASING_TIER.registerBlockVariants(MotorCasing::class)
+}
+```
+
+For GregTech block tier adaptation (make it to our API).
+
+```kotlin
+val COIL_TIER: BlockAttributeRegistry<IHeatingCoilBlockStats>
+    = BlockAttributeRegistryWrapper("CoilType", GregTechAPI.HEATING_COILS, Comparator.comparingInt { it.tier })
+```
+
+**Exam 4: Hand-written Sync -> MTE Sync**
+```kotlin
+class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTileEntity(id, tier), SyncedMetaTileEntity
+{
+    override val syncer: MetaTileEntitySyncer = MetaTileEntitySyncer(this)
+
+    var isDistributeMode by syncer.syncedBoolean(true)
+}
+```
