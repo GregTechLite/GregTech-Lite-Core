@@ -63,81 +63,9 @@ Module layout: `api`, `common`, `core`, `client`, `integration`, `loader`, `mixi
 
 ### Examples
 
-**Exam 1: Sealed class + Contravariant Singleton**
-```kotlin
-sealed class CheckStrategy<in T>
-{
-    object Equals : CheckStrategy<Any?>()
-    {
-        override fun matches(prev: Any?, cur: Any?) = prev == cur
-    }
+See the real code for full forms:
 
-    object Identity : CheckStrategy<Any?>()
-    {
-        override fun matches(prev: Any?, cur: Any?) = prev === cur
-    }
-
-    object AlwaysUpdate : CheckStrategy<Any?>()
-    {
-        override fun matches(prev: Any?, cur: Any?) = false
-    }
-
-    abstract fun matches(prev: T, cur: T): Boolean
-}
-```
-
-**Exam 2: VariantBlock -> BlockVariant**
-Create blocks by `BlockVariant` instead of `VariantBlock`.
-```kotlin
-enum class TestBlock(private val serialName: String) : BlockVariant, IStringSerializable {
-    BLOCK_1("block_1");
-
-    override val state: IBlockState
-        get() = GTLiteBlocks.TEST_BLOCK.getState(this)
-
-    override fun getStack(count: Int): ItemStack = GTLiteBlocks.TEST_BLOCK.getItemVariant(this, count)
-}
-```
-
-Use adapter for GregTech's blocks, must use same enum name to provide a hook for `valueOf` method.
-```kotlin
-enum class GTBatteryBlock : BlockVariant
-{
-  EMPTY_TIER_I;
-
-  override val state: IBlockState 
-      get() = MetaBlocks.BATTERY_BLOCK.getStateFromMeta(ordinal)
-
-  override fun getStack(count: Int): ItemStack
-      = MetaBlocks.BATTERY_BLOCK.getItemVariant(BlockBatteryPart.BatteryPartType.valueOf(name), count)
-}
-```
-
-**Exam 3: GregTech Block Tier -> Block Attribute API**
-
-For our block attribute:
-```kotlin
-val MOTOR_CASING_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("motor_casing_tier")
-
-fun init()
-{
-    MOTOR_CASING_TIER.registerBlockVariants(MotorCasing::class)
-}
-```
-
-For GregTech block tier adaptation (make it to our API).
-
-```kotlin
-val COIL_TIER: BlockAttributeRegistry<IHeatingCoilBlockStats>
-    = BlockAttributeRegistryWrapper("CoilType", GregTechAPI.HEATING_COILS, Comparator.comparingInt { it.tier })
-```
-
-**Exam 4: Hand-written Sync -> MTE Sync**
-```kotlin
-class MachineEnergyDistributor(id: ResourceLocation, tier: Int) : TieredMetaTileEntity(id, tier), SyncedMetaTileEntity
-{
-    override val syncer: MetaTileEntitySyncer = MetaTileEntitySyncer(this)
-
-    var isDistributeMode by syncer.syncedBoolean(true)
-}
-```
+- Sealed class + contravariant singleton: `src/main/kotlin/gregtechlite/gtlitecore/api/data/handler/CheckStrategy.kt`
+- BlockVariant enum (and GT adapter, keep enum names matching GT `valueOf`): `src/main/kotlin/gregtechlite/gtlitecore/common/block/variant/component/MotorCasing.kt`
+- Block attribute tiers: `src/main/kotlin/gregtechlite/gtlitecore/api/GTLiteAPI.kt` (`MOTOR_CASING_TIER`, `COIL_TIER`, `BlockAttributeRegistryWrapper`) — the `BlockAttributeRegistry<Int>` overload needs `StateTier`
+- MTE sync: `src/main/kotlin/gregtechlite/gtlitecore/common/metatileentity/electric/MachineEnergyDistributor.kt`
