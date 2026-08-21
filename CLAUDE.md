@@ -40,26 +40,21 @@ This repository depends on the following mods which differ from their upstream /
 ## API Usage Guide
 
 First and most important: we **use Kotlin language to write everything** and **only use Java language to write mixins**.
-Module layout: `api`, `common`, `core`, `client`, `integration`, `loader`, `mixins`.
+Module layout — keep files under the package matching their domain: `api`, `common`, `core`, `client`, `integration`, `loader`, `mixins`.
 
 ### Code Conventions
 
-1. Use Kotlin syntax instead of Java syntax, e.g. Java Stream API -> Kotlin Sequence, Java `StringBuilder` / String Operation
-   -> Kotlin `buildString` / Kotlin String Operation, Java Reflection -> Kotlin Reflect.
-2. Use Kotlin constructions instead of constructions in some Java or its external libraries, e.g. Guava `ImmutableList` -> Kotlin `List`,
-   Apache Commons `Pair` -> Kotlin `Pair`. The construction in these libraries is only allowed to be used when hard required.
-3. Use Kotlin extension method instead of some redundant methods.
-4. Use Kotlin design pattern instead of Java design pattern, e.g. Java Builder Pattern -> Kotlin DSL Pattern.
-5. Use sealed class + contravariant singleton instead of generic enum (not allowed in Kotlin) or some similar constructions.
-   For example, here a strategy class `Strategy<in T>`, we exposing it with `Strategy<Any?>` singletons.
-6. Use `MoreCollections` (`gregtechlite.gtlitecore.api.collection.MoreCollections`) when high performance is required,
-   it is the Kotlin extensions for **FastUtil** and some Java collections.
-7. Use correct package names and put all files in their proper packages, split by domain by default.
-8. Use `BlockVariant` (`gregtechlite.gtlitecore.api.block.variant.BlockVariant`) and its related system but not `MetaBlock` / `VariantBlock` by GregTech.
-9. Use `BlockAttributeRegistry` (`gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry`) and its related system (registered in `GTLiteAPI`) but not block tier registration in `GregTechAPI` by GregTech.
-10. Use `MetaTileEntitySyncer` (`gregtechlite.gtlitecore.api.metatileentity.sync`) and its related system by default, not hand-written `writeToNBT` / `readFromNBT`, etc.
-11. Do not change `docs/*`, it is **Dokka**-generated API reference.
-12. Do not change `manuscripts/*`, it is manuscriptal asset sources.
+1. **Kotlin-first syntax.** Prefer Kotlin syntax over Java syntax in mod code: Stream -> Sequence, `StringBuilder` -> `buildString`, reflection -> kotlin.reflect. (The Kotlin stdlib/reflect come from the Forgelin Continuous jar; the only Java sources are mixins.)
+2. **Kotlin constructs over library constructs.** Prefer Kotlin `List` / `Pair` over Guava `ImmutableList` / Apache Commons `Pair`; library constructions are allowed only when hard required.
+3. **Extension functions first.** Prefer Kotlin extension functions over redundant helper methods; repo-wide extensions live in `api/extension/` (e.g. `ItemStackExt.kt`, `RecipeBuilderExt.kt`).
+4. **Kotlin-style design patterns.** Prefer Kotlin-style design patterns over Java-style ones in mod code, e.g. Kotlin DSL instead of the Java Builder pattern; a Java-style pattern is allowed only when it is the required boundary (e.g. an external Java API).
+5. **Sealed strategies as contravariant singletons.** Use sealed class + contravariant singletons for strategy-like polymorphism (generic enums are not allowed in Kotlin); see `api/data/handler/CheckStrategy.kt` for the full form.
+6. **MoreCollections for hot paths.** When high performance is required, use `MoreCollections` (`gregtechlite.gtlitecore.api.collection.MoreCollections`); it wraps **FastUtil** and some Java collections — see the `// region` blocks in `api/collection/MoreCollections.kt`.
+7. Use `BlockVariant` (`gregtechlite.gtlitecore.api.block.variant.BlockVariant`) and its related system but not `MetaBlock` / `VariantBlock` by GregTech.
+8. Use `BlockAttributeRegistry` (`gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry`) and its related system (registered in `GTLiteAPI`) but not block tier registration in `GregTechAPI` by GregTech.
+9. **Sync via MetaTileEntitySyncer.** Use `MetaTileEntitySyncer` and its related system by default (see `api/metatileentity/sync/MetaTileEntitySyncer.kt`); do not hand-write `writeToNBT` / `readFromNBT` or custom packets for synced fields.
+10. **Never hand-edit `docs/*`** — it is the `dokkaGfm` output (git-ignored); regenerate it instead.
+11. **Never hand-edit `manuscripts/*`** — manuscriptal (SAI2) asset sources archived by the `processManuscriptalResources` task; edit the originals under `src/main/resources/textures/` and re-run the task.
 
 ### Examples
 
