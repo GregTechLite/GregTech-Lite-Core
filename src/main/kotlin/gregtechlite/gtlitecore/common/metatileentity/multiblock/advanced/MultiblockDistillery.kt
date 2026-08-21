@@ -50,17 +50,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.function.Function
 import kotlin.math.max
 
-// The structure pattern is identical for both recipe maps, but the fluid output handling
-// depends on the active mode: the advanced Distillation Tower hatch logic is only initialized
-// while the structure is formed in Distillation Tower mode. When the mode is switched,
-// MultiMapMultiblockController.setRecipeMapIndex() immediately calls recipeMapWorkable.forceRecipeRecheck(),
-// which validates recipes against the NEW mode while the DistillationTowerLogicHandler is still in the
-// OLD mode's state. This used to crash with an NPE in DistillationTowerLogicHandler.applyFluidToOutputs(),
-// both in checkOutputSpaceFluids() during the switch and in outputRecipeOutputs() when the old recipe
-// completed afterwards. To fix this, the recipe checks are made null-safe while the handler is not
-// initialized, the output tank falls back to the standard tanks, and the handler is re-initialized after
-// the mode change so it always matches the newly selected recipe map. An in-progress recipe is left
-// running, so switching modes does not cancel it or lose its inputs.
+
 class MultiblockDistillery(id: ResourceLocation)
     : MultiMapMultiblockController(id, arrayOf(DISTILLERY_RECIPES, DISTILLATION_RECIPES)), IDistillationTower
 {
@@ -103,14 +93,7 @@ class MultiblockDistillery(id: ResourceLocation)
         casingTier = 0
     }
 
-    /**
-     * The base implementation immediately calls recipeMapWorkable.forceRecipeRecheck() after changing the index,
-     * which re-validates recipes against the NEW recipe map while the [DistillationTowerLogicHandler] is still in
-     * the OLD mode's state (the null-safe [LargeDistilleryRecipeLogic.checkOutputSpaceFluids] rejects that check).
-     * Afterwards the handler is re-initialized so it matches the newly selected recipe map. An in-progress recipe
-     * is deliberately left running (see [LargeDistilleryRecipeLogic.forceRecipeRecheck]): it finishes under the
-     * new mode's output routing instead of being canceled, so no inputs are lost.
-     */
+
     override fun setRecipeMapIndex(index: Int)
     {
         val changed = index != recipeMapIndex
@@ -215,12 +198,6 @@ class MultiblockDistillery(id: ResourceLocation)
     private inner class LargeDistilleryRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
-        /**
-         * Called by MultiMapMultiblockController.setRecipeMapIndex() when the recipe map is switched.
-         * If a recipe is in progress, do not restart it (that would discard the progress and consume the
-         * inputs again): only invalidate the cached recipe, so that once the current recipe finishes, the
-         * next search picks up recipes from the newly selected recipe map.
-         */
         override fun forceRecipeRecheck()
         {
             if (progress > 0)
@@ -261,9 +238,6 @@ class MultiblockDistillery(id: ResourceLocation)
                     }
                     return true
                 }
-                // The advanced hatch logic is not initialized yet, e.g. the recipe map was just switched and the
-                // handler has not been re-initialized. Reject the check so forceRecipeRecheck() does not crash; the
-                // handler is re-initialized right after the mode switch and the recipe is picked up on the next search.
                 return false
             }
             return super.checkOutputSpaceFluids(recipe, exportFluids)
@@ -276,9 +250,6 @@ class MultiblockDistillery(id: ResourceLocation)
                 val advancedTanks = workableHandler?.fluidTanks
                 if (advancedTanks != null)
                     return advancedTanks
-                // The advanced hatch logic is not initialized yet, e.g. the recipe map was just switched and the
-                // handler has not been re-initialized. Fall back to the standard output tanks so callers never receive
-                // null (the base checkOutputSpaceFluids/outputRecipeOutputs implementations do not handle null).
                 return super.getOutputTank()
             }
             return super.getOutputTank()
