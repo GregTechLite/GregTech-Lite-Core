@@ -229,7 +229,6 @@ class MultiblockDistillery(id: ResourceLocation)
                 val handler = workableHandler
                 if (handler?.orderedFluidOutputs != null)
                 {
-                    // We have already trimmed fluid outputs at this time.
                     if (!metaTileEntity.canVoidRecipeFluidOutputs() &&
                         !handler.applyFluidToOutputs(recipe.allFluidOutputs, false))
                     {
