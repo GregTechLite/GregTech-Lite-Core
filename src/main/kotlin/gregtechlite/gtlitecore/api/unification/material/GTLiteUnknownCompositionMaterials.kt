@@ -180,6 +180,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SoybeanOil
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpatiallyEnlargedFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StableBaryonicMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SteamCrackedSodioIndene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedMilk
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedNutrientPasteEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedRichNutrientPasteEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StreptococcusPyogenes
@@ -685,7 +686,14 @@ object GTLiteUnknownCompositionMaterials
             color(0xCA4C26)
         }
 
-        // 12088-12100 for misc unknown composition materials.
+        // 12088 Sterilized Milk
+        SterilizedMilk = addMaterial(12088, "sterilized_milk")
+        {
+            liquid()
+            color(0xFFFFFF)
+        }
+
+        // 12089-12100 for misc unknown composition materials.
         // ...
 
         // 12101 Free Electron Gas

@@ -587,6 +587,7 @@ object GTLiteMetaItems
     lateinit var ETIRPS: MetaItem<*>.MetaValueItem
     lateinit var SPARKLING_WATER: MetaItem<*>.MetaValueItem
     lateinit var CRANBERRY_ETIRPS: MetaItem<*>.MetaValueItem
+    lateinit var BREWING_MILK: MetaItem<*>.MetaValueItem
 
     lateinit var POLENTA: MetaItem<*>.MetaValueItem
 

@@ -1635,6 +1635,8 @@ metaitem.food.drink.sparkling_water.name=气泡水
 metaitem.food.drink.sparkling_water.tooltip=耶！汽水！
 metaitem.food.drink.cranberry_etirps.name=蔓越莓味碧雪™
 metaitem.food.drink.cranberry_etirps.tooltip=另一种风味
+metaitem.food.drink.brewing_milk.name=冲调牛奶
+metaitem.food.drink.brewing_milk.tooltip=液态奶粉
 
 metaitem.food.polenta.name=玉米糊
 metaitem.food.polenta.tooltip.1=常见于意大利料理中，被称为波轮塔（Polenta）。
@@ -1692,6 +1694,7 @@ metaitem.soybean_meal_dust_small.name=大豆豆粕
 metaitem.plant_protein_dust_small.name=植物蛋白
 metaitem.eggshell_dust_small.name=蛋壳
 metaitem.wet_egg_white_cake_crushed_centrifuged.name=湿鸡蛋蛋白饼
+metaitem.milk_dust.name=奶粉
 
 # Tools
 item.gt.tool.rolling_pin.name=%s擀面杖
@@ -3998,6 +4001,7 @@ gtlitecore.material.egg_yolk=鸡蛋蛋黄
 gtlitecore.material.sugar_free_egg_white=脱糖鸡蛋蛋清
 gtlitecore.material.phospholipid_ethanol_emulsion=含磷脂乙醇浊液
 gtlitecore.material.lecithin=卵磷脂
+gtlitecore.material.sterilized_milk=灭菌牛奶
 
 gtlitecore.material.free_electron_gas=自由电子气体
 gtlitecore.material.fermionic_uu_matter=费米子UU物质
