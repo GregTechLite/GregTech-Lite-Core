@@ -50,10 +50,7 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.function.Function
 import kotlin.math.max
 
-// TODO FIXME
-//  (1) When change this class to Kotlin version, then checkOutputSpaceFluids() will throws NPE when player running
-//  recipes in Distillation Tower and the output fluids hatch has some liquids (not necessarily full).
-//  (2) Seems will crash when switch mode of the machine.
+
 class MultiblockDistillery(id: ResourceLocation)
     : MultiMapMultiblockController(id, arrayOf(DISTILLERY_RECIPES, DISTILLATION_RECIPES)), IDistillationTower
 {
@@ -94,6 +91,19 @@ class MultiblockDistillery(id: ResourceLocation)
         if (workableHandler != null)
             workableHandler!!.invalidate()
         casingTier = 0
+    }
+
+
+    override fun setRecipeMapIndex(index: Int)
+    {
+        val changed = index != recipeMapIndex
+        super.setRecipeMapIndex(index)
+        if (changed && isStructureFormed && !world.isRemote && usesAdvancedHatchLogic())
+        {
+            val pattern = structurePattern ?: return
+            workableHandler?.determineLayerCount(pattern)
+            workableHandler?.determineOrderedFluidOutputs()
+        }
     }
 
     // @formatter:off
@@ -188,9 +198,19 @@ class MultiblockDistillery(id: ResourceLocation)
     private inner class LargeDistilleryRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
 
+        override fun forceRecipeRecheck()
+        {
+            if (progress > 0)
+            {
+                previousRecipe = null
+                return
+            }
+            super.forceRecipeRecheck()
+        }
+
         override fun outputRecipeOutputs()
         {
-            if (usesAdvancedHatchLogic())
+            if (usesAdvancedHatchLogic() && workableHandler?.orderedFluidOutputs != null)
             {
                 addItemsToItemHandler(getOutputInventory(), false, itemOutputs)
                 workableHandler?.applyFluidToOutputs(fluidOutputs, true)
@@ -206,14 +226,18 @@ class MultiblockDistillery(id: ResourceLocation)
         {
             if (usesAdvancedHatchLogic())
             {
-                // We have already trimmed fluid outputs at this time.
-                if (!metaTileEntity.canVoidRecipeFluidOutputs() &&
-                    !workableHandler!!.applyFluidToOutputs(recipe.allFluidOutputs, false))
+                val handler = workableHandler
+                if (handler?.orderedFluidOutputs != null)
                 {
-                    this.isOutputsFull = true
-                    return false
+                    if (!metaTileEntity.canVoidRecipeFluidOutputs() &&
+                        !handler.applyFluidToOutputs(recipe.allFluidOutputs, false))
+                    {
+                        this.isOutputsFull = true
+                        return false
+                    }
+                    return true
                 }
-                return true
+                return false
             }
             return super.checkOutputSpaceFluids(recipe, exportFluids)
         }
@@ -221,7 +245,11 @@ class MultiblockDistillery(id: ResourceLocation)
         override fun getOutputTank(): IMultipleTankHandler?
         {
             if (usesAdvancedHatchLogic())
-                return workableHandler?.fluidTanks
+            {
+                val advancedTanks = workableHandler?.fluidTanks
+                if (advancedTanks != null)
+                    return advancedTanks
+            }
             return super.getOutputTank()
         }
 
