@@ -69,11 +69,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        size = structurePattern?.let { pattern ->
-            val repeatableAisle = pattern.aisleRepetitions.indexOfFirst { it[0] < it[1] }
-            if (repeatableAisle < 0) 1
-            else pattern.formedRepetitionCount.getOrElse(repeatableAisle) { 1 }
-        } ?: 1
+        size = structurePattern?.formedRepetitionCount?.getOrElse(1) { 1 } ?: 1
     }
 
     // @formatter:off
