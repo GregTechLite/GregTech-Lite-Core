@@ -6,7 +6,6 @@ import gregtech.api.capability.GregtechCapabilities
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
-import gregtech.api.pattern.BlockWorldState
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.pattern.PatternStringError
 import gregtech.api.pattern.TraceabilityPredicate
@@ -158,21 +157,6 @@ object TraceabilityPredicates
     val WIRELESS_ENERGY_STORAGE = MultiblockAbility("wireless_energy_storage", IEnergyContainer::class.java).also {
         MultiblockAbility.REGISTRY[it] = arrayListOf()
     }
-
-    // region Specified Block Counter
-
-    @JvmStatic
-    fun airCounter() = counter("length", TraceabilityPredicate.AIR)
-
-    @JvmStatic
-    fun counter(name: String, delegate: TraceabilityPredicate) = object : TraceabilityPredicate(delegate)
-    {
-        override fun test(blockWorldState: BlockWorldState?) = super.test(blockWorldState).also {
-            if (it) blockWorldState!!.matchContext.increment(name, 1)
-        }
-    }
-
-    // endregion
 
     @JvmStatic
     fun energyOutputPredicate(voltageTier: Int): TraceabilityPredicate
