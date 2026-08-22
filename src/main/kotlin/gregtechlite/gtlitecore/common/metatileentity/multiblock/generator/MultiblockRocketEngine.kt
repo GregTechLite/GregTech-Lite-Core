@@ -23,6 +23,7 @@ import gregtech.api.mui.sync.FixedIntArraySyncValue
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
+import gregtech.api.pattern.TraceabilityPredicate
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.LiquidAir
@@ -30,7 +31,6 @@ import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.airCounter
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.energyOutputPredicate
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROCKET_ENGINE_FUELS
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -46,7 +46,6 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.util.function.UnaryOperator
 
-// TODO: FIXME: Seems counter not effect and then the LRE cannot overclocking.
 class MultiblockRocketEngine(id: ResourceLocation?)
     : FuelMultiblockController(id, ROCKET_ENGINE_FUELS, IV), ProgressBarMultiblock
 {
@@ -70,7 +69,11 @@ class MultiblockRocketEngine(id: ResourceLocation?)
     override fun formStructure(context: PatternMatchContext)
     {
         super.formStructure(context)
-        size = context.getOrDefault("length", 1)
+        size = structurePattern?.let { pattern ->
+            val repeatableAisle = pattern.aisleRepetitions.indexOfFirst { it[0] < it[1] }
+            if (repeatableAisle < 0) 1
+            else pattern.formedRepetitionCount.getOrElse(repeatableAisle) { 1 }
+        } ?: 1
     }
 
     // @formatter:off
@@ -90,7 +93,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
                 .setExactLimit(1)))
         .where('D', states(casingState))
         .where('O', abilities(MUFFLER_HATCH))
-        .where('*', airCounter())
+        .where('*', TraceabilityPredicate.AIR)
         .build()
 
     // @formatter:on
