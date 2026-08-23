@@ -62,6 +62,7 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
         mainController = controller
         mainController?.addAdditional(this)
         snapshotControllerPos = null
+        scheduleRenderUpdate()
     }
 
     override fun onRemoval()
