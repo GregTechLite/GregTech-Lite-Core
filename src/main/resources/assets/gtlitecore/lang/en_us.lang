@@ -1635,6 +1635,8 @@ metaitem.food.drink.sparkling_water.name=Sparkling Water
 metaitem.food.drink.sparkling_water.tooltip=Yeah! Sparking Water!
 metaitem.food.drink.cranberry_etirps.name=Cranberry Etirps™
 metaitem.food.drink.cranberry_etirps.tooltip=Another Flavor
+metaitem.food.drink.brewing_milk.name=Brewing Milk
+metaitem.food.drink.brewing_milk.tooltip=Liquid Milk Powder
 
 metaitem.food.polenta.name=Polenta
 metaitem.food.polenta.tooltip.1=Commonly found in Italian cuisine, it is called Polenta.
@@ -1692,6 +1694,7 @@ metaitem.soybean_meal_dust_small.name=Soybean Meal
 metaitem.plant_protein_dust_small.name=Plant Protein
 metaitem.eggshell_dust_small.name=Eggshell
 metaitem.wet_egg_white_cake_crushed_centrifuged.name=Wet Egg White Cake
+metaitem.milk_dust.name=Milk Powder
 
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
@@ -4067,6 +4070,7 @@ gtlitecore.material.egg_yolk=Egg Yolk
 gtlitecore.material.sugar_free_egg_white=Sugar Free Egg White
 gtlitecore.material.phospholipid_ethanol_emulsion=Phospholipid Ethanol Emulsion
 gtlitecore.material.lecithin=Lecithin
+gtlitecore.material.sterilized_milk=Sterilized Milk
 
 gtlitecore.material.neutron_proton_fermi_superfluid=Neutron-Proton Fermi Superfluid
 gtlitecore.material.heavy_lepton_mixture=Heavy Lepton Mixture

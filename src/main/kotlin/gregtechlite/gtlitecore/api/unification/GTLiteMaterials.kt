@@ -819,6 +819,7 @@ object GTLiteMaterials
     lateinit var SugarFreeEggWhite: Material
     lateinit var PhospholipidEthanolEmulsion: Material
     lateinit var Lecithin: Material
+    lateinit var SterilizedMilk: Material
 
     lateinit var FreeElectronGas: Material
     lateinit var FermionicUUMatter: Material
