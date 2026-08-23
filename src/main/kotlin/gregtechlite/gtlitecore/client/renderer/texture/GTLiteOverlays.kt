@@ -135,6 +135,8 @@ object GTLiteOverlays
     val WATER_COOLING_TOWER_OVERLAY = multiId("water_cooling_tower")
     @JvmField
     val THERMOSINK_COOLING_TOWER_OVERLAY = multiId("thermosink_cooling_tower")
+    @JvmField
+    val NANOLITHOGRAPHY_ARRAY = multiId("nanolithography_array")
 
     // endregion
 
