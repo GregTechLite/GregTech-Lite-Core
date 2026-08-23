@@ -4,12 +4,22 @@ package gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
+import com.cleanroommc.modularui.drawable.ItemDrawable
+import com.cleanroommc.modularui.factory.PosGuiData
+import com.cleanroommc.modularui.screen.ModularPanel
+import com.cleanroommc.modularui.utils.Alignment
+import com.cleanroommc.modularui.value.sync.BooleanSyncValue
+import com.cleanroommc.modularui.value.sync.PanelSyncManager
+import com.cleanroommc.modularui.widgets.ToggleButton
+import com.cleanroommc.modularui.widgets.layout.Flow
 import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IDataStickIntractable
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
-import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
+import gregtech.api.mui.GTGuiTextures
 import gregtech.api.util.GTUtility
+import gregtech.api.util.KeyUtil
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -17,6 +27,7 @@ import net.minecraft.network.PacketBuffer
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextComponentTranslation
+import net.minecraft.util.text.TextFormatting
 
 abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEntityId: ResourceLocation)
     : MultiblockWithDisplayBase(metaTileEntityId), IControllable, IDataStickIntractable
@@ -62,6 +73,13 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
         mainController = controller
         mainController?.addAdditional(this)
         snapshotControllerPos = null
+        scheduleRenderUpdate()
+    }
+
+    override fun onRemoval()
+    {
+        super.onRemoval()
+        mainController?.removeAdditional(pos)
     }
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
@@ -120,20 +138,7 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
         }
     }
 
-    override fun configureDisplayText(builder: MultiblockUIBuilder)
-    {
-        builder.setWorkingStatus(isWorkingEnabled, isConnected())
-            .addWorkingStatusLine()
-    }
-
-    override fun configureWarningText(builder: MultiblockUIBuilder)
-    {
-        val controller = mainController ?: return
-        if (controller.isStructureFormed)
-        {
-            controller.maintenanceProblem.let { builder.addMaintenanceProblemLines(it, true) }
-        }
-    }
+    override fun createUIFactory(): MultiblockUIFactory = SimpleUIFactory(this)
 
     override fun onDataStickLeftClick(player: EntityPlayer, stack: ItemStack)
     {
@@ -157,5 +162,37 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
     {
         super.renderMetaTileEntity(renderState, translation, pipeline)
         frontOverlay.renderOrientedState(renderState, translation, pipeline, frontFacing, isActive, isWorkingEnabled)
+    }
+
+    @Suppress("UnstableApiUsage")
+    private class SimpleUIFactory(val controller: AdditionalMultiblockBase<*>) : MultiblockUIFactory(controller)
+    {
+        override fun buildUI(guiData: PosGuiData, panelSyncManager: PanelSyncManager): ModularPanel
+        {
+            val isWorkingEnabledSync = BooleanSyncValue(
+                { controller.isWorkingEnabled },
+                { workingEnabled -> controller.setWorkingEnabled(workingEnabled) })
+
+            return ModularPanel(controller.metaName)
+                .coverChildren()
+                .child(Flow.row()
+                           .padding(4)
+                           .coverChildren()
+                           .background(GTGuiTextures.BACKGROUND)
+                           .crossAxisAlignment(Alignment.CrossAxis.CENTER)
+                           .child(ItemDrawable(controller.stackForm).asWidget().name("controller_icon")
+                                      .size(16)
+                                      .marginRight(4))
+                           .child(KeyUtil.lang(TextFormatting.WHITE, controller.metaFullName).asWidget().name("name")
+                                      .padding(4)
+                                      .background(GTGuiTextures.DISPLAY))
+                           .child(ToggleButton().name("power_button")
+                                      .marginLeft(4)
+                                      .size(18)
+                                      .disableHoverBackground()
+                                      .overlay(true, GTGuiTextures.BUTTON_POWER[1])
+                                      .overlay(false, GTGuiTextures.BUTTON_POWER[0])
+                                      .value(isWorkingEnabledSync)))
+        }
     }
 }

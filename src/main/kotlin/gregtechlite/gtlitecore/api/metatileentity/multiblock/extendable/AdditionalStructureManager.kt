@@ -45,6 +45,13 @@ open class AdditionalStructureManager<T: ExtendableMultiblock<T>>(protected val 
         snapshotConnections.remove(pos)
     }
 
+    fun validate()
+    {
+        if (structures.isEmpty()) return
+        val invalidStructures = structures.filterValues { !it.isValid || !it.isStructureFormed }
+        invalidStructures.keys.forEach { remove(it) }
+    }
+
     fun <A> getAbilities(ability: MultiblockAbility<A>): MutableList<A>
     {
         tryInsertSnapshotConnections()

@@ -29,6 +29,12 @@ abstract class RecipeMapExtendableMultiblock<T : RecipeMapExtendableMultiblock<T
         recipeMapWorkable = ExtendableMultiblockRecipeLogic(this, additionalStructureManager)
     }
 
+    override fun updateFormedValid()
+    {
+        additionalStructureManager.validate()
+        super.updateFormedValid()
+    }
+
     override fun <A> getAbilities(ability: MultiblockAbility<A>): List<A>
     {
         val abilities = super.getAbilities(ability).toMutableList()

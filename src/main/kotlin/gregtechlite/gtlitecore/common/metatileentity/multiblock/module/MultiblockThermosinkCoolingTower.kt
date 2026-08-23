@@ -41,6 +41,8 @@ class MultiblockThermosinkCoolingTower<T : MultiblockPCBFactory<T>>(id: Resource
         mainController?.addAdditional(this)
     }
 
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("nTTTn", "nQQQn", "n   n", "n   n", "nRRRn", "n   n", "n   n", "n   n", "n   n", "nTTTn")
         .aisle("TTTTT", "QOOOQ", " OOO ", " OOO ", "ROOOR", " OOO ", " OOO ", " QQQ ", " TTT ", "T***T")
@@ -59,9 +61,11 @@ class MultiblockThermosinkCoolingTower<T : MultiblockPCBFactory<T>>(id: Resource
         .where(' ', any())
         .build()
 
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.INFINITY_COOLING_CASING
+    // @formatter:on
 
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_ROCKET_ENGINE_OVERLAY
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.OSMIRIDIUM_CASING
+
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.THERMOSINK_COOLING_TOWER_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

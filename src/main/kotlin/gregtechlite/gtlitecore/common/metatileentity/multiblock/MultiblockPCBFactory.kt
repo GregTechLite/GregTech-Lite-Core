@@ -141,6 +141,8 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
 
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.IRIDIUM_CASING
 
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.PCB_FACTORY_OVERLAY
+
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
@@ -185,13 +187,9 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
 
     private fun ResourceLocation.getStructure(): AdditionalMultiblockBase<T> = additionalStructureManager[this][0]
 
-    private fun ResourceLocation.isStructureEmpty(): Boolean = additionalStructureManager[this].isEmpty()
-
     private inner class PCBFactoryRecipeLogic(mte: RecipeMapExtendableMultiblock<T>)
         : ExtendableMultiblockRecipeLogic<T>(mte, additionalStructureManager)
     {
-        private var hasWaterCooling: Boolean = false
-
         override fun getOverclockingDurationFactor(): Double
         {
             if (structOC.checkStructure())
@@ -243,20 +241,24 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
             return min(count + countAdvanced, Int.MAX_VALUE - 1) // I think it's safe... may some edge case will break this?
         }
 
+        private fun hasCoolingWater(): Boolean
+        {
+            if (!structOC.checkStructure()) return false
+            val inputTank = structOC.getStructure().getAbilities(IMPORT_FLUIDS).firstOrNull() ?: return false
+            val coolant = DistilledWater.getFluid(50)
+            val fluid = inputTank.fluid ?: return false
+            return fluid.isFluidEqual(coolant) && fluid.amount >= coolant.amount
+        }
+
         override fun updateRecipeProgress()
         {
-            if (structOC.isStructureEmpty()) return super.updateRecipeProgress()
-
-            val abilities = structOC.getStructure().getAbilities(IMPORT_FLUIDS)
             if (canRecipeProgress && drawEnergy(recipeEUt, true))
             {
-                val inputTank = abilities[0]
-                val coolant = DistilledWater.getFluid(50)
-                if (coolant.isFluidStackIdentical(inputTank.fluid))
-                {
-                    inputTank.drain(coolant.amount, true)
-                    hasWaterCooling = true
-                }
+                if (hasCoolingWater())
+                    structOC.getStructure().getAbilities(IMPORT_FLUIDS)
+                        .firstOrNull()?.drain(DistilledWater.getFluid(50).amount, false)
+
+                drawEnergy(recipeEUt, false)
 
                 if (++progressTime > maxProgressTime)
                     completeRecipe()
@@ -275,10 +277,8 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
         {
             super.modifyOverclockPost(ocResult, storage)
             // +400% | D' = D / (1 + 4.0) = D / 5.0
-            if (hasWaterCooling)
-            {
+            if (hasCoolingWater())
                 ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / 5.0).toInt()))
-            }
         }
     }
 }

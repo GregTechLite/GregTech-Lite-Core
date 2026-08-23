@@ -7,7 +7,6 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.client.renderer.ICubeRenderer
-import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalMultiblockBase
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -32,6 +31,8 @@ class MultiblockMicroscaleCircuitDetector<T : MultiblockPCBFactory<T>>(id: Resou
         mainController?.addAdditional(this)
     }
 
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle(" KKKKK ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
         .aisle("KKKKKKK", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
@@ -53,9 +54,11 @@ class MultiblockMicroscaleCircuitDetector<T : MultiblockPCBFactory<T>>(id: Resou
         .where(' ', any())
         .build()
 
+    // @formatter:on
+
     override fun getBaseTexture(source: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.NEUTRONIUM_CASING
 
-    override fun getFrontOverlay(): ICubeRenderer = Textures.SCANNER_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.MICROSCALE_CIRCUIT_DETECTOR_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

@@ -38,6 +38,8 @@ class MultiblockWaterCoolingTower<T : MultiblockPCBFactory<T>>(id: ResourceLocat
         mainController?.addAdditional(this)
     }
 
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("gHHHg", "gPPPg", "g   g", "g   g", "gJJJg", "g   g", "g   g", "g   g", "g   g", "gIIIg")
         .aisle("HHHHH", "PIIIP", " III ", " III ", "JIIIJ", " III ", " III ", " PPP ", " III ", "I***I")
@@ -59,9 +61,11 @@ class MultiblockWaterCoolingTower<T : MultiblockPCBFactory<T>>(id: ResourceLocat
         .where(' ', air())
         .build()
 
+    // @formatter:on
+
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.OSMIRIDIUM_CASING
 
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_ROCKET_ENGINE_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.WATER_COOLING_TOWER_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
