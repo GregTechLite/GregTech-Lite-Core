@@ -8,7 +8,9 @@ import com.cleanroommc.modularui.drawable.ItemDrawable
 import com.cleanroommc.modularui.factory.PosGuiData
 import com.cleanroommc.modularui.screen.ModularPanel
 import com.cleanroommc.modularui.utils.Alignment
+import com.cleanroommc.modularui.value.sync.BooleanSyncValue
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
+import com.cleanroommc.modularui.widgets.ToggleButton
 import com.cleanroommc.modularui.widgets.layout.Flow
 import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
 import gregtech.api.capability.IControllable
@@ -165,18 +167,32 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
     @Suppress("UnstableApiUsage")
     private class SimpleUIFactory(val controller: AdditionalMultiblockBase<*>) : MultiblockUIFactory(controller)
     {
-        override fun buildUI(guiData: PosGuiData, panelSyncManager: PanelSyncManager): ModularPanel = ModularPanel(controller.metaName)
+        override fun buildUI(guiData: PosGuiData, panelSyncManager: PanelSyncManager): ModularPanel
+        {
+            val isWorkingEnabledSync = BooleanSyncValue(
+                { controller.isWorkingEnabled },
+                { workingEnabled -> controller.setWorkingEnabled(workingEnabled) })
+
+            return ModularPanel(controller.metaName)
                 .coverChildren()
                 .child(Flow.row()
                            .padding(4)
                            .coverChildren()
                            .background(GTGuiTextures.BACKGROUND)
                            .crossAxisAlignment(Alignment.CrossAxis.CENTER)
-                           .child(ItemDrawable(controller.stackForm).asWidget()
+                           .child(ItemDrawable(controller.stackForm).asWidget().name("controller_icon")
                                       .size(16)
                                       .marginRight(4))
-                           .child(KeyUtil.lang(TextFormatting.WHITE, controller.metaFullName).asWidget()
+                           .child(KeyUtil.lang(TextFormatting.WHITE, controller.metaFullName).asWidget().name("name")
                                       .padding(4)
-                                      .background(GTGuiTextures.DISPLAY)))
+                                      .background(GTGuiTextures.DISPLAY))
+                           .child(ToggleButton().name("power_button")
+                                      .marginLeft(4)
+                                      .size(18)
+                                      .disableHoverBackground()
+                                      .overlay(true, GTGuiTextures.BUTTON_POWER[1])
+                                      .overlay(false, GTGuiTextures.BUTTON_POWER[0])
+                                      .value(isWorkingEnabledSync)))
+        }
     }
 }
