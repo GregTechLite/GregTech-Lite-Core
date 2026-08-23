@@ -55,7 +55,7 @@ class MultiblockNanolithographyArray<T : MultiblockPCBFactory<T>>(id: ResourceLo
 
     override fun getBaseTexture(source: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.OSMIRIDIUM_CASING
 
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.NANOLITHOGRAPHY_ARRAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.NANOLITHOGRAPHY_ARRAY_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

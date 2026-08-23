@@ -136,7 +136,9 @@ object GTLiteOverlays
     @JvmField
     val THERMOSINK_COOLING_TOWER_OVERLAY = multiId("thermosink_cooling_tower")
     @JvmField
-    val NANOLITHOGRAPHY_ARRAY = multiId("nanolithography_array")
+    val NANOLITHOGRAPHY_ARRAY_OVERLAY = multiId("nanolithography_array")
+    @JvmField
+    val MICROSCALE_CIRCUIT_DETECTOR_OVERLAY = multiId("microscale_circuit_detector")
 
     // endregion
 
