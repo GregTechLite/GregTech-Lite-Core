@@ -59,9 +59,9 @@ class MultiblockThermosinkCoolingTower<T : MultiblockPCBFactory<T>>(id: Resource
         .where(' ', any())
         .build()
 
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.INFINITY_COOLING_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.OSMIRIDIUM_CASING
 
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.LARGE_ROCKET_ENGINE_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.THERMOSINK_COOLING_TOWER_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {

@@ -129,6 +129,12 @@ object GTLiteOverlays
     val LARGE_SLAUGHTER_OVERLAY = multiId("large_slaughter")
     @JvmField
     val LARGE_FISHER_OVERLAY = multiId("large_fisher")
+    @JvmField
+    val PCB_FACTORY_OVERLAY = multiId("pcb_factory")
+    @JvmField
+    val WATER_COOLING_TOWER_OVERLAY = multiId("water_cooling_tower")
+    @JvmField
+    val THERMOSINK_COOLING_TOWER_OVERLAY = multiId("thermosink_cooling_tower")
 
     // endregion
 
