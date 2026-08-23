@@ -64,6 +64,12 @@ abstract class AdditionalMultiblockBase<T : ExtendableMultiblock<T>>(metaTileEnt
         snapshotControllerPos = null
     }
 
+    override fun onRemoval()
+    {
+        super.onRemoval()
+        mainController?.removeAdditional(pos)
+    }
+
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound
     {
         super.writeToNBT(data)
