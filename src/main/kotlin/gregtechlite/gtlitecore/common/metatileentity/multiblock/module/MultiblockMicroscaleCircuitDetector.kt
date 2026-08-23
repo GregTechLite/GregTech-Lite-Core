@@ -31,6 +31,8 @@ class MultiblockMicroscaleCircuitDetector<T : MultiblockPCBFactory<T>>(id: Resou
         mainController?.addAdditional(this)
     }
 
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle(" KKKKK ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
         .aisle("KKKKKKK", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "  KKK  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       ")
@@ -51,6 +53,8 @@ class MultiblockMicroscaleCircuitDetector<T : MultiblockPCBFactory<T>>(id: Resou
         .where('#', air())
         .where(' ', any())
         .build()
+
+    // @formatter:on
 
     override fun getBaseTexture(source: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.NEUTRONIUM_CASING
 

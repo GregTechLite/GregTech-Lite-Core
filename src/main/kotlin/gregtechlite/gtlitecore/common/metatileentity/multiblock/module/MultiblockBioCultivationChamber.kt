@@ -33,6 +33,8 @@ class MultiblockBioCultivationChamber<T : MultiblockPCBFactory<T>>(id: ResourceL
         mainController?.addAdditional(this)
     }
 
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("hMMMh  hMMMh", "hNNNh  hNNNh", "hNNNh  hNNNh", "hNNNh  hNNNh", "h   h  h   h", "            ", "            ")
         .aisle("MMMMM  MMMMM", "N###N  N###N", "N###N  N###N", "N###N  N###N", " MMM    MMM ", "            ", "            ")
@@ -46,6 +48,8 @@ class MultiblockBioCultivationChamber<T : MultiblockPCBFactory<T>>(id: ResourceL
         .where('#', air())
         .where(' ', any())
         .build()
+
+    // @formatter:on
 
     override fun getBaseTexture(source: IMultiblockPart?): ICubeRenderer = Textures.CLEAN_STAINLESS_STEEL_CASING
 

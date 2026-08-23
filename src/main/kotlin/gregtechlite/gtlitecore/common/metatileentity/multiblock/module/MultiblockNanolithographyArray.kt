@@ -31,6 +31,8 @@ class MultiblockNanolithographyArray<T : MultiblockPCBFactory<T>>(id: ResourceLo
         mainController?.addAdditional(this)
     }
 
+    // @formatter:off
+
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("FEEF", "FEEF", "FEEF", "    ", "    ", "    ", "    ")
         .aisle("EEEE", "E##E", "E##E", "FEEF", "FEEF", "    ", "    ")
@@ -52,6 +54,8 @@ class MultiblockNanolithographyArray<T : MultiblockPCBFactory<T>>(id: ResourceLo
         .where('#', air())
         .where(' ', any())
         .build()
+
+    // @formatter:on
 
     override fun getBaseTexture(source: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.OSMIRIDIUM_CASING
 
