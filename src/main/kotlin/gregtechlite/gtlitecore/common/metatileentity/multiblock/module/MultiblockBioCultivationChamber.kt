@@ -9,6 +9,7 @@ import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalMultiblockBase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockPCBFactory
@@ -48,7 +49,7 @@ class MultiblockBioCultivationChamber<T : MultiblockPCBFactory<T>>(id: ResourceL
 
     override fun getBaseTexture(source: IMultiblockPart?): ICubeRenderer = Textures.CLEAN_STAINLESS_STEEL_CASING
 
-    override fun getFrontOverlay(): ICubeRenderer = Textures.PROCESSING_ARRAY_OVERLAY
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.BIO_CULTIVATION_CHAMBER_OVERLAY
 
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
