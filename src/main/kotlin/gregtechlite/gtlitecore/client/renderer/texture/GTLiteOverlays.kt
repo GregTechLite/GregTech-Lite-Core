@@ -145,6 +145,8 @@ object GTLiteOverlays
     val NANO_FORGE_OVERLAY = multiId("nano_forge")
     @JvmField
     val CONSCIOUSNESS_STORAGE_CENTER_OVERLAY = multiId("consciousness_storage_center")
+    @JvmField
+    val NANITE_REPLICATION_UNRESTRICOR_OVERLAY = multiId("nanite_replication_unrestricor")
 
     // endregion
 

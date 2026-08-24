@@ -84,6 +84,9 @@ class MultiblockNaniteReplicationUnrestricor<T : MultiblockNanoForge<T>>(id: Res
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.QUANTUM_ALLOY_CASING
 
     @SideOnly(Side.CLIENT)
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.NANITE_REPLICATION_UNRESTRICOR_OVERLAY
+
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
