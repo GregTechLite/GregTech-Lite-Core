@@ -77,6 +77,9 @@ class MultiblockConsciousnessStorageCenter<T : MultiblockNanoForge<T>>(id: Resou
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.TRINAQUADALLOY_CASING
 
     @SideOnly(Side.CLIENT)
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.CONSCIOUSNESS_STORAGE_CENTER_OVERLAY
+
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
