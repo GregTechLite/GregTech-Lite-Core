@@ -90,6 +90,9 @@ class MultiblockVirtualGestaltComputingUplink<T : MultiblockNanoForge<T>>(id: Re
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.LATTICE_QCD_THERMAL_SHIELDING_CASING
 
     @SideOnly(Side.CLIENT)
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.VIRTUAL_GESTALT_COMPUTING_UPLINK_OVERLAY
+
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
