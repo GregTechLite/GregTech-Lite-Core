@@ -159,12 +159,12 @@ class MultiblockNanoForge<T : MultiblockNanoForge<T>>(id: ResourceLocation) : Re
 
         override fun getParallelLimit(): Int
         {
-            if (structT2.checkStructure())
-                return 64
-            if (structT3.checkStructure())
-                return 256
             if (structT4.checkStructure())
                 return Int.MAX_VALUE
+            if (structT3.checkStructure())
+                return 256
+            if (structT2.checkStructure())
+                return 64
             return super.getParallelLimit()
         }
     }
