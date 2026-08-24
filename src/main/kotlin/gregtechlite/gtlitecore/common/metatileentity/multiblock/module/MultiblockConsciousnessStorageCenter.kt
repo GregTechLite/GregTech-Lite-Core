@@ -9,8 +9,11 @@ import gregtech.api.unification.material.Materials.Francium
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalMultiblockBase
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
+import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTTurbineCasing
+import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockNanoForge
 import net.minecraft.client.resources.I18n
@@ -27,6 +30,9 @@ class MultiblockConsciousnessStorageCenter<T : MultiblockNanoForge<T>>(id: Resou
         private val casingState = MetalCasing.TRINAQUADALLOY.state
         private val secondCasingState = GTMultiblockCasing.ASSEMBLY_LINE_CASING.state
         private val gearboxCasingState = GTTurbineCasing.TUNGSTENSTEEL_GEARBOX.state
+        private val pipeCasingState = BoilerCasing.POLYBENZIMIDAZOLE.state
+        private val coilState = GTFusionCasing.SUPERCONDUCTOR_COIL.state
+        private val glassState = GTGlassCasing.FUSION_GLASS.state
     }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockConsciousnessStorageCenter(metaTileEntityId)
@@ -39,20 +45,29 @@ class MultiblockConsciousnessStorageCenter<T : MultiblockNanoForge<T>>(id: Resou
     // @formatter:off
 
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
-        .aisle(" cccccc ", " FG  GF ", "  F  F  ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ")
-        .aisle("cccccccc", "F      F", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ")
-        .aisle("cccccccc", "G      G", "F      F", "        ", "        ", "   dd   ", "   xx   ", "   dd   ", "        ", "        ", "        ", "        ", "   dd   ", "   xx   ", "   dd   ")
-        .aisle("cccccccc", "   dd   ", "   dd   ", "   dd   ", "   dd   ", "  dddd  ", "  xddx  ", "  dddd  ", "   dd   ", "   dd   ", "   dd   ", "   dd   ", "  dddd  ", "  xddx  ", "  dddd  ")
-        .aisle("cccccccc", "   dd   ", "   dd   ", "   dd   ", "   dd   ", "  dddd  ", "  xddx  ", "  dddd  ", "   dd   ", "   dd   ", "   dd   ", "   dd   ", "  dddd  ", "  xddx  ", "  dddd  ")
-        .aisle("cccccccc", "G      G", "F      F", "        ", "        ", "   dd   ", "   xx   ", "   dd   ", "        ", "        ", "        ", "        ", "   dd   ", "   xx   ", "   dd   ")
-        .aisle("cccccccc", "F      F", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ")
-        .aisle(" cccccc ", " FS  GF ", "  F  F  ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ", "        ")
+        .aisle("      FCF      ", "     CGCGC     ", "      FCF      ")
+        .aisle("    CCCCCCC    ", "   CC XDX CC   ", "    CCCGCCC    ")
+        .aisle("   CCCCCCCCC   ", "  C  CGCGC  C  ", "   CCCCCCCCC   ")
+        .aisle("  CCC F F CCC  ", " C  C FPF C  C ", "  CCC F F CCC  ")
+        .aisle(" CCC       CCC ", " C C   P   C C ", " CCC       CCC ")
+        .aisle(" CC  F   F  CC ", "C C   FQF   C C", " CC  F   F  CC ")
+        .aisle("FCCF   Q   FCCF", "GXGF FQQQF FGXG", "FCCF   Q   FCCF")
+        .aisle("CCC   QQQ   CCC", "CDCPPQQQQQPPCDC", "CGC   QQQ   CGC")
+        .aisle("FCCF   Q   FCCF", "GXGF FQQQF FGXG", "FCCF   Q   FCCF")
+        .aisle(" CC  F   F  CC ", "C C   FQF   C C", " CC  F   F  CC ")
+        .aisle(" CCC       CCC ", " C C   P   C C ", " CCC       CCC ")
+        .aisle("  CCC F F CCC  ", " C  C FPF C  C ", "  CCC F F CCC  ")
+        .aisle("   CCCCCCCCC   ", "  C  CGCGC  C  ", "   CCCCCCCCC   ")
+        .aisle("    CCCCCCC    ", "   CC XDX CC   ", "    CCCGCCC    ")
+        .aisle("      FCF      ", "     CGSGC     ", "      FCF      ")
         .where('S', selfPredicate())
-        .where('c', states(casingState))
-        .where('d', states(casingState))
-        .where('x', states(secondCasingState))
+        .where('C', states(casingState))
+        .where('X', states(secondCasingState))
+        .where('D', states(gearboxCasingState))
+        .where('P', states(pipeCasingState))
+        .where('Q', states(coilState))
+        .where('G', states(glassState))
         .where('F', frames(Francium))
-        .where('G', states(gearboxCasingState))
         .where(' ', any())
         .build()
 
@@ -60,6 +75,9 @@ class MultiblockConsciousnessStorageCenter<T : MultiblockNanoForge<T>>(id: Resou
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.TRINAQUADALLOY_CASING
+
+    @SideOnly(Side.CLIENT)
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.CONSCIOUSNESS_STORAGE_CENTER_OVERLAY
 
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)

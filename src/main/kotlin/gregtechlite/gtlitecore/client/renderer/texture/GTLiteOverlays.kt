@@ -141,6 +141,14 @@ object GTLiteOverlays
     val MICROSCALE_CIRCUIT_DETECTOR_OVERLAY = multiId("microscale_circuit_detector")
     @JvmField
     val BIO_CULTIVATION_CHAMBER_OVERLAY = multiId("bio_cultivation_chamber")
+    @JvmField
+    val NANO_FORGE_OVERLAY = multiId("nano_forge")
+    @JvmField
+    val CONSCIOUSNESS_STORAGE_CENTER_OVERLAY = multiId("consciousness_storage_center")
+    @JvmField
+    val NANITE_REPLICATION_UNRESTRICOR_OVERLAY = multiId("nanite_replication_unrestricor")
+    @JvmField
+    val VIRTUAL_GESTALT_COMPUTING_UPLINK_OVERLAY = multiId("virtual_gestalt_computing_uplink")
 
     // endregion
 

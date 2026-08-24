@@ -15,6 +15,8 @@ import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 
 class MultiblockMicroscaleCircuitDetector<T : MultiblockPCBFactory<T>>(id: ResourceLocation) : AdditionalMultiblockBase<T>(id)
 {
@@ -56,10 +58,13 @@ class MultiblockMicroscaleCircuitDetector<T : MultiblockPCBFactory<T>>(id: Resou
 
     // @formatter:on
 
+    @SideOnly(Side.CLIENT)
     override fun getBaseTexture(source: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.NEUTRONIUM_CASING
 
+    @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.MICROSCALE_CIRCUIT_DETECTOR_OVERLAY
 
+    @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)

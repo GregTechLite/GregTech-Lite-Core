@@ -20,7 +20,6 @@ import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerExtendableMultiblockRecipeLogic
-import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalMultiblockBase
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.RecipeMapExtendableMultiblock
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyN
@@ -82,12 +81,19 @@ class MultiblockNanoForge<T : MultiblockNanoForge<T>>(id: ResourceLocation) : Re
         .where('C', states(casingState)
             .setMinGlobalLimited(50)
             .or(abilities(MAINTENANCE_HATCH)
-                .setExactLimit(1))
+                    .setExactLimit(1))
             .or(abilities(INPUT_ENERGY)
-                .setMaxGlobalLimited(2))
+                    .setMaxGlobalLimited(2)
+                    .setPreviewCount(1))
             .or(abilities(INPUT_LASER)
-                .setMaxGlobalLimited(1))
-            .or(abilities(IMPORT_ITEMS, EXPORT_ITEMS, IMPORT_FLUIDS)))
+                    .setMaxGlobalLimited(1)
+                    .setPreviewCount(0))
+            .or(abilities(IMPORT_ITEMS)
+                    .setPreviewCount(1))
+            .or(abilities(EXPORT_ITEMS)
+                    .setPreviewCount(1))
+            .or(abilities(IMPORT_FLUIDS)
+                    .setPreviewCount(1)))
         .where('D', states(casingState))
         .where('F', frames(HastelloyN))
         .where('#', air())
@@ -98,6 +104,9 @@ class MultiblockNanoForge<T : MultiblockNanoForge<T>>(id: ResourceLocation) : Re
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.NAQUADAH_ALLOY_CASING
+
+    @SideOnly(Side.CLIENT)
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.NANO_FORGE_OVERLAY
 
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
@@ -150,14 +159,13 @@ class MultiblockNanoForge<T : MultiblockNanoForge<T>>(id: ResourceLocation) : Re
 
         override fun getParallelLimit(): Int
         {
-            if (structT2.checkStructure())
-                return 64
-            if (structT3.checkStructure())
-                return 256
             if (structT4.checkStructure())
                 return Int.MAX_VALUE
+            if (structT3.checkStructure())
+                return 256
+            if (structT2.checkStructure())
+                return 64
             return super.getParallelLimit()
         }
     }
-
 }

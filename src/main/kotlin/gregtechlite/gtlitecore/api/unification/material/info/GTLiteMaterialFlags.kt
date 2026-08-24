@@ -341,6 +341,7 @@ object GTLiteMaterialFlags
         VanadiumGallium.addFlags(GENERATE_FRAME)
         Francium.addFlags(GENERATE_FRAME)
         Mendelevium.addFlags(GENERATE_FRAME)
+        Copernicium.addFlags(GENERATE_FRAME)
 
         // fuelRod
         Thorium.addFlags(GENERATE_FUEL_ROD)
@@ -603,6 +604,7 @@ object GTLiteMaterialFlags
         Francium.addFlags(GENERATE_ROD)
         Moscovium.addFlags(GENERATE_ROD)
         Yttrium.addFlags(GENERATE_ROD)
+        Copernicium.addFlags(GENERATE_ROD)
 
         // stickLong
         Chrome.addFlags(GENERATE_LONG_ROD)
