@@ -583,7 +583,7 @@ object GTLiteSecondDegreeMaterials
             fluid()
             color(0x5785A4).iconSet(METALLIC)
             components(Nickel, 8, Iron, 3, Tungsten, 4, Molybdenum, 2, Chrome, 1, Niobium, 1)
-            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             blastProp(4200, GasTier.MID, // RTM Alloy
                       VA[IV], 30 * SECOND,
                       VA[HV], 16 * SECOND)
@@ -635,7 +635,7 @@ object GTLiteSecondDegreeMaterials
             fluid()
             color(0xB20B3A).iconSet(METALLIC)
             components(Titanium, 1, Carbon, 1)
-            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
+            flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             blastProp(3430, GasTier.MID, // Nichrome
                       VA[HV], 50 * SECOND,
                       VA[MV], 10 * SECOND)
@@ -1146,6 +1146,7 @@ object GTLiteSecondDegreeMaterials
             fluid()
             colorAverage().iconSet(METALLIC)
             components(Aluminium, 1, Zinc, 1, Gallium, 1, Germanium, 1, Cadmium, 1, Indium, 1, Tin, 1, Antimony, 1)
+            flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_GEAR)
             blastProp(8800, GasTier.HIGH, // Trinium
                       VA[ZPM], 30 * SECOND,
                       VA[IV], 20 * SECOND)
@@ -1168,6 +1169,7 @@ object GTLiteSecondDegreeMaterials
             colorAverage().iconSet(DULL)
             components(Zirconium, 1, Niobium, 1, Molybdenum, 1, Technetium, 1, Hafnium, 1, Tantalum, 1, Tungsten, 1,
                        Rhenium, 1)
+            flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_GEAR)
             blastProp(9900, GasTier.HIGHER, // Tritanium
                       VA[UV], 35 * SECOND,
                       VA[LuV], 25 * SECOND)

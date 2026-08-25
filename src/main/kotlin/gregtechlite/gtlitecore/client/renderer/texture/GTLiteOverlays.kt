@@ -149,6 +149,8 @@ object GTLiteOverlays
     val NANITE_REPLICATION_UNRESTRICOR_OVERLAY = multiId("nanite_replication_unrestricor")
     @JvmField
     val VIRTUAL_GESTALT_COMPUTING_UPLINK_OVERLAY = multiId("virtual_gestalt_computing_uplink")
+    @JvmField
+    val MEGA_TURBINE_OVERLAY = multiId("mega_turbine")
 
     // endregion
 

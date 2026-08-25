@@ -152,6 +152,7 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessDyn
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessEnergyHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessStorageHatch
 import gregtechlite.gtlitecore.common.metatileentity.electric.MachineEnergyDistributor
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockMegaTurbine
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockConsciousnessStorageCenter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNaniteReplicationUnrestricor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockVirtualGestaltComputingUplink
@@ -335,6 +336,11 @@ object GTLiteMetaTileEntities
 
     lateinit var ENERGY_INFUSER: MultiblockEnergyInfuser
     lateinit var INTEGRATED_ORE_PROCESSOR: MultiblockIntegratedOreProcessor
+    lateinit var MEGA_STEAM_TURBINE: MultiblockMegaTurbine
+    lateinit var MEGA_GAS_TURBINE: MultiblockMegaTurbine
+    lateinit var MEGA_PLASMA_TURBINE: MultiblockMegaTurbine
+    lateinit var MEGA_HOT_COOLANT_TURBINE: MultiblockMegaTurbine
+    lateinit var MEGA_SUPERCRITICAL_FLUID_TURBINE: MultiblockMegaTurbine
 
     lateinit var LARGE_FORGE_HAMMER: MultiblockForgeHammer
     lateinit var LARGE_BENDER: MultiblockBender
@@ -878,6 +884,40 @@ object GTLiteMetaTileEntities
 
         ENERGY_INFUSER = register(10052, MultiblockEnergyInfuser(GTLiteMod.id("energy_infuser")))
         INTEGRATED_ORE_PROCESSOR = register(10053, MultiblockIntegratedOreProcessor(GTLiteMod.id("integrated_ore_processor")))
+        MEGA_STEAM_TURBINE = register(10054, MultiblockMegaTurbine(GTLiteMod.id("mega_turbine.steam"),
+            RecipeMaps.STEAM_TURBINE_FUELS, HV,
+            GTTurbineCasing.STEEL_TURBINE_CASING.state,
+            GTTurbineCasing.STEEL_GEARBOX.state,
+            Textures.SOLID_STEEL_CASING,
+            GTLiteOverlays.MEGA_TURBINE_OVERLAY, false))
+
+        MEGA_GAS_TURBINE = register(10055, MultiblockMegaTurbine(GTLiteMod.id("mega_turbine.gas"),
+            RecipeMaps.GAS_TURBINE_FUELS, EV,
+            GTTurbineCasing.STAINLESS_TURBINE_CASING.state,
+            GTTurbineCasing.STAINLESS_STEEL_GEARBOX.state,
+            Textures.CLEAN_STAINLESS_STEEL_CASING,
+            GTLiteOverlays.MEGA_TURBINE_OVERLAY, true))
+
+        MEGA_PLASMA_TURBINE = register(10056, MultiblockMegaTurbine(GTLiteMod.id("mega_turbine.plasma"),
+            RecipeMaps.PLASMA_GENERATOR_FUELS, LuV,
+            GTTurbineCasing.TUNGSTENSTEEL_TURBINE_CASING.state,
+            GTTurbineCasing.TUNGSTENSTEEL_GEARBOX.state,
+            Textures.ROBUST_TUNGSTENSTEEL_CASING,
+            GTLiteOverlays.MEGA_TURBINE_OVERLAY, false))
+
+        MEGA_HOT_COOLANT_TURBINE = register(10057, MultiblockMegaTurbine(GTLiteMod.id("mega_turbine.hot_coolant"),
+            GTLiteRecipeMaps.HOT_COOLANT_TURBINE_FUELS, IV,
+            GTTurbineCasing.TITANIUM_TURBINE_CASING.state,
+            GTTurbineCasing.TITANIUM_GEARBOX.state,
+            Textures.STABLE_TITANIUM_CASING,
+            GTLiteOverlays.MEGA_TURBINE_OVERLAY, true))
+
+        MEGA_SUPERCRITICAL_FLUID_TURBINE = register(10058, MultiblockMegaTurbine(GTLiteMod.id("mega_turbine.supercritical_fluid"),
+            GTLiteRecipeMaps.SUPERCRITICAL_FLUID_TURBINE_FUELS, ZPM,
+            TurbineCasing.RHODIUM_PLATED_PALLADIUM_TURBINE.state,
+            TurbineCasing.RHODIUM_PLATED_PALLADIUM_GEARBOX.state,
+            GTLiteOverlays.RHODIUM_PLATED_PALLADIUM_CASING,
+            GTLiteOverlays.MEGA_TURBINE_OVERLAY, true))
 
         // ...
 

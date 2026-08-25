@@ -47,6 +47,7 @@ import gregtech.api.unification.material.Materials.Gadolinium
 import gregtech.api.unification.material.Materials.Germanium
 import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.Graphite
+import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.Helium
 import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
@@ -56,6 +57,7 @@ import gregtech.api.unification.material.Materials.Livermorium
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Meitnerium
 import gregtech.api.unification.material.Materials.Mendelevium
+import gregtech.api.unification.material.Materials.Molybdenum
 import gregtech.api.unification.material.Materials.Moscovium
 import gregtech.api.unification.material.Materials.Naquadah
 import gregtech.api.unification.material.Materials.NaquadahEnriched
@@ -245,6 +247,9 @@ import gregtech.common.metatileentities.MetaTileEntities.HIGH_PERFORMANCE_COMPUT
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.IMPLOSION_COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.LARGE_CHEMICAL_REACTOR
+import gregtech.common.metatileentities.MetaTileEntities.LARGE_GAS_TURBINE
+import gregtech.common.metatileentities.MetaTileEntities.LARGE_PLASMA_TURBINE
+import gregtech.common.metatileentities.MetaTileEntities.LARGE_STEAM_TURBINE
 import gregtech.common.metatileentities.MetaTileEntities.LASER_ENGRAVER
 import gregtech.common.metatileentities.MetaTileEntities.LATHE
 import gregtech.common.metatileentities.MetaTileEntities.MACERATOR
@@ -269,6 +274,7 @@ import gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
 import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
@@ -300,6 +306,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HafniumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HarmonicPhononMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyN
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyX
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HastelloyX78
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyLeptonMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyQuarkDegenerateMatter
@@ -326,6 +333,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Plutonium244
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PreciousMetalAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Protomatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RefractoryAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ReneN5
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ResonantStrangeMeson
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Rhugnor
@@ -342,6 +350,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TransitionAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trinaquadalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tumbaga
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
@@ -484,6 +493,11 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.VIRT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.VOLCANUS
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WATER_COOLING_TOWER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_ENERGY_INPUT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_STEAM_TURBINE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_GAS_TURBINE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_HOT_COOLANT_TURBINE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_SUPERCRITICAL_FLUID_TURBINE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_PLASMA_TURBINE
 import net.minecraft.init.Items.FISHING_ROD
 
 internal object MachineRecipeLoader
@@ -1938,6 +1952,80 @@ internal object MachineRecipeLoader
             duration(1 * MINUTE + 30 * SECOND)
         }
 
+        // Mega Steam Turbine
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(18)
+            input(LARGE_STEAM_TURBINE, 16)
+            input(pipeHugeFluid, Chrome, 4)
+            input(ELECTRIC_PUMP_EV, 2)
+            input(plate, TitaniumCarbide, 8)
+            input(gear, TitaniumCarbide, 4)
+            input(screw, TitaniumCarbide, 16)
+            fluidInputs(Molybdenum.getFluid(L * 4))
+            output(MEGA_STEAM_TURBINE)
+            EUt(VA[EV])
+            duration(2 * MINUTE + 8 * TICK)
+        }
+
+        // Mega Gas Turbine
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(18)
+            input(LARGE_GAS_TURBINE, 16)
+            input(pipeHugeFluid, TungstenCarbide, 4)
+            input(ELECTRIC_PUMP_IV, 2)
+            input(plate, HastelloyX, 8)
+            input(gear, HastelloyX, 4)
+            input(screw, HastelloyX, 16)
+            fluidInputs(Rhodium.getFluid(L * 4))
+            output(MEGA_GAS_TURBINE)
+            EUt(VA[IV])
+            duration(2 * MINUTE + 8 * TICK)
+        }
+
+        // Mega Hot Coolant Turbine
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(18)
+            input(HOT_COOLANT_TURBINE, 16)
+            input(pipeHugeFluid, Iridium, 4)
+            input(ELECTRIC_PUMP_LuV, 2)
+            input(plate, HSSE, 8)
+            input(gear, HSSE, 4)
+            input(screw, HSSE, 16)
+            fluidInputs(Osmium.getFluid(L * 4))
+            output(MEGA_HOT_COOLANT_TURBINE)
+            EUt(VA[LuV])
+            duration(2 * MINUTE + 8 * TICK)
+        }
+
+        // Mega Plasma Turbine
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(18)
+            input(LARGE_PLASMA_TURBINE, 16)
+            input(pipeHugeFluid, Europium, 4)
+            input(ELECTRIC_PUMP_ZPM, 2)
+            input(plate, TransitionAlloyB, 8)
+            input(gear, TransitionAlloyB, 4)
+            input(screw, TransitionAlloyB, 16)
+            fluidInputs(Trinium.getFluid(L * 4))
+            output(MEGA_PLASMA_TURBINE)
+            EUt(VA[ZPM])
+            duration(2 * MINUTE + 8 * TICK)
+        }
+
+        // Mega Supercritical Fluid Turbine
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(18)
+            input(SUPERCRITICAL_FLUID_TURBINE, 16)
+            input(pipeHugeFluid, Duranium, 4)
+            input(ELECTRIC_PUMP_UV, 2)
+            input(plate, RefractoryAlloy, 8)
+            input(gear, RefractoryAlloy, 4)
+            input(screw, RefractoryAlloy, 16)
+            fluidInputs(Tritanium.getFluid(L * 4))
+            output(MEGA_SUPERCRITICAL_FLUID_TURBINE)
+            EUt(VA[UV])
+            duration(2 * MINUTE + 8 * TICK)
+        }
     }
 
     // @formatter:on
