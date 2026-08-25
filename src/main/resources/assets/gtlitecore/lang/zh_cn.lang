@@ -2408,6 +2408,8 @@ gtlitecore.machine.large_turbine.hot_coolant.name=大型热冷却液涡轮
 
 gtlitecore.machine.large_turbine.supercritical_fluid.name=大型超临界流体涡轮
 
+gtlitecore.machine.large_turbine.autofill=使用§f输入总线§7可以自动将输入的§a涡轮转子§7填充进§f转子支架§7中
+
 gtlitecore.machine.hydraulic_fracker.name=压裂机
 gtlitecore.machine.hydraulic_fracker.vein_full=流体矿脉已满
 gtlitecore.machine.hydraulic_fracker.insufficient_power=输入更多能量来提高压裂压力
