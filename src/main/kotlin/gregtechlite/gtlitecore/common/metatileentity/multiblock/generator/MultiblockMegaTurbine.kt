@@ -1,5 +1,8 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.generator
 
+import com.cleanroommc.modularui.api.drawable.IKey
+import com.cleanroommc.modularui.value.sync.BooleanSyncValue
+import com.cleanroommc.modularui.widgets.ToggleButton
 import gregtech.api.GTValues.V
 import gregtech.api.GTValues.VNF
 import gregtech.api.capability.IRotorHolder
@@ -14,6 +17,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility.MUFFLER_HATCH
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.OUTPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.OUTPUT_LASER
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.ROTOR_HOLDER
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.recipes.RecipeMap
@@ -22,6 +26,11 @@ import gregtech.common.metatileentities.multi.electric.generator.LargeTurbineWor
 import gregtech.common.metatileentities.multi.electric.generator.MetaTileEntityLargeTurbine
 import gregtechlite.gtlitecore.api.capability.RotorHandler
 import gregtechlite.gtlitecore.api.capability.RotorMode
+import gregtechlite.gtlitecore.api.data.Schema
+import gregtechlite.gtlitecore.api.data.handler.CheckStrategy
+import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
+import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
+import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
 import net.minecraft.block.state.IBlockState
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -38,9 +47,16 @@ class MultiblockMegaTurbine(id: ResourceLocation,
                             casingRenderer: ICubeRenderer,
                             frontOverlay: ICubeRenderer,
                             hasMufflerHatch: Boolean)
-    : MetaTileEntityLargeTurbine(id, recipeMap, tier, casingState, gearboxState, casingRenderer, hasMufflerHatch, frontOverlay), RotorHandler
+    : MetaTileEntityLargeTurbine(id, recipeMap, tier, casingState, gearboxState, casingRenderer, hasMufflerHatch, frontOverlay),
+    RotorHandler, SyncedMetaTileEntity
 {
-    override val mode: RotorMode = RotorMode.COMMON
+    override val syncer: MetaTileEntitySyncer = MetaTileEntitySyncer(this)
+
+    override var mode by syncer.synced(Schema("mode", RotorMode.COMMON, CheckStrategy.Equals,
+        { tag, key, value -> tag.setByte(key, value.ordinal.toByte()) },
+        { tag, key -> RotorMode.entries.toTypedArray().getOrElse(tag.getByte(key).toInt()) { RotorMode.COMMON } },
+        { buf, value -> buf.writeByte(value.ordinal) },
+        { buf -> RotorMode.entries.getOrElse(buf.readByte().toInt()) { RotorMode.COMMON } }))
 
     override val rotorHolders: List<IRotorHolder>?
         get() = getAbilities(ROTOR_HOLDER).takeIf { it.isNotEmpty() }
@@ -114,6 +130,29 @@ class MultiblockMegaTurbine(id: ResourceLocation,
     {
         tooltip.add(I18n.format("gregtech.universal.tooltip.base_production_eut", V[tier] * 2 * 16))
         tooltip.add(I18n.format("gregtech.multiblock.turbine.efficiency_tooltip", VNF[tier]))
+        tooltip.add(I18n.format("gtlitecore.machine.mega_turbine.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.mega_turbine.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_turbine.autofill"))
+    }
+
+    override fun createUIFactory(): MultiblockUIFactory = super.createUIFactory()
+        .createFlexButton { _, guiSyncManager ->
+            val modeSync = BooleanSyncValue(::getRotorMode, ::setRotorMode)
+            return@createFlexButton ToggleButton()
+                .size(18)
+                .disableHoverBackground()
+                .overlay(true, GTLiteMuiTextures.BUTTON_HIGH_SPEED_MODE[1])
+                .overlay(false, GTLiteMuiTextures.BUTTON_HIGH_SPEED_MODE[0])
+                .addTooltip(true, IKey.lang("gtlitecore.machine.mega_turbine.mode.enabled"))
+                .addTooltip(false, IKey.lang("gtlitecore.machine.mega_turbine.mode.disabled"))
+                .value(modeSync)
+        }
+
+    private fun getRotorMode(): Boolean = mode != RotorMode.COMMON
+
+    private fun setRotorMode(mode: Boolean)
+    {
+        this.mode = if (!mode) RotorMode.COMMON else RotorMode.HIGH_SPEED
     }
 
     private inner class MegaTurbineWorkableHandler(mte: RecipeMapMultiblockController, tier: Int) : LargeTurbineWorkableHandler(mte, tier)
