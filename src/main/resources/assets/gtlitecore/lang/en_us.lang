@@ -2408,6 +2408,8 @@ gtlitecore.machine.large_turbine.hot_coolant.name=Large Hot Coolant Turbine
 
 gtlitecore.machine.large_turbine.supercritical_fluid.name=Large Supercritical Fluid Turbine
 
+gtlitecore.machine.large_turbine.autofill=Use §fItem Import Bus§7 can autofill input §aTurbine Rotor§7 into §fRotor Holder§7
+
 gtlitecore.machine.hydraulic_fracker.name=Hydraulic Fracker
 gtlitecore.machine.hydraulic_fracker.vein_full=Vein Full
 gtlitecore.machine.hydraulic_fracker.multiplier=Current Multiplier: %d/%d
