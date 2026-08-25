@@ -28,6 +28,8 @@
     "MixinMetaTileEntityMEInputBus",
     "MixinMetaTileEntityMultiblockNotifiablePart",
     "MixinMetaTileEntityNetworkSwitch",
+    "MixinMetaTileEntityRotorHolder",
+    "MixinMetaTileEntityLargeTurbine",
     "MixinMetaTileEntityLargeBoiler",
     "MixinMetaTileEntityLargeChemicalReactor",
     "MixinMultiblockControllerBase",
