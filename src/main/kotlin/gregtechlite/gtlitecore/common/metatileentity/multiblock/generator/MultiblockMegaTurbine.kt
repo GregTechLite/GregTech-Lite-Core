@@ -136,7 +136,7 @@ class MultiblockMegaTurbine(id: ResourceLocation,
     }
 
     override fun createUIFactory(): MultiblockUIFactory = super.createUIFactory()
-        .createFlexButton { _, guiSyncManager ->
+        .createFlexButton { _, _ ->
             val modeSync = BooleanSyncValue(::getRotorMode, ::setRotorMode)
             return@createFlexButton ToggleButton()
                 .size(18)
