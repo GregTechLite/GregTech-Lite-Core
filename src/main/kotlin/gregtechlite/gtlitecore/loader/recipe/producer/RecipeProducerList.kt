@@ -23,7 +23,6 @@ internal object RecipeProducerList
         WrapItemRecipeProducer.produce()
         GreenhouseRecipeProducer.produce()
         MiningDroneAsteroidRecipeProducer.produce()
-        ComponentAssemblyLineRecipeProducer.produce()
         NuclearFissionRecipeProducer.produce()
         PCBFactoryRecipeProducer.produce()
         IntegratedOreProcessorRecipeProducer.produce()
@@ -31,6 +30,9 @@ internal object RecipeProducerList
 
     fun postInit()
     {
+        // This should be later than OverrideRecipeLoader
+        ComponentAssemblyLineRecipeProducer.produce()
+
         AdvancedFusionRecipeProducer.produce()
         BlackholeFormerRecipeProducer.produce()
     }
