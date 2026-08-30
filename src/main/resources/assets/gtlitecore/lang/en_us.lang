@@ -1609,6 +1609,7 @@ metaitem.material.gem.triplet_neutronium.name=Triplet Neutronium Sphere
 metaitem.material.gem.triplet_neutronium.tooltip=Trinity of Living Neutron Star
 metaitem.material.foil.peek_polyamide.name=PEEK-Polyamide Polymer Foil
 metaitem.material.foil.polymer_insulator.name=Polymer Insulator Foil
+metaitem.material.plate.low_density_structure.name=Low Density Structure Plate
 
 metaitem.crop.fruit.banana.name=Banana
 metaitem.crop.fruit.orange.name=Orange

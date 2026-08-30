@@ -1609,6 +1609,7 @@ metaitem.material.gem.triplet_neutronium.name=三重态中子球体
 metaitem.material.gem.triplet_neutronium.tooltip=三位一体的活体中子星
 metaitem.material.foil.peek_polyamide.name=聚醚醚酮-聚酰胺共聚物箔
 metaitem.material.foil.polymer_insulator.name=绝缘共聚物箔
+metaitem.material.plate.low_density_structure.name=轻质框架板
 
 metaitem.crop.fruit.banana.name=香蕉
 metaitem.crop.fruit.orange.name=橙子

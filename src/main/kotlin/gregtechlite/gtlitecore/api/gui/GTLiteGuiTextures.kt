@@ -267,6 +267,9 @@ object GTLiteGuiTextures
     @JvmField
     val PROGRESS_BAR_ANTI_GRAVITY_ASSEMBLING_2 = texture("textures/gui/progress_bar/progress_bar_anti_gravity_assembling_2.png")
 
+    @JvmField
+    val PROGRESS_BAR_BLACKHOLE_FORMING = texture("textures/gui/progress_bar/progress_bar_blackhole_forming.png")
+
     // endregion
 
     // region Widget Textures

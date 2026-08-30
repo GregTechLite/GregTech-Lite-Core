@@ -195,6 +195,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_CORE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_DECORATION
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_FOOD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_MACHINE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOW_DENSITY_STRUCTURE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MACROWORMHOLE_GENERATOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGICBOOK
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP
@@ -1564,6 +1565,9 @@ object GTLiteMetaItem1
 
         POLYMER_INSULATOR_FOIL = item(5024, "material.foil.polymer_insulator")
             .addOreDict("foilPolymerInsulator")
+
+        LOW_DENSITY_STRUCTURE = item(5025, "material.plate.low_density_structure")
+            .addOreDict("plateLowDensityStructure")
 
         // endregion
     }

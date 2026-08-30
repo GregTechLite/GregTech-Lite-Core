@@ -528,6 +528,7 @@ object GTLiteMetaItems
     lateinit var TRIPLET_NEUTRONIUM_SPHERE: MetaItem<*>.MetaValueItem
     lateinit var PEEK_POLYAMIDE_FOIL: MetaItem<*>.MetaValueItem
     lateinit var POLYMER_INSULATOR_FOIL: MetaItem<*>.MetaValueItem
+    lateinit var LOW_DENSITY_STRUCTURE: MetaItem<*>.MetaValueItem
 
     // endregion
 
