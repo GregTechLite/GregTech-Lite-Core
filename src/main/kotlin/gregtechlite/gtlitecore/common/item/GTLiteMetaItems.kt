@@ -37,6 +37,36 @@ object GTLiteMetaItems
     lateinit var CASTING_MOLD_BUTCHERY_KNIFE: MetaItem<*>.MetaValueItem
     lateinit var CASTING_MOLD_ROLLING_PIN: MetaItem<*>.MetaValueItem
 
+    lateinit var SHAPE_FIELD_PLATE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_ROD: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_BOLT: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_RING: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_CELL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_INGOT: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PIPE_TINY: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PIPE_SMALL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PIPE_NORMAL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PIPE_LARGE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PIPE_HUGE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_BLOCK: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_GEAR: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_BOTTLE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_FOIL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_GEAR_SMALL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_ROD_LONG: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_ROTOR: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_ROUND: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_TURBINE_BLADE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_DRILL_HEAD: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_FRAME: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE_DOUBLE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE_QUADRUPLE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE_OCTAL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE_HEX: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PLATE_DOUBLE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PLATE_DENSE: MetaItem<*>.MetaValueItem
+
     lateinit var CREDIT_ADAMANTIUM: MetaItem<*>.MetaValueItem
     lateinit var CREDIT_VIBRANIUM: MetaItem<*>.MetaValueItem
     lateinit var CREDIT_COSMIC_NEUTRONIUM: MetaItem<*>.MetaValueItem

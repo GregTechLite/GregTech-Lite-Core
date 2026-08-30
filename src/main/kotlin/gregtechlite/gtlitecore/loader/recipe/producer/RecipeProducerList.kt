@@ -32,6 +32,7 @@ internal object RecipeProducerList
     fun postInit()
     {
         AdvancedFusionRecipeProducer.produce()
+        BlackholeFormerRecipeProducer.produce()
     }
 
     // @formatter:on
