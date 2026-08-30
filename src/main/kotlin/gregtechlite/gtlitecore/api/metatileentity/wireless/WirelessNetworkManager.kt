@@ -1,22 +1,14 @@
-package gregtechlite.gtlitecore.api.wireless
+package gregtechlite.gtlitecore.api.metatileentity.wireless
 
-import gregtechlite.gtlitecore.api.LOGGER
 import java.util.concurrent.ConcurrentHashMap
 
-/**
- * Manager for all wireless energy networks.
- *
- * Handles registration, unregistration, and energy transfer between channels.
- * Energy transfer occurs every 100t (5s at 20 tps).
- */
 object WirelessNetworkManager
 {
-    private val networks: MutableMap<Int, MutableList<WirelessEnergyHolder>> = ConcurrentHashMap()
+    private val networks = ConcurrentHashMap<Int, MutableList<WirelessEnergyHolder>>()
 
     fun register(holder: WirelessEnergyHolder)
     {
         networks.computeIfAbsent(holder.channel) { mutableListOf() }.add(holder)
-        LOGGER.info("Wireless holder registered: channel=${holder.channel}, pos=${holder.pos}, role=${holder.role}")
     }
 
     fun unregister(holder: WirelessEnergyHolder)
@@ -26,7 +18,6 @@ object WirelessNetworkManager
         {
             networks.remove(holder.channel)
         }
-        LOGGER.info("Wireless holder unregistered: channel=${holder.channel}, pos=${holder.pos}")
     }
 
     fun getConnectionCount(channel: Int): Int = networks[channel]?.size ?: 0
@@ -36,9 +27,6 @@ object WirelessNetworkManager
         networks.values.forEach { transferChannel(it.toList()) }
     }
 
-    // Sort by priority descending (higher priority = processed first).
-    private fun List<WirelessEnergyHolder>.byPriority(): List<WirelessEnergyHolder> = sortedByDescending { it.priority }
-
     private fun transferChannel(holders: List<WirelessEnergyHolder>)
     {
         if (holders.isEmpty()) return
@@ -47,30 +35,22 @@ object WirelessNetworkManager
         val inputs = holders.filter { it.role == WirelessRole.INPUT }.byPriority()
         val storages = holders.filter { it.role == WirelessRole.STORAGE }.byPriority()
 
-        // Step 1: OUTPUT -> INPUT (drain outputs to fill inputs)
-        if (outputs.isNotEmpty() && inputs.isNotEmpty())
+        if (outputs.isNotEmpty() && inputs.isNotEmpty()) // OUTPUT -> INPUT
         {
             distributeOutputsToInputs(outputs, inputs)
         }
 
-        // Step 2: STORAGE -> INPUT (fill remaining input needs from storage)
-        if (inputs.isNotEmpty() && storages.isNotEmpty())
+        if (inputs.isNotEmpty() && storages.isNotEmpty()) // STORAGE -> INPUT
         {
             fillInputsFromStorages(inputs, storages)
         }
 
-        // Step 3: OUTPUT -> STORAGE (store any remaining output energy)
-        if (outputs.isNotEmpty() && storages.isNotEmpty())
+        if (outputs.isNotEmpty() && storages.isNotEmpty()) // OUTPUT -> STORAGE
         {
             storeRemainingOutputs(outputs, storages)
         }
     }
 
-    /**
-     * Step 1: Drain outputs in priority order to fill inputs in priority order.
-     *
-     * Each output is drained exhaustively before moving to the next.
-     */
     private fun distributeOutputsToInputs(outputs: List<WirelessEnergyHolder>, inputs: List<WirelessEnergyHolder>)
     {
         for (input in inputs)
@@ -92,11 +72,6 @@ object WirelessNetworkManager
         }
     }
 
-    /**
-     * Step 2: Fill inputs from storages in priority order.
-     *
-     * Higher-priority inputs are filled first, from higher-priority storages.
-     */
     private fun fillInputsFromStorages(inputs: List<WirelessEnergyHolder>, storages: List<WirelessEnergyHolder>)
     {
         for (input in inputs)
@@ -117,11 +92,6 @@ object WirelessNetworkManager
         }
     }
 
-    /**
-     * Step 3: Store remaining output energy to storages in priority order.
-     *
-     * Higher-priority outputs are drained first, higher-priority storages filled first.
-     */
     private fun storeRemainingOutputs(outputs: List<WirelessEnergyHolder>, storages: List<WirelessEnergyHolder>)
     {
         for (output in outputs)
@@ -140,4 +110,6 @@ object WirelessNetworkManager
             }
         }
     }
+
+    private fun List<WirelessEnergyHolder>.byPriority(): List<WirelessEnergyHolder> = sortedByDescending { it.priority }
 }

@@ -47,9 +47,9 @@ class ModuleManagerImpl private constructor() : ModuleManager
 
     private val logger: Logger = SidedLogger("$MOD_ID-module-loader")
 
-    private var containers: MutableMap<String, CustomModuleContainer> = LinkedHashMap()
-    private val sortedModules: MutableMap<ResourceLocation, CustomModule> = LinkedHashMap()
-    private val loadedModules: MutableSet<CustomModule> = LinkedHashSet()
+    private var containers = openRefLinkedMapOf<String, CustomModuleContainer>()
+    private val sortedModules = linkedMapOf<ResourceLocation, CustomModule>()
+    private val loadedModules = linkedSetOf<CustomModule>()
 
     private var currentContainer: CustomModuleContainer? = null
     private var currentStage: ModuleStage = ModuleStage.C_SETUP
@@ -469,7 +469,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in instances)
         {
             val annotation = module.javaClass.getAnnotation(Module::class.java)
-            modules.computeIfAbsent(annotation.containerId) { ArrayList() }.add(module)
+            modules.getOrPut(annotation.containerId) { mutableListOf() }.add(module)
         }
         return modules
     }

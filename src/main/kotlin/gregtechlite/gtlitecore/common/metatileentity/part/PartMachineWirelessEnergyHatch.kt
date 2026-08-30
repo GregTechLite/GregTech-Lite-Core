@@ -18,7 +18,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.AbilityInstances
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.wireless.WirelessRole
+import gregtechlite.gtlitecore.api.metatileentity.wireless.WirelessRole
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack

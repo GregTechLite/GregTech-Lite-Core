@@ -29,9 +29,9 @@
     "MixinMetaTileEntityMultiblockNotifiablePart",
     "MixinMetaTileEntityNetworkSwitch",
     "MixinMetaTileEntityRotorHolder",
-    "MixinMetaTileEntityLargeTurbine",
     "MixinMetaTileEntityLargeBoiler",
     "MixinMetaTileEntityLargeChemicalReactor",
+    "MixinMetaTileEntityLargeTurbine",
     "MixinMultiblockControllerBase",
     "MixinMultiblockRecipeLogic",
     "MixinBQuDataFixer",
@@ -56,6 +56,7 @@
     "client.MixinMetaItem",
     "client.MixinMetaPrefixItem",
     "client.MixinMetaTileEntityFusionReactor",
+    "client.MixinMetaTileEntityLargeTurbine",
     "client.MixinMetaValueItem",
     "client.MixinProspectingTexture"
   ]

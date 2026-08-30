@@ -3,7 +3,7 @@ package gregtechlite.gtlitecore.integration.top.provider
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.util.TextComponentUtil.translationWithColor
 import gregtechlite.gtlitecore.api.MOD_ID
-import gregtechlite.gtlitecore.api.wireless.WirelessNetworkManager
+import gregtechlite.gtlitecore.api.metatileentity.wireless.WirelessNetworkManager
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessDynamoHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessEnergyHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessHatch

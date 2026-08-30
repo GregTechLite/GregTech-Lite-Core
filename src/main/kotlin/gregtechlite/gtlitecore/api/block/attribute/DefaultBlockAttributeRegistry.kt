@@ -26,7 +26,7 @@ class DefaultBlockAttributeRegistry<T>(override val name: String, comparator: Co
     override fun register(state: IBlockState, attribute: T)
     {
         attributeLookup[state] = attribute
-        blockLookup.computeIfAbsent(attribute) { mutableListOf() }.add(state)
+        blockLookup.getOrPut(attribute) { mutableListOf() }.add(state)
         invalidate()
     }
 

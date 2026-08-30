@@ -21,10 +21,10 @@ import net.minecraftforge.common.config.Config
 import net.minecraftforge.common.config.ConfigManager
 import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.client.event.ConfigChangedEvent
-import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
-@Mod.EventBusSubscriber(modid = MOD_ID)
+@EventBusSubscriber(modid = MOD_ID)
 open class CommonProxy
 {
     open fun onPreInit()
