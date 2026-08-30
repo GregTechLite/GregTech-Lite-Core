@@ -1,13 +1,8 @@
-package gregtechlite.gtlitecore.api.wireless
+package gregtechlite.gtlitecore.api.metatileentity.wireless
 
 import net.minecraft.util.math.BlockPos
 import java.util.*
 
-/**
- * Wireless role for the energy network.
- *
- * Determines how energy flows through this holder.
- */
 enum class WirelessRole
 {
     INPUT,    // Receives energy from network to machine.
@@ -15,11 +10,6 @@ enum class WirelessRole
     STORAGE   // Bidirectional buffer pool.
 }
 
-/**
- * Represents a wireless energy connection holder.
- *
- * Each wireless hatch (energy, dynamo, or storage) has one of these in the wireless network.
- */
 class WirelessEnergyHolder(val channel: Int,
                            var buffer: Long,
                            var capacity: Long,

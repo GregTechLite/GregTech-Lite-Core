@@ -5,6 +5,5 @@ import net.minecraft.entity.player.EntityPlayerMP
 
 interface AdvancementTrigger<T : AdvancementCriterion> : ICriterionTrigger<T>
 {
-
     fun trigger(player: EntityPlayerMP?)
 }

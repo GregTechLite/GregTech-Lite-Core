@@ -17,7 +17,6 @@ import kotlin.reflect.jvm.isAccessible
 @Suppress("unused")
 object GTLiteGuiTextures
 {
-
     // region Base Textures
 
     /**
@@ -344,5 +343,4 @@ object GTLiteGuiTextures
         LOGGER.warn("Cannot invoke constructor of SteamTexture, moving search namespace of the texture in path '$path' to the mod 'gregtech'")
         return@getOrElse SteamTexture.fullImage(path)
     }
-
 }

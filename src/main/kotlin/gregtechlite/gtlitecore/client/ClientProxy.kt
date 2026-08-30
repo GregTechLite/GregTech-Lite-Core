@@ -17,12 +17,12 @@ import gregtechlite.gtlitecore.core.network.PacketHandler
 import net.minecraftforge.client.event.ModelRegistryEvent
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.client.registry.ClientRegistry
-import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-@Mod.EventBusSubscriber(modid = MOD_ID, value = [Side.CLIENT])
+@EventBusSubscriber(modid = MOD_ID, value = [Side.CLIENT])
 @SideOnly(Side.CLIENT)
 class ClientProxy : CommonProxy()
 {

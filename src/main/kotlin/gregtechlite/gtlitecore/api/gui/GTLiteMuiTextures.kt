@@ -7,7 +7,6 @@ import gregtechlite.gtlitecore.api.MOD_ID
 @Suppress("SameParameterValue")
 object GTLiteMuiTextures
 {
-
     // region Slot Textures
 
     @JvmField
@@ -183,5 +182,4 @@ object GTLiteMuiTextures
     }
 
     private fun ui(builder: UITexture.Builder.() -> Unit): UITexture = UITexture.builder().apply(builder).build()
-
 }
