@@ -469,7 +469,7 @@ class ModuleManagerImpl private constructor() : ModuleManager
         for (module in instances)
         {
             val annotation = module.javaClass.getAnnotation(Module::class.java)
-            modules.getOrPut(annotation.containerId) { ArrayList() }.add(module)
+            modules.getOrPut(annotation.containerId) { mutableListOf() }.add(module)
         }
         return modules
     }
