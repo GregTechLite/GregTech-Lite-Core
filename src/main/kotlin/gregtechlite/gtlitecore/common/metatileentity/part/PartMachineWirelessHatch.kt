@@ -22,9 +22,9 @@ import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_AM
 import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_BUFFER_DURATION
 import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_CHANNEL
 import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_PRIORITY
-import gregtechlite.gtlitecore.api.wireless.WirelessEnergyHolder
-import gregtechlite.gtlitecore.api.wireless.WirelessNetworkManager
-import gregtechlite.gtlitecore.api.wireless.WirelessRole
+import gregtechlite.gtlitecore.api.metatileentity.wireless.WirelessEnergyHolder
+import gregtechlite.gtlitecore.api.metatileentity.wireless.WirelessNetworkManager
+import gregtechlite.gtlitecore.api.metatileentity.wireless.WirelessRole
 import codechicken.lib.raytracer.CuboidRayTraceResult
 import gregtech.api.GTValues.V
 import gregtechlite.gtlitecore.api.TICK

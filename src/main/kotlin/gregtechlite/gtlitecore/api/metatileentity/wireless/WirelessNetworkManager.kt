@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.api.metatileentity.wireless
 
-import gregtechlite.gtlitecore.api.LOGGER
 import java.util.concurrent.ConcurrentHashMap
 
 object WirelessNetworkManager
@@ -10,7 +9,6 @@ object WirelessNetworkManager
     fun register(holder: WirelessEnergyHolder)
     {
         networks.computeIfAbsent(holder.channel) { mutableListOf() }.add(holder)
-        LOGGER.info("Wireless holder registered: channel=${holder.channel}, pos=${holder.pos}, role=${holder.role}")
     }
 
     fun unregister(holder: WirelessEnergyHolder)
@@ -20,7 +18,6 @@ object WirelessNetworkManager
         {
             networks.remove(holder.channel)
         }
-        LOGGER.info("Wireless holder unregistered: channel=${holder.channel}, pos=${holder.pos}")
     }
 
     fun getConnectionCount(channel: Int): Int = networks[channel]?.size ?: 0
