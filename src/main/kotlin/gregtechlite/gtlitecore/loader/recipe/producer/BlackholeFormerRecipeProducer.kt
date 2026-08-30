@@ -1,7 +1,18 @@
 package gregtechlite.gtlitecore.loader.recipe.producer
 
+import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.ingredients.GTRecipeInput
+import gregtech.api.recipes.ingredients.IntCircuitIngredient
+import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.plateDense
+import gregtech.api.unification.ore.OrePrefix.plateDouble
+import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtDouble
+import gregtech.api.unification.ore.OrePrefix.wireGtHex
+import gregtech.api.unification.ore.OrePrefix.wireGtOctal
+import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BOLT
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BOTTLE
@@ -33,6 +44,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_BOTTLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_CELL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_DRILL_HEAD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_FOIL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_FRAME
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_GEAR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_GEAR_SMALL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_INGOT
@@ -48,7 +60,14 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD_LONG
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROUND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_TURBINE_BLADE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE_DENSE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE_DOUBLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_DOUBLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_FINE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_HEX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_OCTAL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_QUADRUPLE
 import net.minecraft.item.ItemStack
 
 internal object BlackholeFormerRecipeProducer
@@ -79,6 +98,16 @@ internal object BlackholeFormerRecipeProducer
         SHAPE_EXTRUDER_TURBINE_BLADE.stack() to SHAPE_FIELD_TURBINE_BLADE.stack(),
         SHAPE_EXTRUDER_DRILL_HEAD.stack()    to SHAPE_FIELD_DRILL_HEAD.stack())
 
+    private val prefix2FieldStack = mapOf(
+        frameGt            to SHAPE_FIELD_FRAME.stack(),
+        wireGtDouble       to SHAPE_FIELD_WIRE_DOUBLE.stack(),
+        wireGtQuadruple    to SHAPE_FIELD_WIRE_QUADRUPLE.stack(),
+        wireGtOctal        to SHAPE_FIELD_WIRE_OCTAL.stack(),
+        wireGtHex          to SHAPE_FIELD_WIRE_HEX.stack(),
+        wireFine           to SHAPE_FIELD_WIRE_FINE.stack(),
+        plateDouble        to SHAPE_FIELD_PLATE_DOUBLE.stack(),
+        plateDense         to SHAPE_FIELD_PLATE_DENSE.stack())
+
     fun produce()
     {
         RecipeMaps.EXTRUDER_RECIPES.recipeList.forEach { recipe ->
@@ -94,14 +123,30 @@ internal object BlackholeFormerRecipeProducer
                 duration(recipe.duration)
             }
         }
+
+        listOf(RecipeMaps.WIREMILL_RECIPES, RecipeMaps.ASSEMBLER_RECIPES, RecipeMaps.BENDER_RECIPES)
+            .forEach { it.recipeList.forEach(::transcribeRecipe) }
+    }
+
+    private fun transcribeRecipe(recipe: Recipe)
+    {
+        val outputPrefix = OreDictUnifier.getPrefix(recipe.outputs.firstOrNull() ?: return) ?: return
+        val shapeField = prefix2FieldStack[outputPrefix] ?: return
+        val circuit = recipe.inputs.firstOrNull { it is IntCircuitIngredient }
+
+        GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES.addRecipe {
+            notConsumable(shapeField)
+            inputIngredients(recipe.inputs.filterNot { it === circuit })
+            outputs(recipe.outputs)
+            EUt(recipe.eUt)
+            duration(recipe.duration)
+        }
     }
 
     private fun GTRecipeInput.shapeFieldStack(): ItemStack?
         = inputStacks?.firstNotNullOfOrNull {
             extruder2FieldStack.entries.firstOrNull { (extruder, _) -> extruder.isItemEqual(it) }?.value
         }
-
-
 
     // @formatter: on
 }
