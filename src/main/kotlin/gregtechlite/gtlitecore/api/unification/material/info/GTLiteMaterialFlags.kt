@@ -96,6 +96,7 @@ import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.material.Materials.Plutonium239
+import gregtech.api.unification.material.Materials.Polonium
 import gregtech.api.unification.material.Materials.Polybenzimidazole
 import gregtech.api.unification.material.Materials.Polycaprolactam
 import gregtech.api.unification.material.Materials.Polyethylene
@@ -104,6 +105,7 @@ import gregtech.api.unification.material.Materials.PolyvinylButyral
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.Powellite
 import gregtech.api.unification.material.Materials.Praseodymium
+import gregtech.api.unification.material.Materials.Promethium
 import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Pyrope
@@ -116,6 +118,7 @@ import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Roentgenium
 import gregtech.api.unification.material.Materials.RoseGold
+import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
@@ -132,9 +135,11 @@ import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.SteelMagnetic
 import gregtech.api.unification.material.Materials.SterlingSilver
+import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Technetium
+import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Tennessine
 import gregtech.api.unification.material.Materials.Terbium
 import gregtech.api.unification.material.Materials.Thallium
@@ -318,6 +323,9 @@ object GTLiteMaterialFlags
         Californium.addFlags(GENERATE_FOIL)
         SterlingSilver.addFlags(GENERATE_FOIL)
         Nihonium.addFlags(GENERATE_FOIL)
+        Technetium.addFlags(GENERATE_FOIL)
+        Rubidium.addFlags(GENERATE_FOIL)
+        Mendelevium.addFlags(GENERATE_FOIL)
 
         // frameGt
         Potin.addFlags(GENERATE_FRAME)
@@ -482,6 +490,11 @@ object GTLiteMaterialFlags
         Gadolinium.addFlags(GENERATE_PLATE)
         Holmium.addFlags(GENERATE_PLATE)
         Praseodymium.addFlags(GENERATE_PLATE)
+        Promethium.addFlags(GENERATE_PLATE)
+        Strontium.addFlags(GENERATE_PLATE)
+        Polonium.addFlags(GENERATE_PLATE)
+        Rubidium.addFlags(GENERATE_PLATE)
+        Tellurium.addFlags(GENERATE_PLATE)
 
         // plateDouble
         Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -688,6 +701,9 @@ object GTLiteMaterialFlags
         Holmium.addFlags(GENERATE_FINE_WIRE)
         Neutronium.addFlags(GENERATE_FINE_WIRE)
         Nihonium.addFlags(GENERATE_FINE_WIRE)
+        Technetium.addFlags(GENERATE_FINE_WIRE)
+        Rubidium.addFlags(GENERATE_FINE_WIRE)
+        Mendelevium.addFlags(GENERATE_FINE_WIRE)
 
         // Disabled pyrochlore and tantalite ore composition for Niobium-Tantalum chain.
         Pyrochlore.addFlags(DISABLE_DECOMPOSITION)
