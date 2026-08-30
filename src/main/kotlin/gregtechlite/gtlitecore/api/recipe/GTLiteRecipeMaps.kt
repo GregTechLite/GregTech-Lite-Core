@@ -995,7 +995,7 @@ object GTLiteRecipeMaps
     @ZenProperty
     @JvmField
     val BLACKHOLE_FORMING_RECIPES = RecipeMapBuilder("blackhole_former", SimpleRecipeBuilder())
-        .itemInputs(4)
+        .itemInputs(2)
         .itemOutputs(1)
         .sound(GTSoundEvents.BATH)
         .build()
