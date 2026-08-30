@@ -1,15 +1,9 @@
 package gregtechlite.gtlitecore.mixins.gregtech.client;
 
 import gregtech.api.GTValues;
-import gregtech.api.metatileentity.ITieredMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.multiblock.FuelMultiblockController;
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.common.metatileentities.multi.electric.generator.MetaTileEntityLargeTurbine;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -36,38 +30,6 @@ public abstract class MixinMetaTileEntityLargeTurbine extends FuelMultiblockCont
 
     /**
      * @author Magic_Sweepy
-     * @reason Allow all Large Turbines use Item Import Buses for rotor autofill feature.
-     */
-    @Overwrite
-    @Override
-    protected @NotNull BlockPattern createStructurePattern()
-    {
-        return FactoryBlockPattern.start()
-                .aisle("CCCC", "CHHC", "CCCC")
-                .aisle("CHHC", "RGGR", "CHHC")
-                .aisle("CCCC", "CSHC", "CCCC")
-                .where('S', selfPredicate())
-                .where('G', states(getGearBoxState()))
-                .where('C', states(getCasingState()))
-                .where('R', metaTileEntities(MultiblockAbility.REGISTRY.get(MultiblockAbility.ROTOR_HOLDER).stream()
-                        .filter(mte -> (mte instanceof ITieredMetaTileEntity) &&
-                                (((ITieredMetaTileEntity) mte).getTier() >= tier))
-                        .toArray(MetaTileEntity[]::new))
-                        .addTooltips("gregtech.multiblock.pattern.clear_amount_3")
-                        .addTooltip("gregtech.multiblock.pattern.error.limited.1", GTValues.VN[tier])
-                        .setExactLimit(1)
-                        .or(abilities(MultiblockAbility.OUTPUT_ENERGY)).setExactLimit(1))
-                .where('H', states(getCasingState())
-                        .or(autoAbilities(false, true, false, false, true, true, true))
-                        // region patch
-                        .or(abilities(MultiblockAbility.IMPORT_ITEMS)
-                                .setPreviewCount(0)))
-                        // endregion
-                .build();
-    }
-
-    /**
-     * @author Magic_Sweepy
      * @reason Add autofill support hint for player.
      */
     @Overwrite
@@ -79,10 +41,4 @@ public abstract class MixinMetaTileEntityLargeTurbine extends FuelMultiblockCont
         tooltip.add(I18n.format("gregtech.multiblock.turbine.efficiency_tooltip", GTValues.VNF[tier]));
         tooltip.add(I18n.format("gtlitecore.machine.large_turbine.autofill"));
     }
-
-    @Shadow
-    public abstract IBlockState getCasingState();
-
-    @Shadow
-    public abstract IBlockState getGearBoxState();
 }
