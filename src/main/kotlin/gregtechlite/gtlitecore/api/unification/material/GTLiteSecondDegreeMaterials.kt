@@ -840,7 +840,7 @@ object GTLiteSecondDegreeMaterials
             color(0x3467BA).iconSet(SHINY)
             components(Inconel718, 8, EglinSteel, 5, NaquadahEnriched, 4, TungstenSteel, 4, Cerium, 3, Antimony, 2,
                        Platinum, 2, Ytterbium, 1)
-            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE, GENERATE_FRAME)
             blastProp(10400, GasTier.HIGHER, // Tritanium
                       VA[UV], 30 * SECOND,
                       VA[LuV], 15 * SECOND)

@@ -989,6 +989,17 @@ object GTLiteRecipeMaps
         .sound(SoundEvents.BLOCK_ANVIL_DESTROY)
         .build()
 
+    /**
+     * @zenProp blackhole_former
+     */
+    @ZenProperty
+    @JvmField
+    val BLACKHOLE_FORMING_RECIPES = RecipeMapBuilder("blackhole_former", SimpleRecipeBuilder())
+        .itemInputs(4)
+        .itemOutputs(1)
+        .sound(GTSoundEvents.BATH)
+        .build()
+
     // endregion
 
     // region Generator Fuel RecipeMaps

@@ -432,6 +432,9 @@ tile.gtlitecore.multiblock_casing_01.hamilton_killing_flow_control_casing.toolti
 tile.gtlitecore.multiblock_casing_01.nanite_transmission_casing.name=纳米蜂群传输机械方块
 tile.gtlitecore.multiblock_casing_01.nanite_transmission_casing.tooltip=纳米高速公路
 
+tile.gtlitecore.multiblock_casing_02.hawking_radiation_absorption_casing.name=霍金辐射吸收机械方块
+tile.gtlitecore.multiblock_casing_02.hawking_radiation_absorption_casing.tooltip=事件视界限制器
+
 tile.gtlitecore.active_unique_casing_01.heat_vent.name=散热片
 tile.gtlitecore.active_unique_casing_01.temperature_controller.name=反应堆温度控制器
 tile.gtlitecore.active_unique_casing_01.nano_precise_assembly_unit.name=纳米精密装配单元
@@ -1762,6 +1765,7 @@ recipemap.solidification_submodule.name=锻压固化模组
 recipemap.recombination_submodule.name=分离重构模组
 recipemap.mob_collecting_mode.name=繁育模式
 recipemap.mob_slaughtering_mode.name=屠宰模式
+recipemap.blackhole_former.name=事件视界引力成形
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -2817,6 +2821,8 @@ gtlitecore.machine.matter_reshaping_framework.tooltip.5=- §f21号§7 -> §e流�
 gtlitecore.machine.matter_reshaping_framework.tooltip.6=- §f22号§7 -> §e压缩机§7 / §e过胶机§7
 gtlitecore.machine.matter_reshaping_framework.tooltip.7=- §f23号§7 -> §e工具铸造机§7 / §e硫化机§7
 gtlitecore.machine.matter_reshaping_framework.tooltip.8=§a256^((聚变线圈等级 + 1) * 电压等级)
+
+gtlitecore.machine.blackhole_former.name=事件视界引力收束成形装置
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

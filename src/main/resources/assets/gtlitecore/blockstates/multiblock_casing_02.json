@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "hawking_radiation_absorption_casing": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/special/hawking_radiation_absorption_casing"
+        }
+      }
+    }
+  }
+}
