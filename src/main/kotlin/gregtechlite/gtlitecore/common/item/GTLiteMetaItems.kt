@@ -64,6 +64,7 @@ object GTLiteMetaItems
     lateinit var SHAPE_FIELD_WIRE_QUADRUPLE: MetaItem<*>.MetaValueItem
     lateinit var SHAPE_FIELD_WIRE_OCTAL: MetaItem<*>.MetaValueItem
     lateinit var SHAPE_FIELD_WIRE_HEX: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE_FINE: MetaItem<*>.MetaValueItem
     lateinit var SHAPE_FIELD_PLATE_DOUBLE: MetaItem<*>.MetaValueItem
     lateinit var SHAPE_FIELD_PLATE_DENSE: MetaItem<*>.MetaValueItem
 

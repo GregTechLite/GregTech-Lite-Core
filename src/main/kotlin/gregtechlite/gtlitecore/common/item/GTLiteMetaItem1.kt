@@ -322,6 +322,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROUND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_TURBINE_BLADE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_DOUBLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_FINE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_HEX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_OCTAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_QUADRUPLE
@@ -643,8 +644,9 @@ object GTLiteMetaItem1
         SHAPE_FIELD_WIRE_QUADRUPLE = item(89, "shape.field.wire_quadruple")
         SHAPE_FIELD_WIRE_OCTAL = item(90, "shape.field.wire_octal")
         SHAPE_FIELD_WIRE_HEX = item(91, "shape.field.wire_hex")
-        SHAPE_FIELD_PLATE_DOUBLE = item(92, "shape.field.plate_double")
-        SHAPE_FIELD_PLATE_DENSE = item(93, "shape.field.plate_dense")
+        SHAPE_FIELD_WIRE_FINE = item(92, "shape.field.wire_fine")
+        SHAPE_FIELD_PLATE_DOUBLE = item(93, "shape.field.plate_double")
+        SHAPE_FIELD_PLATE_DENSE = item(94, "shape.field.plate_dense")
 
         // endregion
 
