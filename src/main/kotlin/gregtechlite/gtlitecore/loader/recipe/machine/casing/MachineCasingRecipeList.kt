@@ -32,6 +32,7 @@ internal object MachineCasingRecipeList
         StellarForgeCasingRecipes.init()
         CosmicRayDetectorCasingRecipes.init()
         PCBFactoryCasingRecipes.init()
+        BlackholeFormerCasingRecipes.init()
         QuantumForceTransformerCasingRecipes.init()
         AntimatterCasingRecipes.init()
         EntrodynamicallyPhaseChangerCasingRecipes.init()

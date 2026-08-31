@@ -350,6 +350,7 @@ object GTLiteMaterialFlags
         Francium.addFlags(GENERATE_FRAME)
         Mendelevium.addFlags(GENERATE_FRAME)
         Copernicium.addFlags(GENERATE_FRAME)
+        Roentgenium.addFlags(GENERATE_FRAME)
 
         // fuelRod
         Thorium.addFlags(GENERATE_FUEL_ROD)
