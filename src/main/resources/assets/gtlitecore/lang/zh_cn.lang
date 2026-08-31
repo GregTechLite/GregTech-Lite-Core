@@ -822,6 +822,8 @@ metaitem.shape.field.plate_double.name=形态力场（双层板）
 metaitem.shape.field.plate_double.tooltip=用来为§6事件视界引力收束成型装置§7提供形状的双层板状力场
 metaitem.shape.field.plate_dense.name=形态力场（致密板）
 metaitem.shape.field.plate_dense.tooltip=用来为§6事件视界引力收束成型装置§7提供形状的致密板状力场
+metaitem.shape.field.screw.name=形态力场（螺丝）
+metaitem.shape.field.screw.tooltip=用来为§6事件视界引力收束成型装置§7提供形状的螺丝状力场
 
 metaitem.credit.adamantium.name=精金币
 metaitem.credit.adamantium.tooltip=币值2097152
@@ -1610,6 +1612,7 @@ metaitem.material.gem.triplet_neutronium.tooltip=三位一体的活体中子星
 metaitem.material.foil.peek_polyamide.name=聚醚醚酮-聚酰胺共聚物箔
 metaitem.material.foil.polymer_insulator.name=绝缘共聚物箔
 metaitem.material.plate.low_density_structure.name=轻质框架板
+metaitem.material.plate.low_density_structure.tooltip=太空级结构框架
 
 metaitem.crop.fruit.banana.name=香蕉
 metaitem.crop.fruit.orange.name=橙子
@@ -4445,6 +4448,7 @@ gtlitecore.jei.group.shielding_core=屏蔽核心方块
 gtlitecore.jei.group.additional_mold=模具
 gtlitecore.jei.group.additional_extruder=模头
 gtlitecore.jei.group.slicer_blade=切片机刀片
+gtlitecore.jei.group.force_field=形态力场
 gtlitecore.jei.group.petri_dish=培养皿
 gtlitecore.jei.group.memory_card=意识存储卡
 gtlitecore.jei.group.catalyst=催化剂

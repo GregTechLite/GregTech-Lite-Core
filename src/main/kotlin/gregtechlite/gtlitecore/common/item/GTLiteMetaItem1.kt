@@ -320,6 +320,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD_LONG
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROUND
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_SCREW
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_TURBINE_BLADE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_DOUBLE
@@ -648,6 +649,7 @@ object GTLiteMetaItem1
         SHAPE_FIELD_WIRE_FINE = item(92, "shape.field.wire_fine")
         SHAPE_FIELD_PLATE_DOUBLE = item(93, "shape.field.plate_double")
         SHAPE_FIELD_PLATE_DENSE = item(94, "shape.field.plate_dense")
+        SHAPE_FIELD_SCREW = item(95, "shape.field.screw")
 
         // endregion
 

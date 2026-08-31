@@ -57,6 +57,7 @@ object GTLiteCollapsibleGroups
         registry.addGroupBy("additional_mold", "shape.mold")
         registry.addGroupBy("additional_extruder", "shape.extruder")
         registry.addGroupBy("slicer_blade", "shape.slicer_blade")
+        registry.addGroupBy("force_field", "shape.field")
         registry.addGroupBy("petri_dish", "tool.petri_dish")
         registry.addGroupBy("memory_card", "tool.memory_card")
         registry.addGroupBy("catalyst", "tool.catalyst")

@@ -26,6 +26,7 @@ import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.round
+import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
@@ -68,6 +69,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD_LONG
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROUND
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_SCREW
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_TURBINE_BLADE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_DOUBLE
@@ -125,6 +127,7 @@ internal object CannerRecipes
         addShapeFieldRecipe(SHAPE_FIELD_WIRE_FINE     , wireFine       , FieldType.CableOrTool)
         addShapeFieldRecipe(SHAPE_FIELD_PLATE_DOUBLE  , plateDouble    , FieldType.Common     )
         addShapeFieldRecipe(SHAPE_FIELD_PLATE_DENSE   , plateDense     , FieldType.Common     )
+        addShapeFieldRecipe(SHAPE_FIELD_SCREW         , screw          , FieldType.Common     )
     }
 
     private fun addShapeFieldRecipe(fieldItem: MetaItem<*>.MetaValueItem, prefix: OrePrefix,

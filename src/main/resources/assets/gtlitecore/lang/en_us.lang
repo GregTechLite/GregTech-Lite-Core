@@ -822,6 +822,8 @@ metaitem.shape.field.plate_double.name=Shape Force Field (Double Plate)
 metaitem.shape.field.plate_double.tooltip=Double Plate Force Field for §6Event Horizon Gravitational Bundle Former§7
 metaitem.shape.field.plate_dense.name=Shape Force Field (Dense Plate)
 metaitem.shape.field.plate_dense.tooltip=Dense Plate Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.screw.name=Shape Force Field (Screw)
+metaitem.shape.field.screw.tooltip=Screw Force Field for §6Event Horizon Gravitational Bundle Former§7
 
 metaitem.credit.adamantium.name=Adamantium Credit
 metaitem.credit.adamantium.tooltip=2097152 Credits
@@ -1610,6 +1612,7 @@ metaitem.material.gem.triplet_neutronium.tooltip=Trinity of Living Neutron Star
 metaitem.material.foil.peek_polyamide.name=PEEK-Polyamide Polymer Foil
 metaitem.material.foil.polymer_insulator.name=Polymer Insulator Foil
 metaitem.material.plate.low_density_structure.name=Low Density Structure Plate
+metaitem.material.plate.low_density_structure.tooltip=Space Grade Frame Structure
 
 metaitem.crop.fruit.banana.name=Banana
 metaitem.crop.fruit.orange.name=Orange
@@ -4445,6 +4448,7 @@ gtlitecore.jei.group.shielding_core=Shielding Core Blocks
 gtlitecore.jei.group.additional_mold=Shape Molds
 gtlitecore.jei.group.additional_extruder=Shape Extruders
 gtlitecore.jei.group.slicer_blade=Slicer Blades
+gtlitecore.jei.group.force_field=Force Fields
 gtlitecore.jei.group.petri_dish=Petri Dishes
 gtlitecore.jei.group.memory_card=Memory Cards
 gtlitecore.jei.group.catalyst=Catalysts

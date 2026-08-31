@@ -5,9 +5,11 @@ import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.ingredients.GTRecipeInput
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
+import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
@@ -59,6 +61,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD_LONG
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROUND
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_SCREW
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_TURBINE_BLADE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE_DENSE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE_DOUBLE
@@ -115,12 +118,17 @@ internal object BlackholeFormerRecipeProducer
                 input.shapeFieldStack()?.let { input to it }
             } ?: return@forEach
 
-            GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES.addRecipe {
-                notConsumable(shapeField)
-                inputIngredients(recipe.inputs.filterNot { it === shapeInput })
-                outputs(recipe.outputs)
-                EUt(recipe.eUt)
-                duration(recipe.duration)
+            val inputs = recipe.inputs.filterNot { it === shapeInput }
+            addRecipe(recipe, shapeField, inputs, recipe.outputs)
+
+            val boltOutput = recipe.outputs.firstOrNull() ?: return@forEach
+            if (OreDictUnifier.getPrefix(boltOutput) == bolt)
+            {
+                addRecipe(recipe, SHAPE_FIELD_SCREW.stack(), inputs, recipe.outputs.map { stack ->
+                    OreDictUnifier.getMaterial(stack)?.material?.let { material ->
+                        OreDictUnifier.get(screw, material, stack.count)
+                    } ?: stack
+                })
             }
         }
 
@@ -133,11 +141,15 @@ internal object BlackholeFormerRecipeProducer
         val outputPrefix = OreDictUnifier.getPrefix(recipe.outputs.firstOrNull() ?: return) ?: return
         val shapeField = prefix2FieldStack[outputPrefix] ?: return
         val circuit = recipe.inputs.firstOrNull { it is IntCircuitIngredient }
+        addRecipe(recipe, shapeField, recipe.inputs.filterNot { it === circuit }, recipe.outputs)
+    }
 
+    private fun addRecipe(recipe: Recipe, shapeField: ItemStack, inputs: List<GTRecipeInput>, outputs: List<ItemStack>)
+    {
         GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES.addRecipe {
             notConsumable(shapeField)
-            inputIngredients(recipe.inputs.filterNot { it === circuit })
-            outputs(recipe.outputs)
+            inputIngredients(inputs)
+            outputs(outputs)
             EUt(recipe.eUt)
             duration(recipe.duration)
         }
