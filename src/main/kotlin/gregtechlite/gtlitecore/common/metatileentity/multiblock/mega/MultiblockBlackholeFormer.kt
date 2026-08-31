@@ -33,7 +33,6 @@ import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
-import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumItemBus
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
