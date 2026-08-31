@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.loader.recipe.producer
 
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMaps
+import gregtech.api.recipes.category.GTRecipeCategory
 import gregtech.api.recipes.ingredients.GTRecipeInput
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
@@ -36,6 +37,7 @@ import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_ROTOR
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_WIRE
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_DRILL_HEAD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_ROUND
@@ -134,6 +136,10 @@ internal object BlackholeFormerRecipeProducer
 
         listOf(RecipeMaps.WIREMILL_RECIPES, RecipeMaps.ASSEMBLER_RECIPES, RecipeMaps.BENDER_RECIPES)
             .forEach { it.recipeList.forEach(::transcribeRecipe) }
+
+        RecipeMaps.FORMING_PRESS_RECIPES.recipeList.forEach { recipe ->
+            copyRecipe(recipe, GTLiteRecipeCategories.BLACKHOLE_STAMPING)
+        }
     }
 
     private fun transcribeRecipe(recipe: Recipe)
@@ -144,7 +150,8 @@ internal object BlackholeFormerRecipeProducer
         addRecipe(recipe, shapeField, recipe.inputs.filterNot { it === circuit }, recipe.outputs)
     }
 
-    private fun addRecipe(recipe: Recipe, shapeField: ItemStack, inputs: List<GTRecipeInput>, outputs: List<ItemStack>)
+    private fun addRecipe(recipe: Recipe, shapeField: ItemStack, inputs: List<GTRecipeInput>, outputs: List<ItemStack>,
+                          category: GTRecipeCategory = GTLiteRecipeCategories.BLACKHOLE_SHAPING)
     {
         GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES.addRecipe {
             notConsumable(shapeField)
@@ -152,6 +159,18 @@ internal object BlackholeFormerRecipeProducer
             outputs(outputs)
             EUt(recipe.eUt)
             duration(recipe.duration)
+            category(category)
+        }
+    }
+
+    private fun copyRecipe(recipe: Recipe, category: GTRecipeCategory = GTLiteRecipeCategories.BLACKHOLE_SHAPING)
+    {
+        GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES.addRecipe {
+            inputIngredients(recipe.inputs)
+            outputs(recipe.outputs)
+            EUt(recipe.eUt)
+            duration(recipe.duration)
+            category(category)
         }
     }
 

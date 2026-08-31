@@ -38,6 +38,7 @@ internal object MachineRecipeList
         AlloyBlastSmelterRecipes.init()
         BathCondenserRecipes.init()
         BioSimulatorRecipes.init()
+        BlackholeFormerRecipes.init()
         CrystallizationCrucibleRecipes.init()
         EntrodynamicallyPhaseChangerRecipes.init()
         EyeOfHarmonyRecipes.init()

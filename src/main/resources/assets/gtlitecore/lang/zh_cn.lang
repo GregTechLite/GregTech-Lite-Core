@@ -1892,6 +1892,10 @@ gtlitecore.recipe.acceleration_track_tier.5=加速轨道等级：MK5
 
 gtlitecore.recipe.request_additional_structures=需要：%s
 
+# Recipe Categories
+gtlitecore.recipe.category.blackhole_shaping=事件视界引力收束 - 塑形
+gtlitecore.recipe.category.blackhole_stamping=事件视界引力收束 - 挤压
+
 # Machine API contexts
 gtlitecore.machine.additional_structure.data_stick.name=§o附属结构配置数据
 gtlitecore.machine.additional_structure.pos_saved=已将附属结构控制器坐标（%s，%s，%s）保存到闪存

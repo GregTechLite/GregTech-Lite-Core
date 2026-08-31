@@ -41,6 +41,12 @@ object GTLiteGuiTextures
     @JvmField
     val SPACE_ELEVATOR_LOGO_DARK = texture("textures/gui/icon/space_elevator_logo_dark.png")
 
+    @JvmField
+    val BLACKHOLE_SHAPING_ICON = texture("textures/gui/icon/blackhole_shaping_category.png")
+
+    @JvmField
+    val BLACKHOLE_STAMPING_ICON = texture("textures/gui/icon/blackhole_stamping_icon.png")
+
     // endregion
 
     // region Overlay Textures

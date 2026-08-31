@@ -1892,6 +1892,10 @@ gtlitecore.recipe.acceleration_track_tier.5=Acceleration Track Tier: MK5
 
 gtlitecore.recipe.request_additional_structures=Required: %s
 
+# Recipe Categories
+gtlitecore.recipe.category.blackhole_shaping=Event Horizontal Gravitational Bundle - Shaping
+gtlitecore.recipe.category.blackhole_stamping=Event Horizontal Gravitational Bundle - Stamping
+
 # Machine API contexts
 gtlitecore.machine.additional_structure.data_stick.name=§oAdditional Structure Configuration Data
 gtlitecore.machine.additional_structure.pos_saved=Saved Controller Pos (%s，%s，%s) of Additional Structure to Data Stick
