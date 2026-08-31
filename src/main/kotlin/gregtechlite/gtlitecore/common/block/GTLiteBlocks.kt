@@ -170,7 +170,8 @@ object GTLiteBlocks
     lateinit var METAL_CASING_02: VariantBlock<MetalCasing.Enum02>
     lateinit var METAL_CASING_03: VariantBlock<MetalCasing.Enum03>
     lateinit var BOILER_CASING_01: VariantBlock<BoilerCasing>
-    lateinit var MULTIBLOCK_CASING_01: VariantBlock<MultiblockCasing>
+    lateinit var MULTIBLOCK_CASING_01: VariantBlock<MultiblockCasing.Enum01>
+    lateinit var MULTIBLOCK_CASING_02: VariantBlock<MultiblockCasing.Enum02>
     lateinit var ACTIVE_UNIQUE_CASING_01: VariantActiveBlock<ActiveUniqueCasing>
     lateinit var TURBINE_CASING_01: VariantBlock<TurbineCasing.Enum01>
     lateinit var TURBINE_CASING_02: VariantBlock<TurbineCasing.Enum02>
@@ -445,6 +446,7 @@ object GTLiteBlocks
 
         BOILER_CASING_01 = simpleBlock("boiler_casing_01", BlockVariantType.METAL_BLOCK)
         MULTIBLOCK_CASING_01 = simpleBlock("multiblock_casing_01", BlockVariantType.METAL_BLOCK)
+        MULTIBLOCK_CASING_02 = simpleBlock("multiblock_casing_02", BlockVariantType.METAL_BLOCK)
         ACTIVE_UNIQUE_CASING_01 = simpleBlock("active_unique_casing_01", BlockVariantType.METAL_ACTIVE_BLOCK)
         TURBINE_CASING_01 = simpleBlock("turbine_casing_01", BlockVariantType.METAL_BLOCK)
         TURBINE_CASING_02 = simpleBlock("turbine_casing_02", BlockVariantType.METAL_BLOCK)
@@ -568,6 +570,7 @@ object GTLiteBlocks
         registerItemModel(METAL_CASING_02)
         registerItemModel(METAL_CASING_03)
         registerItemModel(MULTIBLOCK_CASING_01)
+        registerItemModel(MULTIBLOCK_CASING_02)
         registerItemModel(BOILER_CASING_01)
         registerItemModel(TURBINE_CASING_01)
         registerItemModel(TURBINE_CASING_02)

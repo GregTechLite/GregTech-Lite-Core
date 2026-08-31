@@ -30,6 +30,7 @@ import gregtechlite.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
+import gregtechlite.gtlitecore.api.recipe.ui.BlackholeFormerUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import gregtechlite.gtlitecore.api.recipe.ui.IntegratedOreProcessorUI
 import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
@@ -987,6 +988,18 @@ object GTLiteRecipeMaps
         .fluidOutputs(2)
         .progressBar(GTLiteGuiTextures.PROGRESS_BAR_SWORD)
         .sound(SoundEvents.BLOCK_ANVIL_DESTROY)
+        .build()
+
+    /**
+     * @zenProp blackhole_former
+     */
+    @ZenProperty
+    @JvmField
+    val BLACKHOLE_FORMING_RECIPES = RecipeMapBuilder("blackhole_former", SimpleRecipeBuilder())
+        .ui { BlackholeFormerUI(it) }
+        .itemInputs(6)
+        .itemOutputs(1)
+        .sound(GTSoundEvents.BATH)
         .build()
 
     // endregion

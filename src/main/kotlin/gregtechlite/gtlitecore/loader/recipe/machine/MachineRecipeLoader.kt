@@ -278,6 +278,7 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumBronze
@@ -332,6 +333,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pikyonium64B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Plutonium244
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PreciousMetalAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Protomatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumchromodynamicallyConfinedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RefractoryAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ReneN5
@@ -377,6 +379,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ATTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CIRCUIT_PATTERN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HELIUM_NEON_LASER
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOW_DENSITY_STRUCTURE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_LV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
@@ -391,6 +394,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BEDR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BIO_CULTIVATION_CHAMBER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BIO_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BIO_SIMULATOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BLACKHOLE_FORMER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.BURNER_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CATALYTIC_REFORMER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CHEMICAL_PLANT
@@ -2025,6 +2029,29 @@ internal object MachineRecipeLoader
             output(MEGA_SUPERCRITICAL_FLUID_TURBINE)
             EUt(VA[UV])
             duration(2 * MINUTE + 8 * TICK)
+        }
+
+        // Blackhole Former
+        SPACE_ASSEMBLER_RECIPES.addRecipe {
+            input(WIREMILL[UHV], 16)
+            input(EXTRUDER[UHV], 16)
+            input(LARGE_BENDER, 64)
+            input(LARGE_EXTRUDER, 64)
+            input(LARGE_WIREMILL, 64)
+            input(circuit, Tier.UEV, 8)
+            input(ELECTRIC_PISTON_UHV, 16)
+            input(CONVEYOR_MODULE_UHV, 16)
+            input(LOW_DENSITY_STRUCTURE, 4)
+            input(plateDense, QuantumAlloy, 2)
+            input(wireGtQuadruple, RutheniumTriniumAmericiumNeutronate, 8)
+            fluidInputs(SolderingAlloy.getFluid(L * 160))
+            fluidInputs(HastelloyX78.getFluid(L * 80))
+            fluidInputs(Rhugnor.getFluid(L * 40))
+            fluidInputs(HeavyLeptonMixture.getFluid(4000))
+            output(BLACKHOLE_FORMER)
+            EUt(VA[UHV])
+            duration(2 * MINUTE)
+            tier(1)
         }
     }
 

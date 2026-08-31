@@ -151,6 +151,8 @@ object GTLiteOverlays
     val VIRTUAL_GESTALT_COMPUTING_UPLINK_OVERLAY = multiId("virtual_gestalt_computing_uplink")
     @JvmField
     val MEGA_TURBINE_OVERLAY = multiId("mega_turbine")
+    @JvmField
+    val BLACKHOLE_FORMER_OVERLAY = multiId("blackhole_former")
 
     // endregion
 
@@ -283,6 +285,8 @@ object GTLiteOverlays
     val OSMIRIDIUM_CASING = casingId("metal/osmiridium")
     @JvmField
     val INFINITY_COOLING_CASING = casingId("special/infinity_cooling_casing")
+    @JvmField
+    val HAWKING_RADIATION_ABSORPTION_CASING = casingId("special/hawking_radiation_absorption_casing")
 
     // endregion
 

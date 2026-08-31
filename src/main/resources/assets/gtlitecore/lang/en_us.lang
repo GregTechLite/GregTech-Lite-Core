@@ -432,6 +432,9 @@ tile.gtlitecore.multiblock_casing_01.hamilton_killing_flow_control_casing.toolti
 tile.gtlitecore.multiblock_casing_01.nanite_transmission_casing.name=Nanite Transmission Casing
 tile.gtlitecore.multiblock_casing_01.nanite_transmission_casing.tooltip=Nano Superhighway
 
+tile.gtlitecore.multiblock_casing_02.hawking_radiation_absorption_casing.name=Hawking Radiation Absorption Machine Casing
+tile.gtlitecore.multiblock_casing_02.hawking_radiation_absorption_casing.tooltip=Event Horizon Limiter
+
 tile.gtlitecore.active_unique_casing_01.heat_vent.name=Heat Vent
 tile.gtlitecore.active_unique_casing_01.temperature_controller.name=Fission Reactor Temperature Controller
 tile.gtlitecore.active_unique_casing_01.nano_precise_assembly_unit.name=Nano Precise Assembly Unit
@@ -758,6 +761,69 @@ metaitem.shape.mold.vanadium_steel.butchery_knife.name=Casting Mold (Butchery Kn
 metaitem.shape.mold.vanadium_steel.butchery_knife.tooltip=Mold for making Disposable Butchery Knife
 metaitem.shape.mold.vanadium_steel.rolling_pin.name=Casting Mold (Rolling Pin)
 metaitem.shape.mold.vanadium_steel.rolling_pin.tooltip=Mold for making Disposable Rolling Pin
+
+metaitem.shape.field.plate.name=Shape Force Field (Plate)
+metaitem.shape.field.plate.tooltip=Plate Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.rod.name=Shape Force Field (Stick)
+metaitem.shape.field.rod.tooltip=Stick Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.bolt.name=Shape Force Field (Bolt)
+metaitem.shape.field.bolt.tooltip=Bolt Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.ring.name=Shape Force Field (Ring)
+metaitem.shape.field.ring.tooltip=Ring Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.cell.name=Shape Force Field (Cell)
+metaitem.shape.field.cell.tooltip=Cell Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.ingot.name=Shape Force Field (Ingot)
+metaitem.shape.field.ingot.tooltip=Ingot Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.wire.name=Shape Force Field (1x Wire)
+metaitem.shape.field.wire.tooltip=1x Wire Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.pipe_tiny.name=Shape Force Field (Tiny Pipe)
+metaitem.shape.field.pipe_tiny.tooltip=Tiny Pipe Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.pipe_small.name=Shape Force Field (Small Pipe)
+metaitem.shape.field.pipe_small.tooltip=Small Pipe Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.pipe.name=Shape Force Field (Pipe)
+metaitem.shape.field.pipe.tooltip=Pipe Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.pipe_large.name=Shape Force Field (Large Pipe)
+metaitem.shape.field.pipe_large.tooltip=Large Pipe Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.pipe_huge.name=Shape Force Field (Huge Pipe)
+metaitem.shape.field.pipe_huge.tooltip=Huge Pipe Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.block.name=Shape Force Field (Block)
+metaitem.shape.field.block.tooltip=Block Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.gear.name=Shape Force Field (Gear)
+metaitem.shape.field.gear.tooltip=Gear Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.bottle.name=Shape Force Field (Bottle)
+metaitem.shape.field.bottle.tooltip=Bottle Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.foil.name=Shape Force Field (Foil)
+metaitem.shape.field.foil.tooltip=Foil Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.gear_small.name=Shape Force Field (Small Gear)
+metaitem.shape.field.gear_small.tooltip=Small Gear Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.rod_long.name=Shape Force Field (Long Stick)
+metaitem.shape.field.rod_long.tooltip=Long Stick Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.rotor.name=Shape Force Field (Rotor)
+metaitem.shape.field.rotor.tooltip=Rotor Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.round.name=Shape Force Field (Round)
+metaitem.shape.field.round.tooltip=Round Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.turbine_blade.name=Shape Force Field (Turbine Blade)
+metaitem.shape.field.turbine_blade.tooltip=Turbine Blade Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.drill_head.name=Shape Force Field (Drill Head)
+metaitem.shape.field.drill_head.tooltip=Drill Head Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.frame.name=Shape Force Field (Frame)
+metaitem.shape.field.frame.tooltip=Frame Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.wire_double.name=Shape Force Field (2x Wire)
+metaitem.shape.field.wire_double.tooltip=2x Wire Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.wire_quadruple.name=Shape Force Field (4x Wire)
+metaitem.shape.field.wire_quadruple.tooltip=4x Wire Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.wire_octal.name=Shape Force Field (8x Wire)
+metaitem.shape.field.wire_octal.tooltip=8x Wire Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.wire_hex.name=Shape Force Field (16x Wire)
+metaitem.shape.field.wire_hex.tooltip=16x Wire Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.wire_fine.name=Shape Force Field (Fine Wire)
+metaitem.shape.field.wire_fine.tooltip=Fine Wire Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.plate_double.name=Shape Force Field (Double Plate)
+metaitem.shape.field.plate_double.tooltip=Double Plate Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.plate_dense.name=Shape Force Field (Dense Plate)
+metaitem.shape.field.plate_dense.tooltip=Dense Plate Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.screw.name=Shape Force Field (Screw)
+metaitem.shape.field.screw.tooltip=Screw Force Field for §6Event Horizon Gravitational Bundle Former§7
 
 metaitem.credit.adamantium.name=Adamantium Credit
 metaitem.credit.adamantium.tooltip=2097152 Credits
@@ -1545,6 +1611,10 @@ metaitem.material.gem.triplet_neutronium.name=Triplet Neutronium Sphere
 metaitem.material.gem.triplet_neutronium.tooltip=Trinity of Living Neutron Star
 metaitem.material.foil.peek_polyamide.name=PEEK-Polyamide Polymer Foil
 metaitem.material.foil.polymer_insulator.name=Polymer Insulator Foil
+metaitem.material.plate.low_density_structure.name=Low Density Structure Plate
+metaitem.material.plate.low_density_structure.tooltip=Space Grade Frame Structure
+metaitem.material.plate.dyson_swarm_photovoltaic.name=Dyson Swarm Photovoltaic Plate
+metaitem.material.plate.dyson_swarm_photovoltaic.tooltip=Planetary Solar Panel
 
 metaitem.crop.fruit.banana.name=Banana
 metaitem.crop.fruit.orange.name=Orange
@@ -1762,6 +1832,7 @@ recipemap.solidification_submodule.name=Forging Solidification Submodule
 recipemap.recombination_submodule.name=Separating Recombination Submodule
 recipemap.mob_collecting_mode.name=Collecting
 recipemap.mob_slaughtering_mode.name=Slaughtering
+recipemap.blackhole_former.name=Event Horizon Gravitational Forming
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -1822,6 +1893,10 @@ gtlitecore.recipe.acceleration_track_tier.4=Acceleration Track Tier: MK4
 gtlitecore.recipe.acceleration_track_tier.5=Acceleration Track Tier: MK5
 
 gtlitecore.recipe.request_additional_structures=Required: %s
+
+# Recipe Categories
+gtlitecore.recipe.category.blackhole_shaping=Event Horizontal Gravitational Bundle - Shaping
+gtlitecore.recipe.category.blackhole_stamping=Event Horizontal Gravitational Bundle - Stamping
 
 # Machine API contexts
 gtlitecore.machine.additional_structure.data_stick.name=§oAdditional Structure Configuration Data
@@ -2817,6 +2892,12 @@ gtlitecore.machine.matter_reshaping_framework.tooltip.5=- §f21§7 -> §eFluid S
 gtlitecore.machine.matter_reshaping_framework.tooltip.6=- §f22§7 -> §eCompressor§7 / §eLaminator§7
 gtlitecore.machine.matter_reshaping_framework.tooltip.7=- §f23§7 -> §eTool Caster§7 / §eVulcanizer§7
 gtlitecore.machine.matter_reshaping_framework.tooltip.8=§a256^((Fusion Coil Tier + 1) * Voltage Tier)
+
+gtlitecore.machine.blackhole_former.name=Event Horizon Gravitational Bundle Former
+gtlitecore.machine.blackhole_former.tooltip.1=Metal Processing with Powerful Force of Blackhole Event Horizon
+gtlitecore.machine.blackhole_former.tooltip.2=Has §dAdditional Shape Forming Recipes§7 without §fExtruder§7, §fBender§7 and §fWiremill§7
+gtlitecore.machine.blackhole_former.tooltip.3=Almost all types of components can be made directly by corresponding §9Force Field Shape§7 and material
+gtlitecore.machine.blackhole_former.tooltip.4=§a4096 * (Stabilization Field Generator Tier + 1)
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
@@ -4377,6 +4458,7 @@ gtlitecore.jei.group.shielding_core=Shielding Core Blocks
 gtlitecore.jei.group.additional_mold=Shape Molds
 gtlitecore.jei.group.additional_extruder=Shape Extruders
 gtlitecore.jei.group.slicer_blade=Slicer Blades
+gtlitecore.jei.group.force_field=Force Fields
 gtlitecore.jei.group.petri_dish=Petri Dishes
 gtlitecore.jei.group.memory_card=Memory Cards
 gtlitecore.jei.group.catalyst=Catalysts

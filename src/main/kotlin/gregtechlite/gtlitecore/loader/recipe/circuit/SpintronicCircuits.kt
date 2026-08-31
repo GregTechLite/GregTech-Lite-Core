@@ -17,7 +17,6 @@ import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
-import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.Antimony
@@ -83,6 +82,8 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
@@ -465,7 +466,7 @@ internal object SpintronicCircuits
         }
 
         // STTRAM
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(ADVANCED_RAM_CHIP)
             input(plate, ErbiumDopedZBLANGlass, 2)
             input(plate, PraseodymiumDopedZBLANGlass, 2)
@@ -474,11 +475,11 @@ internal object SpintronicCircuits
             output(SPIN_TRANSFER_TORQUE_RAM_CHIP, 4)
             EUt(VA[UEV])
             duration(10 * SECOND)
-            cleanroom()
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
         // MINAND
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(NAND_MEMORY_CHIP)
             input(foil, SeaborgiumCarbide, 4)
             input(foil, ThalliumBariumCalciumCuprate, 4)
@@ -487,7 +488,7 @@ internal object SpintronicCircuits
             output(MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP, 4)
             EUt(VA[UEV])
             duration(10 * SECOND)
-            cleanroom()
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
 
@@ -642,7 +643,7 @@ internal object SpintronicCircuits
         }
 
         // Exotic System On Chip
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(RYDBERG_SPINOR_ARRAY)
             input(MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP, 2)
             input(FEMTO_PIC_CHIP, 4)
@@ -652,7 +653,7 @@ internal object SpintronicCircuits
             output(EXOTIC_SYSTEM_ON_CHIP, 2)
             EUt(VA[UIV])
             duration(5 * SECOND)
-            cleanroom()
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
 

@@ -171,6 +171,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
@@ -700,7 +701,8 @@ object GTLiteSecondDegreeMaterials
             color(0x0F0F0F).iconSet(BRIGHT)
             components(Stellite, 15, Jasper, 5, Gallium, 5, Americium, 5, Palladium, 5, Bismuth, 5, Germanium, 5,
                        SiliconCarbide, 5)
-            flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_FOIL)
+            flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
+                  GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROTOR, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND)
             blastProp(11400, GasTier.HIGHEST, // Adamantium
                       VA[UHV], 58 * SECOND,
                       VA[UV], 29 * SECOND)
@@ -840,7 +842,7 @@ object GTLiteSecondDegreeMaterials
             color(0x3467BA).iconSet(SHINY)
             components(Inconel718, 8, EglinSteel, 5, NaquadahEnriched, 4, TungstenSteel, 4, Cerium, 3, Antimony, 2,
                        Platinum, 2, Ytterbium, 1)
-            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE)
+            flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE, GENERATE_FRAME)
             blastProp(10400, GasTier.HIGHER, // Tritanium
                       VA[UV], 30 * SECOND,
                       VA[LuV], 15 * SECOND)

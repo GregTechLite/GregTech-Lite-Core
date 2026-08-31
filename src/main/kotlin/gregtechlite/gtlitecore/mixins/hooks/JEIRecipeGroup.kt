@@ -41,6 +41,12 @@ object JEIRecipeGroup
         addRecipeGroup(GTLiteMetaTileEntities.CONSCIOUSNESS_STORAGE_CENTER, GTLiteRecipeMaps.NANO_FORGE_RECIPES)
         addRecipeGroup(GTLiteMetaTileEntities.NANITE_REPLICATION_UNRESTRICOR, GTLiteRecipeMaps.NANO_FORGE_RECIPES)
         addRecipeGroup(GTLiteMetaTileEntities.VIRTUAL_GESTALT_COMPUTING_UPLINK, GTLiteRecipeMaps.NANO_FORGE_RECIPES)
+
+        addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, RecipeMaps.BENDER_RECIPES)
+        addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, RecipeMaps.FORMING_PRESS_RECIPES)
+        addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, RecipeMaps.EXTRUDER_RECIPES)
+        addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, RecipeMaps.WIREMILL_RECIPES)
+        addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, GTLiteRecipeMaps.LOOM_RECIPES)
     }
 
     private fun <T : MetaTileEntity> addRecipeGroup(mte: T, recipeMap: RecipeMap<*>)

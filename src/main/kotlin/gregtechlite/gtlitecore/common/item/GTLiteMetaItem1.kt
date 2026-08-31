@@ -131,6 +131,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DISPOSABLE_SOFT_MALLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DISPOSABLE_WIRE_CUTTER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DISPOSABLE_WRENCH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DRAIN
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DYSON_SWARM_PHOTOVOLTAIC_PANEL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.EIGENFOLDED_SPACETIME_MANIFOLD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_PISTON_MAX
@@ -195,6 +196,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_CORE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_DECORATION
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_FOOD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_MACHINE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOW_DENSITY_STRUCTURE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MACROWORMHOLE_GENERATOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGICBOOK
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP
@@ -296,6 +298,37 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SENSOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_DRILL_HEAD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_ROUND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_TURBINE_BLADE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_BLOCK
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_BOLT
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_BOTTLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_CELL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_DRILL_HEAD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_FOIL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_FRAME
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_GEAR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_GEAR_SMALL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_INGOT
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PIPE_HUGE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PIPE_LARGE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PIPE_NORMAL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PIPE_SMALL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PIPE_TINY
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE_DENSE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE_DOUBLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_RING
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD_LONG
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROUND
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_SCREW
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_TURBINE_BLADE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_DOUBLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_FINE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_HEX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_OCTAL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_QUADRUPLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_MOLD_DRILL_HEAD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_MOLD_SCREW
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_MOLD_TURBINE_BLADE
@@ -586,17 +619,81 @@ object GTLiteMetaItem1
         CASTING_MOLD_ROLLING_PIN = item(63, "shape.mold.vanadium_steel.rolling_pin")
             .setRecyclingData(RecyclingData(MaterialStack(Materials.VanadiumSteel, M * 4)))
 
+        // 65-95: Field Shapes
+        SHAPE_FIELD_PLATE = item(65, "shape.field.plate")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_ROD = item(66, "shape.field.rod")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_BOLT = item(67, "shape.field.bolt")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_RING = item(68, "shape.field.ring")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_CELL = item(69, "shape.field.cell")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_INGOT = item(70, "shape.field.ingot")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE = item(71, "shape.field.wire")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PIPE_TINY = item(72, "shape.field.pipe_tiny")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PIPE_SMALL = item(73, "shape.field.pipe_small")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PIPE_NORMAL = item(74, "shape.field.pipe")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PIPE_LARGE = item(75, "shape.field.pipe_large")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PIPE_HUGE = item(76, "shape.field.pipe_huge")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_BLOCK = item(77, "shape.field.block")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_GEAR = item(78, "shape.field.gear")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_BOTTLE = item(79, "shape.field.bottle")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_FOIL = item(80, "shape.field.foil")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_GEAR_SMALL = item(81, "shape.field.gear_small")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_ROD_LONG = item(82, "shape.field.rod_long")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_ROTOR = item(83, "shape.field.rotor")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_ROUND = item(84, "shape.field.round")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_TURBINE_BLADE = item(85, "shape.field.turbine_blade")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_DRILL_HEAD = item(86, "shape.field.drill_head")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_FRAME = item(87, "shape.field.frame")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE_DOUBLE = item(88, "shape.field.wire_double")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE_QUADRUPLE = item(89, "shape.field.wire_quadruple")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE_OCTAL = item(90, "shape.field.wire_octal")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE_HEX = item(91, "shape.field.wire_hex")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE_FINE = item(92, "shape.field.wire_fine")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PLATE_DOUBLE = item(93, "shape.field.plate_double")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PLATE_DENSE = item(94, "shape.field.plate_dense")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_SCREW = item(95, "shape.field.screw")
+            .setRarity(EnumRarity.EPIC)
+
         // endregion
 
-        // region 86-100: Credits
-        CREDIT_ADAMANTIUM = item(86, "credit.adamantium")
+        // region 96-100: Credits
+        CREDIT_ADAMANTIUM = item(96, "credit.adamantium")
             .setRarity(EnumRarity.EPIC)
-        CREDIT_VIBRANIUM = item(87, "credit.vibranium")
+        CREDIT_VIBRANIUM = item(97, "credit.vibranium")
             .setRarity(EnumRarity.EPIC)
-        CREDIT_COSMIC_NEUTRONIUM = item(88, "credit.cosmic_neutronium")
+        CREDIT_COSMIC_NEUTRONIUM = item(98, "credit.cosmic_neutronium")
             .addComponents(HaloRenderItemBehavior(10, 0x33FFFFFF, {{ GTLiteTextures.HALO_NOISE }}, true))
             .setRarity(EnumRarity.EPIC)
-        CREDIT_INFINITY = item(89, "credit.infinity")
+        CREDIT_INFINITY = item(99, "credit.infinity")
             .addComponents(HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
             .setRarity(EnumRarity.EPIC)
 
@@ -1502,6 +1599,12 @@ object GTLiteMetaItem1
 
         POLYMER_INSULATOR_FOIL = item(5024, "material.foil.polymer_insulator")
             .addOreDict("foilPolymerInsulator")
+
+        LOW_DENSITY_STRUCTURE = item(5025, "material.plate.low_density_structure")
+            .addOreDict("plateLowDensityStructure")
+
+        DYSON_SWARM_PHOTOVOLTAIC_PANEL = item(5026, "material.plate.dyson_swarm_photovoltaic")
+            .addOreDict("plateDysonSwarmPhotovoltaic")
 
         // endregion
     }

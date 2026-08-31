@@ -87,6 +87,8 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
@@ -642,7 +644,7 @@ internal object OpticalCircuits
         }
 
         // Optoelectronic System on Chip
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(OPTICAL_IMC_UNIT, 2)
             input(PERIODICALLY_POLED_OPTICAL_CHIP, 2)
             input(ALL_OPTICAL_CASCADE_NOR_CHIP, 4)
@@ -651,7 +653,7 @@ internal object OpticalCircuits
             output(OPTOELECTRONIC_SYSTEM_ON_CHIP, 2)
             EUt(VA[UEV])
             duration(5 * SECOND)
-            cleanroom()
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
 
