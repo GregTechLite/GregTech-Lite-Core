@@ -154,6 +154,8 @@ object GTLiteOverlays
     val MEGA_TURBINE_OVERLAY = multiId("mega_turbine")
     @JvmField
     val BLACKHOLE_FORMER_OVERLAY = multiId("blackhole_former")
+    @JvmField
+    val DYSON_SWARM_GROUND_UNIT_OVERLAY = multiId("dyson_swarm_ground_unit")
 
     // endregion
 

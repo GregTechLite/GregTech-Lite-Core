@@ -37,7 +37,6 @@ import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DYSON_SWARM_PHOTOVOLTAIC_PANEL
 import codechicken.lib.raytracer.CuboidRayTraceResult
 import gregtech.api.unification.material.Materials.Mendelevium
-import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.common.blocks.BlockWireCoil
 import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.SENSOR_CASING_TIER
@@ -195,7 +194,7 @@ class MultiblockDysonSwarmGroundUnit(id: ResourceLocation)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.DYSON_SWARM_ENERGY_RECEIVER_BASE_CASING
 
     @SideOnly(Side.CLIENT)
-    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.STELLAR_FORGE_OVERLAY // TODO: Unique overlay.
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.DYSON_SWARM_GROUND_UNIT_OVERLAY
 
     override fun hasMaintenanceMechanics() = false
 
@@ -399,7 +398,6 @@ class MultiblockDysonSwarmGroundUnit(id: ResourceLocation)
             return fluid != null && fluid.amount >= COOLANT_PER_HOUR
         }
 
-        // TODO: Add some efficiency with heatingCoils and sensorCasings?
         private fun consumeCoolantAndDestroyPanels()
         {
             val claimedCWUt = currentComputation

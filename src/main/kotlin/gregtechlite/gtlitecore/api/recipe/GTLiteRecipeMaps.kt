@@ -1115,6 +1115,8 @@ object GTLiteRecipeMaps
     @JvmStatic
     fun preInit()
     {
+        DYSON_SWARM_FUELS.recipeMapUI.isJEIVisible = false
+
         RecipeMaps.ELECTROLYZER_RECIPES.maxFluidInputs = 2
 
         RecipeMaps.FORGE_HAMMER_RECIPES.maxInputs = 2
