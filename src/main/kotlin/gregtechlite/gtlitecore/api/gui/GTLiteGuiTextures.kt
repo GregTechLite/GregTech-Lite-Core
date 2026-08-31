@@ -45,7 +45,7 @@ object GTLiteGuiTextures
     val BLACKHOLE_SHAPING_ICON = texture("textures/gui/icon/blackhole_shaping_category.png")
 
     @JvmField
-    val BLACKHOLE_STAMPING_ICON = texture("textures/gui/icon/blackhole_stamping_icon.png")
+    val BLACKHOLE_STAMPING_ICON = texture("textures/gui/icon/blackhole_stamping_category.png")
 
     // endregion
 
