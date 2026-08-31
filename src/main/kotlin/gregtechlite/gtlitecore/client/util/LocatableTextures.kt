@@ -4,6 +4,7 @@ package gregtechlite.gtlitecore.client.util
 
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer
 import gregtech.client.renderer.texture.cube.SidedCubeRenderer
+import gregtech.client.renderer.texture.cube.SimpleOrientedCubeRenderer
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer
 import gregtech.client.renderer.texture.cube.SimpleSidedCubeRenderer
 import gregtechlite.gtlitecore.GTLiteMod
@@ -20,6 +21,10 @@ fun simpleSidedCubeOverlay(path: String): SimpleSidedCubeRenderer = simpleSidedC
 fun sidedCubeOverlay(location: ResourceLocation): SidedCubeRenderer = SidedCubeRenderer(location.toString())
 
 fun sidedCubeOverlay(path: String): SidedCubeRenderer = sidedCubeOverlay(GTLiteMod.id(path))
+
+fun simpleOrientedCubeOverlay(location: ResourceLocation): SimpleOrientedCubeRenderer = SimpleOrientedCubeRenderer(location.toString())
+
+fun simpleOrientedCubeOverlay(path: String): SimpleOrientedCubeRenderer = simpleOrientedCubeOverlay(GTLiteMod.id(path))
 
 fun orientedOverlay(location: ResourceLocation): OrientedOverlayRenderer = OrientedOverlayRenderer(location.toString())
 

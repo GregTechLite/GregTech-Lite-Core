@@ -1087,6 +1087,18 @@ object GTLiteRecipeMaps
         .build()
 
     /**
+     * @zenProp dyson_swarm_fuels
+     */
+    @ZenProperty
+    @JvmField
+    val DYSON_SWARM_FUELS = RecipeMapBuilder("dyson_swarm_fuels", FuelRecipeBuilder())
+        .fluidInputs(2)
+        .allowEmptyOutputs()
+        .sound(GTSoundEvents.ARC)
+        .generator()
+        .build()
+
+    /**
      * @zenProp acid_generator
      */
     @ZenProperty
@@ -1103,6 +1115,8 @@ object GTLiteRecipeMaps
     @JvmStatic
     fun preInit()
     {
+        DYSON_SWARM_FUELS.recipeMapUI.isJEIVisible = false
+
         RecipeMaps.ELECTROLYZER_RECIPES.maxFluidInputs = 2
 
         RecipeMaps.FORGE_HAMMER_RECIPES.maxInputs = 2

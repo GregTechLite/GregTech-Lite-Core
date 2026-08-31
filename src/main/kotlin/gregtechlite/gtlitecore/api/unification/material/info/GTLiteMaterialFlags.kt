@@ -569,6 +569,7 @@ object GTLiteMaterialFlags
         Meitnerium.addFlags(GENERATE_DENSE)
         Copernicium.addFlags(GENERATE_DENSE)
         NaquadahEnriched.addFlags(GENERATE_DENSE)
+        Nobelium.addFlags(GENERATE_DENSE)
 
         // ring
         Duranium.addFlags(GENERATE_RING)

@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.client.renderer.texture
 import gregtech.client.renderer.texture.custom.DrumRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.custom.ExtenderRenderer
 import gregtechlite.gtlitecore.client.util.orientedOverlay
+import gregtechlite.gtlitecore.client.util.simpleOrientedCubeOverlay
 import gregtechlite.gtlitecore.client.util.simpleOverlay
 import gregtechlite.gtlitecore.client.util.simpleSidedCubeOverlay
 
@@ -153,6 +154,8 @@ object GTLiteOverlays
     val MEGA_TURBINE_OVERLAY = multiId("mega_turbine")
     @JvmField
     val BLACKHOLE_FORMER_OVERLAY = multiId("blackhole_former")
+    @JvmField
+    val DYSON_SWARM_GROUND_UNIT_OVERLAY = multiId("dyson_swarm_ground_unit")
 
     // endregion
 
@@ -287,6 +290,8 @@ object GTLiteOverlays
     val INFINITY_COOLING_CASING = casingId("special/infinity_cooling_casing")
     @JvmField
     val HAWKING_RADIATION_ABSORPTION_CASING = casingId("special/hawking_radiation_absorption_casing")
+    @JvmField
+    val DYSON_SWARM_ENERGY_RECEIVER_BASE_CASING = complexCasingId("aerospace/dyson_swarm_casing_base")
 
     // endregion
 
@@ -333,6 +338,9 @@ object GTLiteOverlays
 
     @JvmStatic
     private fun casingId(path: String) = simpleOverlay("casings/$path")
+
+    @JvmStatic
+    private fun complexCasingId(path: String) = simpleOrientedCubeOverlay("casings/$path")
 
     @JvmStatic
     private fun coverId(path: String) = simpleOverlay("covers/$path")

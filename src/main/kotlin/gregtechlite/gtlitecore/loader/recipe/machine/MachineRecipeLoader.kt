@@ -53,6 +53,7 @@ import gregtech.api.unification.material.Materials.Holmium
 import gregtech.api.unification.material.Materials.IndiumTinBariumTitaniumCuprate
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iridium
+import gregtech.api.unification.material.Materials.Lawrencium
 import gregtech.api.unification.material.Materials.Livermorium
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Meitnerium
@@ -147,6 +148,7 @@ import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UXV
 import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
 import gregtech.common.items.MetaItems.COVER_ENDER_FLUID_LINK
+import gregtech.common.items.MetaItems.COVER_SOLAR_PANEL
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
@@ -315,6 +317,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hypogen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IncoloyMA956
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Inconel625
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LanthanumGroupAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Legendarium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagMatter
@@ -407,6 +410,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CRYO
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CRYOGENIC_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CRYSTALLIZATION_CRUCIBLE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CVD_UNIT
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.DYSON_SWARM_GROUND_UNIT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ELECTRIC_IMPLOSION_COMPRESSOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ENERGY_INFUSER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ENTRODYNAMICALLY_PHASE_CHANGER
@@ -2049,6 +2053,26 @@ internal object MachineRecipeLoader
             fluidInputs(Rhugnor.getFluid(L * 40))
             fluidInputs(HeavyLeptonMixture.getFluid(4000))
             output(BLACKHOLE_FORMER)
+            EUt(VA[UHV])
+            duration(2 * MINUTE)
+            tier(1)
+        }
+
+        // Dyson Swarm Ground Unit
+        SPACE_ASSEMBLER_RECIPES.addRecipe {
+            input(HULL[UHV], 16)
+            input(circuit, Tier.UEV, 16)
+            input(LOW_DENSITY_STRUCTURE, 4)
+            input(COVER_SOLAR_PANEL, 16)
+            input(SENSOR_UHV, 16)
+            input(EMITTER_UHV, 16)
+            input(plateDense, Nobelium, 2)
+            input(wireGtQuadruple, RutheniumTriniumAmericiumNeutronate, 8)
+            fluidInputs(SolderingAlloy.getFluid(L * 160))
+            fluidInputs(LanthanumGroupAlloyA.getFluid(L * 80))
+            fluidInputs(Lawrencium.getFluid(L * 40))
+            fluidInputs(CosmicNeutronium.getFluid(L * 4))
+            output(DYSON_SWARM_GROUND_UNIT)
             EUt(VA[UHV])
             duration(2 * MINUTE)
             tier(1)

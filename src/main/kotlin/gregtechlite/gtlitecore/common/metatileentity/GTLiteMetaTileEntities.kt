@@ -122,6 +122,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.Multibl
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockWiremill
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockAcidGenerator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockAntimatterGenerator
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockDysonSwarmGroundUnit
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockNaquadahReactor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockNuclearReactor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockRocketEngine
@@ -326,6 +327,7 @@ object GTLiteMetaTileEntities
     lateinit var QUANTUM_FORCE_TRANSFORMER: MultiblockQuantumForceTransformer
     lateinit var ANTIMATTER_FORGE: MultiblockAntimatterForge
     lateinit var ANTIMATTER_GENERATOR: MultiblockAntimatterGenerator
+    lateinit var DYSON_SWARM_GROUND_UNIT: MultiblockDysonSwarmGroundUnit
     lateinit var SPACE_ELEVATOR: MultiblockSpaceElevator
     lateinit var SPACE_ASSEMBLER_MK1: MultiblockSpaceAssembler
     lateinit var SPACE_ASSEMBLER_MK2: MultiblockSpaceAssembler
@@ -882,7 +884,7 @@ object GTLiteMetaTileEntities
         SPACE_PUMP_MK2 = register(10049, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk2"), UHV, 2, 2))
         SPACE_PUMP_MK3 = register(10050, MultiblockSpacePump(GTLiteMod.id("space_pump_module.mk3"), UEV, 3, 4))
 
-        // 10051 TODO DYSON_SWARM_GROUND_UNIT
+        DYSON_SWARM_GROUND_UNIT = register(10051, MultiblockDysonSwarmGroundUnit(GTLiteMod.id("dyson_swarm_ground_unit")))
 
         ENERGY_INFUSER = register(10052, MultiblockEnergyInfuser(GTLiteMod.id("energy_infuser")))
         INTEGRATED_ORE_PROCESSOR = register(10053, MultiblockIntegratedOreProcessor(GTLiteMod.id("integrated_ore_processor")))
