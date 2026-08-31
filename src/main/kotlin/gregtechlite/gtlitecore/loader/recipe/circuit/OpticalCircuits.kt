@@ -19,6 +19,7 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
+import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Americium
@@ -520,25 +521,24 @@ internal object OpticalCircuits
         }
 
         // PRAM
-        BLACKHOLE_FORMING_RECIPES.addRecipe {
+        FORMING_PRESS_RECIPES.addRecipe {
             input(ADVANCED_RAM_CHIP)
             input(plate, GSTGlass, 2)
             input(foil, Einsteinium, 8)
             output(PHASE_CHANGE_RAM_CHIP, 4)
             EUt(VA[UHV])
             duration(10 * SECOND)
-            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
         // ACNOR
-        BLACKHOLE_FORMING_RECIPES.addRecipe {
+        FORMING_PRESS_RECIPES.addRecipe {
             input(NOR_MEMORY_CHIP)
             input(foil, LithiumNiobate, 4)
             input(wireFine, WoodsGlass, 4)
             output(ALL_OPTICAL_CASCADE_NOR_CHIP, 4)
             EUt(VA[UHV])
             duration(10 * SECOND)
-            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
+            cleanroom()
         }
     }
 
