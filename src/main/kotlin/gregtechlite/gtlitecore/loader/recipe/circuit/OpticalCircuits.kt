@@ -528,6 +528,7 @@ internal object OpticalCircuits
             output(PHASE_CHANGE_RAM_CHIP, 4)
             EUt(VA[UHV])
             duration(10 * SECOND)
+            cleanroom()
         }
 
         // ACNOR

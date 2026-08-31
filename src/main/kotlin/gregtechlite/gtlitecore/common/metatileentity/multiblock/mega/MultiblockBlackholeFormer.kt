@@ -16,6 +16,8 @@ import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.RelativeDirection
 import gregtech.client.renderer.ICubeRenderer
+import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityItemBus
+import gregtech.common.metatileentities.multi.multiblockpart.appeng.MetaTileEntityMEInputBus
 import gregtechlite.gtlitecore.api.GTLiteAPI.STANDARD_STABILIZATION_FIELD_GEN_TIER
 import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
@@ -30,6 +32,8 @@ import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumItemBus
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
@@ -122,7 +126,13 @@ class MultiblockBlackholeFormer(id: ResourceLocation) : RecipeMapMultiblockContr
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.SPACE_ELEVATOR_BASE_CASING
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = when (sourcePart)
+    {
+        is MetaTileEntityItemBus,
+        is MetaTileEntityMEInputBus,
+        is PartMachineDualHatch      -> GTLiteOverlays.HAWKING_RADIATION_ABSORPTION_CASING
+        else                         -> GTLiteOverlays.SPACE_ELEVATOR_BASE_CASING
+    }
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.BLACKHOLE_FORMER_OVERLAY

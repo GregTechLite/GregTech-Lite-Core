@@ -285,6 +285,8 @@ object GTLiteOverlays
     val OSMIRIDIUM_CASING = casingId("metal/osmiridium")
     @JvmField
     val INFINITY_COOLING_CASING = casingId("special/infinity_cooling_casing")
+    @JvmField
+    val HAWKING_RADIATION_ABSORPTION_CASING = casingId("special/hawking_radiation_absorption_casing")
 
     // endregion
 
