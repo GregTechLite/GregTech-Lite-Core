@@ -2892,6 +2892,10 @@ gtlitecore.machine.matter_reshaping_framework.tooltip.7=- §f23§7 -> §eTool Ca
 gtlitecore.machine.matter_reshaping_framework.tooltip.8=§a256^((Fusion Coil Tier + 1) * Voltage Tier)
 
 gtlitecore.machine.blackhole_former.name=Event Horizon Gravitational Bundle Former
+gtlitecore.machine.blackhole_former.tooltip.1=Metal Processing with Powerful Force of Blackhole Event Horizon
+gtlitecore.machine.blackhole_former.tooltip.2=Has §dAdditional Shape Forming Recipes§7 without §fExtruder§7, §fBender§7 and §fWiremill§7
+gtlitecore.machine.blackhole_former.tooltip.3=Almost all types of components can be made directly by corresponding §9Force Field Shape§7 and material
+gtlitecore.machine.blackhole_former.tooltip.4=§a4096 * (Stabilization Field Generator Tier + 1)
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

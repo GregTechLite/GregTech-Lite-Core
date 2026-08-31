@@ -151,6 +151,8 @@ object GTLiteOverlays
     val VIRTUAL_GESTALT_COMPUTING_UPLINK_OVERLAY = multiId("virtual_gestalt_computing_uplink")
     @JvmField
     val MEGA_TURBINE_OVERLAY = multiId("mega_turbine")
+    @JvmField
+    val BLACKHOLE_FORMER_OVERLAY = multiId("blackhole_former")
 
     // endregion
 

@@ -2892,6 +2892,10 @@ gtlitecore.machine.matter_reshaping_framework.tooltip.7=- §f23号§7 -> §e工�
 gtlitecore.machine.matter_reshaping_framework.tooltip.8=§a256^((聚变线圈等级 + 1) * 电压等级)
 
 gtlitecore.machine.blackhole_former.name=事件视界引力收束成形装置
+gtlitecore.machine.blackhole_former.tooltip.1=以黑洞事件视界的伟力进行金属加工
+gtlitecore.machine.blackhole_former.tooltip.2=在§f压模器§7，§f卷板机§7与§f线材轧机§7的基础上拥有§d额外塑形配方§7
+gtlitecore.machine.blackhole_former.tooltip.3=可以直接通过对应§9形态力场§7与材料制作几乎所有种类的部件
+gtlitecore.machine.blackhole_former.tooltip.4=§a4096 * (稳定力场发生器等级 + 1)
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
