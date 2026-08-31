@@ -1613,6 +1613,8 @@ metaitem.material.foil.peek_polyamide.name=聚醚醚酮-聚酰胺共聚物箔
 metaitem.material.foil.polymer_insulator.name=绝缘共聚物箔
 metaitem.material.plate.low_density_structure.name=轻质框架板
 metaitem.material.plate.low_density_structure.tooltip=太空级结构框架
+metaitem.material.plate.dyson_swarm_photovoltaic.name=戴森球光伏板
+metaitem.material.plate.dyson_swarm_photovoltaic.tooltip=星球级太阳能
 
 metaitem.crop.fruit.banana.name=香蕉
 metaitem.crop.fruit.orange.name=橙子

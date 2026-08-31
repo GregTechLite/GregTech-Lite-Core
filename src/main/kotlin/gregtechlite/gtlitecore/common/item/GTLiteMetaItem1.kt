@@ -131,6 +131,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DISPOSABLE_SOFT_MALLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DISPOSABLE_WIRE_CUTTER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DISPOSABLE_WRENCH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DRAIN
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DYSON_SWARM_PHOTOVOLTAIC_PANEL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.EIGENFOLDED_SPACETIME_MANIFOLD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_PISTON_MAX
@@ -620,36 +621,67 @@ object GTLiteMetaItem1
 
         // 65-95: Field Shapes
         SHAPE_FIELD_PLATE = item(65, "shape.field.plate")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_ROD = item(66, "shape.field.rod")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_BOLT = item(67, "shape.field.bolt")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_RING = item(68, "shape.field.ring")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_CELL = item(69, "shape.field.cell")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_INGOT = item(70, "shape.field.ingot")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_WIRE = item(71, "shape.field.wire")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_PIPE_TINY = item(72, "shape.field.pipe_tiny")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_PIPE_SMALL = item(73, "shape.field.pipe_small")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_PIPE_NORMAL = item(74, "shape.field.pipe")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_PIPE_LARGE = item(75, "shape.field.pipe_large")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_PIPE_HUGE = item(76, "shape.field.pipe_huge")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_BLOCK = item(77, "shape.field.block")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_GEAR = item(78, "shape.field.gear")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_BOTTLE = item(79, "shape.field.bottle")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_FOIL = item(80, "shape.field.foil")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_GEAR_SMALL = item(81, "shape.field.gear_small")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_ROD_LONG = item(82, "shape.field.rod_long")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_ROTOR = item(83, "shape.field.rotor")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_ROUND = item(84, "shape.field.round")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_TURBINE_BLADE = item(85, "shape.field.turbine_blade")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_DRILL_HEAD = item(86, "shape.field.drill_head")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_FRAME = item(87, "shape.field.frame")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_WIRE_DOUBLE = item(88, "shape.field.wire_double")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_WIRE_QUADRUPLE = item(89, "shape.field.wire_quadruple")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_WIRE_OCTAL = item(90, "shape.field.wire_octal")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_WIRE_HEX = item(91, "shape.field.wire_hex")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_WIRE_FINE = item(92, "shape.field.wire_fine")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_PLATE_DOUBLE = item(93, "shape.field.plate_double")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_PLATE_DENSE = item(94, "shape.field.plate_dense")
+            .setRarity(EnumRarity.EPIC)
         SHAPE_FIELD_SCREW = item(95, "shape.field.screw")
+            .setRarity(EnumRarity.EPIC)
 
         // endregion
 
@@ -1570,6 +1602,9 @@ object GTLiteMetaItem1
 
         LOW_DENSITY_STRUCTURE = item(5025, "material.plate.low_density_structure")
             .addOreDict("plateLowDensityStructure")
+
+        DYSON_SWARM_PHOTOVOLTAIC_PANEL = item(5026, "material.plate.dyson_swarm_photovoltaic")
+            .addOreDict("plateDysonSwarmPhotovoltaic")
 
         // endregion
     }

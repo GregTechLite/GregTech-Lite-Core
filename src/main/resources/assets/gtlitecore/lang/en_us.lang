@@ -1613,6 +1613,8 @@ metaitem.material.foil.peek_polyamide.name=PEEK-Polyamide Polymer Foil
 metaitem.material.foil.polymer_insulator.name=Polymer Insulator Foil
 metaitem.material.plate.low_density_structure.name=Low Density Structure Plate
 metaitem.material.plate.low_density_structure.tooltip=Space Grade Frame Structure
+metaitem.material.plate.dyson_swarm_photovoltaic.name=Dyson Swarm Photovoltaic Plate
+metaitem.material.plate.dyson_swarm_photovoltaic.tooltip=Planetary Solar Panel
 
 metaitem.crop.fruit.banana.name=Banana
 metaitem.crop.fruit.orange.name=Orange
