@@ -1087,6 +1087,18 @@ object GTLiteRecipeMaps
         .build()
 
     /**
+     * @zenProp dyson_swarm_fuels
+     */
+    @ZenProperty
+    @JvmField
+    val DYSON_SWARM_FUELS = RecipeMapBuilder("dyson_swarm_fuels", FuelRecipeBuilder())
+        .fluidInputs(2)
+        .allowEmptyOutputs()
+        .sound(GTSoundEvents.ARC)
+        .generator()
+        .build()
+
+    /**
      * @zenProp acid_generator
      */
     @ZenProperty

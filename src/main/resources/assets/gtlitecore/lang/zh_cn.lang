@@ -2839,6 +2839,20 @@ gtlitecore.machine.large_naquadah_reactor.tooltip.4=反应堆会尝试尽可能�
 gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_boosted=氧等离子体正在催化硅岩释放能量。
 gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=氧等离子体存量：%s
 
+gtlitecore.machine.dyson_swarm_ground_unit.name=戴森球地面单元
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.1=发射数以万计的光伏板覆盖整颗恒星以攫取能源
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.2=在§f输入总线§7中放入§a戴森球光伏板§7来将其发射，最多可以发射§l10,00§r§7个
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.3=提高§e传感器外壳等级§7与§e线圈等级§7可以提高最大发射数量，每级会增加§l256§r§7个
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.4=每个已发射的光伏板将提供§e10,000,000 EU/t§7的能量输出
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.5=需要提供§f3.6ML/h§7的§b极寒之凛冰§7进行冷却，当输入不足时将保持停机
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.6=已发射的光伏板每小时有§2(0.132 * N / exp(-0.0005 * (N - 1)) + exp(0.001 * C))§7概率坠毁
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.7=其中§lN§r§7为光伏板数量，§lC§7为输入算力。
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.8=使用任意材质的§f搋子§7左击控制器可以尽可能将其中的光伏板抽出
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.9=潜行左击时会无视背包储存以掉落物的形式抽出所有光伏板
+
+gtlitecore.machine.dyson_swarm_ground_unit.panel_count=在轨光伏板：%s
+gtlitecore.machine.dyson_swarm_ground_unit.computation=已提供算力：%s
+
 gtlitecore.machine.large_acid_generator.name=大型酸性发电机
 
 gtlitecore.machine.large_transformer.name=大型变压器

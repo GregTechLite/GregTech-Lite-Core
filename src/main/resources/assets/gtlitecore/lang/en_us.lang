@@ -2839,6 +2839,20 @@ gtlitecore.machine.large_naquadah_reactor.tooltip.4=反应堆会尝试尽可能�
 gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_boosted=Plasma Oxygen is catalyzing energy from Naquadah.
 gtlitecore.machine.large_naquadah_reactor.plasma_oxygen_amount=Plasma Oxygen Amount: %s
 
+gtlitecore.machine.dyson_swarm_ground_unit.name=Dyson Swarm Ground Unit
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.1=Launch thousands of Photovoltaic Panels to cover the sun and capture energy
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.2=Place §aDyson Swarm Photovoltaic Panel§7 in §fItem Import Bus§7 to emit up it, maximum emit count is §l10,00§r§7.
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.3=Increase §eSensor Casing Tier§7 and §eCoil Tier§7 can increase maximum emit count with each level adding §l256§r§7x
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.4=Each emitted Photovoltaic Panel will produce §e10,000,000 EU/t§7 energy output
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.5=Need to provide §f3.6ML/h§7 of §bGelid Cryotheum§7 for cooling, and will keep paused when input is insufficient
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.6=Each emitted Photovoltaic Panel probability of destroying at rate §2(0.132 * N / exp(-0.0005 * (N - 1)) + exp(0.001 * C))§7 per hour
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.7=Where §lN§r§7 is Photovoltaic Panel count, §lC§7 is Input Computation
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.8=Using any §fPlunger§7 left-click controller can extract Photovoltaic Panels as much as possible
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.9=Will ignore backpack inventory and extract all Photovoltaic Panels when sneaking
+
+gtlitecore.machine.dyson_swarm_ground_unit.panel_count=Photovoltaic Panel Count in Orbit: %s
+gtlitecore.machine.dyson_swarm_ground_unit.computation=Provided Computation: %s
+
 gtlitecore.machine.large_acid_generator.name=Large Acid Generator
 
 gtlitecore.machine.large_transformer.name=Large Transformer
