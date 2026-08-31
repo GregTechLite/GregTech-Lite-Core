@@ -17,7 +17,6 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
-import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.recipes.RecipeMaps.POLARIZER_RECIPES
@@ -74,6 +73,8 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
@@ -267,7 +268,7 @@ internal object CosmicCircuits
         }
 
         // Scintillator Crystal
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(plate, Vibranium, 2)
             input(dust, ThalliumThuliumDopedCaesiumIodide)
             input(dust, Tetracene)
@@ -276,6 +277,7 @@ internal object CosmicCircuits
             output(SCINTILLATOR_CRYSTAL, 2)
             EUt(VA[UHV])
             duration(14 * SECOND)
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
         // 2C6H4(CO)2O + 2C6H7NO + C2H4(NH2)2 + HCl -> C28H31ClN2O3 + N2O4 + CO + C
@@ -544,7 +546,7 @@ internal object CosmicCircuits
         }
 
         // Amplitude Duality Disturbance RAM
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(ADVANCED_RAM_CHIP)
             input(plate, LanthanumFullereneNanotube, 4)
             input(plate, Copernicium, 4)
@@ -554,11 +556,11 @@ internal object CosmicCircuits
             output(AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP, 4)
             EUt(VA[UIV])
             duration(10 * SECOND)
-            cleanroom()
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
         // Excitation Spectrum Composite Logical Gate
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(NOR_MEMORY_CHIP)
             input(NAND_MEMORY_CHIP)
             input(foil, Polymethylmethacrylate, 16)
@@ -568,7 +570,7 @@ internal object CosmicCircuits
             output(EXCITATION_SPECTRUM_COMPOSITE_LOGICAL_GATE_CHIP, 4)
             EUt(VA[UIV])
             duration(10 * SECOND)
-            cleanroom()
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
 

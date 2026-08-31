@@ -19,7 +19,6 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
 import gregtech.api.recipes.RecipeMaps.CUTTER_RECIPES
-import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Americium
@@ -87,6 +86,8 @@ import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
@@ -519,25 +520,25 @@ internal object OpticalCircuits
         }
 
         // PRAM
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(ADVANCED_RAM_CHIP)
             input(plate, GSTGlass, 2)
             input(foil, Einsteinium, 8)
             output(PHASE_CHANGE_RAM_CHIP, 4)
             EUt(VA[UHV])
             duration(10 * SECOND)
-            cleanroom()
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
         // ACNOR
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(NOR_MEMORY_CHIP)
             input(foil, LithiumNiobate, 4)
             input(wireFine, WoodsGlass, 4)
             output(ALL_OPTICAL_CASCADE_NOR_CHIP, 4)
             EUt(VA[UHV])
             duration(10 * SECOND)
-            cleanroom()
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
 
@@ -642,7 +643,7 @@ internal object OpticalCircuits
         }
 
         // Optoelectronic System on Chip
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(OPTICAL_IMC_UNIT, 2)
             input(PERIODICALLY_POLED_OPTICAL_CHIP, 2)
             input(ALL_OPTICAL_CASCADE_NOR_CHIP, 4)
@@ -651,7 +652,7 @@ internal object OpticalCircuits
             output(OPTOELECTRONIC_SYSTEM_ON_CHIP, 2)
             EUt(VA[UEV])
             duration(5 * SECOND)
-            cleanroom()
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
 
