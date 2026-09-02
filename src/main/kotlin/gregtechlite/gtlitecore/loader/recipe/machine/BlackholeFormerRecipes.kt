@@ -118,6 +118,7 @@ internal object BlackholeFormerRecipes
             output(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 64)
             EUt(VA[UHV])
             duration(2 * SECOND)
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
 

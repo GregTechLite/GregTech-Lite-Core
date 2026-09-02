@@ -939,7 +939,14 @@ metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell6
 metaitem.tool.magnetron.name=Magnetron
 
 metaitem.tool.laser_destroyer.name=Laser Destroyer
-metaitem.tool.laser_destroyer.mode=Use while sneaking to toggle §fSilk Mode§7, will enabled Silk Touch when in §fSilk Mode§7
+metaitem.tool.laser_destroyer.mode=Right-click to cycle §fMining Speed§7, sneak and right-click to toggle §fSilk Mode§7.
+metaitem.tool.laser_destroyer.speed=Mining Speed: §f%s§7 (%s s per block)
+metaitem.tool.laser_destroyer.speed.changed=§fMining Speed set to §f%s§f (%s s per block)
+metaitem.tool.laser_destroyer.speed.name.0=§bInstant
+metaitem.tool.laser_destroyer.speed.name.1=§aFast
+metaitem.tool.laser_destroyer.speed.name.2=§2Medium
+metaitem.tool.laser_destroyer.speed.name.3=§3Slow
+metaitem.tool.laser_destroyer.speed.name.generic=Tier %s
 metaitem.tool.laser_destroyer.energy_cost=Consume §e%s EU§7 for each block breaking, consume twice when in §fSilk Mode§7
 metaitem.tool.laser_destroyer.silk_mode.disabled=Silk Mode: §cDisabled§f
 metaitem.tool.laser_destroyer.silk_mode.enabled=Silk Mode: §aEnabled§f
@@ -2845,7 +2852,7 @@ gtlitecore.machine.dyson_swarm_ground_unit.tooltip.2=Place §aDyson Swarm Photov
 gtlitecore.machine.dyson_swarm_ground_unit.tooltip.3=Increase §eSensor Casing Tier§7 and §eCoil Tier§7 can increase maximum emit count with each level adding §l256§r§7x
 gtlitecore.machine.dyson_swarm_ground_unit.tooltip.4=Each emitted Photovoltaic Panel will produce §e10,000,000 EU/t§7 energy output
 gtlitecore.machine.dyson_swarm_ground_unit.tooltip.5=Need to provide §f3.6ML/h§7 of §bGelid Cryotheum§7 for cooling, and will keep paused when input is insufficient
-gtlitecore.machine.dyson_swarm_ground_unit.tooltip.6=Each emitted Photovoltaic Panel probability of destroying at rate §2(0.132 * N / exp(-0.0005 * (N - 1)) + exp(0.001 * C))§7 per hour
+gtlitecore.machine.dyson_swarm_ground_unit.tooltip.6=Each emitted Photovoltaic Panel probability of destroying at rate §2floor((0.132 * N) / (exp(-0.00005 * (N - 1)) + exp(0.001 * C)))§7 per hour
 gtlitecore.machine.dyson_swarm_ground_unit.tooltip.7=Where §lN§r§7 is Photovoltaic Panel count, §lC§7 is Input Computation
 gtlitecore.machine.dyson_swarm_ground_unit.tooltip.8=Using any §fPlunger§7 left-click controller can extract Photovoltaic Panels as much as possible
 gtlitecore.machine.dyson_swarm_ground_unit.tooltip.9=Will ignore backpack inventory and extract all Photovoltaic Panels when sneaking

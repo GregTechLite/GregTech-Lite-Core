@@ -420,7 +420,6 @@ object GTLiteElementMaterials
             cableProp(V[UXV], 56, 14)
         }
 
-        // TODO: Finished renderer for universium and supported block format iconSet textures.
         // 19 Universium
         Universium = addMaterial(19, "universium")
         {
