@@ -162,6 +162,12 @@ object GTLiteConfigHolder
             @RangeDouble(min = 0.toDouble(), max = Long.MAX_VALUE.toDouble())
             @JvmField
             var capacity: Double = 1024000.0
+
+            @Comment("The mining time required for each Laser Destroyer mining tier in order.",
+                     "Default: 0t, 8t, 20t, 40t")
+            @Name("Mining Speeds")
+            @JvmField
+            val miningTiers: IntArray = intArrayOf(0, 8, 20, 40)
         }
     }
 
