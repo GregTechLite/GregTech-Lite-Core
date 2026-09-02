@@ -7,6 +7,7 @@ import gregtech.api.util.GTUtility
 import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.core.GTLiteConfigHolder
 import net.minecraft.block.state.IBlockState
 import net.minecraft.client.resources.I18n
 import net.minecraft.enchantment.EnchantmentHelper
@@ -31,6 +32,7 @@ class LaserDestroyerBehavior : IItemBehaviour
     companion object
     {
         private const val NBT_SILK_MODE = "silk_mode"
+        private const val NBT_MINING_TIER = "mining_tier"
 
         fun setSilkMode(item: ItemStack, silkMode: Boolean)
         {
@@ -48,6 +50,43 @@ class LaserDestroyerBehavior : IItemBehaviour
             val tagCompound = item.tagCompound
             return tagCompound != null && tagCompound.getBoolean(NBT_SILK_MODE)
         }
+
+        fun getMiningTier(item: ItemStack): Int = item.tagCompound?.getInteger(NBT_MINING_TIER) ?: 0
+
+        fun setMiningTier(item: ItemStack, index: Int)
+        {
+            var tagCompound = item.tagCompound
+            if (tagCompound == null)
+            {
+                tagCompound = NBTTagCompound()
+                item.tagCompound = tagCompound
+            }
+            tagCompound.setInteger(NBT_MINING_TIER, index)
+        }
+
+        fun getMiningTicks(item: ItemStack): Int
+        {
+            val tiers = GTLiteConfigHolder.tool.laserDestroyer.miningTiers
+            if (tiers.isEmpty()) return 0
+            return tiers[getMiningTier(item).coerceIn(0, tiers.size - 1)]
+        }
+
+        fun cycleMiningTier(item: ItemStack): Int
+        {
+            val tiers = GTLiteConfigHolder.tool.laserDestroyer.miningTiers
+            if (tiers.isEmpty())
+            {
+                setMiningTier(item, 0)
+                return 0
+            }
+            val next = (getMiningTier(item) + 1) % tiers.size
+            setMiningTier(item, next)
+            return next
+        }
+
+        private fun speedTierNameKey(index: Int): String =
+            if (index in 0..3) "metaitem.tool.laser_destroyer.speed.name.$index"
+            else "metaitem.tool.laser_destroyer.speed.name.generic"
 
         @Suppress("Deprecation")
         fun breakBlock(item: ItemStack, player: EntityPlayer, world: World, pos: BlockPos,
@@ -186,6 +225,13 @@ class LaserDestroyerBehavior : IItemBehaviour
                 }
             }
         }
+        else if (!world.isRemote)
+        {
+            val tierIndex = cycleMiningTier(item)
+            val seconds = "%.2f".format(getMiningTicks(item) / 20.0)
+            player.sendMessage(TextComponentTranslation("metaitem.tool.laser_destroyer.speed.changed",
+                TextComponentTranslation(speedTierNameKey(tierIndex), tierIndex + 1), seconds))
+        }
         return ActionResult.newResult(EnumActionResult.PASS, item)
     }
 
@@ -197,6 +243,11 @@ class LaserDestroyerBehavior : IItemBehaviour
         else
             lines.add(I18n.format("gtlitecore.tooltip.contributor_item"))
         lines.add(I18n.format("metaitem.tool.laser_destroyer.mode"))
+        val ticks = getMiningTicks(itemStack)
+        val seconds = if (ticks <= 0) "0.00" else "%.2f".format(ticks / 20.0)
+        val tier = getMiningTier(itemStack)
+        lines.add(I18n.format("metaitem.tool.laser_destroyer.speed",
+            I18n.format(speedTierNameKey(tier), tier + 1), seconds))
         lines.add(I18n.format("metaitem.tool.laser_destroyer.energy_cost", 4))
     }
 }

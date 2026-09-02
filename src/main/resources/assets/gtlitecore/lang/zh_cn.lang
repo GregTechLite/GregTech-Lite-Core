@@ -939,7 +939,14 @@ metaitem.tool.circuit_pattern.type.item.appliedenergistics2.material.fluid_cell6
 metaitem.tool.magnetron.name=磁控管
 
 metaitem.tool.laser_destroyer.name=激光拆解器
-metaitem.tool.laser_destroyer.mode=潜行右击以切换§f精准模式§7，在§f精准模式§7下自动启用精准采集
+metaitem.tool.laser_destroyer.mode=右击切换§f挖掘速度§7档位，潜行时切换§f精准模式§7
+metaitem.tool.laser_destroyer.speed=挖掘速度：§f%s§7（%s 秒 / 方块）
+metaitem.tool.laser_destroyer.speed.changed=§f挖掘速度已设为§f%s§f（%s秒 / 方块）
+metaitem.tool.laser_destroyer.speed.name.0=§b极快
+metaitem.tool.laser_destroyer.speed.name.1=§a快速
+metaitem.tool.laser_destroyer.speed.name.2=§2中速
+metaitem.tool.laser_destroyer.speed.name.3=§3慢速
+metaitem.tool.laser_destroyer.speed.name.generic=档位 %s
 metaitem.tool.laser_destroyer.energy_cost=挖掘方块时消耗§e%s EU§7，处于§f精准模式§7下消耗双倍
 metaitem.tool.laser_destroyer.silk_mode.disabled=精准模式：§c禁用§f
 metaitem.tool.laser_destroyer.silk_mode.enabled=精准模式：§a启用§f
