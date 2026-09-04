@@ -20,6 +20,7 @@ import gregtechlite.gtlitecore.common.block.variant.Crucible
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.Manipulator
 import gregtechlite.gtlitecore.common.block.variant.NuclearReactorCore
+import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
 import gregtechlite.gtlitecore.common.block.variant.ShieldingCore
 import gregtechlite.gtlitecore.common.block.variant.WireCoil
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AccelerationTrack
@@ -152,6 +153,9 @@ object GTLiteAPI
     val CLEANROOM_CASING_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("cleanroom_casing_tier")
 
     @JvmField
+    val QUANTUM_STORAGE_UNIT_TIER: BlockAttributeRegistry<Int> = BlockAttributeRegistry.create("quantum_storage_unit_tier")
+
+    @JvmField
     val CRUCIBLE_STATS: BlockAttributeRegistry<Crucible> = DefaultBlockAttributeRegistry("crucible_stats", StateTier.COMPARATOR)
 
     @JvmField
@@ -215,6 +219,8 @@ object GTLiteAPI
 
         CLEANROOM_CASING_TIER.registerAll(GTCleanroomCasing.FILTER_CASING.state to 1,
                                           GTCleanroomCasing.FILTER_CASING_STERILE.state to 2)
+
+        QUANTUM_STORAGE_UNIT_TIER.registerBlockVariants(QuantumStorageUnit::class)
 
         COIL_TIER.registerBlockVariants(WireCoil::class)
     }

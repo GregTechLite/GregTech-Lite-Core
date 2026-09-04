@@ -26,6 +26,7 @@ import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.NuclearReactorCore
 import gregtechlite.gtlitecore.common.block.variant.PrimitiveCasing
+import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
 import gregtechlite.gtlitecore.common.block.variant.ShieldingCore
 import gregtechlite.gtlitecore.common.block.variant.TurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.WireCoil
@@ -196,6 +197,8 @@ object GTLiteBlocks
     lateinit var NUCLEAR_REACTOR_CORE_02: VariantActiveBlock<NuclearReactorCore.Enum02>
     lateinit var MANIPULATOR: VariantActiveBlock<Manipulator>
     lateinit var SHIELDING_CORE: VariantActiveBlock<ShieldingCore>
+    lateinit var QUANTUM_STORAGE_UNIT: VariantBlock<QuantumStorageUnit>
+
     lateinit var TRANSPARENT_CASING_01: VariantBlock<GlassCasing.Enum01>
     lateinit var TRANSPARENT_CASING_02: VariantBlock<GlassCasing.Enum02>
     lateinit var TRANSPARENT_CASING_03: VariantBlock<GlassCasing.Enum03>
@@ -472,6 +475,7 @@ object GTLiteBlocks
         NUCLEAR_REACTOR_CORE_02 = simpleBlock("nuclear_reactor_core_02", BlockVariantType.METAL_ACTIVE_BLOCK, 4.0f, 8.0f)
         MANIPULATOR = simpleBlock("manipulator", BlockVariantType.METAL_ACTIVE_BLOCK)
         SHIELDING_CORE = simpleBlock("shielding_core", BlockVariantType.METAL_ACTIVE_BLOCK)
+        QUANTUM_STORAGE_UNIT = simpleBlock("quantum_storage_unit", BlockVariantType.METAL_BLOCK)
 
         TRANSPARENT_CASING_01 = simpleBlock("glass_casing_01", BlockVariantType.TRANSPARENT_BLOCK, 5.0f, 5.0f)
         TRANSPARENT_CASING_02 = simpleBlock("glass_casing_02", BlockVariantType.TRANSPARENT_BLOCK, 5.0f, 5.0f)
@@ -581,6 +585,7 @@ object GTLiteBlocks
         registerItemModel(AEROSPACE_CASING)
         registerItemModel(CRUCIBLE)
         registerItemModel(COMPONENT_ASSEMBLY_CASING)
+        registerItemModel(QUANTUM_STORAGE_UNIT)
         registerItemModel(TRANSPARENT_CASING_01)
         registerItemModel(TRANSPARENT_CASING_02)
         registerItemModel(TRANSPARENT_CASING_03)

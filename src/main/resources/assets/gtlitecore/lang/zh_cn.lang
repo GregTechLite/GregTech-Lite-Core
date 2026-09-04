@@ -641,6 +641,16 @@ tile.gtlitecore.shielding_core.cosmic_fabric.name=寰宇强化屏蔽核心方块
 tile.gtlitecore.shielding_core.infinity_infused.name=无尽强化屏蔽核心方块
 tile.gtlitecore.shielding_core.spacetime_bending_core.name=时空扭曲核心方块
 
+tile.gtlitecore.quantum_storage_unit.t1.name=量子存储单元（T1）
+tile.gtlitecore.quantum_storage_unit.t2.name=量子存储单元（T2）
+tile.gtlitecore.quantum_storage_unit.t3.name=量子存储单元（T3）
+tile.gtlitecore.quantum_storage_unit.t4.name=量子存储单元（T4）
+tile.gtlitecore.quantum_storage_unit.t5.name=量子存储单元（T5）
+tile.gtlitecore.quantum_storage_unit.t6.name=量子存储单元（T6）
+tile.gtlitecore.quantum_storage_unit.t7.name=量子存储单元（T7）
+tile.gtlitecore.quantum_storage_unit.t8.name=量子存储单元（T8）
+tile.gtlitecore.quantum_storage_unit.t9.name=量子存储单元（T9）
+
 tile.gtlitecore.glass_casing_01.borosilicate.name=硼硅酸盐玻璃
 tile.gtlitecore.glass_casing_01.titanium_borosilicate.name=钛强化硼硅酸盐玻璃
 tile.gtlitecore.glass_casing_01.tungsten_steel_borosilicate.name=钨钢强化硼硅酸盐玻璃
@@ -4268,6 +4278,8 @@ gtlitecore.tooltip.food.potion_effect.type.minute=- 效果：§d%1$s %2$s（§f%
 
 gtlitecore.tooltip.glass_tier=玻璃等级：%s
 gtlitecore.tooltip.maximum_energy_output=§e最高产能功率：§f%s EU/t
+gtlitecore.tooltip.storage_type=§a最大存储种类：§f%s
+gtlitecore.tooltip.storage_capacity=§b最大总存储容量：§f%s 个/升
 
 gtlitecore.tooltip.crop.type=作物类型：
 gtlitecore.tooltip.crop.type.standard=§a常规

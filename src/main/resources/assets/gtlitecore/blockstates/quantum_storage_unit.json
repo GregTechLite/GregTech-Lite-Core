@@ -1,0 +1,79 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "t1": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/tiered/storage/top",
+          "side": "gtlitecore:blocks/casings/tiered/storage/luv",
+          "bottom": "#top"
+        }
+      },
+      "t2": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/tiered/storage/top",
+          "side": "gtlitecore:blocks/casings/tiered/storage/zpm",
+          "bottom": "#top"
+        }
+      },
+      "t3": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/tiered/storage/top",
+          "side": "gtlitecore:blocks/casings/tiered/storage/uv",
+          "bottom": "#top"
+        }
+      },
+      "t4": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/tiered/storage/top",
+          "side": "gtlitecore:blocks/casings/tiered/storage/uhv",
+          "bottom": "#top"
+        }
+      },
+      "t5": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/tiered/storage/top",
+          "side": "gtlitecore:blocks/casings/tiered/storage/uev",
+          "bottom": "#top"
+        }
+      },
+      "t6": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/tiered/storage/top",
+          "side": "gtlitecore:blocks/casings/tiered/storage/uiv",
+          "bottom": "#top"
+        }
+      },
+      "t7": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/tiered/storage/top",
+          "side": "gtlitecore:blocks/casings/tiered/storage/uxv",
+          "bottom": "#top"
+        }
+      },
+      "t8": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/tiered/storage/top",
+          "side": "gtlitecore:blocks/casings/tiered/storage/opv",
+          "bottom": "#top"
+        }
+      },
+      "t9": {
+        "model": "minecraft:cube_bottom_top",
+        "textures": {
+          "top": "gtlitecore:blocks/casings/tiered/storage/top",
+          "side": "gtlitecore:blocks/casings/tiered/storage/max",
+          "bottom": "#top"
+        }
+      }
+    }
+  }
+}

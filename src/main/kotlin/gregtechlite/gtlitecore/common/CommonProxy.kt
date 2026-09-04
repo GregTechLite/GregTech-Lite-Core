@@ -156,6 +156,7 @@ open class CommonProxy
             registry.register(GTLiteBlocks.NUCLEAR_REACTOR_CORE_02)
             registry.register(GTLiteBlocks.MANIPULATOR)
             registry.register(GTLiteBlocks.SHIELDING_CORE)
+            registry.register(GTLiteBlocks.QUANTUM_STORAGE_UNIT)
 
             registry.register(GTLiteBlocks.TRANSPARENT_CASING_01)
             registry.register(GTLiteBlocks.TRANSPARENT_CASING_02)
@@ -271,6 +272,7 @@ open class CommonProxy
             registry.register(createItemBlock(GTLiteBlocks.NUCLEAR_REACTOR_CORE_02, ::VariantItemBlock))
             registry.register(createItemBlock(GTLiteBlocks.MANIPULATOR, ::VariantItemBlock))
             registry.register(createItemBlock(GTLiteBlocks.SHIELDING_CORE, ::VariantItemBlock))
+            registry.register(createItemBlock(GTLiteBlocks.QUANTUM_STORAGE_UNIT, ::VariantItemBlock))
 
             registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_01, ::VariantItemBlock))
             registry.register(createItemBlock(GTLiteBlocks.TRANSPARENT_CASING_02, ::VariantItemBlock))

@@ -107,6 +107,9 @@ object TraceabilityPredicates
     fun cleanroomCasings() = tierBlock(GTLiteAPI.CLEANROOM_CASING_TIER)
 
     @JvmStatic
+    fun quantumStorageUnits() = tierBlock(GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER)
+
+    @JvmStatic
     fun coils() = tierBlock(GTLiteAPI.COIL_TIER)
 
     // endregion

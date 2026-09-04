@@ -641,6 +641,16 @@ tile.gtlitecore.shielding_core.cosmic_fabric.name=Cosmic Fabric Shielding Core
 tile.gtlitecore.shielding_core.infinity_infused.name=Infinity Infused Shielding Core
 tile.gtlitecore.shielding_core.spacetime_bending_core.name=Space-Time Bending Core
 
+tile.gtlitecore.quantum_storage_unit.t1.name=Quantum Storage Unit (T1)
+tile.gtlitecore.quantum_storage_unit.t2.name=Quantum Storage Unit (T2)
+tile.gtlitecore.quantum_storage_unit.t3.name=Quantum Storage Unit (T3)
+tile.gtlitecore.quantum_storage_unit.t4.name=Quantum Storage Unit (T4)
+tile.gtlitecore.quantum_storage_unit.t5.name=Quantum Storage Unit (T5)
+tile.gtlitecore.quantum_storage_unit.t6.name=Quantum Storage Unit (T6)
+tile.gtlitecore.quantum_storage_unit.t7.name=Quantum Storage Unit (T7)
+tile.gtlitecore.quantum_storage_unit.t8.name=Quantum Storage Unit (T8)
+tile.gtlitecore.quantum_storage_unit.t9.name=Quantum Storage Unit (T9)
+
 tile.gtlitecore.glass_casing_01.borosilicate.name=Borosilicate Glass
 tile.gtlitecore.glass_casing_01.titanium_borosilicate.name=Titanium reinforced Borosilicate Glass
 tile.gtlitecore.glass_casing_01.tungsten_steel_borosilicate.name=Tungsten Steel reinforced Borosilicate Glass
@@ -4268,6 +4278,8 @@ gtlitecore.tooltip.food.potion_effect.type.minute=- Effect: §d%1$s %2$s (§f%3$
 
 gtlitecore.tooltip.glass_tier=Glass Tier: %s
 gtlitecore.tooltip.maximum_energy_output=§eMaximum Energy Output: §f%s EU/t
+gtlitecore.tooltip.storage_type=§aMaximum Storage Type: §f%s
+gtlitecore.tooltip.storage_capacity=§bMaximum Storage Capacity: §f%s item/L
 
 gtlitecore.tooltip.crop.type=Crop Type:
 gtlitecore.tooltip.crop.type.standard=§aStandard
