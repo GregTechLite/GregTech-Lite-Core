@@ -38,7 +38,6 @@ import kotlin.math.max
 
 class MultiblockGasCollector(id: ResourceLocation) : RecipeMapMultiblockController(id, LARGE_GAS_COLLECTOR_RECIPES)
 {
-
     private var casingTier = 0
 
     init
@@ -114,7 +113,6 @@ class MultiblockGasCollector(id: ResourceLocation) : RecipeMapMultiblockControll
 
     private inner class LargeGasCollectorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
-
         override fun getOverclockingDurationFactor(): Double
             = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
@@ -130,7 +128,5 @@ class MultiblockGasCollector(id: ResourceLocation) : RecipeMapMultiblockControll
         }
 
         override fun getParallelLimit() = 16 * casingTier
-
     }
-
 }
