@@ -4647,3 +4647,5 @@ enchantment.level.84=LXXXIV
 enchantment.level.127=CXXVII
 enchantment.level.128=CXXVIII
 enchantment.level.146=CXLVI
+# 结构模式错误
+gtlitecore.multiblock.pattern.error.quantum_storage_cells=量子存储单元

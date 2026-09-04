@@ -24,17 +24,14 @@ import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.capability.handler.QuantumStorageHandler
 import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
 import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
-import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
-import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.longValue
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.quantumStorageUnits
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.readBlockCount
 import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
-import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.EnumFacing
@@ -86,20 +83,14 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
         super.formStructure(context)
         initializeAbilities()
 
-        val blockStats = readBlockStats(context)
-        storage.rebuild(blockStats.distinctSlots, blockStats.totalCapacity)
+        val counts = readBlockCount(context)
+        storage.rebuild(counts.distinctSlots, counts.totalCapacity)
         markStorageDirty()
 
         shouldImport = importItems.slots > 0
         shouldExport = exportItems.slots > 0
 
-        LOGGER.info("Formed Large Quantum Chest: [distinctSlots=${blockStats.distinctSlots}, capacity=${blockStats.totalCapacity}]")
-    }
-
-    private fun readBlockStats(context: PatternMatchContext): QuantumStorageUnit
-    {
-        val attribute = context.getAttributeOrDefault(GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER, 1)
-        return QuantumStorageUnit.entries[(attribute - 1).coerceIn(0, QuantumStorageUnit.entries.size - 1)]
+        LOGGER.info("Formed Large Quantum Chest: [distinctSlots=${counts.distinctSlots}, capacity=${counts.totalCapacity}]")
     }
 
     override fun invalidateStructure()

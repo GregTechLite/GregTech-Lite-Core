@@ -4647,3 +4647,5 @@ enchantment.level.84=LXXXIV
 enchantment.level.127=CXXVII
 enchantment.level.128=CXXVIII
 enchantment.level.146=CXLVI
+# Structure pattern error
+gtlitecore.multiblock.pattern.error.quantum_storage_cells=Quantum Storage Units

@@ -14,8 +14,10 @@ import gregtech.api.util.GTUtility
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
+import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
 import net.minecraft.block.state.IBlockState
 import net.minecraft.util.math.BlockPos
+import java.math.BigInteger
 import java.util.*
 
 object TraceabilityPredicates
@@ -107,9 +109,6 @@ object TraceabilityPredicates
     fun cleanroomCasings() = tierBlock(GTLiteAPI.CLEANROOM_CASING_TIER)
 
     @JvmStatic
-    fun quantumStorageUnits() = tierBlock(GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER)
-
-    @JvmStatic
     fun coils() = tierBlock(GTLiteAPI.COIL_TIER)
 
     // endregion
@@ -187,4 +186,30 @@ object TraceabilityPredicates
             return@TraceabilityPredicate blockWorldState.matchContext.getOrPut(symbol, true)
         return@TraceabilityPredicate blockWorldState.matchContext.get<String>(symbol) == null
     }.also { allowedStates.map(::BlockInfo) }
+
+    @JvmStatic
+    fun quantumStorageUnits(): TraceabilityPredicate = TraceabilityPredicate({ worldState ->
+        val tier = GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER.getAttribute(worldState.blockState)
+        val variant = tier?.let { QuantumStorageUnit.entries[(it - 1).coerceIn(0, QuantumStorageUnit.entries.size - 1)] }
+        return@TraceabilityPredicate variant?.let {
+            val counts = worldState.matchContext.getOrCreate(QuantumStorageUnitCounter.KEY) { QuantumStorageUnitCounter() }
+            counts.totalCapacity = counts.totalCapacity.add(it.totalCapacity)
+            counts.distinctSlots += it.distinctSlots
+            true
+        } ?: false
+    }, { GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER.ascendingBlocks.map { BlockInfo(it, null) }.toTypedArray() })
+
+    fun readBlockCount(context: PatternMatchContext): QuantumStorageUnitCounter
+        = context.get(QuantumStorageUnitCounter.KEY) as? QuantumStorageUnitCounter ?: QuantumStorageUnitCounter()
+
+    class QuantumStorageUnitCounter
+    {
+        var totalCapacity: BigInteger = BigInteger.ZERO
+        var distinctSlots: Int = 0
+
+        companion object
+        {
+            const val KEY = "QuantumStorageUnitCount"
+        }
+    }
 }
