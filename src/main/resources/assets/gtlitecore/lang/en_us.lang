@@ -2889,6 +2889,12 @@ gtlitecore.machine.large_fisher.mode.1=Current Mode: §8Jerk§7
 gtlitecore.machine.large_fisher.mode.2=Current Mode: §6Treasure§7
 gtlitecore.machine.large_fisher.inventory_full=Output Full
 
+gtlitecore.machine.large_quantum_chest.name=Large Quantum Item Storage Array
+
+gtlitecore.machine.large_quantum_chest.total_capacity=Total Capacity: %s Items
+gtlitecore.machine.large_quantum_chest.stored=Stored: %s Items
+gtlitecore.machine.large_quantum_chest.slots=Stored Item(s): %s / %s Item(s)
+
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=Stimulate Catalytic Phase Transition with Extremely High Entropy Change and Topological Order
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§f最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。

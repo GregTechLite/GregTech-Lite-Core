@@ -79,6 +79,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockPCBFac
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockPlasmaEnhancedCVDUnit
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockQuantumForceTransformer
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockSonicator
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.storage.MultiblockQuantumChest
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockSpaceElevator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockStellarForge
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockAdvancedFusionReactor
@@ -387,6 +388,7 @@ object GTLiteMetaTileEntities
     lateinit var LARGE_TRANSFORMER: MultiblockTransformer
     lateinit var LARGE_SLAUGHTER: MultiblockMobSlaughter
     lateinit var LARGE_FISHER: MultiblockFisher
+    lateinit var LARGE_QUANTUM_CHEST: MultiblockQuantumChest
 
     lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
     lateinit var PLASMA_ARC_TRANSMITTER: MultiblockPlasmaArcTransmitter
@@ -967,6 +969,7 @@ object GTLiteMetaTileEntities
         LARGE_TRANSFORMER = register(10140, MultiblockTransformer(GTLiteMod.id("large_transformer")))
         LARGE_SLAUGHTER = register(10141, MultiblockMobSlaughter(GTLiteMod.id("large_slaughter")))
         LARGE_FISHER = register(10142, MultiblockFisher(GTLiteMod.id("large_fisher")))
+        LARGE_QUANTUM_CHEST = register(10143, MultiblockQuantumChest(GTLiteMod.id("large_quantum_chest")))
 
         // ...
 

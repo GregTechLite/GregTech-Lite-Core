@@ -2889,6 +2889,12 @@ gtlitecore.machine.large_fisher.mode.1=当前模式：§8垃圾§7
 gtlitecore.machine.large_fisher.mode.2=当前模式：§6宝藏§7
 gtlitecore.machine.large_fisher.inventory_full=输出已满
 
+gtlitecore.machine.large_quantum_chest.name=大型量子物品存储阵列
+
+gtlitecore.machine.large_quantum_chest.total_capacity=总存储容量：%s个物品
+gtlitecore.machine.large_quantum_chest.stored=已存储：%s个物品
+gtlitecore.machine.large_quantum_chest.slots=已存储种类：%s / %s 种
+
 gtlitecore.machine.entrodynamically_phase_changer.name=熵动力学相变发生器
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§f最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。
