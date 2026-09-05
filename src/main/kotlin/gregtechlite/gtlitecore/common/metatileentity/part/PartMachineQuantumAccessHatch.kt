@@ -344,7 +344,7 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
         }
 
         override fun canAccept(input: IAEItemStack): Boolean
-            = !(readMode == AccessRestriction.NO_ACCESS || readMode == AccessRestriction.READ) && fillItems(input, true) > 0
+            = !(readMode == AccessRestriction.NO_ACCESS || readMode == AccessRestriction.READ) && fillItems(input, false) > 0
 
         override fun injectItems(input: IAEItemStack, actionable: Actionable, source: IActionSource): IAEItemStack?
         {
@@ -403,7 +403,7 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
         }
 
         override fun canAccept(input: IAEFluidStack): Boolean
-            = !(readMode == AccessRestriction.NO_ACCESS || readMode == AccessRestriction.READ) && fillFluids(input, true) > 0
+            = !(readMode == AccessRestriction.NO_ACCESS || readMode == AccessRestriction.READ) && fillFluids(input, false) > 0
 
         override fun injectItems(input: IAEFluidStack, actionable: Actionable, source: IActionSource): IAEFluidStack?
         {
