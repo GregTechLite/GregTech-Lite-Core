@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity
 
+import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
@@ -148,6 +149,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.steam.SteamMulti
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedLaserHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedMultiFluidHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAirIntakeHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumAccessHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumItemBus
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileCleaningMaintenanceHatch
@@ -280,6 +282,7 @@ object GTLiteMetaTileEntities
     lateinit var AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
     lateinit var EXTREME_AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
     lateinit var INFINITE_AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
+    lateinit var QUANTUM_ACCESS_HATCH: PartMachineQuantumAccessHatch
 
     lateinit var DUAL_IMPORT_HATCH: Array<PartMachineDualHatch>
     lateinit var DUAL_EXPORT_HATCH: Array<PartMachineDualHatch>
@@ -550,7 +553,7 @@ object GTLiteMetaTileEntities
         MOB_EXTRACTOR = register(288, 0..2) {
             MachineMobExtractor(GTLiteMod.id("mob_extractor.${VN[it + 1].lowercase()}"),
                                 GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES,
-                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false) { largeTankSizeFunction.apply(it) }
+                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false) { a -> largeTankSizeFunction.apply(a) }
         }
 
         // 301-315: Bio Simulator (LV-IV)
@@ -818,6 +821,12 @@ object GTLiteMetaTileEntities
         DUAL_EXPORT_HATCH = register(5053, 0..13)
         {
             PartMachineDualHatch(GTLiteMod.id("dual_hatch.export.${VN[it].lowercase()}"), it, true)
+        }
+
+        // 5069: Quantum Access Hatch
+        if (Mods.AppliedEnergistics2.isActive)
+        {
+            QUANTUM_ACCESS_HATCH = register(5069, PartMachineQuantumAccessHatch(GTLiteMod.id("quantum_access_hatch"), LuV))
         }
 
         // endregion

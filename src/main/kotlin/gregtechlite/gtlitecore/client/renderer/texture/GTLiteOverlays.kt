@@ -183,6 +183,8 @@ object GTLiteOverlays
     val WIRELESS_ENERGY_HATCH_OVERLAY = partId("wireless_energy_hatch_overlay")
     @JvmField
     val WIRELESS_STORAGE_HATCH_OVERLAY = partId("wireless_storage_hatch_overlay")
+    @JvmField
+    val QUANTUM_ACCESS_HATCH_OVERLAY = partId("quantum_access_hatch_overlay")
 
     // endregion
 

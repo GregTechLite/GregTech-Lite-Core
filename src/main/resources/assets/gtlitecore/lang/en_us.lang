@@ -3184,6 +3184,10 @@ gtlitecore.machine.dual_hatch.export.uiv.name=§2UIV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.uxv.name=§eUXV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.opv.name=§9OpV§f Dual Export Hatch
 
+gtlitecore.machine.quantum_access_hatch.name=Quantum Storage Access Hatch
+
+gtlitecore.machine.quantum_access_hatch.priority=Priority
+
 gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f Wireless Energy Hatch
 gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f Wireless Energy Hatch
 gtlitecore.machine.wireless_energy_hatch.input.mv.name=§bMV§f Wireless Energy Hatch

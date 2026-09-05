@@ -3184,6 +3184,10 @@ gtlitecore.machine.dual_hatch.export.uiv.name=§2UIV§f 输出总成
 gtlitecore.machine.dual_hatch.export.uxv.name=§eUXV§f 输出总成
 gtlitecore.machine.dual_hatch.export.opv.name=§9OpV§f 输出总成
 
+gtlitecore.machine.quantum_access_hatch.name=量子存储访问仓
+
+gtlitecore.machine.quantum_access_hatch.priority=优先级
+
 gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f 无线能源仓
 gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f 无线能源仓
 gtlitecore.machine.wireless_energy_hatch.input.mv.name=§bMV§f 无线能源仓

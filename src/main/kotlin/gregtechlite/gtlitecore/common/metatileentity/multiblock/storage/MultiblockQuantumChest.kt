@@ -30,6 +30,7 @@ import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.longValue
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.quantumStorageUnits
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.readBlockCount
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
 import net.minecraft.item.ItemStack
@@ -123,7 +124,10 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
             .or(abilities(IMPORT_ITEMS)
                     .setPreviewCount(1))
             .or(abilities(EXPORT_ITEMS)
-                    .setPreviewCount(1))) // TODO: Access Hatch ability support.
+                    .setPreviewCount(1))
+            .or(metaTileEntities(GTLiteMetaTileEntities.QUANTUM_ACCESS_HATCH)
+                    .setMaxGlobalLimited(1)
+                    .setPreviewCount(1)))
         .where('H', states(secondCasingState))
         .where('G', states(glassCasingState))
         .where('U', quantumStorageUnits()
@@ -146,6 +150,8 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
         }
         syncer.flushChanges()
     }
+
+    fun itemStorage(): QuantumStorageHandler<ItemStack> = storage
 
     fun insertItemStack(stack: ItemStack, amount: BigInteger, simulate: Boolean): BigInteger
     {

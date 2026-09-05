@@ -29,6 +29,7 @@ import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
 import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.readBlockCount
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.quantumStorageUnits
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.longValue
 import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
@@ -125,7 +126,10 @@ class MultiblockQuantumTank(id: ResourceLocation) : MultiblockWithDisplayBase(id
             .or(abilities(IMPORT_FLUIDS)
                     .setPreviewCount(1))
             .or(abilities(EXPORT_FLUIDS)
-                    .setPreviewCount(1))) // TODO: Access Hatch ability support.
+                    .setPreviewCount(1))
+            .or(metaTileEntities(GTLiteMetaTileEntities.QUANTUM_ACCESS_HATCH)
+                    .setMaxGlobalLimited(1)
+                    .setPreviewCount(1)))
         .where('H', states(secondCasingState))
         .where('G', states(glassCasingState))
         .where('U', quantumStorageUnits()
@@ -149,6 +153,8 @@ class MultiblockQuantumTank(id: ResourceLocation) : MultiblockWithDisplayBase(id
         }
         syncer.flushChanges()
     }
+
+    fun fluidStorage(): QuantumStorageHandler<FluidStack> = storage
 
     fun insertFluid(fluid: FluidStack, amount: BigInteger, simulate: Boolean): BigInteger
     {
