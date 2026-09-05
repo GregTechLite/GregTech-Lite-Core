@@ -264,6 +264,11 @@ import gregtech.common.metatileentities.MetaTileEntities.POLARIZER
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.PRIMITIVE_BLAST_FURNACE
 import gregtech.common.metatileentities.MetaTileEntities.PYROLYSE_OVEN
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_CHEST
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_CONTROLLER
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_EXTENDER
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_PROXY
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
 import gregtech.common.metatileentities.MetaTileEntities.RESEARCH_STATION
 import gregtech.common.metatileentities.MetaTileEntities.ROCK_BREAKER
 import gregtech.common.metatileentities.MetaTileEntities.SCANNER
@@ -451,6 +456,8 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARG
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_NAQUADAH_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ORE_WASHER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_PACKER
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_QUANTUM_CHEST
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_QUANTUM_TANK
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_REPLICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ROCKET_ENGINE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LARGE_ROCK_BREAKER
@@ -2076,6 +2083,48 @@ internal object MachineRecipeLoader
             EUt(VA[UHV])
             duration(2 * MINUTE)
             tier(1)
+        }
+
+        // Quantum Item Storage Array
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(QUANTUM_STORAGE_CONTROLLER, 8)
+            input(QUANTUM_STORAGE_PROXY, 16)
+            input(QUANTUM_STORAGE_EXTENDER, 16)
+            input(QUANTUM_CHEST[IV], 4)
+            inputs(GTComputerCasing.COMPUTER_HEAT_VENT.getStack(4))
+            input(ROBOT_ARM_LuV, 2)
+            input(FIELD_GENERATOR_LuV, 2)
+            fluidInputs(SolderingAlloy.getFluid(L * 4))
+            fluidInputs(Lubricant.getFluid(1000))
+            output(LARGE_QUANTUM_CHEST)
+            EUt(VA[LuV])
+            duration(5 * MINUTE)
+            scannerResearch {
+                it.researchStack(QUANTUM_CHEST[IV])
+                    .EUt(VA[IV])
+                    .duration(2 * MINUTE + 30 * SECOND)
+            }
+        }
+
+        // Quantum Fluid Storage Array
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(QUANTUM_STORAGE_CONTROLLER, 8)
+            input(QUANTUM_STORAGE_PROXY, 16)
+            input(QUANTUM_STORAGE_EXTENDER, 16)
+            input(QUANTUM_CHEST[IV], 4)
+            inputs(GTComputerCasing.COMPUTER_HEAT_VENT.getStack(4))
+            input(ELECTRIC_PUMP_LuV, 2)
+            input(FIELD_GENERATOR_LuV, 2)
+            fluidInputs(SolderingAlloy.getFluid(L * 4))
+            fluidInputs(Lubricant.getFluid(1000))
+            output(LARGE_QUANTUM_TANK)
+            EUt(VA[LuV])
+            duration(5 * MINUTE)
+            scannerResearch {
+                it.researchStack(QUANTUM_TANK[IV])
+                    .EUt(VA[IV])
+                    .duration(2 * MINUTE + 30 * SECOND)
+            }
         }
     }
 

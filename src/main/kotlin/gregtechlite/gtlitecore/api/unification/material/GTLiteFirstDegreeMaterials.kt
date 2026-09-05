@@ -3386,7 +3386,7 @@ object GTLiteFirstDegreeMaterials
             components(Rubidium, 11, Tritanium, 11, Adamantium, 7, Firestone, 13, MetastableOganesson, 13,
                        ActiniumSuperhydride, 8)
             flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE,
-                  GENERATE_NANITE, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FRAME)
+                  GENERATE_NANITE, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FRAME, GENERATE_ROTOR)
             blastProp(22000, GasTier.HIGHEST, // Eternity Plus
                       VA[UXV], 20 * SECOND,
                       VA[UIV], 10 * SECOND)
