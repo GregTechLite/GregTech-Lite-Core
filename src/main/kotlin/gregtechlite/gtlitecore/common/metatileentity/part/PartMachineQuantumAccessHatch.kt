@@ -58,7 +58,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import java.math.BigInteger
 import java.util.EnumSet
 
-// TODO: If it not cause some performance problem, use new sync api (waiting for test).
 class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
     : MetaTileEntityMultiblockPart(id, tier), IGridProxyable, IActionHost, ICellContainer
 {
@@ -241,16 +240,11 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
     override fun buildUI(guiData: PosGuiData, guiSyncManager: PanelSyncManager, uiSettings: UISettings): ModularPanel
     {
         val prioritySync = IntSyncValue({ _priority }, { priority -> setPriority(priority) })
-        return GTGuis.createPanel(this, 150, 76)
+        return GTGuis.createPanel(this, 150, 46)
             .child(IKey.lang(metaFullName).asWidget()
                        .pos(5, 5))
-            .child(IKey.dynamic {
-                return@dynamic if (lastActive) I18n.format("gregtech.gui.me_network.online")
-                    else I18n.format("gregtech.gui.me_network.offline")
-            }.asWidget()
-                       .pos(5, 22))
             .child(Flow.row()
-                       .pos(5, 42)
+                       .pos(5, 22)
                        .coverChildrenHeight()
                        .child(IKey.lang("gtlitecore.machine.quantum_access_hatch.priority").asWidget()
                                   .width(65))
