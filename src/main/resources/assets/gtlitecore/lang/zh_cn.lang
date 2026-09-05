@@ -4295,7 +4295,7 @@ gtlitecore.tooltip.food.potion_effect.type.minute=- 效果：§d%1$s %2$s（§f%
 gtlitecore.tooltip.glass_tier=玻璃等级：%s
 gtlitecore.tooltip.maximum_energy_output=§e最高产能功率：§f%s EU/t
 gtlitecore.tooltip.storage_type=§a最大存储种类：§f%s
-gtlitecore.tooltip.storage_capacity=§b最大总存储容量：§f%s 个/升
+gtlitecore.tooltip.storage_capacity=§b最大总存储容量：§f%s 个/mB
 
 gtlitecore.tooltip.crop.type=作物类型：
 gtlitecore.tooltip.crop.type.standard=§a常规

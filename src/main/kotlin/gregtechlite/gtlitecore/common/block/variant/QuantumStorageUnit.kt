@@ -17,15 +17,15 @@ enum class QuantumStorageUnit(private val serializedName: String,
                               private val harvestLevel: Int = 2) : BlockVariant, StateTier, IStringSerializable,
                                                                    IStateHarvestLevel, QuantumStorageStats
 {
-    T1("t1", 256     , BigInteger.TEN.pow(15)), // 1,000,000,000,000,000
-    T2("t2", 1024    , BigInteger.TEN.pow(18)), // 1,000,000,000,000,000,000
-    T3("t3", 4096    , BigInteger.TEN.pow(21)), // 1,000,000,000,000,000,000,000
-    T4("t4", 16384   , BigInteger.TEN.pow(24)), // 1,000,000,000,000,000,000,000,000
-    T5("t5", 65536   , BigInteger.TEN.pow(27)), // 1,000,000,000,000,000,000,000,000,000
-    T6("t6", 262144  , BigInteger.TEN.pow(30)), // 1,000,000,000,000,000,000,000,000,000,000
-    T7("t7", 1048576 , BigInteger.TEN.pow(33)), // 1,000,000,000,000,000,000,000,000,000,000,000
-    T8("t8", 4194304 , BigInteger.TEN.pow(36)), // 1,000,000,000,000,000,000,000,000,000,000,000,000
-    T9("t9", 16777216, BigInteger.TEN.pow(39)); // 1,000,000,000,000,000,000,000,000,000,000,000,000,000
+    T1("t1", 256     , BigInteger.TEN.pow(9)),
+    T2("t2", 1024    , BigInteger.TEN.pow(12)),
+    T3("t3", 4096    , BigInteger.TEN.pow(15)),
+    T4("t4", 16384   , BigInteger.TEN.pow(18)),
+    T5("t5", 65536   , BigInteger.TEN.pow(21)),
+    T6("t6", 262144  , BigInteger.TEN.pow(24)),
+    T7("t7", 1048576 , BigInteger.TEN.pow(27)),
+    T8("t8", 4194304 , BigInteger.TEN.pow(30)),
+    T9("t9", 16777216, BigInteger.TEN.pow(33));
 
     override val state: IBlockState
         get() = GTLiteBlocks.QUANTUM_STORAGE_UNIT.getState(this)

@@ -4295,7 +4295,7 @@ gtlitecore.tooltip.food.potion_effect.type.minute=- Effect: §d%1$s %2$s (§f%3$
 gtlitecore.tooltip.glass_tier=Glass Tier: %s
 gtlitecore.tooltip.maximum_energy_output=§eMaximum Energy Output: §f%s EU/t
 gtlitecore.tooltip.storage_type=§aMaximum Storage Type: §f%s
-gtlitecore.tooltip.storage_capacity=§bMaximum Storage Capacity: §f%s item/L
+gtlitecore.tooltip.storage_capacity=§bMaximum Storage Capacity: §f%s item/mB
 
 gtlitecore.tooltip.crop.type=Crop Type:
 gtlitecore.tooltip.crop.type.standard=§aStandard
