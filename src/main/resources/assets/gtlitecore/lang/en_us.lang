@@ -2895,6 +2895,12 @@ gtlitecore.machine.large_quantum_chest.total_capacity=Total Capacity: %s Items
 gtlitecore.machine.large_quantum_chest.stored=Stored: %s Items
 gtlitecore.machine.large_quantum_chest.slots=Stored Item(s): %s / %s Item(s)
 
+gtlitecore.machine.large_quantum_tank.name=Large Quantum Fluid Storage Array
+
+gtlitecore.machine.large_quantum_tank.total_capacity=Total Capacity: %s mB
+gtlitecore.machine.large_quantum_tank.stored=Stored: %s mB
+gtlitecore.machine.large_quantum_tank.slots=Stored Fluid(s): %s / %s Fluid(s)
+
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=Stimulate Catalytic Phase Transition with Extremely High Entropy Change and Topological Order
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§f最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。
@@ -4647,5 +4653,3 @@ enchantment.level.84=LXXXIV
 enchantment.level.127=CXXVII
 enchantment.level.128=CXXVIII
 enchantment.level.146=CXLVI
-# Structure pattern error
-gtlitecore.multiblock.pattern.error.quantum_storage_cells=Quantum Storage Units

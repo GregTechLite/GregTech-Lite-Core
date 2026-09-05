@@ -5,13 +5,13 @@ import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
 import gregtech.api.capability.GregtechTileCapabilities.CAPABILITY_CONTROLLABLE
 import gregtech.api.capability.IControllable
-import gregtech.api.capability.impl.ItemHandlerList
+import gregtech.api.capability.impl.FluidTankList
 import gregtech.api.metatileentity.IVoidable.VoidingMode
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.MAINTENANCE_HATCH
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
@@ -19,51 +19,51 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.util.KeyUtil
+import gregtech.api.util.RelativeDirection.RIGHT
+import gregtech.api.util.RelativeDirection.UP
+import gregtech.api.util.RelativeDirection.FRONT
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.capability.handler.QuantumStorageHandler
 import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
 import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
-import gregtechlite.gtlitecore.api.LOGGER
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.extension.copy
-import gregtechlite.gtlitecore.api.extension.longValue
-import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.quantumStorageUnits
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.readBlockCount
+import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.quantumStorageUnits
+import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.extension.longValue
 import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
-import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.common.capabilities.Capability
+import net.minecraftforge.fluids.FluidStack
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import java.math.BigInteger
 
-class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(id), IControllable, SyncedMetaTileEntity
+class MultiblockQuantumTank(id: ResourceLocation) : MultiblockWithDisplayBase(id), IControllable, SyncedMetaTileEntity
 {
     override val syncer: MetaTileEntitySyncer = MetaTileEntitySyncer(this)
 
-    private var storage: QuantumStorageHandler<ItemStack> = QuantumStorageHandler(0, BigInteger.ZERO,
-        isSameType = { a, b -> a.isItemEqual(b) && ItemStack.areItemStackTagsEqual(a, b) }, // TODO: It's that too strict?
-        writeType = { tag, stack ->
+    private var storage: QuantumStorageHandler<FluidStack> = QuantumStorageHandler(0, BigInteger.ZERO,
+        isSameType = { a, b -> a.isFluidEqual(b) },
+        writeType = { tag, fluid ->
             val nbt = NBTTagCompound()
-            stack.writeToNBT(nbt)
-            tag.setTag("item", nbt)
+            fluid.writeToNBT(nbt)
+            tag.setTag("fluid", nbt)
         },
         readType = { tag ->
-            val stack = ItemStack(tag.getCompoundTag("item")).also { it.setCount(1) }
-            return@QuantumStorageHandler stack
+            FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("fluid")).also { it?.amount = 1 }!!
         })
 
     private var storageSync by syncer.syncedNBT(NBTTagCompound())
     private var isStorageDirty: Boolean = false
 
-    private lateinit var importItems: ItemHandlerList
-    private lateinit var exportItems: ItemHandlerList
+    private lateinit var importFluids: FluidTankList
+    private lateinit var exportFluids: FluidTankList
 
     private var _isWorkingEnabled: Boolean = true
     private var shouldImport: Boolean = false
@@ -76,7 +76,7 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
         private val glassCasingState = GTGlassCasing.FUSION_GLASS.state
     }
 
-    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockQuantumChest(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockQuantumTank(metaTileEntityId)
 
     override fun formStructure(context: PatternMatchContext)
     {
@@ -87,8 +87,8 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
         storage.rebuild(counts.distinctSlots, counts.totalCapacity)
         markStorageDirty()
 
-        shouldImport = importItems.slots > 0
-        shouldExport = exportItems.slots > 0
+        shouldImport = importFluids.tanks > 0
+        shouldExport = exportFluids.tanks > 0
     }
 
     override fun invalidateStructure()
@@ -99,35 +99,38 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
 
     private fun initializeAbilities()
     {
-        importItems = ItemHandlerList(getAbilities(IMPORT_ITEMS))
-        exportItems = ItemHandlerList(getAbilities(EXPORT_ITEMS))
+        importFluids = FluidTankList(true, getAbilities(IMPORT_FLUIDS))
+        exportFluids = FluidTankList(true, getAbilities(EXPORT_FLUIDS))
     }
 
     private fun resetTileAbilities()
     {
-        importItems = ItemHandlerList(emptyList())
-        exportItems = ItemHandlerList(emptyList())
+        importFluids = FluidTankList(true)
+        exportFluids = FluidTankList(true)
     }
 
     // @formatter:off
 
-    override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
-        .aisle("HHHHH", "HCCCH", "HCCCH", "HCCCH", "HHHHH")
+    override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start(RIGHT, FRONT, UP)
+        .aisle("     ", " CCC ", " CCC ", " CCC ", "     ")
+        .aisle("HCSCH", "HCCCH", "HCCCH", "HCCCH", "HCCCH")
         .aisle("GGGGG", "GUUUG", "GUUUG", "GUUUG", "GGGGG").setRepeatable(1, 15)
-        .aisle("HHHHH", "HCCCH", "HCSCH", "HCCCH", "HHHHH")
+        .aisle("HCCCH", "HCCCH", "HCCCH", "HCCCH", "HCCCH")
+        .aisle("     ", " CCC ", " CCC ", " CCC ", "     ")
         .where('S', selfPredicate())
         .where('C', states(casingState)
             .setMinGlobalLimited(12)
             .or(abilities(MAINTENANCE_HATCH)
                     .setExactLimit(1))
-            .or(abilities(IMPORT_ITEMS)
+            .or(abilities(IMPORT_FLUIDS)
                     .setPreviewCount(1))
-            .or(abilities(EXPORT_ITEMS)
+            .or(abilities(EXPORT_FLUIDS)
                     .setPreviewCount(1))) // TODO: Access Hatch ability support.
         .where('H', states(secondCasingState))
         .where('G', states(glassCasingState))
         .where('U', quantumStorageUnits()
             .or(air()))
+        .where(' ', any())
         .build()
 
     // @formatter:on
@@ -136,8 +139,8 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
     {
         if (!world.isRemote && _isWorkingEnabled && offsetTimer % (1 * SECOND) == 0L)
         {
-            if (shouldImport) importItems()
-            if (shouldExport) exportItems()
+            if (shouldImport) importFluids()
+            if (shouldExport) exportFluids()
         }
         if (isStorageDirty)
         {
@@ -147,85 +150,87 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
         syncer.flushChanges()
     }
 
-    fun insertItemStack(stack: ItemStack, amount: BigInteger, simulate: Boolean): BigInteger
+    fun insertFluid(fluid: FluidStack, amount: BigInteger, simulate: Boolean): BigInteger
     {
-        val newStack = stack.copy()
-        val insertableStack = storage.maxInsertable(newStack)
-        var acceptedStack = minOf(amount, insertableStack)
+        val newFluid = fluid.copy()
+        val insertable = storage.maxInsertable(newFluid)
+        var accepted = minOf(amount, insertable)
 
-        if (voidingMode == VoidingMode.VOID_ITEMS.ordinal || voidingMode == VoidingMode.VOID_BOTH.ordinal)
-            acceptedStack = amount
+        if (voidingMode == VoidingMode.VOID_FLUIDS.ordinal || voidingMode == VoidingMode.VOID_BOTH.ordinal)
+            accepted = amount
 
-        if (!simulate && acceptedStack.signum() > 0)
+        if (!simulate && accepted.signum() > 0)
         {
-            storage.insert(newStack, acceptedStack.min(insertableStack))
+            storage.insert(newFluid, accepted.min(insertable))
             markStorageDirty()
         }
-        return acceptedStack
+        return accepted
     }
 
-    fun extractItemStack(stack: ItemStack, amount: BigInteger, simulate: Boolean): BigInteger
+    fun extractFluid(fluid: FluidStack, amount: BigInteger, simulate: Boolean): BigInteger
     {
-        val newStack = stack.copy()
-        val removedStack = minOf(amount, storage.currentAmount(newStack))
-        if (!simulate && removedStack.signum() > 0)
+        val newFluid = fluid.copy()
+        val removed = minOf(amount, storage.currentAmount(newFluid))
+        if (!simulate && removed.signum() > 0)
         {
-            storage.extract(newStack, removedStack)
+            storage.extract(newFluid, removed)
             markStorageDirty()
         }
-        return removedStack
+        return removed
     }
 
-    private fun importItems()
+    private fun importFluids()
     {
-        for (slot in 0 until importItems.slots)
+        for (tank in importFluids.fluidTanks)
         {
-            val stack = importItems.getStackInSlot(slot)
-            if (stack.isEmpty) continue
+            val fluid = tank.fluid ?: continue
 
-            val acceptedStack = storage.insert(stack.copy(), BigInteger.valueOf(stack.count.toLong()))
-            if (acceptedStack.signum() > 0)
+            val accepted = storage.insert(fluid.copy(), BigInteger.valueOf(fluid.amount.toLong()))
+            if (accepted.signum() > 0)
             {
-                importItems.extractItem(slot, acceptedStack.intValueExact(), false)
+                tank.drain(accepted.intValueExact(), true)
                 markStorageDirty()
             }
-            else if (voidingMode == VoidingMode.VOID_ITEMS.ordinal || voidingMode == VoidingMode.VOID_BOTH.ordinal)
+            else if (voidingMode == VoidingMode.VOID_FLUIDS.ordinal || voidingMode == VoidingMode.VOID_BOTH.ordinal)
             {
-                importItems.extractItem(slot, stack.count, false)
+                tank.drain(tank.fluid?.amount ?: 0, true)
             }
         }
     }
 
-    private fun exportItems()
+    private fun exportFluids()
     {
-        val stacks = storage.entries().map { it.key }
-        for (stack in stacks)
+        val fluids = storage.entries().map { it.key }
+        for (fluid in fluids)
         {
-            val availableStack = storage.currentAmount(stack)
-            if (availableStack.signum() <= 0) continue
+            val available = storage.currentAmount(fluid)
+            if (available.signum() <= 0) continue
 
-            var stackToMove = minOf(availableStack, BigInteger.valueOf(Integer.MAX_VALUE.toLong()))
-            var movedStack = BigInteger.ZERO
+            var fluidToMove = minOf(available, BigInteger.valueOf(Integer.MAX_VALUE.toLong()))
+            var moved = BigInteger.ZERO
 
-            for (slot in 0 until exportItems.slots)
+            for (tank in exportFluids.fluidTanks)
             {
-                if (stackToMove.signum() <= 0) break
+                if (fluidToMove.signum() <= 0) break
 
-                val stackToInsert = minOf(stackToMove, BigInteger.valueOf(64L)).toInt()
-                val insertStack = stack.copy(stackToInsert)
+                val inside = tank.fluid
+                if (inside != null && !inside.isFluidEqual(fluid)) continue
 
-                val leftoverStack = exportItems.insertItem(slot, insertStack, false)
-                val filledStack = stackToInsert - leftoverStack.count
-                if (filledStack > 0)
+                val space = (tank.capacity - (inside?.amount ?: 0)).toLong()
+                if (space <= 0) continue
+
+                val toFill = minOf(space.toBigInteger(), fluidToMove).toInt()
+                val filled = tank.fill(FluidStack(fluid, toFill), true)
+                if (filled > 0)
                 {
-                    stackToMove = stackToMove.subtract(BigInteger.valueOf(filledStack.toLong()))
-                    movedStack = movedStack.add(BigInteger.valueOf(filledStack.toLong()))
+                    fluidToMove = fluidToMove.subtract(BigInteger.valueOf(filled.toLong()))
+                    moved = moved.add(BigInteger.valueOf(filled.toLong()))
                 }
             }
 
-            if (movedStack.signum() > 0)
+            if (moved.signum() > 0)
             {
-                storage.extract(stack, movedStack)
+                storage.extract(fluid, moved)
                 markStorageDirty()
             }
         }
@@ -270,16 +275,16 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
                 {
                     val totalCapacity = KeyUtil.number(TextFormatting.GREEN, syncer.syncLong { storage.totalCapacity.longValue() })
                     keyManager.add(KeyUtil.lang(TextFormatting.GRAY,
-                                                "gtlitecore.machine.large_quantum_chest.total_capacity", totalCapacity))
+                                                "gtlitecore.machine.large_quantum_tank.total_capacity", totalCapacity))
 
                     val stored = KeyUtil.number(TextFormatting.YELLOW, syncer.syncLong { storage.totalStored().longValue() })
                     keyManager.add(KeyUtil.lang(TextFormatting.GRAY,
-                                                "gtlitecore.machine.large_quantum_chest.stored", stored))
+                                                "gtlitecore.machine.large_quantum_tank.stored", stored))
 
                     val distinctSlots = KeyUtil.number(TextFormatting.BLUE, syncer.syncInt { storage.distinctSlots() }.toLong())
                     val maxDistinctSlots = KeyUtil.number(TextFormatting.BLUE, syncer.syncInt { storage.maxDistinct }.toLong())
                     keyManager.add(KeyUtil.lang(TextFormatting.GRAY,
-                                                "gtlitecore.machine.large_quantum_chest.slots", distinctSlots, maxDistinctSlots))
+                                                "gtlitecore.machine.large_quantum_tank.slots", distinctSlots, maxDistinctSlots))
                 }
             }
             .addWorkingStatusLine()
@@ -300,7 +305,7 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
     }
 
     @SideOnly(Side.CLIENT)
-    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    override fun addInformation(stack: net.minecraft.item.ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced) // TODO: Description.
     }

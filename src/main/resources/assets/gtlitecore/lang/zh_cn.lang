@@ -2895,6 +2895,12 @@ gtlitecore.machine.large_quantum_chest.total_capacity=总存储容量：%s个物
 gtlitecore.machine.large_quantum_chest.stored=已存储：%s个物品
 gtlitecore.machine.large_quantum_chest.slots=已存储种类：%s / %s 种
 
+gtlitecore.machine.large_quantum_tank.name=大型量子流体存储阵列
+
+gtlitecore.machine.large_quantum_tank.total_capacity=总存储容量：%s mB
+gtlitecore.machine.large_quantum_tank.stored=已存储：%s mB
+gtlitecore.machine.large_quantum_tank.slots=已存储种类：%s / %s 种
+
 gtlitecore.machine.entrodynamically_phase_changer.name=熵动力学相变发生器
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§f最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。
@@ -4647,5 +4653,3 @@ enchantment.level.84=LXXXIV
 enchantment.level.127=CXXVII
 enchantment.level.128=CXXVIII
 enchantment.level.146=CXLVI
-# 结构模式错误
-gtlitecore.multiblock.pattern.error.quantum_storage_cells=量子存储单元

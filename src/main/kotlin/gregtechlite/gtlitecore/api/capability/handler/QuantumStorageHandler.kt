@@ -5,8 +5,7 @@ import net.minecraft.nbt.NBTTagList
 import java.math.BigInteger
 
 /**
- * Content types are opaque type [T], it must be [net.minecraft.item.ItemStack] or [net.minecraftforge.fluids.FluidStack].
- *
+ * @param T             An opaque type for contents, must be `ItemStack` or `FluidStack`.
  * @param maxDistinct   A fixed number for maximum distinct content slots.
  * @param totalCapacity The total capacity of all content slots which has.
  */
