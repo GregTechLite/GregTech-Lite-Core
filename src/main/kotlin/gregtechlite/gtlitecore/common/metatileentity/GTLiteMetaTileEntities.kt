@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity
 
+import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
@@ -79,6 +80,8 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockPCBFac
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockPlasmaEnhancedCVDUnit
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockQuantumForceTransformer
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockSonicator
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.storage.MultiblockQuantumChest
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.storage.MultiblockQuantumTank
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockSpaceElevator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockStellarForge
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockAdvancedFusionReactor
@@ -146,6 +149,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.steam.SteamMulti
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedLaserHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedMultiFluidHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAirIntakeHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumAccessHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumItemBus
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileCleaningMaintenanceHatch
@@ -278,6 +282,7 @@ object GTLiteMetaTileEntities
     lateinit var AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
     lateinit var EXTREME_AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
     lateinit var INFINITE_AIR_INTAKE_HATCH: PartMachineAirIntakeHatch
+    lateinit var QUANTUM_ACCESS_HATCH: PartMachineQuantumAccessHatch
 
     lateinit var DUAL_IMPORT_HATCH: Array<PartMachineDualHatch>
     lateinit var DUAL_EXPORT_HATCH: Array<PartMachineDualHatch>
@@ -387,6 +392,8 @@ object GTLiteMetaTileEntities
     lateinit var LARGE_TRANSFORMER: MultiblockTransformer
     lateinit var LARGE_SLAUGHTER: MultiblockMobSlaughter
     lateinit var LARGE_FISHER: MultiblockFisher
+    lateinit var LARGE_QUANTUM_CHEST: MultiblockQuantumChest
+    lateinit var LARGE_QUANTUM_TANK: MultiblockQuantumTank
 
     lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
     lateinit var PLASMA_ARC_TRANSMITTER: MultiblockPlasmaArcTransmitter
@@ -546,7 +553,7 @@ object GTLiteMetaTileEntities
         MOB_EXTRACTOR = register(288, 0..2) {
             MachineMobExtractor(GTLiteMod.id("mob_extractor.${VN[it + 1].lowercase()}"),
                                 GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES,
-                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false) { largeTankSizeFunction.apply(it) }
+                                GTLiteOverlays.MOB_EXTRACTOR_OVERLAY, it + 1, false) { a -> largeTankSizeFunction.apply(a) }
         }
 
         // 301-315: Bio Simulator (LV-IV)
@@ -816,6 +823,12 @@ object GTLiteMetaTileEntities
             PartMachineDualHatch(GTLiteMod.id("dual_hatch.export.${VN[it].lowercase()}"), it, true)
         }
 
+        // 5069: Quantum Access Hatch
+        if (Mods.AppliedEnergistics2.isActive)
+        {
+            QUANTUM_ACCESS_HATCH = register(5069, PartMachineQuantumAccessHatch(GTLiteMod.id("quantum_access_hatch"), LuV))
+        }
+
         // endregion
 
         // region 10001-20000 Multiblock Machines
@@ -967,6 +980,8 @@ object GTLiteMetaTileEntities
         LARGE_TRANSFORMER = register(10140, MultiblockTransformer(GTLiteMod.id("large_transformer")))
         LARGE_SLAUGHTER = register(10141, MultiblockMobSlaughter(GTLiteMod.id("large_slaughter")))
         LARGE_FISHER = register(10142, MultiblockFisher(GTLiteMod.id("large_fisher")))
+        LARGE_QUANTUM_CHEST = register(10143, MultiblockQuantumChest(GTLiteMod.id("large_quantum_chest")))
+        LARGE_QUANTUM_TANK = register(10144, MultiblockQuantumTank(GTLiteMod.id("large_quantum_tank")))
 
         // ...
 

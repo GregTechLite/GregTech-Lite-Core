@@ -641,6 +641,16 @@ tile.gtlitecore.shielding_core.cosmic_fabric.name=Cosmic Fabric Shielding Core
 tile.gtlitecore.shielding_core.infinity_infused.name=Infinity Infused Shielding Core
 tile.gtlitecore.shielding_core.spacetime_bending_core.name=Space-Time Bending Core
 
+tile.gtlitecore.quantum_storage_unit.t1.name=Quantum Storage Unit (T1)
+tile.gtlitecore.quantum_storage_unit.t2.name=Quantum Storage Unit (T2)
+tile.gtlitecore.quantum_storage_unit.t3.name=Quantum Storage Unit (T3)
+tile.gtlitecore.quantum_storage_unit.t4.name=Quantum Storage Unit (T4)
+tile.gtlitecore.quantum_storage_unit.t5.name=Quantum Storage Unit (T5)
+tile.gtlitecore.quantum_storage_unit.t6.name=Quantum Storage Unit (T6)
+tile.gtlitecore.quantum_storage_unit.t7.name=Quantum Storage Unit (T7)
+tile.gtlitecore.quantum_storage_unit.t8.name=Quantum Storage Unit (T8)
+tile.gtlitecore.quantum_storage_unit.t9.name=Quantum Storage Unit (T9)
+
 tile.gtlitecore.glass_casing_01.borosilicate.name=Borosilicate Glass
 tile.gtlitecore.glass_casing_01.titanium_borosilicate.name=Titanium reinforced Borosilicate Glass
 tile.gtlitecore.glass_casing_01.tungsten_steel_borosilicate.name=Tungsten Steel reinforced Borosilicate Glass
@@ -2879,6 +2889,28 @@ gtlitecore.machine.large_fisher.mode.1=Current Mode: §8Jerk§7
 gtlitecore.machine.large_fisher.mode.2=Current Mode: §6Treasure§7
 gtlitecore.machine.large_fisher.inventory_full=Output Full
 
+gtlitecore.machine.large_quantum_chest.name=Large Quantum Item Storage Array
+gtlitecore.machine.large_quantum_chest.tooltip.1=Digitize Items and store them in Large Quantities
+gtlitecore.machine.large_quantum_chest.tooltip.2=Can place different tier §fQuantum Storage Unit§7 in structure
+gtlitecore.machine.large_quantum_chest.tooltip.3=At most can scale to §l15§r§7 blocks for structure
+gtlitecore.machine.large_quantum_chest.tooltip.4=The §aTotal Storage Capacity§7 and §9Type§7 is the sum of all units in structure
+gtlitecore.machine.large_quantum_chest.tooltip.5=Using §eQuantum Storage Access Hatch§7 can interact with ME Network
+
+gtlitecore.machine.large_quantum_chest.total_capacity=Total Capacity: %s Items
+gtlitecore.machine.large_quantum_chest.stored=Stored: %s Items
+gtlitecore.machine.large_quantum_chest.slots=Stored Item(s): %s / %s Item(s)
+
+gtlitecore.machine.large_quantum_tank.name=Large Quantum Fluid Storage Array
+gtlitecore.machine.large_quantum_tank.tooltip.1=Digitize Fluids and store them in Large Quantities
+gtlitecore.machine.large_quantum_tank.tooltip.2=Can place different tier §fQuantum Storage Unit§7 in structure
+gtlitecore.machine.large_quantum_tank.tooltip.3=At most can scale to §l15§r§7 blocks for structure
+gtlitecore.machine.large_quantum_tank.tooltip.4=The §aTotal Storage Capacity§7 and §9Type§7 is the sum of all units in structure
+gtlitecore.machine.large_quantum_tank.tooltip.5=Using §eQuantum Storage Access Hatch§7 can interact with ME Network
+
+gtlitecore.machine.large_quantum_tank.total_capacity=Total Capacity: %s mB
+gtlitecore.machine.large_quantum_tank.stored=Stored: %s mB
+gtlitecore.machine.large_quantum_tank.slots=Stored Fluid(s): %s / %s Fluid(s)
+
 gtlitecore.machine.entrodynamically_phase_changer.name=Entrodynamically Phase Changer
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=Stimulate Catalytic Phase Transition with Extremely High Entropy Change and Topological Order
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§f最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。
@@ -3161,6 +3193,13 @@ gtlitecore.machine.dual_hatch.export.uev.name=§aUEV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.uiv.name=§2UIV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.uxv.name=§eUXV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.opv.name=§9OpV§f Dual Export Hatch
+
+gtlitecore.machine.quantum_access_hatch.name=Quantum Storage Access Hatch
+gtlitecore.machine.quantum_access_hatch.tooltip.1=Connect any type of Quantum Storage Array to ME Network
+gtlitecore.machine.quantum_access_hatch.tooltip.2=Connect ME Network and read §fContents§7 or I/O for Quantum Storage Array
+gtlitecore.machine.quantum_access_hatch.tooltip.3=Can set §fPriority§7 of the hatch in ME Network
+
+gtlitecore.machine.quantum_access_hatch.priority=Priority
 
 gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f Wireless Energy Hatch
 gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f Wireless Energy Hatch
@@ -4268,6 +4307,8 @@ gtlitecore.tooltip.food.potion_effect.type.minute=- Effect: §d%1$s %2$s (§f%3$
 
 gtlitecore.tooltip.glass_tier=Glass Tier: %s
 gtlitecore.tooltip.maximum_energy_output=§eMaximum Energy Output: §f%s EU/t
+gtlitecore.tooltip.storage_type=§aMaximum Storage Type: §f%s
+gtlitecore.tooltip.storage_capacity=§bMaximum Storage Capacity: §f%s item/mB
 
 gtlitecore.tooltip.crop.type=Crop Type:
 gtlitecore.tooltip.crop.type.standard=§aStandard

@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
+import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
@@ -102,6 +103,7 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_UXV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.ITEM_FILTER
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
+import gregtech.common.items.MetaItems.SENSOR_LuV
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.CLEANING_MAINTENANCE_HATCH
@@ -120,6 +122,7 @@ import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_CHEST
+import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_CONTROLLER
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
 import gregtech.common.metatileentities.MetaTileEntities.ROTOR_HOLDER
 import gregtech.common.metatileentities.MetaTileEntities.STAINLESS_STEEL_DRUM
@@ -212,6 +215,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NAQU
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.POLISHER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_EXPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUADRUPLE_FLUID_IMPORT_HATCH
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUANTUM_ACCESS_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUANTUM_ITEM_IMPORT_BUS
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.REPLICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ROASTER
@@ -1651,6 +1655,22 @@ internal object GTMetaTileEntityLoader
                 'W', CraftingComponent.WIRE_HEX.getIngredient(tier) as ItemStack,
                 'P', CraftingComponent.DOUBLE_PLATE.getIngredient(tier) as ItemStack,
                 'B', CraftingComponents.CABLE_OCT_TIER_UP.getIngredient(tier) as ItemStack)
+        }
+
+        // Quantum Access Hatch
+        if (Mods.AppliedEnergistics2.isActive)
+        {
+            ASSEMBLER_RECIPES.addRecipe {
+                circuitMeta(18)
+                input(DUAL_IMPORT_HATCH[LuV])
+                input(DUAL_EXPORT_HATCH[LuV])
+                input(QUANTUM_STORAGE_CONTROLLER, 4)
+                input(SENSOR_LuV)
+                fluidInputs(TungstenSteel.getFluid(L * 4))
+                output(QUANTUM_ACCESS_HATCH)
+                EUt(VA[LuV])
+                duration(30 * SECOND)
+            }
         }
     }
 

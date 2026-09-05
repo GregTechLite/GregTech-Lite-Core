@@ -641,6 +641,16 @@ tile.gtlitecore.shielding_core.cosmic_fabric.name=寰宇强化屏蔽核心方块
 tile.gtlitecore.shielding_core.infinity_infused.name=无尽强化屏蔽核心方块
 tile.gtlitecore.shielding_core.spacetime_bending_core.name=时空扭曲核心方块
 
+tile.gtlitecore.quantum_storage_unit.t1.name=量子存储单元（T1）
+tile.gtlitecore.quantum_storage_unit.t2.name=量子存储单元（T2）
+tile.gtlitecore.quantum_storage_unit.t3.name=量子存储单元（T3）
+tile.gtlitecore.quantum_storage_unit.t4.name=量子存储单元（T4）
+tile.gtlitecore.quantum_storage_unit.t5.name=量子存储单元（T5）
+tile.gtlitecore.quantum_storage_unit.t6.name=量子存储单元（T6）
+tile.gtlitecore.quantum_storage_unit.t7.name=量子存储单元（T7）
+tile.gtlitecore.quantum_storage_unit.t8.name=量子存储单元（T8）
+tile.gtlitecore.quantum_storage_unit.t9.name=量子存储单元（T9）
+
 tile.gtlitecore.glass_casing_01.borosilicate.name=硼硅酸盐玻璃
 tile.gtlitecore.glass_casing_01.titanium_borosilicate.name=钛强化硼硅酸盐玻璃
 tile.gtlitecore.glass_casing_01.tungsten_steel_borosilicate.name=钨钢强化硼硅酸盐玻璃
@@ -2879,6 +2889,28 @@ gtlitecore.machine.large_fisher.mode.1=当前模式：§8垃圾§7
 gtlitecore.machine.large_fisher.mode.2=当前模式：§6宝藏§7
 gtlitecore.machine.large_fisher.inventory_full=输出已满
 
+gtlitecore.machine.large_quantum_chest.name=大型量子物品存储阵列
+gtlitecore.machine.large_quantum_chest.tooltip.1=将物品数据化后进行大批量存储
+gtlitecore.machine.large_quantum_chest.tooltip.2=结构中可以放入不同等级的§f量子存储单元§7
+gtlitecore.machine.large_quantum_chest.tooltip.3=至多可以将结构拉长§l15§r§7格
+gtlitecore.machine.large_quantum_chest.tooltip.4=能存储的§a总容量§7与§9种类§7为结构中所有单元的总和
+gtlitecore.machine.large_quantum_chest.tooltip.5=使用§e量子存储访问仓§7可以与ME网络互动
+
+gtlitecore.machine.large_quantum_chest.total_capacity=总存储容量：%s个物品
+gtlitecore.machine.large_quantum_chest.stored=已存储：%s个物品
+gtlitecore.machine.large_quantum_chest.slots=已存储种类：%s / %s 种
+
+gtlitecore.machine.large_quantum_tank.name=大型量子流体存储阵列
+gtlitecore.machine.large_quantum_tank.tooltip.1=将流体数据化后进行大批量存储
+gtlitecore.machine.large_quantum_tank.tooltip.2=结构中可以放入不同等级的§f量子存储单元§7
+gtlitecore.machine.large_quantum_tank.tooltip.3=至多可以将结构拉长§l15§r§7格
+gtlitecore.machine.large_quantum_tank.tooltip.4=能存储的§a总容量§7与§9种类§7为结构中所有单元的总和
+gtlitecore.machine.large_quantum_tank.tooltip.5=使用§e量子存储访问仓§7可以与ME网络互动
+
+gtlitecore.machine.large_quantum_tank.total_capacity=总存储容量：%s mB
+gtlitecore.machine.large_quantum_tank.stored=已存储：%s mB
+gtlitecore.machine.large_quantum_tank.slots=已存储种类：%s / %s 种
+
 gtlitecore.machine.entrodynamically_phase_changer.name=熵动力学相变发生器
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.1=以极高强度的熵变与拓扑序激化催化相变
 gtlitecore.machine.entrodynamically_phase_changer.tooltip.2=机器的§f最大温度§7取决于§f线圈方块§7的温度与§e配方增幅§7温度。
@@ -3161,6 +3193,13 @@ gtlitecore.machine.dual_hatch.export.uev.name=§aUEV§f 输出总成
 gtlitecore.machine.dual_hatch.export.uiv.name=§2UIV§f 输出总成
 gtlitecore.machine.dual_hatch.export.uxv.name=§eUXV§f 输出总成
 gtlitecore.machine.dual_hatch.export.opv.name=§9OpV§f 输出总成
+
+gtlitecore.machine.quantum_access_hatch.name=量子存储访问仓
+gtlitecore.machine.quantum_access_hatch.tooltip.1=将任意种类量子存储阵列接入ME网络
+gtlitecore.machine.quantum_access_hatch.tooltip.2=可以使ME网络读取存储阵列的§f内容物§7或存取
+gtlitecore.machine.quantum_access_hatch.tooltip.3=可以设置仓室在ME网络中的§f优先级
+
+gtlitecore.machine.quantum_access_hatch.priority=优先级
 
 gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f 无线能源仓
 gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f 无线能源仓
@@ -4268,6 +4307,8 @@ gtlitecore.tooltip.food.potion_effect.type.minute=- 效果：§d%1$s %2$s（§f%
 
 gtlitecore.tooltip.glass_tier=玻璃等级：%s
 gtlitecore.tooltip.maximum_energy_output=§e最高产能功率：§f%s EU/t
+gtlitecore.tooltip.storage_type=§a最大存储种类：§f%s
+gtlitecore.tooltip.storage_capacity=§b最大总存储容量：§f%s 个/mB
 
 gtlitecore.tooltip.crop.type=作物类型：
 gtlitecore.tooltip.crop.type.standard=§a常规

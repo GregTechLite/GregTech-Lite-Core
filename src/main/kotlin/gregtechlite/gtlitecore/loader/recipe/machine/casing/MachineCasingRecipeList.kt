@@ -37,6 +37,7 @@ internal object MachineCasingRecipeList
         AntimatterCasingRecipes.init()
         EntrodynamicallyPhaseChangerCasingRecipes.init()
         NanoAssemblyComplexCasingRecipes.init()
+        QuantumStorageUnitRecipes.init()
         EyeOfHarmonyCasingRecipes.init()
 
         WireCoilRecipes.init()

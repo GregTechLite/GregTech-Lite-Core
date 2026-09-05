@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.loader.recipe.machine.casing
 
 import gregtech.api.GTValues.L
-import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
@@ -14,7 +13,6 @@ import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.common.items.MetaItems.GRAVITATION_ENGINE
 import gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR
-import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
 import gregtech.common.metatileentities.MetaTileEntities.WORLD_ACCELERATOR
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -34,6 +32,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
 import gregtechlite.gtlitecore.common.block.adapter.GTBatteryBlock
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.Manipulator
+import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
 import gregtechlite.gtlitecore.common.block.variant.component.FieldGenCasing
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCoil
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
@@ -56,7 +55,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.EMPTY_TIER_I.stack)
-            input(QUANTUM_TANK[UHV], 4)
+            inputs(QuantumStorageUnit.T1.getStack(4))
             inputs(Manipulator.COSMIC_FABRIC.stack)
             input(circuit, Tier.UXV)
             input(bolt, Shirabon, 2)
@@ -77,7 +76,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.EMPTY_TIER_II.getStack(2))
-            input(QUANTUM_TANK[UHV], 8)
+            inputs(QuantumStorageUnit.T2.getStack(8))
             inputs(Manipulator.COSMIC_FABRIC.getStack(2))
             input(circuit, Tier.UXV)
             input(bolt, WhiteDwarfMatter, 2)
@@ -98,7 +97,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.EMPTY_TIER_III.getStack(4))
-            input(QUANTUM_TANK[UHV], 12)
+            inputs(QuantumStorageUnit.T3.getStack(12))
             inputs(Manipulator.COSMIC_FABRIC.getStack(3))
             input(circuit, Tier.UXV)
             input(bolt, WhiteDwarfMatter, 8)
@@ -119,7 +118,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.LAPOTRONIC_EV.stack)
-            input(QUANTUM_TANK[UHV], 16)
+            inputs(QuantumStorageUnit.T4.getStack(16))
             inputs(Manipulator.INFINITY_INFUSED.stack)
             input(circuit, Tier.UXV, 2)
             input(bolt, WhiteDwarfMatter, 32)
@@ -140,7 +139,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.LAPOTRONIC_IV.stack)
-            input(QUANTUM_TANK[UHV], 20)
+            inputs(QuantumStorageUnit.T5.getStack(20))
             inputs(Manipulator.INFINITY_INFUSED.getStack(2))
             input(circuit, Tier.UXV, 2)
             input(bolt, BlackDwarfMatter, 2)
@@ -161,7 +160,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.LAPOTRONIC_LuV.stack)
-            input(QUANTUM_TANK[UHV], 24)
+            inputs(QuantumStorageUnit.T6.getStack(24))
             inputs(Manipulator.INFINITY_INFUSED.getStack(3))
             input(circuit, Tier.UXV, 2)
             input(bolt, BlackDwarfMatter, 8)
@@ -182,7 +181,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.LAPOTRONIC_ZPM.stack)
-            input(QUANTUM_TANK[UHV], 28)
+            inputs(QuantumStorageUnit.T7.getStack(28))
             inputs(Manipulator.SPACETIME_CONTINUUM_RIPPER.stack)
             input(circuit, Tier.UXV, 3)
             input(bolt, BlackDwarfMatter, 32)
@@ -203,7 +202,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.LAPOTRONIC_UV.stack)
-            input(QUANTUM_TANK[UHV], 32)
+            inputs(QuantumStorageUnit.T8.getStack(32))
             inputs(Manipulator.SPACETIME_CONTINUUM_RIPPER.getStack(2))
             input(circuit, Tier.UXV, 3)
             input(bolt, Universium, 2)
@@ -224,7 +223,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.ULTIMATE_UHV.stack)
-            input(QUANTUM_TANK[UHV], 36)
+            inputs(QuantumStorageUnit.T9.getStack(36))
             inputs(Manipulator.SPACETIME_CONTINUUM_RIPPER.getStack(3))
             input(circuit, Tier.UXV, 3)
             input(bolt, Universium, 8)
