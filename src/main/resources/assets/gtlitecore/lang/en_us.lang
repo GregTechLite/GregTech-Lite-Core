@@ -2890,12 +2890,22 @@ gtlitecore.machine.large_fisher.mode.2=Current Mode: §6Treasure§7
 gtlitecore.machine.large_fisher.inventory_full=Output Full
 
 gtlitecore.machine.large_quantum_chest.name=Large Quantum Item Storage Array
+gtlitecore.machine.large_quantum_chest.tooltip.1=Digitize Items and store them in Large Quantities
+gtlitecore.machine.large_quantum_chest.tooltip.2=Can place different tier §fQuantum Storage Unit§7 in structure
+gtlitecore.machine.large_quantum_chest.tooltip.3=At most can scale to §l15§r§7 blocks for structure
+gtlitecore.machine.large_quantum_chest.tooltip.4=The §aTotal Storage Capacity§7 and §9Type§7 is the sum of all units in structure
+gtlitecore.machine.large_quantum_chest.tooltip.5=Using §eQuantum Storage Access Hatch§7 can interact with ME Network
 
 gtlitecore.machine.large_quantum_chest.total_capacity=Total Capacity: %s Items
 gtlitecore.machine.large_quantum_chest.stored=Stored: %s Items
 gtlitecore.machine.large_quantum_chest.slots=Stored Item(s): %s / %s Item(s)
 
 gtlitecore.machine.large_quantum_tank.name=Large Quantum Fluid Storage Array
+gtlitecore.machine.large_quantum_tank.tooltip.1=Digitize Fluids and store them in Large Quantities
+gtlitecore.machine.large_quantum_tank.tooltip.2=Can place different tier §fQuantum Storage Unit§7 in structure
+gtlitecore.machine.large_quantum_tank.tooltip.3=At most can scale to §l15§r§7 blocks for structure
+gtlitecore.machine.large_quantum_tank.tooltip.4=The §aTotal Storage Capacity§7 and §9Type§7 is the sum of all units in structure
+gtlitecore.machine.large_quantum_tank.tooltip.5=Using §eQuantum Storage Access Hatch§7 can interact with ME Network
 
 gtlitecore.machine.large_quantum_tank.total_capacity=Total Capacity: %s mB
 gtlitecore.machine.large_quantum_tank.stored=Stored: %s mB
@@ -3185,6 +3195,9 @@ gtlitecore.machine.dual_hatch.export.uxv.name=§eUXV§f Dual Export Hatch
 gtlitecore.machine.dual_hatch.export.opv.name=§9OpV§f Dual Export Hatch
 
 gtlitecore.machine.quantum_access_hatch.name=Quantum Storage Access Hatch
+gtlitecore.machine.quantum_access_hatch.tooltip.1=Connect any type of Quantum Storage Array to ME Network
+gtlitecore.machine.quantum_access_hatch.tooltip.2=Connect ME Network and read §fContents§7 or I/O for Quantum Storage Array
+gtlitecore.machine.quantum_access_hatch.tooltip.3=Can set §fPriority§7 of the hatch in ME Network
 
 gtlitecore.machine.quantum_access_hatch.priority=Priority
 

@@ -33,6 +33,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.readBlockCount
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
+import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.EnumFacing
@@ -308,6 +309,11 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced) // TODO: Description.
+        super.addInformation(stack, world, tooltip, advanced)
+        tooltip.add(I18n.format("gtlitecore.machine.large_quantum_chest.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_quantum_chest.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_quantum_chest.tooltip.3"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_quantum_chest.tooltip.4"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_quantum_chest.tooltip.5"))
     }
 }

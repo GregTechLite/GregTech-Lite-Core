@@ -266,7 +266,10 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced) // TODO: Description.
+        super.addInformation(stack, world, tooltip, advanced)
+        tooltip.add(I18n.format("gtlitecore.machine.quantum_access_hatch.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.quantum_access_hatch.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.quantum_access_hatch.tooltip.3"))
     }
 
     // region Handlers

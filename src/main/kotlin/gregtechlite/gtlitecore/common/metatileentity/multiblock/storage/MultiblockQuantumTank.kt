@@ -34,6 +34,7 @@ import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.longValue
 import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
+import net.minecraft.client.resources.I18n
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
@@ -313,6 +314,11 @@ class MultiblockQuantumTank(id: ResourceLocation) : MultiblockWithDisplayBase(id
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: net.minecraft.item.ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced) // TODO: Description.
+        super.addInformation(stack, world, tooltip, advanced)
+        tooltip.add(I18n.format("gtlitecore.machine.large_quantum_tank.tooltip.1"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_quantum_tank.tooltip.2"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_quantum_tank.tooltip.3"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_quantum_tank.tooltip.4"))
+        tooltip.add(I18n.format("gtlitecore.machine.large_quantum_tank.tooltip.5"))
     }
 }
