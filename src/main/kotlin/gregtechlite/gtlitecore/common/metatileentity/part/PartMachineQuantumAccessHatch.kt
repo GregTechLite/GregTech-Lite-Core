@@ -355,6 +355,7 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
             if (acceptedAmount == 0L)
                 return input
 
+            if (actionable == Actionable.MODULATE) notifyME()
             val leftoverStack = input.copy()
             leftoverStack.decStackSize(acceptedAmount)
             return if (leftoverStack.stackSize <= 0) null else leftoverStack
@@ -364,7 +365,9 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
         {
             if (readMode == AccessRestriction.NO_ACCESS || readMode == AccessRestriction.WRITE)
                 return null
-            return drainItems(request, actionable == Actionable.MODULATE)
+            val drained = drainItems(request, actionable == Actionable.MODULATE)
+            if (drained != null && actionable == Actionable.MODULATE) notifyME()
+            return drained
         }
 
         override fun getAvailableItems(itemList: IItemList<IAEItemStack>): IItemList<IAEItemStack>
@@ -414,6 +417,9 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
             if (acceptedAmount == 0L)
                 return input
 
+            if (actionable == Actionable.MODULATE)
+                notifyME()
+
             val leftoverStack = input.copy()
             leftoverStack.decStackSize(acceptedAmount)
             return if (leftoverStack.stackSize <= 0) null else leftoverStack
@@ -423,7 +429,11 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
         {
             if (readMode == AccessRestriction.NO_ACCESS || readMode == AccessRestriction.WRITE)
                 return null
-            return drainFluids(request, actionable == Actionable.MODULATE)
+
+            val drainedStack = drainFluids(request, actionable == Actionable.MODULATE)
+            if (drainedStack != null && actionable == Actionable.MODULATE)
+                notifyME()
+            return drainedStack
         }
 
         override fun getAvailableItems(itemList: IItemList<IAEFluidStack>): IItemList<IAEFluidStack>
