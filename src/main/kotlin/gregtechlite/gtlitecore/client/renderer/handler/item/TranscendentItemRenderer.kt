@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.client.renderer.handler.item
 
-import com.morphismmc.morphismlib.client.Games
 import gregtech.api.items.metaitem.MetaItem
 import gregtechlite.gtlitecore.client.model.WrappedModelGetter
 import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer
@@ -14,8 +13,6 @@ import net.minecraftforge.common.model.IModelState
 
 class TranscendentItemRenderer : WrappedItemRenderer
 {
-    private var animationTick = 0L
-
     @Suppress("unused")
     constructor(state: IModelState?, model: IBakedModel?) : super(state, model)
 
@@ -86,18 +83,17 @@ class TranscendentItemRenderer : WrappedItemRenderer
 
     private fun renderRotationEffect(renderBehavior: TranscendentRenderBehavior)
     {
-        updateAnimationTick()
-        val rotation = (animationTick * renderBehavior.getRotationSpeed()) % 360
+        val rotation = computeAnimationAngle(renderBehavior)
         GlStateManager.translate(0.5f, 0.53f, 0.0f)
         val axis = renderBehavior.getRotationAxis()
         GlStateManager.rotate(rotation, axis[0], axis[1], axis[2])
-        GlStateManager.rotate(180f, 0.5f, 0.0f, 0.0f)
         GlStateManager.translate(-0.5f, -0.53f, 0.0f)
-        GlStateManager.translate(0.0f, 0.0f, renderBehavior.getFloatingOffset())
     }
 
-    private fun updateAnimationTick()
+    private fun computeAnimationAngle(renderBehavior: TranscendentRenderBehavior): Float
     {
-        Games.world()?.let { animationTick = Games.world()!!.worldTime % Int.MAX_VALUE }
+        val degreesPerMs = renderBehavior.getRotationSpeed().toDouble() / 50.0
+        val rotation = System.currentTimeMillis().toDouble() * degreesPerMs % 360.0
+        return rotation.toFloat()
     }
 }
