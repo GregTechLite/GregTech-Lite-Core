@@ -796,7 +796,7 @@ object GTLiteRecipeMaps
         .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
         .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, true)
         .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER)
-        .sound(GTSoundEvents.ASSEMBLER)
+        .sound(GTLiteSoundEvents.PCB_FACTORY)
         .build()
 
     /**
@@ -824,7 +824,7 @@ object GTLiteRecipeMaps
         .fluidInputs(6)
         .fluidOutputs(6)
         .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
-        .sound(GTSoundEvents.ARC)
+        .sound(GTLiteSoundEvents.QUANTUM)
         .build()
 
     /**
@@ -850,7 +850,7 @@ object GTLiteRecipeMaps
         .itemInputs(16)
         .itemOutputs(1)
         .fluidInputs(4)
-        .sound(GTSoundEvents.ASSEMBLER)
+        .sound(GTLiteSoundEvents.SPACE_ASSEMBLER)
         .build()
 
     /**
@@ -999,7 +999,7 @@ object GTLiteRecipeMaps
         .ui { BlackholeFormerUI(it) }
         .itemInputs(6)
         .itemOutputs(1)
-        .sound(GTSoundEvents.BATH)
+        .sound(GTLiteSoundEvents.BLACKHOLE)
         .build()
 
     // endregion

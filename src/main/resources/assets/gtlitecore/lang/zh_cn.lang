@@ -4649,6 +4649,10 @@ gtlitecore.command.component.not_player=这条命令只能由玩家使用。
 
 # Sounds
 gtlitecore.subtitle.tick.stellar_forge.name=恒星炎炀锻炉：超新星爆发
+gtlitecore.subtitle.tick.quantum.name=量子操纵者：量子能转换
+gtlitecore.subtitle.tick.blackhole.name=事件视界引力收束成形装置：吸积盘转动
+gtlitecore.subtitle.tick.pcb_factory.name=PCB工厂：电路板组装
+gtlitecore.subtitle.tick.space_assembler.name=太空组装模块：反重力组装
 
 # Messages
 gtlitecore.message.berry_bush_blocked=这会导致位于%s处的浆果丛无法生长
