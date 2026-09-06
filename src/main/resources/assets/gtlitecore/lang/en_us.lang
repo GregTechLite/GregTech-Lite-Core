@@ -4649,6 +4649,10 @@ gtlitecore.command.component.not_player=This command can only executed by player
 
 # Sounds
 gtlitecore.subtitle.tick.stellar_forge.name=Stellar Forge: Supernova Explosion
+gtlitecore.subtitle.tick.quantum.name=QFT: Quantum Energy Transformation
+gtlitecore.subtitle.tick.blackhole.name=EHGBF: Accretion Disk Rotation
+gtlitecore.subtitle.tick.pcb_factory.name=PCB Factory: Circuit Board Assembling
+gtlitecore.subtitle.tick.space_assembler.name=Space Assembler: Antigravity Assembling
 
 # Messages
 gtlitecore.message.berry_bush_blocked=Will cause Berry Bush unable to grow at %s

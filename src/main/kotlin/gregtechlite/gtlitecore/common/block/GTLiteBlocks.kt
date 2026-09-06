@@ -13,7 +13,6 @@ import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.variant.BlockVariantType
 import gregtechlite.gtlitecore.api.block.variant.VariantBlockFactory
-import gregtechlite.gtlitecore.api.collection.immutableMapOf
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import gregtechlite.gtlitecore.api.collection.treeMapOf
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
@@ -507,8 +506,7 @@ object GTLiteBlocks
         PLANKS.forEach(::registerItemModel)
 
         // Initialized wooden slabs.
-        registerItemModelWithOverride(WOOD_SLABS,
-            immutableMapOf(BlockSlab.HALF to BlockSlab.EnumBlockHalf.BOTTOM))
+        registerItemModelWithOverride(WOOD_SLABS, mapOf(BlockSlab.HALF to BlockSlab.EnumBlockHalf.BOTTOM))
 
         // Initialized wooden stairs.
         setModelLocation(BANANA_WOOD_STAIR)
