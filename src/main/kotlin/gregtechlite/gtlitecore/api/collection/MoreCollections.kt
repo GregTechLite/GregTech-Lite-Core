@@ -25,18 +25,6 @@ import it.unimi.dsi.fastutil.objects.ReferenceSet
 import net.minecraft.util.IntIdentityHashBiMap
 import java.util.*
 
-// region Guava: ImmutableSet
-
-fun <E> immutableSetOf(): ImmutableSet<E> = ImmutableSet.of()
-
-fun <E> immutableSetOf(vararg elements: E): ImmutableSet<E> = ImmutableSet.copyOf(elements)
-
-fun <E> Collection<E>.toImmutableSet(): ImmutableSet<E> = ImmutableSet.copyOf(this)
-
-fun <E> Iterable<E>.toImmutableSet(): ImmutableSet<E> = ImmutableSet.copyOf(this)
-
-// endregion
-
 // region FastUtil: ObjectOpenHashSet
 
 fun <E> openHashSetOf(): ObjectSet<E> = ObjectOpenHashSet()
@@ -73,18 +61,6 @@ fun <E> Iterator<E>.toOpenRefLinkedSetOf(): ReferenceSet<E> = ReferenceLinkedOpe
 
 // endregion
 
-// region Guava: ImmutableList
-
-fun <E> immutableListOf(): ImmutableList<E> = ImmutableList.of()
-
-fun <E> immutableListOf(vararg elements: E): ImmutableList<E> = ImmutableList.copyOf(elements)
-
-fun <E> Collection<E>.toImmutableList(): ImmutableList<E> = ImmutableList.copyOf(this)
-
-fun <E> Iterable<E>.toImmutableList(): ImmutableList<E> = ImmutableList.copyOf(this)
-
-// endregion
-
 // region FastUtil: ObjectList & ObjectArrayList
 
 fun <E> openArrayListOf(): ObjectList<E> = ObjectArrayList()
@@ -110,36 +86,6 @@ fun <K, V> treeMapOf(vararg pairs: Pair<K, V>): TreeMap<K, V> = TreeMap<K, V>().
 }
 
 fun <K, V> Map<K, V>.toTreeMap(): TreeMap<K, V> = treeMapOf(this)
-
-// endregion
-
-// region Gson: LinkedTreeMap
-
-fun <K, V> mutableTreeMapOf(): LinkedTreeMap<K, V> = LinkedTreeMap()
-
-fun <K, V> mutableTreeMapOf(comparator: Comparator<in K>): LinkedTreeMap<K, V> = LinkedTreeMap(comparator)
-
-fun <K, V> mutableTreeMapOf(map: Map<K, V>) = LinkedTreeMap<K, V>().apply {
-    map.forEach { put(it.key, it.value) }
-}
-
-fun <K, V> mutableTreeMapOf(vararg pairs: Pair<K, V>) = LinkedTreeMap<K, V>().apply {
-    pairs.forEach { put(it.first, it.second) }
-}
-
-fun <K, V> Map<K, V>.toMutableTreeMap(): LinkedTreeMap<K, V> = mutableTreeMapOf(this)
-
-// endregion
-
-// region Guava: ImmutableMap
-
-fun <K, V> immutableMapOf(): ImmutableMap<K, V> = ImmutableMap.of()
-
-fun <K, V> immutableMapOf(vararg pairs: Pair<K, V>): ImmutableMap<K, V> = ImmutableMap.copyOf(mapOf(*pairs))
-
-fun <K, V> Map<K, V>.toImmutableMap(): ImmutableMap<K, V> = ImmutableMap.copyOf(this)
-
-fun <K, V> Iterable<Pair<K, V>>.toImmutableMap(): ImmutableMap<K, V> = ImmutableMap.copyOf(toMap())
 
 // endregion
 
