@@ -21,5 +21,10 @@ class GTLiteMetaItem() : StandardMetaItem(0)
                else super.getHarvestLevel(stack, toolClass, player, blockState)
     }
 
-
+    override fun getDestroySpeed(stack: ItemStack, state: IBlockState): Float
+    {
+        val valueItem = (stack.item as MetaItem<*>).getItem(stack)
+        return if (valueItem?.unlocalizedName == GTLiteMetaItems.LASER_DESTROYER.unlocalizedName) 0f
+               else super.getDestroySpeed(stack, state)
+    }
 }
