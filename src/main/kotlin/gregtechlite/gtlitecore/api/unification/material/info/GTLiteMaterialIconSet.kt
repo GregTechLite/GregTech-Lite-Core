@@ -110,7 +110,7 @@ object GTLiteMaterialIconSet
     val MAGMATTER = iconSet("magmatter", HaloRenderItemBehavior(10, 0x33FFFFFF, {{ GTLiteTextures.HALO_NOISE }}, true))
 
     @JvmField
-    val GLITCH = iconSet("glitch", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
+    val HARMONIC = iconSet("harmonic", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
 
     @JvmField
     val ETERNITY = iconSet("eternity", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))

@@ -562,7 +562,7 @@ import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags.NO_ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.BEDROCKIUM
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.CHROMATIC
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.GLITCH
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.HARMONIC
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.MAGNETO
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.NANOPARTICLES
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.ROASTED
@@ -3457,7 +3457,7 @@ object GTLiteFirstDegreeMaterials
                 temperature(2_000_000_000)
                 translation("gregtech.fluid.generic")
             }
-            iconSet(GLITCH)
+            iconSet(HARMONIC)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE,
                   GENERATE_FRAME, GENERATE_GEAR)
             blastProp(26000, GasTier.HIGHEST, // Eternity Plus

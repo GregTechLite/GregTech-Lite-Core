@@ -3,8 +3,8 @@
   "defaults": {
     "model": "gtlitecore:no_cull_tinted_cube_column",
     "textures": {
-      "end": "gregtech:blocks/material_sets/glitch/frame_gt",
-      "side": "gregtech:blocks/material_sets/glitch/sheeted_frame"
+      "end": "gregtech:blocks/material_sets/harmonic/frame_gt",
+      "side": "gregtech:blocks/material_sets/harmonic/sheeted_frame"
     }
   },
   "variants": {
