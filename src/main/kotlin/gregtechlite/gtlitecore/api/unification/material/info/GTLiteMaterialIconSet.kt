@@ -10,6 +10,7 @@ import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.info.MaterialIconSet
 import gregtechlite.gtlitecore.client.renderer.ItemRendererManager
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
+import gregtechlite.gtlitecore.common.item.behavior.GlitchRenderItemBehavior
 import gregtechlite.gtlitecore.common.item.behavior.HaloRenderItemBehavior
 import gregtechlite.gtlitecore.common.item.behavior.TranscendentRenderItemBehavior
 import gregtechlite.gtlitecore.common.item.behavior.UniversiumRenderItemBehavior
@@ -111,6 +112,9 @@ object GTLiteMaterialIconSet
 
     @JvmField
     val HARMONIC = iconSet("harmonic", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
+
+    @JvmField
+    val GLITCH = iconSet("glitch", MaterialIconSet.SHINY, GlitchRenderItemBehavior())
 
     @JvmField
     val ETERNITY = iconSet("eternity", HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
