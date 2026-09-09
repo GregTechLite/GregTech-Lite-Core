@@ -76,5 +76,27 @@ abstract class WrappedItemRenderer : PerspectiveAwareItemRenderer
             }
             tess.draw()
         }
+
+        /**
+         * Renders a model with a flat color applied to every quad, ignoring the stack's tint indices.
+         * Used by effect renderers which need to draw tinted copies of the item (e.g. the glitch effect).
+         *
+         * @param model The model to render.
+         * @param color The ARGB color multiplied onto every quad.
+         */
+        fun renderModelColored(model: IBakedModel, color: Int)
+        {
+            val quads = mutableListOf<BakedQuad>()
+            for (face in EnumFacing.VALUES)
+                quads.addAll(model.getQuads(null, face, 0))
+            quads.addAll(model.getQuads(null, null, 0))
+
+            val tess = Tessellator.getInstance()
+            val buffer = tess.buffer
+            buffer.begin(0x07, DefaultVertexFormats.ITEM)
+            for (quad in quads)
+                LightUtil.renderQuadColor(buffer, quad, color)
+            tess.draw()
+        }
     }
 }

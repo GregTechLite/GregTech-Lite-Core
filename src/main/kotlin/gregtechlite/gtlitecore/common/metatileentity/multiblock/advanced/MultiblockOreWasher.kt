@@ -1,8 +1,11 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced
 
+import codechicken.lib.render.CCRenderState
+import codechicken.lib.vec.Matrix4
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.metatileentity.IFastRenderMetaTileEntity
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -19,6 +22,7 @@ import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
+import gregtech.api.util.RelativeDirection
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
@@ -27,11 +31,14 @@ import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.pumpCasings
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CATALYTIC_REFORMER_RECIPES
+import gregtechlite.gtlitecore.client.renderer.handler.world.OreWasherWaterRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.math.AxisAlignedBB
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
@@ -39,9 +46,8 @@ import kotlin.math.max
 
 class MultiblockOreWasher(id: ResourceLocation)
     : MultiMapMultiblockController(id, arrayOf(ORE_WASHER_RECIPES, CHEMICAL_BATH_RECIPES, CRACKING_RECIPES,
-                                               CATALYTIC_REFORMER_RECIPES))
+                                               CATALYTIC_REFORMER_RECIPES)), IFastRenderMetaTileEntity
 {
-
     private var casingTier = 0
 
     init
@@ -53,6 +59,17 @@ class MultiblockOreWasher(id: ResourceLocation)
     {
         private val casingState = MetalCasing.GRISIUM.state
         private val pipeCasingState = GTBoilerCasing.TITANIUM_PIPE.state
+
+        private val waterPoses = buildList {
+            for (aisle in 1..5)
+            {
+                add(BlockPos(0, 0, aisle - 6))
+                for (char in 1..3)
+                {
+                    add(BlockPos(char - 2, 1, aisle - 6))
+                }
+            }
+        }
     }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity = MultiblockOreWasher(metaTileEntityId)
@@ -89,6 +106,31 @@ class MultiblockOreWasher(id: ResourceLocation)
         .build()
 
     // @formatter:on
+
+    @SideOnly(Side.CLIENT)
+    override fun renderMetaTileEntityFast(renderState: CCRenderState, translation: Matrix4, partialTicks: Float)
+    {
+        if (isStructureFormed)
+        {
+            OreWasherWaterRenderer.render(renderState, translation, world, pos, waterOffsets())
+        }
+    }
+
+    override fun getRenderBoundingBox(): AxisAlignedBB
+    {
+        var box = AxisAlignedBB(pos)
+        for (offset in waterOffsets())
+        {
+            box = box.union(AxisAlignedBB(pos.add(offset)))
+        }
+        return box
+    }
+
+    private fun waterOffsets(): List<BlockPos>
+        = waterPoses.map {
+            RelativeDirection.setActualRelativeOffset(it.x, it.y, it.z, frontFacing.opposite, upwardsFacing, isFlipped,
+                arrayOf(RelativeDirection.RIGHT, RelativeDirection.UP, RelativeDirection.BACK))
+        }
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.GRISIUM_CASING
@@ -129,8 +171,6 @@ class MultiblockOreWasher(id: ResourceLocation)
         }
 
         override fun getParallelLimit() = 16 * casingTier
-
     }
-
 }
 

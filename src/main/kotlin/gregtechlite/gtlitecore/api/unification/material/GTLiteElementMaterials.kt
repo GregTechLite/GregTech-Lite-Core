@@ -91,6 +91,7 @@ import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconS
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.DEGENERATE
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.ENRICHED
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.ETERNITY
+import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.GLITCH
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.INFINITY
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.MAGMATTER
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.MAGNETIUM
@@ -385,7 +386,7 @@ object GTLiteElementMaterials
         {
             ingot()
             liquid().plasma()
-            color(0x460046).iconSet(SHINY)
+            color(0x460046).iconSet(GLITCH)
             element(Crx)
             flags(EXT2_METAL, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_RING,
                   GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND, GENERATE_FOIL,
