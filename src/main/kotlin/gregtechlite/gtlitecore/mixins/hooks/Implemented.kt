@@ -9,6 +9,6 @@ package gregtechlite.gtlitecore.mixins.hooks
  *           2. Reference with correct format, like paper reference format.
  *           3. Blog link with its author name (or id)
  */
-@Target(AnnotationTarget.CLASS)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.SOURCE)
 annotation class Implemented(val at: Array<String> = [""])

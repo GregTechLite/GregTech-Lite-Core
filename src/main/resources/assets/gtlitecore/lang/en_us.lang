@@ -3201,6 +3201,19 @@ gtlitecore.machine.quantum_access_hatch.tooltip.3=Can set §fPriority§7 of the 
 
 gtlitecore.machine.quantum_access_hatch.priority=Priority
 
+gtlitecore.machine.me_crafting_pattern_input_bus=ME Crafting Pattern Input Bus
+gtlitecore.machine.me_crafting_pattern_input_hatch=ME Crafting Pattern input Buffer
+
+gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.1=Connect to ME Network to read inner Crafting Pattern
+gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.2=Each Crafting Pattern has own §aSingle Import Inventory§7 with Infinity Capacity
+gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.3=All Crafting Pattern will read §fGhost Circuit§7 and items in §fExtra Slots§7
+gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.item=Only support to process §fItem Only§7 Crafting Pattern
+gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.fluid=Support §fItem§7 and any §bFluid§7, consists of AE2FCR format/Fluid Packets
+
+gtlitecore.machine.me_crafting_pattern_input_hatch.data_stick=§oME Crafting Pattern Hatch Configuration Data
+gtlitecore.machine.me_crafting_pattern_input_hatch.config_saved=Saved Configuration to Data Stick
+gtlitecore.machine.me_crafting_pattern_input_hatch.config_loaded=Loaded Configuration from Data Stick
+
 gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f Wireless Energy Hatch
 gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f Wireless Energy Hatch
 gtlitecore.machine.wireless_energy_hatch.input.mv.name=§bMV§f Wireless Energy Hatch
