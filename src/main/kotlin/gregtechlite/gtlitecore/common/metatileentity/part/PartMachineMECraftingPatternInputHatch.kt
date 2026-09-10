@@ -61,6 +61,7 @@ import gregtechlite.gtlitecore.api.capability.handler.DynamicNotifiableItemStack
 import gregtechlite.gtlitecore.api.capability.SingletonDualInputAdapter
 import gregtechlite.gtlitecore.api.capability.handler.SingletonDualInputHandler
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.item.EntityItem
@@ -446,6 +447,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
             {
                 val index = row * PATTERN_COLUMNS + column
                 rowWidgets.add(ItemSlot()
+                                   .overlay(GTLiteMuiTextures.PATTERN_OVERLAY)
                                    .slot(SyncHandlers.itemSlot(patterns, index)
                                              .slotGroup("pattern_inv")
                                              .filter { it.isEmpty || it.item is ICraftingPatternItem }
@@ -787,5 +789,3 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         }
     }
 }
-
-
