@@ -289,7 +289,7 @@ object GTLiteMetaTileEntities
     lateinit var ME_CRAFTING_PATTERN_INPUT_BUS: PartMachineMECraftingPatternInputHatch
     lateinit var ME_CRAFTING_PATTERN_INPUT_BUFFER: PartMachineMECraftingPatternInputHatch
 
-    lateinit var ME_CRAFTING_INPUT_MIRROR: PartMachineMECraftingPatternInputMirror
+    lateinit var ME_CRAFTING_PATTERN_INPUT_MIRROR: PartMachineMECraftingPatternInputMirror
 
     lateinit var DUAL_IMPORT_HATCH: Array<PartMachineDualHatch>
     lateinit var DUAL_EXPORT_HATCH: Array<PartMachineDualHatch>
@@ -840,7 +840,7 @@ object GTLiteMetaTileEntities
                 PartMachineMECraftingPatternInputHatch(GTLiteMod.id("me_crafting_pattern_input_bus"), IV, false))
             ME_CRAFTING_PATTERN_INPUT_BUFFER = register(5071,
                 PartMachineMECraftingPatternInputHatch(GTLiteMod.id("me_crafting_pattern_input_hatch"), LuV, true))
-            ME_CRAFTING_INPUT_MIRROR = register(5072,
+            ME_CRAFTING_PATTERN_INPUT_MIRROR = register(5072,
                 PartMachineMECraftingPatternInputMirror(GTLiteMod.id("me_crafting_pattern_input_mirror"), LuV))
         }
 
