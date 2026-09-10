@@ -511,7 +511,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
             {
                 val index = row * PATTERN_COLUMNS + column
                 rowWidgets.add(ItemSlot()
-                                   .overlay(GTLiteMuiTextures.PATTERN_OVERLAY)
+                                   .background(GTGuiTextures.SLOT, GTLiteMuiTextures.PATTERN_OVERLAY)
                                    .slot(SyncHandlers.itemSlot(patterns, index)
                                              .slotGroup("pattern_inv")
                                              .filter { it.isEmpty || it.item is ICraftingPatternItem }
