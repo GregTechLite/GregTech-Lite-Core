@@ -88,7 +88,7 @@ class MultiblockOreWasher(id: ResourceLocation)
 
     // @formatter:off
 
-    override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start() // TODO Water?
+    override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start()
         .aisle("CCCCC", "CCCCC", "CCCCC")
         .aisle("CCCCC", "CQ QC", "C   C")
         .aisle("CCCCC", "CQ QC", "C   C")

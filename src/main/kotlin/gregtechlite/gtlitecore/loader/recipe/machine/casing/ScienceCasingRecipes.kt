@@ -106,6 +106,7 @@ import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ENERGISED_TESSERACT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_INPUT_HATCH_65536
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_ENERGY_INPUT_HATCH
 
 internal object ScienceCasingRecipes
 {
@@ -342,7 +343,7 @@ internal object ScienceCasingRecipes
             inputs(MetaBlocks.BATTERY_BLOCK.getItemVariant(BlockBatteryPart.BatteryPartType.ULTIMATE_UHV))
             input(wireGtHex, BoronFranciumCarbideSuperconductor, 4)
             input(ACTIVE_TRANSFORMER, 16)
-            input(ENERGY_INPUT_HATCH[UXV], 4) // TODO UXV Wireless Energy Hatch
+            input(WIRELESS_ENERGY_INPUT_HATCH[UXV], 4)
             input(LASER_INPUT_HATCH_65536[UXV - IV])
             input(circuit, Tier.UXV, 64)
             input(plate, MetastableHassium, 6)

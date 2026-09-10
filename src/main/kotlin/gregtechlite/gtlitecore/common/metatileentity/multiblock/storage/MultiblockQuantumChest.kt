@@ -50,7 +50,7 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
     override val syncer: MetaTileEntitySyncer = MetaTileEntitySyncer(this)
 
     private var storage: QuantumStorageHandler<ItemStack> = QuantumStorageHandler(0, BigInteger.ZERO,
-        isSameType = { a, b -> a.isItemEqual(b) && ItemStack.areItemStackTagsEqual(a, b) }, // TODO: It's that too strict?
+        isSameType = { a, b -> a.isItemEqual(b) && ItemStack.areItemStackTagsEqual(a, b) },
         writeType = { tag, stack ->
             val nbt = NBTTagCompound()
             stack.writeToNBT(nbt)
