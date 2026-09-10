@@ -151,6 +151,7 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAdvancedMul
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineAirIntakeHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumAccessHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineDualHatch
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineMECraftingPatternInputMirror
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineMECraftingPatternInputHatch
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineQuantumItemBus
 import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineSterileCleaningMaintenanceHatch
@@ -287,6 +288,8 @@ object GTLiteMetaTileEntities
 
     lateinit var ME_CRAFTING_PATTERN_INPUT_BUS: PartMachineMECraftingPatternInputHatch
     lateinit var ME_CRAFTING_PATTERN_INPUT_BUFFER: PartMachineMECraftingPatternInputHatch
+
+    lateinit var ME_CRAFTING_INPUT_MIRROR: PartMachineMECraftingPatternInputMirror
 
     lateinit var DUAL_IMPORT_HATCH: Array<PartMachineDualHatch>
     lateinit var DUAL_EXPORT_HATCH: Array<PartMachineDualHatch>
@@ -832,12 +835,13 @@ object GTLiteMetaTileEntities
             // 5069: Quantum Access Hatch
             QUANTUM_ACCESS_HATCH = register(5069, PartMachineQuantumAccessHatch(GTLiteMod.id("quantum_access_hatch"), LuV))
 
-            // 5070-5071: ME Crafting Pattern Input Buses
+            // 5070-5072: ME Crafting Pattern Hatches
             ME_CRAFTING_PATTERN_INPUT_BUS = register(5070,
                 PartMachineMECraftingPatternInputHatch(GTLiteMod.id("me_crafting_pattern_input_bus"), IV, false))
-
             ME_CRAFTING_PATTERN_INPUT_BUFFER = register(5071,
                 PartMachineMECraftingPatternInputHatch(GTLiteMod.id("me_crafting_pattern_input_hatch"), LuV, true))
+            ME_CRAFTING_INPUT_MIRROR = register(5072,
+                PartMachineMECraftingPatternInputMirror(GTLiteMod.id("me_crafting_pattern_input_mirror"), LuV))
         }
 
         // endregion

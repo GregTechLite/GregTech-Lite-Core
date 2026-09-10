@@ -102,6 +102,11 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
     private var justHadNewItems = false
     private var needPatternSync = true
 
+    private var sharedItemHandler: DynamicItemHandlerList? = null
+
+    private val mirrors = mutableListOf<PartMachineMECraftingPatternInputMirror>()
+    private var lastMirrorValidationTick = -1L
+
     init
     {
         initializeInventory()
@@ -115,6 +120,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
 
         private const val WORKING_TAG = "WorkingEnabled"
         private const val DATA_STICK_TAG = "MECraftingPatternInputBus"
+        const val MIRROR_LINK_TAG = "MECraftingPatternInputMirrorLink"
 
         private const val PATTERN_SYNC_DURATION = 10 * TICK
         private const val ME_STATUS_SYNC_DURATION = 20 * TICK
@@ -130,6 +136,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         manualInventory = ManualInventory()
         circuitInventory = GhostCircuitItemStackHandler(this)
         internalInventory = arrayOfNulls(PATTERN_SLOT_COUNT)
+        sharedItemHandler = DynamicItemHandlerList(circuitInventory!!, manualInventory!!)
     }
 
     override fun createImportItemHandler(): IItemHandlerModifiable = GTItemStackHandler(this, 0)
@@ -191,6 +198,49 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
     override fun gridChanged()
     {
         needPatternSync = true
+    }
+
+    // endregion
+
+    // region Mirror Operations
+
+    fun addMirror(mirror: PartMachineMECraftingPatternInputMirror)
+    {
+        if (mirrors.none { it === mirror })
+            mirrors.add(mirror)
+    }
+
+    fun removeMirror(mirror: PartMachineMECraftingPatternInputMirror)
+    {
+        mirrors.remove(mirror)
+    }
+
+    fun getMirrors(): List<PartMachineMECraftingPatternInputMirror>
+    {
+        if (offsetTimer != lastMirrorValidationTick)
+        {
+            mirrors.removeAll { it.getMaster() !== this }
+            lastMirrorValidationTick = offsetTimer
+        }
+        return mirrors
+    }
+
+    fun getSharedItemHandler(): IItemHandlerModifiable = sharedItemHandler!!
+
+    fun writeMirrorLink(root: NBTTagCompound)
+    {
+        NBTTagCompound().also {
+            it.setInteger("x", pos.x)
+            it.setInteger("y", pos.y)
+            it.setInteger("z", pos.z)
+            root.setTag(MIRROR_LINK_TAG, it)
+        }
+    }
+
+    private fun clearMirrors()
+    {
+        mirrors.forEach { it.onMasterRemoved() }
+        mirrors.clear()
     }
 
     // endregion
@@ -313,6 +363,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
     {
         NBTTagCompound().also {
             it.setTag(DATA_STICK_TAG, writeConfigToTag())
+            writeMirrorLink(it)
             dataStick.tagCompound = it
         }
 
@@ -403,13 +454,26 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         }
     }
 
+    override fun onRemoval()
+    {
+        super.onRemoval()
+        clearMirrors()
+    }
+
+    override fun invalidate()
+    {
+        super.invalidate()
+        if (world?.isRemote == false)
+            clearMirrors()
+    }
+
     override fun getAbilities(): List<MultiblockAbility<*>> = listOf(MultiblockAbility.IMPORT_ITEMS)
 
     override fun registerAbilities(abilityInstances: AbilityInstances)
     {
         if (abilityInstances.isKey(MultiblockAbility.IMPORT_ITEMS))
         {
-            abilityInstances.add(DynamicItemHandlerList(circuitInventory!!, manualInventory!!))
+            abilityInstances.add(getSharedItemHandler())
         }
     }
 

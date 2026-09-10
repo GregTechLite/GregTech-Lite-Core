@@ -3214,6 +3214,16 @@ gtlitecore.machine.me_crafting_pattern_input_hatch.data_stick=§oME样板仓室�
 gtlitecore.machine.me_crafting_pattern_input_hatch.config_saved=已将仓室配置保存到闪存
 gtlitecore.machine.me_crafting_pattern_input_hatch.config_loaded=已从闪存载入仓室配置
 
+gtlitecore.machine.me_crafting_pattern_input_mirror.name=ME样板输入镜像
+gtlitecore.machine.me_crafting_pattern_input_mirror.tooltip.1=样板输入总线/总成的镜像代理
+gtlitecore.machine.me_crafting_pattern_input_mirror.tooltip.2=链接该仓室与任意§a样板输入总线§7或§a总成§7以§f共享输入空间§7
+gtlitecore.machine.me_crafting_pattern_input_mirror.tooltip.3=手持闪存§f左键点击§7需要链接的主仓室再§f右键点击§7该仓室即可连接
+
+gtlitecore.machine.me_crafting_pattern_input_mirror.data_stick=§oME样板输入镜像配置数据
+gtlitecore.machine.me_crafting_pattern_input_mirror.link_saved=已将连接坐标保存至闪存
+gtlitecore.machine.me_crafting_pattern_input_mirror.link_success=连接成功
+gtlitecore.machine.me_crafting_pattern_input_mirror.link_failed=连接失败
+
 gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f 无线能源仓
 gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f 无线能源仓
 gtlitecore.machine.wireless_energy_hatch.input.mv.name=§bMV§f 无线能源仓

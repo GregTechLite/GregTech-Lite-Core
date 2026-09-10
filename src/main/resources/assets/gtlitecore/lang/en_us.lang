@@ -3214,6 +3214,16 @@ gtlitecore.machine.me_crafting_pattern_input_hatch.data_stick=§oME Crafting Pat
 gtlitecore.machine.me_crafting_pattern_input_hatch.config_saved=Saved Configuration to Data Stick
 gtlitecore.machine.me_crafting_pattern_input_hatch.config_loaded=Loaded Configuration from Data Stick
 
+gtlitecore.machine.me_crafting_pattern_input_mirror.name=ME Crafting Pattern Input Mirror
+gtlitecore.machine.me_crafting_pattern_input_mirror.tooltip.1=Mirror Proxy for ME Crafting Pattern Input Bus/Buffer
+gtlitecore.machine.me_crafting_pattern_input_mirror.tooltip.2=Linked mirror and any §aCrafting Pattern Input Bus§7 or §aBuffer§7 to §fShare Inventories§7
+gtlitecore.machine.me_crafting_pattern_input_mirror.tooltip.3=§fLeft-click§7 the master with a Data Stick and then §fRight-click§7 this to link
+
+gtlitecore.machine.me_crafting_pattern_input_mirror.data_stick=§oME Crafting Pattern Input Mirror Configuration Data
+gtlitecore.machine.me_crafting_pattern_input_mirror.link_saved=Saved Link Coordinates to Data Stick
+gtlitecore.machine.me_crafting_pattern_input_mirror.link_success=Link Successful
+gtlitecore.machine.me_crafting_pattern_input_mirror.link_failed=Link Failed
+
 gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f Wireless Energy Hatch
 gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f Wireless Energy Hatch
 gtlitecore.machine.wireless_energy_hatch.input.mv.name=§bMV§f Wireless Energy Hatch

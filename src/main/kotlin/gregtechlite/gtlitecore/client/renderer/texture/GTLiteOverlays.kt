@@ -189,6 +189,8 @@ object GTLiteOverlays
     val ME_CRAFTING_INPUT_BUS_OVERLAY = partId("crafting_pattern_input_bus_overlay")
     @JvmField
     val ME_CRAFTING_INPUT_BUFFER_OVERLAY = partId("crafting_pattern_input_buffer_overlay")
+    @JvmField
+    val ME_CRAFTING_INPUT_MIRROR_OVERLAY = partId("crafting_pattern_input_mirror_overlay")
 
     // endregion
 
