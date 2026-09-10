@@ -3201,8 +3201,8 @@ gtlitecore.machine.quantum_access_hatch.tooltip.3=Can set §fPriority§7 of the 
 
 gtlitecore.machine.quantum_access_hatch.priority=Priority
 
-gtlitecore.machine.me_crafting_pattern_input_bus=ME Crafting Pattern Input Bus
-gtlitecore.machine.me_crafting_pattern_input_hatch=ME Crafting Pattern input Buffer
+gtlitecore.machine.me_crafting_pattern_input_bus.name=ME Crafting Pattern Input Bus
+gtlitecore.machine.me_crafting_pattern_input_hatch.name=ME Crafting Pattern input Buffer
 
 gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.1=Connect to ME Network to read inner Crafting Pattern
 gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.2=Each Crafting Pattern has own §aSingle Import Inventory§7 with Infinity Capacity

@@ -3201,8 +3201,8 @@ gtlitecore.machine.quantum_access_hatch.tooltip.3=可以设置仓室在ME网络�
 
 gtlitecore.machine.quantum_access_hatch.priority=优先级
 
-gtlitecore.machine.me_crafting_pattern_input_bus=ME样板输入总线
-gtlitecore.machine.me_crafting_pattern_input_hatch=ME样板输入总成
+gtlitecore.machine.me_crafting_pattern_input_bus.name=ME样板输入总线
+gtlitecore.machine.me_crafting_pattern_input_hatch.name=ME样板输入总成
 
 gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.1=连接ME网络以读取其中的合成样板
 gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.2=每个样板拥有§a独立输入空间§7并具有无限制的缓存容量
