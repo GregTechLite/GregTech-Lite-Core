@@ -54,6 +54,9 @@ object GTLiteMuiTextures
     @JvmField
     val PRIMITIVE_INT_CIRCUIT_OVERLAY = texture("textures/gui/primitive/int_circuit_overlay_primitive.png")
 
+    @JvmField
+    val PATTERN_OVERLAY = texture("textures/gui/overlay/pattern_overlay.png")
+
     // endregion
 
     // region Widget Textures

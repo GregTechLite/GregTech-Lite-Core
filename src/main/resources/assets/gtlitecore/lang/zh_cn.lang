@@ -3201,6 +3201,29 @@ gtlitecore.machine.quantum_access_hatch.tooltip.3=可以设置仓室在ME网络�
 
 gtlitecore.machine.quantum_access_hatch.priority=优先级
 
+gtlitecore.machine.me_crafting_pattern_input_bus.name=ME样板输入总线
+gtlitecore.machine.me_crafting_pattern_input_hatch.name=ME样板输入总成
+
+gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.1=连接ME网络以读取其中的合成样板
+gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.2=每个样板拥有§a独立输入空间§7并具有无限制的缓存容量
+gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.3=所有样板均会读取§f虚拟电路§7与§f额外槽位§7内的物品
+gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.item=仅可以处理使用§f物品§7的样板
+gtlitecore.machine.me_crafting_pattern_input_hatch.tooltip.fluid=支持§f物品§7与任意种类的§b流体§7，包括液滴与流体封包
+
+gtlitecore.machine.me_crafting_pattern_input_hatch.data_stick=§oME样板仓室设置
+gtlitecore.machine.me_crafting_pattern_input_hatch.config_saved=已将仓室配置保存到闪存
+gtlitecore.machine.me_crafting_pattern_input_hatch.config_loaded=已从闪存载入仓室配置
+
+gtlitecore.machine.me_crafting_pattern_input_mirror.name=ME样板输入镜像
+gtlitecore.machine.me_crafting_pattern_input_mirror.tooltip.1=样板输入总线/总成的镜像代理
+gtlitecore.machine.me_crafting_pattern_input_mirror.tooltip.2=链接该仓室与任意§a样板输入总线§7或§a总成§7以§f共享输入空间§7
+gtlitecore.machine.me_crafting_pattern_input_mirror.tooltip.3=手持闪存§f左键点击§7需要链接的主仓室再§f右键点击§7该仓室即可连接
+
+gtlitecore.machine.me_crafting_pattern_input_mirror.data_stick=§oME样板输入镜像配置数据
+gtlitecore.machine.me_crafting_pattern_input_mirror.link_saved=已将连接坐标保存至闪存
+gtlitecore.machine.me_crafting_pattern_input_mirror.link_success=连接成功
+gtlitecore.machine.me_crafting_pattern_input_mirror.link_failed=连接失败
+
 gtlitecore.machine.wireless_energy_hatch.input.ulv.name=§8ULV§f 无线能源仓
 gtlitecore.machine.wireless_energy_hatch.input.lv.name=§7LV§f 无线能源仓
 gtlitecore.machine.wireless_energy_hatch.input.mv.name=§bMV§f 无线能源仓

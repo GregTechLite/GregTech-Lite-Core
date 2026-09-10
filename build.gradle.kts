@@ -189,6 +189,7 @@ dependencies {
     implementation(deobf(files("libs/gregtech-1.12.2-master-#2901.jar")))
 
     implementation(deobf(libs.ae2ExtendedLife))
+    implementation(deobf(libs.ae2fcr))
 
     implementation(deobf(libs.jei))
     implementation(libs.theOneProbe)

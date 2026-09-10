@@ -185,6 +185,12 @@ object GTLiteOverlays
     val WIRELESS_STORAGE_HATCH_OVERLAY = partId("wireless_storage_hatch_overlay")
     @JvmField
     val QUANTUM_ACCESS_HATCH_OVERLAY = partId("quantum_access_hatch_overlay")
+    @JvmField
+    val ME_CRAFTING_INPUT_BUS_OVERLAY = partId("crafting_pattern_input_bus_overlay")
+    @JvmField
+    val ME_CRAFTING_INPUT_BUFFER_OVERLAY = partId("crafting_pattern_input_buffer_overlay")
+    @JvmField
+    val ME_CRAFTING_INPUT_MIRROR_OVERLAY = partId("crafting_pattern_input_mirror_overlay")
 
     // endregion
 

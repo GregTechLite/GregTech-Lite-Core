@@ -21,6 +21,9 @@ import gregtech.api.GTValues.VN
 import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.ModHandler
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
+import gregtech.api.recipes.RecipeMaps.ASSEMBLY_LINE_RECIPES
+import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition
+import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Aluminium
@@ -47,6 +50,7 @@ import gregtech.api.unification.material.Materials.Osmium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.unification.material.Materials.SolderingAlloy
 import gregtech.api.unification.material.Materials.StainlessSteel
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Sulfur
@@ -92,6 +96,7 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
+import gregtech.common.items.MetaItems.EMITTER_IV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_OpV
@@ -104,6 +109,7 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.ITEM_FILTER
 import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.SENSOR_LuV
+import gregtech.common.items.MetaItems.TOOL_DATA_ORB
 import gregtech.common.metatileentities.MetaTileEntities.ALUMINIUM_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.BRONZE_DRUM
 import gregtech.common.metatileentities.MetaTileEntities.CLEANING_MAINTENANCE_HATCH
@@ -118,6 +124,7 @@ import gregtech.common.metatileentities.MetaTileEntities.HI_AMP_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.ITEM_EXPORT_BUS
 import gregtech.common.metatileentities.MetaTileEntities.ITEM_IMPORT_BUS
+import gregtech.common.metatileentities.MetaTileEntities.ITEM_IMPORT_BUS_ME
 import gregtech.common.metatileentities.MetaTileEntities.POWER_TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_IMPORT_HATCH
@@ -140,6 +147,7 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.item.ModItemAdapter
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
 import gregtechlite.gtlitecore.api.recipe.util.TieredAdhesiveFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
@@ -208,6 +216,9 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LAMI
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LEAD_DRUM
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LOOM
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MASS_FABRICATOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ME_CRAFTING_PATTERN_INPUT_BUFFER
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ME_CRAFTING_PATTERN_INPUT_BUS
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ME_CRAFTING_PATTERN_INPUT_MIRROR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_EXTRACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_SLAUGHTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MULTICOOKER
@@ -1657,9 +1668,9 @@ internal object GTMetaTileEntityLoader
                 'B', CraftingComponents.CABLE_OCT_TIER_UP.getIngredient(tier) as ItemStack)
         }
 
-        // Quantum Access Hatch
         if (Mods.AppliedEnergistics2.isActive)
         {
+            // Quantum Access Hatch
             ASSEMBLER_RECIPES.addRecipe {
                 circuitMeta(18)
                 input(DUAL_IMPORT_HATCH[LuV])
@@ -1668,6 +1679,55 @@ internal object GTMetaTileEntityLoader
                 input(SENSOR_LuV)
                 fluidInputs(TungstenSteel.getFluid(L * 4))
                 output(QUANTUM_ACCESS_HATCH)
+                EUt(VA[LuV])
+                duration(30 * SECOND)
+            }
+
+            // Crafting Pattern Input Bus
+            ASSEMBLER_RECIPES.addRecipe {
+                input(ITEM_IMPORT_BUS_ME)
+                inputs(Mods.AppliedEnergistics2.getItem("controller"))
+                inputs(Mods.AppliedEnergistics2.getItem("material", 38)) // 64k item
+                inputs(Mods.AppliedEnergistics2.getItem("material", 58, 3)) // pattern expansion
+                input(EMITTER_IV)
+                fluidInputs(SolderingAlloy.getFluid(L * 4))
+                output(ME_CRAFTING_PATTERN_INPUT_BUS)
+                EUt(VA[IV])
+                duration(30 * SECOND)
+            }
+
+            // Crafting Pattern Input Buffer
+            ASSEMBLY_LINE_RECIPES.addRecipe {
+                input(ME_CRAFTING_PATTERN_INPUT_BUS)
+                inputs(ModItemAdapter.getOrDefault("ae2fc", "dual_interface",
+                                                   fallbackStack = Mods.AppliedEnergistics2.getItem("interface")))
+                inputs(Mods.AppliedEnergistics2.getItem("material", 38, 4)) // 64k item
+                inputs(Mods.AppliedEnergistics2.getItem("material", 57, 4)) // 64k fluid
+                inputs(Mods.AppliedEnergistics2.getItem("material", 58, 3)) // pattern expansion
+                input(circuit, Tier.ZPM)
+                input(ELECTRIC_PUMP_LuV, 2)
+                fluidInputs(SolderingAlloy.getFluid(L * 16))
+                fluidInputs(Lubricant.getFluid(4000))
+                output(ME_CRAFTING_PATTERN_INPUT_BUFFER)
+                EUt(VA[LuV])
+                duration(30 * SECOND)
+                scannerResearch {
+                    it.researchStack(DUAL_IMPORT_HATCH[LuV])
+                        .EUt(VA[IV])
+                        .duration(1 * MINUTE)
+                }
+            }
+
+            // Crafting Pattern Input Mirror
+            ASSEMBLER_RECIPES.addRecipe {
+                input(ME_CRAFTING_PATTERN_INPUT_BUS)
+                inputs(Mods.AppliedEnergistics2.getItem("crafting_accelerator"))
+                inputs(ModItemAdapter.getOrDefault("ae2stuff", "wireless", amount = 2,
+                                                   fallbackStack = Mods.AppliedEnergistics2.getItem("quantum_link")))
+                inputNBT(TOOL_DATA_ORB, NBTMatcher.ANY, NBTCondition.ANY)
+                input(SENSOR_LuV)
+                fluidInputs(SolderingAlloy.getFluid(L * 4))
+                output(ME_CRAFTING_PATTERN_INPUT_MIRROR)
                 EUt(VA[LuV])
                 duration(30 * SECOND)
             }

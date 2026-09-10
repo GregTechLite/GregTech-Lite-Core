@@ -1,18 +1,23 @@
 package gregtechlite.gtlitecore.mixins.gregtech;
 
+import appeng.api.networking.crafting.ICraftingPatternDetails;
+import appeng.api.networking.crafting.ICraftingProvider;
+import appeng.api.networking.crafting.ICraftingProviderHelper;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer;
 import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.network.PacketBuffer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = MetaTileEntityHolder.class, remap = false)
-public abstract class MixinMetaTileEntityHolder
+public abstract class MixinMetaTileEntityHolder implements ICraftingProvider
 {
     @Shadow
     MetaTileEntity metaTileEntity;
@@ -43,5 +48,31 @@ public abstract class MixinMetaTileEntityHolder
             ((SyncedMetaTileEntity) metaTileEntity).getSyncer().receiveCustomData(buffer);
             ci.cancel();
         }
+    }
+
+    @Unique
+    @Override
+    public void provideCrafting(ICraftingProviderHelper craftingTracker)
+    {
+        if (metaTileEntity instanceof ICraftingProvider)
+        {
+            ((ICraftingProvider) metaTileEntity).provideCrafting(craftingTracker);
+        }
+    }
+
+    @Unique
+    @Override
+    public boolean pushPattern(ICraftingPatternDetails patternDetails, InventoryCrafting table)
+    {
+        return metaTileEntity instanceof ICraftingProvider
+                && ((ICraftingProvider) metaTileEntity).pushPattern(patternDetails, table);
+    }
+
+    @Unique
+    @Override
+    public boolean isBusy()
+    {
+        return metaTileEntity instanceof ICraftingProvider
+                && ((ICraftingProvider) metaTileEntity).isBusy();
     }
 }
