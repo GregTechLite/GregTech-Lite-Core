@@ -260,7 +260,7 @@ class PartMachineMECraftingPatternInputMirror(id: ResourceLocation, tier: Int)
         private val delegate: IItemHandlerModifiable?
             get() = getMaster()?.getSharedItemHandler()
 
-        override fun getSlots(): Int = delegate?.slots ?: 0
+        override fun getSlots(): Int = PartMachineMECraftingPatternInputHatch.SHARED_SLOT_COUNT
 
         override fun getStackInSlot(slot: Int): ItemStack = delegate?.getStackInSlot(slot) ?: ItemStack.EMPTY
 

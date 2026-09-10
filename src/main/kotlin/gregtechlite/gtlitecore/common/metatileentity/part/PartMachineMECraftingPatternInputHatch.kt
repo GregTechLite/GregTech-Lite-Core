@@ -116,6 +116,9 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
     {
         const val PATTERN_SLOT_COUNT = 36
         const val MANUAL_SLOT_COUNT = 9
+
+        const val SHARED_SLOT_COUNT = MANUAL_SLOT_COUNT + 1
+
         private const val PATTERN_COLUMNS = 9
 
         private const val WORKING_TAG = "WorkingEnabled"
