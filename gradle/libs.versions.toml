@@ -7,27 +7,26 @@ gson = "2.8.6"
 jetbrainsAnnotations = "26.1.0"
 
 # Mods
-forgelin = "2.1.0.0"
-mixinBooter = "9.1"
-modularui = "3.0.6"
-codeChickenLib = "3.2.3.358"
-groovyScript = "1.2.0-hotfix1"
-craftTweaker2 = "1.12-4.1.20.700"
-ctm = "2915363" # 1.0.2.31
-ae2ExtendedLife = "6302098" # 0.56.7
-jei = "4.33.0"
-theOneProbe = "2667280" # 1.4.28
-smoothFonts = "3944565" # 2.1.4
-betterQuestingUnofficial = "5875712" # 4.2.6
-catalogue = "7652301" # 1.0.1
-baubles = "2518667" # 1.5.2
+forgelin        = "2.1.0.0"
+mixinBooter     = "9.1"
+modularui       = "3.0.6"
+codeChickenLib  = "3.2.3.358"
+groovyScript    = "1.2.0-hotfix1"
+craftTweaker2   = "1.12-4.1.20.700"
+ctm             = "2915363"         # 1.0.2.31
+ae2ExtendedLife = "6302098"         # 0.56.7
+ae2fcr          = "5751930"         # 2.6.6-r
+jei             = "4.32.0"
+theOneProbe     = "2667280"         # 1.4.28
+catalogue       = "7652301"         # 1.0.1
+baubles         = "2518667"         # 1.5.2
 
 # Plugins
-ideaExt = "1.1.7"
+ideaExt           = "1.1.7"
 retrofuturaGradle = "1.4.9"
-curseGradle = "1.4.0"
-dokka = "1.9.10"
-shadow = "7.1.2"
+curseGradle       = "1.4.0"
+dokka             = "1.9.10"
+shadow            = "7.1.2"
 
 [libraries]
 # Libraries
@@ -45,10 +44,9 @@ groovyScript             = { group = "com.cleanroommc",               name = "gr
 craftTweaker2            = { group = "CraftTweaker2",                 name = "CraftTweaker2-MC1120-Main",         version.ref = "craftTweaker2"            }
 ctm                      = { group = "curse.maven",                   name = "ctm-267602",                        version.ref = "ctm"                      }
 ae2ExtendedLife          = { group = "curse.maven",                   name = "ae2-extended-life-570458",          version.ref = "ae2ExtendedLife"          }
+ae2fcr                   = { group = "curse.maven",                   name = "ae2-fluid-crafting-rework-623955",  version.ref = "ae2fcr"                   }
 jei                      = { group = "mezz",                          name = "jei",                               version.ref = "jei"                      }
 theOneProbe              = { group = "curse.maven",                   name = "top-245211",                        version.ref = "theOneProbe"              }
-smoothFonts              = { group = "curse.maven",                   name = "smooth-font-285742",                version.ref = "smoothFonts"              }
-betterQuestingUnofficial = { group = "curse.maven",                   name = "better-questing-unofficial-629629", version.ref = "betterQuestingUnofficial" }
 catalogue                = { group = "curse.maven",                   name = "catalogue-vintage-1465746",         version.ref = "catalogue"                }
 baubles                  = { group = "curse.maven",                   name = "baubles-227083",                    version.ref = "baubles"                  }
 
