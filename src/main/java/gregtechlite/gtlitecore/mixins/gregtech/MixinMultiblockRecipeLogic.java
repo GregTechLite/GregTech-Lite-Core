@@ -13,7 +13,6 @@ import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
-import gregtech.api.util.GTLog;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
 import gregtechlite.gtlitecore.api.capability.PatternedSingletonDualInputInventory;
 import gregtechlite.gtlitecore.api.capability.PatternedSingletonDualInputProxy;
@@ -23,6 +22,7 @@ import gregtechlite.gtlitecore.api.capability.handler.SingletonDualInputHandler;
 import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectList;
+import it.unimi.dsi.fastutil.objects.Reference2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -53,14 +53,11 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
     protected int lastRecipeIndex;
 
     @Unique
-    private final Reference2ObjectOpenHashMap<PatternedSingletonDualInputInventory, ObjectList<Recipe>>
+    private final Reference2ObjectMap<PatternedSingletonDualInputInventory, ObjectList<Recipe>>
             gtlitecore$dualInputRecipeCache = new Reference2ObjectOpenHashMap<>();
 
     @Unique
     private @Nullable RecipeMap<?> gtlitecore$lastRecipeMap = null;
-
-    @Unique
-    private final boolean gtlitecore$debug = true; // TODO: Remove it when test finished.
 
     public MixinMultiblockRecipeLogic(MetaTileEntity tileEntity, RecipeMap<?> recipeMap)
     {
@@ -264,13 +261,6 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
                     {
                         previousRecipe = recipe;
                         invalidInputsForRecipes = false;
-                        if (gtlitecore$debug)
-                        {
-                            GTLog.logger.info("{} picked a recipe (EUt={}, duration={}) for inventory {}",
-                                    metaTileEntity.getMetaFullName(),
-                                    recipe.getEUt(), recipe.getDuration(),
-                                    System.identityHashCode(inventory));
-                        }
                         return true;
                     }
                 }
