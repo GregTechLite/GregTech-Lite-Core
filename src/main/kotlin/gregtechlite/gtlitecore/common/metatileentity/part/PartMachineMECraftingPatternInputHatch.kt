@@ -50,7 +50,6 @@ import gregtech.api.mui.GTGuiTextures
 import gregtech.api.mui.GTGuis
 import gregtech.api.mui.widget.GhostCircuitSlotWidget
 import gregtech.api.util.GTUtility
-import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.multi.multiblockpart.appeng.MetaTileEntityAEHostablePart
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.capability.PatternedSingletonDualInputProxy
@@ -62,6 +61,7 @@ import gregtechlite.gtlitecore.api.capability.handler.DynamicNotifiableItemStack
 import gregtechlite.gtlitecore.api.capability.SingletonDualInputAdapter
 import gregtechlite.gtlitecore.api.capability.handler.SingletonDualInputHandler
 import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
@@ -419,7 +419,10 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         super.renderMetaTileEntity(renderState, translation, pipeline)
         if (shouldRenderOverlay())
         {
-            val overlay = if (isOnline()) Textures.ME_INPUT_BUS_ACTIVE else Textures.ME_INPUT_BUS
+            val overlay = if (_supportFluids)
+                GTLiteOverlays.ME_CRAFTING_INPUT_BUFFER_OVERLAY
+            else
+                GTLiteOverlays.ME_CRAFTING_INPUT_BUS_OVERLAY
             overlay.renderSided(frontFacing, renderState, translation, pipeline)
         }
     }
