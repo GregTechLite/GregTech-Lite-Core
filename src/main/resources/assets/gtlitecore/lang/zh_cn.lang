@@ -399,6 +399,7 @@ tile.gtlitecore.metal_casing_03.inconel_718.name=防辐射镍铬基合金-718机
 tile.gtlitecore.metal_casing_03.nitinol_60.name=高弹性镍钛诺60机器外壳
 tile.gtlitecore.metal_casing_03.lafium.name=高能防护路菲恩合金机器外壳
 tile.gtlitecore.metal_casing_03.vanadium_gallium.name=抗肿胀钒镓合金机器外壳
+tile.gtlitecore.metal_casing_03.tantalum_carbide.name=耐高温碳化钽机器外壳
 
 tile.gtlitecore.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
@@ -2951,6 +2952,8 @@ gtlitecore.machine.blackhole_former.tooltip.1=以黑洞事件视界的伟力进�
 gtlitecore.machine.blackhole_former.tooltip.2=在§f压模器§7，§f卷板机§7与§f线材轧机§7的基础上拥有§d额外塑形配方§7
 gtlitecore.machine.blackhole_former.tooltip.3=可以直接通过对应§9形态力场§7与材料制作几乎所有种类的部件
 gtlitecore.machine.blackhole_former.tooltip.4=§a4096 * (稳定力场发生器等级 + 1)
+
+gtlitecore.machine.concentrated_coking_cluster.name=聚热焦化集群
 
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶

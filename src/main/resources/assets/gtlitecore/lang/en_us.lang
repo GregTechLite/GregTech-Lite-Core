@@ -399,6 +399,7 @@ tile.gtlitecore.metal_casing_03.inconel_718.name=Radiation Protective Inconel-71
 tile.gtlitecore.metal_casing_03.nitinol_60.name=Superelastic Nitinol 60 Machine Casing
 tile.gtlitecore.metal_casing_03.lafium.name=High Energy Protective Lafium Machine Casing
 tile.gtlitecore.metal_casing_03.vanadium_gallium.name=Anti-Swelling Vanadium Gallium Machine Casing
+tile.gtlitecore.metal_casing_03.tantalum_carbide.name=Heatproof Tantalum Carbide Machine Casing
 
 tile.gtlitecore.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
@@ -2951,6 +2952,8 @@ gtlitecore.machine.blackhole_former.tooltip.1=Metal Processing with Powerful For
 gtlitecore.machine.blackhole_former.tooltip.2=Has §dAdditional Shape Forming Recipes§7 without §fExtruder§7, §fBender§7 and §fWiremill§7
 gtlitecore.machine.blackhole_former.tooltip.3=Almost all types of components can be made directly by corresponding §9Force Field Shape§7 and material
 gtlitecore.machine.blackhole_former.tooltip.4=§a4096 * (Stabilization Field Generator Tier + 1)
+
+gtlitecore.machine.concentrated_coking_cluster.name=Concentrated Coking Cluster
 
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum

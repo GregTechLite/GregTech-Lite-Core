@@ -161,6 +161,7 @@ import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessSto
 import gregtechlite.gtlitecore.common.metatileentity.electric.MachineEnergyDistributor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.generator.MultiblockMegaTurbine
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockBlackholeFormer
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.mega.MultiblockConcentratedCokingCluster
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockConsciousnessStorageCenter
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNaniteReplicationUnrestricor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockVirtualGestaltComputingUplink
@@ -408,6 +409,7 @@ object GTLiteMetaTileEntities
     lateinit var NANO_ASSEMBLY_COMPLEX: MultiblockNanoAssemblyComplex
     lateinit var MATTER_RESHAPING_FRAMEWORK: MultiblockMatterReshapingFramework
     lateinit var BLACKHOLE_FORMER: MultiblockBlackholeFormer
+    lateinit var CONCENTRATED_COKING_CLUSTER: MultiblockConcentratedCokingCluster
 
     // endregion
 
@@ -1006,6 +1008,9 @@ object GTLiteMetaTileEntities
         NANO_ASSEMBLY_COMPLEX = register(10204, MultiblockNanoAssemblyComplex(GTLiteMod.id("nano_assembly_complex")))
         MATTER_RESHAPING_FRAMEWORK = register(10205, MultiblockMatterReshapingFramework(GTLiteMod.id("matter_reshaping_framework")))
         BLACKHOLE_FORMER = register(10206, MultiblockBlackholeFormer(GTLiteMod.id("blackhole_former")))
+        // TODO: 10207 Mega Cutter
+        // TODO: 10208 Mega Laser Engraver
+        CONCENTRATED_COKING_CLUSTER = register(10209, MultiblockConcentratedCokingCluster(GTLiteMod.id("concentrated_coking_cluster")))
 
         // endregion
     }

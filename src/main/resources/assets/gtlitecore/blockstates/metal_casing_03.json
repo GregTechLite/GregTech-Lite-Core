@@ -61,6 +61,12 @@
         "textures": {
           "all": "gtlitecore:blocks/casings/metal/vanadium_gallium"
         }
+      },
+      "tantalum_carbide": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/metal/tantalum_carbide"
+        }
       }
     }
   }
