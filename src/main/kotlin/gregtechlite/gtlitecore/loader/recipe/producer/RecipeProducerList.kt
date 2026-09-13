@@ -30,9 +30,7 @@ internal object RecipeProducerList
 
     fun postInit()
     {
-        // This should be later than OverrideRecipeLoader
         ComponentAssemblyLineRecipeProducer.produce()
-
         AdvancedFusionRecipeProducer.produce()
         BlackholeFormerRecipeProducer.produce()
     }
