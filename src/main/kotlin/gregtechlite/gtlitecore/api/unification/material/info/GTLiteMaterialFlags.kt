@@ -118,6 +118,7 @@ import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Roentgenium
 import gregtech.api.unification.material.Materials.RoseGold
+import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
@@ -535,6 +536,7 @@ object GTLiteMaterialFlags
         Moscovium.addFlags(GENERATE_DOUBLE_PLATE)
         Copernicium.addFlags(GENERATE_DOUBLE_PLATE)
         NaquadahEnriched.addFlags(GENERATE_DOUBLE_PLATE)
+        Ruridit.addFlags(GENERATE_DOUBLE_PLATE)
 
         // plateDense
         WroughtIron.addFlags(GENERATE_DENSE)
