@@ -6,7 +6,10 @@ import gregtech.api.unification.material.MarkerMaterials.Color
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Wood
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_BOLT_SCREW
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_PLATE
+import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SPRING_SMALL
@@ -17,8 +20,11 @@ import gregtech.api.unification.ore.OrePrefix.dye
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix.ring
+import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
+import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.ToolItems.PLUNGER
 import gregtech.common.items.ToolItems.SOFT_MALLET
@@ -26,6 +32,7 @@ import gregtechlite.gtlitecore.api.unification.material.properties.GTLiteToolPro
 import gregtechlite.gtlitecore.common.item.GTLiteToolItems.CLUB
 import gregtechlite.gtlitecore.common.item.GTLiteToolItems.COMBINATION_WRENCH
 import gregtechlite.gtlitecore.common.item.GTLiteToolItems.FLINT_AND_STEEL
+import gregtechlite.gtlitecore.common.item.GTLiteToolItems.MULTITOOL_CLOSED
 import gregtechlite.gtlitecore.common.item.GTLiteToolItems.ROLLING_PIN
 import gregtechlite.gtlitecore.common.item.GTLiteToolItems.UNIVERSAL_SPADE
 import net.minecraft.init.Items
@@ -34,7 +41,6 @@ import net.minecraft.item.ItemStack
 @Suppress("unused")
 object ToolRecipeHandler
 {
-
     // @formatter:off
 
     fun init()
@@ -86,6 +92,17 @@ object ToolRecipeHandler
                     'D', UnificationEntry(dye, Color.Blue))
             }
 
+            if (material.hasFlags(GENERATE_PLATE, GENERATE_LONG_ROD, GENERATE_RING, GENERATE_BOLT_SCREW))
+            {
+                // Pocket Multitool
+                addToolRecipe(material, MULTITOOL_CLOSED, true,
+                    "wPR", "PPS", "RSB",
+                    'B', UnificationEntry(screw, material),
+                    'S', UnificationEntry(stickLong, material),
+                    'P', UnificationEntry(plate, material),
+                    'R', UnificationEntry(ring, material))
+            }
+
             // Do not generate Steel Flint And Steel because the vanilla Flint And Steel is Steel yet.
             if (material.hasFlags(GENERATE_SPRING_SMALL, GENERATE_SMALL_GEAR) && material != Steel)
             {
@@ -96,7 +113,6 @@ object ToolRecipeHandler
                     'S', UnificationEntry(springSmall, material),
                     'F', ItemStack(Items.FLINT))
             }
-
         }
     }
 
@@ -130,5 +146,4 @@ object ToolRecipeHandler
     }
 
     // @formatter:on
-
 }
