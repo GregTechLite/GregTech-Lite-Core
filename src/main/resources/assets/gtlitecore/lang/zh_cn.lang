@@ -1638,6 +1638,7 @@ item.gt.tool.multitool_cutter.name=%s万能工具（剪线钳）
 item.gt.tool.multitool_file.name=%s万能工具（锉刀）
 item.gt.tool.multitool_knife.name=%s万能工具（小刀）
 item.gt.tool.multitool_screwdriver.name=%s万能工具（螺丝刀）
+item.gt.tool.multitool_saw.name=%s万能工具（锯）
 
 gt.tool.class.rolling_pin=擀面杖
 gt.tool.class.flint_and_steel=打火石
