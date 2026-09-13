@@ -6,11 +6,11 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
-import gregtech.api.recipes.RecipeMaps
 import gregtech.api.util.RelativeDirection
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPLEX_PYROLYSIS_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTFireboxCasing
@@ -21,7 +21,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
-class MultiblockConcentratedCokingCluster(id: ResourceLocation) : RecipeMapMultiblockController(id, RecipeMaps.PYROLYSE_RECIPES)
+class MultiblockConcentratedCokingCluster(id: ResourceLocation) : RecipeMapMultiblockController(id, COMPLEX_PYROLYSIS_RECIPES)
 {
     companion object
     {

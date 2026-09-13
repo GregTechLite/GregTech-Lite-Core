@@ -11,6 +11,7 @@ import gregtech.api.recipes.builders.BlastRecipeBuilder
 import gregtech.api.recipes.builders.FuelRecipeBuilder
 import gregtech.api.recipes.builders.PrimitiveRecipeBuilder
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
+import gregtech.api.recipes.ui.impl.DistillationTowerUI
 import gregtech.api.unification.material.Materials
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.GTLiteMod
@@ -32,6 +33,7 @@ import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
 import gregtechlite.gtlitecore.api.recipe.ui.BlackholeFormerUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
+import gregtechlite.gtlitecore.api.recipe.ui.ConcentratedCokingClusterUI
 import gregtechlite.gtlitecore.api.recipe.ui.IntegratedOreProcessorUI
 import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
 import gregtechlite.gtlitecore.api.recipe.ui.MiningDroneAirportUI
@@ -1001,6 +1003,21 @@ object GTLiteRecipeMaps
         .itemOutputs(1)
         .sound(GTLiteSoundEvents.BLACKHOLE)
         .build()
+
+    /**
+     * @zenProp concentrated_coking_cluster
+     */
+    @ZenProperty
+    @JvmField
+    val COMPLEX_PYROLYSIS_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("concentrated_coking_cluster", SimpleRecipeBuilder())
+        .ui { ConcentratedCokingClusterUI(it) }
+        .itemInputs(2)
+        .fluidInputs(2)
+        .itemOutputs(2)
+        .fluidOutputs(6)
+        .sound(GTSoundEvents.BATH)
+        .build()
+        .setSmallRecipeMap(RecipeMaps.PYROLYSE_RECIPES)
 
     // endregion
 

@@ -1863,6 +1863,7 @@ recipemap.recombination_submodule.name=分离重构模组
 recipemap.mob_collecting_mode.name=繁育模式
 recipemap.mob_slaughtering_mode.name=屠宰模式
 recipemap.blackhole_former.name=事件视界引力成形
+recipemap.concentrated_coking_cluster.name=热化学复合热解
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮

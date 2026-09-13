@@ -1863,6 +1863,7 @@ recipemap.recombination_submodule.name=Separating Recombination Submodule
 recipemap.mob_collecting_mode.name=Collecting
 recipemap.mob_slaughtering_mode.name=Slaughtering
 recipemap.blackhole_former.name=Event Horizon Gravitational Forming
+recipemap.concentrated_coking_cluster.name=Thermochemical Composite Pyrolysis
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
