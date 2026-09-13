@@ -19,15 +19,10 @@ import net.minecraft.item.ItemStack
 
 internal object WrapItemRecipeProducer
 {
-
-    // @formatter:off
-
     fun produce()
     {
-        // Add all Wrap Items.
         wrapItems.forEach { item, wrapItem -> addRecipe(item, wrapItem) }
 
-        // Circuits
         for (tier in ULV..MAX)
         {
             ASSEMBLER_RECIPES.addRecipe {
@@ -52,7 +47,4 @@ internal object WrapItemRecipeProducer
             duration(5 * SECOND)
         }
     }
-
-    // @formatter:on
-
 }
