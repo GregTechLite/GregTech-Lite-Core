@@ -60,7 +60,6 @@ import net.minecraft.init.SoundEvents
  */
 object GTLiteToolItems
 {
-
     lateinit var ROLLING_PIN: IGTTool
     lateinit var COMBINATION_WRENCH: IGTTool
     lateinit var UNIVERSAL_SPADE: IGTTool
@@ -71,7 +70,6 @@ object GTLiteToolItems
     lateinit var MULTITOOL_FILE: IGTTool
     lateinit var MULTITOOL_KNIFE: IGTTool
     lateinit var MULTITOOL_SCREWDRIVER: IGTTool
-
 
     internal fun registerTools()
     {
@@ -189,7 +187,6 @@ object GTLiteToolItems
             toolClasses("knife", "sword")
         }
 
-
         MULTITOOL_SCREWDRIVER = multiTool("multitool_screwdriver"){
             toolDefinition {
                 crafting()
@@ -198,7 +195,7 @@ object GTLiteToolItems
                 attackDamage(-1.0F)
                 attackSpeed(3.0F)
                 durabilityMultiplier(multiToolDurability)
-                behaviors( EntityDamageBehavior (3.0F,EntitySpider::class.java))
+                behaviors(EntityDamageBehavior(3.0F,EntitySpider::class.java))
             }
             oreDict(ToolOreDict.toolScrewdriver)
             secondaryOreDicts("craftingToolScrewdriver")
