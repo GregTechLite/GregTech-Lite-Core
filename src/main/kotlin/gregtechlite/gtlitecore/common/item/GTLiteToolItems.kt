@@ -2,17 +2,21 @@ package gregtechlite.gtlitecore.common.item
 
 import gregtech.api.items.toolitem.IGTTool
 import gregtech.api.items.toolitem.ItemGTTool
+import gregtech.api.items.toolitem.ToolClasses
 import gregtech.api.items.toolitem.ToolHelper
+import gregtech.api.items.toolitem.ToolOreDict
 import gregtech.common.items.ToolItems
 import gregtech.common.items.tool.BlockRotatingBehavior
 import gregtech.common.items.tool.EntityDamageBehavior
 import gregtech.common.items.tool.GrassPathBehavior
+import gregtech.common.items.tool.HarvestIceBehavior
 import gregtech.common.items.tool.RotateRailBehavior
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.extension.toolDefinition
 import gregtechlite.gtlitecore.common.item.behavior.FlintAndSteelToolBehavior
 import net.minecraft.entity.monster.EntityGolem
+import net.minecraft.entity.monster.EntitySpider
 import net.minecraft.init.SoundEvents
 
 /**
@@ -58,12 +62,17 @@ import net.minecraft.init.SoundEvents
  */
 object GTLiteToolItems
 {
-
     lateinit var ROLLING_PIN: IGTTool
     lateinit var COMBINATION_WRENCH: IGTTool
     lateinit var UNIVERSAL_SPADE: IGTTool
     lateinit var FLINT_AND_STEEL: IGTTool
     lateinit var CLUB: IGTTool
+    lateinit var MULTITOOL_CLOSED: IGTTool
+    lateinit var MULTITOOL_CUTTER: IGTTool
+    lateinit var MULTITOOL_FILE: IGTTool
+    lateinit var MULTITOOL_KNIFE: IGTTool
+    lateinit var MULTITOOL_SCREWDRIVER: IGTTool
+    lateinit var MULTITOOL_SAW: IGTTool
 
     internal fun registerTools()
     {
@@ -90,9 +99,9 @@ object GTLiteToolItems
                 behaviors(BlockRotatingBehavior.INSTANCE,
                           EntityDamageBehavior(3.0F, EntityGolem::class.java))
             }
-            oreDict("toolWrench")
+            oreDict(ToolOreDict.toolWrench)
             secondaryOreDicts("toolHammer", "craftingToolWrench", "craftingToolHardHammer")
-            toolClasses("wrench", "hammer")
+            toolClasses(ToolClasses.WRENCH, ToolClasses.HARD_HAMMER)
             sound(GTSoundEvents.WRENCH_TOOL, true)
         }
 
@@ -105,9 +114,9 @@ object GTLiteToolItems
                 attackSpeed(-2.4F)
                 behaviors(GrassPathBehavior.INSTANCE, RotateRailBehavior.INSTANCE)
             }
-            oreDict("toolShovel")
+            oreDict(ToolOreDict.toolShovel)
             secondaryOreDicts("toolCrowbar", "toolSpade", "toolSaw", "craftingToolSaw")
-            toolClasses("crowbar", "shovel", "saw")
+            toolClasses(ToolClasses.CROWBAR, ToolClasses.SHOVEL, ToolClasses.SAW)
             sound(SoundEvents.ENTITY_ITEM_BREAK)
         }
 
@@ -133,6 +142,84 @@ object GTLiteToolItems
             sound(SoundEvents.BLOCK_PISTON_CONTRACT)
         }
 
+        val multiToolDurability = 16.0F
+
+        MULTITOOL_CLOSED = multiTool("multitool_closed") {
+            toolDefinition {
+                damagePerAction(0)
+                durabilityMultiplier(multiToolDurability)
+            }
+        }
+
+        MULTITOOL_CUTTER = multiTool("multitool_cutter") {
+            toolDefinition {
+                crafting()
+                sneakBypassUse()
+                attackDamage(-1.0F)
+                attackSpeed(-2.4F)
+                durabilityMultiplier(multiToolDurability)
+            }
+            oreDict(ToolOreDict.toolWireCutter)
+            secondaryOreDicts("craftingToolWireCutter")
+            toolClasses(ToolClasses.WIRE_CUTTER)
+            sound(GTSoundEvents.WIRECUTTER_TOOL, true)
+        }
+
+        MULTITOOL_FILE = multiTool("multitool_file") {
+            toolDefinition {
+                crafting()
+                cannotAttack()
+                attackSpeed(-2.4F)
+                durabilityMultiplier(multiToolDurability)
+            }
+            oreDict(ToolOreDict.toolFile)
+            secondaryOreDicts("craftingToolFile")
+            toolClasses(ToolClasses.FILE)
+            sound(GTSoundEvents.FILE_TOOL)
+        }
+
+        MULTITOOL_KNIFE = multiTool("multitool_knife") {
+            toolDefinition {
+                crafting()
+                attacking()
+                attackSpeed(3.0F)
+                durabilityMultiplier(multiToolDurability)
+            }
+            oreDict(ToolOreDict.toolKnife)
+            secondaryOreDicts("craftingToolKnife")
+            toolClasses(ToolClasses.KNIFE, ToolClasses.SWORD)
+        }
+
+        MULTITOOL_SCREWDRIVER = multiTool("multitool_screwdriver") {
+            toolDefinition {
+                crafting()
+                sneakBypassUse()
+                damagePerCraftingAction(4)
+                attackDamage(-1.0F)
+                attackSpeed(3.0F)
+                durabilityMultiplier(multiToolDurability)
+                behaviors(EntityDamageBehavior(3.0F, EntitySpider::class.java))
+            }
+            oreDict(ToolOreDict.toolScrewdriver)
+            secondaryOreDicts("craftingToolScrewdriver")
+            toolClasses(ToolClasses.SCREWDRIVER)
+            sound(GTSoundEvents.SCREWDRIVER_TOOL)
+        }
+
+        MULTITOOL_SAW = multiTool("multitool_saw") {
+            toolDefinition {
+                crafting()
+                damagePerCraftingAction(2)
+                attackDamage(-1.0f)
+                attackSpeed(-2.6f)
+                durabilityMultiplier(multiToolDurability)
+                behaviors(HarvestIceBehavior.INSTANCE)
+            }
+            oreDict(ToolOreDict.toolSaw)
+            secondaryOreDicts("craftingToolSaw")
+            toolClasses(ToolClasses.SAW)
+            sound(GTSoundEvents.SAW_TOOL)
+        }
     }
 
     fun addToolSymbols()
@@ -143,4 +230,6 @@ object GTLiteToolItems
     private fun tool(id: String, action: ItemGTTool.Builder.() -> Unit)
         = ToolItems.register(ItemGTTool.Builder.of(MOD_ID, id).apply(action))
 
+    private fun multiTool(id: String, action: ItemMultiTool.Builder.() -> Unit)
+        = ItemMultiTool.register(ItemMultiTool.Builder.of(MOD_ID, id).apply(action))
 }
