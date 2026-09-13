@@ -80,6 +80,7 @@ import gregtech.api.unification.material.Materials.Polycaprolactam
 import gregtech.api.unification.material.Materials.Potin
 import gregtech.api.unification.material.Materials.Praseodymium
 import gregtech.api.unification.material.Materials.Promethium
+import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.material.Materials.Rhodium
 import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
@@ -226,6 +227,7 @@ import gregtech.common.metatileentities.MetaTileEntities.CENTRAL_MONITOR
 import gregtech.common.metatileentities.MetaTileEntities.CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.CHARGER
 import gregtech.common.metatileentities.MetaTileEntities.CHEMICAL_BATH
+import gregtech.common.metatileentities.MetaTileEntities.CHEMICAL_REACTOR
 import gregtech.common.metatileentities.MetaTileEntities.CIRCUIT_ASSEMBLER
 import gregtech.common.metatileentities.MetaTileEntities.COMPRESSOR
 import gregtech.common.metatileentities.MetaTileEntities.CUTTER
@@ -409,6 +411,7 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CHEM
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CIRCUIT_ASSEMBLY_LINE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.COAGULATION_TANK
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.COMPONENT_ASSEMBLY_LINE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CONCENTRATED_COKING_CLUSTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CONSCIOUSNESS_STORAGE_CENTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.COSMIC_RAY_DETECTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.CRYOGENIC_FREEZER
@@ -2125,6 +2128,20 @@ internal object MachineRecipeLoader
                     .EUt(VA[IV])
                     .duration(2 * MINUTE + 30 * SECOND)
             }
+        }
+
+        // Concentrated Coking Cluster
+        ASSEMBLER_RECIPES.addRecipe {
+            circuitMeta(24)
+            input(ELECTRIC_FURNACE[LuV], 16)
+            input(CHEMICAL_REACTOR[LuV], 16)
+            input(INDUSTRIAL_COKE_OVEN, 64)
+            input(circuit, Tier.ZPM, 4)
+            input(spring, HSSE, 8)
+            fluidInputs(Protactinium.getFluid(L * 10))
+            output(CONCENTRATED_COKING_CLUSTER)
+            EUt(VA[LuV])
+            duration(1 * MINUTE)
         }
     }
 

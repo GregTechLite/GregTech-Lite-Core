@@ -650,6 +650,7 @@ object GTLiteMaterialFlags
         Platinum.addFlags(GENERATE_SPRING)
         Nickel.addFlags(GENERATE_SPRING)
         BlackBronze.addFlags(GENERATE_SPRING)
+        HSSE.addFlags(GENERATE_SPRING)
 
         // springSmall
         WroughtIron.addFlags(GENERATE_SPRING_SMALL)
