@@ -50,6 +50,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Staballoy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Stellite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Talonite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumTungstenCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trinaquadalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tumbaga
@@ -60,7 +61,6 @@ import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 
 internal object MetalCasingRecipes
 {
-
     // @formatter:off
 
     fun init()
@@ -109,12 +109,12 @@ internal object MetalCasingRecipes
         create(MetalCasing.NITINOL_60, Nitinol60)
         create(MetalCasing.LAFIUM, Lafium)
         create(MetalCasing.VANADIUM_GALLIUM, VanadiumGallium)
-
+        create(MetalCasing.TANTALUM_CARBIDE, TantalumCarbide)
     }
 
     private fun create(outputCasing: BlockVariant, material: Material)
     {
-        ModHandler.addShapedRecipe(true, material.name.lowercase() + "_casing",
+        ModHandler.addShapedRecipe(true, "${material.name.lowercase()}_casing",
             outputCasing.getStack(ConfigHolder.recipes.casingsPerCraft),
             "PhP", "PFP", "PwP",
             'P', UnificationEntry(plate, material),
@@ -131,5 +131,4 @@ internal object MetalCasingRecipes
     }
 
     // @formatter:on
-
 }

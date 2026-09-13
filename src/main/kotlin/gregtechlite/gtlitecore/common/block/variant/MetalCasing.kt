@@ -95,6 +95,8 @@ object MetalCasing
     val LAFIUM = Enum03.LAFIUM
     @JvmField
     val VANADIUM_GALLIUM = Enum03.VANADIUM_GALLIUM
+    @JvmField
+    val TANTALUM_CARBIDE = Enum03.TANTALUM_CARBIDE
 
     enum class Enum01(private val serializedName: String,
                       private val harvestLevel: Int = 2) : BlockVariant, IStringSerializable, IStateHarvestLevel
@@ -131,7 +133,6 @@ object MetalCasing
     enum class Enum02(private val serializedName: String,
                       private val harvestLevel: Int = 2) : BlockVariant, IStringSerializable, IStateHarvestLevel
     {
-
         HSLA_STEEL("hsla_steel"),
         KOVAR("kovar"),
         BLACK_STEEL("black_steel"),
@@ -159,13 +160,11 @@ object MetalCasing
         override fun getHarvestLevel(state: IBlockState) = harvestLevel
 
         override fun getHarvestTool(state: IBlockState) = "wrench"
-
     }
 
     enum class Enum03(private val serializedName: String,
                       private val harvestLevel: Int = 2) : BlockVariant, IStringSerializable, IStateHarvestLevel
     {
-
         COBALT_BRASS("cobalt_brass"),
         TRINAQUADALLOY("trinaquadalloy"),
         OSMIRIDIUM("osmiridium"),
@@ -175,7 +174,8 @@ object MetalCasing
         INCONEL_718("inconel_718"),
         NITINOL_60("nitinol_60"),
         LAFIUM("lafium"),
-        VANADIUM_GALLIUM("vanadium_gallium");
+        VANADIUM_GALLIUM("vanadium_gallium"),
+        TANTALUM_CARBIDE("tantalum_carbide");
 
         override val state: IBlockState
             get() = GTLiteBlocks.METAL_CASING_03.getState(this)
@@ -187,7 +187,5 @@ object MetalCasing
         override fun getHarvestLevel(state: IBlockState) = harvestLevel
 
         override fun getHarvestTool(state: IBlockState) = "wrench"
-
     }
-
 }

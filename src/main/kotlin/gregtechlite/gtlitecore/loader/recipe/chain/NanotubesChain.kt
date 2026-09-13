@@ -26,7 +26,6 @@ import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
-import gregtech.api.recipes.RecipeMaps.PYROLYSE_RECIPES
 import gregtech.api.unification.material.Materials.Acetone
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Ammonia
@@ -79,6 +78,7 @@ import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPLEX_PYROLYSIS_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PLASMA_CVD_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetaldehyde
@@ -201,12 +201,13 @@ internal object NanotubesChain
     private fun dichlorocyclooctadieneplatiniumProcess()
     {
         // 2C4H6 -> C8H12
-        PYROLYSE_RECIPES.addRecipe {
+        COMPLEX_PYROLYSIS_RECIPES.addRecipe {
             notConsumable(dust, Nickel)
             fluidInputs(Butadiene.getFluid(2000))
             fluidOutputs(Cyclooctadiene.getFluid(1000))
             EUt(VA[HV])
             duration(4 * SECOND)
+            blastFurnaceTemp(3400)
         }
 
         // C10H12 -> C8H12 + 2C (drop)

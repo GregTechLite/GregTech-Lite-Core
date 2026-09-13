@@ -8,19 +8,20 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
-import gregtech.api.recipes.RecipeMaps.PYROLYSE_RECIPES
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Butyraldehyde
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Phenol
 import gregtech.api.unification.material.Materials.Rhenium
+import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPLEX_PYROLYSIS_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AceticAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CBDOPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylketene
@@ -54,13 +55,15 @@ internal object CBDOPolycarbonateChain
             duration(3 * SECOND)
         }
 
-        // C8H14O3 -> 2C4H6O2 + 2H2O (lost)
-        PYROLYSE_RECIPES.addRecipe {
+        // C8H14O3 -> 2C4H6O2 + 2H2O
+        COMPLEX_PYROLYSIS_RECIPES.addRecipe {
             notConsumable(stick, Yttrium)
             fluidInputs(IsobutyricAnhydride.getFluid(1000))
             fluidOutputs(Dimethylketene.getFluid(2000))
+            fluidOutputs(Water.getFluid(2000))
             EUt(VA[IV])
             duration(12 * SECOND)
+            blastFurnaceTemp(5600)
         }
 
         // 2C4H6O2 + 4H -> C8H16O2

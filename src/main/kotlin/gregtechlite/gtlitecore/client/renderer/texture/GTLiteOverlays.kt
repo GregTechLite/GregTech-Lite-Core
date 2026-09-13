@@ -300,6 +300,8 @@ object GTLiteOverlays
     val HAWKING_RADIATION_ABSORPTION_CASING = casingId("special/hawking_radiation_absorption_casing")
     @JvmField
     val DYSON_SWARM_ENERGY_RECEIVER_BASE_CASING = complexCasingId("aerospace/dyson_swarm_casing_base")
+    @JvmField
+    val TANTALUM_CARBIDE_CASING = casingId("metal/tantalum_carbide")
 
     // endregion
 
