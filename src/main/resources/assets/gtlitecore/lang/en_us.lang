@@ -1634,10 +1634,10 @@ item.gt.tool.universal_spade.name=%s Universal Spade
 item.gt.tool.flint_and_steel.name=%s Flint And Steel
 item.gt.tool.club.name=%s Club
 item.gt.tool.multitool_closed.name=%s Multitool
-item.gt.tool.multitool_cutter.name=%s Multitool(Wire Cutter)
-item.gt.tool.multitool_file.name=%s Multitool(File)
-item.gt.tool.multitool_knife.name=%s Multitool(Knife)
-item.gt.tool.multitool_screwdriver.name=%s Multitool(Screwdriver)
+item.gt.tool.multitool_cutter.name=%s Multitool (Wire Cutter)
+item.gt.tool.multitool_file.name=%s Multitool (File)
+item.gt.tool.multitool_knife.name=%s Multitool (Knife)
+item.gt.tool.multitool_screwdriver.name=%s Multitool (Screwdriver)
 
 gt.tool.class.rolling_pin=Rolling Pin
 gt.tool.class.flint_and_steel=Flint And Steel

@@ -1634,11 +1634,10 @@ item.gt.tool.universal_spade.name=%s万用铲
 item.gt.tool.flint_and_steel.name=%s打火石
 item.gt.tool.club.name=%s棒槌
 item.gt.tool.multitool_closed.name=%s万能工具
-item.gt.tool.multitool_cutter.name=%s万能工具(剪线钳)
-item.gt.tool.multitool_file.name=%s万能工具(锉刀)
-item.gt.tool.multitool_knife.name=%s万能工具(小刀)
-item.gt.tool.multitool_screwdriver.name=%s万能工具(螺丝刀)
-
+item.gt.tool.multitool_cutter.name=%s万能工具（剪线钳）
+item.gt.tool.multitool_file.name=%s万能工具（锉刀）
+item.gt.tool.multitool_knife.name=%s万能工具（小刀）
+item.gt.tool.multitool_screwdriver.name=%s万能工具（螺丝刀）
 
 gt.tool.class.rolling_pin=擀面杖
 gt.tool.class.flint_and_steel=打火石
