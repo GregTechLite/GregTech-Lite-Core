@@ -73,6 +73,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(OilHeavy.getFluid(200))
             EUt(VA[HV])
             duration(10 * SECOND)
+            blastFurnaceTemp(2400)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -87,6 +88,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Lubricant.getFluid(400))
             EUt(VA[HV])
             duration(10 * SECOND)
+            blastFurnaceTemp(2400)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -101,6 +103,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(MethylAcetate.getFluid(40))
             EUt(VA[HV])
             duration(10 * SECOND)
+            blastFurnaceTemp(2400)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -115,6 +118,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(CarbonMonoxide.getFluid(1360))
             EUt(VA[HV])
             duration(10 * SECOND)
+            blastFurnaceTemp(2400)
         }
 
         // endregion
@@ -129,6 +133,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[HV])
             duration(10 * SECOND)
+            blastFurnaceTemp(2600)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -139,6 +144,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[HV])
             duration(10 * SECOND)
+            blastFurnaceTemp(2600)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -149,6 +155,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(CarbonDioxide.getFluid(9000))
             EUt(VA[HV])
             duration(1 * MINUTE + 30 * SECOND)
+            blastFurnaceTemp(2600)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -159,6 +166,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(CarbonDioxide.getFluid(9000))
             EUt(VA[HV])
             duration(1 * MINUTE + 30 * SECOND)
+            blastFurnaceTemp(2600)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -174,6 +182,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Phenol.getFluid(400))
             EUt(VA[HV])
             duration(10 * SECOND)
+            blastFurnaceTemp(2600)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -189,6 +198,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Phenol.getFluid(400))
             EUt(VA[HV])
             duration(10 * SECOND)
+            blastFurnaceTemp(2600)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -204,6 +214,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Phenol.getFluid(3600))
             EUt(VA[HV])
             duration(1 * MINUTE + 30 * SECOND)
+            blastFurnaceTemp(2600)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -219,6 +230,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Phenol.getFluid(3600))
             EUt(VA[HV])
             duration(1 * MINUTE + 30 * SECOND)
+            blastFurnaceTemp(2600)
         }
 
         // endregion
@@ -233,6 +245,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(FermentedBiomass.getFluid(96000))
             EUt(VA[HV])
             duration(10 * SECOND)
+            blastFurnaceTemp(1200)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -242,6 +255,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Water.getFluid(4500))
             EUt(VA[HV])
             duration(10 * SECOND)
+            blastFurnaceTemp(500)
         }
 
         COMPLEX_PYROLYSIS_RECIPES.addRecipe {
@@ -251,6 +265,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Water.getFluid(40500))
             EUt(VA[HV])
             duration(90 * SECOND)
+            blastFurnaceTemp(500)
         }
 
         // endregion

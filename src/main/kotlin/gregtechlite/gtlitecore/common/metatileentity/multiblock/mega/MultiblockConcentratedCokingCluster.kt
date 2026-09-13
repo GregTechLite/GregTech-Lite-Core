@@ -9,6 +9,7 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.util.RelativeDirection
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.coils
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPLEX_PYROLYSIS_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
@@ -17,7 +18,9 @@ import gregtechlite.gtlitecore.common.block.adapter.GTFireboxCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
+import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
+import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 
@@ -64,6 +67,15 @@ class MultiblockConcentratedCokingCluster(id: ResourceLocation) : RecipeMapMulti
 
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.TANTALUM_CARBIDE_CASING
+
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
+    {
+        addTooltip(tooltip)
+        {
+            addMachineTypeLine()
+        }
+    }
 
     override fun hasMaintenanceMechanics(): Boolean = false
 }

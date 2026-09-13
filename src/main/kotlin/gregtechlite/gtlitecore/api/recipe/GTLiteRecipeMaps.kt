@@ -1009,7 +1009,7 @@ object GTLiteRecipeMaps
      */
     @ZenProperty
     @JvmField
-    val COMPLEX_PYROLYSIS_RECIPES: RecipeMap<SimpleRecipeBuilder> = RecipeMapBuilder("concentrated_coking_cluster", SimpleRecipeBuilder())
+    val COMPLEX_PYROLYSIS_RECIPES: RecipeMap<BlastRecipeBuilder> = RecipeMapBuilder("concentrated_coking_cluster", BlastRecipeBuilder())
         .ui { ConcentratedCokingClusterUI(it) }
         .itemInputs(2)
         .fluidInputs(2)

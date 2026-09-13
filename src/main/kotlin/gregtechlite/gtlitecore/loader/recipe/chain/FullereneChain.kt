@@ -16,7 +16,6 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.CRACKING_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
-import gregtech.api.recipes.RecipeMaps.PYROLYSE_RECIPES
 import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Butane
@@ -51,6 +50,7 @@ import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPLEX_PYROLYSIS_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzyltrimethylammoniumBromide
@@ -310,13 +310,14 @@ internal object FullereneChain
         }
 
         // C60H30 -> C60 + 30H
-        PYROLYSE_RECIPES.addRecipe {
+        COMPLEX_PYROLYSIS_RECIPES.addRecipe {
             input(dust, GeodesicPolyarene)
             input(foil, Platinum)
             output(dust, Fullerene)
             fluidOutputs(Hydrogen.getFluid(500))
             EUt(VA[UHV])
             duration(10 * TICK)
+            blastFurnaceTemp(9800)
         }
 
         // Advanced recipes for C60H30.
