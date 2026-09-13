@@ -162,7 +162,7 @@ object GTLiteToolItems
             oreDict(ToolOreDict.toolWireCutter)
             secondaryOreDicts("craftingToolWireCutter")
             toolClasses(ToolClasses.WIRE_CUTTER)
-            sound(GTSoundEvents.WIRECUTTER_TOOL,true)
+            sound(GTSoundEvents.WIRECUTTER_TOOL, true)
         }
 
         MULTITOOL_FILE = multiTool("multitool_file") {
@@ -198,7 +198,7 @@ object GTLiteToolItems
                 attackDamage(-1.0F)
                 attackSpeed(3.0F)
                 durabilityMultiplier(multiToolDurability)
-                behaviors(EntityDamageBehavior(3.0F,EntitySpider::class.java))
+                behaviors(EntityDamageBehavior(3.0F, EntitySpider::class.java))
             }
             oreDict(ToolOreDict.toolScrewdriver)
             secondaryOreDicts("craftingToolScrewdriver")
