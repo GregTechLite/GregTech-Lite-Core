@@ -60,30 +60,34 @@ import net.minecraftforge.oredict.OreDictionary
 /**
  * Component Assembly Line (CoAL) recipe producer.
  *
- * Rule-driven replacement of the old handwritten 64x-expanded recipes. Instead of
- * maintaining a giant handwritten table, this producer reads the single-unit
- * component recipes directly from [ASSEMBLER_RECIPES] (LV-EV) and
- * [ASSEMBLY_LINE_RECIPES] (LuV+) and scales every input by 64:
+ * Will read corresponding recipes in [ASSEMBLER_RECIPES] (LV-EV)
+ * and [ASSEMBLY_LINE_RECIPES] (LuV+) and scales every input by 64.
+ * Here are replacement rules:
  *
- * - other components / meta items: x64, split into stacks of 64;
- * - circuits: packed into WRAP_CIRCUIT (16 circuits = 1 wrap);
- * - "any" ore-dict tags (rubbers): one recipe per concrete material; all
- *   occurrences of the same tag in one recipe share the same material and
- *   are paid as one merged fluid input;
- * - wires / cables: compressed to wireGtHex / cableGtHex, otherwise fluid;
- * - plates: compressed to plateDense (9x) / plateDouble (2x) when the material
- *   supports it and the amount divides evenly, otherwise fluid;
- * - sticks: compressed to stickLong at LV-EV, fluid from LuV+ (magnetic rods stay
- *   solid); small components (ring/round/screw/foil/frame/gear/rotor/wireFine/
- *   pipe) stay items at LV-EV and become fluid from LuV+;
- * - solid inputs that the rules above fluidize keep an item-stack fallback;
- *   when a variant exceeds 12 fluid inputs, the cheapest fallbacks are turned
- *   back into items until the recipe fits the 12/12 input limits.
- * - explicit fluids: x64 and merged per material; Halkonite Steel also pays an
- *   equal amount of Bedrockium.
+ * - Other Components or Meta Items: x64, auto split into stacks of 64.
+ * - Circuits: Packed into **Wrapped Circuit** (16:1).
+ * - Rubbers: One recipe per concrete material; all occurrences of the
+ *   same tag in one recipe share the same material and are paid as one
+ *   merged fluid input.
+ * - Wires or Cables: Compressed to `wireGtHex` or `cableGtHex`, otherwise
+ *   its fluid.
+ * - Plates: Compressed to `plateDouble` or `plateDense` when the material
+ *   supports it and the amount divides evenly, otherwise its fluid.
+ * - Sticks: Compressed to `stickLong` at LV-EV, fluid at LuV+ (magnetic rods
+ *   stay solid).
+ * - All Small Components: consists of `ring`, `round`, `screw`, `foil`,
+ *   `frameGt`, `gear`, `rotor`, `wireFine` and `pipe` usually stay items at
+ *   LV-EV and also become fluid at LuV+.
  *
- * Duration follows the tier table, EUt = VA[tier], the CoAL tier property is set,
- * and every recipe outputs 64 items.
+ * Some recipe has special rules:
+ *
+ * - Input -> Fluid: Solid inputs that the rules above fluidize keep an [ItemStack]
+ *   fallback when a variant exceeds 12 fluid inputs, the cheapest fallbacks are
+ *   turned back into items until the recipe fits the 12/12 input limits.
+ * - Explicit Fluids: x64 and merged per material; Halkonite Steel also pays an
+ *   equal amount of Bedrockium which called extra material or fluid.
+ *
+ * @author RainyYC
  */
 internal object ComponentAssemblyLineRecipeProducer
 {
