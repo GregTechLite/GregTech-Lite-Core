@@ -64,7 +64,7 @@ class MultiblockConcentratedCokingCluster(id: ResourceLocation) : RecipeMapMulti
 
     init
     {
-        recipeMapWorkable
+        recipeMapWorkable = ConcentratedCokingClusterRecipeLogic(this)
     }
 
     companion object
@@ -109,7 +109,7 @@ class MultiblockConcentratedCokingCluster(id: ResourceLocation) : RecipeMapMulti
     override fun createStructurePattern(): BlockPattern = FactoryBlockPattern.start(RelativeDirection.LEFT, RelativeDirection.UP, RelativeDirection.BACK)
         .aisle("AAAAAAAAAAAAAAAAAAAAAAAAA   ", "  B B B B B B B B B B B B   ", "  B B B B B B B B B B B B   ", "  B B B B B B B B B B B B   ", "  B B B B B B B B B B B B   ", "  B B B B B B B B B B B B   ", "                            ")
         .aisle("AAAAAAAAAAAAAAAAAAAAAAAAAAAA", " ACDCDCDCDCDCDCDCDCDCDCDCAAA", " ACECECECECECECECECECECECAAA", " ACECECECECECECECECECECECAA ", " ACECECECECECECECECECECECA  ", "  CDCDCDCDCDCDCDCDCDCDCDC   ", "                            ")
-        .aisle("AAAAAAAAAAAAAAAAAAAAAAAAAAAA", " AF F F F F F F F F F F AA A", " AFEFEFEFEFEFEFEFEFEFEFEAAAA", " AF F F F F F F F F F F A F ", " AFEFEFEFEFEFEFEFEFEFEFEA F ", "  F F F F F F F F F F F F F ", "  FFFFFFFFFFFFFFFFFFFFFFFFF ")
+        .aisle("AAAAAAAAAAAAAAAAAAAAAAAAAAAA", " AF#F#F#F#F#F#F#F#F#F#F#AA#A", " AFEFEFEFEFEFEFEFEFEFEFEAAAA", " AF#F#F#F#F#F#F#F#F#F#F#A#F ", " AFEFEFEFEFEFEFEFEFEFEFEA F ", "  F#F#F#F#F#F#F#F#F#F#F#F F ", "  FFFFFFFFFFFFFFFFFFFFFFFFF ")
         .aisle("AAAAAAAAAAAAAAAAAAAAAAAAAAAA", " ACDCDCDCDCDCDCDCDCDCDCDCASA", " ACECECECECECECECECECECECAAA", " ACECECECECECECECECECECECAA ", " ACECECECECECECECECECECECA  ", "  CDCDCDCDCDCDCDCDCDCDCDC   ", "                            ")
         .aisle("AAAAAAAAAAAAAAAAAAAAAAAAA   ", "  B B B B B B B B B B B B   ", "  B B B B B B B B B B B B   ", "  B B B B B B B B B B B B   ", "  B B B B B B B B B B B B   ", "  B B B B B B B B B B B B   ", "                            ")
         .where('S', selfPredicate())
@@ -125,6 +125,7 @@ class MultiblockConcentratedCokingCluster(id: ResourceLocation) : RecipeMapMulti
         .where('D', states(uniqueCasingState))
         .where('F', states(pipeCasingState))
         .where('E', coils())
+        .where('#', air())
         .where(' ', any())
         .build()
 
