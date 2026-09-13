@@ -144,8 +144,8 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation)
             addDescriptionLine("gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1",
                                "gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2")
             addOverclockInfo(OverclockMode.PERFECT)
-            addMultiParallelInfo(UpgradeMode.PUMP_CASING, UpgradeMode.FIELD_GEN_CASING, number = 32)
-            addMultiDurationInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, percent = 600)
+            addParallelInfo(32, UpgradeMode.PUMP_CASING, UpgradeMode.FIELD_GEN_CASING)
+            addDurationInfo(600, UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING)
             addEnergyInfo(50)
         }
     }

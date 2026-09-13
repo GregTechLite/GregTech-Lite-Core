@@ -12,8 +12,9 @@ import gregtech.api.metatileentity.multiblock.ProgressBarMultiblock;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory.Bars;
 import gregtech.api.mui.GTGuis;
-import gregtechlite.gtlitecore.mixins.Compat;
-import gregtechlite.gtlitecore.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.hooks.Compat;
+import gregtechlite.gtlitecore.mixins.hooks.Implemented;
+import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,16 +22,13 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
-/**
- * @deprecated
- */
+@ScheduledForRemoval(inVersion = "Change gregtech to our forked version and update modular ui to latest version")
 @Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2900")
-@Compat(modId = { "gregtech", "modularui" })
+@Compat(modId = { "gregtech", "modularui:3.0.6" })
 @Mixin(value = MultiblockUIFactory.class, remap = false)
 public abstract class MixinMultiblockUIFactory
 {
-
     @Shadow
     private int width;
 
@@ -92,13 +90,14 @@ public abstract class MixinMultiblockUIFactory
                 .childIf(!disableButtons, () -> createButtons(panel, syncManager, guiData)));
     }
 
-    @NotNull
     @Shadow
-    protected abstract Flow createButtons(@NotNull ModularPanel mainPanel, @NotNull PanelSyncManager panelSyncManager, PosGuiData guiData);
+    protected abstract @NotNull Flow createButtons(@NotNull ModularPanel mainPanel,
+                                                   @NotNull PanelSyncManager panelSyncManager,
+                                                   PosGuiData guiData);
 
-    @Nullable
     @Shadow
-    protected abstract Flow createBars(@NotNull ProgressBarMultiblock progressMulti, @NotNull PanelSyncManager panelSyncManager);
+    protected abstract @Nullable Flow createBars(@NotNull ProgressBarMultiblock progressMultiblock,
+                                                 @NotNull PanelSyncManager panelSyncManager);
 
     @Shadow
     protected abstract Widget<?> createScreen(PanelSyncManager syncManager);
@@ -118,5 +117,4 @@ public abstract class MixinMultiblockUIFactory
 
         throw new UnsupportedOperationException("Cannot compute progress bar rows for count " + count);
     }
-
 }

@@ -2,7 +2,6 @@ package gregtechlite.gtlitecore.common.item
 
 import gregtech.api.GTValues.M
 import gregtech.api.GTValues.MAX
-import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.OpV
 import gregtech.api.GTValues.UEV
 import gregtech.api.GTValues.UHV
@@ -21,6 +20,7 @@ import gregtech.api.util.SmallDigits
 import gregtech.client.utils.TooltipHelper
 import gregtech.common.creativetab.GTCreativeTabs
 import gregtech.common.items.behaviors.TooltipBehavior
+import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
 import gregtechlite.gtlitecore.api.item.GTLiteMetaItem
 import gregtechlite.gtlitecore.client.event.TextAnimations
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -82,7 +82,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_RAW_INTELLIG
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_RUBBER_POLYMER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_STELLAR_CORE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_TEMPORAL_HARMONY
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_TITANIUM_TUNGSTEN_INDIUM
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_TRANSITION_METAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_ULTIMATE_PLASTIC_POLYMER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CATALYST_ULTIMATE_RADIOACTIVE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CIRCUIT_PATTERN
@@ -131,6 +131,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DISPOSABLE_SOFT_MALLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DISPOSABLE_WIRE_CUTTER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DISPOSABLE_WRENCH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DRAIN
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DYSON_SWARM_PHOTOVOLTAIC_PANEL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.EIGENFOLDED_SPACETIME_MANIFOLD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_PISTON_MAX
@@ -156,6 +157,21 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FEMTO_PIC_WAFER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FIELD_GENERATOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FUEL_ROD_EMPTY
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_EV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_HV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_IV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_LV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_LuV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_MV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_OpV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_UEV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_UHV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_UIV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_ULV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_UV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_UXV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_ZPM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_ASSEMBLY_UV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GOOWARE_COMPUTER_UHV
@@ -180,7 +196,9 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_CORE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_DECORATION
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_FOOD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOGO_MACHINE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOW_DENSITY_STRUCTURE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MACROWORMHOLE_GENERATOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGICBOOK
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETRON
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MANIFOLD_OSCILLATORY_POWER_CELL
@@ -280,6 +298,37 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SENSOR_MAX
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_DRILL_HEAD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_ROUND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_TURBINE_BLADE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_BLOCK
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_BOLT
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_BOTTLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_CELL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_DRILL_HEAD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_FOIL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_FRAME
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_GEAR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_GEAR_SMALL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_INGOT
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PIPE_HUGE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PIPE_LARGE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PIPE_NORMAL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PIPE_SMALL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PIPE_TINY
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE_DENSE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE_DOUBLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_RING
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD_LONG
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROTOR
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROUND
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_SCREW
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_TURBINE_BLADE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_DOUBLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_FINE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_HEX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_OCTAL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_WIRE_QUADRUPLE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_MOLD_DRILL_HEAD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_MOLD_SCREW
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_MOLD_TURBINE_BLADE
@@ -320,6 +369,21 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_INDUC
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_RESISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SMD_TRANSISTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACAUSAL_SPACETIME_CONDENSER
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_EV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_HV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_IV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_LV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_LuV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_MV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_OpV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_UEV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_UHV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_UIV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_ULV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_UV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_UXV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SUPRACHRONAL_CIRCUIT_ZPM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TEMPORAL_SCALE_WORLDSHEET_LOGICAL_GATE_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TIMEPIECE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.TIME_DILATION_CONTAINMENT_CELL
@@ -555,17 +619,81 @@ object GTLiteMetaItem1
         CASTING_MOLD_ROLLING_PIN = item(63, "shape.mold.vanadium_steel.rolling_pin")
             .setRecyclingData(RecyclingData(MaterialStack(Materials.VanadiumSteel, M * 4)))
 
+        // 65-95: Field Shapes
+        SHAPE_FIELD_PLATE = item(65, "shape.field.plate")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_ROD = item(66, "shape.field.rod")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_BOLT = item(67, "shape.field.bolt")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_RING = item(68, "shape.field.ring")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_CELL = item(69, "shape.field.cell")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_INGOT = item(70, "shape.field.ingot")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE = item(71, "shape.field.wire")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PIPE_TINY = item(72, "shape.field.pipe_tiny")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PIPE_SMALL = item(73, "shape.field.pipe_small")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PIPE_NORMAL = item(74, "shape.field.pipe")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PIPE_LARGE = item(75, "shape.field.pipe_large")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PIPE_HUGE = item(76, "shape.field.pipe_huge")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_BLOCK = item(77, "shape.field.block")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_GEAR = item(78, "shape.field.gear")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_BOTTLE = item(79, "shape.field.bottle")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_FOIL = item(80, "shape.field.foil")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_GEAR_SMALL = item(81, "shape.field.gear_small")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_ROD_LONG = item(82, "shape.field.rod_long")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_ROTOR = item(83, "shape.field.rotor")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_ROUND = item(84, "shape.field.round")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_TURBINE_BLADE = item(85, "shape.field.turbine_blade")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_DRILL_HEAD = item(86, "shape.field.drill_head")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_FRAME = item(87, "shape.field.frame")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE_DOUBLE = item(88, "shape.field.wire_double")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE_QUADRUPLE = item(89, "shape.field.wire_quadruple")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE_OCTAL = item(90, "shape.field.wire_octal")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE_HEX = item(91, "shape.field.wire_hex")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_WIRE_FINE = item(92, "shape.field.wire_fine")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PLATE_DOUBLE = item(93, "shape.field.plate_double")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_PLATE_DENSE = item(94, "shape.field.plate_dense")
+            .setRarity(EnumRarity.EPIC)
+        SHAPE_FIELD_SCREW = item(95, "shape.field.screw")
+            .setRarity(EnumRarity.EPIC)
+
         // endregion
 
-        // region 86-100: Credits
-        CREDIT_ADAMANTIUM = item(86, "credit.adamantium")
+        // region 96-100: Credits
+        CREDIT_ADAMANTIUM = item(96, "credit.adamantium")
             .setRarity(EnumRarity.EPIC)
-        CREDIT_VIBRANIUM = item(87, "credit.vibranium")
+        CREDIT_VIBRANIUM = item(97, "credit.vibranium")
             .setRarity(EnumRarity.EPIC)
-        CREDIT_COSMIC_NEUTRONIUM = item(88, "credit.cosmic_neutronium")
+        CREDIT_COSMIC_NEUTRONIUM = item(98, "credit.cosmic_neutronium")
             .addComponents(HaloRenderItemBehavior(10, 0x33FFFFFF, {{ GTLiteTextures.HALO_NOISE }}, true))
             .setRarity(EnumRarity.EPIC)
-        CREDIT_INFINITY = item(89, "credit.infinity")
+        CREDIT_INFINITY = item(99, "credit.infinity")
             .addComponents(HaloRenderItemBehavior(10, 0xFF000000.toInt(), {{ GTLiteTextures.HALO }}, true))
             .setRarity(EnumRarity.EPIC)
 
@@ -788,6 +916,96 @@ object GTLiteMetaItem1
                 it.add(TextAnimations.GRADIENT_RAINBOW_BOLD("metaitem.circuit.supracausal_mainframe.tooltip.2"))
             })
 
+        SUPRACHRONAL_CIRCUIT_ULV = item(271, "circuit.suprachronal.ulv")
+            .setUnificationData(OrePrefix.circuit, Tier.ULV)
+
+        SUPRACHRONAL_CIRCUIT_LV = item(272, "circuit.suprachronal.lv")
+            .setUnificationData(OrePrefix.circuit, Tier.LV)
+
+        SUPRACHRONAL_CIRCUIT_MV = item(273, "circuit.suprachronal.mv")
+            .setUnificationData(OrePrefix.circuit, Tier.MV)
+
+        SUPRACHRONAL_CIRCUIT_HV = item(274, "circuit.suprachronal.hv")
+            .setUnificationData(OrePrefix.circuit, Tier.HV)
+
+        SUPRACHRONAL_CIRCUIT_EV = item(275, "circuit.suprachronal.ev")
+            .setUnificationData(OrePrefix.circuit, Tier.EV)
+
+        SUPRACHRONAL_CIRCUIT_IV = item(276, "circuit.suprachronal.iv")
+            .setUnificationData(OrePrefix.circuit, Tier.IV)
+
+        SUPRACHRONAL_CIRCUIT_LuV = item(277, "circuit.suprachronal.luv")
+            .setUnificationData(OrePrefix.circuit, Tier.LuV)
+
+        SUPRACHRONAL_CIRCUIT_ZPM = item(278, "circuit.suprachronal.zpm")
+            .setUnificationData(OrePrefix.circuit, Tier.ZPM)
+
+        SUPRACHRONAL_CIRCUIT_UV = item(279, "circuit.suprachronal.uv")
+            .setUnificationData(OrePrefix.circuit, Tier.UV)
+
+        SUPRACHRONAL_CIRCUIT_UHV = item(280, "circuit.suprachronal.uhv")
+            .setUnificationData(OrePrefix.circuit, Tier.UHV)
+
+        SUPRACHRONAL_CIRCUIT_UEV = item(281, "circuit.suprachronal.uev")
+            .setUnificationData(OrePrefix.circuit, Tier.UEV)
+
+        SUPRACHRONAL_CIRCUIT_UIV = item(282, "circuit.suprachronal.uiv")
+            .setUnificationData(OrePrefix.circuit, Tier.UIV)
+
+        SUPRACHRONAL_CIRCUIT_UXV = item(283, "circuit.suprachronal.uxv")
+            .setUnificationData(OrePrefix.circuit, Tier.UXV)
+
+        SUPRACHRONAL_CIRCUIT_OpV = item(284, "circuit.suprachronal.opv")
+            .setUnificationData(OrePrefix.circuit, Tier.OpV)
+
+        SUPRACHRONAL_CIRCUIT_MAX = item(285, "circuit.suprachronal.max")
+            .setUnificationData(OrePrefix.circuit, Tier.MAX)
+
+        GENERIC_CIRCUIT_ULV = item(286, "circuit.generic.ulv")
+            .setUnificationData(OrePrefix.circuit, Tier.ULV)
+
+        GENERIC_CIRCUIT_LV = item(287, "circuit.generic.lv")
+            .setUnificationData(OrePrefix.circuit, Tier.LV)
+
+        GENERIC_CIRCUIT_MV = item(288, "circuit.generic.mv")
+            .setUnificationData(OrePrefix.circuit, Tier.MV)
+
+        GENERIC_CIRCUIT_HV = item(289, "circuit.generic.hv")
+            .setUnificationData(OrePrefix.circuit, Tier.HV)
+
+        GENERIC_CIRCUIT_EV = item(290, "circuit.generic.ev")
+            .setUnificationData(OrePrefix.circuit, Tier.EV)
+
+        GENERIC_CIRCUIT_IV = item(291, "circuit.generic.iv")
+            .setUnificationData(OrePrefix.circuit, Tier.IV)
+
+        GENERIC_CIRCUIT_LuV = item(292, "circuit.generic.luv")
+            .setUnificationData(OrePrefix.circuit, Tier.LuV)
+
+        GENERIC_CIRCUIT_ZPM = item(293, "circuit.generic.zpm")
+            .setUnificationData(OrePrefix.circuit, Tier.ZPM)
+
+        GENERIC_CIRCUIT_UV = item(294, "circuit.generic.uv")
+            .setUnificationData(OrePrefix.circuit, Tier.UV)
+
+        GENERIC_CIRCUIT_UHV = item(295, "circuit.generic.uhv")
+            .setUnificationData(OrePrefix.circuit, Tier.UHV)
+
+        GENERIC_CIRCUIT_UEV = item(296, "circuit.generic.uev")
+            .setUnificationData(OrePrefix.circuit, Tier.UEV)
+
+        GENERIC_CIRCUIT_UIV = item(297, "circuit.generic.uiv")
+            .setUnificationData(OrePrefix.circuit, Tier.UIV)
+
+        GENERIC_CIRCUIT_UXV = item(298, "circuit.generic.uxv")
+            .setUnificationData(OrePrefix.circuit, Tier.UXV)
+
+        GENERIC_CIRCUIT_OpV = item(299, "circuit.generic.opv")
+            .setUnificationData(OrePrefix.circuit, Tier.OpV)
+
+        GENERIC_CIRCUIT_MAX = item(300, "circuit.generic.max")
+            .setUnificationData(OrePrefix.circuit, Tier.MAX)
+
         // endregion
 
         // region 301-500: Covers & Cover Components
@@ -903,7 +1121,17 @@ object GTLiteMetaItem1
             .setMaxStackSize(1)
             .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS)
 
-        // ...
+        MAGICBOOK = item(624, "tool.magicbook")
+            .addComponents(TooltipBehavior {
+                if (TooltipHelper.isShiftDown())
+                    it.add(I18n.format("gtlitecore.tooltip.contributor_item.owner", GTLiteContributor.MAGIC_SWEEPY.userName))
+                else
+                    it.add(I18n.format("gtlitecore.tooltip.contributor_item"))
+                it.add(I18n.format("metaitem.tool.magicbook.tooltip.1"))
+                it.add(I18n.format("metaitem.tool.magicbook.tooltip.2"))
+            })
+            .setMaxStackSize(1)
+            .setCreativeTabs(GTCreativeTabs.TAB_GREGTECH_TOOLS)
 
         DIRTY_PETRI_DISH = item(631, "tool.petri_dish.dirty")
         BREVIBACTERIUM_FLAVUM_PETRI_DISH = item(632, "tool.petri_dish.brevibacterium_flavum")
@@ -975,8 +1203,8 @@ object GTLiteMetaItem1
         CATALYST_ULTIMATE_RADIOACTIVE = item(680, "tool.catalyst.ultimate_radioactive")
             .addOreDict("catalystUltimateRadioactive")
 
-        CATALYST_TITANIUM_TUNGSTEN_INDIUM = item(681, "tool.catalyst.titanium_tungsten_indium")
-            .addOreDict("catalystTitaniumTungstenIndium")
+        CATALYST_TRANSITION_METAL = item(681, "tool.catalyst.transition_metal")
+            .addOreDict("catalystTransitionMetal")
 
         CATALYST_ADHESION_PROMOTER = item(682, "tool.catalyst.adhesion_promoter")
             .addOreDict("catalystAdhesionPromoter")
@@ -1371,6 +1599,12 @@ object GTLiteMetaItem1
 
         POLYMER_INSULATOR_FOIL = item(5024, "material.foil.polymer_insulator")
             .addOreDict("foilPolymerInsulator")
+
+        LOW_DENSITY_STRUCTURE = item(5025, "material.plate.low_density_structure")
+            .addOreDict("plateLowDensityStructure")
+
+        DYSON_SWARM_PHOTOVOLTAIC_PANEL = item(5026, "material.plate.dyson_swarm_photovoltaic")
+            .addOreDict("plateDysonSwarmPhotovoltaic")
 
         // endregion
     }

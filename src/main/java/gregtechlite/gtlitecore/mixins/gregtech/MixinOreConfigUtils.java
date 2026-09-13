@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(value = OreConfigUtils.class, remap = false)
 public abstract class MixinOreConfigUtils
 {
-
     /**
      * Adds fallback material searching from <tt>gtlitecore</tt> namespace.
      *
@@ -22,6 +21,8 @@ public abstract class MixinOreConfigUtils
      * @param methodOp The original method {@code getMaterial} call in {@code getMaterialByName} method.
      * @return         The searching material in <tt>gregtech</tt> namespace, or the fallback material (if existed)
      *                 in <tt>gtlitecore</tt> namespace.
+     *
+     * @author Magic_Sweepy
      */
     @WrapOperation(method = "getMaterialByName",
                    at = @At(value = "INVOKE",
@@ -41,5 +42,4 @@ public abstract class MixinOreConfigUtils
                 .filter(mat -> mat.getName().equals(name))
                 .findAny().orElse(null);
     }
-
 }

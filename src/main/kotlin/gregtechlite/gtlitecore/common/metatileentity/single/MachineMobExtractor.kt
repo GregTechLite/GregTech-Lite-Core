@@ -22,7 +22,6 @@ class MachineMobExtractor(id: ResourceLocation, recipeMap: RecipeMap<*>, rendere
                           hasFrontFacing: Boolean, private val tankScalingFunction: (Int) -> Int)
     : SimpleMachineMetaTileEntity(id, recipeMap, renderer, tier, hasFrontFacing, tankScalingFunction)
 {
-
     private var boundingBox: AxisAlignedBB? = null
     private var entityAttackable: EntityLivingBase? = null
     private var entities: MutableList<Entity>? = null

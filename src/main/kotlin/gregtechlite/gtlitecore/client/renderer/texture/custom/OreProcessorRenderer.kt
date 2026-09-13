@@ -16,7 +16,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 class OreProcessorRenderer : IconRegistrar
 {
-
     @SideOnly(Side.CLIENT)
     private var baseBackgroundSprite: TextureAtlasSprite? = null
 

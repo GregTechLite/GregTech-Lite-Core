@@ -123,8 +123,8 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation)
             addMachineTypeLine()
             addDescriptionLine("gtlitecore.machine.laser_induced_cvd_unit.tooltip.1")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 8)
-            addMultiDurationInfo(UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING, percent = 400)
+            addParallelInfo(8, UpgradeMode.PUMP_CASING)
+            addDurationInfo(400, UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING)
             addEnergyInfo(35)
         }
     }

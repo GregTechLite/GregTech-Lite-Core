@@ -102,8 +102,8 @@ class MultiblockElectrolyzer(id: ResourceLocation) : RecipeMapMultiblockControll
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
-            addDurationInfo(UpgradeMode.MOTOR_CASING, 350)
+            addParallelInfo(16, UpgradeMode.PUMP_CASING)
+            addDurationInfo(350, UpgradeMode.MOTOR_CASING)
             addEnergyInfo(20)
         }
     }

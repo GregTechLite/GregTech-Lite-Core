@@ -1,14 +1,13 @@
 package gregtechlite.gtlitecore.common
 
-import gregtech.api.GTValues
 import gregtech.api.GregTechAPI
-import gregtech.api.capability.GregtechCapabilities
 import gregtech.api.metatileentity.registry.MTEManager.MTERegistryEvent
 import gregtech.api.unification.material.event.MaterialEvent
 import gregtech.api.unification.material.event.MaterialRegistryEvent
 import gregtech.api.unification.material.event.PostMaterialEvent
 import gregtech.loaders.recipe.CraftingComponent
 import gregtechlite.gtlitecore.api.MOD_ID
+import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncBatcher
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialFlags
@@ -28,9 +27,9 @@ import gregtechlite.gtlitecore.loader.recipe.component.CraftingComponents
 import gregtechlite.gtlitecore.loader.recipe.handler.RecipeHandlers
 import net.minecraft.item.crafting.IRecipe
 import net.minecraftforge.event.RegistryEvent
-import net.minecraftforge.event.entity.player.PlayerInteractEvent
 import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
+import net.minecraftforge.fml.common.gameevent.TickEvent
 
 @Suppress("unused")
 object EventHandlers
@@ -85,5 +84,14 @@ object EventHandlers
     fun registerRecipeHandlers(event: RegistryEvent.Register<IRecipe>)
     {
         RecipeHandlers.init()
+    }
+
+    @SubscribeEvent
+    fun onWorldTickEnd(event: TickEvent.WorldTickEvent)
+    {
+        if (event.phase == TickEvent.Phase.END && !event.world.isRemote)
+        {
+            MetaTileEntitySyncBatcher.get(event.world.provider.dimension).flush()
+        }
     }
 }

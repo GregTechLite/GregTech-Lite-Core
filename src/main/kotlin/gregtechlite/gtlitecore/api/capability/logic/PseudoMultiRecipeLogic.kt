@@ -10,7 +10,6 @@ import java.util.function.Supplier
 
 class PseudoMultiRecipeLogic(private val pseudoMetaTileEntity: PseudoMultiMachineMetaTileEntity, recipeMap: RecipeMap<*>?, energyContainer: Supplier<IEnergyContainer?>?) : RecipeLogicEnergy(pseudoMetaTileEntity, recipeMap, energyContainer)
 {
-
     override fun checkRecipe(recipe: Recipe): Boolean
     {
         if (pseudoMetaTileEntity.targetBlockState == null)
@@ -28,5 +27,4 @@ class PseudoMultiRecipeLogic(private val pseudoMetaTileEntity: PseudoMultiMachin
                 || previousRecipe.getProperty(PseudoMultiProperty, null)!!
                         .validBlockStates.contains(pseudoMetaTileEntity.targetBlockState) && super.canProgressRecipe()
     }
-
 }

@@ -12,7 +12,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 @SideOnly(Side.CLIENT)
 enum class FusionBloomSetup : IRenderSetup
 {
-
     INSTANCE;
 
     var lastBrightnessX: Float = 0f
@@ -37,5 +36,4 @@ enum class FusionBloomSetup : IRenderSetup
         GlStateManager.enableTexture2D()
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, this.lastBrightnessX, this.lastBrightnessY)
     }
-
 }

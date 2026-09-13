@@ -6,6 +6,7 @@ import gregtech.api.util.FileUtility
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.MOD_ID
+import gregtechlite.gtlitecore.api.extension.extractTo
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.common.worldgen.generator.WorldGeneratorManager
 import gregtechlite.gtlitecore.core.module.BaseModule
@@ -13,18 +14,12 @@ import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_WORLDG
 import net.minecraftforge.fml.common.Loader
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import org.apache.commons.io.IOUtils
 import org.apache.logging.log4j.Logger
 import java.io.File
 import java.io.IOException
 import java.net.URISyntaxException
-import java.nio.file.FileSystem
 import java.nio.file.FileSystems
-import java.nio.file.Files
-import java.nio.file.Path
-import java.nio.file.Paths
-import java.nio.file.StandardCopyOption
-import kotlin.streams.asSequence
+import kotlin.io.path.toPath
 
 @Module(moduleId = MODULE_WORLDGEN,
         containerId = MOD_ID,
@@ -32,31 +27,17 @@ import kotlin.streams.asSequence
         descriptions = "World Generator Module of GregTech Lite Core Mod.")
 class WorldGenModule : BaseModule()
 {
-
     companion object
     {
-
-        @get:JvmName("_logger")
-        @get:JvmSynthetic
-        @JvmStatic
+        @JvmField
         val logger: Logger = SidedLogger("$MOD_ID-world-generator")
     }
 
-
     override fun preInit(event: FMLPreInitializationEvent)
     {
-        // Ordered initialized all worldgen definitions to override GTCEu WorldGenRegistry.
-
-        // Order 1: Extracted all worldgen definitions from original gregtech folder.
-        FileUtility.extractJarFiles("/assets/gregtech/worldgen/",
-                                    Loader.instance().configDir.toPath().resolve(GTValues.MODID).toFile(), false)
-
-        // Order 2: Extracted all worldgen definitions from gtlitecore folder.
-        // This step is enabled "replace" setting to override some configurations, for example,
-        // the fluid is salt water in the original definition "salt_water_deposit.json", and
-        // seawater as an instanceof in new definition.
-        extractWorldGenFiles("/assets/gtlitecore/worldgen/",
-                             Loader.instance().configDir.toPath().resolve(GTValues.MODID).toFile(), false)
+        val worldGenPath = Loader.instance().configDir.toPath().resolve(GTValues.MODID).resolve("worldgen").toFile()
+        FileUtility.extractJarFiles("/assets/gregtech/worldgen/", worldGenPath, false)
+        extractWorldGenFiles("/assets/gtlitecore/worldgen/", worldGenPath, true)
     }
 
     override fun init(event: FMLInitializationEvent)
@@ -64,9 +45,9 @@ class WorldGenModule : BaseModule()
         WorldGeneratorManager.init()
     }
 
-    override fun getTerrainGenBusSubscribers() = listOf(WorldGenModule::class.java)
+    override val terrainGenBusSubscribers = listOf(WorldGenModule::class.java)
 
-    override fun getOreGenBusSubscribers() = listOf(WorldGenModule::class.java)
+    override val oreGenBusSubscribers = listOf(WorldGenModule::class.java)
 
     /**
      * An internal files extract methods, this method is used "LICENSE" file as token in the mod folder,
@@ -74,77 +55,42 @@ class WorldGenModule : BaseModule()
      *
      * If [replace] is enabled, then files will be overridable.
      */
-    @Suppress("SameParameterValue")
     private fun extractWorldGenFiles(resource: String, targetPath: File, replace: Boolean)
     {
-        var zipFileSystem: FileSystem? = null
-        try
-        {
+        runCatching {
             val sampleURL = GTLiteMod::class.java.getResource("/assets/gtlitecore/LICENSE")
-            if (sampleURL == null)
-            {
-                LOGGER.warn("Could not find LICENSE resource.")
-                return
-            }
-
+                ?: run {
+                    LOGGER.warn("Could not find LICENSE resource in assets")
+                    return
+                }
             val sampleURI = sampleURL.toURI()
-            val resourcePath: Path?
             when (sampleURI.scheme)
             {
-                "jar", "zip" ->
-                {
-                    zipFileSystem = FileSystems.newFileSystem(sampleURI, mutableMapOf<String?, Any?>())
-                    resourcePath = zipFileSystem.getPath(resource)
+                "jar", "zip" -> {
+                    FileSystems.newFileSystem(sampleURI, emptyMap<String, Any?>()).use {
+                        it.getPath(resource).extractTo(targetPath, replace)
+                    }
                 }
                 "file" ->
                 {
                     val resourceURL = GTLiteMod::class.java.getResource(resource)
-                    if (resourceURL == null)
-                    {
-                        LOGGER.warn("Could not find resource file for $resource.")
-                        return
-                    }
-                    resourcePath = Paths.get(resourceURL.toURI())
+                        ?: run {
+                            LOGGER.warn("Could not find resource file for $resource")
+                            return
+                        }
+                    resourceURL.toURI().toPath().extractTo(targetPath, replace)
                 }
-                else ->
-                {
-                    throw IllegalStateException("Unable to locate absolute path to directory: $sampleURI")
-                }
+                else -> throw IllegalStateException("Unable to locate absolute path to directory: $sampleURI")
             }
-
-            Files.walk(resourcePath)
-                .use {
-                    it.asSequence()
-                        .filter { path -> Files.isRegularFile(path) }
-                        .toMutableList()
-                }
-                .forEach {
-                    val generatePath = targetPath.toPath().resolve(resourcePath.relativize(it).toString())
-                    Files.createDirectories(generatePath.parent)
-                    if (replace || !generatePath.toFile().isFile)
-                    {
-                        Files.copy(it, generatePath, StandardCopyOption.REPLACE_EXISTING)
-                    }
-                }
-        }
-        catch (impossible: URISyntaxException)
-        {
-            throw RuntimeException(impossible)
-        }
-        catch (exception: IOException)
-        {
-            LOGGER.error("error while extracting jar files: $resource $targetPath", exception)
-        }
-        finally
-        {
-            if (zipFileSystem != null)
+        }.onFailure {
+            when (it)
             {
-                // close zip file system to avoid issues
-                IOUtils.closeQuietly(zipFileSystem)
+                is URISyntaxException -> throw RuntimeException(it)
+                is IOException        -> LOGGER.error("Error while extracting jar files: $resource $targetPath", it)
+                else                  -> throw it
             }
         }
     }
 
-    override fun getLogger(): Logger = Companion.logger
-
+    override val logger: Logger = Companion.logger
 }

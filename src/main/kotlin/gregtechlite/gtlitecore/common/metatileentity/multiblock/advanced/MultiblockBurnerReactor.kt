@@ -116,8 +116,8 @@ class MultiblockBurnerReactor(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.MOTOR_CASING, 16)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 350)
+            addParallelInfo(16, UpgradeMode.MOTOR_CASING)
+            addDurationInfo(350, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(25)
         }
     }

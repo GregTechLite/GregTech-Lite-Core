@@ -26,6 +26,8 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CeriumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylhexylPhosphoricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErTmYbLuOxidesSolution
@@ -39,8 +41,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RareEarthHydroxid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SamariumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ScEuGdSmOxidesSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YTbDyHoOxidesSolution
-import gregtechlite.gtlitecore.api.extension.addRecipe
-import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.YttriumOxide
 
 /**

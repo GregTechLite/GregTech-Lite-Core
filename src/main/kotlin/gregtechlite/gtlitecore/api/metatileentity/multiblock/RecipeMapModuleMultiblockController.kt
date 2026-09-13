@@ -32,20 +32,16 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
                                                    protected val minCasingTier: Int) :
     RecipeMapMultiblockController(metaTileEntityId, recipeMap), ModuleReceiver
 {
-
     override var moduleProvider: ModuleProvider? = null
     override val displayCountName: String
         get() = "$metaName.display_count"
 
     protected val energyConsumed = (4.0.pow((this.tier + 2).toDouble()) / 2).toLong()
 
-
     init
     {
-        this.energyContainer =
-            EnergyContainerHandler(this,
-                                   (160008000L * 4.0.pow((this.tier - 9).toDouble())).toLong(),
-                                   this.energyConsumed, 1, 0, 0)
+        energyContainer = EnergyContainerHandler(this, (160008000L * 4.0.pow((this.tier - 9).toDouble())).toLong(),
+            energyConsumed, 1, 0, 0)
     }
 
     override fun checkStructurePattern()
@@ -67,25 +63,16 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
     abstract override fun createStructurePattern(): BlockPattern
 
     override fun getEnergyContainer(): IEnergyContainer?
-    {
-        return if (moduleProvider?.subEnergyContainer == null)
-        {
-            EnergyContainerHandler(this, 0, 0, 0, 0, 0)
-        }
-        else
-        {
-            this.energyContainer
-        }
-    }
+        = if (moduleProvider?.subEnergyContainer == null) EnergyContainerHandler(this, 0, 0, 0, 0, 0) else energyContainer
 
     override fun sentWorkingDisabled()
     {
-        this.recipeMapWorkable.isWorkingEnabled = false
+        recipeMapWorkable.isWorkingEnabled = false
     }
 
     override fun sentWorkingEnabled()
     {
-        this.recipeMapWorkable.isWorkingEnabled = true
+        recipeMapWorkable.isWorkingEnabled = true
     }
 
     override fun updateFormedValid()
@@ -94,15 +81,14 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
         if (offsetTimer % SECOND == 0L)
         {
             moduleProvider?.also {
-                if (this.energyContainer.energyCapacity != this.energyContainer.energyStored
-                    && it.subEnergyContainer!!.energyStored > this.energyConsumed * SECOND
-                )
+                if (energyContainer.energyCapacity != energyContainer.energyStored
+                    && it.subEnergyContainer!!.energyStored > energyConsumed * SECOND)
                 {
-                    val maxModuleReceive = this.energyContainer.energyCapacity - this.energyContainer.energyStored
+                    val maxModuleReceive = energyContainer.energyCapacity - energyContainer.energyStored
                     val energyDrained = min(it.subEnergyContainer!!.energyStored, maxModuleReceive)
 
                     it.subEnergyContainer!!.removeEnergy(energyDrained)
-                    this.energyContainer.addEnergy(energyDrained)
+                    energyContainer.addEnergy(energyDrained)
                 }
             }
         }
@@ -114,24 +100,20 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
     @SideOnly(Side.CLIENT)
     abstract override fun getFrontOverlay(): ICubeRenderer
 
-    override fun createUIFactory(): MultiblockUIFactory?
-    {
-        return super.createUIFactory() // TODO Disabled Indicator and add Space Elevator Logo?
-            .createFlexButton { _, guiSyncManager ->
-                guiSyncManager.registerSyncedAction("refresh_structure_pattern") { reinitializeStructurePattern() }
-
-                return@createFlexButton ButtonWidget()
-                    .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
-                    .onMousePressed {
-                        guiSyncManager.callSyncedAction("refresh_structure_pattern")
-                        true
-                    }
-                    .tooltip { tooltip ->
-                        tooltip.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
-                    }
+    // TODO: Disabled Indicator and add Space Elevator Logo?
+    override fun createUIFactory(): MultiblockUIFactory = super.createUIFactory()
+        .createFlexButton { _, guiSyncManager ->
+            guiSyncManager.registerSyncedAction("refresh_structure_pattern") { reinitializeStructurePattern() }
+            return@createFlexButton ButtonWidget()
+                .background(GTLiteMuiTextures.BUTTON_REFRESH_STRUCTURE_PATTERN)
+                .onMousePressed {
+                    guiSyncManager.callSyncedAction("refresh_structure_pattern")
+                    return@onMousePressed true
+                }
+                .tooltip {
+                    it.addLine(KeyUtil.lang("gtlitecore.machine.space_elevator.refresh_structure_pattern"))
+                }
             }
-    }
 
     override fun hasMaintenanceMechanics() = false
-
 }

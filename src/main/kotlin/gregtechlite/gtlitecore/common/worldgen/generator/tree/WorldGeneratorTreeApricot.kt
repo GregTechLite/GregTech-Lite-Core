@@ -61,7 +61,7 @@ class WorldGeneratorTreeApricot : WorldGeneratorTreeBase("apricot", 3)
         notifier(worldIn, blockPos.copy().moveUp(height), placedLeaveState)
     }
 
-    override fun getFruitDrop(chance: Int): ItemStack?
+    override fun getFruitDrop(chance: Int): ItemStack
     {
         if (GTValues.RNG.nextInt(chance / 15) == 0)
             return GTLiteMetaItems.APRICOT.stackForm

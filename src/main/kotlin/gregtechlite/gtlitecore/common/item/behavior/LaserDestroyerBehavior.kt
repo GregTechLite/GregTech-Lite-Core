@@ -2,9 +2,12 @@ package gregtechlite.gtlitecore.common.item.behavior
 
 import gregtech.api.capability.GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM
 import gregtech.api.items.metaitem.stats.IItemBehaviour
+import gregtech.api.pipenet.tile.IPipeTile
 import gregtech.api.util.GTUtility
 import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
+import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.core.GTLiteConfigHolder
 import net.minecraft.block.state.IBlockState
 import net.minecraft.client.resources.I18n
 import net.minecraft.enchantment.EnchantmentHelper
@@ -29,6 +32,7 @@ class LaserDestroyerBehavior : IItemBehaviour
     companion object
     {
         private const val NBT_SILK_MODE = "silk_mode"
+        private const val NBT_MINING_TIER = "mining_tier"
 
         fun setSilkMode(item: ItemStack, silkMode: Boolean)
         {
@@ -47,6 +51,43 @@ class LaserDestroyerBehavior : IItemBehaviour
             return tagCompound != null && tagCompound.getBoolean(NBT_SILK_MODE)
         }
 
+        fun getMiningTier(item: ItemStack): Int = item.tagCompound?.getInteger(NBT_MINING_TIER) ?: 0
+
+        fun setMiningTier(item: ItemStack, index: Int)
+        {
+            var tagCompound = item.tagCompound
+            if (tagCompound == null)
+            {
+                tagCompound = NBTTagCompound()
+                item.tagCompound = tagCompound
+            }
+            tagCompound.setInteger(NBT_MINING_TIER, index)
+        }
+
+        fun getMiningTicks(item: ItemStack): Int
+        {
+            val tiers = GTLiteConfigHolder.tool.laserDestroyer.miningTiers
+            if (tiers.isEmpty()) return 0
+            return tiers[getMiningTier(item).coerceIn(0, tiers.size - 1)]
+        }
+
+        fun cycleMiningTier(item: ItemStack): Int
+        {
+            val tiers = GTLiteConfigHolder.tool.laserDestroyer.miningTiers
+            if (tiers.isEmpty())
+            {
+                setMiningTier(item, 0)
+                return 0
+            }
+            val next = (getMiningTier(item) + 1) % tiers.size
+            setMiningTier(item, next)
+            return next
+        }
+
+        private fun speedTierNameKey(index: Int): String =
+            if (index in 0..3) "metaitem.tool.laser_destroyer.speed.name.$index"
+            else "metaitem.tool.laser_destroyer.speed.name.generic"
+
         @Suppress("Deprecation")
         fun breakBlock(item: ItemStack, player: EntityPlayer, world: World, pos: BlockPos,
                        isSilkMode: Boolean, energyCost: Long): Boolean
@@ -59,15 +100,14 @@ class LaserDestroyerBehavior : IItemBehaviour
 
             if (block === Blocks.AIR) return false
 
-            // When the tool in silk mode, it will have Silk Touch enchantment.
             val silkLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.heldItemMainhand)
             val drops: List<ItemStack> = if (silkLevel != 0)
             {
-                if (mte != null) listOf(mte.stackForm) else listOf(getSilkDrops(state))
+                mte?.let { listOf(it.stack()) } ?: listOf(getSilkDrops(world, pos, state))
             }
             else
             {
-                if (mte != null) listOf(mte.stackForm) else block.getDrops(world, pos, state, 0)
+                mte?.let { listOf(it.stack()) } ?: getNormalDrops(world, pos, state)
             }
 
             val soundType = block.getSoundType(state, world, pos, player)
@@ -113,11 +153,44 @@ class LaserDestroyerBehavior : IItemBehaviour
             return true
         }
 
-        private fun getSilkDrops(state: IBlockState): ItemStack = runCatching {
-            val method = state.block.javaClass.getMethod("getSilkTouchDrop", IBlockState::class.java)
-            method.isAccessible = true
-            method.invoke(state.block, state) as ItemStack
-        }.getOrDefault(ItemStack(state.block, 1, state.block.getMetaFromState(state)))
+        @Suppress("Deprecation")
+        private fun getNormalDrops(world: World, pos: BlockPos, state: IBlockState): List<ItemStack>
+        {
+            if (world.getTileEntity(pos) is IPipeTile<*, *>)
+            {
+                val item = state.block.getItem(world, pos, state)
+                return if (item.isEmpty) emptyList() else listOf(item)
+            }
+            return state.block.getDrops(world, pos, state, 0)
+        }
+
+        @Suppress("Deprecation")
+        private fun getSilkDrops(world: World, pos: BlockPos, state: IBlockState): ItemStack
+        {
+            if (world.getTileEntity(pos) is IPipeTile<*, *>)
+            {
+                val item = state.block.getItem(world, pos, state)
+                if (!item.isEmpty) return item
+            }
+
+            return runCatching {
+                var block: Class<*>? = state.block.javaClass
+                while (block != null)
+                {
+                    try
+                    {
+                        val silkTouchDrop = block.getDeclaredMethod("getSilkTouchDrop", IBlockState::class.java)
+                        silkTouchDrop.isAccessible = true
+                        return@runCatching silkTouchDrop.invoke(state.block, state) as ItemStack
+                    }
+                    catch (_: NoSuchMethodException)
+                    {
+                        block = block.superclass
+                    }
+                }
+                throw NoSuchMethodException()
+            }.getOrDefault(ItemStack(state.block, 1, state.block.getMetaFromState(state)))
+        }
 
         private fun drainEnergy(item: ItemStack, amount: Long, simulate: Boolean): Boolean
         {
@@ -152,6 +225,13 @@ class LaserDestroyerBehavior : IItemBehaviour
                 }
             }
         }
+        else if (!world.isRemote)
+        {
+            val tierIndex = cycleMiningTier(item)
+            val seconds = "%.2f".format(getMiningTicks(item) / 20.0)
+            player.sendMessage(TextComponentTranslation("metaitem.tool.laser_destroyer.speed.changed",
+                TextComponentTranslation(speedTierNameKey(tierIndex), tierIndex + 1), seconds))
+        }
         return ActionResult.newResult(EnumActionResult.PASS, item)
     }
 
@@ -163,6 +243,11 @@ class LaserDestroyerBehavior : IItemBehaviour
         else
             lines.add(I18n.format("gtlitecore.tooltip.contributor_item"))
         lines.add(I18n.format("metaitem.tool.laser_destroyer.mode"))
+        val ticks = getMiningTicks(itemStack)
+        val seconds = if (ticks <= 0) "0.00" else "%.2f".format(ticks / 20.0)
+        val tier = getMiningTier(itemStack)
+        lines.add(I18n.format("metaitem.tool.laser_destroyer.speed",
+            I18n.format(speedTierNameKey(tier), tier + 1), seconds))
         lines.add(I18n.format("metaitem.tool.laser_destroyer.energy_cost", 4))
     }
 }

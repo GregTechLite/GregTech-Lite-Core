@@ -22,7 +22,6 @@ import org.lwjgl.opengl.GL11
 @SideOnly(Side.CLIENT)
 class TESRBottlecrate : TileEntitySpecialRenderer<TileEntityBlockcrate>()
 {
-
     override fun render(te: TileEntityBlockcrate, x: Double, y: Double, z: Double,
                         partialTicks: Float, destroyStage: Int, alpha: Float)
     {

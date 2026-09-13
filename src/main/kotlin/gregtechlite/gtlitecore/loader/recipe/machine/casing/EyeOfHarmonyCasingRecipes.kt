@@ -1,7 +1,6 @@
 package gregtechlite.gtlitecore.loader.recipe.machine.casing
 
 import gregtech.api.GTValues.L
-import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.UV
 import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
@@ -14,7 +13,6 @@ import gregtech.api.unification.ore.OrePrefix.gear
 import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.common.items.MetaItems.GRAVITATION_ENGINE
 import gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR
-import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
 import gregtech.common.metatileentities.MetaTileEntities.WORLD_ACCELERATOR
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -34,29 +32,30 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WhiteDwarfMatter
 import gregtechlite.gtlitecore.common.block.adapter.GTBatteryBlock
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.Manipulator
+import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
 import gregtechlite.gtlitecore.common.block.variant.component.FieldGenCasing
 import gregtechlite.gtlitecore.common.block.variant.fusion.FusionCoil
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
 import gregtechlite.gtlitecore.common.block.variant.science.SpacetimeCompressionFieldGenerator
 import gregtechlite.gtlitecore.common.block.variant.science.StabilizationFieldGenerator
 import gregtechlite.gtlitecore.common.block.variant.science.TimeAccelerationFieldGenerator
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DYSON_SWARM_PHOTOVOLTAIC_PANEL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MINING_DRONE_UV
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.FUSION_REACTOR_MK4
 
 internal object EyeOfHarmonyCasingRecipes
 {
-
     // @formatter:off
+
     fun init()
     {
-
         // region Spacetime Compression
 
         // T1
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.EMPTY_TIER_I.stack)
-            input(QUANTUM_TANK[UHV], 4)
+            inputs(QuantumStorageUnit.T1.getStack(4))
             inputs(Manipulator.COSMIC_FABRIC.stack)
             input(circuit, Tier.UXV)
             input(bolt, Shirabon, 2)
@@ -77,7 +76,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.EMPTY_TIER_II.getStack(2))
-            input(QUANTUM_TANK[UHV], 8)
+            inputs(QuantumStorageUnit.T2.getStack(8))
             inputs(Manipulator.COSMIC_FABRIC.getStack(2))
             input(circuit, Tier.UXV)
             input(bolt, WhiteDwarfMatter, 2)
@@ -98,7 +97,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.EMPTY_TIER_III.getStack(4))
-            input(QUANTUM_TANK[UHV], 12)
+            inputs(QuantumStorageUnit.T3.getStack(12))
             inputs(Manipulator.COSMIC_FABRIC.getStack(3))
             input(circuit, Tier.UXV)
             input(bolt, WhiteDwarfMatter, 8)
@@ -119,7 +118,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.LAPOTRONIC_EV.stack)
-            input(QUANTUM_TANK[UHV], 16)
+            inputs(QuantumStorageUnit.T4.getStack(16))
             inputs(Manipulator.INFINITY_INFUSED.stack)
             input(circuit, Tier.UXV, 2)
             input(bolt, WhiteDwarfMatter, 32)
@@ -140,7 +139,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.LAPOTRONIC_IV.stack)
-            input(QUANTUM_TANK[UHV], 20)
+            inputs(QuantumStorageUnit.T5.getStack(20))
             inputs(Manipulator.INFINITY_INFUSED.getStack(2))
             input(circuit, Tier.UXV, 2)
             input(bolt, BlackDwarfMatter, 2)
@@ -161,7 +160,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.LAPOTRONIC_LuV.stack)
-            input(QUANTUM_TANK[UHV], 24)
+            inputs(QuantumStorageUnit.T6.getStack(24))
             inputs(Manipulator.INFINITY_INFUSED.getStack(3))
             input(circuit, Tier.UXV, 2)
             input(bolt, BlackDwarfMatter, 8)
@@ -182,7 +181,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.LAPOTRONIC_ZPM.stack)
-            input(QUANTUM_TANK[UHV], 28)
+            inputs(QuantumStorageUnit.T7.getStack(28))
             inputs(Manipulator.SPACETIME_CONTINUUM_RIPPER.stack)
             input(circuit, Tier.UXV, 3)
             input(bolt, BlackDwarfMatter, 32)
@@ -203,7 +202,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.LAPOTRONIC_UV.stack)
-            input(QUANTUM_TANK[UHV], 32)
+            inputs(QuantumStorageUnit.T8.getStack(32))
             inputs(Manipulator.SPACETIME_CONTINUUM_RIPPER.getStack(2))
             input(circuit, Tier.UXV, 3)
             input(bolt, Universium, 2)
@@ -224,7 +223,7 @@ internal object EyeOfHarmonyCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             inputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
             inputs(GTBatteryBlock.ULTIMATE_UHV.stack)
-            input(QUANTUM_TANK[UHV], 36)
+            inputs(QuantumStorageUnit.T9.getStack(36))
             inputs(Manipulator.SPACETIME_CONTINUUM_RIPPER.getStack(3))
             input(circuit, Tier.UXV, 3)
             input(bolt, Universium, 8)
@@ -452,7 +451,7 @@ internal object EyeOfHarmonyCasingRecipes
             inputs(TimeAccelerationFieldGenerator.CRUDE.stack)
             inputs(SpacetimeCompressionFieldGenerator.CRUDE.stack)
             inputs(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.stack)
-            input(MINING_DRONE_UV, 4) // TODO Dyson Swarm Module
+            input(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 4)
             input(frameGt, Rhugnor, 4)
             input(frameGt, SuperheavyAlloyB, 4)
             input(frameGt, Mellion, 4)
@@ -484,7 +483,7 @@ internal object EyeOfHarmonyCasingRecipes
             inputs(TimeAccelerationFieldGenerator.PRIMITIVE.stack)
             inputs(SpacetimeCompressionFieldGenerator.PRIMITIVE.stack)
             inputs(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.stack)
-            input(MINING_DRONE_UV, 8) // TODO Dyson Swarm Module
+            input(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 8)
             input(frameGt, Rhugnor, 8)
             input(frameGt, SuperheavyAlloyB, 8)
             input(frameGt, Mellion, 8)
@@ -516,7 +515,7 @@ internal object EyeOfHarmonyCasingRecipes
             inputs(TimeAccelerationFieldGenerator.STABLE.stack)
             inputs(SpacetimeCompressionFieldGenerator.STABLE.stack)
             inputs(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.stack)
-            input(MINING_DRONE_UV, 12) // TODO Dyson Swarm Module
+            input(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 12)
             input(frameGt, Rhugnor, 12)
             input(frameGt, SuperheavyAlloyB, 12)
             input(frameGt, Mellion, 12)
@@ -548,7 +547,7 @@ internal object EyeOfHarmonyCasingRecipes
             inputs(TimeAccelerationFieldGenerator.ADVANCED.stack)
             inputs(SpacetimeCompressionFieldGenerator.ADVANCED.stack)
             inputs(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.stack)
-            input(MINING_DRONE_UV, 16) // TODO Dyson Swarm Module
+            input(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 16)
             input(frameGt, Rhugnor, 16)
             input(frameGt, SuperheavyAlloyB, 16)
             input(frameGt, Mellion, 16)
@@ -580,7 +579,7 @@ internal object EyeOfHarmonyCasingRecipes
             inputs(TimeAccelerationFieldGenerator.SUPERB.stack)
             inputs(SpacetimeCompressionFieldGenerator.SUPERB.stack)
             inputs(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.stack)
-            input(MINING_DRONE_UV, 20) // TODO Dyson Swarm Module
+            input(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 20)
             input(frameGt, Rhugnor, 20)
             input(frameGt, SuperheavyAlloyB, 20)
             input(frameGt, Mellion, 20)
@@ -612,7 +611,7 @@ internal object EyeOfHarmonyCasingRecipes
             inputs(TimeAccelerationFieldGenerator.EXOTIC.stack)
             inputs(SpacetimeCompressionFieldGenerator.EXOTIC.stack)
             inputs(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.stack)
-            input(MINING_DRONE_UV, 24) // TODO Dyson Swarm Module
+            input(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 24)
             input(frameGt, Rhugnor, 24)
             input(frameGt, SuperheavyAlloyB, 24)
             input(frameGt, Mellion, 24)
@@ -644,7 +643,7 @@ internal object EyeOfHarmonyCasingRecipes
             inputs(TimeAccelerationFieldGenerator.PERFECT.stack)
             inputs(SpacetimeCompressionFieldGenerator.PERFECT.stack)
             inputs(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.stack)
-            input(MINING_DRONE_UV, 28) // TODO Dyson Swarm Module
+            input(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 28)
             input(frameGt, Rhugnor, 28)
             input(frameGt, SuperheavyAlloyB, 28)
             input(frameGt, Mellion, 28)
@@ -676,7 +675,7 @@ internal object EyeOfHarmonyCasingRecipes
             inputs(TimeAccelerationFieldGenerator.TIPLER.stack)
             inputs(SpacetimeCompressionFieldGenerator.TIPLER.stack)
             inputs(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.stack)
-            input(MINING_DRONE_UV, 32) // TODO Dyson Swarm Module
+            input(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 32)
             input(frameGt, Rhugnor, 32)
             input(frameGt, SuperheavyAlloyB, 32)
             input(frameGt, Mellion, 32)
@@ -708,7 +707,7 @@ internal object EyeOfHarmonyCasingRecipes
             inputs(TimeAccelerationFieldGenerator.GALLIFREYAN.stack)
             inputs(SpacetimeCompressionFieldGenerator.GALLIFREYAN.stack)
             inputs(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.stack)
-            input(MINING_DRONE_UV, 36) // TODO Dyson Swarm Module
+            input(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 36)
             input(frameGt, Rhugnor, 36)
             input(frameGt, SuperheavyAlloyB, 36)
             input(frameGt, Mellion, 36)
@@ -739,5 +738,4 @@ internal object EyeOfHarmonyCasingRecipes
     }
 
     // @formatter:on
-
 }

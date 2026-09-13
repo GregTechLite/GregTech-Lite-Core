@@ -7,7 +7,6 @@ import gregtechlite.gtlitecore.api.MOD_ID
 @Suppress("SameParameterValue")
 object GTLiteMuiTextures
 {
-
     // region Slot Textures
 
     @JvmField
@@ -55,6 +54,9 @@ object GTLiteMuiTextures
     @JvmField
     val PRIMITIVE_INT_CIRCUIT_OVERLAY = texture("textures/gui/primitive/int_circuit_overlay_primitive.png")
 
+    @JvmField
+    val PATTERN_OVERLAY = texture("textures/gui/overlay/pattern_overlay.png")
+
     // endregion
 
     // region Widget Textures
@@ -100,6 +102,14 @@ object GTLiteMuiTextures
      */
     @JvmField
     val BUTTON_EXCESS_MODE = texture("textures/gui/widget/button_excess_mode.png", 16, 32, 16, 16)
+
+    /**
+     * Multiblock Button for Generator High Speed Mode.
+     * - 0: false
+     * - 1: true
+     */
+    @JvmField
+    val BUTTON_HIGH_SPEED_MODE = texture("textures/gui/widget/button_high_speed_mode.png", 16, 32, 16, 16)
 
     /**
      * Space Elevator Logo.
@@ -175,5 +185,4 @@ object GTLiteMuiTextures
     }
 
     private fun ui(builder: UITexture.Builder.() -> Unit): UITexture = UITexture.builder().apply(builder).build()
-
 }

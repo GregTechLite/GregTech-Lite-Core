@@ -19,9 +19,8 @@ class SoundManagerImpl private constructor(): SoundManager
 {
     companion object
     {
-        private val instance = SoundManagerImpl()
-
-        fun getInstance(): SoundManagerImpl = instance
+        @JvmField
+        internal val instance = SoundManagerImpl()
     }
 
     /**
@@ -29,11 +28,11 @@ class SoundManagerImpl private constructor(): SoundManager
      * side will report it as a missing field when [instance] param is instantiated on the
      * server side.
      */
-    private val sounds: MutableMap<BlockPos, ISound> = openHashMapOf()
+    private val sounds = openHashMapOf<BlockPos, ISound>()
 
     override fun registerSound(soundName: String): SoundEvent
     {
-        var containerId = GTLiteAPI.moduleManager.loadedContainer.id
+        var containerId = GTLiteAPI.moduleManager.getLoadedContainer().id
         if (containerId == null)
             containerId = MOD_ID
         return registerSound(containerId, soundName)

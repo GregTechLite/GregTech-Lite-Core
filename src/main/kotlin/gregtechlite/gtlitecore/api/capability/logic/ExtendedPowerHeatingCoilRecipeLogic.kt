@@ -15,7 +15,6 @@ import kotlin.math.max
  */
 open class ExtendedPowerHeatingCoilRecipeLogic(metaTileEntity: RecipeMapMultiblockController) : HeatingCoilRecipeLogic(metaTileEntity)
 {
-
     override fun getMaximumOverclockVoltage() = maxVoltage
 
     override fun getMaxVoltage(): Long
@@ -51,5 +50,4 @@ open class ExtendedPowerHeatingCoilRecipeLogic(metaTileEntity: RecipeMapMultiblo
         }
         return max(energyContainer.inputVoltage.toDouble(), energyContainer.outputVoltage.toDouble()).toLong()
     }
-
 }

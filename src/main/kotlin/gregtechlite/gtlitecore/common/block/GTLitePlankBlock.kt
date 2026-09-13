@@ -35,7 +35,7 @@ class GTLitePlankBlock(private val offset: Int) : Block(Material.WOOD), Translat
     }
 
     fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
-        = WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (offset * 16)]
+        = WorldGeneratorTreeRegistry[blockState.getValue(VARIANT) + (offset * 16)]
 
     override fun getMetaFromState(blockState: IBlockState): Int = blockState.getValue(VARIANT)
 
@@ -48,7 +48,7 @@ class GTLitePlankBlock(private val offset: Int) : Block(Material.WOOD), Translat
     {
         for (i in 0..15)
         {
-            if (WorldGeneratorTreeRegistry.generators.size <= i + offset * 16)
+            if (WorldGeneratorTreeRegistry.size <= i + offset * 16)
                 break
             items.add(ItemStack(this, 1, i))
         }

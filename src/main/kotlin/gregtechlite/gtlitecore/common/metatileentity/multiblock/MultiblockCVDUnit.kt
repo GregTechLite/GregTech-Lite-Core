@@ -104,8 +104,8 @@ class MultiblockCVDUnit(id: ResourceLocation) : RecipeMapMultiblockController(id
             addMachineTypeLine()
             addDescriptionLine("gtlitecore.machine.cvd_unit.tooltip.1")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 4)
-            addDurationInfo(UpgradeMode.EMITTER_CASING, 275)
+            addParallelInfo(4, UpgradeMode.PUMP_CASING)
+            addDurationInfo(275, UpgradeMode.EMITTER_CASING)
             addEnergyInfo(25)
         }
     }

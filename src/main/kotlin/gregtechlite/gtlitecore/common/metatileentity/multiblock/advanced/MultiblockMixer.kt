@@ -10,6 +10,7 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
 import gregtechlite.gtlitecore.api.GTLiteAPI.MOTOR_CASING_TIER
@@ -31,7 +32,6 @@ import kotlin.math.max
 
 class MultiblockMixer(id: ResourceLocation) : RecipeMapMultiblockController(id, LARGE_MIXER_RECIPES)
 {
-
     private var casingTier = 0
 
     init
@@ -93,8 +93,8 @@ class MultiblockMixer(id: ResourceLocation) : RecipeMapMultiblockController(id, 
             addMachineTypeLine()
             addDescriptionLine("gtlitecore.machine.large_mixer.tooltip.1")
             addOverclockInfo(OverclockMode.PERFECT)
-            addParallelInfo(UpgradeMode.MOTOR_CASING, 8)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 400)
+            addParallelInfo(8, UpgradeMode.MOTOR_CASING)
+            addDurationInfo(400, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(25)
         }
     }
@@ -103,7 +103,6 @@ class MultiblockMixer(id: ResourceLocation) : RecipeMapMultiblockController(id, 
 
     private inner class LargeMixerRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
-
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
             super.modifyOverclockPost(ocResult, storage)
@@ -111,13 +110,10 @@ class MultiblockMixer(id: ResourceLocation) : RecipeMapMultiblockController(id, 
             // -25%
             ocResult.setEut(max(1, (ocResult.eut() * 0.75).toLong()))
 
-            // +400% / casing tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
-            if (casingTier <= 0) return
-            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * casingTier - 3.0)).toInt()))
+            // +400% / voltage tier | D' = D / (1 + 4.0 * (T - 1.0)) = D / (4.0 * T - 3.0), where k = 4.0
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (4.0 * getTierByVoltage(maxVoltage) - 3.0)).toInt()))
         }
 
         override fun getParallelLimit() = 8 * casingTier
-
     }
-
 }

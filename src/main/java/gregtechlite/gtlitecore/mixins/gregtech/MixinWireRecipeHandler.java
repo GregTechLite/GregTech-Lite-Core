@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = WireRecipeHandler.class, remap = false)
 public abstract class MixinWireRecipeHandler
 {
-
     /**
      * Disabled {@code generateCableCovering()} for all wireGt orePrefixes.
      * <p>
@@ -27,5 +26,4 @@ public abstract class MixinWireRecipeHandler
         OrePrefix.wireGtSingle.addProcessingHandler(PropertyKey.WIRE, WireRecipeHandler::processWireSingle);
         ci.cancel();
     }
-
 }

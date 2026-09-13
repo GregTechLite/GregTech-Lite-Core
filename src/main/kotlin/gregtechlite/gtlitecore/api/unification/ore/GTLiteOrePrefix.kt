@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.api.unification.ore
 
 import gregtech.api.GTValues.M
 import gregtech.api.unification.material.Material
+import gregtech.api.unification.material.Materials.BorosilicateGlass
 import gregtech.api.unification.material.Materials.Charcoal
 import gregtech.api.unification.material.Materials.EnderEye
 import gregtech.api.unification.material.Materials.EnderPearl
@@ -21,6 +22,7 @@ import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.api.unification.ore.OrePrefix.nugget
+import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
 import gregtech.api.unification.ore.OrePrefix.turbineBlade
 import gregtech.api.unification.stack.MaterialStack
@@ -337,6 +339,8 @@ object GTLiteOrePrefix
         gemSolitary.setIgnored(Lapotron)
         gemSolitary.setIgnored(NetherStar)
         gemSolitary.setIgnored(Sugar)
+
+        plate.removeIgnored(BorosilicateGlass)
 
         // endregion
     }

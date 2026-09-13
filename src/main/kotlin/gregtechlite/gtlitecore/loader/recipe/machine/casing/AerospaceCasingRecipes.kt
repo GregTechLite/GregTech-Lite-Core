@@ -98,11 +98,11 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumHafniumSe
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Taranium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitanSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TranscendentMetal
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.VibraniumTritaniumActiniumIronSuperhydride
 import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTFusionCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
+import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AccelerationTrack
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import gregtechlite.gtlitecore.common.block.variant.science.ScienceCasing
@@ -306,7 +306,7 @@ internal object AerospaceCasingRecipes
         ASSEMBLY_LINE_RECIPES.addRecipe {
             input(POWER_TRANSFORMER[UHV])
             input(FEMTO_PIC_CHIP, 64)
-            input(wireGtHex, VibraniumTritaniumActiniumIronSuperhydride, 4)
+            input(wireGtHex, RutheniumTriniumAmericiumNeutronate, 4)
             input(VOLTAGE_COIL_UHV, 64)
             input(VOLTAGE_COIL_UHV, 64)
             fluidInputs(SolderingAlloy.getFluid(L * 80))
@@ -348,9 +348,7 @@ internal object AerospaceCasingRecipes
         // Dyson Swarm Module Deployment Unit Core
         ASSEMBLY_LINE_RECIPES.addRecipe {
             input(HULL[UHV], 4)
-            input(QUANTUM_STORAGE_CONTROLLER, 8)
-            input(QUANTUM_STORAGE_PROXY, 16)
-            input(QUANTUM_STORAGE_EXTENDER, 16)
+            inputs(QuantumStorageUnit.T4.getStack(2))
             input(CONVEYOR_MODULE_UHV, 8)
             input(ROBOT_ARM_UHV, 8)
             input(ELECTRIC_PISTON_UHV, 8)

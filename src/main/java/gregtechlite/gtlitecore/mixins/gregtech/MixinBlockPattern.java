@@ -78,7 +78,7 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
         }
     }
 
-    // TODO When CEu rewrite block pattern checks and merged PR, rework this class.
+    // TODO: When CEu rewrite block pattern checks and merged PR, rework this class.
     @SuppressWarnings("AddedMixinMembersNamePattern")
     @Override
     public @NotNull BlockInfo @NotNull [] @NotNull [] @NotNull [] getPreview(int @NotNull [] repetition, int candidateIndex)
@@ -411,5 +411,4 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
         }
         return false;
     }
-
 }

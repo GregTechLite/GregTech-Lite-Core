@@ -27,7 +27,7 @@ class WorldGeneratorTreeOrange : WorldGeneratorTreeBase("orange", 1)
         conditions.add(ClimateCondition(3, 1.2, 1.15, 0.0, 0.2))
     }
 
-    override fun getMinTrunkHeight(random: Random): Int = 2 + random.nextInt(3)
+    override fun getMinTrunkHeight(rand: Random): Int = 2 + rand.nextInt(3)
 
     override fun generateLeaves(worldIn: World,
                                 blockPos: BlockPos.MutableBlockPos,
@@ -84,7 +84,7 @@ class WorldGeneratorTreeOrange : WorldGeneratorTreeBase("orange", 1)
         return 0
     }
 
-    override fun getFruitDrop(chance: Int): ItemStack?
+    override fun getFruitDrop(chance: Int): ItemStack
     {
         if (GTValues.RNG.nextInt(chance / 10) == 0)
             return GTLiteMetaItems.ORANGE.getStackForm(GTValues.RNG.nextInt(2) + 1)

@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.mixins.jei;
 
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder;
-import gregtechlite.gtlitecore.mixins.Compat;
+import gregtechlite.gtlitecore.mixins.hooks.Compat;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import mezz.jei.plugins.vanilla.ingredients.item.ItemStackRenderer;
 import net.minecraft.client.Minecraft;

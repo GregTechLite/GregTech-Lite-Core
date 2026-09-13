@@ -6,27 +6,27 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.common.metatileentities.multi.BoilerType;
 import gregtech.common.metatileentities.multi.MetaTileEntityLargeBoiler;
-import gregtechlite.gtlitecore.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-/**
- * @deprecated
- */
+@ScheduledForRemoval(inVersion = "Change gregtech to our forked version")
 @Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2873")
 @Mixin(value = MetaTileEntityLargeBoiler.class, remap = false)
 public abstract class MixinMetaTileEntityLargeBoiler extends MultiblockWithDisplayBase
 {
-
     @Shadow
-    public @Final BoilerType boilerType;
+    @Final
+    public BoilerType boilerType;
 
-    public MixinMetaTileEntityLargeBoiler(ResourceLocation metaTileEntityId) {
+    public MixinMetaTileEntityLargeBoiler(ResourceLocation metaTileEntityId)
+    {
         super(metaTileEntityId);
     }
 
@@ -73,5 +73,4 @@ public abstract class MixinMetaTileEntityLargeBoiler extends MultiblockWithDispl
                                 .setMinGlobalLimited(1)))
                 .build();
     }
-
 }

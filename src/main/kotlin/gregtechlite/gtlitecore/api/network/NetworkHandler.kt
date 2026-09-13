@@ -6,7 +6,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry
 
 interface NetworkHandler
 {
-
     fun registerPacket(packetClass: Class<out NetworkPacket>)
 
     fun sendToAll(packet: NetworkPacket)

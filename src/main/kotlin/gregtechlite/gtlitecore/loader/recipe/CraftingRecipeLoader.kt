@@ -7,13 +7,14 @@ import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Materials.Bronze
 import gregtech.api.unification.material.Materials.Clay
 import gregtech.api.unification.material.Materials.Cobalt
-import gregtech.api.unification.material.Materials.Glue
+import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Graphene
 import gregtech.api.unification.material.Materials.Graphite
 import gregtech.api.unification.material.Materials.Indium
 import gregtech.api.unification.material.Materials.Invar
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Nickel
+import gregtech.api.unification.material.Materials.RoseGold
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.VanadiumGallium
@@ -34,14 +35,15 @@ import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.api.unification.ore.OrePrefix.rotor
 import gregtech.api.unification.ore.OrePrefix.screw
+import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.CREDIT_NEUTRONIUM
 import gregtech.common.items.MetaItems.EMITTER_MV
-import gregtech.common.items.MetaItems.FLUID_CELL
 import gregtech.common.items.MetaItems.ITEM_FILTER
 import gregtech.common.items.MetaItems.ORE_DICTIONARY_FILTER
+import gregtech.common.items.MetaItems.SENSOR_HV
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
@@ -89,6 +91,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetoResonatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Prasiolite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tumbaga
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.BOTTLECRATE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AIR_VENT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_BUTCHERY_KNIFE
@@ -113,6 +116,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREDIT_INFINITY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CREDIT_VIBRANIUM
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DRAIN
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LASER_DESTROYER
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGICBOOK
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SAND_DUST
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_DRILL_HEAD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_EXTRUDER_ROUND
@@ -123,6 +127,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_MOLD_TURBINE_BL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_FLAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_OCTAGONAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_STRIPES
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.STRAWBERRY
 import gregtechlite.gtlitecore.common.item.GTLiteToolItems
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NONUPLE_FLUID_EXPORT_HATCH
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.NONUPLE_FLUID_IMPORT_HATCH
@@ -132,9 +137,9 @@ import gregtechlite.gtlitecore.loader.recipe.handler.ToolRecipeHandler
 import net.minecraft.init.Blocks
 import net.minecraft.init.Blocks.TORCH
 import net.minecraft.init.Items
+import net.minecraft.init.Items.BOOK
 import net.minecraft.init.Items.SLIME_BALL
 import net.minecraft.item.ItemStack
-import net.minecraft.nbt.NBTTagCompound
 
 internal object CraftingRecipeLoader
 {
@@ -511,8 +516,6 @@ internal object CraftingRecipeLoader
             'D', UnificationEntry(plateDouble, CosmicNeutronium),
             'G', UnificationEntry(gem, CubicSiliconNitride))
 
-
-
         // Adamantium Credit
         ModHandler.addShapelessRecipe("credit_adamantium_alt", CREDIT_ADAMANTIUM.stackForm,
             CREDIT_NEUTRONIUM.stackForm, CREDIT_NEUTRONIUM.stackForm, CREDIT_NEUTRONIUM.stackForm,
@@ -606,6 +609,17 @@ internal object CraftingRecipeLoader
              'P', "plankWood",
              'S', UnificationEntry(bolt, Wood),
              'G', SLIME_BALL)
+
+        // Magicbook
+        ModHandler.addShapedRecipe(true, "magicbook", MAGICBOOK.stack(),
+            "FPR", "XBO", "SPF",
+            'B', BOOK,
+            'P', UnificationEntry(plate, Electrum),
+            'S', UnificationEntry(springSmall, RoseGold),
+            'R', UnificationEntry(ring, Tumbaga),
+            'F', STRAWBERRY.stack(),
+            'O', SENSOR_HV,
+            'X', UnificationEntry(circuit, Tier.HV))
     }
 
     // @formatter:on

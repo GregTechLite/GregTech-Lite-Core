@@ -51,7 +51,7 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
     }
 
     fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
-        = WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (offset * 4)]
+        = WorldGeneratorTreeRegistry[blockState.getValue(VARIANT) + (offset * 4)]
 
     @SideOnly(Side.CLIENT)
     fun registerColors()
@@ -85,7 +85,7 @@ class GTLiteLeaveBlock(private val offset: Int) : BlockLeaves(), TranslatableBlo
     {
         for (i in 0..3)
         {
-            if (WorldGeneratorTreeRegistry.generators.size <= i + offset * 4)
+            if (WorldGeneratorTreeRegistry.size <= i + offset * 4)
                 break
             items.add(ItemStack(this, 1, i shl 2))
         }

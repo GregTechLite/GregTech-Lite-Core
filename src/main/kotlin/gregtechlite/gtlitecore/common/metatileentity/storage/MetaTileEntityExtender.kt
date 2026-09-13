@@ -5,7 +5,7 @@ import codechicken.lib.raytracer.CuboidRayTraceResult
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
-import gregtech.api.capability.GregtechDataCodes
+import gregtech.api.capability.GregtechDataCodes.UPDATE_OUTPUT_FACING
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.unification.material.Material
 import gregtech.api.util.GTUtility
@@ -26,14 +26,12 @@ import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import org.apache.commons.lang3.tuple.Pair
-import org.jetbrains.annotations.Nullable
 
 class MetaTileEntityExtender(id: ResourceLocation,
                              capabilityFilter: (Capability<*>) -> Boolean,
                              private val renderer: ExtenderRenderer,
                              baseColor: Int) : MetaTileEntityDelegator(id, capabilityFilter, baseColor)
 {
-
     private var inputFacing: EnumFacing? = null
 
     constructor(metaTileEntityId: ResourceLocation,
@@ -41,10 +39,11 @@ class MetaTileEntityExtender(id: ResourceLocation,
                 renderer: ExtenderRenderer,
                 baseMaterial: Material) : this(metaTileEntityId, capFilter, renderer, baseMaterial.materialRGB)
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?) = MetaTileEntityExtender(metaTileEntityId, capabilityFilter, renderer, baseColor)
+    override fun createMetaTileEntity(te: IGregTechTileEntity)
+        = MetaTileEntityExtender(metaTileEntityId, capabilityFilter, renderer, baseColor)
 
     override fun getDelegatingFacing(facing: EnumFacing?): EnumFacing?
-        = if (facing === getFrontFacing()) inputFacing else getFrontFacing()
+        = if (facing === frontFacing) inputFacing else frontFacing
 
     @SideOnly(Side.CLIENT)
     override fun renderMetaTileEntity(renderState: CCRenderState?,
@@ -55,12 +54,12 @@ class MetaTileEntityExtender(id: ResourceLocation,
         renderer.render(renderState, translation, pipeline, getFrontFacing(), inputFacing)
     }
 
-    override fun getParticleTexture(): Pair<TextureAtlasSprite?, Int?>
+    override fun getParticleTexture(): Pair<TextureAtlasSprite?, Int>
     {
         val color = GTUtility.convertOpaqueRGBA_CLtoRGB(ColourRGBA.multiply(
             GTUtility.convertRGBtoOpaqueRGBA_CL(baseColor),
             GTUtility.convertRGBtoOpaqueRGBA_CL(paintingColorForRendering)))
-        return renderer.getParticleTexture() to color
+        return renderer.particleTexture to color
     }
 
     override fun onWrenchClick(playerIn: EntityPlayer,
@@ -70,7 +69,7 @@ class MetaTileEntityExtender(id: ResourceLocation,
     {
         if (!playerIn.isSneaking)
         {
-            if (getInputFacing() === facing || facing === getFrontFacing())
+            if (inputFacing === facing || facing === frontFacing)
                 return false
             if (!world.isRemote)
                 setInputFacing(facing)
@@ -107,7 +106,7 @@ class MetaTileEntityExtender(id: ResourceLocation,
     override fun receiveCustomData(dataId: Int,  buf: PacketBuffer)
     {
         super.receiveCustomData(dataId, buf)
-        if (dataId == GregtechDataCodes.UPDATE_OUTPUT_FACING)
+        if (dataId == UPDATE_OUTPUT_FACING)
         {
             inputFacing = EnumFacing.VALUES[buf.readByte().toInt()]
             scheduleRenderUpdate()
@@ -127,10 +126,7 @@ class MetaTileEntityExtender(id: ResourceLocation,
         }
     }
 
-    fun getInputFacing(): EnumFacing
-    {
-        return inputFacing ?: EnumFacing.SOUTH
-    }
+    fun getInputFacing(): EnumFacing = inputFacing ?: EnumFacing.SOUTH
 
     fun setInputFacing(inputFacing: EnumFacing)
     {
@@ -138,20 +134,17 @@ class MetaTileEntityExtender(id: ResourceLocation,
         if (!world.isRemote)
         {
             notifyBlockUpdate()
-            writeCustomData(GregtechDataCodes.UPDATE_OUTPUT_FACING) { buf: PacketBuffer -> buf.writeByte(inputFacing.index) }
+            writeCustomData(UPDATE_OUTPUT_FACING) { it.writeByte(inputFacing.index) }
             markDirty()
         }
     }
 
     override fun needsSneakToRotate() = true
 
-    override fun addToolUsages(stack: ItemStack?,
-                               @Nullable world: World?,
-                               tooltip: MutableList<String?>,
-                               advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addToolUsages(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         tooltip.add(I18n.format("gregtech.tool_action.wrench.set_facing"))
         super.addToolUsages(stack, world, tooltip, advanced)
     }
-
 }

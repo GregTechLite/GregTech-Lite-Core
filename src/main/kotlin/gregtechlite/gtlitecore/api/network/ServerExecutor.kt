@@ -4,6 +4,5 @@ import net.minecraft.network.NetHandlerPlayServer
 
 interface ServerExecutor
 {
-
     fun executeServer(handler: NetHandlerPlayServer)
 }

@@ -19,7 +19,7 @@ import net.minecraftforge.client.event.TextureStitchEvent
 import net.minecraftforge.client.model.IModel
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.client.model.ModelLoaderRegistry
-import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.relauncher.Side
@@ -33,9 +33,9 @@ import net.minecraftforge.fml.relauncher.Side
  *
  * @see gregtech.client.model.modelfactories.MaterialBlockModelLoader
  */
-@Mod.EventBusSubscriber(modid = MOD_ID, value = [Side.CLIENT])
-object MaterialBlockStateLoader {
-
+@EventBusSubscriber(modid = MOD_ID, value = [Side.CLIENT])
+object MaterialBlockStateLoader
+{
     private val BLOCKSTATES_CACHE = hashTableOf<MaterialIconType, MaterialIconSet, ResourceLocation>()
     private val ENTRIES = openHashMapOf<ModelEntry, ModelResourceLocation>()
 
@@ -152,7 +152,6 @@ object MaterialBlockStateLoader {
                                   val iconSet: MaterialIconSet,
                                   val variant: String?)
     {
-
         /**
          * Cached model instance to avoid repeated loading.
          *
@@ -181,5 +180,4 @@ object MaterialBlockStateLoader {
                 ResourceLocation(itemModelPath.namespace, "item/${itemModelPath.path}")
             }
     }
-
 }

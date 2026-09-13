@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.api.pattern
 
 import gregtech.api.util.RelativeDirection
+import gregtechlite.gtlitecore.api.collection.charHashMapOf
 import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
 import net.minecraft.util.EnumFacing
@@ -9,32 +10,31 @@ import net.minecraft.world.World
 
 class JsonBlockPattern
 {
-
     var structureDirection: Array<RelativeDirection>
 
     lateinit var blockPattern: Array<Array<String>>
     lateinit var aisleRepetitions: Array<IntArray>
 
-    val symbols: MutableMap<Char, MutableSet<String>> = HashMap()
+    val symbols = charHashMapOf<MutableSet<String>>()
 
     init
     {
-        this.structureDirection = arrayOf(RelativeDirection.LEFT, RelativeDirection.UP, RelativeDirection.FRONT)
+        structureDirection = arrayOf(RelativeDirection.LEFT, RelativeDirection.UP, RelativeDirection.FRONT)
     }
 
     constructor()
     {
-        this.symbols.getOrPut(' ') { HashSet() }.add("any")
-        this.symbols.getOrPut('#') { HashSet() }.add("air")
-        this.symbols.getOrPut('@') { HashSet() }.add("controller")
+        symbols.getOrPut(' ') { HashSet() }.add("any")
+        symbols.getOrPut('#') { HashSet() }.add("air")
+        symbols.getOrPut('@') { HashSet() }.add("controller")
     }
 
     constructor(world: World,
                 minX: Int, minY: Int, minZ: Int,
                 maxX: Int, maxY: Int, maxZ: Int)
     {
-        this.blockPattern = Array(1 + maxX - minX) { Array(1 + maxY - minY) { "" } }
-        this.aisleRepetitions = Array(this.blockPattern.size) {
+        blockPattern = Array(1 + maxX - minX) { Array(1 + maxY - minY) { "" } }
+        aisleRepetitions = Array(blockPattern.size) {
             IntArray(2).apply {
                 this[0] = 1
                 this[1] = 1
@@ -51,20 +51,16 @@ class JsonBlockPattern
         {
             for (y in minY..maxY)
             {
-                val builder = StringBuilder()
-                for (z in minZ..maxZ)
-                {
-                    val pos = BlockPos(x, y, z)
+                blockPattern[x - minX][y - minY] = String(CharArray(maxZ - minZ + 1) { i ->
+                    val pos = BlockPos(x, y, minZ + i)
                     val state = world.getBlockState(pos)
-                    val char = states.getOrPut(state)
+                    states.getOrPut(state)
                     {
                         val newChar = currentChar++
-                        this.symbols.getOrPut(newChar) { HashSet() }.add(newChar.toString())
+                        symbols.getOrPut(newChar) { HashSet() }.add(newChar.toString())
                         newChar
                     }
-                    builder.append(char)
-                }
-                this.blockPattern[x - minX][y - minY] = builder.toString()
+                })
             }
         }
     }
@@ -73,7 +69,7 @@ class JsonBlockPattern
     {
         val c0 = intArrayOf(x, y, z)
         val c1 = IntArray(3)
-        this.remapping(c0, c1, facing)
+        remapping(c0, c1, facing)
         return BlockPos(c1[0], c1[1], c1[2])
     }
 
@@ -81,7 +77,7 @@ class JsonBlockPattern
     {
         val c0 = intArrayOf(pos.x, pos.y, pos.z)
         val c1 = IntArray(3)
-        this.remapping(c0, c1, facing)
+        remapping(c0, c1, facing)
         return c1
     }
 
@@ -105,24 +101,24 @@ class JsonBlockPattern
 
     fun clean()
     {
-        val usedChars = this.blockPattern.flatMap { row ->
+        val usedChars = blockPattern.flatMap { row ->
             row.flatMap { str ->
                 str.toCharArray().toList()
             }
         }.toSet()
 
-        this.symbols.keys.removeAll { it !in usedChars }
-        val usedPredicates = this.symbols.values.flatten().toSet()
-        this.symbols.values.forEach { it.retainAll(usedPredicates) }
+        symbols.keys.removeAll { it !in usedChars }
+        val usedPredicates = symbols.values.flatten().toSet()
+        symbols.values.forEach { it.retainAll(usedPredicates) }
     }
 
     fun getCenterOffset(): IntArray
     {
-        for (i in this.blockPattern.indices)
+        for (i in blockPattern.indices)
         {
-            for (j in this.blockPattern[0].indices)
+            for (j in blockPattern[0].indices)
             {
-                val row = this.blockPattern[i][j]
+                val row = blockPattern[i][j]
                 for (k in row.indices)
                 {
                     if (row[k] == '@')
@@ -136,15 +132,13 @@ class JsonBlockPattern
     }
 
     fun copy(): JsonBlockPattern = JsonBlockPattern().apply {
-
-        this.structureDirection = this@JsonBlockPattern.structureDirection.copyOf()
-        this.blockPattern = Array(this@JsonBlockPattern.blockPattern.size) { i ->
+        structureDirection = this@JsonBlockPattern.structureDirection.copyOf()
+        blockPattern = Array(this@JsonBlockPattern.blockPattern.size) { i ->
             this@JsonBlockPattern.blockPattern[i].copyOf()
         }
-        this.aisleRepetitions = Array(this@JsonBlockPattern.aisleRepetitions.size) { i ->
+        aisleRepetitions = Array(this@JsonBlockPattern.aisleRepetitions.size) { i ->
             this@JsonBlockPattern.aisleRepetitions[i].copyOf()
         }
-        this.symbols.putAll(this@JsonBlockPattern.symbols.mapValues { HashSet(it.value) })
+        symbols.putAll(this@JsonBlockPattern.symbols.mapValues { HashSet(it.value) })
     }
-
 }

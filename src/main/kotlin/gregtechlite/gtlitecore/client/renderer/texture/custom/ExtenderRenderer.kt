@@ -17,9 +17,12 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 class ExtenderRenderer(private val basePath: String) : IconRegistrar
 {
-
     @SideOnly(Side.CLIENT)
     private lateinit var textures: Array<TextureAtlasSprite>
+
+    @get:SideOnly(Side.CLIENT)
+    val particleTexture: TextureAtlasSprite?
+        get() = textures[0]
 
     init
     {
@@ -30,11 +33,10 @@ class ExtenderRenderer(private val basePath: String) : IconRegistrar
     override fun registerIcons(textureMap: TextureMap)
     {
         val formattedBase = "${MOD_ID}:blocks/$basePath"
-        this.textures = arrayOf(
+        textures = arrayOf(
             textureMap.registerSprite(ResourceLocation("$formattedBase/in")),
             textureMap.registerSprite(ResourceLocation("$formattedBase/side")),
-            textureMap.registerSprite(ResourceLocation("$formattedBase/out"))
-        )
+            textureMap.registerSprite(ResourceLocation("$formattedBase/out")))
     }
 
     @SideOnly(Side.CLIENT)
@@ -55,8 +57,4 @@ class ExtenderRenderer(private val basePath: String) : IconRegistrar
                                 baseSprite, BlockRenderLayer.CUTOUT_MIPPED)
         }
     }
-
-    @SideOnly(Side.CLIENT)
-    fun getParticleTexture(): TextureAtlasSprite? = textures[0]
-
 }

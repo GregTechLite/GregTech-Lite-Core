@@ -4,6 +4,7 @@ import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IItemComponent;
 import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer;
 import gregtechlite.gtlitecore.client.renderer.ItemRendererManager;
+import org.jetbrains.annotations.UnknownNullability;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,9 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(value = MetaItem.MetaValueItem.class, remap = false)
 public abstract class MixinMetaValueItem implements CustomItemRenderer
 {
-
     @Unique
-    private ItemRendererManager gtlitecore$rendererManager;
+    private @UnknownNullability ItemRendererManager gtlitecore$rendererManager;
 
     @Unique
     @Override
@@ -25,6 +25,7 @@ public abstract class MixinMetaValueItem implements CustomItemRenderer
         return gtlitecore$rendererManager;
     }
 
+    @SuppressWarnings("InvalidInjectorMethodSignature")
     @Inject(
             method = "addItemComponentsInternal([Lgregtech/api/items/metaitem/stats/IItemComponent;)V",
             at = @At(value = "FIELD",
@@ -41,5 +42,4 @@ public abstract class MixinMetaValueItem implements CustomItemRenderer
             gtlitecore$rendererManager = (ItemRendererManager) itemComponent;
         }
     }
-
 }

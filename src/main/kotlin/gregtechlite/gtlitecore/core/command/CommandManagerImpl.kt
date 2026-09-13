@@ -11,9 +11,8 @@ class CommandManagerImpl : CommandManager
 
     companion object
     {
-        private val instance = CommandManagerImpl()
-
-        fun getInstance(): CommandManagerImpl = instance
+        @JvmField
+        internal val instance = CommandManagerImpl()
     }
 
     override fun addCommand(command: ICommand)
@@ -25,5 +24,4 @@ class CommandManagerImpl : CommandManager
     {
         event.registerServerCommand(command)
     }
-
 }

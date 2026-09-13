@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayerMP
 
 class AdvancementListeners<T : AdvancementCriterion>(private val advancementsIn: PlayerAdvancements)
 {
-    private val listeners: MutableSet<ICriterionTrigger.Listener<T>> = openHashSetOf()
+    private val listeners = openHashSetOf<ICriterionTrigger.Listener<T>>()
 
     fun add(listener: ICriterionTrigger.Listener<T>)
     {
@@ -25,7 +25,7 @@ class AdvancementListeners<T : AdvancementCriterion>(private val advancementsIn:
 
     fun trigger(player: EntityPlayerMP?)
     {
-        val _listeners: MutableList<ICriterionTrigger.Listener<T>> = openArrayListOf()
+        val _listeners = openArrayListOf<ICriterionTrigger.Listener<T>>()
         for (listener in listeners)
         {
             if (listener.criterionInstance.test(player))

@@ -13,7 +13,6 @@ import gregtechlite.gtlitecore.api.recipe.util.OreProcessorRecipeWrapper
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockIntegratedOreProcessor
 import net.minecraft.item.ItemStack
 import net.minecraft.util.NonNullList
-import net.minecraft.world.World
 import net.minecraftforge.fluids.FluidStack
 import kotlin.math.ceil
 import kotlin.math.floor
@@ -22,10 +21,9 @@ import kotlin.math.pow
 
 open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOreProcessor) : MultiblockRecipeLogic(mte, true)
 {
-
     override fun update()
     {
-        val world: World? = mte.world
+        val world = mte.world
         if (world != null && !world.isRemote)
         {
             if (isWorkingEnabled)
@@ -62,8 +60,7 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
         for (i in 0 until inputInventory.slots)
         {
             val stack = inputInventory.getStackInSlot(i)
-            if (stack.isEmpty)
-                continue
+            if (stack.isEmpty) continue
 
             if (IntCircuitIngredient.isIntegratedCircuit(stack))
             {
@@ -93,15 +90,14 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
 
         for (inputStack in inputStacks)
         {
-            if (processedCount > parallelLimit)
-                break
+            if (processedCount >= parallelLimit) break
 
             val recipe = INTEGRATED_ORE_PROCESSOR_RECIPES.findRecipe(V[LV],
                 listOf<ItemStack>(inputStack, IntCircuitIngredient.getIntegratedCircuit(mode)),
                 inputFluid.toList())
             if (recipe != null)
             {
-                val countToProcess = inputStack.count.toLong()
+                var countToProcess = inputStack.count.toLong()
                     .coerceAtMost(parallelLimit - processedCount + 0L)
                     .coerceAtMost(remainingVoltage / recipe.eUt).toInt()
 
@@ -109,7 +105,7 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
                 for (fluidInput in recipe.fluidInputs)
                     fluidInputStacks.add(fluidInput.inputFluidStack)
 
-                countToProcess.coerceAtMost(getMaxFluidDeductionMultiplier(fluidInputStacks))
+                countToProcess = countToProcess.coerceAtMost(getMaxFluidDeductionMultiplier(fluidInputStacks))
 
                 if (countToProcess == 0)
                     return
@@ -120,7 +116,7 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
                 val consumedItemStack = inputStack.copy()
                 consumedItemStack.count = countToProcess
 
-                consumedItemStacks.add(inputStack)
+                consumedItemStacks.add(consumedItemStack)
                 for (inputFluidStack in fluidInputStacks)
                 {
                     val consumedFluidStack = inputFluidStack.copy()
@@ -229,5 +225,4 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
     private fun shouldProcessRecipe() : Boolean = true
 
     override fun getProgressPercent(): Double = if (maxProgress == 0) 0.0 else progress / (maxProgress * 1.0)
-
 }

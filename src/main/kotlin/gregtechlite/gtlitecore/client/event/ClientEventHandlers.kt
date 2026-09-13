@@ -16,6 +16,7 @@ import gregtechlite.gtlitecore.common.block.BlockMetalWall
 import gregtechlite.gtlitecore.common.block.BlockSheetedFrame
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
+import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
 import net.minecraft.client.entity.AbstractClientPlayer
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.resources.I18n
@@ -70,6 +71,13 @@ object ClientEventHandlers
         GlassCasing.Enum03.entries
             .filter { ItemUtil.areItemTypeEqual(it.stack, stack) }
             .forEach { tooltip.add(I18n.format("gtlitecore.tooltip.glass_tier", VOCNF[it.tier])) }
+
+        QuantumStorageUnit.entries
+            .filter { ItemUtil.areItemTypeEqual(it.stack, stack) }
+            .forEach {
+                tooltip.add(I18n.format("gtlitecore.tooltip.storage_type", it.distinctSlots))
+                tooltip.add(I18n.format("gtlitecore.tooltip.storage_capacity", it.totalCapacity))
+            }
 
         // Added tooltips for bottlecrate.
         if (ItemUtil.areItemTypeEqual(GTLiteBlocks.BOTTLECRATE.stack(), stack))

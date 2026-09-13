@@ -30,6 +30,7 @@ import gregtechlite.gtlitecore.api.recipe.builder.PseudoMultiRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.builder.QuantumForceTransformerRecipeBuilder
 import gregtechlite.gtlitecore.api.recipe.map.PseudoGroupRecipeMapBuilder
 import gregtechlite.gtlitecore.api.recipe.ui.AntimatterForgeUI
+import gregtechlite.gtlitecore.api.recipe.ui.BlackholeFormerUI
 import gregtechlite.gtlitecore.api.recipe.ui.ComponentAssemblyLineUI
 import gregtechlite.gtlitecore.api.recipe.ui.IntegratedOreProcessorUI
 import gregtechlite.gtlitecore.api.recipe.ui.LargeMixerUI
@@ -795,7 +796,7 @@ object GTLiteRecipeMaps
         .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
         .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, true)
         .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER)
-        .sound(GTSoundEvents.ASSEMBLER)
+        .sound(GTLiteSoundEvents.PCB_FACTORY)
         .build()
 
     /**
@@ -823,7 +824,7 @@ object GTLiteRecipeMaps
         .fluidInputs(6)
         .fluidOutputs(6)
         .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE)
-        .sound(GTSoundEvents.ARC)
+        .sound(GTLiteSoundEvents.QUANTUM)
         .build()
 
     /**
@@ -849,7 +850,7 @@ object GTLiteRecipeMaps
         .itemInputs(16)
         .itemOutputs(1)
         .fluidInputs(4)
-        .sound(GTSoundEvents.ASSEMBLER)
+        .sound(GTLiteSoundEvents.SPACE_ASSEMBLER)
         .build()
 
     /**
@@ -989,6 +990,18 @@ object GTLiteRecipeMaps
         .sound(SoundEvents.BLOCK_ANVIL_DESTROY)
         .build()
 
+    /**
+     * @zenProp blackhole_former
+     */
+    @ZenProperty
+    @JvmField
+    val BLACKHOLE_FORMING_RECIPES = RecipeMapBuilder("blackhole_former", SimpleRecipeBuilder())
+        .ui { BlackholeFormerUI(it) }
+        .itemInputs(6)
+        .itemOutputs(1)
+        .sound(GTLiteSoundEvents.BLACKHOLE)
+        .build()
+
     // endregion
 
     // region Generator Fuel RecipeMaps
@@ -1074,6 +1087,18 @@ object GTLiteRecipeMaps
         .build()
 
     /**
+     * @zenProp dyson_swarm_fuels
+     */
+    @ZenProperty
+    @JvmField
+    val DYSON_SWARM_FUELS = RecipeMapBuilder("dyson_swarm_fuels", FuelRecipeBuilder())
+        .fluidInputs(2)
+        .allowEmptyOutputs()
+        .sound(GTSoundEvents.ARC)
+        .generator()
+        .build()
+
+    /**
      * @zenProp acid_generator
      */
     @ZenProperty
@@ -1090,6 +1115,8 @@ object GTLiteRecipeMaps
     @JvmStatic
     fun preInit()
     {
+        DYSON_SWARM_FUELS.recipeMapUI.isJEIVisible = false
+
         RecipeMaps.ELECTROLYZER_RECIPES.maxFluidInputs = 2
 
         RecipeMaps.FORGE_HAMMER_RECIPES.maxInputs = 2

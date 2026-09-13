@@ -18,6 +18,7 @@ import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeutronate
 import gregtech.api.unification.material.Materials.Seaborgium
 import gregtech.api.unification.material.Materials.Thulium
+import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.frameGt
@@ -109,8 +110,9 @@ internal object QuantumForceTransformerCasingRecipes
             input(screw, Inconel625, 32)
             input(bolt, HafniumCarbide, 12)
             input(plate, Zeron100, 8)
+            input(nanite, Zinc)
             fluidInputs(Trinaquadalloy.getFluid(L * 4))
-            outputs(MultiblockCasing.PARTICLE_CONTAINMENT_CASING.getStack(2))
+            outputs(MultiblockCasing.PARTICLE_CONTAINMENT_CASING.getStack(4))
             EUt(VA[ZPM])
             duration(2 * SECOND + 10 * TICK)
         }

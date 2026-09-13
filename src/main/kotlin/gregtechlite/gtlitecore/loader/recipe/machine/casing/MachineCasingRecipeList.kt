@@ -32,10 +32,12 @@ internal object MachineCasingRecipeList
         StellarForgeCasingRecipes.init()
         CosmicRayDetectorCasingRecipes.init()
         PCBFactoryCasingRecipes.init()
+        BlackholeFormerCasingRecipes.init()
         QuantumForceTransformerCasingRecipes.init()
         AntimatterCasingRecipes.init()
         EntrodynamicallyPhaseChangerCasingRecipes.init()
         NanoAssemblyComplexCasingRecipes.init()
+        QuantumStorageUnitRecipes.init()
         EyeOfHarmonyCasingRecipes.init()
 
         WireCoilRecipes.init()

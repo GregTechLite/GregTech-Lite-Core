@@ -1,9 +1,4 @@
-@FieldsAreNonnullByDefault
-@ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
+@NotNullByDefault
 package gregtechlite.gtlitecore.mixins.jei;
 
-import com.morphismmc.morphismlib.util.annotation.FieldsAreNonnullByDefault;
-import mcp.MethodsReturnNonnullByDefault;
-
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jetbrains.annotations.NotNullByDefault;

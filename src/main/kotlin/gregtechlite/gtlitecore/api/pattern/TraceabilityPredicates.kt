@@ -3,9 +3,9 @@ package gregtechlite.gtlitecore.api.pattern
 import gregtech.api.GTValues
 import gregtech.api.block.VariantActiveBlock
 import gregtech.api.capability.GregtechCapabilities
+import gregtech.api.capability.IEnergyContainer
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
-import gregtech.api.pattern.BlockWorldState
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.pattern.PatternStringError
 import gregtech.api.pattern.TraceabilityPredicate
@@ -14,15 +14,16 @@ import gregtech.api.util.GTUtility
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry
 import gregtechlite.gtlitecore.api.block.attribute.StateTier
+import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
 import net.minecraft.block.state.IBlockState
 import net.minecraft.util.math.BlockPos
+import java.math.BigInteger
 import java.util.*
 
 object TraceabilityPredicates
 {
-
     @JvmStatic
-    val SNOW_LAYER = TraceabilityPredicate { bws -> GTUtility.isBlockSnow(bws.blockState) }
+    val SNOW_LAYER = TraceabilityPredicate { GTUtility.isBlockSnow(it.blockState) }
 
     // region Block Attribute Suitable Tiered Stats
 
@@ -146,34 +147,18 @@ object TraceabilityPredicates
 
     @JvmStatic
     fun <T> PatternMatchContext.getAttributeOrDefault(registry: BlockAttributeRegistry<T>, default: T): T
-    {
-        return getOrDefault(registry.name, default)
-    }
+        = getOrDefault(registry.name, default)
 
     @JvmStatic
     fun <T : StateTier> PatternMatchContext.getTierOrDefault(registry: BlockAttributeRegistry<T>, default: Int): Int
-    {
-        return getOrDefault<T>(registry.name, null)?.tier ?: default
-    }
+        = getOrDefault<T>(registry.name, null)?.tier ?: default
 
     // endregion
 
-    // region Specified Block Counter
-
-    @JvmStatic
-    fun airCounter() = counter("length", TraceabilityPredicate.AIR)
-
-    @JvmStatic
-    fun counter(name: String, delegate: TraceabilityPredicate) = object : TraceabilityPredicate(delegate)
-    {
-
-        override fun test(blockWorldState: BlockWorldState?) = super.test(blockWorldState).also {
-            if (it) blockWorldState!!.matchContext.increment(name, 1)
-        }
-
+    @JvmField
+    val WIRELESS_ENERGY_STORAGE = MultiblockAbility("wireless_energy_storage", IEnergyContainer::class.java).also {
+        MultiblockAbility.REGISTRY[it] = arrayListOf()
     }
-
-    // endregion
 
     @JvmStatic
     fun energyOutputPredicate(voltageTier: Int): TraceabilityPredicate
@@ -202,4 +187,29 @@ object TraceabilityPredicates
         return@TraceabilityPredicate blockWorldState.matchContext.get<String>(symbol) == null
     }.also { allowedStates.map(::BlockInfo) }
 
+    @JvmStatic
+    fun quantumStorageUnits(): TraceabilityPredicate = TraceabilityPredicate({ worldState ->
+        val tier = GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER.getAttribute(worldState.blockState)
+        val variant = tier?.let { QuantumStorageUnit.entries[(it - 1).coerceIn(0, QuantumStorageUnit.entries.size - 1)] }
+        return@TraceabilityPredicate variant?.let {
+            val counts = worldState.matchContext.getOrCreate(QuantumStorageUnitCounter.KEY) { QuantumStorageUnitCounter() }
+            counts.totalCapacity = counts.totalCapacity.add(it.totalCapacity)
+            counts.distinctSlots += it.distinctSlots
+            true
+        } ?: false
+    }, { GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER.ascendingBlocks.map { BlockInfo(it, null) }.toTypedArray() })
+
+    fun readBlockCount(context: PatternMatchContext): QuantumStorageUnitCounter
+        = context.get(QuantumStorageUnitCounter.KEY) as? QuantumStorageUnitCounter ?: QuantumStorageUnitCounter()
+
+    class QuantumStorageUnitCounter
+    {
+        var totalCapacity: BigInteger = BigInteger.ZERO
+        var distinctSlots: Int = 0
+
+        companion object
+        {
+            const val KEY = "QuantumStorageUnitCount"
+        }
+    }
 }

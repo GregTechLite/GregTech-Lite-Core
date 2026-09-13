@@ -7,9 +7,8 @@ import gregtech.api.unification.material.properties.PropertyKey.GEM
 
 object AmorphousLensPropertyAdder
 {
-
-    // add property for those require lens but not have gem property,
-    // this is for some special materials like Plastic Lens.
+    // Add property for those require lens but not have gem property,
+    // this is for some special materials like plastic lens or artificial gems.
     fun preInit()
     {
         GregTechAPI.materialManager.registeredMaterials
@@ -18,7 +17,5 @@ object AmorphousLensPropertyAdder
     }
 
     private fun addLensNoGemProperty(material: Material)
-    {
-        material.setProperty(GTLitePropertyKey.AMORPHOUS_LENS, AmorphousLensProperty())
-    }
+        = material.setProperty(GTLitePropertyKey.AMORPHOUS_LENS, AmorphousLensProperty())
 }

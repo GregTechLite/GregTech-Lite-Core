@@ -4,17 +4,26 @@ import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.HV
 import gregtech.api.GTValues.IV
 import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
+import gregtech.api.recipes.builders.SimpleRecipeBuilder
+import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.Ash
 import gregtech.api.unification.material.Materials.Bone
+import gregtech.api.unification.material.Materials.DarkAsh
+import gregtech.api.unification.material.Materials.Duranium
 import gregtech.api.unification.material.Materials.Emerald
+import gregtech.api.unification.material.Materials.Gold
+import gregtech.api.unification.material.Materials.HSSE
 import gregtech.api.unification.material.Materials.Meat
 import gregtech.api.unification.material.Materials.Milk
+import gregtech.api.unification.material.Materials.RedSteel
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
+import gregtech.api.unification.ore.OrePrefix.nugget
+import gregtech.api.unification.ore.OrePrefix.toolHeadBuzzSaw
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
@@ -22,10 +31,12 @@ import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_COLLECTING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_SLAUGHTERING_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Blood
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSE_MEAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BASE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_CHICKEN
@@ -42,55 +53,39 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_SHEEP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_TRADER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_VILLAGER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_WOLF
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.ANIMAL_FAT
 import net.minecraft.entity.passive.EntityChicken
 import net.minecraft.entity.passive.EntityCow
 import net.minecraft.entity.passive.EntityHorse
 import net.minecraft.entity.passive.EntityPig
 import net.minecraft.entity.passive.EntitySheep
 import net.minecraft.entity.passive.EntityVillager
+import net.minecraft.init.Blocks.BROWN_MUSHROOM
 import net.minecraft.init.Blocks.DEADBUSH
 import net.minecraft.init.Blocks.RED_MUSHROOM
 import net.minecraft.init.Blocks.WOOL
+import net.minecraft.init.Items.BEEF
 import net.minecraft.init.Items.BEETROOT
 import net.minecraft.init.Items.CARROT
 import net.minecraft.init.Items.CHICKEN
-import net.minecraft.init.Items.DIAMOND_SWORD
+import net.minecraft.init.Items.CLAY_BALL
 import net.minecraft.init.Items.DYE
 import net.minecraft.init.Items.EGG
 import net.minecraft.init.Items.FEATHER
 import net.minecraft.init.Items.FISH
+import net.minecraft.init.Items.FLINT
 import net.minecraft.init.Items.IRON_HORSE_ARMOR
-import net.minecraft.init.Items.IRON_SWORD
 import net.minecraft.init.Items.LEAD
 import net.minecraft.init.Items.LEATHER
 import net.minecraft.init.Items.MILK_BUCKET
-import net.minecraft.init.Items.SADDLE
-import net.minecraft.init.Items.STONE_SWORD
-import net.minecraft.init.Items.STRING
-import net.minecraft.init.Items.WOODEN_SWORD
-import gregtech.api.recipes.builders.SimpleRecipeBuilder
-import gregtech.api.unification.material.Materials.Ash
-import gregtech.api.unification.material.Materials.DarkAsh
-import gregtech.api.unification.material.Materials.Duranium
-import gregtech.api.unification.material.Materials.Gold
-import gregtech.api.unification.material.Materials.HSSE
-import gregtech.api.unification.material.Materials.RedSteel
-import gregtech.api.unification.ore.OrePrefix.nugget
-import gregtech.common.items.ToolItems
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_COLLECTING_RECIPES
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSE_MEAT
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MUD_BALL
-import gregtechlite.gtlitecore.common.item.GTLiteMetaOreDictItems.ANIMAL_FAT
-import net.minecraft.init.Blocks.BROWN_MUSHROOM
-import net.minecraft.init.Items.BEEF
-import net.minecraft.init.Items.CLAY_BALL
-import net.minecraft.init.Items.FLINT
 import net.minecraft.init.Items.MUTTON
 import net.minecraft.init.Items.PAPER
 import net.minecraft.init.Items.PORKCHOP
 import net.minecraft.init.Items.RABBIT_FOOT
 import net.minecraft.init.Items.RABBIT_HIDE
-import net.minecraft.item.Item
+import net.minecraft.init.Items.SADDLE
+import net.minecraft.init.Items.STRING
 import net.minecraft.item.ItemStack
 
 /**
@@ -598,9 +593,9 @@ internal object MobExtractorRecipes
     private fun addSlaughterRecipes(card: MetaItem<*>.MetaValueItem, bloodAmount: Int, fatAmount: Int,
                                     builder: SimpleRecipeBuilder.(a: Int) -> Unit)
     {
-        addSlaughterRecipe(card, ToolItems.SWORD.get(RedSteel), 1, VA[HV], bloodAmount, fatAmount, builder)
-        addSlaughterRecipe(card, ToolItems.SWORD.get(HSSE), 4, VA[EV], bloodAmount, fatAmount, builder)
-        addSlaughterRecipe(card, ToolItems.SWORD.get(Duranium), 16, VA[IV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, OreDictUnifier.get(toolHeadBuzzSaw, RedSteel), 1, VA[HV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, OreDictUnifier.get(toolHeadBuzzSaw, HSSE), 4, VA[EV], bloodAmount, fatAmount, builder)
+        addSlaughterRecipe(card, OreDictUnifier.get(toolHeadBuzzSaw, Duranium), 16, VA[IV], bloodAmount, fatAmount, builder)
     }
 
     private fun addSlaughterRecipe(card: MetaItem<*>.MetaValueItem, weapon: ItemStack, factor: Int, eut: Int,

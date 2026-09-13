@@ -407,23 +407,9 @@ class ItemStackMap<T>(private val nbtSensitive: Boolean = false) : AbstractMutab
         }
     }
 
-    private class StackMetaKey(val damage: Int, val tag: NBTTagCompound?)
+    private data class StackMetaKey(val damage: Int, val tag: NBTTagCompound?)
     {
         constructor(key: ItemStack) : this(actualDamage(key), key.tagCompound)
-
-        override fun hashCode(): Int
-        {
-            var result = damage
-            result = 31 * result + (tag?.hashCode() ?: 0)
-            return result
-        }
-
-        override fun equals(other: Any?): Boolean
-        {
-            if (this === other) return true
-            if (other !is StackMetaKey) return false
-            return damage == other.damage && tag == other.tag
-        }
     }
 
     private enum class KeyType

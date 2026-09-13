@@ -13,20 +13,13 @@ import org.apache.logging.log4j.Logger
         descriptions = "General GregTech Lite Integration Module. Disabling this disables all integration modules.")
 class IntegrationModule : BaseModule()
 {
-
     companion object
     {
-
         @JvmField
         val logger: Logger = SidedLogger("$MOD_ID-integration")
-
     }
 
-    override fun getEventBusSubscribers(): MutableList<Class<*>?>
-    {
-        return mutableListOf(IntegrationModule::class.java)
-    }
+    override val eventBusSubscribers: List<Class<*>> = listOf(IntegrationModule::class.java)
 
-    override fun getLogger(): Logger = Companion.logger
-
+    override val logger: Logger = Companion.logger
 }

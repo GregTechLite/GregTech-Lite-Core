@@ -33,7 +33,8 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent
                     "required:forgelin_continuous@[2.1.0.0,);" +
                     "required-after:morphismlib@[1.0.0,);" +
                     "required-after:modularui@[2.5.0-rc4,);" +
-                    "required-after:gregtech@[2.8.7-beta,);",
+                    "required-after:gregtech@[2.8.7-beta,);" +
+                    "after:jei@[4.30.0,);",
      modLanguageAdapter = "io.github.chaosunity.forgelin.KotlinAdapter",
      customProperties = [
           Mod.CustomProperty(k = "license", v = "Apache 2.0"),
@@ -41,7 +42,6 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent
           Mod.CustomProperty(k = "iconItem", v = "gtlitecore:gtlite_meta_item_1:1")])
 class GTLiteMod
 {
-
      private lateinit var moduleManager: ModuleManagerImpl
 
      init
@@ -51,85 +51,82 @@ class GTLiteMod
 
      companion object
      {
-
           /**
            * Get [ResourceLocation] with the unique id [MOD_ID] of the mod.
            */
           @JvmStatic
           fun id(path: String): ResourceLocation = ResourceLocation(MOD_ID, path)
-
      }
 
      @Mod.EventHandler
      fun onConstruction(event: FMLConstructionEvent)
      {
-          this.moduleManager = ModuleManagerImpl.instance
-          GTLiteAPI.moduleManager = this.moduleManager
-          this.moduleManager.registerContainer(GTLiteModules())
+          moduleManager = ModuleManagerImpl.instance
+          GTLiteAPI.moduleManager = moduleManager
+          moduleManager.registerContainer(GTLiteModules())
           MinecraftForge.EVENT_BUS.post(ModuleContainerRegistryEvent())
-          this.moduleManager.setup(event.asmHarvestedData, Loader.instance().configDir)
-          this.moduleManager.onConstruction(event)
+          moduleManager.setup(event.asmHarvestedData, Loader.instance().configDir)
+          moduleManager.onConstruction(event)
      }
 
      @Mod.EventHandler
      fun onPreInit(event: FMLPreInitializationEvent)
      {
-          this.moduleManager.onPreInit(event)
+          moduleManager.onPreInit(event)
      }
 
      @Mod.EventHandler
      fun onInit(event: FMLInitializationEvent)
      {
-          this.moduleManager.onInit(event)
+          moduleManager.onInit(event)
      }
 
      @Mod.EventHandler
      fun onPostInit(event: FMLPostInitializationEvent)
      {
-          this.moduleManager.onPostInit(event)
-          this.moduleManager.processIMC(FMLInterModComms.fetchRuntimeMessages(GTLiteAPI.instance))
+          moduleManager.onPostInit(event)
+          moduleManager.processIMC(FMLInterModComms.fetchRuntimeMessages(GTLiteAPI.instance))
      }
 
      @Mod.EventHandler
      fun loadComplete(event: FMLLoadCompleteEvent)
      {
-          this.moduleManager.onLoadComplete(event)
+          moduleManager.onLoadComplete(event)
      }
 
      @Mod.EventHandler
      fun serverAboutToStart(event: FMLServerAboutToStartEvent)
      {
-          this.moduleManager.onServerAboutToStart(event)
+          moduleManager.onServerAboutToStart(event)
      }
 
      @Mod.EventHandler
      fun serverStarting(event: FMLServerStartingEvent)
      {
-          this.moduleManager.onServerStarting(event)
+          moduleManager.onServerStarting(event)
      }
 
      @Mod.EventHandler
      fun serverStarted(event: FMLServerStartedEvent)
      {
-          this.moduleManager.onServerStarted(event)
+          moduleManager.onServerStarted(event)
      }
 
      @Mod.EventHandler
      fun serverStopping(event: FMLServerStoppingEvent)
      {
-          this.moduleManager.onServerStopping(event)
+          moduleManager.onServerStopping(event)
      }
 
      @Mod.EventHandler
      fun serverStopped(event: FMLServerStoppedEvent)
      {
-          this.moduleManager.onServerStopped(event)
+          moduleManager.onServerStopped(event)
      }
 
      @Mod.EventHandler
      fun respondIMC(event: IMCEvent)
      {
-          this.moduleManager.processIMC(event.messages)
+          moduleManager.processIMC(event.messages)
      }
-
 }

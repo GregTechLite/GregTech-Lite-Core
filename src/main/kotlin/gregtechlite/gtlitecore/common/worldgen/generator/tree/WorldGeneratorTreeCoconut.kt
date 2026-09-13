@@ -96,7 +96,7 @@ class WorldGeneratorTreeCoconut : WorldGeneratorTreeBase("coconut", 8)
         // endregion
     }
 
-    override fun getFruitDrop(chance: Int): ItemStack?
+    override fun getFruitDrop(chance: Int): ItemStack
     {
         if (GTValues.RNG.nextInt(chance / 7) == 0)
             return GTLiteMetaItems.COCONUT.getStackForm(GTValues.RNG.nextInt(2))

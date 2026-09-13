@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.client.renderer.texture
 import gregtech.client.renderer.texture.custom.DrumRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.custom.ExtenderRenderer
 import gregtechlite.gtlitecore.client.util.orientedOverlay
+import gregtechlite.gtlitecore.client.util.simpleOrientedCubeOverlay
 import gregtechlite.gtlitecore.client.util.simpleOverlay
 import gregtechlite.gtlitecore.client.util.simpleSidedCubeOverlay
 
@@ -129,6 +130,32 @@ object GTLiteOverlays
     val LARGE_SLAUGHTER_OVERLAY = multiId("large_slaughter")
     @JvmField
     val LARGE_FISHER_OVERLAY = multiId("large_fisher")
+    @JvmField
+    val PCB_FACTORY_OVERLAY = multiId("pcb_factory")
+    @JvmField
+    val WATER_COOLING_TOWER_OVERLAY = multiId("water_cooling_tower")
+    @JvmField
+    val THERMOSINK_COOLING_TOWER_OVERLAY = multiId("thermosink_cooling_tower")
+    @JvmField
+    val NANOLITHOGRAPHY_ARRAY_OVERLAY = multiId("nanolithography_array")
+    @JvmField
+    val MICROSCALE_CIRCUIT_DETECTOR_OVERLAY = multiId("microscale_circuit_detector")
+    @JvmField
+    val BIO_CULTIVATION_CHAMBER_OVERLAY = multiId("bio_cultivation_chamber")
+    @JvmField
+    val NANO_FORGE_OVERLAY = multiId("nano_forge")
+    @JvmField
+    val CONSCIOUSNESS_STORAGE_CENTER_OVERLAY = multiId("consciousness_storage_center")
+    @JvmField
+    val NANITE_REPLICATION_UNRESTRICOR_OVERLAY = multiId("nanite_replication_unrestricor")
+    @JvmField
+    val VIRTUAL_GESTALT_COMPUTING_UPLINK_OVERLAY = multiId("virtual_gestalt_computing_uplink")
+    @JvmField
+    val MEGA_TURBINE_OVERLAY = multiId("mega_turbine")
+    @JvmField
+    val BLACKHOLE_FORMER_OVERLAY = multiId("blackhole_former")
+    @JvmField
+    val DYSON_SWARM_GROUND_UNIT_OVERLAY = multiId("dyson_swarm_ground_unit")
 
     // endregion
 
@@ -152,6 +179,18 @@ object GTLiteOverlays
     val STERILE_CLEANING_MAINTENANCE_OVERLAY = partId("sterile_cleaning_maintenance_hatch_overlay")
     @JvmField
     val QUANTUM_ITEM_BUS_OVERLAY = partId("quantum_item_bus_overlay")
+    @JvmField
+    val WIRELESS_ENERGY_HATCH_OVERLAY = partId("wireless_energy_hatch_overlay")
+    @JvmField
+    val WIRELESS_STORAGE_HATCH_OVERLAY = partId("wireless_storage_hatch_overlay")
+    @JvmField
+    val QUANTUM_ACCESS_HATCH_OVERLAY = partId("quantum_access_hatch_overlay")
+    @JvmField
+    val ME_CRAFTING_INPUT_BUS_OVERLAY = partId("crafting_pattern_input_bus_overlay")
+    @JvmField
+    val ME_CRAFTING_INPUT_BUFFER_OVERLAY = partId("crafting_pattern_input_buffer_overlay")
+    @JvmField
+    val ME_CRAFTING_INPUT_MIRROR_OVERLAY = partId("crafting_pattern_input_mirror_overlay")
 
     // endregion
 
@@ -253,6 +292,14 @@ object GTLiteOverlays
     val VANADIUM_GALLIUM_CASING = casingId("metal/vanadium_gallium")
     @JvmField
     val NEUTRONIUM_CASING = casingId("metal/neutronium")
+    @JvmField
+    val OSMIRIDIUM_CASING = casingId("metal/osmiridium")
+    @JvmField
+    val INFINITY_COOLING_CASING = casingId("special/infinity_cooling_casing")
+    @JvmField
+    val HAWKING_RADIATION_ABSORPTION_CASING = casingId("special/hawking_radiation_absorption_casing")
+    @JvmField
+    val DYSON_SWARM_ENERGY_RECEIVER_BASE_CASING = complexCasingId("aerospace/dyson_swarm_casing_base")
 
     // endregion
 
@@ -299,6 +346,9 @@ object GTLiteOverlays
 
     @JvmStatic
     private fun casingId(path: String) = simpleOverlay("casings/$path")
+
+    @JvmStatic
+    private fun complexCasingId(path: String) = simpleOrientedCubeOverlay("casings/$path")
 
     @JvmStatic
     private fun coverId(path: String) = simpleOverlay("covers/$path")

@@ -3,12 +3,16 @@ package gregtechlite.gtlitecore.api.extension
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.items.metaitem.MetaOreDictItem
 import gregtech.api.metatileentity.MetaTileEntity
+import gregtech.api.unification.material.Materials
+import gregtech.common.blocks.BlockMaterialBase
 import gregtechlite.gtlitecore.client.util.ItemStackMap.Companion.WILDCARD_TAG
 import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
+import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
+import net.minecraft.util.NonNullList
 import net.minecraftforge.oredict.OreDictionary
 
 // region Item Stack Copying
@@ -108,5 +112,17 @@ fun MetaTileEntity.getStack(count: Int = 1) = stackForm.copy(count)
  */
 fun IBlockState.toItem(amount: Int = 1): ItemStack
     = ItemStack(block, amount, block.getMetaFromState(this))
+
+inline fun <reified T : Block> T.unzipSubBlocks(): List<ItemStack>
+    = NonNullList.create<ItemStack>().also { getSubBlocks(CreativeTabs.SEARCH, it) }
+
+inline fun <reified T : Block> Map<String, Array<T>>.unzipSubBlocks(): List<ItemStack>
+    = values.flatMap { it.asSequence() }.flatMap { it.unzipSubBlocks() }.toList()
+
+inline fun <reified T : Block> List<T>.unzipSubBlocks(): List<ItemStack>
+    = flatMap { it.unzipSubBlocks() }.toList()
+
+inline fun <reified T : BlockMaterialBase> List<T>.unzipSubVariants(): List<ItemStack>
+    = flatMap { block -> block.variantProperty.allowedValues.filter { it != Materials.NULL }.map { block.getItem(it) } }.toList()
 
 // endregion

@@ -38,7 +38,6 @@ import kotlin.math.max
 
 class MultiblockGasCollector(id: ResourceLocation) : RecipeMapMultiblockController(id, LARGE_GAS_COLLECTOR_RECIPES)
 {
-
     private var casingTier = 0
 
     init
@@ -104,8 +103,8 @@ class MultiblockGasCollector(id: ResourceLocation) : RecipeMapMultiblockControll
             addMachineTypeLine()
             addDescriptionLine("gtlitecore.machine.large_gas_collector.tooltip.1")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 16)
-            addDurationInfo(UpgradeMode.VOLTAGE_TIER, 300)
+            addParallelInfo(16, UpgradeMode.PUMP_CASING)
+            addDurationInfo(300, UpgradeMode.VOLTAGE_TIER)
             addEnergyInfo(10)
         }
     }
@@ -114,7 +113,6 @@ class MultiblockGasCollector(id: ResourceLocation) : RecipeMapMultiblockControll
 
     private inner class LargeGasCollectorRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
-
         override fun getOverclockingDurationFactor(): Double
             = if (maxVoltage >= V[UV]) PERFECT_DURATION_FACTOR else STD_DURATION_FACTOR
 
@@ -126,11 +124,9 @@ class MultiblockGasCollector(id: ResourceLocation) : RecipeMapMultiblockControll
             ocResult.setEut(max(1, (ocResult.eut() * 0.9).toLong()))
 
             // +300% / voltage tier | D' = D / (1 + 3.0 * (T - 1.0)) = D / (3.0 * T - 2.0), where k = 3.0
-            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / 3.0 * getTierByVoltage(maxVoltage) - 2.0).toInt()))
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (3.0 * getTierByVoltage(maxVoltage) - 2.0)).toInt()))
         }
 
         override fun getParallelLimit() = 16 * casingTier
-
     }
-
 }

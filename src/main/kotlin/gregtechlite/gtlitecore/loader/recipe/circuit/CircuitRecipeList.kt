@@ -19,6 +19,8 @@ internal object CircuitRecipeList
         SpintronicCircuits.init()
         CosmicCircuits.init()
         SupracausalCircuits.init()
+        SuprachronalCircuits.init()
+        GenericCircuits.init()
     }
 
     // @formatter:on

@@ -17,7 +17,6 @@ import org.lwjgl.opengl.GL11
 @SideOnly(Side.CLIENT)
 object StructureSelectRenderer
 {
-
     @JvmStatic
     fun render(event: RenderWorldLastEvent)
     {
@@ -72,5 +71,4 @@ object StructureSelectRenderer
             GlStateManager.popMatrix()
         }
     }
-
 }

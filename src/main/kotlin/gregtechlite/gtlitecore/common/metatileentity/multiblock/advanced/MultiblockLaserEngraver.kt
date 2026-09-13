@@ -104,8 +104,8 @@ class MultiblockLaserEngraver(id: ResourceLocation) : RecipeMapMultiblockControl
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.EMITTER_CASING, 16)
-            addDurationInfo(UpgradeMode.CONVEYOR_CASING, 400)
+            addParallelInfo(16, UpgradeMode.EMITTER_CASING)
+            addDurationInfo(400, UpgradeMode.CONVEYOR_CASING)
             addEnergyInfo(30)
         }
     }

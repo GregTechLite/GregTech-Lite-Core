@@ -12,7 +12,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(value = MetaItem.class, remap = false)
 public abstract class MixinMetaItem<T extends MetaItem<?>.MetaValueItem> extends Item
 {
-
     @Shadow
     public abstract ResourceLocation createItemModelPath(T metaValueItem, String postfix);
 
@@ -33,5 +32,4 @@ public abstract class MixinMetaItem<T extends MetaItem<?>.MetaValueItem> extends
         }
         return location;
     }
-
 }

@@ -8,6 +8,5 @@ import net.minecraft.entity.player.EntityPlayerMP
  */
 class BasicCriterion : AbstractCriterion()
 {
-
     override fun test(player: EntityPlayerMP?): Boolean = true
 }

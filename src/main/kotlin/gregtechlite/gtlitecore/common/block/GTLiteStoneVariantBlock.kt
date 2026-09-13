@@ -19,7 +19,6 @@ import net.minecraft.world.IBlockAccess
 import java.util.*
 import gregtech.api.unification.material.Material as GTMaterial
 
-// todo oreDic generation?
 class GTLiteStoneVariantBlock(val stoneVariant: StoneVariant) : VariantBlock<GTLiteStoneVariantBlock.StoneType>(Material.ROCK)
 {
 

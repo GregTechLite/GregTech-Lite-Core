@@ -19,7 +19,6 @@ import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.round
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.NANOPARTICLES
 import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.ORGANIC
-import gregtechlite.gtlitecore.api.unification.material.info.GTLiteMaterialIconSet.WAX
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 
 object GTLiteMetaOreDictItems
@@ -55,6 +54,7 @@ object GTLiteMetaOreDictItems
     lateinit var PLANT_PROTEIN: OreDictValueItem
     lateinit var EGGSHELL: OreDictValueItem
     lateinit var WET_EGG_WHITE_CAKE: OreDictValueItem
+    lateinit var MILK_POWDER: OreDictValueItem
 
     @JvmStatic
     fun init()
@@ -93,6 +93,7 @@ object GTLiteMetaOreDictItems
         PLANT_PROTEIN = item(24, "plant_protein", 0xFFFFFF, ORGANIC, dustSmall)
         EGGSHELL = item(25, "eggshell", 0xDFCE9B, NANOPARTICLES, dustSmall)
         WET_EGG_WHITE_CAKE = item(26, "wet_egg_white_cake", 0xFFFBF0, DULL, crushedCentrifuged)
+        MILK_POWDER = item(27, "milk", 0xFFFFFF, ROUGH, dust)
     }
 
     private fun item(id: Int, name: String, color: Int, iconSet: MaterialIconSet, prefix: OrePrefix,

@@ -9,9 +9,7 @@ interface BlockAttributeRegistry<T>
     companion object
     {
         fun <T : P, P : Comparable<P>> create(name: String): BlockAttributeRegistry<T>
-        {
-            return DefaultBlockAttributeRegistry(name) { a, b -> a.compareTo(b) }
-        }
+            = DefaultBlockAttributeRegistry(name) { a, b -> a.compareTo(b) }
     }
 
     val name: String

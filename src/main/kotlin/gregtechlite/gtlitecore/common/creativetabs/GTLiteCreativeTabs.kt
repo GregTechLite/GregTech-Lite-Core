@@ -9,7 +9,6 @@ import net.minecraft.creativetab.CreativeTabs
 
 object GTLiteCreativeTabs
 {
-
     /**
      * The main [CreativeTabs] of the mod, this is the default settings for all contents in the mod.
      * If the items, blocks or other contents satisfied descriptions of the following [CreativeTabs],
@@ -38,5 +37,4 @@ object GTLiteCreativeTabs
      */
     @JvmField
     val TAB_FOOD: CreativeTabs = CustomCreativeTab("gtlite.food") { LOGO_FOOD.stackForm }
-
 }

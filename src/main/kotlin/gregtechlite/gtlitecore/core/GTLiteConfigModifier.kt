@@ -4,7 +4,6 @@ import gregtech.common.ConfigHolder
 
 internal object GTLiteConfigModifier
 {
-
     fun init()
     {
 
@@ -19,5 +18,4 @@ internal object GTLiteConfigModifier
         ConfigHolder.recipes.nerfPaperCrafting = false
 
     }
-
 }

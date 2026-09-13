@@ -27,12 +27,12 @@ object IconLoader
      * Get an icon texture from `resourcePath`.
      *
      * @param resourcePath Path to the resource.
-     * @return Returns `true` if it sets the icon of the display.
+     * @return             Returns `true` if it sets the icon of the display.
      */
     @JvmStatic
     fun setCustomIcon(resourcePath: String?): Boolean
     {
-        val resource = IconLoader::class.java.getClassLoader().getResourceAsStream(resourcePath)
+        val resource = IconLoader::class.java.classLoader.getResourceAsStream(resourcePath)
         if (resource == null) return false
         try
         {
@@ -40,7 +40,7 @@ object IconLoader
             Display.setIcon(load(image))
             return true
         }
-        catch (exception: IOException)
+        catch (_: IOException)
         {
             return false
         }
@@ -50,8 +50,8 @@ object IconLoader
      * Loads the icon in `ByteBuffer` form.
      *
      * @param image Buffered image.
-     * @return An array of `ByteBuffer`s containing the pixel data for the icon in
-     * various sizes (as recommended by the OS).
+     * @return      An array of `ByteBuffer`s containing the pixel data for the icon in
+     *              various sizes (as recommended by the OS).
      */
     @JvmStatic
     fun load(image: BufferedImage): Array<ByteBuffer?>
@@ -69,7 +69,7 @@ object IconLoader
      *
      * @param image The image to place onto the icon.
      * @param size  The desired size of the icon.
-     * @return A `ByteBuffer` of pixel data at the indicated size.
+     * @return      A `ByteBuffer` of pixel data at the indicated size.
      */
     private fun loadInstance(image: BufferedImage, size: Int): ByteBuffer
     {
@@ -78,12 +78,10 @@ object IconLoader
         val ratio = getIconRatio(image, imageScaled)
         val width = image.width * ratio
         val height = image.height * ratio
-        graphics.drawImage(
-            image,
+        graphics.drawImage(image,
             ((imageScaled.width - width) / 2).toInt(),
             ((imageScaled.height - height) / 2).toInt(),
-            width.toInt(), height.toInt(), null
-        )
+            width.toInt(), height.toInt(), null)
         graphics.dispose()
         return convertToByteBuffer(imageScaled)
     }
@@ -94,7 +92,7 @@ object IconLoader
      *
      * @param src  The base image that will be placed onto the icon.
      * @param icon The icon that will have the image placed on it.
-     * @return The amount to scale the source image to fit it onto the icon appropriately.
+     * @return     The amount to scale the source image to fit it onto the icon appropriately.
      */
     private fun getIconRatio(src: BufferedImage, icon: BufferedImage): Double
     {
@@ -123,18 +121,18 @@ object IconLoader
      * Converts a BufferedImage into a ByteBuffer of pixel data.
      *
      * @param image The image to convert.
-     * @return A `ByteBuffer` that contains the pixel data of the supplied image.
+     * @return      A `ByteBuffer` that contains the pixel data of the supplied image.
      */
     @JvmStatic
     fun convertToByteBuffer(image: BufferedImage): ByteBuffer
     {
         val buffer = ByteArray(image.width * image.height * 4)
         var counter = 0
-        for (i in 0..<image.height)
+        for (h in 0 until image.height)
         {
-            for (j in 0..<image.width)
+            for (w in 0 until image.width)
             {
-                val colorSpace = image.getRGB(j, i)
+                val colorSpace = image.getRGB(w, h)
                 buffer[counter] = ((colorSpace shl 8) shr 24).toByte()
                 buffer[counter + 1] = ((colorSpace shl 16) shr 24).toByte()
                 buffer[counter + 2] = ((colorSpace shl 24) shr 24).toByte()
@@ -144,5 +142,4 @@ object IconLoader
         }
         return ByteBuffer.wrap(buffer)
     }
-
 }

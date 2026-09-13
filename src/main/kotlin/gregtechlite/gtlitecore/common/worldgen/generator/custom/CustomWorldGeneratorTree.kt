@@ -12,7 +12,6 @@ import java.util.*
 
 class CustomWorldGeneratorTree(isNotified: Boolean, generator: WorldGeneratorTreeBase) : CustomWorldGeneratorImpl(isNotified, generator)
 {
-
     override fun scatter(worldIn: World?, blockPos: BlockPos.MutableBlockPos?, rand: Random?): Boolean
     {
         val event = SaplingGrowTreeEvent(worldIn, rand, blockPos)
@@ -26,6 +25,5 @@ class CustomWorldGeneratorTree(isNotified: Boolean, generator: WorldGeneratorTre
         }
     }
 
-    override fun configure(): Boolean = !GTLiteConfigHolder.worldgen.disableAdditionTreesGeneration // TODO clarify
-
+    override fun configure(): Boolean = !GTLiteConfigHolder.worldgen.disableAdditionTreesGeneration
 }

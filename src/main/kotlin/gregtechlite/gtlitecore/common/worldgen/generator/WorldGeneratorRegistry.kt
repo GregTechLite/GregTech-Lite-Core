@@ -2,34 +2,35 @@ package gregtechlite.gtlitecore.common.worldgen.generator
 
 import gregtechlite.gtlitecore.api.worldgen.CustomWorldGenerator
 
-object WorldGeneratorRegistry
+/**
+ * Will register all generators by [WorldGeneratorManager] automatically.
+ */
+private val generators: MutableList<CustomWorldGenerator> = mutableListOf()
+
+object WorldGeneratorRegistry : Iterable<CustomWorldGenerator> by generators
 {
+    @JvmStatic
+    val size: Int
+        get() = generators.size
 
-    internal val generators: MutableList<CustomWorldGenerator> = mutableListOf()
+    @JvmStatic
+    operator fun get(index: Int): CustomWorldGenerator = generators[index]
 
-    fun addGenerator(generator: CustomWorldGenerator)
+    @JvmStatic
+    fun add(generator: CustomWorldGenerator)
     {
-        this.generators.add(generator)
+        generators.add(generator)
     }
 
-    fun addGenerators(generators: Array<CustomWorldGenerator>)
+    @JvmStatic
+    fun remove(generator: CustomWorldGenerator)
     {
-        this.generators.addAll(generators)
+        generators.remove(generator)
     }
 
-    fun removeGenerator(generator: CustomWorldGenerator)
-    {
-        this.generators.remove(generator)
-    }
-
-    fun removeGenerators(generators: Array<CustomWorldGenerator>)
-    {
-        this.generators.removeAll(generators)
-    }
-
+    @JvmStatic
     fun clear()
     {
-        this.generators.clear()
+        generators.clear()
     }
-
 }

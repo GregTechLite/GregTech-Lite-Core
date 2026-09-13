@@ -101,7 +101,7 @@ class WorldGeneratorTreeOlive : WorldGeneratorTreeBase("olive", 6)
         return 0
     }
 
-    override fun getFruitDrop(chance: Int): ItemStack?
+    override fun getFruitDrop(chance: Int): ItemStack
     {
         if (GTValues.RNG.nextInt(chance / 15) == 0)
             return GTLiteMetaItems.OLIVE.getStackForm(GTValues.RNG.nextInt(4) + 1)

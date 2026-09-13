@@ -22,7 +22,6 @@ internal object AttributePrefixOreDicts
             OreDictionary.registerOre("dustTinyRadioactive", OreDictUnifier.get(OrePrefix.dustTiny, material))
         }
 
-        // "Bacterial": consists of all bacterial dusts, used for biological reactor recipes as default.
         for (material in MaterialInfoCache.bacterialMaterials)
         {
             OreDictionary.registerOre("dustBacterial", OreDictUnifier.get(OrePrefix.dust, material))

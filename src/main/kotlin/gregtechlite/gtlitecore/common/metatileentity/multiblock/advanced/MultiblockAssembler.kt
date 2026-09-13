@@ -105,8 +105,8 @@ class MultiblockAssembler(id: ResourceLocation) : RecipeMapMultiblockController(
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.ROBOT_ARM_CASING, 16)
-            addDurationInfo(UpgradeMode.CONVEYOR_CASING, 450)
+            addParallelInfo(16, UpgradeMode.ROBOT_ARM_CASING)
+            addDurationInfo(450, UpgradeMode.CONVEYOR_CASING)
             addEnergyInfo(25)
         }
     }

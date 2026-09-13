@@ -197,8 +197,8 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
 
 
         val curOutput = FluidDisplaySyncHandler {
-            if (SpacePumpRecipeFrontend.RECIPES.containsKey(Pair(planets[index], fluids[index])))
-                return@FluidDisplaySyncHandler SpacePumpRecipeFrontend.RECIPES[Pair(planets[index], fluids[index])]
+            if (SpacePumpRecipeFrontend.containsKey(Pair(planets[index], fluids[index])))
+                return@FluidDisplaySyncHandler SpacePumpRecipeFrontend[Pair(planets[index], fluids[index])]
             else return@FluidDisplaySyncHandler null
         }
 
@@ -337,9 +337,9 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
             val fluidStacks = ArrayList<FluidStack>()
             for (i in 0..3)
             {
-                if (SpacePumpRecipeFrontend.RECIPES.containsKey(Pair(planets[i], fluids[i])))
+                if (SpacePumpRecipeFrontend.containsKey(Pair(planets[i], fluids[i])))
                 {
-                    SpacePumpRecipeFrontend.RECIPES[Pair(planets[i], fluids[i])]?.let {
+                    SpacePumpRecipeFrontend[Pair(planets[i], fluids[i])]?.let {
                         val outputFluid = it.copy()
                         outputFluid.amount = outputFluid.amount.times(parallels[i])
                         fluidStacks.add(outputFluid)
@@ -358,14 +358,14 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
         {
             for (i in 0..3)
             {
-                val fluidStack = SpacePumpRecipeFrontend.RECIPES[Pair(planets[i], fluids[i])]
+                val fluidStack = SpacePumpRecipeFrontend[Pair(planets[i], fluids[i])]
                 if (fluidStack != null)
                     return true
             }
         }
         else
         {
-            val fluidStack = SpacePumpRecipeFrontend.RECIPES[Pair(planets[0], fluids[0])]
+            val fluidStack = SpacePumpRecipeFrontend[Pair(planets[0], fluids[0])]
             return fluidStack != null
         }
         return false
@@ -600,7 +600,7 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
                             if (plantValue.value.isEmpty() ||
                                 fluidValue.value.isEmpty() ||
                                 parallelValue.value.isEmpty() ||
-                                !SpacePumpRecipeFrontend.RECIPES.containsKey(Pair(plantValue.value.toInt(),
+                                !SpacePumpRecipeFrontend.containsKey(Pair(plantValue.value.toInt(),
                                                                                   fluidValue.value.toInt())) ||
                                 parallelValue.value.toInt() <= 0
                             )

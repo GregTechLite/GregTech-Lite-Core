@@ -103,9 +103,9 @@ class WorldGeneratorTreeBanana : WorldGeneratorTreeBase("banana", 0)
         }
     }
 
-    override fun getMinTrunkHeight(random: Random) = 3 + random.nextInt(2)
+    override fun getMinTrunkHeight(rand: Random) = 3 + rand.nextInt(2)
 
-    override fun getFruitDrop(chance: Int): ItemStack?
+    override fun getFruitDrop(chance: Int): ItemStack
     {
         if (GTValues.RNG.nextInt(chance / 8) == 0)
             return GTLiteMetaItems.BANANA.getStackForm(GTValues.RNG.nextInt(4) + 3)

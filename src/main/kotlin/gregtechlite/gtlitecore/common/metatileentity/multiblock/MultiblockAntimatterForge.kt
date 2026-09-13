@@ -153,8 +153,8 @@ class MultiblockAntimatterForge(id: ResourceLocation)
         tooltip.add(I18n.format("gtlitecore.machine.antimatter_forge.tooltip.2"))
         tooltip.add(I18n.format("gtlitecore.machine.antimatter_forge.tooltip.3"))
         tooltip.add(I18n.format("gtlitecore.machine.antimatter_forge.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.antimatter_forge.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.antimatter_forge.tooltip.6"))
+        tooltip.add(I18n.format("gtlitecore.tooltip.machine.special_max_voltage"))
+        tooltip.add(I18n.format("gtlitecore.tooltip.machine.laser_hatch"))
     }
 
     override fun canBeDistinct() = false

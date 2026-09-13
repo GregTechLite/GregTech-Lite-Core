@@ -1,8 +1,11 @@
 package gregtechlite.gtlitecore.common.item.behavior
 
+import baubles.api.BaubleType
+import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.util.RandomPotionEffect
 import gregtech.common.creativetab.GTCreativeTabs
 import gregtech.common.items.MetaItems
+import gregtech.integration.baubles.BaubleBehavior
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
 import gregtechlite.gtlitecore.common.worldgen.generator.plant.WorldGeneratorBerryManager
 import gregtechlite.gtlitecore.common.worldgen.generator.plant.WorldGeneratorCropManager
@@ -108,18 +111,19 @@ object GTLiteBehaviors
 
         // endregion
 
-        // region Additional Foods
         MetaItems.BOTTLE_PURPLE_DRINK.addComponents(FoodBehavior(3, 0.2F, true, true,
             ItemStack(Items.GLASS_BOTTLE),
             RandomPotionEffect(MobEffects.HASTE, 800, 1, 10),
             RandomPotionEffect(MobEffects.WITHER, 800, 5, 10)))
         MetaItems.BOTTLE_PURPLE_DRINK.addComponents(BottlecrateBehavior(0xFFB405FF))
 
-        // endregion
-
         // Set compressed clay be visitable.
-        MetaItems.COMPRESSED_CLAY.setCreativeTabs(GTCreativeTabs.TAB_GREGTECH as CreativeTabs)
+        MetaItems.COMPRESSED_CLAY.setCreativeTabs(GTCreativeTabs.TAB_GREGTECH)
 
+        if (Mods.Baubles.isActive)
+        {
+            GTLiteMetaItems.MAGICBOOK.addComponents(BaubleBehavior(BaubleType.TRINKET))
+        }
     }
 
 }

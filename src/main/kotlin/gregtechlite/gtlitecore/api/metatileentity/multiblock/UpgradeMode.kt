@@ -2,7 +2,6 @@ package gregtechlite.gtlitecore.api.metatileentity.multiblock
 
 enum class UpgradeMode
 {
-
     VOLTAGE_TIER,
 
     WIRE_COIL,
@@ -28,5 +27,4 @@ enum class UpgradeMode
 
     TIME_ACCELERATION_FIELD_GEN,
     STABILIZATION_FIELD_GEN
-
 }

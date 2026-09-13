@@ -13,7 +13,6 @@ import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.variant.BlockVariantType
 import gregtechlite.gtlitecore.api.block.variant.VariantBlockFactory
-import gregtechlite.gtlitecore.api.collection.immutableMapOf
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import gregtechlite.gtlitecore.api.collection.treeMapOf
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
@@ -26,6 +25,7 @@ import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.NuclearReactorCore
 import gregtechlite.gtlitecore.common.block.variant.PrimitiveCasing
+import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
 import gregtechlite.gtlitecore.common.block.variant.ShieldingCore
 import gregtechlite.gtlitecore.common.block.variant.TurbineCasing
 import gregtechlite.gtlitecore.common.block.variant.WireCoil
@@ -170,7 +170,8 @@ object GTLiteBlocks
     lateinit var METAL_CASING_02: VariantBlock<MetalCasing.Enum02>
     lateinit var METAL_CASING_03: VariantBlock<MetalCasing.Enum03>
     lateinit var BOILER_CASING_01: VariantBlock<BoilerCasing>
-    lateinit var MULTIBLOCK_CASING_01: VariantBlock<MultiblockCasing>
+    lateinit var MULTIBLOCK_CASING_01: VariantBlock<MultiblockCasing.Enum01>
+    lateinit var MULTIBLOCK_CASING_02: VariantBlock<MultiblockCasing.Enum02>
     lateinit var ACTIVE_UNIQUE_CASING_01: VariantActiveBlock<ActiveUniqueCasing>
     lateinit var TURBINE_CASING_01: VariantBlock<TurbineCasing.Enum01>
     lateinit var TURBINE_CASING_02: VariantBlock<TurbineCasing.Enum02>
@@ -195,6 +196,8 @@ object GTLiteBlocks
     lateinit var NUCLEAR_REACTOR_CORE_02: VariantActiveBlock<NuclearReactorCore.Enum02>
     lateinit var MANIPULATOR: VariantActiveBlock<Manipulator>
     lateinit var SHIELDING_CORE: VariantActiveBlock<ShieldingCore>
+    lateinit var QUANTUM_STORAGE_UNIT: VariantBlock<QuantumStorageUnit>
+
     lateinit var TRANSPARENT_CASING_01: VariantBlock<GlassCasing.Enum01>
     lateinit var TRANSPARENT_CASING_02: VariantBlock<GlassCasing.Enum02>
     lateinit var TRANSPARENT_CASING_03: VariantBlock<GlassCasing.Enum03>
@@ -210,22 +213,22 @@ object GTLiteBlocks
         WorldGeneratorTreeManager.init()
 
         // Initialized tree related blocks.
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 4)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 4)
         {
             val leaves = GTLiteLeaveBlock(i)
             leaves.setRegistryName("leaves_$i")
         }
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 4)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 4)
         {
             val log = GTLiteLogBlock(i)
             log.setRegistryName("log_$i")
         }
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 8)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 8)
         {
             val sapling = GTLiteSaplingBlock(i)
             sapling.setRegistryName("sapling_$i")
         }
-        for (i in 0..(WorldGeneratorTreeRegistry.generators.size - 1) / 16)
+        for (i in 0..(WorldGeneratorTreeRegistry.size - 1) / 16)
         {
             val planks = GTLitePlankBlock(i)
             planks.setRegistryName("planks_$i")
@@ -236,7 +239,7 @@ object GTLiteBlocks
         WorldGeneratorBerryManager.init()
 
         // Setup tree related blocks to its world generator features.
-        WorldGeneratorTreeRegistry.generators.forEach { it.setupBlocks() }
+        WorldGeneratorTreeRegistry.forEach { it.setupBlocks() }
 
         // Initialized wooden slabs.
         WOOD_SLABS = GTLiteWoodSlabBlock.Half()
@@ -445,6 +448,7 @@ object GTLiteBlocks
 
         BOILER_CASING_01 = simpleBlock("boiler_casing_01", BlockVariantType.METAL_BLOCK)
         MULTIBLOCK_CASING_01 = simpleBlock("multiblock_casing_01", BlockVariantType.METAL_BLOCK)
+        MULTIBLOCK_CASING_02 = simpleBlock("multiblock_casing_02", BlockVariantType.METAL_BLOCK)
         ACTIVE_UNIQUE_CASING_01 = simpleBlock("active_unique_casing_01", BlockVariantType.METAL_ACTIVE_BLOCK)
         TURBINE_CASING_01 = simpleBlock("turbine_casing_01", BlockVariantType.METAL_BLOCK)
         TURBINE_CASING_02 = simpleBlock("turbine_casing_02", BlockVariantType.METAL_BLOCK)
@@ -470,6 +474,7 @@ object GTLiteBlocks
         NUCLEAR_REACTOR_CORE_02 = simpleBlock("nuclear_reactor_core_02", BlockVariantType.METAL_ACTIVE_BLOCK, 4.0f, 8.0f)
         MANIPULATOR = simpleBlock("manipulator", BlockVariantType.METAL_ACTIVE_BLOCK)
         SHIELDING_CORE = simpleBlock("shielding_core", BlockVariantType.METAL_ACTIVE_BLOCK)
+        QUANTUM_STORAGE_UNIT = simpleBlock("quantum_storage_unit", BlockVariantType.METAL_BLOCK)
 
         TRANSPARENT_CASING_01 = simpleBlock("glass_casing_01", BlockVariantType.TRANSPARENT_BLOCK, 5.0f, 5.0f)
         TRANSPARENT_CASING_02 = simpleBlock("glass_casing_02", BlockVariantType.TRANSPARENT_BLOCK, 5.0f, 5.0f)
@@ -501,8 +506,7 @@ object GTLiteBlocks
         PLANKS.forEach(::registerItemModel)
 
         // Initialized wooden slabs.
-        registerItemModelWithOverride(WOOD_SLABS,
-            immutableMapOf(BlockSlab.HALF to BlockSlab.EnumBlockHalf.BOTTOM))
+        registerItemModelWithOverride(WOOD_SLABS, mapOf(BlockSlab.HALF to BlockSlab.EnumBlockHalf.BOTTOM))
 
         // Initialized wooden stairs.
         setModelLocation(BANANA_WOOD_STAIR)
@@ -568,6 +572,7 @@ object GTLiteBlocks
         registerItemModel(METAL_CASING_02)
         registerItemModel(METAL_CASING_03)
         registerItemModel(MULTIBLOCK_CASING_01)
+        registerItemModel(MULTIBLOCK_CASING_02)
         registerItemModel(BOILER_CASING_01)
         registerItemModel(TURBINE_CASING_01)
         registerItemModel(TURBINE_CASING_02)
@@ -578,6 +583,7 @@ object GTLiteBlocks
         registerItemModel(AEROSPACE_CASING)
         registerItemModel(CRUCIBLE)
         registerItemModel(COMPONENT_ASSEMBLY_CASING)
+        registerItemModel(QUANTUM_STORAGE_UNIT)
         registerItemModel(TRANSPARENT_CASING_01)
         registerItemModel(TRANSPARENT_CASING_02)
         registerItemModel(TRANSPARENT_CASING_03)

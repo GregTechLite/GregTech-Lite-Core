@@ -17,7 +17,6 @@ import kotlin.reflect.jvm.isAccessible
 @Suppress("unused")
 object GTLiteGuiTextures
 {
-
     // region Base Textures
 
     /**
@@ -41,6 +40,12 @@ object GTLiteGuiTextures
 
     @JvmField
     val SPACE_ELEVATOR_LOGO_DARK = texture("textures/gui/icon/space_elevator_logo_dark.png")
+
+    @JvmField
+    val BLACKHOLE_SHAPING_ICON = texture("textures/gui/icon/blackhole_shaping_category.png")
+
+    @JvmField
+    val BLACKHOLE_STAMPING_ICON = texture("textures/gui/icon/blackhole_stamping_category.png")
 
     // endregion
 
@@ -90,141 +95,12 @@ object GTLiteGuiTextures
     // region Progress Bar Textures
 
     /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_ARC_FURNACE].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.ARC_FURNACE
-     */
-    val PROGRESS_BAR_ARC_FURNACE_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_arc_furnace_%s.png")
-
-    /**
      * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE].
      *
      * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.ARROW_MULTIPLE
      */
     @JvmField
     val PROGRESS_BAR_ARROW_MULTIPLE_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_arrow_multiple_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_ASSEMBLY_LINE].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.ASSEMBLY_LINE
-     */
-    @JvmField
-    val PROGRESS_BAR_ASSEMBLY_LINE_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_assembly_line_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_ASSEMBLY_LINE_ARROW].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.ASSEMBLY_LINE_ARROW
-     */
-    @JvmField
-    val PROGRESS_BAR_ASSEMBLY_LINE_ARROW_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_assembly_line_arrow_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_BATH].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.BATH
-     */
-    @JvmField
-    val PROGRESS_BAR_BATH_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_bath_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_BENDING].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.BENDING
-     */
-    @JvmField
-    val PROGRESS_BAR_BENDING_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_bending_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_CANNER].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.CANNER
-     */
-    @JvmField
-    val PROGRESS_BAR_CANNER_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_canner_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_CIRCUIT].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.CIRCUIT
-     */
-    @JvmField
-    val PROGRESS_BAR_CIRCUIT_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_circuit_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.CIRCUIT_ASSEMBLER
-     */
-    @JvmField
-    val PROGRESS_BAR_CIRCUIT_ASSEMBLER_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_circuit_assembler_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_COKE_OVEN].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.COKE_OVEN
-     */
-    @JvmField
-    val PROGRESS_BAR_COKE_OVEN_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_coke_oven_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_CRACKING].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.CRACKING
-     */
-    @JvmField
-    val PROGRESS_BAR_CRACKING_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_cracking_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_CRACKING_INPUT].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.CRACKING_INPUT
-     */
-    @JvmField
-    val PROGRESS_BAR_CRACKING_INPUT_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_cracking_2_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_CRYSTALLIZATION].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.CRYSTALLIZATION
-     */
-    @JvmField
-    val PROGRESS_BAR_CRYSTALLIZATION_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_crystallization_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_DISTILLATION_TOWER].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.DISTILLATION_TOWER
-     */
-    @JvmField
-    val PROGRESS_BAR_DISTILLATION_TOWER_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_distillation_tower_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_EXTRUDER].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.EXTRUDER
-     */
-    @JvmField
-    val PROGRESS_BAR_EXTRUDER_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_extruder_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_FUSION].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.FUSION
-     */
-    @JvmField
-    val PROGRESS_BAR_FUSION_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_fusion_%s.png")
-
-    /**
-     * Steam version of [gregtech.api.gui.GuiTextures.PROGRESS_BAR_GAS_COLLECTOR].
-     *
-     * @see gregtechlite.gtlitecore.api.gui.indicator.SteamProgressBarIndicators.GAS_COLLECTOR
-     */
-    @JvmField
-    val PROGRESS_BAR_GAS_COLLECTOR_STEAM = steamTexture("textures/gui/progress_bar/progress_bar_gas_collector_%s.png")
-
-    // TODO Other textures.
 
     @JvmField
     val PROGRESS_BAR_SLICING = texture("textures/gui/progress_bar/progress_bar_slicing.png")
@@ -267,6 +143,9 @@ object GTLiteGuiTextures
 
     @JvmField
     val PROGRESS_BAR_ANTI_GRAVITY_ASSEMBLING_2 = texture("textures/gui/progress_bar/progress_bar_anti_gravity_assembling_2.png")
+
+    @JvmField
+    val PROGRESS_BAR_BLACKHOLE_FORMING = texture("textures/gui/progress_bar/progress_bar_blackhole_forming.png")
 
     // endregion
 
@@ -344,5 +223,4 @@ object GTLiteGuiTextures
         LOGGER.warn("Cannot invoke constructor of SteamTexture, moving search namespace of the texture in path '$path' to the mod 'gregtech'")
         return@getOrElse SteamTexture.fullImage(path)
     }
-
 }

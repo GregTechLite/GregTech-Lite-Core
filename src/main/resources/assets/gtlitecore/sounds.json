@@ -8,5 +8,45 @@
         "stream": false
       }
     ]
+  },
+  "tick.quantum": {
+    "subtitle": "gtlitecore.subtitle.tick.quantum",
+    "category": "block",
+    "sounds": [
+      {
+        "name": "gtlitecore:quantum",
+        "stream": false
+      }
+    ]
+  },
+  "tick.blackhole": {
+    "subtitle": "gtlitecore.subtitle.tick.blackhole",
+    "category": "block",
+    "sounds": [
+      {
+        "name": "gtlitecore:blackhole",
+        "stream": false
+      }
+    ]
+  },
+  "tick.pcb_factory": {
+    "subtitle": "gtlitecore.subtitle.tick.pcb_factory",
+    "category": "block",
+    "sounds": [
+      {
+        "name": "gtlitecore:pcb_factory",
+        "stream": false
+      }
+    ]
+  },
+  "tick.space_assembler": {
+    "subtitle": "gtlitecore.subtitle.tick.space_assembler",
+    "category": "block",
+    "sounds": [
+      {
+        "name": "gtlitecore:space_assembler",
+        "stream": false
+      }
+    ]
   }
 }

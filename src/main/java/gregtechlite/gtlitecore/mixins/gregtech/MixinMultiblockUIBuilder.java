@@ -4,20 +4,18 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder;
-import gregtechlite.gtlitecore.mixins.Implemented;
+import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-/**
- * @deprecated
- */
+@ScheduledForRemoval(inVersion = "Change gregtech to our forked version")
 @Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2913")
 @Mixin(value = MultiblockUIBuilder.class, remap = false)
 public abstract class MixinMultiblockUIBuilder
 {
-
     /**
      * Adds fluid output display with parallel number count.
      * <p>
@@ -37,6 +35,8 @@ public abstract class MixinMultiblockUIBuilder
      * @param recipeLength The recipe length of the current recipe (on ticks).
      * @param methodOp     The original method {@code addFluidOutputLine} call in {@code addRecipeOutputLine} method.
      * @param p            The parallel number of the machine from the {@code InternalSyncer}.
+     *
+     * @author LoseUFaith
      */
     @WrapOperation(method = "addRecipeOutputLine(Lgregtech/api/capability/impl/AbstractRecipeLogic;I)Lgregtech/api/metatileentity/multiblock/ui/MultiblockUIBuilder;",
                    at = @At(value = "INVOKE",
@@ -51,5 +51,4 @@ public abstract class MixinMultiblockUIBuilder
         long newCount = count * p;
         methodOp.call(instance, stack, newCount, recipeLength);
     }
-
 }

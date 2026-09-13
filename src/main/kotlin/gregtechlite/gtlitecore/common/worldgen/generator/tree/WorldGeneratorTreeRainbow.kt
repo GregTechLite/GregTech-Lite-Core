@@ -49,7 +49,7 @@ class WorldGeneratorTreeRainbow : WorldGeneratorTreeBase("rainbow", 9)
         }
     }
 
-    override fun getMinTrunkHeight(random: Random) = random.nextInt(3) + 6
+    override fun getMinTrunkHeight(rand: Random) = rand.nextInt(3) + 6
 
     override fun getMooreRadiusAtHeight(height: Int, trunkHeight: Int): Int
     {

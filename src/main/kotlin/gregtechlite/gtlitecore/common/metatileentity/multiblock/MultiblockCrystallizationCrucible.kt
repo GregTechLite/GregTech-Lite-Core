@@ -129,8 +129,8 @@ class MultiblockCrystallizationCrucible(id: ResourceLocation)
                                "gregtech.machine.electric_blast_furnace.tooltip.2",
                                "gregtech.machine.electric_blast_furnace.tooltip.3")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.WIRE_COIL, 8)
-            addDurationInfo(UpgradeMode.MOTOR_CASING, 250)
+            addParallelInfo(8, UpgradeMode.WIRE_COIL)
+            addDurationInfo(250, UpgradeMode.MOTOR_CASING)
             addEnergyInfo(40)
         }
     }

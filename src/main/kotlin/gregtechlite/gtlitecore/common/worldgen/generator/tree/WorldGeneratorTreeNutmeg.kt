@@ -61,7 +61,7 @@ class WorldGeneratorTreeNutmeg : WorldGeneratorTreeBase("nutmeg", 7)
                                blockPos: BlockPos?,
                                tintIndex: Int) = 0x6DB626
 
-    override fun getFruitDrop(chance: Int): ItemStack?
+    override fun getFruitDrop(chance: Int): ItemStack
     {
         if (GTValues.RNG.nextInt(chance / 10) == 0)
             return GTLiteMetaItems.NUTMEG.getStackForm(GTValues.RNG.nextInt(2) + 1)

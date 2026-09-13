@@ -6,13 +6,7 @@ interface ModuleReceiver
 
     val displayCountName: String
 
-    /**
-     * Sent invert `isWorkingEnabled` to all modules.
-     */
     fun sentWorkingDisabled()
 
-    /**
-     * Sent `isWorkingEnabled` to all modules.
-     */
     fun sentWorkingEnabled()
 }

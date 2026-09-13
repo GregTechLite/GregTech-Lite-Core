@@ -23,13 +23,13 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 
-class SteamMachineSapCollector(id: ResourceLocation,
-                               isHighPressure: Boolean)
+class SteamMachineSapCollector(id: ResourceLocation, isHighPressure: Boolean)
     : PseudoMultiSteamMachineMetaTileEntity(id, SAP_COLLECTOR_RECIPES, SteamProgressBarIndicators.EXTRACTION, GTLiteOverlays.SAP_COLLECTOR_OVERLAY, false, isHighPressure)
 {
     private val sapCollectionAmount: Long = if (isHighPressure) 6L else 3L
 
-    override fun createMetaTileEntity(tileEntity: IGregTechTileEntity?): PseudoMultiSteamMachineMetaTileEntity = SteamMachineSapCollector(metaTileEntityId, isHighPressure)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): PseudoMultiSteamMachineMetaTileEntity
+        = SteamMachineSapCollector(metaTileEntityId, isHighPressure)
 
     override fun createImportItemHandler(): IItemHandlerModifiable = NotifiableItemStackHandler(this, 1, this, false)
 
@@ -61,30 +61,22 @@ class SteamMachineSapCollector(id: ResourceLocation,
     override fun setFrontFacing(frontFacing: EnumFacing)
     {
         super.setFrontFacing(frontFacing)
-        if (workableHandler.ventingSide == frontFacing
-            || workableHandler.ventingSide == frontFacing.opposite)
+        if (workableHandler.ventingSide == frontFacing || workableHandler.ventingSide == frontFacing.opposite)
         {
             workableHandler.ventingSide = frontFacing.rotateY()
         }
     }
 
-    override fun onWrenchClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing, hitResult: CuboidRayTraceResult): Boolean
+    override fun onWrenchClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing,
+                               hitResult: CuboidRayTraceResult): Boolean
     {
         if (!playerIn.isSneaking)
         {
-            if (workableHandler.ventingSide == facing)
-            {
-                return false
-            }
-            else if (hasFrontFacing() && facing == getFrontFacing()
-                || facing == getFrontFacing().opposite)
-            {
-                return false
-            }
+            if (workableHandler.ventingSide == facing) return false
+            else if (hasFrontFacing() && facing == frontFacing || facing == frontFacing.opposite) return false
             else
             {
-                if (!world.isRemote)
-                    workableHandler.ventingSide = facing
+                if (!world.isRemote) workableHandler.ventingSide = facing
                 return true
             }
         }
@@ -94,11 +86,11 @@ class SteamMachineSapCollector(id: ResourceLocation,
         }
     }
 
-    override fun addInformation(stack: ItemStack?, world: World?, tooltip: MutableList<String?>, advanced: Boolean)
+    @SideOnly(Side.CLIENT)
+    override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
         super.addInformation(stack, world, tooltip, advanced)
         tooltip.add(I18n.format("gtlitecore.machine.sap_collector.sap_collection"))
         tooltip.add(I18n.format("gtlitecore.machine.sap_collector.sap_collection_amount", sapCollectionAmount))
     }
-
 }

@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.mixins.gregtech;
 
 import gregtech.api.GTValues;
+import gregtech.common.ConfigHolder;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityAutoMaintenanceHatch;
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityCleaningMaintenanceHatch;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +11,6 @@ import org.spongepowered.asm.mixin.Overwrite;
 @Mixin(value = MetaTileEntityCleaningMaintenanceHatch.class, remap = false)
 public abstract class MixinMetaTileEntityCleaningMaintenanceHatch extends MetaTileEntityAutoMaintenanceHatch
 {
-
     public MixinMetaTileEntityCleaningMaintenanceHatch(ResourceLocation metaTileEntityId)
     {
         super(metaTileEntityId);
@@ -27,7 +27,9 @@ public abstract class MixinMetaTileEntityCleaningMaintenanceHatch extends MetaTi
     @Override
     public int getTier()
     {
-        return GTValues.IV;
+        if (ConfigHolder.machines.cleanMultiblocks)
+            return GTValues.IV;
+        else
+            return GTValues.UV;
     }
-
 }

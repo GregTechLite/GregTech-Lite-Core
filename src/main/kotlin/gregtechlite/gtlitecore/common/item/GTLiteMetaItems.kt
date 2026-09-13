@@ -37,6 +37,38 @@ object GTLiteMetaItems
     lateinit var CASTING_MOLD_BUTCHERY_KNIFE: MetaItem<*>.MetaValueItem
     lateinit var CASTING_MOLD_ROLLING_PIN: MetaItem<*>.MetaValueItem
 
+    lateinit var SHAPE_FIELD_PLATE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_ROD: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_BOLT: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_RING: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_CELL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_INGOT: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PIPE_TINY: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PIPE_SMALL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PIPE_NORMAL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PIPE_LARGE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PIPE_HUGE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_BLOCK: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_GEAR: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_BOTTLE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_FOIL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_GEAR_SMALL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_ROD_LONG: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_ROTOR: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_ROUND: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_TURBINE_BLADE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_DRILL_HEAD: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_FRAME: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE_DOUBLE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE_QUADRUPLE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE_OCTAL: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE_HEX: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_WIRE_FINE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PLATE_DOUBLE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_PLATE_DENSE: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_SCREW: MetaItem<*>.MetaValueItem
+
     lateinit var CREDIT_ADAMANTIUM: MetaItem<*>.MetaValueItem
     lateinit var CREDIT_VIBRANIUM: MetaItem<*>.MetaValueItem
     lateinit var CREDIT_COSMIC_NEUTRONIUM: MetaItem<*>.MetaValueItem
@@ -119,6 +151,36 @@ object GTLiteMetaItems
     lateinit var SUPRACAUSAL_ASSEMBLY_UXV: MetaItem<*>.MetaValueItem
     lateinit var SUPRACAUSAL_COMPUTER_OpV: MetaItem<*>.MetaValueItem
     lateinit var SUPRACAUSAL_MAINFRAME_MAX: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_ULV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_LV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_MV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_HV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_EV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_IV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_LuV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_ZPM: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_UV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_UHV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_UEV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_UIV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_UXV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_OpV: MetaItem<*>.MetaValueItem
+    lateinit var SUPRACHRONAL_CIRCUIT_MAX: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_ULV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_LV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_MV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_HV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_EV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_IV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_LuV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_ZPM: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_UV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_UHV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_UEV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_UIV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_UXV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_OpV: MetaItem<*>.MetaValueItem
+    lateinit var GENERIC_CIRCUIT_MAX: MetaItem<*>.MetaValueItem
 
     lateinit var MINING_DRONE_LV: MetaItem<*>.MetaValueItem
     lateinit var MINING_DRONE_MV: MetaItem<*>.MetaValueItem
@@ -154,6 +216,7 @@ object GTLiteMetaItems
     lateinit var CIRCUIT_PATTERN: MetaItem<*>.MetaValueItem
     lateinit var MAGNETRON: MetaItem<*>.MetaValueItem
     lateinit var LASER_DESTROYER: MetaItem<*>.MetaValueItem
+    lateinit var MAGICBOOK: MetaItem<*>.MetaValueItem
 
     lateinit var DIRTY_PETRI_DISH: MetaItem<*>.MetaValueItem
     lateinit var BREVIBACTERIUM_FLAVUM_PETRI_DISH: MetaItem<*>.MetaValueItem
@@ -203,7 +266,7 @@ object GTLiteMetaItems
     lateinit var CATALYST_RADIOACTIVE: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_ADVANCED_RADIOACTIVE: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_ULTIMATE_RADIOACTIVE: MetaItem<*>.MetaValueItem
-    lateinit var CATALYST_TITANIUM_TUNGSTEN_INDIUM: MetaItem<*>.MetaValueItem
+    lateinit var CATALYST_TRANSITION_METAL: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_ADHESION_PROMOTER: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_RARE_EARTH_GROUP: MetaItem<*>.MetaValueItem
     lateinit var CATALYST_RARE_METAL_GROUP: MetaItem<*>.MetaValueItem
@@ -466,6 +529,8 @@ object GTLiteMetaItems
     lateinit var TRIPLET_NEUTRONIUM_SPHERE: MetaItem<*>.MetaValueItem
     lateinit var PEEK_POLYAMIDE_FOIL: MetaItem<*>.MetaValueItem
     lateinit var POLYMER_INSULATOR_FOIL: MetaItem<*>.MetaValueItem
+    lateinit var LOW_DENSITY_STRUCTURE: MetaItem<*>.MetaValueItem
+    lateinit var DYSON_SWARM_PHOTOVOLTAIC_PANEL: MetaItem<*>.MetaValueItem
 
     // endregion
 
@@ -556,6 +621,7 @@ object GTLiteMetaItems
     lateinit var ETIRPS: MetaItem<*>.MetaValueItem
     lateinit var SPARKLING_WATER: MetaItem<*>.MetaValueItem
     lateinit var CRANBERRY_ETIRPS: MetaItem<*>.MetaValueItem
+    lateinit var BREWING_MILK: MetaItem<*>.MetaValueItem
 
     lateinit var POLENTA: MetaItem<*>.MetaValueItem
 

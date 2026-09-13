@@ -15,7 +15,6 @@ import net.minecraft.network.PacketBuffer
  */
 interface NetworkPacket
 {
-
     /**
      * Uses to write data from a network packet into a [PacketBuffer].
      *

@@ -13,7 +13,6 @@ import java.util.*
 
 abstract class AbstractWorldGenerator(private val seed: Int) : CustomWorldGenerator
 {
-
     open val conditions: MutableList<GenerateCondition> = arrayListOf()
 
     private lateinit var generatorSimplex: NoiseGeneratorSimplex
@@ -21,15 +20,14 @@ abstract class AbstractWorldGenerator(private val seed: Int) : CustomWorldGenera
     open val perlinScale: Double = 0.04
 
     private var chunkCounter: Int = 0
-    private var placedChunkCounter = 0
+    private var placedChunkCounter: Int = 0
 
     open var innerGenerator: CustomWorldGeneratorImpl? = null
         protected set
 
     init
     {
-        // Automatically put all world generators to the collections, will only call and set it in registries.
-        WorldGeneratorRegistry.addGenerator(this)
+        WorldGeneratorRegistry.add(this)
     }
 
     abstract override fun generate(worldIn: World?,
@@ -39,27 +37,22 @@ abstract class AbstractWorldGenerator(private val seed: Int) : CustomWorldGenera
 
     open fun setWorld(worldIn: World)
     {
-        this.generatorSimplex = NoiseGeneratorSimplex(XoShiRo256PlusPlusRandom(worldIn.seed + this.seed))
+        generatorSimplex = NoiseGeneratorSimplex(XoShiRo256PlusPlusRandom(worldIn.seed + seed))
     }
 
     open fun getRandomStrength(chunkX: Int, chunkZ: Int): Double
-    {
-        return this.generatorSimplex.getValue(chunkX * this.perlinScale, chunkZ * this.perlinScale)
-    }
+        = generatorSimplex.getValue(chunkX * perlinScale, chunkZ * perlinScale)
 
     open fun updateForPlaced(isPlacedSuccess: Boolean)
     {
-        this.chunkCounter++
-        if (isPlacedSuccess) this.placedChunkCounter++
+        chunkCounter++
+        if (isPlacedSuccess) placedChunkCounter++
 
-        val chunkPercent = (this.placedChunkCounter.toDouble() / (this.chunkCounter / 100))
-
-        if (this.chunkCounter % 1000 == 0)
+        val chunkPercent = (placedChunkCounter.toDouble() / (chunkCounter / 100))
+        if (chunkCounter % 1000 == 0)
         {
-            LOGGER.info("The World Generator '$this' has been placed successfully in chunk '$chunkPercent'" +
-                                  " percent of time out of '$chunkCounter' chunks checked")
+            LOGGER.info("The World Generator '$this' has been placed successfully in chunk '$chunkPercent' percent of"
+                                + "time out of '$chunkCounter' chunks checked")
         }
-
     }
-
 }

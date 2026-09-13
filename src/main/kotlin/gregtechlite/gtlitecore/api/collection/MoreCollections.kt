@@ -8,29 +8,24 @@ import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSet
 import com.google.gson.internal.LinkedTreeMap
+import it.unimi.dsi.fastutil.chars.Char2ObjectMap
+import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ReferenceLinkedOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2ReferenceMap
 import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import it.unimi.dsi.fastutil.objects.ObjectList
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import it.unimi.dsi.fastutil.objects.ObjectSet
+import it.unimi.dsi.fastutil.objects.ReferenceLinkedOpenHashSet
+import it.unimi.dsi.fastutil.objects.ReferenceSet
 import net.minecraft.util.IntIdentityHashBiMap
-import java.util.TreeMap
+import java.util.*
 
-// region Guava: ImmutableSet
-
-fun <E> immutableSetOf(): ImmutableSet<E> = ImmutableSet.of()
-
-fun <E> immutableSetOf(vararg elements: E): ImmutableSet<E> = ImmutableSet.copyOf(elements)
-
-fun <E> Collection<E>.toImmutableSet(): ImmutableSet<E> = ImmutableSet.copyOf(this)
-
-fun <E> Iterable<E>.toImmutableSet(): ImmutableSet<E> = ImmutableSet.copyOf(this)
-
-// endregion
-
-// region FastUtil: ObjectSet & ObjectOpenHashSet
+// region FastUtil: ObjectOpenHashSet
 
 fun <E> openHashSetOf(): ObjectSet<E> = ObjectOpenHashSet()
 
@@ -42,15 +37,27 @@ fun <E> Iterator<E>.toOpenHashSet(): ObjectSet<E> = ObjectOpenHashSet(this)
 
 // endregion
 
-// region Guava: ImmutableList
+// region FastUtil: ObjectLinkedOpenHashSet
 
-fun <E> immutableListOf(): ImmutableList<E> = ImmutableList.of()
+fun <E> openLinkedSetOf(): ObjectSet<E> = ObjectLinkedOpenHashSet()
 
-fun <E> immutableListOf(vararg elements: E): ImmutableList<E> = ImmutableList.copyOf(elements)
+fun <E> openLinkedSetOf(vararg elements: E): ObjectSet<E> = ObjectLinkedOpenHashSet(elements)
 
-fun <E> Collection<E>.toImmutableList(): ImmutableList<E> = ImmutableList.copyOf(this)
+fun <E> Collection<E>.toOpenLinkedSet(): ObjectSet<E> = ObjectLinkedOpenHashSet(this)
 
-fun <E> Iterable<E>.toImmutableList(): ImmutableList<E> = ImmutableList.copyOf(this)
+fun <E> Iterator<E>.toOpenLinkedSet(): ObjectSet<E> = ObjectLinkedOpenHashSet(this)
+
+// endregion
+
+// region FastUtil: ReferenceLinkedOpenHashSet
+
+fun <E> openRefLinkedSetOf(): ReferenceSet<E> = ReferenceLinkedOpenHashSet()
+
+fun <E> openRefLinkedSetOf(vararg elements: E): ReferenceSet<E> = ReferenceLinkedOpenHashSet(elements)
+
+fun <E> Collection<E>.toOpenRefLinkedSetOf(): ReferenceSet<E> = ReferenceLinkedOpenHashSet(this)
+
+fun <E> Iterator<E>.toOpenRefLinkedSetOf(): ReferenceSet<E> = ReferenceLinkedOpenHashSet(this)
 
 // endregion
 
@@ -82,37 +89,7 @@ fun <K, V> Map<K, V>.toTreeMap(): TreeMap<K, V> = treeMapOf(this)
 
 // endregion
 
-// region Gson: LinkedTreeMap
-
-fun <K, V> mutableTreeMapOf(): LinkedTreeMap<K, V> = LinkedTreeMap()
-
-fun <K, V> mutableTreeMapOf(comparator: Comparator<in K>): LinkedTreeMap<K, V> = LinkedTreeMap(comparator)
-
-fun <K, V> mutableTreeMapOf(map: Map<K, V>) = LinkedTreeMap<K, V>().apply {
-    map.forEach { put(it.key, it.value) }
-}
-
-fun <K, V> mutableTreeMapOf(vararg pairs: Pair<K, V>) = LinkedTreeMap<K, V>().apply {
-    pairs.forEach { put(it.first, it.second) }
-}
-
-fun <K, V> Map<K, V>.toMutableTreeMap(): LinkedTreeMap<K, V> = mutableTreeMapOf(this)
-
-// endregion
-
-// region Guava: ImmutableMap
-
-fun <K, V> immutableMapOf(): ImmutableMap<K, V> = ImmutableMap.of()
-
-fun <K, V> immutableMapOf(vararg pairs: Pair<K, V>): ImmutableMap<K, V> = ImmutableMap.copyOf(mapOf(*pairs))
-
-fun <K, V> Map<K, V>.toImmutableMap(): ImmutableMap<K, V> = ImmutableMap.copyOf(this)
-
-fun <K, V> Iterable<Pair<K, V>>.toImmutableMap(): ImmutableMap<K, V> = ImmutableMap.copyOf(toMap())
-
-// endregion
-
-// region Guava: BiMap & HashBiMap
+// region Guava: HashBiMap
 
 fun <K, V> hashBiMapOf(): HashBiMap<K, V> = HashBiMap.create()
 
@@ -140,7 +117,7 @@ fun <K> intIdHashBiMapOf(initialCapacity: Int = Short.MAX_VALUE.toInt(), vararg 
 
 // endregion
 
-// region Guava: Table & HashBasedTable
+// region Guava: HashBasedTable
 
 fun <R, C, V> hashTableOf(): HashBasedTable<R, C, V> = HashBasedTable.create()
 
@@ -158,7 +135,7 @@ fun <R, C, V> Iterable<Triple<R, C, V>>.toTable(): HashBasedTable<R, C, V> = Has
 
 // endregion
 
-// region FastUtil: Object2ObjectMap & Object2ObjectOpenHashMap
+// region FastUtil: Object2ObjectOpenHashMap
 
 fun <K, V> openHashMapOf(): Object2ObjectMap<K, V> = Object2ObjectOpenHashMap()
 
@@ -172,7 +149,19 @@ fun <K, V> Map<K, V>.toOpenHashMap(): Object2ObjectMap<K, V> = Object2ObjectOpen
 
 // endregion
 
-// region FastUtil: Object2ObjectMap & Object2ObjectArrayMap
+// region FastUtil: Char2ObjectOpenHashMap
+
+fun <V> charHashMapOf(): Char2ObjectMap<V> = Char2ObjectOpenHashMap()
+
+fun <V> charHashMapOf(vararg pairs: Pair<Char, V>): Char2ObjectMap<V> = Char2ObjectOpenHashMap<V>().apply {
+    pairs.forEach { put(it.first, it.second) }
+}
+
+fun <V> Map<Char, V>.toCharHashMap(): Char2ObjectMap<V> = Char2ObjectOpenHashMap(this)
+
+// endregion
+
+// region FastUtil: Object2ObjectArrayMap
 
 fun <K, V> openArrayMapOf(): Object2ObjectMap<K, V> = Object2ObjectArrayMap()
 
@@ -183,5 +172,19 @@ fun <K, V> openArrayMapOf(vararg pairs: Pair<K, V>): Object2ObjectMap<K, V> = Ob
 }
 
 fun <K, V> Map<K, V>.toOpenArrayMap(): Object2ObjectMap<K, V> = Object2ObjectArrayMap<K, V>(this)
+
+// endregion
+
+// region FastUtil: Object2ReferenceLinkedOpenHashMap
+
+fun <K, V> openRefLinkedMapOf(): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap()
+
+fun <K, V> openRefLinkedMapOf(map: Map<K, V>): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap(map)
+
+fun <K, V> openRefLinkedMapOf(vararg pairs: Pair<K, V>): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap<K, V>().apply {
+    pairs.forEach { put(it.first, it.second) }
+}
+
+fun <K, V> Map<K, V>.toOpenRefLinkedMap(): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap(this)
 
 // endregion

@@ -88,8 +88,8 @@ class MultiblockIndustrialCokeOven(id: ResourceLocation) : RecipeMapMultiblockCo
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT)
-            addParallelInfo(UpgradeMode.VOLTAGE_TIER, 8)
-            addDurationInfo(UpgradeMode.WIRE_COIL, 200)
+            addParallelInfo(8, UpgradeMode.VOLTAGE_TIER)
+            addDurationInfo(200, UpgradeMode.WIRE_COIL)
             addEnergyInfo(20)
         }
     }

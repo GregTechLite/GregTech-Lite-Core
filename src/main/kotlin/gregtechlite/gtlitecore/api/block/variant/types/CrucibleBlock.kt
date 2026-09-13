@@ -15,38 +15,31 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
+import net.minecraftforge.fml.relauncher.Side
+import net.minecraftforge.fml.relauncher.SideOnly
 
 fun VariantBlockFactory.makeCrucibleBlock() : VariantBlock<Crucible>
 {
     return object : VariantBlock<Crucible>(Material.IRON)
     {
-
         init
         {
-            this.setSoundType(SoundType.METAL)
-            this.setDefaultState(getState(Crucible.BRONZE))
+            setSoundType(SoundType.METAL)
+            setDefaultState(getState(Crucible.BRONZE))
         }
 
         override fun computeVariants(): Collection<Crucible> = enumValues<Crucible>().toList()
 
-        override fun canCreatureSpawn(state: IBlockState,
-                                      world: IBlockAccess,
-                                      pos: BlockPos,
-                                      type: EntityLiving.SpawnPlacementType): Boolean
-        {
-            return false
-        }
+        override fun canCreatureSpawn(state: IBlockState, world: IBlockAccess, pos: BlockPos,
+                                      type: EntityLiving.SpawnPlacementType): Boolean = false
 
-        override fun addInformation(stack: ItemStack,
-                                    world: World?,
-                                    tooltip: MutableList<String?>,
-                                    advanced: ITooltipFlag)
+        @SideOnly(Side.CLIENT)
+        override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: ITooltipFlag)
         {
             super.addInformation(stack, world, tooltip, advanced)
             tooltip.add(I18n.format("gregtech.multiblock.blast_furnace.max_temperature",
                 TextFormatting.RED.toString() + TextFormattingUtil.formatNumbers(
                     this.getState(stack).temperature.toLong()) + "K"))
         }
-
     }
 }

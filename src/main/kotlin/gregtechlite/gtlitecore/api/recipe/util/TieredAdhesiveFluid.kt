@@ -1,6 +1,21 @@
 package gregtechlite.gtlitecore.api.recipe.util
 
-import gregtech.api.GTValues.*
+import gregtech.api.GTValues.EV
+import gregtech.api.GTValues.HV
+import gregtech.api.GTValues.IV
+import gregtech.api.GTValues.L
+import gregtech.api.GTValues.LV
+import gregtech.api.GTValues.LuV
+import gregtech.api.GTValues.MAX
+import gregtech.api.GTValues.MV
+import gregtech.api.GTValues.OpV
+import gregtech.api.GTValues.UEV
+import gregtech.api.GTValues.UHV
+import gregtech.api.GTValues.UIV
+import gregtech.api.GTValues.ULV
+import gregtech.api.GTValues.UV
+import gregtech.api.GTValues.UXV
+import gregtech.api.GTValues.ZPM
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials

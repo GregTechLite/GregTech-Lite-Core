@@ -10,15 +10,11 @@ import net.minecraft.util.text.TextComponentTranslation
 
 class CommandMaterialComponent : CommandBase()
 {
-
     override fun getName() = "component"
 
     override fun getUsage(sender: ICommandSender) = "gtlitecore.command.component.usage"
 
-    override fun execute(
-        server: MinecraftServer, sender: ICommandSender,
-        args: Array<out String>
-    )
+    override fun execute(server: MinecraftServer, sender: ICommandSender, args: Array<out String>)
     {
         if (sender is EntityPlayerMP)
         {
@@ -33,25 +29,23 @@ class CommandMaterialComponent : CommandBase()
             val materialStack = OreDictUnifier.getMaterial(stackInHand)
             if (materialStack?.material == null
                 || materialStack.material.materialComponents == null
-                || materialStack.material.materialComponents.isEmpty()
-            )
+                || materialStack.material.materialComponents.isEmpty())
             {
                 throw CommandException("gtlitecore.command.component.no_component")
             }
 
             // Format: [materialStack ('materialName') * n, ...]
-            val components = materialStack.material.materialComponents.joinToString(", ", "[", "]") { mat ->
-                if (mat.amount > 1)
-                    "materialStack: ${mat}x${mat.amount}"
+            val components = materialStack.material.materialComponents.joinToString(", ", "[", "]") {
+                if (it.amount > 1)
+                    "materialStack: ${it}x${it.amount}"
                 else
-                    "materialStack: $mat"
+                    "materialStack: $it"
             }
             sender.sendMessage(TextComponentTranslation("gtlitecore.command.component.print", components))
-        } else
+        }
+        else
         {
             throw CommandException("gtlitecore.command.component.not_player")
         }
-
     }
-
 }

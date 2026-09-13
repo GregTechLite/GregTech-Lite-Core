@@ -1,0 +1,61 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "variant": {
+      "t1": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/storage/luv"
+        }
+      },
+      "t2": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/storage/zpm"
+        }
+      },
+      "t3": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/storage/uv"
+        }
+      },
+      "t4": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/storage/uhv"
+        }
+      },
+      "t5": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/storage/uev"
+        }
+      },
+      "t6": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/storage/uiv"
+        }
+      },
+      "t7": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/storage/uxv"
+        }
+      },
+      "t8": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/storage/opv"
+        }
+      },
+      "t9": {
+        "model": "minecraft:cube_all",
+        "textures": {
+          "all": "gtlitecore:blocks/casings/tiered/storage/max"
+        }
+      }
+    }
+  }
+}

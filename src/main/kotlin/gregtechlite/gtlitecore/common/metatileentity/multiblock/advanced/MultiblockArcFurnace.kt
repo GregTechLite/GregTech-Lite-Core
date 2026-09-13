@@ -109,8 +109,8 @@ class MultiblockArcFurnace(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.PUMP_CASING, 8)
-            addDurationInfo(UpgradeMode.WIRE_COIL, 175)
+            addParallelInfo(8, UpgradeMode.PUMP_CASING)
+            addDurationInfo(175, UpgradeMode.WIRE_COIL)
             addEnergyInfo(25)
         }
     }

@@ -34,7 +34,7 @@ class GTLiteLogBlock(private val offset: Int) : BlockLog(), TranslatableBlock
     }
 
     fun getTreeFromState(blockState: IBlockState): WorldGeneratorTreeBase
-        = WorldGeneratorTreeRegistry.generators[blockState.getValue(VARIANT) + (offset * 4)]
+        = WorldGeneratorTreeRegistry[blockState.getValue(VARIANT) + (offset * 4)]
 
     override fun getMetaFromState(blockState: IBlockState): Int
     {
@@ -55,7 +55,7 @@ class GTLiteLogBlock(private val offset: Int) : BlockLog(), TranslatableBlock
     {
         for (i in 0..3)
         {
-            if (WorldGeneratorTreeRegistry.generators.size <= i + offset * 4)
+            if (WorldGeneratorTreeRegistry.size <= i + offset * 4)
                 break
             items.add(ItemStack(this, 1, i shl 2))
         }

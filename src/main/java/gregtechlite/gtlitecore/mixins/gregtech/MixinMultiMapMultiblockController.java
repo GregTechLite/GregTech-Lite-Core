@@ -10,24 +10,23 @@ import gregtech.api.recipes.RecipeMap;
 import gregtech.api.util.LocalizationUtils;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.ArrayUtils;
+import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
-// TODO FIXME Remove this mixins when CEu fixes this problem.
-/**
- * @deprecated
- */
+@ScheduledForRemoval(inVersion = "Change gregtech to our forked version")
 @Deprecated
 @Mixin(value = MultiMapMultiblockController.class, remap = false)
 public abstract class MixinMultiMapMultiblockController extends RecipeMapMultiblockController
 {
-
     public MixinMultiMapMultiblockController(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap)
     {
         super(metaTileEntityId, recipeMap);
     }
 
     @SuppressWarnings("UnstableApiUsage")
+    @Unique
     @Override
     protected MultiblockUIFactory createUIFactory()
     {
@@ -47,12 +46,8 @@ public abstract class MixinMultiMapMultiblockController extends RecipeMapMultibl
                             .length(recipeMaps.length)
                             .tooltipBuilder(tooltip -> {
                                 RecipeMap<?> map = recipeMaps[activeMapIndex.getIntValue()];
-
                                 tooltip.add(LocalizationUtils.format("gregtech.multiblock.multiple_recipemaps.header")
                                         + " " + LocalizationUtils.format(map.getTranslationKey()));
-
-                                // IKey recipeMapKey = KeyUtil.lang(map.getTranslationKey());
-                                // tooltip.addLine(KeyUtil.lang("gregtech.multiblock.multiple_recipemaps.value") + recipeMapKey);
                             });
                 });
     }
@@ -65,5 +60,4 @@ public abstract class MixinMultiMapMultiblockController extends RecipeMapMultibl
 
     @Shadow
     public abstract void setRecipeMapIndex(int index);
-
 }

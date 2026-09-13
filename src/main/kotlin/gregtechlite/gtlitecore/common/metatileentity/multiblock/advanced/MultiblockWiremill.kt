@@ -98,8 +98,8 @@ class MultiblockWiremill(id: ResourceLocation)
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.VOLTAGE_TIER, 16)
-            addDurationInfo(UpgradeMode.MOTOR_CASING, 325)
+            addParallelInfo(16, UpgradeMode.VOLTAGE_TIER)
+            addDurationInfo(325, UpgradeMode.MOTOR_CASING)
             addEnergyInfo(15)
         }
     }

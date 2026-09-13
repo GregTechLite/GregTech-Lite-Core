@@ -89,6 +89,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EternityPlusToken
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Etirps
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FermionicUUMatter
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FoodOilPhaseMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FracturingFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FreeElectronGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Gluons
@@ -110,6 +111,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyTaraniumGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HighEnergyQuarkGluonPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kerogen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Latex
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lecithin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonExtract
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonLimeMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonLimeSodaSyrup
@@ -140,8 +142,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NaquadriaEnergeti
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NeutronProtonFermiSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteCrudeEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteEmulsion
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FoodOilPhaseMixture
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lecithin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NutrientPasteWaterPhaseMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OganessonBreedingBase
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
@@ -180,6 +180,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SoybeanOil
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SpatiallyEnlargedFluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StableBaryonicMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SteamCrackedSodioIndene
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedMilk
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedNutrientPasteEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedRichNutrientPasteEmulsion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StreptococcusPyogenes
@@ -685,7 +686,14 @@ object GTLiteUnknownCompositionMaterials
             color(0xCA4C26)
         }
 
-        // 12088-12100 for misc unknown composition materials.
+        // 12088 Sterilized Milk
+        SterilizedMilk = addMaterial(12088, "sterilized_milk")
+        {
+            liquid()
+            color(0xFFFFFF)
+        }
+
+        // 12089-12100 for misc unknown composition materials.
         // ...
 
         // 12101 Free Electron Gas

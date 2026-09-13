@@ -1,17 +1,20 @@
 [
   {
-    "modid": "gtlitecore",
-    "name": "GregTech Lite Core",
+    "modid": "${mod_id}",
+    "name": "${mod_name}",
     "description": "Core Mod for the Modpack GregTech Lite.",
-    "version": "${version}",
-    "mcversion": "${mcversion}",
+    "version": "${mod_version}",
+    "mcversion": "${mc_version}",
     "url": "https://github.com/GregTechLite/GregTech-Lite-Core",
     "updateUrl": "",
     "authorList": [
       "Magic_Sweepy",
       "GateGuardian",
       "RainyYC",
-      "hirrao"
+      "hirrao",
+      "Oganesson897",
+      "LoseUFaith",
+      "llama_wei"
     ],
     "credits": "",
     "logoFile": "assets/gtlitecore/textures/icons/logo_long.png",

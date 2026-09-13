@@ -2,24 +2,18 @@ package gregtechlite.gtlitecore.loader.recipe.chain
 
 import gregtech.api.GTValues.EV
 import gregtech.api.GTValues.IV
-import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.ARC_FURNACE_RECIPES
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.ingotHot
-import gregtech.api.unification.ore.OrePrefix.lens
-import gregtech.api.unification.ore.OrePrefix.plate
-import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
-import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenPeroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumHydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumNiobate

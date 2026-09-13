@@ -14,18 +14,17 @@ import gregtech.client.utils.RenderUtil
 import gregtechlite.gtlitecore.api.gui.sync.FluidDisplaySyncHandler
 import net.minecraftforge.fluids.FluidStack
 
-class DisplayOnlyFluidSlot : Widget<DisplayOnlyFluidSlot>(),
-    Interactable, RecipeViewerGhostIngredientSlot<FluidStack>, RecipeViewerIngredientProvider
+class DisplayOnlyFluidSlot : Widget<DisplayOnlyFluidSlot>(), Interactable, RecipeViewerGhostIngredientSlot<FluidStack>,
+    RecipeViewerIngredientProvider
 {
-
     private var syncHandler: FluidDisplaySyncHandler? = null
     private var textRenderer: TextRenderer = TextRenderer()
 
     override fun onInit()
     {
-        this.textRenderer.setShadow(true)
-        this.textRenderer.setScale(.5F)
-        this.textRenderer.setColor(Color.WHITE.main)
+        textRenderer.setShadow(true)
+        textRenderer.setScale(.5F)
+        textRenderer.setColor(Color.WHITE.main)
     }
 
     fun getFluidStack(): FluidStack? = if (syncHandler == null) null else syncHandler!!.value
@@ -53,5 +52,4 @@ class DisplayOnlyFluidSlot : Widget<DisplayOnlyFluidSlot>(),
     override fun castGhostIngredientIfValid(ingredient: Any): FluidStack? = null
 
     override fun getIngredient(): Any? = getFluidStack()
-
 }

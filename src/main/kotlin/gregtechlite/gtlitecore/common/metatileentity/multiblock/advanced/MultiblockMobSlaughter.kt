@@ -105,8 +105,8 @@ class MultiblockMobSlaughter(id: ResourceLocation) : MultiMapMultiblockControlle
         {
             addMachineTypeLine()
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
-            addParallelInfo(UpgradeMode.CONVEYOR_CASING, 8)
-            addDurationInfo(UpgradeMode.CONVEYOR_CASING, 200)
+            addParallelInfo(8, UpgradeMode.CONVEYOR_CASING)
+            addDurationInfo(200, UpgradeMode.CONVEYOR_CASING)
             addEnergyInfo(10)
         }
     }
