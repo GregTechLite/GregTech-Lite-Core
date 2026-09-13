@@ -1,8 +1,10 @@
 package gregtechlite.gtlitecore.loader.recipe.producer
 
 import gregtech.api.GTValues.L
+import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.M
+import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.VA
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.Recipe
@@ -12,7 +14,6 @@ import gregtech.api.recipes.ingredients.GTRecipeItemInput
 import gregtech.api.recipes.ingredients.GTRecipeOreInput
 import gregtech.api.unification.FluidUnifier
 import gregtech.api.unification.OreDictUnifier
-import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.SamariumMagnetic
 import gregtech.api.unification.ore.OrePrefix
@@ -37,110 +38,7 @@ import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_EV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_HV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_IV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_LuV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_MV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_OpV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UEV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UHV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UIV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_UXV
-import gregtech.common.items.MetaItems.CONVEYOR_MODULE_ZPM
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_EV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_HV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_IV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_MV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_OpV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UEV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UHV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UIV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UXV
-import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_ZPM
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_EV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_HV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_IV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_LUV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_MV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_OpV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UEV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UHV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UIV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UXV
-import gregtech.common.items.MetaItems.ELECTRIC_PISTON_ZPM
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_EV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LuV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_OpV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UEV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UHV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UIV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UXV
-import gregtech.common.items.MetaItems.ELECTRIC_PUMP_ZPM
-import gregtech.common.items.MetaItems.EMITTER_EV
-import gregtech.common.items.MetaItems.EMITTER_HV
-import gregtech.common.items.MetaItems.EMITTER_IV
-import gregtech.common.items.MetaItems.EMITTER_LV
-import gregtech.common.items.MetaItems.EMITTER_LuV
-import gregtech.common.items.MetaItems.EMITTER_MV
-import gregtech.common.items.MetaItems.EMITTER_OpV
-import gregtech.common.items.MetaItems.EMITTER_UEV
-import gregtech.common.items.MetaItems.EMITTER_UHV
-import gregtech.common.items.MetaItems.EMITTER_UIV
-import gregtech.common.items.MetaItems.EMITTER_UV
-import gregtech.common.items.MetaItems.EMITTER_UXV
-import gregtech.common.items.MetaItems.EMITTER_ZPM
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_EV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_HV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_LV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_LuV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_MV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_OpV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_UXV
-import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
-import gregtech.common.items.MetaItems.ROBOT_ARM_EV
-import gregtech.common.items.MetaItems.ROBOT_ARM_HV
-import gregtech.common.items.MetaItems.ROBOT_ARM_IV
-import gregtech.common.items.MetaItems.ROBOT_ARM_LV
-import gregtech.common.items.MetaItems.ROBOT_ARM_LuV
-import gregtech.common.items.MetaItems.ROBOT_ARM_MV
-import gregtech.common.items.MetaItems.ROBOT_ARM_OpV
-import gregtech.common.items.MetaItems.ROBOT_ARM_UEV
-import gregtech.common.items.MetaItems.ROBOT_ARM_UHV
-import gregtech.common.items.MetaItems.ROBOT_ARM_UIV
-import gregtech.common.items.MetaItems.ROBOT_ARM_UV
-import gregtech.common.items.MetaItems.ROBOT_ARM_UXV
-import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
-import gregtech.common.items.MetaItems.SENSOR_EV
-import gregtech.common.items.MetaItems.SENSOR_HV
-import gregtech.common.items.MetaItems.SENSOR_IV
-import gregtech.common.items.MetaItems.SENSOR_LV
-import gregtech.common.items.MetaItems.SENSOR_LuV
-import gregtech.common.items.MetaItems.SENSOR_MV
-import gregtech.common.items.MetaItems.SENSOR_OpV
-import gregtech.common.items.MetaItems.SENSOR_UEV
-import gregtech.common.items.MetaItems.SENSOR_UHV
-import gregtech.common.items.MetaItems.SENSOR_UIV
-import gregtech.common.items.MetaItems.SENSOR_UV
-import gregtech.common.items.MetaItems.SENSOR_UXV
-import gregtech.common.items.MetaItems.SENSOR_ZPM
+import gregtech.loaders.recipe.CraftingComponent
 import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.TICK
@@ -148,33 +46,12 @@ import gregtechlite.gtlitecore.api.collection.obj2LongHashMapOf
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPONENT_ASSEMBLY_LINE_RECIPES
+import gregtechlite.gtlitecore.api.recipe.util.TierBridge
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromiumGermaniumTellurideMagnetic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CONVEYOR_MODULE_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_MOTOR_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_PISTON_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ELECTRIC_PUMP_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.EMITTER_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FIELD_GENERATOR_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ROBOT_ARM_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SENSOR_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_EV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_HV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_IV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_LV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_LuV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_MAX
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_MV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_OpV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UEV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UHV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UIV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_ULV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UXV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_ZPM
+import gregtechlite.gtlitecore.loader.recipe.component.CraftingComponents
 import net.minecraft.item.ItemStack
 import net.minecraftforge.fluids.Fluid
 import net.minecraftforge.fluids.FluidStack
@@ -210,8 +87,6 @@ import net.minecraftforge.oredict.OreDictionary
  */
 internal object ComponentAssemblyLineRecipeProducer
 {
-    // @formatter:off
-
     private const val MAX_ITEM_INPUTS = 12
     private const val MAX_FLUID_INPUTS = 12
     private const val MAX_FLUID_AMOUNT = Int.MAX_VALUE.toLong()
@@ -220,16 +95,6 @@ internal object ComponentAssemblyLineRecipeProducer
         2 * SECOND + 5 * TICK, 2 * SECOND + 5 * TICK, 3 * SECOND, 3 * SECOND, 3 * SECOND + 15 * TICK,
         3 * SECOND + 15 * TICK, 4 * SECOND + 10 * TICK, 4 * SECOND + 10 * TICK, 5 * SECOND + 5 * TICK,
         5 * SECOND + 5 * TICK, 6 * SECOND)
-
-    private val WRAP_CIRCUIT_BY_TIER = arrayOf( // TODO: Use CraftingComponent API?
-        WRAP_CIRCUIT_ULV, WRAP_CIRCUIT_LV, WRAP_CIRCUIT_MV, WRAP_CIRCUIT_HV, WRAP_CIRCUIT_EV,
-        WRAP_CIRCUIT_IV, WRAP_CIRCUIT_LuV, WRAP_CIRCUIT_ZPM, WRAP_CIRCUIT_UV, WRAP_CIRCUIT_UHV,
-        WRAP_CIRCUIT_UEV, WRAP_CIRCUIT_UIV, WRAP_CIRCUIT_UXV, WRAP_CIRCUIT_OpV, WRAP_CIRCUIT_MAX)
-
-    private val CIRCUIT_MARKER_BY_TIER = arrayOf( // TODO: Use TierBridge API?
-        Tier.ULV, Tier.LV, Tier.MV, Tier.HV, Tier.EV,
-        Tier.IV, Tier.LuV, Tier.ZPM, Tier.UV, Tier.UHV,
-        Tier.UEV, Tier.UIV, Tier.UXV, Tier.OpV, Tier.MAX)
 
     // Magnetic rods stay solid even at LuV+, everything else rod-like melts.
     private val MAGNETIC_STICK_LONG_MATERIALS = setOf(SamariumMagnetic, ChromiumGermaniumTellurideMagnetic, Magnetium)
@@ -242,39 +107,9 @@ internal object ComponentAssemblyLineRecipeProducer
     // Heavy base wire forms are always paid as molten material (field generator coils).
     private val FLUID_WIRE_PREFIXES = setOf(wireGtQuadruple, wireGtOctal)
 
-    private val COMPONENTS = arrayOf( // TODO: Use CraftingComponentAPI?
-        arrayOf(ELECTRIC_MOTOR_LV, ELECTRIC_MOTOR_MV, ELECTRIC_MOTOR_HV, ELECTRIC_MOTOR_EV,
-            ELECTRIC_MOTOR_IV, ELECTRIC_MOTOR_LuV, ELECTRIC_MOTOR_ZPM, ELECTRIC_MOTOR_UV,
-            ELECTRIC_MOTOR_UHV, ELECTRIC_MOTOR_UEV, ELECTRIC_MOTOR_UIV, ELECTRIC_MOTOR_UXV,
-            ELECTRIC_MOTOR_OpV, ELECTRIC_MOTOR_MAX),
-        arrayOf(ELECTRIC_PISTON_LV, ELECTRIC_PISTON_MV, ELECTRIC_PISTON_HV, ELECTRIC_PISTON_EV,
-            ELECTRIC_PISTON_IV, ELECTRIC_PISTON_LUV, ELECTRIC_PISTON_ZPM, ELECTRIC_PISTON_UV,
-            ELECTRIC_PISTON_UHV, ELECTRIC_PISTON_UEV, ELECTRIC_PISTON_UIV, ELECTRIC_PISTON_UXV,
-            ELECTRIC_PISTON_OpV, ELECTRIC_PISTON_MAX),
-        arrayOf(ELECTRIC_PUMP_LV, ELECTRIC_PUMP_MV, ELECTRIC_PUMP_HV, ELECTRIC_PUMP_EV,
-            ELECTRIC_PUMP_IV, ELECTRIC_PUMP_LuV, ELECTRIC_PUMP_ZPM, ELECTRIC_PUMP_UV,
-            ELECTRIC_PUMP_UHV, ELECTRIC_PUMP_UEV, ELECTRIC_PUMP_UIV, ELECTRIC_PUMP_UXV,
-            ELECTRIC_PUMP_OpV, ELECTRIC_PUMP_MAX),
-        arrayOf(CONVEYOR_MODULE_LV, CONVEYOR_MODULE_MV, CONVEYOR_MODULE_HV, CONVEYOR_MODULE_EV,
-            CONVEYOR_MODULE_IV, CONVEYOR_MODULE_LuV, CONVEYOR_MODULE_ZPM, CONVEYOR_MODULE_UV,
-            CONVEYOR_MODULE_UHV, CONVEYOR_MODULE_UEV, CONVEYOR_MODULE_UIV, CONVEYOR_MODULE_UXV,
-            CONVEYOR_MODULE_OpV, CONVEYOR_MODULE_MAX),
-        arrayOf(ROBOT_ARM_LV, ROBOT_ARM_MV, ROBOT_ARM_HV, ROBOT_ARM_EV,
-            ROBOT_ARM_IV, ROBOT_ARM_LuV, ROBOT_ARM_ZPM, ROBOT_ARM_UV,
-            ROBOT_ARM_UHV, ROBOT_ARM_UEV, ROBOT_ARM_UIV, ROBOT_ARM_UXV,
-            ROBOT_ARM_OpV, ROBOT_ARM_MAX),
-        arrayOf(EMITTER_LV, EMITTER_MV, EMITTER_HV, EMITTER_EV,
-            EMITTER_IV, EMITTER_LuV, EMITTER_ZPM, EMITTER_UV,
-            EMITTER_UHV, EMITTER_UEV, EMITTER_UIV, EMITTER_UXV,
-            EMITTER_OpV, EMITTER_MAX),
-        arrayOf(SENSOR_LV, SENSOR_MV, SENSOR_HV, SENSOR_EV,
-            SENSOR_IV, SENSOR_LuV, SENSOR_ZPM, SENSOR_UV,
-            SENSOR_UHV, SENSOR_UEV, SENSOR_UIV, SENSOR_UXV,
-            SENSOR_OpV, SENSOR_MAX),
-        arrayOf(FIELD_GENERATOR_LV, FIELD_GENERATOR_MV, FIELD_GENERATOR_HV, FIELD_GENERATOR_EV,
-            FIELD_GENERATOR_IV, FIELD_GENERATOR_LuV, FIELD_GENERATOR_ZPM, FIELD_GENERATOR_UV,
-            FIELD_GENERATOR_UHV, FIELD_GENERATOR_UEV, FIELD_GENERATOR_UIV, FIELD_GENERATOR_UXV,
-            FIELD_GENERATOR_OpV, FIELD_GENERATOR_MAX))
+    private val COMPONENTS = listOf(CraftingComponent.MOTOR, CraftingComponent.PISTON, CraftingComponent.PUMP,
+        CraftingComponent.CONVEYOR, CraftingComponent.ROBOT_ARM, CraftingComponent.EMITTER, CraftingComponent.SENSOR,
+        CraftingComponent.FIELD_GENERATOR)
 
     private data class Target(val item: MetaItem<*>.MetaValueItem, val tier: Int, val circuit: Int)
 
@@ -333,8 +168,12 @@ internal object ComponentAssemblyLineRecipeProducer
 
     fun produce()
     {
-        val targetByItem = COMPONENTS.flatMapIndexed { familyIdx, family ->
-            family.mapIndexed { tierIdx, item -> item to Target(item, tierIdx + 1, familyIdx + 1) }
+        val targetByItem = COMPONENTS.flatMapIndexed { familyIdx, component ->
+            (LV..MAX).mapNotNull { tier ->
+                val stack = component.getIngredient(tier) as? ItemStack ?: return@mapNotNull null
+                val item = (stack.item as? MetaItem<*>)?.getItem(stack) ?: return@mapNotNull null
+                item to Target(item, tier, familyIdx + 1)
+            }
         }.toMap()
 
         val recipes = ASSEMBLER_RECIPES.recipeList.asSequence() + ASSEMBLY_LINE_RECIPES.recipeList.asSequence()
@@ -431,14 +270,15 @@ internal object ComponentAssemblyLineRecipeProducer
         val stacks = input.inputStacks
         if (stacks.isEmpty()) return variants
 
-        val oreName = OreDictionary.getOreName(input.oreDict) // TODO: Use TierBridge API?
+        val oreName = OreDictionary.getOreName(input.oreDict)
         if (oreName.startsWith("circuit"))
         {
-            val wrapIdx = CIRCUIT_MARKER_BY_TIER.indexOfFirst { oreName == "circuit" + it.toCamelCaseString() }
+            val wrapIdx = TierBridge.entries.indexOfFirst { oreName == "circuit" + it.material.toCamelCaseString() }
             if (wrapIdx >= 0)
             {
                 val wraps = input.amount * 64L / 16
-                variants.forEach { addItemStack(it.items, WRAP_CIRCUIT_BY_TIER[wrapIdx].stackForm, wraps) }
+                val wrapStack = CraftingComponents.WRAP_CIRCUIT.getIngredient(wrapIdx) as? ItemStack ?: return variants
+                variants.forEach { addItemStack(it.items, wrapStack, wraps) }
             }
             return variants
         }
@@ -801,6 +641,4 @@ internal object ComponentAssemblyLineRecipeProducer
         val remaining = (fluids[material] ?: 0L) - amount
         if (remaining <= 0) fluids.remove(material) else fluids[material] = remaining
     }
-
-    // @formatter:on
 }

@@ -152,6 +152,21 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UEV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VOLTAGE_COIL_UXV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_EV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_HV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_IV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_LV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_LuV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_MAX
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_MV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_OpV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UEV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UHV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UIV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_ULV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_UXV
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_CIRCUIT_ZPM
 
 object CraftingComponents
 {
@@ -513,23 +528,23 @@ object CraftingComponents
      *
      * TODO: MAX tier material
      *
-     * | Tier     | Old Material           | New Material                |
-     * |----------|------------------------|-----------------------------|
-     * | ULV (0)  | Tin                    | Tin                         |
-     * | LV (1)   | Copper                 | Copper                      |
-     * | MV (2)   | Gold                   | Gold                        |
-     * | HV (3)   | Aluminium              | Aluminium                   |
-     * | EV (4)   | Platinum               | Platinum                    |
-     * | IV (5)   | Niobium Titanium       | Niobium Titanium            |
-     * | LuV (6)  | Vanadium Gallium       | Vanadium Gallium            |
-     * | ZPM (7)  | Yttrium Barium Cuprate | Yttrium Barium Cuprate      |
-     * | UV (8)   | Europium               | Europium                    |
-     * | UHV (9)  | -                      | Seaborgium                  |
-     * | UEV (10) | -                      | Superheavy Alloy (Light)    |
-     * | UIV (11) | -                      | Superheavy Alloy (Heavy)    |
-     * | UXV (12) | -                      | Periodicium                 |
-     * | OpV (13) | -                      | Realized Quantum Foam Shard |
-     * | MAX (14) | -                      | -                           |
+     * | Tier     | New Material                |
+     * |----------|-----------------------------|
+     * | ULV (0)  | Tin                         |
+     * | LV (1)   | Copper                      |
+     * | MV (2)   | Gold                        |
+     * | HV (3)   | Aluminium                   |
+     * | EV (4)   | Platinum                    |
+     * | IV (5)   | Niobium Titanium            |
+     * | LuV (6)  | Vanadium Gallium            |
+     * | ZPM (7)  | Yttrium Barium Cuprate      |
+     * | UV (8)   | Europium                    |
+     * | UHV (9)  | Seaborgium                  |
+     * | UEV (10) | Superheavy Alloy (Light)    |
+     * | UIV (11) | Superheavy Alloy (Heavy)    |
+     * | UXV (12) | Periodicium                 |
+     * | OpV (13) | Realized Quantum Foam Shard |
+     * | MAX (14) | -                           |
      */
     @JvmStatic
     val CABLE_OCT_TIER_UP = CraftingComponent.Component(mapOf(
@@ -547,6 +562,45 @@ object CraftingComponents
         UIV to UnificationEntry(cableGtOctal, SuperheavyAlloyB),
         UXV to UnificationEntry(cableGtOctal, Periodicium),
         OpV to UnificationEntry(cableGtOctal, RealizedQuantumFoamShard)))
+
+    /**
+     * Wrapped Circuit
+     *
+     * | Tier     | Material         |
+     * |----------|------------------|
+     * | ULV (0)  | ULV Wrap Circuit |
+     * | LV (1)   | LV Wrap Circuit  |
+     * | MV (2)   | MV Wrap Circuit  |
+     * | HV (3)   | HV Wrap Circuit  |
+     * | EV (4)   | EV Wrap Circuit  |
+     * | IV (5)   | IV Wrap Circuit  |
+     * | LuV (6)  | LuV Wrap Circuit |
+     * | ZPM (7)  | ZPM Wrap Circuit |
+     * | UV (8)   | UV Wrap Circuit  |
+     * | UHV (9)  | UHV Wrap Circuit |
+     * | UEV (10) | UEV Wrap Circuit |
+     * | UIV (11) | UIV Wrap Circuit |
+     * | UXV (12) | UXV Wrap Circuit |
+     * | OpV (13) | OpV Wrap Circuit |
+     * | MAX (14) | MAX Wrap Circuit |
+    */
+    @JvmStatic
+    val WRAP_CIRCUIT = CraftingComponent.Component(mapOf(
+        ULV to WRAP_CIRCUIT_ULV.stack(),
+        LV  to WRAP_CIRCUIT_LV.stack(),
+        MV  to WRAP_CIRCUIT_MV.stack(),
+        HV  to WRAP_CIRCUIT_HV.stack(),
+        EV  to WRAP_CIRCUIT_EV.stack(),
+        IV  to WRAP_CIRCUIT_IV.stack(),
+        LuV to WRAP_CIRCUIT_LuV.stack(),
+        ZPM to WRAP_CIRCUIT_ZPM.stack(),
+        UV  to WRAP_CIRCUIT_UV.stack(),
+        UHV to WRAP_CIRCUIT_UHV.stack(),
+        UEV to WRAP_CIRCUIT_UEV.stack(),
+        UIV to WRAP_CIRCUIT_UIV.stack(),
+        UXV to WRAP_CIRCUIT_UXV.stack(),
+        OpV to WRAP_CIRCUIT_OpV.stack(),
+        MAX to WRAP_CIRCUIT_MAX.stack()))
 
     fun setCraftingComponents()
     {
