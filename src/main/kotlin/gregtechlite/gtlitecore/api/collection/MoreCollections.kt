@@ -4,12 +4,10 @@ package gregtechlite.gtlitecore.api.collection
 
 import com.google.common.collect.HashBasedTable
 import com.google.common.collect.HashBiMap
-import com.google.common.collect.ImmutableList
-import com.google.common.collect.ImmutableMap
-import com.google.common.collect.ImmutableSet
-import com.google.gson.internal.LinkedTreeMap
 import it.unimi.dsi.fastutil.chars.Char2ObjectMap
 import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2LongMap
+import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
@@ -151,13 +149,13 @@ fun <K, V> Map<K, V>.toOpenHashMap(): Object2ObjectMap<K, V> = Object2ObjectOpen
 
 // region FastUtil: Char2ObjectOpenHashMap
 
-fun <V> charHashMapOf(): Char2ObjectMap<V> = Char2ObjectOpenHashMap()
+fun <V> char2ObjHashMapOf(): Char2ObjectMap<V> = Char2ObjectOpenHashMap()
 
-fun <V> charHashMapOf(vararg pairs: Pair<Char, V>): Char2ObjectMap<V> = Char2ObjectOpenHashMap<V>().apply {
+fun <V> char2ObjHashMapOf(map: Map<Char, V>): Char2ObjectMap<V> = Char2ObjectOpenHashMap(map)
+
+fun <V> char2ObjHashMapOf(vararg pairs: Pair<Char, V>): Char2ObjectMap<V> = Char2ObjectOpenHashMap<V>().apply {
     pairs.forEach { put(it.first, it.second) }
 }
-
-fun <V> Map<Char, V>.toCharHashMap(): Char2ObjectMap<V> = Char2ObjectOpenHashMap(this)
 
 // endregion
 
@@ -186,5 +184,17 @@ fun <K, V> openRefLinkedMapOf(vararg pairs: Pair<K, V>): Object2ReferenceMap<K, 
 }
 
 fun <K, V> Map<K, V>.toOpenRefLinkedMap(): Object2ReferenceMap<K, V> = Object2ReferenceLinkedOpenHashMap(this)
+
+// endregion
+
+// region FastUtil: Object2LongOpenHashMap
+
+fun <K> obj2LongHashMapOf(): Object2LongMap<K> = Object2LongOpenHashMap()
+
+fun <K> obj2LongHashMapOf(map: Map<K, Long>): Object2LongMap<K> = Object2LongOpenHashMap(map)
+
+fun <K> obj2LongHashMapOf(vararg pairs: Pair<K, Long>): Object2LongMap<K> = Object2LongOpenHashMap<K>().apply {
+    pairs.forEach { put(it.first, it.second) }
+}
 
 // endregion

@@ -143,6 +143,8 @@ import gregtech.common.items.MetaItems.SENSOR_UXV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
 import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.collection.obj2LongHashMapOf
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPONENT_ASSEMBLY_LINE_RECIPES
@@ -208,33 +210,29 @@ import net.minecraftforge.oredict.OreDictionary
  */
 internal object ComponentAssemblyLineRecipeProducer
 {
-
     // @formatter:off
 
     private const val MAX_ITEM_INPUTS = 12
     private const val MAX_FLUID_INPUTS = 12
-
-    // FluidStack only stores an Int amount; never silently truncate a Long one.
     private const val MAX_FLUID_AMOUNT = Int.MAX_VALUE.toLong()
 
-    private val DURATION_BY_TIER = intArrayOf(
-        0, 15, 30, 30, 45,
-        45, 60, 60, 75, 75,
-        90, 90, 105, 105, 120)
+    private val DURATION_BY_TIER = intArrayOf(0, 15 * TICK, 1 * SECOND + 10 * TICK, 1 * SECOND + 10 * TICK,
+        2 * SECOND + 5 * TICK, 2 * SECOND + 5 * TICK, 3 * SECOND, 3 * SECOND, 3 * SECOND + 15 * TICK,
+        3 * SECOND + 15 * TICK, 4 * SECOND + 10 * TICK, 4 * SECOND + 10 * TICK, 5 * SECOND + 5 * TICK,
+        5 * SECOND + 5 * TICK, 6 * SECOND)
 
-    private val WRAP_CIRCUIT_BY_TIER = arrayOf(
+    private val WRAP_CIRCUIT_BY_TIER = arrayOf( // TODO: Use CraftingComponent API?
         WRAP_CIRCUIT_ULV, WRAP_CIRCUIT_LV, WRAP_CIRCUIT_MV, WRAP_CIRCUIT_HV, WRAP_CIRCUIT_EV,
         WRAP_CIRCUIT_IV, WRAP_CIRCUIT_LuV, WRAP_CIRCUIT_ZPM, WRAP_CIRCUIT_UV, WRAP_CIRCUIT_UHV,
         WRAP_CIRCUIT_UEV, WRAP_CIRCUIT_UIV, WRAP_CIRCUIT_UXV, WRAP_CIRCUIT_OpV, WRAP_CIRCUIT_MAX)
 
-    private val CIRCUIT_MARKER_BY_TIER = arrayOf(
+    private val CIRCUIT_MARKER_BY_TIER = arrayOf( // TODO: Use TierBridge API?
         Tier.ULV, Tier.LV, Tier.MV, Tier.HV, Tier.EV,
         Tier.IV, Tier.LuV, Tier.ZPM, Tier.UV, Tier.UHV,
         Tier.UEV, Tier.UIV, Tier.UXV, Tier.OpV, Tier.MAX)
 
     // Magnetic rods stay solid even at LuV+, everything else rod-like melts.
-    private val MAGNETIC_STICK_LONG_MATERIALS = setOf(
-        SamariumMagnetic, ChromiumGermaniumTellurideMagnetic, Magnetium)
+    private val MAGNETIC_STICK_LONG_MATERIALS = setOf(SamariumMagnetic, ChromiumGermaniumTellurideMagnetic, Magnetium)
 
     private val PLATE_PREFIXES = setOf(plate, plateDouble, plateDense)
     private val WIRE_PREFIXES = setOf(wireGtSingle, wireGtDouble, wireGtQuadruple, wireGtOctal, wireGtHex)
@@ -244,7 +242,7 @@ internal object ComponentAssemblyLineRecipeProducer
     // Heavy base wire forms are always paid as molten material (field generator coils).
     private val FLUID_WIRE_PREFIXES = setOf(wireGtQuadruple, wireGtOctal)
 
-    private val COMPONENTS = arrayOf(
+    private val COMPONENTS = arrayOf( // TODO: Use CraftingComponentAPI?
         arrayOf(ELECTRIC_MOTOR_LV, ELECTRIC_MOTOR_MV, ELECTRIC_MOTOR_HV, ELECTRIC_MOTOR_EV,
             ELECTRIC_MOTOR_IV, ELECTRIC_MOTOR_LuV, ELECTRIC_MOTOR_ZPM, ELECTRIC_MOTOR_UV,
             ELECTRIC_MOTOR_UHV, ELECTRIC_MOTOR_UEV, ELECTRIC_MOTOR_UIV, ELECTRIC_MOTOR_UXV,
@@ -278,17 +276,11 @@ internal object ComponentAssemblyLineRecipeProducer
             FIELD_GENERATOR_UHV, FIELD_GENERATOR_UEV, FIELD_GENERATOR_UIV, FIELD_GENERATOR_UXV,
             FIELD_GENERATOR_OpV, FIELD_GENERATOR_MAX))
 
-    private data class Target(
-        val item: MetaItem<*>.MetaValueItem,
-        val tier: Int,
-        val circuit: Int)
+    private data class Target(val item: MetaItem<*>.MetaValueItem, val tier: Int, val circuit: Int)
 
-    private class FluidContribution(
-        val material: Material,
-        val amount: Long,
-        val extraMaterial: Material?,
-        val extraAmount: Long,
-        val itemStacks: List<ItemStack>)
+    private class FluidContribution(val material: Material, val amount: Long,
+                                    val extraMaterial: Material?, val extraAmount: Long,
+                                    val itemStacks: List<ItemStack>)
     {
         val itemSlots: Int
             get() = itemStacks.size
@@ -297,8 +289,8 @@ internal object ComponentAssemblyLineRecipeProducer
     private class Variant
     {
         val items = mutableListOf<ItemStack>()
-        val fluids = mutableMapOf<Material, Long>()
-        val genericFluids = mutableMapOf<Fluid, Long>()
+        val fluids = obj2LongHashMapOf<Material>()
+        val genericFluids = obj2LongHashMapOf<Fluid>()
         val contributions = mutableListOf<FluidContribution>()
 
         val itemSlots: Int
@@ -332,10 +324,8 @@ internal object ComponentAssemblyLineRecipeProducer
      * keeps the best candidate as one value, so the items and the two fluid
      * maps can never drift out of sync.
      */
-    private data class VariantSnapshot(
-        val items: List<ItemStack>,
-        val fluids: Map<Material, Long>,
-        val genericFluids: Map<Fluid, Long>)
+    private data class VariantSnapshot(val items: List<ItemStack>, val fluids: Map<Material, Long>,
+                                       val genericFluids: Map<Fluid, Long>)
     {
         val itemSlots: Int
             get() = items.size
@@ -343,12 +333,11 @@ internal object ComponentAssemblyLineRecipeProducer
 
     fun produce()
     {
-        val targetByItem = COMPONENTS.flatMapIndexed { familyIndex, family ->
-            family.mapIndexed { tierIndex, item -> item to Target(item, tierIndex + 1, familyIndex + 1) }
+        val targetByItem = COMPONENTS.flatMapIndexed { familyIdx, family ->
+            family.mapIndexed { tierIdx, item -> item to Target(item, tierIdx + 1, familyIdx + 1) }
         }.toMap()
 
-        val recipes = ASSEMBLER_RECIPES.recipeList.asSequence() +
-            ASSEMBLY_LINE_RECIPES.recipeList.asSequence()
+        val recipes = ASSEMBLER_RECIPES.recipeList.asSequence() + ASSEMBLY_LINE_RECIPES.recipeList.asSequence()
 
         var dropped = 0
         for (base in recipes)
@@ -357,23 +346,15 @@ internal object ComponentAssemblyLineRecipeProducer
             val output = base.outputs.firstOrNull() ?: continue
             val metaItem = (output.item as? MetaItem<*>)?.getItem(output) ?: continue
             val target = targetByItem[metaItem] ?: continue
-            dropped += generateCoal(base, target, output)
+            dropped += generateCoALRecipe(base, target, output)
         }
 
-        // Dropped variants mean a component silently has no CoAL recipe. Report
-        // them at ERROR level so the regression is visible in the game log.
         if (dropped > 0)
             LOGGER.error("Dropped {} CoAL recipe variant(s); see the messages above for the affected components",
                 dropped)
     }
 
-    /**
-     * Generates the 64x CoAL recipe(s) for one base recipe.
-     *
-     * @return the number of variants that could not be represented within the
-     *         recipe map's 12 item / 12 fluid input limits.
-     */
-    private fun generateCoal(base: Recipe, target: Target, output: ItemStack): Int
+    private fun generateCoALRecipe(base: Recipe, target: Target, output: ItemStack): Int
     {
         var variants = listOf(Variant())
 
@@ -384,7 +365,7 @@ internal object ComponentAssemblyLineRecipeProducer
             if (input.isNonConsumable) continue
             when (input)
             {
-                is GTRecipeOreInput ->
+                is GTRecipeOreInput  ->
                 {
                     if (OreDictionary.getOreName(input.oreDict).contains("Any"))
                         groupedAnyInputs.getOrPut(input.oreDict) { mutableListOf() }.add(input)
@@ -395,7 +376,7 @@ internal object ComponentAssemblyLineRecipeProducer
                 {
                     variants = applyItemInput(variants, input)
                 }
-                else -> {}
+                else                 -> {}
             }
         }
 
@@ -417,13 +398,11 @@ internal object ComponentAssemblyLineRecipeProducer
             if (!variant.fitsWithinLimits())
             {
                 LOGGER.warn("Skipped CoAL recipe for {}: {} item inputs (max {}), {} fluid inputs (max {})",
-                    output.displayName, variant.itemSlots, MAX_ITEM_INPUTS,
-                    variant.fluidSlots, MAX_FLUID_INPUTS)
+                    output.displayName, variant.itemSlots, MAX_ITEM_INPUTS, variant.fluidSlots, MAX_FLUID_INPUTS)
                 dropped++
                 continue
             }
 
-            // FluidStack only carries an Int amount; reject instead of truncating.
             val maxFluidAmount = (variant.fluids.values + variant.genericFluids.values).maxOrNull() ?: 0L
             if (maxFluidAmount > MAX_FLUID_AMOUNT)
             {
@@ -452,17 +431,14 @@ internal object ComponentAssemblyLineRecipeProducer
         val stacks = input.inputStacks
         if (stacks.isEmpty()) return variants
 
-        // Circuit inputs use the marker prefix "circuit", which is excluded from
-        // OreDictUnifier's stackUnificationInfo, so getPrefix()/getMaterial() cannot
-        // resolve them. Match the ore dict name directly instead.
-        val oreName = OreDictionary.getOreName(input.oreDict)
+        val oreName = OreDictionary.getOreName(input.oreDict) // TODO: Use TierBridge API?
         if (oreName.startsWith("circuit"))
         {
-            val wrapIndex = CIRCUIT_MARKER_BY_TIER.indexOfFirst { oreName == "circuit" + it.toCamelCaseString() }
-            if (wrapIndex >= 0)
+            val wrapIdx = CIRCUIT_MARKER_BY_TIER.indexOfFirst { oreName == "circuit" + it.toCamelCaseString() }
+            if (wrapIdx >= 0)
             {
                 val wraps = input.amount * 64L / 16
-                variants.forEach { addItemStack(it.items, WRAP_CIRCUIT_BY_TIER[wrapIndex].stackForm, wraps) }
+                variants.forEach { addItemStack(it.items, WRAP_CIRCUIT_BY_TIER[wrapIdx].stackForm, wraps) }
             }
             return variants
         }
@@ -663,11 +639,11 @@ internal object ComponentAssemblyLineRecipeProducer
 
         val candidates = when (prefix) {
             in PLATE_PREFIXES -> listOf(plateDense, plateDouble, prefix)
-            in WIRE_PREFIXES -> listOf(wireGtHex, prefix)
+            in WIRE_PREFIXES  -> listOf(wireGtHex, prefix)
             in CABLE_PREFIXES -> listOf(cableGtHex, prefix)
-            in PIPE_PREFIXES -> listOf(pipeHugeFluid, prefix)
-            stick -> listOf(stickLong, stick)
-            else -> listOf(prefix)
+            in PIPE_PREFIXES  -> listOf(pipeHugeFluid, prefix)
+            stick             -> listOf(stickLong, stick)
+            else              -> listOf(prefix)
         }
 
         for (candidate in candidates)
@@ -686,16 +662,13 @@ internal object ComponentAssemblyLineRecipeProducer
 
     /**
      * Converts a GTCEu internal material amount into millibuckets of fluid.
-     *
-     * [M] is GTCEu's internal unit for one ingot's worth of material and [L] is
-     * the millibucket value of one ingot, so the scale factor is `L / M`.
      */
     private fun toFluidAmount(materialAmount: Long): Long = materialAmount * L / M
 
     /**
      * Adds [input] to every existing variant. Unlike the expand* helpers this
      * cannot fork a variant, so it hands the same list back; the uniform
-     * `variants = step(variants)` shape in [generateCoal] is what makes the two
+     * `variants = step(variants)` shape in [generateCoALRecipe] is what makes the two
      * kinds of step read the same.
      */
     private fun applyItemInput(variants: List<Variant>, input: GTRecipeItemInput): List<Variant>
@@ -718,6 +691,7 @@ internal object ComponentAssemblyLineRecipeProducer
         }
     }
 
+    @Suppress("UnstableApiUsage")
     private fun addFluidInput(variant: Variant, fluid: FluidStack)
     {
         val amount = fluid.amount.toLong() * 64
@@ -767,9 +741,6 @@ internal object ComponentAssemblyLineRecipeProducer
             if (itemSlots <= MAX_ITEM_INPUTS && working.fluidSlots <= MAX_FLUID_INPUTS
                 && (previous == null || itemSlots < previous.itemSlots))
             {
-                // LinkedHashMap, not HashMap: Material does not override hashCode,
-                // so a HashMap snapshot iterates in identity-hash order and would
-                // order the fluid inputs differently on every game launch.
                 best = VariantSnapshot(working.items.toList(),
                     LinkedHashMap(working.fluids), LinkedHashMap(working.genericFluids))
             }
@@ -832,5 +803,4 @@ internal object ComponentAssemblyLineRecipeProducer
     }
 
     // @formatter:on
-
 }
