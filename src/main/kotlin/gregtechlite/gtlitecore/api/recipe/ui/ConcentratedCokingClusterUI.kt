@@ -25,7 +25,7 @@ internal class ConcentratedCokingClusterUI<R : RecipeMap<*>>(recipeMap: R) : Rec
                                      importFluids: FluidTankList, exportFluids: FluidTankList, yOffset: Int): ModularUI.Builder
     {
         val builder = ModularUI.defaultBuilder(yOffset)
-        builder.widget(ProgressWidget(200, 48 + 18, yOffset + 32, 20, 20, GTLiteGuiTextures.PROGRESS_BAR_COMPLEX_PYROLYSIS, MoveType.HORIZONTAL))
+        builder.widget(ProgressWidget(200, 48 + 18, yOffset + 35, 20, 20, GTLiteGuiTextures.PROGRESS_BAR_COMPLEX_PYROLYSIS, MoveType.HORIZONTAL))
         addInventorySlotGroup(builder, importItems, importFluids, false, 9)
         addInventorySlotGroup(builder, exportItems, exportFluids, true, 9)
         return builder
