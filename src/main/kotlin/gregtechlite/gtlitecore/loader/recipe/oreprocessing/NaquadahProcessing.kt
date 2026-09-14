@@ -70,13 +70,11 @@ import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
@@ -84,6 +82,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPE
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumOxide
@@ -185,7 +185,7 @@ internal object NaquadahProcessing
             fluidOutputs(LowPurityEnrichedNaquadahEmulsion.getFluid(1000))
             fluidOutputs(LowPurityNaquadriaEmulsion.getFluid(1000))
             EUt(VA[LuV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
     }
 
@@ -199,7 +199,7 @@ internal object NaquadahProcessing
             output(dust, AntimonyTrifluoride, 2)
             fluidOutputs(ImpureEnrichedNaquadahSolution.getFluid(1000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Ba(OH)2 -> BaO + H2O
@@ -208,7 +208,7 @@ internal object NaquadahProcessing
             output(dust, BariumOxide, 2)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[MV])
-            duration(1 * SECOND + 12 * TICK)
+            duration(1.s + 12.t)
         }
 
         // Impure Nq+ Solution -> (Tc2O7) + Nq+ Solution + Nq+ Waste
@@ -218,7 +218,7 @@ internal object NaquadahProcessing
             fluidOutputs(EnrichedNaquadahSolution.getFluid(1000))
             fluidOutputs(EnrichedNaquadahWaste.getFluid(1000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Nq+ Solution + 2H2SO4 -> Ke2O3 + Acidic Nq+ Solution
@@ -228,7 +228,7 @@ internal object NaquadahProcessing
             output(dust, TriniumTrioxide, 5)
             fluidOutputs(AcidicEnrichedNaquadahSolution.getFluid(1000))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Ke2O3 + 2H2S -> 2KeS + 2H2O + O (drop)
@@ -238,7 +238,7 @@ internal object NaquadahProcessing
             output(dust, TriniumSulfide, 2)
             fluidOutputs(Steam.getFluid(2 * SU))
             EUt(VA[HV])
-            duration(2 * SECOND + 15 * TICK)
+            duration(2.s + 15.t)
         }
 
         // KeS + Zn -> Ke + ZnS (EBF, 7200K) from original Gregtech Naquadah processing.
@@ -250,7 +250,7 @@ internal object NaquadahProcessing
             output(dust, EnrichedNaquadahSulfate, 6)
             output(dust, SodiumSulfide, 3)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Nq+SO4 + H -> Nq+ + H2SO4 from original Gregtech Naquadah processing.
@@ -262,7 +262,7 @@ internal object NaquadahProcessing
             fluidOutputs(HydrofluoricAcid.getFluid(500))
             fluidOutputs(EnrichedNaquadahSolution.getFluid(350))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Addition recipe to Ba(OH)2 -> BaS (BaS is vanilla produce of Enriched Naquadah chain,
@@ -276,7 +276,7 @@ internal object NaquadahProcessing
             output(dust, BariumSulfide, 2)
             output(dust, SodiumHydroxide, 6)
             EUt(VA[MV])
-            duration(3 * SECOND + 4 * TICK)
+            duration(3.s + 4.t)
         }
     }
 
@@ -290,7 +290,7 @@ internal object NaquadahProcessing
             output(dust, AntimonyTrifluoride, 2)
             fluidOutputs(ImpureNaquadriaSolution.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // InPO4 + 8H -> InP + 4H2O
@@ -300,7 +300,7 @@ internal object NaquadahProcessing
             output(dust, IndiumPhosphide, 2)
             fluidOutputs(Water.getFluid(4000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Impure Nq* Solution -> (Tc2O7) + Nq* Solution + Nq* Waste
@@ -310,7 +310,7 @@ internal object NaquadahProcessing
             fluidOutputs(NaquadriaSolution.getFluid(1000))
             fluidOutputs(NaquadriaWaste.getFluid(1000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Nq* Solution + H2SO4 -> Ga2O3 + Acidic Nq* Solution
@@ -320,7 +320,7 @@ internal object NaquadahProcessing
             output(dust, GalliumDioxide, 3)
             fluidOutputs(AcidicNaquadriaSolution.getFluid(1000))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Addition recipes for GaO2, GaS convert.
@@ -331,7 +331,7 @@ internal object NaquadahProcessing
             output(dust, GalliumSulfide, 2)
             fluidOutputs(Oxygen.getFluid(2000))
             EUt(VA[MV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Acidic Nq* Solution + CaO -> Nq*SO4 + CaS
@@ -341,7 +341,7 @@ internal object NaquadahProcessing
             output(dust, NaquadriaSulfate, 6)
             output(dust, CalciumSulfide, 2)
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Nq*SO4 + 2H -> Nq* + H2SO4 by original processing.
@@ -353,7 +353,7 @@ internal object NaquadahProcessing
             fluidOutputs(HydrofluoricAcid.getFluid(500))
             fluidOutputs(NaquadriaSolution.getFluid(350))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Addition recipes for CaS-CaO recycling.
@@ -364,7 +364,7 @@ internal object NaquadahProcessing
             input(dust, Sulfur)
             output(dust, CalciumSulfide, 2)
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // CaS + 2O -> CaO + SO
@@ -375,7 +375,7 @@ internal object NaquadahProcessing
             output(dust, Quicklime, 2)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -389,7 +389,7 @@ internal object NaquadahProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(CrudeNaquadahFuel.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -399,7 +399,7 @@ internal object NaquadahProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(CrudeNaquadahFuel.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Nq+ + NH4NO3 -> 3Nq(NH4NO3)?
@@ -410,7 +410,7 @@ internal object NaquadahProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(CrudeNaquadahFuel.getFluid(3000))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -420,7 +420,7 @@ internal object NaquadahProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(CrudeNaquadahFuel.getFluid(3000))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Nq* + NH4NO3 -> 6Nq(NH4NO3)?
@@ -431,7 +431,7 @@ internal object NaquadahProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(CrudeNaquadahFuel.getFluid(6000))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -441,7 +441,7 @@ internal object NaquadahProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(CrudeNaquadahFuel.getFluid(6000))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Crude Naquadah Fuel fraction.
@@ -457,14 +457,14 @@ internal object NaquadahProcessing
             fluidOutputs(EnrichedNaquadahWaste.getFluid(400))
             fluidOutputs(NaquadriaWaste.getFluid(200))
             EUt(VA[IV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Naquadah gas as gas turbine fuels.
         GAS_TURBINE_FUELS.addRecipe {
             fluidInputs(NaquadahGas.getFluid(24))
             EUt(VA[MV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // Advanced recipes for Naquadah Fuels.
@@ -481,7 +481,7 @@ internal object NaquadahProcessing
             output(dust, NaquadahEnriched)
             fluidOutputs(NaquadriaEnergetic.getFluid(1000))
             EUt(V[ZPM] / 2)
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Light Naquadah Fuel
@@ -492,7 +492,7 @@ internal object NaquadahProcessing
             fluidInputs(Nitrogen.getFluid(500))
             fluidOutputs(LightNaquadahFuel.getFluid(6000))
             EUt(VA[UV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         CHEMICAL_PLANT_RECIPES.addRecipe {
@@ -502,7 +502,7 @@ internal object NaquadahProcessing
             fluidInputs(Nitrogen.getPlasma(1000))
             fluidOutputs(LightNaquadahFuel.getFluid(12000))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Medium Naquadah Fuel
@@ -514,7 +514,7 @@ internal object NaquadahProcessing
             output(dust, Plutonium239)
             fluidOutputs(MediumNaquadahFuel.getFluid(6000))
             EUt(VA[UV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         CHEMICAL_PLANT_RECIPES.addRecipe {
@@ -524,7 +524,7 @@ internal object NaquadahProcessing
             fluidInputs(Nitrogen.getPlasma(1000))
             fluidOutputs(MediumNaquadahFuel.getFluid(12000))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Heavy Naquadah Fuel
@@ -536,7 +536,7 @@ internal object NaquadahProcessing
             output(dust, NaquadahEnriched)
             fluidOutputs(HeavyNaquadahFuel.getFluid(6000))
             EUt(VA[UV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         CHEMICAL_PLANT_RECIPES.addRecipe {
@@ -546,26 +546,26 @@ internal object NaquadahProcessing
             fluidInputs(Nitrogen.getPlasma(1000))
             fluidOutputs(HeavyNaquadahFuel.getFluid(12000))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Naquadah fuels.
         NAQUADAH_REACTOR_FUELS.addRecipe {
             fluidInputs(HeavyNaquadahFuel.getFluid(1))
             EUt(V[EV])
-            duration(9 * SECOND)
+            duration(9.s)
         }
 
         NAQUADAH_REACTOR_FUELS.addRecipe {
             fluidInputs(MediumNaquadahFuel.getFluid(1))
             EUt(V[EV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         NAQUADAH_REACTOR_FUELS.addRecipe {
             fluidInputs(LightNaquadahFuel.getFluid(1))
             EUt(V[EV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
     }
 

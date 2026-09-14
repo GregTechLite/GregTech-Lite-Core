@@ -39,13 +39,13 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_RING
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROD
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROD_LONG
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROTOR
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DegenerateRhenium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DeuteriumSuperheavyMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Gluons
@@ -80,7 +80,7 @@ internal object QuarksChain
             inputs(TARANIUM_CHARGE)
             fluidOutputs(QuarkGluonPlasma.getFluid(1000))
             EUt(VA[UHV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Tier 2: 144L * 64 Degenerate Rhenium -> 1000L * 64 Quark-Gluon Plasma
@@ -90,7 +90,7 @@ internal object QuarksChain
             inputs(LEPTONIC_CHARGE)
             fluidOutputs(QuarkGluonPlasma.getFluid(64000))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Tier 3: 144L * 64 * 4 Degenerate Rhenium -> 1000L * 64 * 4 Quark-Gluon Plasma
@@ -103,7 +103,7 @@ internal object QuarksChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             fluidOutputs(QuarkGluonPlasma.getFluid(256000))
             EUt(VA[UIV])
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         // Quark-Gluon Plasma -> Heavy Quarks, Light Quarks, Gluons
@@ -113,7 +113,7 @@ internal object QuarksChain
             fluidOutputs(LightQuarks.getFluid(2500))
             fluidOutputs(Gluons.getFluid(1250))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Heavy Quarks + Light Quarks -> Heavy Quark Enriched Mixture
@@ -123,7 +123,7 @@ internal object QuarksChain
             fluidInputs(LightQuarks.getFluid(250))
             fluidOutputs(HeavyQuarkEnrichedMixture.getFluid(1000))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Deuterium + Hs + Fl + Og -> Deuterium-Superheavy Mixture
@@ -134,7 +134,7 @@ internal object QuarksChain
             fluidInputs(MetastableOganesson.getFluid(L))
             fluidOutputs(DeuteriumSuperheavyMixture.getFluid(L * 18))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Heavy Quark Enriched Mixture + Deuterium-Superheavy Mixture -> Heavy Quark Degenerate Matter (HQDM)
@@ -143,7 +143,7 @@ internal object QuarksChain
             fluidInputs(DeuteriumSuperheavyMixture.getFluid(L * 6))
             fluidOutputs(HeavyQuarkDegenerateMatter.getPlasma(1000))
             EUt(VA[UEV])
-            duration(8 * SECOND)
+            duration(8.s)
             EUToStart(1_600_000_000L) // 1600M EU, MK5
         }
 
@@ -155,7 +155,7 @@ internal object QuarksChain
             fluidOutputs(HeavyQuarkDegenerateMatter.getFluid(L))
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -165,7 +165,7 @@ internal object QuarksChain
             output(dust, HeavyQuarkDegenerateMatter)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -175,7 +175,7 @@ internal object QuarksChain
             output(dustSmall, HeavyQuarkDegenerateMatter, 4)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -185,7 +185,7 @@ internal object QuarksChain
             output(dustTiny, HeavyQuarkDegenerateMatter, 9)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // HQDM (plasma) -> HQDM components
@@ -196,7 +196,7 @@ internal object QuarksChain
             output(ingot, HeavyQuarkDegenerateMatter)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -206,7 +206,7 @@ internal object QuarksChain
             output(plate, HeavyQuarkDegenerateMatter)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -216,7 +216,7 @@ internal object QuarksChain
             output(stick, HeavyQuarkDegenerateMatter, 2)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -226,7 +226,7 @@ internal object QuarksChain
             output(stickLong, HeavyQuarkDegenerateMatter)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -236,7 +236,7 @@ internal object QuarksChain
             output(bolt, HeavyQuarkDegenerateMatter, 8)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -246,7 +246,7 @@ internal object QuarksChain
             output(screw, HeavyQuarkDegenerateMatter, 8)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -256,7 +256,7 @@ internal object QuarksChain
             output(ring, HeavyQuarkDegenerateMatter, 4)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -266,7 +266,7 @@ internal object QuarksChain
             output(nugget, HeavyQuarkDegenerateMatter, 9)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -276,7 +276,7 @@ internal object QuarksChain
             output(gear, HeavyQuarkDegenerateMatter)
             fluidOutputs(Helium.getFluid(2000))
             EUt(VA[UEV])
-            duration(80 * SECOND)
+            duration(80.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -286,7 +286,7 @@ internal object QuarksChain
             output(gearSmall, HeavyQuarkDegenerateMatter)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -296,7 +296,7 @@ internal object QuarksChain
             output(rotor, HeavyQuarkDegenerateMatter)
             fluidOutputs(Helium.getFluid(2000))
             EUt(VA[UEV])
-            duration(80 * SECOND)
+            duration(80.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -306,7 +306,7 @@ internal object QuarksChain
             output(block, HeavyQuarkDegenerateMatter)
             fluidOutputs(Helium.getFluid(4500))
             EUt(VA[UEV])
-            duration(180 * SECOND)
+            duration(180.s)
         }
 
         // endregion
@@ -320,7 +320,7 @@ internal object QuarksChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             fluidOutputs(HighEnergyQuarkGluonPlasma.getFluid(1000))
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Tier 2: 144L * 64 HQDM -> 64000L High Energy Quark-Gluon Plasma
@@ -330,7 +330,7 @@ internal object QuarksChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             fluidOutputs(HighEnergyQuarkGluonPlasma.getFluid(64000))
             EUt(VA[UIV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // Tier 3: 144L * 9 * 64 HQDM -> 576000L HighEnergyQuarkGluonPlasma
@@ -339,7 +339,7 @@ internal object QuarksChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             fluidOutputs(HighEnergyQuarkGluonPlasma.getFluid(576000))
             EUt(VA[UXV])
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         // High Energy Q-G plasma -> QCM liquid and components
@@ -350,7 +350,7 @@ internal object QuarksChain
             fluidOutputs(QuantumchromodynamicallyConfinedMatter.getFluid(L))
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -360,7 +360,7 @@ internal object QuarksChain
             output(dust, QuantumchromodynamicallyConfinedMatter)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -370,7 +370,7 @@ internal object QuarksChain
             output(dustSmall, QuantumchromodynamicallyConfinedMatter, 4)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -380,7 +380,7 @@ internal object QuarksChain
             output(dustTiny, QuantumchromodynamicallyConfinedMatter, 9)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -390,7 +390,7 @@ internal object QuarksChain
             output(ingot, QuantumchromodynamicallyConfinedMatter)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -400,7 +400,7 @@ internal object QuarksChain
             output(plate, QuantumchromodynamicallyConfinedMatter)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -410,7 +410,7 @@ internal object QuarksChain
             output(nugget, QuantumchromodynamicallyConfinedMatter, 9)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -420,7 +420,7 @@ internal object QuarksChain
             output(block, QuantumchromodynamicallyConfinedMatter)
             fluidOutputs(Helium.getFluid(4500))
             EUt(VA[UIV])
-            duration(360 * SECOND)
+            duration(360.s)
         }
 
         // endregion

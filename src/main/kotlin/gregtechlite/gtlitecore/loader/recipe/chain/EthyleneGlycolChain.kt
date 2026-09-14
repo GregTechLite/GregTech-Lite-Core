@@ -15,13 +15,13 @@ import gregtech.api.unification.material.Materials.Silver
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.spring
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneGlycol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneOxide
@@ -43,7 +43,7 @@ internal object EthyleneGlycolChain
             fluidOutputs(CarbonDioxide.getFluid(2000))
             fluidOutputs(Steam.getFluid(2 * SU))
             EUt(VA[HV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // 7C2H4 + 12O -> 6C2H4O (acetaldehyde) + 2CO2 + 2H2O
@@ -56,7 +56,7 @@ internal object EthyleneGlycolChain
             fluidOutputs(CarbonDioxide.getFluid(2000))
             fluidOutputs(Steam.getFluid(2 * SU))
             EUt(VA[EV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // C2H4O (ethylene oxide) -> C2H4O (acetaldehyde)
@@ -65,7 +65,7 @@ internal object EthyleneGlycolChain
             fluidInputs(EthyleneOxide.getFluid(1000))
             fluidOutputs(Acetaldehyde.getFluid(1000))
             EUt(VA[MV])
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // C2H4O + H2O -> C2H6O2
@@ -75,7 +75,7 @@ internal object EthyleneGlycolChain
             fluidInputs(CarbonDioxide.getFluid(100)) // catalyst
             fluidOutputs(EthyleneGlycol.getFluid(1000))
             EUt(VA[HV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
     }
 

@@ -176,11 +176,11 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.STEM_CELLS
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.QUANTUM_FORCE_TRANSFORMER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AscorbicAcid
@@ -315,7 +315,7 @@ internal object QuantumForceTransformerRecipes
             input(screw, Tin, 6)
             output(CATALYST_BASE)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // region Rubbers
@@ -332,7 +332,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Neutronium.getFluid(L * 4))
             output(CATALYST_RUBBER_POLYMER)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -348,7 +348,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(PolyphenyleneSulfide.getFluid(L * 128), 2500, 0)
             chancedFluidOutput(Rubber.getFluid(L * 256), 2500, 0)
             EUt(VA[ZPM])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -364,7 +364,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(CATALYST_ADVANCED_RUBBER_POLYMER)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -384,7 +384,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(SiliconeRubber.getFluid(L * 256), 2500, 0)
             chancedFluidOutput(StyreneButadieneRubber.getFluid(L * 256), 2500, 0)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(2)
         }
 
@@ -402,7 +402,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Neutronium.getFluid(L * 4))
             output(CATALYST_PLASTIC_POLYMER)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -421,7 +421,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(Epoxy.getFluid(L * 64), 2500, 0)
             chancedFluidOutput(Polybenzimidazole.getFluid(L * 64), 2500, 0)
             EUt(VA[ZPM])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -437,7 +437,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(CATALYST_ADVANCED_PLASTIC_POLYMER)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -455,7 +455,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(Kevlar.getFluid(L * 64), 2500, 0)
             chancedFluidOutput(PolyethyleneTerephthalate.getFluid(L * 64), 2500, 0)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(2)
         }
 
@@ -473,7 +473,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Shirabon.getFluid(L * 4))
             output(CATALYST_ULTIMATE_PLASTIC_POLYMER)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -494,7 +494,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(Fullerene.getFluid(L * 64), 2500, 0)
             chancedFluidOutput(FullerenePolymerMatrix.getFluid(L * 64), 2500, 0)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(3)
         }
 
@@ -513,7 +513,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Neutronium.getFluid(L * 4))
             output(CATALYST_PLATINUM_GROUP)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -528,7 +528,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Iridium, 64, 2500, 0)
             chancedOutput(dust, Osmium, 64, 2500, 0)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -550,7 +550,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Tritanium.getFluid(L * 4))
             output(CATALYST_RADIOACTIVE)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -566,7 +566,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Plutonium244, 64, 2500, 0)
             chancedOutput(dust, Thorium, 64, 2500, 0)
             EUt(VA[ZPM])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -584,7 +584,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Neutronium.getFluid(L * 4))
             output(CATALYST_ADVANCED_RADIOACTIVE)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -600,7 +600,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Berkelium, 64, 2500, 0)
             chancedOutput(dust, Californium, 64, 2500, 0)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -618,7 +618,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(CATALYST_ULTIMATE_RADIOACTIVE)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -633,7 +633,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Lawrencium, 64, 2500, 0)
             chancedOutput(dust, Rutherfordium, 64, 2500, 0)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(2)
         }
 
@@ -652,7 +652,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Tritanium.getFluid(L * 4))
             output(CATALYST_TRANSITION_METAL)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -668,7 +668,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Indium, 64, 2500, 0)
             chancedOutput(dust, Niobium, 64, 2500, 0)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -684,7 +684,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Indium, 64, 2500, 0)
             chancedOutput(dust, Tantalum, 64, 2500, 0)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -702,7 +702,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Glue.getFluid(64000))
             output(CATALYST_ADHESION_PROMOTER)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -721,7 +721,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(Tin.getFluid(L * 128), 2500, 0)
             chancedFluidOutput(Lead.getFluid(L * 256), 2500, 0)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -740,7 +740,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Neutronium.getFluid(L * 4))
             output(CATALYST_RARE_EARTH_GROUP)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -755,7 +755,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Neodymium, 64, 2500, 0)
             chancedOutput(dust, Promethium, 64, 2500, 0)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(2)
         }
 
@@ -770,7 +770,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Terbium, 64, 2500, 0)
             chancedOutput(dust, Dysprosium, 64, 2500, 0)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(2)
         }
 
@@ -785,7 +785,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Ytterbium, 64, 2500, 0)
             chancedOutput(dust, Lutetium, 64, 2500, 0)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(2)
         }
 
@@ -805,7 +805,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Tritanium.getFluid(L * 4))
             output(CATALYST_RARE_METAL_GROUP)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -822,7 +822,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Zirconium, 64, 2500, 0)
             chancedOutput(dust, Hafnium, 64, 2500, 0)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -839,7 +839,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Strontium, 64, 2500, 0)
             chancedOutput(dust, Rubidium, 64, 2500, 0)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -856,7 +856,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Yttrium, 64, 2500, 0)
             chancedOutput(dust, Scandium, 64, 2500, 0)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(1)
         }
 
@@ -875,7 +875,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(CATALYST_NAQUADAH)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -899,7 +899,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(Indium.getFluid(L * 64), 2500, 0)
             chancedFluidOutput(Gallium.getFluid(L * 64), 2500, 0)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(3)
         }
 
@@ -916,7 +916,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(CATALYST_RAW_INTELLIGENCE)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -938,7 +938,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(Blood.getFluid(128000), 2500, 0)
             chancedFluidOutput(Fat.getFluid(128000), 2500, 0)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(2)
         }
 
@@ -960,7 +960,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(Biomass.getFluid(256000), 2500, 0)
             chancedFluidOutput(Blood.getFluid(256000), 2500, 0)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(2)
         }
 
@@ -978,7 +978,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(dust, Biotin, 64, 2500, 0)
             chancedFluidOutput(AscorbicAcid.getFluid(64000), 2500, 0)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(2)
         }
 
@@ -994,7 +994,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Hypogen.getFluid(L * 4))
             output(CATALYST_BIOLOGICAL_INTELLIGENCE)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -1015,7 +1015,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(RawGrowthMedium.getFluid(256000), 2500, 0)
             chancedFluidOutput(SterileGrowthMedium.getFluid(256000), 2500, 0)
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(3)
         }
 
@@ -1033,7 +1033,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(CATALYST_HIGH_EXPLOSIVE)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -1051,7 +1051,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(CyclotetramethyleneTetranitroamine.getFluid(128000), 2500, 0)
             chancedFluidOutput(GlycerylTrinitrate.getFluid(256000), 2500, 0)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(2)
         }
 
@@ -1071,7 +1071,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(CATALYST_STELLAR_CORE)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -1097,7 +1097,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(Ruridit.getFluid(128000), 2500, 0)
             chancedFluidOutput(NaquadriaEnergetic.getFluid(64000), 2500, 0)
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(3)
         }
 
@@ -1119,7 +1119,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(CATALYST_ARTIFICIAL_GEM)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -1140,7 +1140,7 @@ internal object QuantumForceTransformerRecipes
             chancedOutput(gem, LuTmYVO, 64, 2500, 0)
             chancedOutput(gem, PrHoYLF, 64, 2500, 0)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             tier(2)
         }
 
@@ -1162,7 +1162,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(Neutronium.getFluid(L * 4))
             output(CATALYST_ORGANIC_DYE)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -1187,7 +1187,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(DyeYellow.getFluid(256000), 2500, 0)
             chancedFluidOutput(DyeLime.getFluid(256000), 2500, 0)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             tier(1)
         }
 
@@ -1212,7 +1212,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(DyePurple.getFluid(256000), 2500, 0)
             chancedFluidOutput(DyeBlue.getFluid(256000), 2500, 0)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             tier(1)
         }
 
@@ -1236,7 +1236,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(SulfuricAcid.getFluid(128000), 2500, 0)
             chancedFluidOutput(AquaRegia.getFluid(128000), 2500, 0)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             tier(1)
         }
 
@@ -1254,7 +1254,7 @@ internal object QuantumForceTransformerRecipes
             fluidInputs(SpaceTime.getFluid(L * 4))
             output(CATALYST_TEMPORAL_HARMONY)
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -1269,7 +1269,7 @@ internal object QuantumForceTransformerRecipes
             chancedFluidOutput(Eternity.getFluid(L * 64), 2500, 0)
             chancedFluidOutput(TachyonRichTemporalFluid.getFluid(L * 128), 2500, 0)
             EUt(VA[UIV])
-            duration(20 * SECOND)
+            duration(20.s)
             tier(4)
         }
 

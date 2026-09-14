@@ -8,12 +8,12 @@ import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.NetherStar
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.ore.OrePrefix.block
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Gluons
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
@@ -36,7 +36,7 @@ internal object InfinityChain
             fluidInputs(Gluons.getFluid(4000))
             fluidOutputs(Infinity.getFluid(L * 4))
             EUt(VA[UEV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Tier 2: 9x 16x Nether Star -> 4x 16x Infinity
@@ -48,7 +48,7 @@ internal object InfinityChain
             fluidInputs(Gluons.getFluid(4000 * 16))
             fluidOutputs(Infinity.getFluid(L * 4 * 16))
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Tier 3: 9x 64x Nether Star -> 4x 64x Infinity
@@ -60,7 +60,7 @@ internal object InfinityChain
             fluidInputs(Gluons.getFluid(4000 * 64))
             fluidOutputs(Infinity.getFluid(L * 4 * 64))
             EUt(VA[UXV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

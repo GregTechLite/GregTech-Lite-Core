@@ -22,8 +22,6 @@ import gregtech.api.unification.material.Materials.Propene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.BOTTLE_PURPLE_DRINK
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
@@ -31,6 +29,8 @@ import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Codeine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CoughSyrup
@@ -60,7 +60,7 @@ internal object PurpleDrinkProcessing
             output(dust, Phenothiazine, 23)
             fluidOutputs(CarbonMonoxide.getFluid(6000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // C3H6 + HCl -> (CH3)2CHCl
@@ -70,7 +70,7 @@ internal object PurpleDrinkProcessing
             fluidInputs(HydrochloricAcid.getFluid(1000))
             fluidOutputs(IsopropylChloride.getFluid(1000))
             EUt(VA[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // C12H9NS + (CH3)2CHCl -> C15H14NSCl + 2H
@@ -80,7 +80,7 @@ internal object PurpleDrinkProcessing
             fluidOutputs(PhenothiazinePropylChloride.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VH[HV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // C15H14HSCl + C2H7N -> C17H20N2S + HCl
@@ -91,7 +91,7 @@ internal object PurpleDrinkProcessing
             output(dust, Promethazine, 40)
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // Poppy dust.
@@ -99,7 +99,7 @@ internal object PurpleDrinkProcessing
             inputs(RED_FLOWER)
             outputs(POPPY_DUST.stack())
             EUt(4) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Poppy dust -> C18H21NO3
@@ -107,7 +107,7 @@ internal object PurpleDrinkProcessing
             inputs(POPPY_DUST.getStack(64))
             output(dust, Codeine, 43)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // C17H20N2S + C18H21NO3 + H2O -> (C17H20N2S)(C18H21NO3)(H2O)
@@ -118,7 +118,7 @@ internal object PurpleDrinkProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(CoughSyrup.getFluid(1000))
             EUt(VA[MV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -128,7 +128,7 @@ internal object PurpleDrinkProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(CoughSyrup.getFluid(1000))
             EUt(VA[MV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // Purple Drink
@@ -138,7 +138,7 @@ internal object PurpleDrinkProcessing
             fluidInputs(Etirps.getFluid(1000))
             fluidOutputs(PurpleDrink.getFluid(1000))
             EUt(VA[HV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -146,7 +146,7 @@ internal object PurpleDrinkProcessing
             fluidInputs(PurpleDrink.getFluid(250))
             output(BOTTLE_PURPLE_DRINK)
             EUt(4) // ULV
-            duration(10 * TICK)
+            duration(10.t)
         }
     }
 

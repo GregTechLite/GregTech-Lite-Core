@@ -96,15 +96,15 @@ import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_INPUT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_OUTPUT_HATCH
 import gregtech.loaders.recipe.CraftingComponent
-import gregtechlite.gtlitecore.api.HOUR
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.hr
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
@@ -198,11 +198,11 @@ internal object AssemblyLineRecipes
             fluidInputs(DrillingFluid.getFluid(2000))
             output(MINING_DRONE_LuV)
             EUt(VA[LuV])
-            duration(30 * SECOND)
+            duration(30.s)
             scannerResearch {
                 it.researchStack(MINING_DRONE_IV.stack())
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -222,7 +222,7 @@ internal object AssemblyLineRecipes
             fluidInputs(DrillingFluid.getFluid(4000))
             output(MINING_DRONE_ZPM)
             EUt(VA[ZPM])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MINING_DRONE_LuV.stack())
                     .EUt(VA[LuV])
@@ -246,7 +246,7 @@ internal object AssemblyLineRecipes
             fluidInputs(DrillingFluid.getFluid(8000))
             output(MINING_DRONE_UV)
             EUt(VA[UV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MINING_DRONE_ZPM.stack())
                     .EUt(VA[ZPM])
@@ -270,7 +270,7 @@ internal object AssemblyLineRecipes
             fluidInputs(DrillingFluid.getFluid(16000))
             output(MINING_DRONE_UHV)
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MINING_DRONE_UV.stack())
                     .EUt(VA[UV])
@@ -294,7 +294,7 @@ internal object AssemblyLineRecipes
             fluidInputs(DrillingFluid.getFluid(32000))
             output(MINING_DRONE_UEV)
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MINING_DRONE_UHV.stack())
                     .EUt(VA[UHV])
@@ -318,7 +318,7 @@ internal object AssemblyLineRecipes
             fluidInputs(DrillingFluid.getFluid(64000))
             output(MINING_DRONE_UIV)
             EUt(VA[UIV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MINING_DRONE_UEV.stack())
                     .EUt(VA[UEV])
@@ -342,7 +342,7 @@ internal object AssemblyLineRecipes
             fluidInputs(DrillingFluid.getFluid(128000))
             output(MINING_DRONE_UXV)
             EUt(VA[UXV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MINING_DRONE_UIV.stack())
                     .EUt(VA[UIV])
@@ -366,7 +366,7 @@ internal object AssemblyLineRecipes
             fluidInputs(DrillingFluid.getFluid(256000))
             output(MINING_DRONE_OpV)
             EUt(VA[OpV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MINING_DRONE_UXV.stack())
                     .EUt(VA[UXV])
@@ -390,7 +390,7 @@ internal object AssemblyLineRecipes
             fluidInputs(DrillingFluid.getFluid(512000))
             output(MINING_DRONE_MAX)
             EUt(VA[MAX])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MINING_DRONE_OpV)
                     .EUt(VA[OpV])
@@ -422,11 +422,11 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassium.getFluid(4000))
             output(ENERGY_INPUT_HATCH[LuV])
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             scannerResearch {
                 it.researchStack(ENERGY_INPUT_HATCH[IV])
                     .EUt(VA[HV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -451,11 +451,11 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassium.getFluid(4000))
             output(ENERGY_OUTPUT_HATCH[LuV])
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             scannerResearch {
                 it.researchStack(ENERGY_OUTPUT_HATCH[IV])
                     .EUt(VA[HV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -480,11 +480,11 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassium.getFluid(8000))
             output(ENERGY_INPUT_HATCH[ZPM])
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
             scannerResearch {
                 it.researchStack(ENERGY_INPUT_HATCH[LuV])
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -509,11 +509,11 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassium.getFluid(8000))
             output(ENERGY_OUTPUT_HATCH[ZPM])
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
             scannerResearch {
                 it.researchStack(ENERGY_OUTPUT_HATCH[LuV])
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -538,7 +538,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassium.getFluid(12000))
             output(ENERGY_INPUT_HATCH[UV])
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_INPUT_HATCH[ZPM])
                     .EUt(VA[ZPM])
@@ -567,7 +567,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassium.getFluid(12000))
             output(ENERGY_OUTPUT_HATCH[UV])
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_OUTPUT_HATCH[ZPM])
                     .EUt(VA[ZPM])
@@ -596,7 +596,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(16000))
             output(ENERGY_INPUT_HATCH[UHV])
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_INPUT_HATCH[UV])
                     .EUt(VA[UV])
@@ -625,7 +625,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(16000))
             output(ENERGY_OUTPUT_HATCH[UHV])
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_OUTPUT_HATCH[UV])
                     .EUt(VA[UV])
@@ -644,7 +644,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(18000))
             output(ENERGY_INPUT_HATCH[UEV])
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_INPUT_HATCH[UHV])
                     .EUt(VA[UHV])
@@ -663,7 +663,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(18000))
             output(ENERGY_OUTPUT_HATCH[UEV])
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_OUTPUT_HATCH[UHV])
                     .EUt(VA[UHV])
@@ -682,7 +682,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(20000))
             output(ENERGY_INPUT_HATCH[UIV])
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_INPUT_HATCH[UEV])
                     .EUt(VA[UEV])
@@ -701,7 +701,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(20000))
             output(ENERGY_OUTPUT_HATCH[UIV])
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_OUTPUT_HATCH[UEV])
                     .EUt(VA[UEV])
@@ -720,7 +720,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(40000))
             output(ENERGY_INPUT_HATCH[UXV])
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_INPUT_HATCH[UIV])
                     .EUt(VA[UIV])
@@ -739,7 +739,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(40000))
             output(ENERGY_OUTPUT_HATCH[UXV])
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_OUTPUT_HATCH[UIV])
                     .EUt(VA[UIV])
@@ -758,7 +758,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(80000))
             output(ENERGY_INPUT_HATCH[OpV])
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_INPUT_HATCH[UXV])
                     .EUt(VA[UXV])
@@ -777,7 +777,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(80000))
             output(ENERGY_OUTPUT_HATCH[OpV])
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_OUTPUT_HATCH[UXV])
                     .EUt(VA[UXV])
@@ -796,7 +796,7 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(160000))
             output(ENERGY_INPUT_HATCH[MAX])
             EUt(VA[OpV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_INPUT_HATCH[OpV])
                     .EUt(VA[OpV])
@@ -815,14 +815,13 @@ internal object AssemblyLineRecipes
             fluidInputs(SodiumPotassiumEutatic.getFluid(160000))
             output(ENERGY_OUTPUT_HATCH[MAX])
             EUt(VA[OpV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ENERGY_OUTPUT_HATCH[OpV])
                     .EUt(VA[OpV])
                     .CWUt(128)
             }
         }
-
     }
 
     private fun laserHatchesRecipes()
@@ -844,11 +843,11 @@ internal object AssemblyLineRecipes
                 fluidInputs(Neutronium.getFluid(L * (actualTier + 1)))
                 output(LASER_INPUT_HATCH_4194304[actualTier])
                 EUt(VA[tier])
-                duration(32 * MINUTE)
+                duration(32.min)
                 scannerResearch {
                     it.researchStack(LASER_INPUT_HATCH_1048576[actualTier].stack())
                         .EUt(VA[IV])
-                        .duration(1 * MINUTE)
+                        .duration(1.min)
                 }
             }
 
@@ -865,11 +864,11 @@ internal object AssemblyLineRecipes
                 fluidInputs(Neutronium.getFluid(L * (actualTier + 1)))
                 output(LASER_OUTPUT_HATCH_4194304[actualTier])
                 EUt(VA[tier])
-                duration(32 * MINUTE)
+                duration(32.min)
                 scannerResearch {
                     it.researchStack(LASER_OUTPUT_HATCH_1048576[actualTier].stack())
                         .EUt(VA[IV])
-                        .duration(1 * MINUTE)
+                        .duration(1.min)
                 }
             }
 
@@ -892,7 +891,7 @@ internal object AssemblyLineRecipes
                 fluidInputs(SpaceTime.getFluid(L * (actualTier + 1)))
                 output(LASER_INPUT_HATCH_16777216[actualTier])
                 EUt(VA[tier])
-                duration(1 * HOUR + 4 * MINUTE)
+                duration(1.hr + 4.min)
                 stationResearch {
                     it.researchStack(LASER_INPUT_HATCH_4194304[actualTier].stack())
                         .EUt(VA[UV])
@@ -919,7 +918,7 @@ internal object AssemblyLineRecipes
                 fluidInputs(SpaceTime.getFluid(L * (actualTier + 1)))
                 output(LASER_OUTPUT_HATCH_16777216[actualTier])
                 EUt(VA[tier])
-                duration(1 * HOUR + 4 * MINUTE)
+                duration(1.hr + 4.min)
                 stationResearch {
                     it.researchStack(LASER_OUTPUT_HATCH_4194304[actualTier].stack())
                         .EUt(VA[UV])
@@ -1020,7 +1019,7 @@ internal object AssemblyLineRecipes
 
             builderA.output(WIRELESS_ENERGY_INPUT_HATCH[tier])
                 .EUt(max(VA[UHV], VA[tier]))
-                .duration(10 * SECOND)
+                .duration(10.s)
                 .stationResearch {
                     it.researchStack(SUBSTATION_ENERGY_INPUT_HATCH[tier])
                         .EUt(max(VA[UHV], VA[tier]))
@@ -1068,7 +1067,7 @@ internal object AssemblyLineRecipes
 
             builderB.output(WIRELESS_ENERGY_OUTPUT_HATCH[tier])
                 .EUt(max(VA[UHV], VA[tier]))
-                .duration(10 * SECOND)
+                .duration(10.s)
                 .stationResearch {
                     it.researchStack(SUBSTATION_ENERGY_OUTPUT_HATCH[tier])
                         .EUt(max(VA[UHV], VA[tier]))

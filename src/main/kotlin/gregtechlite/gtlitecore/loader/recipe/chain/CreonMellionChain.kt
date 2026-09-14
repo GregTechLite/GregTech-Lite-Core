@@ -16,14 +16,14 @@ import gregtech.api.unification.material.Materials.Technetium
 import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.QUANTUM_CHROMODYNAMIC_CHARGE
@@ -45,7 +45,7 @@ internal object CreonMellionChain
             fluidInputs(Calcium.getPlasma(L * 36))
             fluidOutputs(Creon.getPlasma(L * 18))
             EUt(VA[UXV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -57,7 +57,7 @@ internal object CreonMellionChain
             fluidInputs(Calcium.getPlasma(L * 36 * 16))
             fluidOutputs(Creon.getPlasma(L * 18 * 16))
             EUt(VA[OpV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -69,7 +69,7 @@ internal object CreonMellionChain
             fluidInputs(Calcium.getPlasma(L * 36 * 64))
             fluidOutputs(Creon.getPlasma(L * 18 * 64))
             EUt(VA[MAX])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Mellion
@@ -103,7 +103,7 @@ internal object CreonMellionChain
             output(ingot, Mellion)
             fluidOutputs(Creon.getFluid(L))
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(22000)
         }
     }

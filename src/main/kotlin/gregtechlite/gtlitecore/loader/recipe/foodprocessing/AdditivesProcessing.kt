@@ -15,12 +15,12 @@ import gregtech.api.unification.material.Materials.SeedOil
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BeanPhospholipid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butter
@@ -53,7 +53,7 @@ internal object AdditivesProcessing
             fluidOutputs(AminooxyaceticAcid.getFluid(1000))
             fluidOutputs(Oxygen.getFluid(2000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -66,7 +66,7 @@ internal object AdditivesProcessing
             output(dust, Salt, 2)
             fluidOutputs(GlycidylStearate.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // C21H40O3 + H2O -> C21H42O4
@@ -75,7 +75,7 @@ internal object AdditivesProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(Monoglyceride.getFluid(1000))
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Advanced recipe for C21H42O4
@@ -87,7 +87,7 @@ internal object AdditivesProcessing
             fluidInputs(Glycerol.getFluid(1000))
             fluidOutputs(Monoglyceride.getFluid(1000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Food Oil Phase Mixture
@@ -99,7 +99,7 @@ internal object AdditivesProcessing
                 fluidInputs(Monoglyceride.getFluid(100))
                 fluidOutputs(FoodOilPhaseMixture.getFluid(2000))
                 EUt(VA[EV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
 
             LARGE_MIXER_RECIPES.addRecipe {
@@ -108,7 +108,7 @@ internal object AdditivesProcessing
                 fluidInputs(Monoglyceride.getFluid(100))
                 fluidOutputs(FoodOilPhaseMixture.getFluid(2000))
                 EUt(VA[EV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
         }
     }

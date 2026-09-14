@@ -68,9 +68,9 @@ import gregtech.common.metatileentities.MetaTileEntities.HPCA_BRIDGE_COMPONENT
 import gregtech.common.metatileentities.MetaTileEntities.POWER_SUBSTATION
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_CHEST
 import gregtech.common.metatileentities.MetaTileEntities.WORLD_ACCELERATOR
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
@@ -128,7 +128,7 @@ internal object ScienceCasingRecipes
             fluidInputs(Osmium.getFluid(L * 9))
             outputs(ScienceCasing.MOLECULAR_CASING.getStack(2))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Quantum Glass
@@ -138,7 +138,7 @@ internal object ScienceCasingRecipes
             fluidInputs(Trinium.getFluid(L * 4))
             outputs(GlassCasing.QUANTUM.stack)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Hollow Casing
@@ -156,7 +156,7 @@ internal object ScienceCasingRecipes
             fluidInputs(Argon.getFluid(1000))
             outputs(ScienceCasing.HOLLOW_CASING.getStack(4))
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ScienceCasing.MOLECULAR_CASING.stack)
                     .EUt(VA[ZPM])
@@ -177,7 +177,7 @@ internal object ScienceCasingRecipes
             fluidInputs(Trinium.getFluid(L * 9))
             outputs(ScienceCasing.MOLECULAR_COIL.getStack(8))
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ScienceCasing.HOLLOW_CASING.stack)
                     .EUt(VA[UV])
@@ -202,7 +202,7 @@ internal object ScienceCasingRecipes
             fluidInputs(MetastableOganesson.getFluid(L * 4))
             outputs(ScienceCasing.ULTIMATE_MOLECULAR_CASING.getStack(16))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(frameGt, Vibranium)
                     .EUt(VA[UHV])
@@ -224,7 +224,7 @@ internal object ScienceCasingRecipes
             fluidInputs(Darmstadtium.getFluid(L * 4))
             outputs(ScienceCasing.DIMENSIONAL_BRIDGE_CASING.getStack(16))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(HPCA_BRIDGE_COMPONENT)
                     .EUt(VA[UHV])
@@ -248,7 +248,7 @@ internal object ScienceCasingRecipes
             fluidInputs(Neutronium.getFluid(L * 4))
             outputs(ScienceCasing.CONTAINMENT_FIELD_GENERATOR.getStack(16))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(HPCA_ACTIVE_COOLER_COMPONENT)
                     .EUt(VA[UHV])
@@ -270,7 +270,7 @@ internal object ScienceCasingRecipes
             fluidInputs(Curium.getFluid(L * 4))
             outputs(ScienceCasing.SPACETIME_ALTERING_CASING.getStack(16))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(HPCA_ADVANCED_COMPUTATION_COMPONENT)
                     .EUt(VA[UHV])
@@ -301,7 +301,7 @@ internal object ScienceCasingRecipes
             fluidInputs(SpatiallyEnlargedFluid.getFluid(L * 10))
             outputs(ScienceCasing.REINFORCED_TEMPORAL_STRUCTURE_CASING.getStack(64))
             EUt(VA[UXV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(WORLD_ACCELERATOR[UV].stackForm)
                     .EUt(VA[UXV])
@@ -328,7 +328,7 @@ internal object ScienceCasingRecipes
             fluidInputs(TachyonRichTemporalFluid.getFluid(L * 10))
             outputs(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.getStack(64))
             EUt(VA[UXV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.stack)
                     .EUt(VA[UXV])
@@ -360,7 +360,7 @@ internal object ScienceCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.getStack(32))
             EUt(VA[UXV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(POWER_SUBSTATION.stackForm)
                     .EUt(VA[UXV])

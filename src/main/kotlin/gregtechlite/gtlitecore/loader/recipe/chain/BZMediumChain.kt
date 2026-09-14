@@ -22,11 +22,11 @@ import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BZMedium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChloroaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dichloroethane
@@ -52,7 +52,7 @@ internal object BZMediumChain
             fluidOutputs(SulfuricAcid.getFluid(1000))
             fluidOutputs(HydrobromicAcid.getFluid(2000))
             EUt(VA[HV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 3HBr + 3KOH -> KBrO3 + 3H2O
@@ -62,7 +62,7 @@ internal object BZMediumChain
             output(dust, PotassiumBromate, 5)
             fluidOutputs(Ice.getFluid(3000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // C2H4Cl2 + Cl -> C2HCl3 + 3H
@@ -72,7 +72,7 @@ internal object BZMediumChain
             fluidOutputs(Trichloroethylene.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(3000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C2HCl3 + 2H2O -> C2H3ClO2 + 2HCl
@@ -83,7 +83,7 @@ internal object BZMediumChain
             output(dust, ChloroaceticAcid, 8)
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C2H3ClO2 + Na2CO3 + 2H2O -> C3H4O4 + 2NaOH + HClO
@@ -95,7 +95,7 @@ internal object BZMediumChain
             output(dust, MalonicAcid, 11)
             fluidOutputs(HypochlorousAcid.getFluid(1000))
             EUt(VA[IV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // KBrO3 + 0.25 C3H4O4 + Ce -> B-Z Medium
@@ -107,7 +107,7 @@ internal object BZMediumChain
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(BZMedium.getFluid(1000))
             EUt(VA[ZPM])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

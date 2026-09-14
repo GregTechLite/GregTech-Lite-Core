@@ -14,12 +14,12 @@ import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.common.items.MetaItems.FLUID_CELL
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_CELL
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.KEVLAR_CAN
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.PBI_CAN
@@ -48,7 +48,7 @@ internal object ExtruderRecipes
             input(ingot, Aluminium)
             output(FLUID_CELL, 4)
             EUt(VA[LV])
-            duration(6 * SECOND + 5 * TICK)
+            duration(6.s + 5.t)
         }
 
         EXTRUDER_RECIPES.addRecipe {
@@ -56,7 +56,7 @@ internal object ExtruderRecipes
             input(ingot, StainlessSteel)
             output(FLUID_CELL, 16)
             EUt(VA[LV])
-            duration(6 * SECOND + 5 * TICK)
+            duration(6.s + 5.t)
         }
 
         EXTRUDER_RECIPES.addRecipe {
@@ -64,7 +64,7 @@ internal object ExtruderRecipes
             input(ingot, Titanium)
             output(FLUID_CELL, 32)
             EUt(VA[LV])
-            duration(6 * SECOND + 5 * TICK)
+            duration(6.s + 5.t)
         }
 
         EXTRUDER_RECIPES.addRecipe {
@@ -72,7 +72,7 @@ internal object ExtruderRecipes
             input(ingot, TungstenSteel)
             output(FLUID_CELL, 64)
             EUt(VA[LV])
-            duration(6 * SECOND + 5 * TICK)
+            duration(6.s + 5.t)
         }
 
         // PE Plastic Can
@@ -81,7 +81,7 @@ internal object ExtruderRecipes
             input(ingot, Polyethylene, 6)
             output(PE_CAN)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // PTFE Plastic Can
@@ -90,7 +90,7 @@ internal object ExtruderRecipes
             input(ingot, Polytetrafluoroethylene, 6)
             output(PTFE_CAN)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // PBI Plastic Can
@@ -99,7 +99,7 @@ internal object ExtruderRecipes
             input(ingot, Polybenzimidazole, 6)
             output(PBI_CAN)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Kevlar Plastic Can
@@ -108,7 +108,7 @@ internal object ExtruderRecipes
             input(ingot, Kevlar, 6)
             output(KEVLAR_CAN)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

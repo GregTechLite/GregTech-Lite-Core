@@ -41,14 +41,14 @@ import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.DRILLING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockGas
@@ -117,7 +117,7 @@ internal object BedrockiumProcessing
             fluidInputs(Krypton.getFluid(6000))
             fluidOutputs(LightTaraniumFuel.getFluid(12000))
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         CHEMICAL_PLANT_RECIPES.addRecipe {
@@ -128,7 +128,7 @@ internal object BedrockiumProcessing
             fluidInputs(Krypton.getPlasma(8000))
             fluidOutputs(LightTaraniumFuel.getFluid(24000))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Medium Taranium Fuel
@@ -140,7 +140,7 @@ internal object BedrockiumProcessing
             fluidInputs(Xenon.getFluid(6000))
             fluidOutputs(MediumTaraniumFuel.getFluid(12000))
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         CHEMICAL_PLANT_RECIPES.addRecipe {
@@ -151,7 +151,7 @@ internal object BedrockiumProcessing
             fluidInputs(Xenon.getPlasma(8000))
             fluidOutputs(MediumTaraniumFuel.getFluid(24000))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Heavy Taranium Fuel
@@ -163,7 +163,7 @@ internal object BedrockiumProcessing
             fluidInputs(Radon.getFluid(6000))
             fluidOutputs(HeavyTaraniumFuel.getFluid(12000))
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         CHEMICAL_PLANT_RECIPES.addRecipe {
@@ -174,7 +174,7 @@ internal object BedrockiumProcessing
             fluidInputs(Radon.getPlasma(8000))
             fluidOutputs(HeavyTaraniumFuel.getFluid(24000))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Enriched Light Taranium Fuel
@@ -185,7 +185,7 @@ internal object BedrockiumProcessing
             fluidInputs(NaquadriaEnergetic.getFluid(1000))
             fluidOutputs(LightEnrichedTaraniumFuel.getFluid(6000))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Enriched Medium Taranium Fuel
@@ -196,7 +196,7 @@ internal object BedrockiumProcessing
             fluidInputs(NaquadriaEnergetic.getFluid(1000))
             fluidOutputs(MediumEnrichedTaraniumFuel.getFluid(6000))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Enriched Heavy Taranium Fuel
@@ -207,45 +207,45 @@ internal object BedrockiumProcessing
             fluidInputs(NaquadriaEnergetic.getFluid(1000))
             fluidOutputs(HeavyEnrichedTaraniumFuel.getFluid(6000))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Taranium fuels.
         NAQUADAH_REACTOR_FUELS.addRecipe {
             fluidInputs(HeavyTaraniumFuel.getFluid(1))
             EUt(V[EV] * 2)
-            duration(18 * SECOND)
+            duration(18.s)
         }
 
         NAQUADAH_REACTOR_FUELS.addRecipe {
             fluidInputs(MediumTaraniumFuel.getFluid(1))
             EUt(V[EV] * 2)
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         NAQUADAH_REACTOR_FUELS.addRecipe {
             fluidInputs(LightTaraniumFuel.getFluid(1))
             EUt(V[EV] * 2)
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Enriched taranium fuels.
         NAQUADAH_REACTOR_FUELS.addRecipe {
             fluidInputs(HeavyEnrichedTaraniumFuel.getFluid(1))
             EUt(V[IV])
-            duration(36 * SECOND)
+            duration(36.s)
         }
 
         NAQUADAH_REACTOR_FUELS.addRecipe {
             fluidInputs(MediumEnrichedTaraniumFuel.getFluid(1))
             EUt(V[IV])
-            duration(24 * SECOND)
+            duration(24.s)
         }
 
         NAQUADAH_REACTOR_FUELS.addRecipe {
             fluidInputs(LightEnrichedTaraniumFuel.getFluid(1))
             EUt(V[IV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
     }
 
@@ -258,7 +258,7 @@ internal object BedrockiumProcessing
             chancedOutput(dust, Bedrockium, 100, 0)
             fluidOutputs(BedrockSmoke.getFluid(1000))
             EUt(VA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Mixing bedrock smoke and some high energy dust to bedrock soot solution.
@@ -270,7 +270,7 @@ internal object BedrockiumProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(BedrockSootSolution.getFluid(1000))
             EUt(VH[EV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -281,7 +281,7 @@ internal object BedrockiumProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(BedrockSootSolution.getFluid(1000))
             EUt(VH[EV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Centrifuging bedrock soot solution to get clean bedrock solution.
@@ -293,7 +293,7 @@ internal object BedrockiumProcessing
             chancedOutput(dust, Naquadah, 1000, 0)
             fluidOutputs(CleanBedrockSootSolution.getFluid(1000))
             EUt(VH[IV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Bedrock smoke fractionation.
@@ -305,7 +305,7 @@ internal object BedrockiumProcessing
             fluidOutputs(LightBedrockSmoke.getFluid(180))
             fluidOutputs(UltralightBedrockSmoke.getFluid(150))
             EUt(VA[IV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // Centrifuging heavy bedrock smoke to heavy taranium gas.
@@ -316,7 +316,7 @@ internal object BedrockiumProcessing
             output(dust, Bedrockium, 3)
             fluidOutputs(HeavyTaraniumGas.getFluid(1000))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Centrifuging medium bedrock smoke to medium taranium gas.
@@ -327,7 +327,7 @@ internal object BedrockiumProcessing
             output(dust, Bedrockium, 2)
             fluidOutputs(MediumTaraniumGas.getFluid(1000))
             EUt(VA[LuV])
-            duration(7 * SECOND)
+            duration(7.s)
         }
 
         // Centrifuging light bedrock smoke to light taranium gas.
@@ -338,7 +338,7 @@ internal object BedrockiumProcessing
             output(dust, Bedrockium)
             fluidOutputs(LightTaraniumGas.getFluid(1000))
             EUt(VA[LuV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // Centrifuging ultralight bedrock smoke to bedrock gas.
@@ -349,7 +349,7 @@ internal object BedrockiumProcessing
             chancedOutput(dust, Bedrockium, 5000, 0)
             fluidOutputs(BedrockGas.getFluid(1000))
             EUt(VA[LuV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Centrifuging bedrock gas can decompose it to He3 and bedrockium dust.
@@ -358,14 +358,14 @@ internal object BedrockiumProcessing
             output(dust, Bedrockium)
             fluidOutputs(Helium3.getFluid(20))
             EUt(VH[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Another usage of bedrock gas is make it as gas turbine fuels.
         GAS_TURBINE_FUELS.addRecipe {
             fluidInputs(BedrockGas.getFluid(12))
             EUt(VA[MV])
-            duration(24 * SECOND)
+            duration(24.s)
         }
 
         // Taranium gas cracks and fractions.
@@ -375,7 +375,7 @@ internal object BedrockiumProcessing
             fluidInputs(HeavyTaraniumGas.getFluid(1000))
             fluidOutputs(CrackedHeavyTaraniumGas.getFluid(2000))
             EUt(9216) // LuV
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         CRACKING_RECIPES.addRecipe {
@@ -384,7 +384,7 @@ internal object BedrockiumProcessing
             fluidInputs(MediumTaraniumGas.getFluid(1000))
             fluidOutputs(CrackedMediumTaraniumGas.getFluid(1600))
             EUt(9216) // LuV
-            duration(12 * SECOND + 10 * TICK)
+            duration(12.s + 10.t)
         }
 
         CRACKING_RECIPES.addRecipe {
@@ -393,7 +393,7 @@ internal object BedrockiumProcessing
             fluidInputs(LightTaraniumGas.getFluid(1000))
             fluidOutputs(CrackedLightTaraniumGas.getFluid(1200))
             EUt(9216) // LuV
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         DISTILLATION_RECIPES.addRecipe {
@@ -405,7 +405,7 @@ internal object BedrockiumProcessing
             fluidOutputs(LightTaraniumFuel.getFluid(100))
             fluidOutputs(BedrockGas.getFluid(50))
             EUt(V[LuV] / 2) // LuV
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         DISTILLATION_RECIPES.addRecipe {
@@ -417,7 +417,7 @@ internal object BedrockiumProcessing
             fluidOutputs(LightTaraniumFuel.getFluid(200))
             fluidOutputs(BedrockGas.getFluid(150))
             EUt(V[LuV] / 2) // LuV
-            duration(7 * SECOND)
+            duration(7.s)
         }
 
         DISTILLATION_RECIPES.addRecipe {
@@ -429,7 +429,7 @@ internal object BedrockiumProcessing
             fluidOutputs(LightTaraniumFuel.getFluid(400))
             fluidOutputs(BedrockGas.getFluid(350))
             EUt(V[LuV] / 2) // LuV
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -442,7 +442,7 @@ internal object BedrockiumProcessing
             fluidInputs(BedrockGas.getFluid(100))
             fluidOutputs(EnrichedBedrockSootSolution.getFluid(1000))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Centrifuging enriched bedrock soot solution to clean enriched bedrock solution.
@@ -454,7 +454,7 @@ internal object BedrockiumProcessing
             chancedOutput(dust, NaquadahEnriched, 1000, 0)
             fluidOutputs(CleanEnrichedBedrockSootSolution.getFluid(1000))
             EUt(98304) // ZPM
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Clean enriched bedrock soot solution fraction.
@@ -466,7 +466,7 @@ internal object BedrockiumProcessing
             fluidOutputs(LightEnrichedBedrockSmoke.getFluid(180))
             fluidOutputs(UltralightBedrockSmoke.getFluid(150))
             EUt(40960) // ZPM
-            duration(7 * SECOND)
+            duration(7.s)
         }
 
         // Centrifuging heavy enriched bedrock smoke to heavy enriched taranium gas.
@@ -478,7 +478,7 @@ internal object BedrockiumProcessing
             output(dust, Osmium, 3)
             fluidOutputs(HeavyEnrichedTaraniumGas.getFluid(4000))
             EUt(VA[ZPM])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Centrifuging medium enriched bedrock smoke to medium enriched taranium gas.
@@ -490,7 +490,7 @@ internal object BedrockiumProcessing
             output(dust, Osmium, 3)
             fluidOutputs(MediumEnrichedTaraniumGas.getFluid(4000))
             EUt(VA[ZPM])
-            duration(48 * SECOND)
+            duration(48.s)
         }
 
         // Centrifuging light enriched bedrock smoke to light enriched taranium gas.
@@ -502,7 +502,7 @@ internal object BedrockiumProcessing
             output(dust, Osmium, 3)
             fluidOutputs(LightEnrichedTaraniumGas.getFluid(4000))
             EUt(VA[ZPM])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Enriched taranium gas cracks and fractions.
@@ -512,7 +512,7 @@ internal object BedrockiumProcessing
             fluidInputs(HeavyEnrichedTaraniumGas.getFluid(1000))
             fluidOutputs(CrackedHeavyEnrichedTaraniumGas.getFluid(2000))
             EUt(49152) // ZPM
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         CRACKING_RECIPES.addRecipe {
@@ -521,7 +521,7 @@ internal object BedrockiumProcessing
             fluidInputs(MediumEnrichedTaraniumGas.getFluid(1000))
             fluidOutputs(CrackedMediumEnrichedTaraniumGas.getFluid(1600))
             EUt(49152) // ZPM
-            duration(12 * SECOND + 10 * TICK)
+            duration(12.s + 10.t)
         }
 
         CRACKING_RECIPES.addRecipe {
@@ -530,7 +530,7 @@ internal object BedrockiumProcessing
             fluidInputs(LightEnrichedTaraniumGas.getFluid(1000))
             fluidOutputs(CrackedLightEnrichedTaraniumGas.getFluid(1200))
             EUt(49152) // ZPM
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         DISTILLATION_RECIPES.addRecipe {
@@ -542,7 +542,7 @@ internal object BedrockiumProcessing
             fluidOutputs(LightEnrichedTaraniumFuel.getFluid(100))
             fluidOutputs(BedrockGas.getFluid(50))
             EUt(98304) // ZPM
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         DISTILLATION_RECIPES.addRecipe {
@@ -554,7 +554,7 @@ internal object BedrockiumProcessing
             fluidOutputs(LightEnrichedTaraniumFuel.getFluid(200))
             fluidOutputs(BedrockGas.getFluid(150))
             EUt(98304) // ZPM
-            duration(7 * SECOND)
+            duration(7.s)
         }
 
         DISTILLATION_RECIPES.addRecipe {
@@ -566,7 +566,7 @@ internal object BedrockiumProcessing
             fluidOutputs(LightEnrichedTaraniumFuel.getFluid(400))
             fluidOutputs(BedrockGas.getFluid(350))
             EUt(98304) // ZPM
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 

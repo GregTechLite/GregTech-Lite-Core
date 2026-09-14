@@ -58,11 +58,11 @@ import gregtech.common.items.MetaItems.SENSOR_UV
 import gregtech.common.items.MetaItems.SENSOR_UXV
 import gregtech.common.items.MetaItems.SENSOR_ZPM
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
@@ -121,11 +121,11 @@ internal object SensorRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 2))
             output(SENSOR_LuV)
             EUt(6000) // IV
-            duration(20 * SECOND)
+            duration(20.s)
             scannerResearch {
                 it.researchStack(SENSOR_IV)
                     .EUt(VA[HV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -153,7 +153,7 @@ internal object SensorRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 4))
             output(SENSOR_ZPM)
             EUt(24000) // LuV
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(SENSOR_LuV)
                     .EUt(VA[LuV])
@@ -189,7 +189,7 @@ internal object SensorRecipes
             fluidInputs(Naquadria.getFluid(L))
             output(SENSOR_UV)
             EUt(100_000) // ZPM
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(SENSOR_ZPM)
                     .EUt(VA[ZPM])
@@ -212,7 +212,7 @@ internal object SensorRecipes
             fluidInputs(Taranium.getFluid(L * 2))
             output(SENSOR_UHV)
             EUt(400_000) // UV
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(SENSOR_UV)
                     .EUt(VA[UV])
@@ -236,7 +236,7 @@ internal object SensorRecipes
             fluidInputs(Fullerene.getFluid(L))
             output(SENSOR_UEV)
             EUt(1_800_000) // UHV
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(SENSOR_UHV)
                     .EUt(VA[UHV])
@@ -261,7 +261,7 @@ internal object SensorRecipes
             fluidInputs(CarbonNanotube.getFluid(L * 2))
             output(SENSOR_UIV)
             EUt(6_000_000) // UEV
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(SENSOR_UEV)
                     .EUt(VA[UEV])
@@ -286,7 +286,7 @@ internal object SensorRecipes
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
             output(SENSOR_UXV)
             EUt(20_000_000) // UIV
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(SENSOR_UIV)
                     .EUt(VA[UIV])
@@ -312,7 +312,7 @@ internal object SensorRecipes
             fluidInputs(CosmicFabric.getFluid(L * 8))
             output(SENSOR_OpV)
             EUt(50_000_000) // UXV
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(SENSOR_UXV)
                     .EUt(VA[UXV])

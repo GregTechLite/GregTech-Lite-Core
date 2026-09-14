@@ -11,11 +11,11 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Water
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylTerephthalate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneGlycol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylparatoluate
@@ -37,7 +37,7 @@ internal object PETChain
             fluidOutputs(ParaToluicAcid.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C8H8O2 + CH4O -> C9H10O2 + H2O
@@ -47,7 +47,7 @@ internal object PETChain
             fluidOutputs(Methylparatoluate.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // C9H10O2 + CO2 -> C10H10O4
@@ -56,7 +56,7 @@ internal object PETChain
             fluidInputs(CarbonDioxide.getFluid(1000))
             fluidOutputs(DimethylTerephthalate.getFluid(1000))
             EUt(VA[EV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // C10H10O4 + C2H6O2 -> 2C10H6O4 + 2H2O
@@ -66,7 +66,7 @@ internal object PETChain
             fluidOutputs(PolyethyleneTerephthalate.getFluid(1000))
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[UV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 

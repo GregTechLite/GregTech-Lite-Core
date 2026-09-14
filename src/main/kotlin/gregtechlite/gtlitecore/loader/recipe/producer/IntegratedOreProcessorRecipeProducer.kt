@@ -30,11 +30,11 @@ import gregtech.api.unification.ore.OrePrefix.oreRedSand
 import gregtech.api.unification.ore.OrePrefix.oreRedgranite
 import gregtech.api.unification.ore.OrePrefix.oreSand
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.INTEGRATED_ORE_PROCESSOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.util.OreProcessorRecipeWrapper
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TectonicPetrotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZephyreanAerotheum
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreBlueSchist
@@ -209,7 +209,7 @@ internal object IntegratedOreProcessorRecipeProducer
                 }
 
                 builder.EUt(VA[LV])
-                    .duration(5 * SECOND)
+                    .duration(5.s)
                     .buildAndRegister()
             }
         }

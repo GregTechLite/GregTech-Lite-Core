@@ -16,12 +16,12 @@ import gregtech.api.unification.material.Materials.Polycaprolactam
 import gregtech.api.unification.material.Materials.TitaniumTetrachloride
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyisoprene
 
 internal object PolymersChain
@@ -47,7 +47,7 @@ internal object PolymersChain
             fluidInputs(Nitrogen.getFluid(1000))
             output(ingot, Polycaprolactam)
             EUt(VA[MV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
     }
 
@@ -59,7 +59,7 @@ internal object PolymersChain
             fluidInputs(Isoprene.getFluid(L))
             fluidOutputs(Polyisoprene.getFluid(L))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         CHEMICAL_RECIPES.addRecipe {
@@ -68,7 +68,7 @@ internal object PolymersChain
             fluidInputs(Isoprene.getFluid(L))
             fluidOutputs(Polyisoprene.getFluid(L + L / 2))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -78,7 +78,7 @@ internal object PolymersChain
             fluidInputs(TitaniumTetrachloride.getFluid(100))
             fluidOutputs(Polyisoprene.getFluid(L * 22 + L / 2))
             EUt(VA[MV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -88,7 +88,7 @@ internal object PolymersChain
             fluidInputs(TitaniumTetrachloride.getFluid(100))
             fluidOutputs(Polyisoprene.getFluid(L * 30))
             EUt(VA[MV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
     }
 

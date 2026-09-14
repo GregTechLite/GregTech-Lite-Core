@@ -32,14 +32,15 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NAQUADAH_REACTOR_FUELS
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
+import java.util.function.UnaryOperator
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.EnumParticleTypes
@@ -50,7 +51,6 @@ import net.minecraftforge.fluids.FluidStack
 import net.minecraftforge.fluids.capability.IFluidHandler
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.function.UnaryOperator
 
 class MultiblockNaquadahReactor(id: ResourceLocation)
     : FuelMultiblockController(id, NAQUADAH_REACTOR_FUELS, UV), ProgressBarMultiblock
@@ -281,7 +281,7 @@ class MultiblockNaquadahReactor(id: ResourceLocation)
 
         private fun drainPlasmaOxygen()
         {
-            if (isPlasmaOxygenBoosted && totalContinuousRunningTime % SECOND == 0L)
+            if (isPlasmaOxygenBoosted && totalContinuousRunningTime % 1.s == 0L)
             {
                 (naquadahReactor!!.inputFluidInventory as IFluidHandler).drain(plasmaOxygenStack, true)
             }

@@ -15,10 +15,10 @@ import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GrapheneOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydrazine
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MAGNETRON
@@ -46,7 +46,7 @@ internal object GrapheneChain
             fluidOutputs(DilutedSulfuricAcid.getFluid(1000))
             fluidOutputs(NitricAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C8O + N2H + Ar -> C8
@@ -56,7 +56,7 @@ internal object GrapheneChain
             fluidInputs(Argon.getFluid(50))
             output(dust, Graphene)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // One-step recipe from Graphite to Graphene.
@@ -68,7 +68,7 @@ internal object GrapheneChain
             fluidOutputs(DilutedSulfuricAcid.getFluid(1000))
             fluidOutputs(NitricAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

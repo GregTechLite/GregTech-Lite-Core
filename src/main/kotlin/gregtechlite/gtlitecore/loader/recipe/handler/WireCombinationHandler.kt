@@ -23,11 +23,11 @@ import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LOOM_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import kotlin.math.pow
 
 @Suppress("unused")
@@ -73,7 +73,7 @@ object WireCombinationHandler
                     inputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[startTier], material, 1 shl i))
                     outputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[startTier + i], material, 1))
                     EUt(12) // LV
-                    duration(10 * TICK)
+                    duration(10.t)
                 }
             }
         }
@@ -85,7 +85,7 @@ object WireCombinationHandler
                 inputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[i], material, 1))
                 outputs(OreDictUnifier.get(WIRE_DOUBLING_ORDER[0], material, 2.0.pow(i).toInt()))
                 EUt(12) // LV
-                duration(10 * TICK)
+                duration(10.t)
             }
         }
 
@@ -133,7 +133,7 @@ object WireCombinationHandler
             output(cableToWireMap[prefix], material)
             output(plate, Rubber, (prefix.secondaryMaterials[0].amount / M).toInt())
             EUt(VA[ULV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

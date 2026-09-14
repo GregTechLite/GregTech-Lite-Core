@@ -18,10 +18,10 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.stick
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPLEX_PYROLYSIS_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AceticAnhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CBDOPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylketene
@@ -42,7 +42,7 @@ internal object CBDOPolycarbonateChain
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(IsobutyricAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(9 * SECOND)
+            duration(9.s)
         }
 
         // 2C4H8O2 + C4H6O3 -> C8H14O3 + 2C2H4O2
@@ -52,7 +52,7 @@ internal object CBDOPolycarbonateChain
             fluidOutputs(IsobutyricAnhydride.getFluid(1000))
             fluidOutputs(AceticAcid.getFluid(2000))
             EUt(VA[EV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // C8H14O3 -> 2C4H6O2 + 2H2O
@@ -62,7 +62,7 @@ internal object CBDOPolycarbonateChain
             fluidOutputs(Dimethylketene.getFluid(2000))
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[IV])
-            duration(12 * SECOND)
+            duration(12.s)
             blastFurnaceTemp(5600)
         }
 
@@ -73,7 +73,7 @@ internal object CBDOPolycarbonateChain
             fluidInputs(Hydrogen.getFluid(4000))
             fluidOutputs(Tetramethylcyclobutanediol.getFluid(1000))
             EUt(VA[UV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // C8H16O2 + C13H10O3 -> C9H14O3 + 2C6H6O
@@ -83,7 +83,7 @@ internal object CBDOPolycarbonateChain
             fluidOutputs(CBDOPolycarbonate.getFluid(L))
             fluidOutputs(Phenol.getFluid(2000))
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
     }
 

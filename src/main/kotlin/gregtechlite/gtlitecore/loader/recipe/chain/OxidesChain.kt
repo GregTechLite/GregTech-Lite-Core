@@ -83,8 +83,6 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
@@ -92,6 +90,8 @@ import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Baddeleyite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BerylliumOxide
@@ -151,7 +151,7 @@ internal object OxidesChain
             output(dust, Magnesia, 2)
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[LV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // endregion
@@ -165,7 +165,7 @@ internal object OxidesChain
             chancedOutput(dust, Ash, 1000, 0)
             fluidOutputs(SulfurDioxide.getFluid(1500))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         GTLiteRecipeHandler.removeChemicalRecipes(
@@ -178,7 +178,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, AntimonyTrioxide, 5)
             EUt(VA[ULV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // endregion
@@ -194,7 +194,7 @@ internal object OxidesChain
             output(dust, Ferrosilite)
             fluidOutputs(SulfurDioxide.getFluid(2000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Cu3FeSbS3 + 3O -> CuO + 0.75Sb2O3 + 2SO2
@@ -205,7 +205,7 @@ internal object OxidesChain
             .output(dustTiny, AntimonyTrioxide, 3)
             .fluidOutputs(SulfurDioxide.getFluid(2000))
             .EUt(VA[MV])
-            .duration(6 * SECOND)
+            .duration(6.s)
             .buildAndRegister()
 
         // endregion
@@ -219,7 +219,7 @@ internal object OxidesChain
             output(dust, ArsenicTrioxide)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // endregion
@@ -233,7 +233,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, ArsenicTrioxide, 5)
             EUt(VA[LV])
-            duration(4 * SECOND + 5 * TICK)
+            duration(4.s + 5.t)
         }
 
         // As2S3 + 9O -> As2O3 + 3SO2
@@ -243,7 +243,7 @@ internal object OxidesChain
             output(dust, ArsenicTrioxide, 5)
             fluidOutputs(SulfurDioxide.getFluid(3000))
             EUt(VA[LV])
-            duration(2 * SECOND + 15 * TICK)
+            duration(2.s + 15.t)
         }
 
         // As4S4 + 14O -> 2As2O3 + 4SO2
@@ -253,7 +253,7 @@ internal object OxidesChain
             output(dust, ArsenicTrioxide, 10)
             fluidOutputs(SulfurDioxide.getFluid(4000))
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // endregion
@@ -269,7 +269,7 @@ internal object OxidesChain
             output(dust, SiliconDioxide, 3)
             chancedOutput(dust, Hafnia, 3333, 0)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // ZrSiO4 + 2O -> ZrO2 + HfO2 + SiO2
@@ -281,7 +281,7 @@ internal object OxidesChain
             output(dust, Hafnia, 3)
             output(dust, SiliconDioxide, 3)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // ZrO2 + C + 4Cl -> ZrCl4 + CO2
@@ -297,7 +297,7 @@ internal object OxidesChain
             output(dust, ZirconiumTetrachloride, 5)
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // ZnS + 3O -> ZnO + SO2
@@ -309,7 +309,7 @@ internal object OxidesChain
             chancedOutput(dust, Ash, 1000, 0)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -320,7 +320,7 @@ internal object OxidesChain
             chancedOutput(dust, Ash, 1000, 0)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // endregion
@@ -334,7 +334,7 @@ internal object OxidesChain
             output(dust, BandedIron)
             fluidOutputs(SulfurTrioxide.getFluid(3000))
             EUt(VA[ULV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // endregion
@@ -349,7 +349,7 @@ internal object OxidesChain
             chancedOutput(dust, Ash, 1000, 0)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // endregion
@@ -367,7 +367,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(10000))
             output(dust, PhosphorusPentoxide, 14)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // endregion
@@ -384,7 +384,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, ChromiumTrioxide, 4)
             EUt(VHA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // endregion
@@ -398,7 +398,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             output(dust, LithiumOxide, 3)
             EUt(VH[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // 2Na + O -> Na2O
@@ -408,7 +408,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             output(dust, SodiumOxide, 3)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // endregion
@@ -422,7 +422,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(5000))
             output(dust, NiobiumPentoxide, 7)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Ta + 5O -> Ta2O5
@@ -432,7 +432,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(5000))
             output(dust, TantalumPentoxide, 7)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // endregion
@@ -446,7 +446,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             output(ingot, BerylliumOxide, 2)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Bi + 3O -> Bi2O3
@@ -456,7 +456,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, BismuthTrioxide, 5)
             EUt(VA[LV])
-            duration(4 * SECOND + 5 * TICK)
+            duration(4.s + 5.t)
         }
 
         // endregion
@@ -470,7 +470,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             output(dust, Tenorite, 2)
             EUt(VA[LV])
-            duration(15 * TICK)
+            duration(15.t)
         }
 
         // 2Cu + O -> Cu2O
@@ -480,7 +480,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             output(dust, Cuprite, 3)
             EUt(VA[LV])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
         }
 
         // endregion
@@ -496,7 +496,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, ScandiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Y + 3O -> Y2O3
@@ -506,7 +506,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, YttriumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2La + 3O -> La2O3
@@ -516,7 +516,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, LanthanumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Ce + 2O -> CeO2
@@ -526,7 +526,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             output(dust, CeriumOxide, 3)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Pr + 3O -> Pr2O3
@@ -536,7 +536,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, PraseodymiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Nd + 3O -> Nd2O3
@@ -546,7 +546,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, NeodymiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Pm + 3O -> Pm2O3
@@ -556,7 +556,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, PromethiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Sm + 3O -> Sm2O3
@@ -566,7 +566,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, SamariumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Eu + 3O -> Eu2O3
@@ -576,7 +576,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, EuropiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Gd + 3O -> Gd2O3
@@ -586,7 +586,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, GadoliniumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Tb + 3O -> Tb2O3
@@ -596,7 +596,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, TerbiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Dy + 3O -> Dy2O3
@@ -606,7 +606,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, DysprosiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Ho + 3O -> Ho2O3
@@ -616,7 +616,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, HolmiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Er + 3O -> Er2O3
@@ -626,7 +626,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, ErbiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Tm + 3O -> Tm2O3
@@ -636,7 +636,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, ThuliumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Yb + 3O -> Yb2O3
@@ -646,7 +646,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, YtterbiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2Lu + 3O -> Lu2O3
@@ -656,7 +656,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, LutetiumOxide, 5)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // endregion
@@ -672,7 +672,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             output(dust, GalliumDioxide, 3)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // endregion
@@ -686,7 +686,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             output(dust, ThoriumDioxide, 3)
             EUt(VA[MV])
-            duration(4 * SECOND + 5 * TICK)
+            duration(4.s + 5.t)
         }
 
         // Ba + O -> BaO
@@ -696,7 +696,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             output(dust, BariumOxide, 2)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // 2V + 5O -> V2O5
@@ -706,7 +706,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(5000))
             output(dust, VanadiumPentoxide, 7)
             EUt(VA[MV])
-            duration(3 * SECOND + 10 * TICK)
+            duration(3.s + 10.t)
         }
 
         // 2Ag + O -> Ag2O
@@ -716,7 +716,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             output(dust, SilverOxide, 3)
             EUt(VA[LV])
-            duration(4 * SECOND + 5 * TICK)
+            duration(4.s + 5.t)
         }
 
         // Ge + 2O -> GeO2
@@ -726,7 +726,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             output(dust, GermaniumDioxide, 3)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Sr + O -> SrO
@@ -736,7 +736,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             output(dust, StrontiumOxide, 2)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // endregion
@@ -777,7 +777,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Vanilla Coals recipes for C + O -> CO, will output some Ash,
@@ -790,7 +790,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -800,7 +800,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Add compatibility of lignite to these recipes.
@@ -811,7 +811,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Dust form of two vanilla coals and Lignite.
@@ -822,7 +822,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -832,7 +832,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -842,7 +842,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 
@@ -881,7 +881,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Vanilla Coals recipes for C + 2O -> CO2, will output some Ash,
@@ -894,7 +894,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -904,7 +904,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Add compatibility of lignite to these recipes.
@@ -915,7 +915,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Dust form of two vanilla coals and Lignite.
@@ -926,7 +926,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -936,7 +936,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -946,7 +946,7 @@ internal object OxidesChain
             fluidInputs(Oxygen.getFluid(2000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Delete vanilla CO2 + C -> CO recipe.
@@ -960,7 +960,7 @@ internal object OxidesChain
             fluidInputs(CarbonDioxide.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(2000))
             EUt(VA[ULV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
     }
 

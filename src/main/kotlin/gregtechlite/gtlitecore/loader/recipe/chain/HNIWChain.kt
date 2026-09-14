@@ -37,9 +37,7 @@ import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
@@ -49,6 +47,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_R
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AceticAnhydride
@@ -107,7 +107,7 @@ internal object HNIWChain
             output(dust, AmmoniumSulfate, 17)
             fluidOutputs(Ice.getFluid(3000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // CaCO3 + (NH4)2SO4 -> 0.5CaSO4·(H2O)2 + (NH4)2CO3
@@ -117,7 +117,7 @@ internal object HNIWChain
             output(dust, Gypsum, 6)
             output(dust, AmmoniumCarbonate, 14)
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // (NH4)2CO3 + 2C2H4O2 -> 2NH4CH3CO2 + CO2 + H2O
@@ -128,7 +128,7 @@ internal object HNIWChain
             fluidOutputs(CarbonDioxide.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // NH4CH3CO2 -> CH3CONH2 + H2O
@@ -137,7 +137,7 @@ internal object HNIWChain
             output(dust, Acetamide, 9)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[MV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // CH3CONH2 -> CH3CN + H2O
@@ -146,7 +146,7 @@ internal object HNIWChain
             fluidOutputs(Acetonitrile.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // 2C2H4O + 2HNO3 -> 2C2H2O2 + N2O + 3H2O
@@ -157,7 +157,7 @@ internal object HNIWChain
             fluidOutputs(NitricOxide.getFluid(1000))
             fluidOutputs(Steam.getFluid(3 * SU))
             EUt(VA[HV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // C7H8 (C6H5CH3) + Cl -> C6H5CH2Cl
@@ -166,7 +166,7 @@ internal object HNIWChain
             fluidInputs(Chlorine.getFluid(1000))
             fluidOutputs(BenzylChloride.getFluid(1000))
             EUt(VA[HV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // C7H7Cl + NH3 -> C7H9N + HCl
@@ -176,7 +176,7 @@ internal object HNIWChain
             fluidOutputs(Benzylamine.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // CH3CN + 3C2H2O2 + 6C7H9N -> C48H48N6
@@ -187,7 +187,7 @@ internal object HNIWChain
             output(dust, Hexabenzylhexaazaisowurtzitane, 64)
             output(dust, Hexabenzylhexaazaisowurtzitane, 38)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -201,7 +201,7 @@ internal object HNIWChain
             output(dust, SuccinicAnhydride, 11)
             fluidOutputs(AceticAcid.getFluid(2000))
             EUt(VA[IV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // (CH2CO)2O + NH3 -> (CH2CO)2NOH + 2H
@@ -219,7 +219,7 @@ internal object HNIWChain
                 output(dust, NHydroxysuccinimide, 13)
                 fluidOutputs(Hydrogen.getFluid(2000))
                 EUt(VA[EV])
-                duration(4 * SECOND)
+                duration(4.s)
             }
         }
 
@@ -232,7 +232,7 @@ internal object HNIWChain
             output(dust, SuccinimidylAcetate, 18)
             fluidOutputs(AceticAcid.getFluid(1000))
             EUt(VA[IV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // C48H48N6 + 4C6H7NO4 + 8H -> C28H32N6O4 + 4C4H5NO2 + 4C7H8 + 4O
@@ -251,7 +251,7 @@ internal object HNIWChain
             fluidOutputs(Toluene.getFluid(4000))
             fluidOutputs(Oxygen.getFluid(4000))
             EUt(VA[ZPM])
-            duration(6 * SECOND)
+            duration(6.s)
             cleanroom()
         }
 
@@ -261,7 +261,7 @@ internal object HNIWChain
             fluidInputs(Water.getFluid(1000))
             output(dust, SuccinicAcid, 14)
             EUt(VA[HV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
     }
 
@@ -278,7 +278,7 @@ internal object HNIWChain
             fluidOutputs(NitricOxide.getFluid(4000))
             fluidOutputs(Benzaldehyde.getFluid(2000))
             EUt(VA[IV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // C6H6 + CH2O -> C7H6O + 2H
@@ -288,7 +288,7 @@ internal object HNIWChain
             fluidOutputs(Benzaldehyde.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // C7H6O -> C6H6 + CO
@@ -297,7 +297,7 @@ internal object HNIWChain
             fluidOutputs(Benzene.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
     }
 
@@ -312,7 +312,7 @@ internal object HNIWChain
             output(dust, NitroniumTetrafluoroborate, 8)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[EV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // 2BF3 + 2HF + 2N2O4 -> NaOBF4 + HNO3
@@ -324,7 +324,7 @@ internal object HNIWChain
             output(dust, NitrosoniumTetrafluoroborate, 7)
             fluidOutputs(NitricAcid.getFluid(1000))
             EUt(VA[EV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // C14H18N8O6 + 6NaO2BF4 + 4H2O -> C6H6N12O12 + 2NaOBF4 + 4HBF4 + 4C2H4O2
@@ -337,7 +337,7 @@ internal object HNIWChain
             fluidOutputs(TetrafluoroboricAcid.getFluid(4000))
             fluidOutputs(AceticAcid.getFluid(4000))
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -348,7 +348,7 @@ internal object HNIWChain
             output(dust, BoricAcid, 7)
             fluidOutputs(HydrofluoricAcid.getFluid(4000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -361,7 +361,7 @@ internal object HNIWChain
             fluidInputs(Ethylenediamine.getFluid(1000))
             output(dust, Hexanitrohexaaxaisowurtzitane, 36)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
     }

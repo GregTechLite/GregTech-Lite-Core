@@ -16,11 +16,11 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.nugget
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcidicSaltWater
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SeaWater
 
@@ -37,7 +37,7 @@ internal object IodineBromineProcessing
             chancedOutput(dust, Salt, 1000, 500)
             fluidOutputs(SaltWater.getFluid(1000))
             EUt(VA[LV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Acidification of salt water.
@@ -46,7 +46,7 @@ internal object IodineBromineProcessing
             fluidInputs(SulfuricAcid.getFluid(1000))
             fluidOutputs(AcidicSaltWater.getFluid(2000))
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Sifting it to get Bromine and Iodine.
@@ -59,7 +59,7 @@ internal object IodineBromineProcessing
             fluidOutputs(Bromine.getFluid(250))
             fluidOutputs(SulfuricAcid.getFluid(500))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

@@ -18,11 +18,11 @@ import gregtech.api.GTValues.VH
 import gregtech.api.GTValues.ZPM
 import gregtech.api.unification.material.MarkerMaterials.Tier
 import gregtech.api.unification.ore.OrePrefix.circuit
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_EV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_HV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GENERIC_CIRCUIT_IV
@@ -51,7 +51,7 @@ internal object GenericCircuits
                 input(circuit, TierBridge.materialOf(tier))
                 output(genericByTier(tier)!!)
                 EUt(VH[ULV])
-                duration(5 * TICK)
+                duration(5.t)
             }
         }
     }

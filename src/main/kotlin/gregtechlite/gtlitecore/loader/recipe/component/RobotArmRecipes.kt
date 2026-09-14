@@ -59,11 +59,11 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UXV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.TOOL_DATA_ORB
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
@@ -129,11 +129,11 @@ internal object RobotArmRecipes
             fluidInputs(Lubricant.getFluid(250))
             output(ROBOT_ARM_LuV)
             EUt(6000) // IV
-            duration(20 * SECOND)
+            duration(20.s)
             scannerResearch {
                 it.researchStack(ROBOT_ARM_IV)
                     .EUt(VA[HV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -165,11 +165,11 @@ internal object RobotArmRecipes
             fluidInputs(Lubricant.getFluid(500))
             output(ROBOT_ARM_ZPM)
             EUt(24000) // LuV
-            duration(20 * SECOND)
+            duration(20.s)
             scannerResearch {
                 it.researchStack(ROBOT_ARM_LuV)
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -205,7 +205,7 @@ internal object RobotArmRecipes
             fluidInputs(Naquadria.getFluid(L))
             output(ROBOT_ARM_UV)
             EUt(100_000) // ZPM
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(ROBOT_ARM_ZPM)
                     .EUt(VA[ZPM])
@@ -229,7 +229,7 @@ internal object RobotArmRecipes
             fluidInputs(Taranium.getFluid(L * 2))
             output(ROBOT_ARM_UHV)
             EUt(400_000) // UV
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(ROBOT_ARM_UV)
                     .EUt(VA[UV])
@@ -254,7 +254,7 @@ internal object RobotArmRecipes
             fluidInputs(Fullerene.getFluid(L))
             output(ROBOT_ARM_UEV)
             EUt(1_800_000) // UHV
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(ROBOT_ARM_UHV)
                     .EUt(VA[UHV])
@@ -279,7 +279,7 @@ internal object RobotArmRecipes
             fluidInputs(CarbonNanotube.getFluid(L * 2))
             output(ROBOT_ARM_UIV)
             EUt(6_000_000) // UIV
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(ROBOT_ARM_UEV)
                     .EUt(VA[UEV])
@@ -304,7 +304,7 @@ internal object RobotArmRecipes
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
             output(ROBOT_ARM_UXV)
             EUt(20_000_000) // UIV
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(ROBOT_ARM_UIV)
                     .EUt(VA[UIV])
@@ -329,7 +329,7 @@ internal object RobotArmRecipes
             fluidInputs(CosmicFabric.getFluid(L * 8))
             output(ROBOT_ARM_OpV)
             EUt(50_000_000) // UXV
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(ROBOT_ARM_UXV)
                     .EUt(VA[UXV])
@@ -361,7 +361,7 @@ internal object RobotArmRecipes
             fluidInputs(CosmicFabric.getFluid(L * 16))
             output(ROBOT_ARM_MAX)
             EUt(300_000_000) // OpV
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(ROBOT_ARM_OpV)
                     .EUt(VA[OpV])

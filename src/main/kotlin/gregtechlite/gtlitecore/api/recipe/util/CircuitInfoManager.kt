@@ -5,12 +5,12 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.recipes.RecipeMaps.SCANNER_RECIPES
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.collection.hashBiMapOf
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.builder.CircuitAssemblyLineRecipeBuilder
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CIRCUIT_PATTERN
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagString
@@ -38,7 +38,7 @@ fun createCircuitPatternRecipe(circuitItem: MetaItem<*>.MetaValueItem,
         .input(circuitItem)
         .outputs(dataStack)
         .EUt(VA[LV])
-        .duration(2 * SECOND + 10 * TICK)
+        .duration(2.s + 10.t)
         .buildAndRegister()
 }
 
@@ -59,7 +59,7 @@ fun createCircuitPatternRecipeFromItemStack(circuitItem: ItemStack,
         .input(circuitItem.item,1, circuitItem.metadata)
         .outputs(dataStack)
         .EUt(VA[LV])
-        .duration(2 * SECOND + 10 * TICK)
+        .duration(2.s + 10.t)
         .buildAndRegister()
 }
 

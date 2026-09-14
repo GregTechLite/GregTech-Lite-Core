@@ -10,13 +10,13 @@ import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Wheat
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MULTICOOKER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butter
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.GRAHAM_CRACKER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_FLAT
@@ -40,7 +40,7 @@ internal object GrahamCrackersProcessing
             fluidInputs(Milk.getFluid(500))
             outputs(GRAHAM_CRACKER_DOUGH.getStack(6))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Graham Cracker Dough -> Graham Cracker Chunk
@@ -54,7 +54,7 @@ internal object GrahamCrackersProcessing
             inputs(GRAHAM_CRACKER_CHUNK.stack())
             outputs(GRAHAM_CRACKER_SLICE.getStack(9))
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Graham Cracker Slice -> Graham Cracker

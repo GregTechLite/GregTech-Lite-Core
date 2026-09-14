@@ -8,9 +8,9 @@ import gregtech.api.unification.material.Materials.Glycerol
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.PotassiumDichromate
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CitricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FormicAcid
 
@@ -30,7 +30,7 @@ internal object CitricAcidChain
             fluidOutputs(CitricAcid.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[EV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
     }
 

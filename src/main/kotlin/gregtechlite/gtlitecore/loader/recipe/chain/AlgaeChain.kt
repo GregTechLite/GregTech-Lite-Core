@@ -22,12 +22,12 @@ import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.CARBON_MESH
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlgaeMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BrownAlgae
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumAlginate
@@ -53,7 +53,7 @@ internal object AlgaeChain
             fluidInputs(SaltWater.getFluid(1000))
             fluidOutputs(AlgaeMixture.getFluid(1000))
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Algae Mixture -> Green/Brown/Red Algae
@@ -65,7 +65,7 @@ internal object AlgaeChain
             chancedOutput(dust, RedAlgae, 4500, 750)
             fluidOutputs(SaltWater.getFluid(1000))
             EUt(VA[LV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 6(Na2CO3)(H2O)-> 2C5H7O4COONa + C5H10O5 + C6H10O5
@@ -79,7 +79,7 @@ internal object AlgaeChain
             fluidOutputs(CarbonDioxide.getFluid(6000))
             fluidOutputs(Water.getFluid(6000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 2C5H7O4COONa + CaCl2 -> (C5H7O4COO)2Ca + 2NaCl
@@ -89,7 +89,7 @@ internal object AlgaeChain
             output(dust, CalciumAlginate, 39)
             output(dust, Salt, 4)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // region Algae Application
@@ -100,7 +100,7 @@ internal object AlgaeChain
             fluidInputs(DistilledWater.getFluid(500))
             fluidOutputs(Methane.getFluid(500))
             EUt(VH[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Green Algae + Brown Algae + 5H2O -> 5H2SO4
@@ -110,7 +110,7 @@ internal object AlgaeChain
             fluidInputs(DistilledWater.getFluid(5000))
             fluidOutputs(SulfuricAcid.getFluid(5000))
             EUt(VA[HV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // Brown Algae + 2H2O -> 3Li2CO3
@@ -119,7 +119,7 @@ internal object AlgaeChain
             fluidInputs(DistilledWater.getFluid(2000))
             output(dust, LithiumCarbonate, 18)
             EUt(VA[MV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
         }
 
         // endregion

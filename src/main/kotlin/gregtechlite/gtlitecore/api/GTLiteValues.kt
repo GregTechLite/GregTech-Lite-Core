@@ -25,34 +25,36 @@ const val MOD_VERSION = GTLiteTags.MOD_VERSION
 @JvmField
 val LOGGER = SidedLogger(MOD_ID)
 
-/**
- * Regular time units in the game, used in recipes by default and tickable checks.
- */
-const val TICK = 1
+// region Constants
 
 /**
- * Regular time units in the game, used in recipes by default and tickable checks.
- *
- * 1 sec = 20 tick
+ * Tick time unit for regular recipes, progress and counter.
  */
-const val SECOND = 20 * TICK
+val Int.t
+    get() = this * 1
 
 /**
- * Regular time units in the game, used in recipes by default and tickable checks.
- *
- * 1 min = 60 sec
+ * Second time unit for regular recipes, progress and counter.
  */
-const val MINUTE = 60 * SECOND
+val Int.s
+    get() = this * 20.t
 
 /**
- * Regular time units in the game, used in recipes by default and tickable checks.
- *
- * 1 hr = 60 min
+ * Minute time unit for regular recipes, progress and counter.
  */
-const val HOUR = 60 * MINUTE
+val Int.min
+    get() = this * 60.s
+
+/**
+ * Hour time unit for regular recipes, progress and counter.
+ */
+val Int.hr
+    get() = this * 60.min
 
 /**
  * Represent a Unit of Steam, based on the conversion radio of Steam and (Distilled) Water,
  * calculated by its Fluid Heater recipes (6:960) and Turbine recipes (4:640).
  */
 const val SU = 160
+
+// endregion

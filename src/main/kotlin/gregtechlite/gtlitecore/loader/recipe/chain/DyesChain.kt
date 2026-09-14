@@ -54,9 +54,7 @@ import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
@@ -64,6 +62,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_R
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumSulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
@@ -153,7 +153,7 @@ internal object DyesChain
             fluidInputs(Oxygen.getFluid(1000))
             output(dust, ManganeseMonoxide, 2)
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Mn + 2O -> MnO2
@@ -163,7 +163,7 @@ internal object DyesChain
             fluidInputs(Oxygen.getFluid(2000))
             output(dust, Pyrolusite, 3)
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // MnO + Fe2O3 -> (MnO)(Fe2O3)
@@ -173,7 +173,7 @@ internal object DyesChain
             input(dust, BandedIron)
             output(dust, Sienna, 2)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // (MnO)(Fe2O3) (Brown) -> (MnO)(Fe2O3) (Red)
@@ -191,7 +191,7 @@ internal object DyesChain
             input(dust, ChromiumTrioxide, 4)
             output(dust, LeadChromate, 6)
             EUt(VA[MV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // PbO + 2HNO3 -> Pb(NO3)2 + H2O
@@ -202,7 +202,7 @@ internal object DyesChain
             output(dust, LeadNitrate, 9)
             fluidOutputs(Steam.getFluid(1 * SU))
             EUt(VA[MV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 
@@ -214,7 +214,7 @@ internal object DyesChain
             input(dust, CobaltOxide, 2)
             output(dust, CobaltAluminate, 7)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -228,7 +228,7 @@ internal object DyesChain
             fluidOutputs(Nitrotoluene.getFluid(1000))
             fluidOutputs(DilutedSulfuricAcid.getFluid(3000))
             EUt(VA[EV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // NaClO + C7H7NO2 + 2H2SO4 -> 0.5C14H14N2O6S2 + NaCl + 4H2O
@@ -241,7 +241,7 @@ internal object DyesChain
             output(dust, Salt, 2)
             fluidOutputs(Water.getFluid(4000))
             EUt(VA[EV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
     }
 
@@ -254,7 +254,7 @@ internal object DyesChain
             output(dust, Fluorescein, 37)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[EV])
-            duration(11 * SECOND + 5 * TICK)
+            duration(11.s + 5.t)
             buildAndRegister()
         }
 
@@ -267,7 +267,7 @@ internal object DyesChain
             fluidOutputs(Hydrogen.getFluid(4000))
             fluidOutputs(Steam.getFluid(2 * SU))
             EUt(VHA[HV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
     }
 
@@ -282,7 +282,7 @@ internal object DyesChain
             fluidInputs(HydrochloricAcid.getFluid(2000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 3K4Fe(CN)6(H2O)3 + 4FeCl3 -> Fe4[Fe(CN)6]3 + 12KCl + 9H2O
@@ -294,7 +294,7 @@ internal object DyesChain
             output(dust, RockSalt, 24)
             fluidOutputs(Water.getFluid(9000))
             EUt(VA[EV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
     }
 
@@ -309,7 +309,7 @@ internal object DyesChain
             fluidOutputs(Ammonia.getFluid(2000))
             fluidOutputs(Hydrogen.getFluid(4000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C16H10N2O2 + 4Br -> C16H10Br4N2O2
@@ -318,7 +318,7 @@ internal object DyesChain
             fluidInputs(Bromine.getFluid(4000))
             output(dust, Tetrabromoindigo, 34)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // C16H10N2O2 + C16H10Br4N2O2 -> (C16H10N2O2)2Br4
@@ -328,7 +328,7 @@ internal object DyesChain
             input(dust, Tetrabromoindigo)
             output(dust, CyanIndigo, 2)
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // (C16H10N2O2)2Br4 decomposition.
@@ -337,7 +337,7 @@ internal object DyesChain
             output(dust, Indigo)
             output(dust, Tetrabromoindigo)
             EUt(VA[LV])
-            duration(4 * SECOND + 5 * TICK)
+            duration(4.s + 5.t)
         }
     }
 
@@ -355,7 +355,7 @@ internal object DyesChain
             fluidOutputs(Water.getFluid(8000))
             fluidOutputs(Ammonia.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -370,7 +370,7 @@ internal object DyesChain
             output(dust, SodiumSulfanilate, 18)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C10H8 + HNO3 -> C10H8NH + 3O
@@ -380,7 +380,7 @@ internal object DyesChain
             fluidOutputs(Naphthylamine.getFluid(1000))
             fluidOutputs(Oxygen.getFluid(3000))
             EUt(VA[HV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // C6H6NNaO3S + 2C10H8NH + 3NaNO3 -> C26H19N6NaO3S + 3NaOH + H2O + 5O
@@ -393,7 +393,7 @@ internal object DyesChain
             fluidOutputs(Water.getFluid(1000))
             fluidOutputs(Oxygen.getFluid(5000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -406,7 +406,7 @@ internal object DyesChain
             output(dust, CopperArsenite, 13)
             fluidOutputs(SulfurDioxide.getFluid(3000))
             EUt(VA[MV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // Cu3(AsO4)2 + 2HCl -> 2AsCuHO3 + CuCl2 + 2O
@@ -417,7 +417,7 @@ internal object DyesChain
             output(dust, CopperDichloride, 3)
             fluidOutputs(Oxygen.getFluid(2000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -433,7 +433,7 @@ internal object DyesChain
             fluidOutputs(HydrochloricAcid.getFluid(13000))
             fluidOutputs(CarbonTetrachloride.getFluid(4000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -446,7 +446,7 @@ internal object DyesChain
             fluidOutputs(IsopropylSuccinate.getFluid(1000))
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[HV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // C7H12O4 + 2C5H5N + 5O -> C18H12N2O2 + CO2 + 5H2O
@@ -458,7 +458,7 @@ internal object DyesChain
             fluidOutputs(CarbonDioxide.getFluid(1000))
             fluidOutputs(Ice.getFluid(5000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -474,7 +474,7 @@ internal object DyesChain
             fluidOutputs(Butanol.getFluid(1000))
             fluidOutputs(Steam.getFluid(2 * SU))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -487,7 +487,7 @@ internal object DyesChain
             fluidInputs(Chlorine.getFluid(2000))
             output(dust, BariumDichloride, 3)
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // BaCl2 + K2MnO4 -> BaMnO4 + 2KCl
@@ -497,7 +497,7 @@ internal object DyesChain
             output(dust, BariumManganate, 6)
             output(dust, RockSalt, 4)
             EUt(VA[MV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // BaSO4 + BaMnO4 -> (BaSO4)(BaMnO4)
@@ -507,7 +507,7 @@ internal object DyesChain
             input(dust, BariumManganate)
             output(dust, ManganeseBlue, 2)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -528,7 +528,7 @@ internal object DyesChain
             output(dust, Sulfur)
             fluidOutputs(Water.getFluid(6000))
             EUt(VA[IV])
-            duration(45 * SECOND)
+            duration(45.s)
         }
     }
 
@@ -541,7 +541,7 @@ internal object DyesChain
             fluidOutputs(Methylquinoline.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[EV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // C10H9N + Na2CO3 + C6H4(CO)2O + 2SO2 -> C18H9NNa2O8S2 + C + 2H2O
@@ -554,7 +554,7 @@ internal object DyesChain
             output(dust, Carbon)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

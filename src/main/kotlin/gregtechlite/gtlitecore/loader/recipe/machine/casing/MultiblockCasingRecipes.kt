@@ -29,11 +29,11 @@ import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
 import gregtech.common.items.MetaItems.ELECTRIC_PISTON_UV
 import gregtech.common.metatileentities.MetaTileEntities.HULL
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MolybdenumDisilicide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
@@ -63,7 +63,7 @@ internal object MultiblockCasingRecipes
             input(stickLong, MolybdenumDisilicide, 1)
             outputs(ActiveUniqueCasing.HEAT_VENT.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Substrate Casing
@@ -80,7 +80,7 @@ internal object MultiblockCasingRecipes
             input(stick, RedSteel, 4)
             outputs(MultiblockCasing.SUBSTRATE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Advanced Substrate Casing
@@ -97,7 +97,7 @@ internal object MultiblockCasingRecipes
             input(stick, Duranium, 4)
             outputs(MultiblockCasing.ADVANCED_SUBSTRATE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Drill Head
@@ -118,7 +118,7 @@ internal object MultiblockCasingRecipes
             input(COMPONENT_GRINDER_TUNGSTEN, 3)
             outputs(MultiblockCasing.DRILL_HEAD.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Crushing Wheel Casing
@@ -137,7 +137,7 @@ internal object MultiblockCasingRecipes
             input(ELECTRIC_MOTOR_LV)
             outputs(ActiveUniqueCasing.CRUSHING_WHEEL.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

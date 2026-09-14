@@ -8,12 +8,12 @@ import gregtech.api.recipes.RecipeMaps.CANNER_RECIPES
 import gregtech.api.recipes.RecipeMaps.DISTILLATION_RECIPES
 import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CitricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonExtract
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LemonLimeMixture
@@ -43,7 +43,7 @@ internal object OrangesProcessing
             outputs(ZEST_DUST.stack())
             fluidOutputs(LemonExtract.getFluid(100))
             EUt(5) // ULV
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         ModHandler.addShapedRecipe(false, "zest_dust_lime", ZEST_DUST.stack(),
@@ -55,7 +55,7 @@ internal object OrangesProcessing
             outputs(ZEST_DUST.stack())
             fluidOutputs(LimeExtract.getFluid(100))
             EUt(5) // ULV
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         ModHandler.addShapedRecipe(false, "zest_dust_orange", ZEST_DUST.stack(),
@@ -67,7 +67,7 @@ internal object OrangesProcessing
             outputs(ZEST_DUST.stack())
             fluidOutputs(OrangeExtract.getFluid(100))
             EUt(5) // ULV
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Orange Juice
@@ -76,7 +76,7 @@ internal object OrangesProcessing
             fluidInputs(OrangeExtract.getFluid(250))
             output(ORANGE_JUICE)
             EUt(4) // ULV
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Lemon Extract -> Citric Acid
@@ -84,7 +84,7 @@ internal object OrangesProcessing
             fluidInputs(LemonExtract.getFluid(1000))
             fluidOutputs(CitricAcid.getFluid(100))
             EUt(VA[MV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // Lemon Extract + Lime Extract -> Lemon-Lime Mixture
@@ -93,7 +93,7 @@ internal object OrangesProcessing
             fluidInputs(LimeExtract.getFluid(500))
             fluidOutputs(LemonLimeMixture.getFluid(1000))
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

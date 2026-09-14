@@ -32,7 +32,6 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.gem
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
@@ -40,6 +39,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPE
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackPhosphorus
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BluePhosphorus
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NMethylPyrrolidone
@@ -79,7 +79,7 @@ internal object PhosphorusChain
             output(gem, WhitePhosphorus)
             fluidOutputs(CarbonDioxide.getFluid(5000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Advanced recipes for White Phosphorus.
@@ -90,7 +90,7 @@ internal object PhosphorusChain
             output(gem, WhitePhosphorus)
             fluidOutputs(CarbonMonoxide.getFluid(10000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // P4 (white) + Ar -> P4 (red)
@@ -99,7 +99,7 @@ internal object PhosphorusChain
             fluidInputs(Argon.getFluid(50))
             output(gem, RedPhosphorus)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // P4 (white) + 2Pb -> P4 (violet)
@@ -108,7 +108,7 @@ internal object PhosphorusChain
             fluidInputs(Lead.getFluid(L * 2))
             output(gem, VioletPhosphorus)
             EUt(VA[HV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // P4 (white) -> P4 (black)
@@ -116,7 +116,7 @@ internal object PhosphorusChain
             input(gem, WhitePhosphorus)
             output(gem, BlackPhosphorus)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // P4 (black) -> P4 (blue)
@@ -125,7 +125,7 @@ internal object PhosphorusChain
             input(gem, BlackPhosphorus)
             output(dust, BluePhosphorus)
             EUt(VA[ZPM])
-            duration(5 * SECOND)
+            duration(5.s)
             temperature(4800)
         }
     }
@@ -139,7 +139,7 @@ internal object PhosphorusChain
             fluidInputs(Chlorine.getFluid(12000))
             fluidOutputs(PhosphorusTrichloride.getFluid(4000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // 2P4 (red) + 24Cl -> 8PCl3
@@ -149,7 +149,7 @@ internal object PhosphorusChain
             fluidInputs(Chlorine.getFluid(24000))
             fluidOutputs(PhosphorusTrichloride.getFluid(8000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // 2P4 (black) + 24Cl -> 8PCl3
@@ -159,7 +159,7 @@ internal object PhosphorusChain
             fluidInputs(Chlorine.getFluid(24000))
             fluidOutputs(PhosphorusTrichloride.getFluid(8000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // 4P4 (violet) + 48Cl -> 16PCl3
@@ -169,7 +169,7 @@ internal object PhosphorusChain
             fluidInputs(Chlorine.getFluid(48000))
             fluidOutputs(PhosphorusTrichloride.getFluid(16000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // 4P4 (blue) + 48Cl -> 16PCl3
@@ -179,7 +179,7 @@ internal object PhosphorusChain
             fluidInputs(Chlorine.getFluid(48000))
             fluidOutputs(PhosphorusTrichloride.getFluid(16000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // PCl3 + O -> POCl3
@@ -188,7 +188,7 @@ internal object PhosphorusChain
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(PhosphorylChloride.getFluid(1000))
             EUt(VA[HV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -202,7 +202,7 @@ internal object PhosphorusChain
             output(dust, Triphenylphosphine, 34)
             output(dust, Salt, 12)
             EUt(VA[IV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
     }
 
@@ -216,7 +216,7 @@ internal object PhosphorusChain
             fluidInputs(NMethylPyrrolidone.getFluid(800))
             fluidOutputs(PhosphoreneSolution.getFluid(1000))
             EUt(VA[IV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // 1/8(P4)8(C5H9NO)(Na(OH))2·(H2O) -> P4 + 1/8C5H9NO (cycle)
@@ -226,7 +226,7 @@ internal object PhosphorusChain
             output(foil, Phosphorene, 4)
             fluidOutputs(NMethylPyrrolidone.getFluid(100))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -238,7 +238,7 @@ internal object PhosphorusChain
             fluidInputs(Water.getFluid(6000))
             fluidOutputs(Phosphine.getFluid(4000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

@@ -17,10 +17,10 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UIV
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CinobiteA243
@@ -71,7 +71,7 @@ internal object EntrodynamicallyPhaseChangerCasingRecipes
             fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 20))
             outputs(MultiblockCasing.LATTICE_QCD_THERMAL_SHIELDING_CASING.getStack(64))
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             tier(3)
         }
 
@@ -90,7 +90,7 @@ internal object EntrodynamicallyPhaseChangerCasingRecipes
             fluidInputs(TransitionAlloyB.getFluid(L * 5))
             outputs(MultiblockCasing.HAMILTON_KILLING_FLOW_CONTROL_CASING.getStack(64))
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(ActiveUniqueCasing.TEMPERATURE_CONTROLLER.stack)
                     .EUt(VA[UIV])
@@ -115,7 +115,7 @@ internal object EntrodynamicallyPhaseChangerCasingRecipes
             fluidInputs(Hypogen.getFluid(L * 4))
             outputs(GlassCasing.NANO_SHIELDING_FRAME.getStack(64))
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(GlassCasing.QUANTUM.stack)
                     .EUt(VA[UIV])

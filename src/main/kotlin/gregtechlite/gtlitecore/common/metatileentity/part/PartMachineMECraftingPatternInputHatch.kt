@@ -51,18 +51,19 @@ import gregtech.api.mui.GTGuis
 import gregtech.api.mui.widget.GhostCircuitSlotWidget
 import gregtech.api.util.GTUtility
 import gregtech.common.metatileentities.multi.multiblockpart.appeng.MetaTileEntityAEHostablePart
-import gregtechlite.gtlitecore.api.TICK
-import gregtechlite.gtlitecore.api.capability.PatternedSingletonDualInputProxy
-import gregtechlite.gtlitecore.api.capability.SingletonDualInputInventory
 import gregtechlite.gtlitecore.api.capability.PatternedSingletonDualInputInventory
-import gregtechlite.gtlitecore.api.capability.handler.DynamicItemHandlerList
-import gregtechlite.gtlitecore.api.capability.handler.DynamicFluidTank
-import gregtechlite.gtlitecore.api.capability.handler.DynamicNotifiableItemStackHandler
+import gregtechlite.gtlitecore.api.capability.PatternedSingletonDualInputProxy
 import gregtechlite.gtlitecore.api.capability.SingletonDualInputAdapter
+import gregtechlite.gtlitecore.api.capability.SingletonDualInputInventory
+import gregtechlite.gtlitecore.api.capability.handler.DynamicFluidTank
+import gregtechlite.gtlitecore.api.capability.handler.DynamicItemHandlerList
+import gregtechlite.gtlitecore.api.capability.handler.DynamicNotifiableItemStackHandler
 import gregtechlite.gtlitecore.api.capability.handler.SingletonDualInputHandler
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
+import java.util.Optional
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
@@ -78,7 +79,6 @@ import net.minecraftforge.fluids.FluidStack
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
-import java.util.Optional
 
 class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, supportFluids: Boolean)
     : MetaTileEntityAEHostablePart<IAEItemStack>(id, tier, false, IItemStorageChannel::class.java),
@@ -125,8 +125,8 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         private const val DATA_STICK_TAG = "MECraftingPatternInputBus"
         const val MIRROR_LINK_TAG = "MECraftingPatternInputMirrorLink"
 
-        private const val PATTERN_SYNC_DURATION = 10 * TICK
-        private const val ME_STATUS_SYNC_DURATION = 20 * TICK
+        private const val PATTERN_SYNC_DURATION = 10
+        private const val ME_STATUS_SYNC_DURATION = 20
     }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity

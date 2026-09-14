@@ -26,7 +26,6 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.nugget
 import gregtech.api.unification.ore.OrePrefix.springSmall
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
@@ -36,6 +35,7 @@ import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlkaliEarthGroupAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChloroauricAcid
@@ -73,7 +73,7 @@ internal object GoldenFruitsProcessing
             fluidOutputs(NitricOxide.getFluid(1000))
             fluidOutputs(Steam.getFluid(2 * SU))
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Golden Carrot
@@ -85,7 +85,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(ChloroauricAcid.getFluid(250))
             outputs(GOLDEN_CARROT)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Silver Apple
@@ -94,7 +94,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(Silver.getFluid(L))
             output(SILVER_APPLE)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Golden Apple
@@ -106,7 +106,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(ChloroauricAcid.getFluid(1000))
             outputs(GOLDEN_APPLE)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Enchanted Golden Apple
@@ -116,7 +116,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(ChloroauricAcid.getFluid(4000))
             outputs(GOLDEN_APPLE, meta = 1)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Silver Strawberry
@@ -125,7 +125,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(Silver.getFluid(L))
             output(SILVER_STRAWBERRY)
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Golden Strawberry
@@ -134,7 +134,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(ChloroauricAcid.getFluid(16000))
             output(GOLDEN_STRAWBERRY)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Rainbow Berry
@@ -151,7 +151,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(AlkaliEarthGroupAlloy.getFluid(L))
             output(RAINBOW_BERRY)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -167,7 +167,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(AlkaliEarthGroupAlloy.getFluid(L * 16))
             output(RAINBOW_BERRY, 16)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -183,7 +183,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(AlkaliEarthGroupAlloy.getFluid(L * 64))
             output(RAINBOW_BERRY, 64)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Moon Berry
@@ -192,7 +192,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(Eternity.getFluid(L))
             output(MOON_BERRY)
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

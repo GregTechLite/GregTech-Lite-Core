@@ -7,11 +7,11 @@ import gregtech.api.unification.material.Materials.Nickel
 import gregtech.api.unification.material.Materials.Platinum
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.spring
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AscorbicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DehydroascorbicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sorbose
@@ -29,7 +29,7 @@ internal object AscorbicAcidChain
             input(dust, Sorbose, 24)
             fluidOutputs(AscorbicAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(14 * SECOND)
+            duration(14.s)
         }
 
         // C6H6O6 + 2H -> C6H8O6
@@ -39,7 +39,7 @@ internal object AscorbicAcidChain
             fluidInputs(Hydrogen.getFluid(2000))
             fluidOutputs(AscorbicAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(7 * SECOND)
+            duration(7.s)
         }
     }
 

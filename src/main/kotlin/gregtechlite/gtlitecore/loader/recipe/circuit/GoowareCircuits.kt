@@ -57,17 +57,17 @@ import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
 import gregtech.common.items.MetaItems.FLUID_CELL_LARGE_STAINLESS_STEEL
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aminophenol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BZMedium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumHydroxide
@@ -143,7 +143,7 @@ internal object GoowareCircuits
             fluidInputs(FluorinatedEthylenePropylene.getFluid(L))
             output(GOOWARE_BOARD)
             EUt(VA[UV])
-            duration(2 * SECOND)
+            duration(2.s)
             temperature(493)
         }
 
@@ -160,7 +160,7 @@ internal object GoowareCircuits
                 fluidInputs(etchingLiquid)
                 output(ULTIMATE_CIRCUIT_BOARD)
                 EUt(VA[EV])
-                duration(1 * MINUTE + 45 * SECOND)
+                duration(1.min + 45.s)
                 cleanroom()
             }
         }
@@ -177,7 +177,7 @@ internal object GoowareCircuits
             output(dust, Hydroxyquinoline, 18)
             fluidOutputs(Water.getFluid(4000))
             EUt(VA[IV])
-            duration(13 * SECOND)
+            duration(13.s)
         }
 
         // Al + C9H7NO -> Al(C9H7NO)
@@ -186,7 +186,7 @@ internal object GoowareCircuits
             input(dust, Hydroxyquinoline, 18)
             output(dust, HydroxyquinolineAluminium, 19)
             EUt(VA[ZPM])
-            duration(8 * SECOND + 10 * TICK)
+            duration(8.s + 10.t)
         }
 
         // Another recipe for H2SeO3 for these chemistry processing.
@@ -197,7 +197,7 @@ internal object GoowareCircuits
             fluidInputs(Oxygen.getFluid(2000))
             output(dust, SelenousAcid, 6)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // H2SeO3 + O -> H2SeO4
@@ -206,7 +206,7 @@ internal object GoowareCircuits
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(HydroselenicAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Cu + Ga + In + 2H2SeO4 -> CuGaInSe2 + 2H2O + 6O
@@ -219,7 +219,7 @@ internal object GoowareCircuits
             fluidOutputs(Oxygen.getFluid(6000))
             fluidOutputs(Steam.getFluid(2 * SU))
             EUt(VA[LuV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Gooware SMD Transistor
@@ -230,7 +230,7 @@ internal object GoowareCircuits
             fluidInputs(KaptonK.getFluid(L))
             output(GOOWARE_SMD_TRANSISTOR, 16)
             EUt(VA[ZPM])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -242,7 +242,7 @@ internal object GoowareCircuits
             fluidInputs(KaptonK.getFluid(L * 2))
             output(GOOWARE_SMD_RESISTOR, 16)
             EUt(VA[ZPM])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -253,7 +253,7 @@ internal object GoowareCircuits
             output(dust, BariumHydroxide, 5)
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[MV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // Ba(OH)2 + TiCl4 + H2O -> BaTiO3 + 4HCl
@@ -264,7 +264,7 @@ internal object GoowareCircuits
             output(dust, BariumTitanate, 5)
             fluidOutputs(HydrochloricAcid.getFluid(4000))
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Gooware SMD Capacitor
@@ -275,7 +275,7 @@ internal object GoowareCircuits
             fluidInputs(KaptonK.getFluid(L / 2))
             output(GOOWARE_SMD_CAPACITOR, 16)
             EUt(VA[ZPM])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -287,7 +287,7 @@ internal object GoowareCircuits
             fluidInputs(KaptonK.getFluid(L * 2))
             output(GOOWARE_SMD_DIODE, 64)
             EUt(VA[ZPM])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -299,7 +299,7 @@ internal object GoowareCircuits
             fluidInputs(KaptonK.getFluid(L))
             output(GOOWARE_SMD_INDUCTOR, 16)
             EUt(VA[ZPM])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
     }
@@ -318,7 +318,7 @@ internal object GoowareCircuits
             fluidInputs(SolderingAlloy.getFluid(L))
             output(BZ_REACTION_CHAMBER)
             EUt(VA[UV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Non-linear Chemical Oscillator
@@ -327,7 +327,7 @@ internal object GoowareCircuits
             fluidInputs(BZMedium.getFluid(500))
             output(NONLINEAR_CHEMICAL_OSCILLATOR)
             EUt(VA[IV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
     }
 
@@ -343,7 +343,7 @@ internal object GoowareCircuits
             input(wireFine, Europium, 8)
             output(GOOWARE_PROCESSOR_ZPM, 4)
             EUt(VHA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(1)
             cleanroom()
         }
@@ -357,7 +357,7 @@ internal object GoowareCircuits
             input(wireFine, Europium, 8)
             output(GOOWARE_PROCESSOR_ZPM, 4)
             EUt(VHA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
             solderMultiplier(1)
             cleanroom()
         }
@@ -371,7 +371,7 @@ internal object GoowareCircuits
             input(wireFine, Europium, 8)
             output(GOOWARE_PROCESSOR_ZPM, 4)
             EUt(VHA[UV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             solderMultiplier(1)
             cleanroom()
         }
@@ -384,7 +384,7 @@ internal object GoowareCircuits
             input(bolt, Neutronium, 8)
             output(GOOWARE_PROCESSOR_ZPM, 8)
             EUt(VHA[UHV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             solderMultiplier(1)
             cleanroom()
         }
@@ -399,7 +399,7 @@ internal object GoowareCircuits
             input(wireFine, Europium, 16)
             output(GOOWARE_ASSEMBLY_UV, 3)
             EUt(VHA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -413,7 +413,7 @@ internal object GoowareCircuits
             input(wireFine, Europium, 16)
             output(GOOWARE_ASSEMBLY_UV, 3)
             EUt(VHA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -427,7 +427,7 @@ internal object GoowareCircuits
             input(wireFine, Europium, 16)
             output(GOOWARE_ASSEMBLY_UV, 3)
             EUt(VHA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -445,7 +445,7 @@ internal object GoowareCircuits
             fluidInputs(SolderingAlloy.getFluid(L * 16))
             output(GOOWARE_COMPUTER_UHV, 2)
             EUt(VA[UV])
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(GOOWARE_ASSEMBLY_UV)
                     .EUt(VA[UV])
@@ -465,7 +465,7 @@ internal object GoowareCircuits
             fluidInputs(SolderingAlloy.getFluid(L * 16))
             output(GOOWARE_COMPUTER_UHV, 2)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(GOOWARE_ASSEMBLY_UV)
                     .EUt(VA[UV])
@@ -490,7 +490,7 @@ internal object GoowareCircuits
             fluidInputs(KaptonE.getFluid(L * 16))
             output(GOOWARE_MAINFRAME_UEV)
             EUt(VA[UHV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(GOOWARE_COMPUTER_UHV)
                     .EUt(VA[UHV])
@@ -514,7 +514,7 @@ internal object GoowareCircuits
             fluidInputs(KaptonE.getFluid(L * 16))
             output(GOOWARE_MAINFRAME_UEV)
             EUt(VA[UHV])
-            duration(45 * SECOND)
+            duration(45.s)
             stationResearch {
                 it.researchStack(GOOWARE_COMPUTER_UHV)
                     .EUt(VA[UHV])
@@ -538,7 +538,7 @@ internal object GoowareCircuits
             fluidInputs(KaptonE.getFluid(L * 16))
             output(GOOWARE_MAINFRAME_UEV)
             EUt(VA[UHV])
-            duration(25 * SECOND)
+            duration(25.s)
             stationResearch {
                 it.researchStack(GOOWARE_COMPUTER_UHV)
                     .EUt(VA[UHV])
@@ -562,7 +562,7 @@ internal object GoowareCircuits
             fluidInputs(KaptonE.getFluid(L * 16))
             output(GOOWARE_MAINFRAME_UEV)
             EUt(VA[UHV])
-            duration(15 * SECOND)
+            duration(15.s)
             stationResearch {
                 it.researchStack(GOOWARE_COMPUTER_UHV)
                     .EUt(VA[UHV])

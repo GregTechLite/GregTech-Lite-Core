@@ -66,19 +66,19 @@ import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_PLATE
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_RING
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_ROD
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SAP_COLLECTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VULCANIZATION_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanediol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diaminotoluene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dinitrotoluene
@@ -120,7 +120,7 @@ internal object RubbersChain
             notConsumable(Water.getFluid(10))
             fluidOutputs(Latex.getFluid(100))
             EUt(VA[ULV])
-            duration(1 * SECOND)
+            duration(1.s)
             blockStates("rubber", listOf((MetaBlocks.RUBBER_LOG as? BlockLog)!!.defaultState))
         }
 
@@ -132,7 +132,7 @@ internal object RubbersChain
             notConsumable(stick, Iron)
             fluidInputs(Latex.getFluid(1000))
             output(dust, Latex)
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         COAGULATION_RECIPES.addRecipe {
@@ -140,7 +140,7 @@ internal object RubbersChain
             notConsumable(dust, CalciumChloride)
             fluidInputs(Latex.getFluid(1000))
             output(dust, Latex)
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         COAGULATION_RECIPES.addRecipe {
@@ -148,7 +148,7 @@ internal object RubbersChain
             notConsumable(SulfuricAcid.getFluid(1))
             fluidInputs(Latex.getFluid(1000))
             output(dust, Latex)
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         COAGULATION_RECIPES.addRecipe {
@@ -156,7 +156,7 @@ internal object RubbersChain
             notConsumable(AceticAcid.getFluid(1))
             fluidInputs(Latex.getFluid(1000))
             output(dust, Latex)
-            duration(5 * TICK)
+            duration(5.t)
         }
 
         // Disabled vanilla Alloy Smelter recipes of Rubber ingot, only allowed used
@@ -182,7 +182,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ingot, Rubber, 4)
                 EUt(VA[ULV])
-                duration(20 * SECOND)
+                duration(20.s)
             }
 
             VULCANIZATION_RECIPES.addRecipe {
@@ -192,7 +192,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ingot, Rubber, 8)
                 EUt(VA[ULV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
 
             // Plate
@@ -203,7 +203,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(plate, Rubber, 4)
                 EUt(VA[ULV])
-                duration(20 * SECOND)
+                duration(20.s)
             }
 
             VULCANIZATION_RECIPES.addRecipe {
@@ -213,7 +213,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(plate, Rubber, 8)
                 EUt(VA[ULV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
 
             // Stick
@@ -224,7 +224,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(stick, Rubber, 8)
                 EUt(VA[ULV])
-                duration(20 * SECOND)
+                duration(20.s)
             }
 
             VULCANIZATION_RECIPES.addRecipe {
@@ -234,7 +234,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(stick, Rubber, 16)
                 EUt(VA[ULV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
 
             // Ring
@@ -245,7 +245,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ring, Rubber, 16)
                 EUt(VA[ULV])
-                duration(20 * SECOND)
+                duration(20.s)
             }
 
             VULCANIZATION_RECIPES.addRecipe {
@@ -255,7 +255,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ring, Rubber, 32)
                 EUt(VA[ULV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
 
             // Foil
@@ -266,7 +266,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(foil, Rubber, 16)
                 EUt(VA[ULV])
-                duration(20 * SECOND)
+                duration(20.s)
             }
 
             VULCANIZATION_RECIPES.addRecipe {
@@ -276,7 +276,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(foil, Rubber, 32)
                 EUt(VA[ULV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
 
             // Bolt
@@ -287,7 +287,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(bolt, Rubber, 32)
                 EUt(VA[ULV])
-                duration(20 * SECOND)
+                duration(20.s)
             }
 
             VULCANIZATION_RECIPES.addRecipe {
@@ -297,7 +297,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(bolt, Rubber, 64)
                 EUt(VA[ULV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
 
             // Gear
@@ -308,7 +308,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(gear, Rubber)
                 EUt(VA[ULV])
-                duration(20 * SECOND)
+                duration(20.s)
             }
 
             VULCANIZATION_RECIPES.addRecipe {
@@ -318,7 +318,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(gear, Rubber, 2)
                 EUt(VA[ULV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
         }
 
@@ -342,7 +342,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ingot, StyreneButadieneRubber, 4)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Plate
@@ -353,7 +353,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(plate, StyreneButadieneRubber, 4)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Stick
@@ -364,7 +364,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(stick, StyreneButadieneRubber, 8)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Ring
@@ -375,7 +375,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ring, StyreneButadieneRubber, 16)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Foil
@@ -386,7 +386,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(foil, StyreneButadieneRubber, 16)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
         }
 
@@ -406,7 +406,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ingot, SiliconeRubber, 4)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Plate
@@ -417,7 +417,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(plate, SiliconeRubber, 4)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Stick
@@ -428,7 +428,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(stick, SiliconeRubber, 8)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Ring
@@ -439,7 +439,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ring, SiliconeRubber, 16)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Foil
@@ -450,7 +450,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(foil, SiliconeRubber, 16)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Gear
@@ -461,7 +461,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(gear, SiliconeRubber)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
         }
 
@@ -480,7 +480,7 @@ internal object RubbersChain
             fluidOutputs(HydrochloricAcid.getFluid(6000))
             fluidOutputs(Steam.getFluid(3 * SU))
             EUt(VA[EV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Na + F -> NaF
@@ -490,7 +490,7 @@ internal object RubbersChain
             fluidInputs(Fluorine.getFluid(1000))
             output(dust, SodiumFluoride, 2)
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // NaF + C2H6O + 2F -> NaC2H4OF3 + 2H
@@ -501,7 +501,7 @@ internal object RubbersChain
             output(dust, SodiumTrifluoroethanolate, 11)
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[EV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // C6H6 + 2F -> C6H5F + HF
@@ -512,7 +512,7 @@ internal object RubbersChain
             fluidOutputs(Fluorobenzene.getFluid(1000))
             fluidOutputs(HydrofluoricAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // 2C6H5F + 6HF + O -> C5H4F8O + 2C3H6
@@ -524,7 +524,7 @@ internal object RubbersChain
             fluidOutputs(OctafluoroPentanol.getFluid(1000))
             fluidOutputs(Propene.getFluid(2000))
             EUt(VA[ZPM])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // NaC2H4OF3 + Cl6N3P3 + 4C5H4F8O -> (CH2CF3)6(CH2C3F7)2(C2F4)2(NPO)4O4 + NaF (cycle) + 3POCl3 (cycle)
@@ -537,7 +537,7 @@ internal object RubbersChain
             output(dust, SodiumFluoride, 2)
             fluidOutputs(PhosphorylChloride.getFluid(3000))
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Add polyphosphonitrile fluoro rubber component recipes.
@@ -551,7 +551,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ingot, PolyphosphonitrileFluoroRubber, 4)
                 EUt(VA[HV])
-                duration(40 * SECOND)
+                duration(40.s)
             }
 
             // Plate
@@ -562,7 +562,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(plate, PolyphosphonitrileFluoroRubber, 4)
                 EUt(VA[HV])
-                duration(40 * SECOND)
+                duration(40.s)
             }
 
             // Stick
@@ -573,7 +573,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(stick, PolyphosphonitrileFluoroRubber, 8)
                 EUt(VA[HV])
-                duration(40 * SECOND)
+                duration(40.s)
             }
 
             // Ring
@@ -584,7 +584,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ring, PolyphosphonitrileFluoroRubber, 16)
                 EUt(VA[HV])
-                duration(40 * SECOND)
+                duration(40.s)
             }
 
             // Foil
@@ -595,7 +595,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(foil, PolyphosphonitrileFluoroRubber, 16)
                 EUt(VA[HV])
-                duration(40 * SECOND)
+                duration(40.s)
             }
         }
 
@@ -609,7 +609,7 @@ internal object RubbersChain
             fluidInputs(NitricAcid.getFluid(2000))
             fluidOutputs(Dinitrotoluene.getFluid(1000))
             EUt(VA[HV])
-            duration(25 * SECOND)
+            duration(25.s)
         }
 
         // C7H6N2O4 + 4H -> C6H3(NH2)2CH3
@@ -618,7 +618,7 @@ internal object RubbersChain
             fluidInputs(Hydrogen.getFluid(4000))
             fluidOutputs(Diaminotoluene.getFluid(1000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // CO + 2Cl -> COCl2
@@ -627,7 +627,7 @@ internal object RubbersChain
             fluidInputs(Chlorine.getFluid(2000))
             fluidOutputs(Phosgene.getFluid(1000))
             EUt(VA[HV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // C6H3(NH2)2CH3 + 2COCl2 -> CH3C6H3(NCO)2
@@ -637,7 +637,7 @@ internal object RubbersChain
             fluidOutputs(TolueneDiisocyanate.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(4000))
             EUt(VA[HV])
-            duration(45 * SECOND)
+            duration(45.s)
         }
 
         // (CH2)4O + H2O -> (C4H8O)OH2
@@ -647,7 +647,7 @@ internal object RubbersChain
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(Polytetrahydrofuran.getFluid(L))
             EUt(VA[MV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         CHEMICAL_RECIPES.addRecipe {
@@ -656,7 +656,7 @@ internal object RubbersChain
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(Polytetrahydrofuran.getFluid(216)) // 1.5L
             EUt(VA[MV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -667,7 +667,7 @@ internal object RubbersChain
             fluidInputs(TitaniumTetrachloride.getFluid(100))
             fluidOutputs(Polytetrahydrofuran.getFluid(3240))
             EUt(VA[MV])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -678,7 +678,7 @@ internal object RubbersChain
             fluidInputs(TitaniumTetrachloride.getFluid(100))
             fluidOutputs(Polytetrahydrofuran.getFluid(4320))
             EUt(VA[MV])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
         }
 
         // (C4H8O)OH2 + 3CH3C6H3(NCO)2 + 2H -> (CONH)2(C6H4)2CH2(C4O)
@@ -688,7 +688,7 @@ internal object RubbersChain
             fluidInputs(Hydrogen.getFluid(2000))
             fluidOutputs(TolueneTetramethylDiisocyanate.getFluid(2000))
             EUt(VA[IV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // (CONH)2(C6H4)2CH2(C4O) + C4H8(OH)2 -> (CONH)2(C6H4)2CH2(C4O)HO(CH2)4OH
@@ -697,7 +697,7 @@ internal object RubbersChain
             fluidInputs(Butanediol.getFluid(1000))
             output(dust, RawPolytetramethyleneGlycolRubber, 53)
             EUt(VA[UV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Add polytetramethylene glycol rubber component recipes.
@@ -711,7 +711,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ingot, PolytetramethyleneGlycolRubber, 4)
                 EUt(VA[HV])
-                duration(40 * SECOND)
+                duration(40.s)
             }
 
             // Plate
@@ -722,7 +722,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(plate, PolytetramethyleneGlycolRubber, 4)
                 EUt(VA[HV])
-                duration(40 * SECOND)
+                duration(40.s)
             }
 
             // Stick
@@ -733,7 +733,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(stick, PolytetramethyleneGlycolRubber, 8)
                 EUt(VA[HV])
-                duration(40 * SECOND)
+                duration(40.s)
             }
 
             // Ring
@@ -744,7 +744,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(ring, PolytetramethyleneGlycolRubber, 16)
                 EUt(VA[HV])
-                duration(40 * SECOND)
+                duration(40.s)
             }
 
             // Foil
@@ -755,7 +755,7 @@ internal object RubbersChain
                 input(dust, Sulfur)
                 output(foil, PolytetramethyleneGlycolRubber, 16)
                 EUt(VA[HV])
-                duration(40 * SECOND)
+                duration(40.s)
             }
         }
 

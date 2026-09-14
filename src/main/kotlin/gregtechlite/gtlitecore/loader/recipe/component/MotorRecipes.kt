@@ -46,11 +46,11 @@ import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_UXV
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_ZPM
 import gregtech.common.items.MetaItems.TOOL_DATA_ORB
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
@@ -116,11 +116,11 @@ internal object MotorRecipes
             fluidInputs(Lubricant.getFluid(250))
             output(ELECTRIC_MOTOR_LuV)
             EUt(6000) // IV
-            duration(20 * SECOND)
+            duration(20.s)
             scannerResearch {
                 it.researchStack(ELECTRIC_MOTOR_IV)
                     .EUt(VA[HV])
-                    .duration(30 * SECOND)
+                    .duration(30.s)
             }
         }
 
@@ -148,11 +148,11 @@ internal object MotorRecipes
             fluidInputs(Lubricant.getFluid(500))
             output(ELECTRIC_MOTOR_ZPM)
             EUt(24000) // LuV
-            duration(20 * SECOND)
+            duration(20.s)
             scannerResearch {
                 it.researchStack(ELECTRIC_MOTOR_LuV)
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -184,7 +184,7 @@ internal object MotorRecipes
             fluidInputs(Naquadria.getFluid(L))
             output(ELECTRIC_MOTOR_UV)
             EUt(100_000) // ZPM
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_ZPM)
                     .EUt(VA[ZPM])
@@ -207,7 +207,7 @@ internal object MotorRecipes
             fluidInputs(Taranium.getFluid(L * 2))
             output(ELECTRIC_MOTOR_UHV)
             EUt(400_000) // UV
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_UV)
                     .EUt(VA[UV])
@@ -231,7 +231,7 @@ internal object MotorRecipes
             fluidInputs(Fullerene.getFluid(L))
             output(ELECTRIC_MOTOR_UEV)
             EUt(1_800_000) // UHV
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_UHV)
                     .EUt(VA[UHV])
@@ -256,7 +256,7 @@ internal object MotorRecipes
             fluidInputs(CarbonNanotube.getFluid(L * 2))
             output(ELECTRIC_MOTOR_UIV)
             EUt(6_000_000) // UEV
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_UEV)
                     .EUt(VA[UEV])
@@ -282,7 +282,7 @@ internal object MotorRecipes
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
             output(ELECTRIC_MOTOR_UXV)
             EUt(20_000_000) // UIV
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_UIV)
                     .EUt(VA[UIV])
@@ -311,7 +311,7 @@ internal object MotorRecipes
             fluidInputs(CosmicFabric.getFluid(L * 8))
             output(ELECTRIC_MOTOR_OpV)
             EUt(50_000_000) // UXV
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_UXV)
                     .EUt(VA[UXV])
@@ -343,7 +343,7 @@ internal object MotorRecipes
             fluidInputs(CosmicFabric.getFluid(L * 16))
             output(ELECTRIC_MOTOR_MAX)
             EUt(300_000_000) // OpV
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(ELECTRIC_MOTOR_OpV)
                     .EUt(VA[OpV])

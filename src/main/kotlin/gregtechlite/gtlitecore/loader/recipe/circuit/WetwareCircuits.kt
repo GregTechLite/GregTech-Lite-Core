@@ -70,16 +70,16 @@ import gregtech.common.items.MetaItems.WETWARE_MAINFRAME_UHV
 import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM
 import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_LUV
 import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FreeElectronGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.KaptonK
@@ -129,7 +129,7 @@ internal object WetwareCircuits
             fluidInputs(FreeElectronGas.getFluid(200))
             output(ELECTRIC_SIGNAL_PETRI_DISH)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Wetware Board
@@ -143,7 +143,7 @@ internal object WetwareCircuits
             fluidInputs(SterileGrowthMedium.getFluid(1000))
             output(WETWARE_BOARD, 16)
             EUt(VA[LuV])
-            duration(1 * MINUTE)
+            duration(1.min)
             cleanroom()
         }
 
@@ -171,7 +171,7 @@ internal object WetwareCircuits
                 fluidInputs(etchingLiquid)
                 output(WETWARE_CIRCUIT_BOARD)
                 EUt(VA[HV])
-                duration(1 * MINUTE + 30 * SECOND)
+                duration(1.min + 30.s)
                 cleanroom()
             }
         }
@@ -192,7 +192,7 @@ internal object WetwareCircuits
             output(STEM_CELLS, 64)
             fluidOutputs(BacterialSludge.getFluid(500))
             EUt(VA[LuV])
-            duration(15 * SECOND)
+            duration(15.s)
             cleanroom()
         }
 
@@ -216,7 +216,7 @@ internal object WetwareCircuits
             fluidInputs(SterileGrowthMedium.getFluid(250))
             output(NEURO_PROCESSOR, 2)
             EUt(80000) // ZPM
-            duration(30 * SECOND)
+            duration(30.s)
             cleanroom()
         }
     }
@@ -265,7 +265,7 @@ internal object WetwareCircuits
             input(wireFine, YttriumBariumCuprate, 8)
             output(WETWARE_PROCESSOR_LUV, 4)
             EUt(38400) // ZPM
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(1)
             cleanroom()
         }
@@ -279,7 +279,7 @@ internal object WetwareCircuits
             input(wireFine, YttriumBariumCuprate, 8)
             output(WETWARE_PROCESSOR_LUV, 4)
             EUt(38400) // ZPM
-            duration(5 * SECOND)
+            duration(5.s)
             solderMultiplier(1)
             cleanroom()
         }
@@ -291,7 +291,7 @@ internal object WetwareCircuits
             input(bolt, Naquadah, 8)
             output(WETWARE_PROCESSOR_LUV, 8)
             EUt(150_000) // UV
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             solderMultiplier(1)
             cleanroom()
         }
@@ -324,7 +324,7 @@ internal object WetwareCircuits
             input(wireFine, YttriumBariumCuprate, 16)
             output(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 3)
             EUt(38400) // ZPM
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -338,7 +338,7 @@ internal object WetwareCircuits
             input(wireFine, YttriumBariumCuprate, 16)
             output(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 3)
             EUt(38400) // ZPM
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -366,7 +366,7 @@ internal object WetwareCircuits
             input(wireFine, YttriumBariumCuprate, 32)
             output(WETWARE_SUPER_COMPUTER_UV, 2)
             EUt(38400) // ZPM
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -405,7 +405,7 @@ internal object WetwareCircuits
             fluidInputs(Polybenzimidazole.getFluid(L * 8))
             output(WETWARE_MAINFRAME_UHV)
             EUt(300_000) // UV
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(WETWARE_SUPER_COMPUTER_UV)
                     .EUt(VA[UV])
@@ -429,7 +429,7 @@ internal object WetwareCircuits
             fluidInputs(Polybenzimidazole.getFluid(L * 8))
             output(WETWARE_MAINFRAME_UHV)
             EUt(300_000) // UV
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(WETWARE_SUPER_COMPUTER_UV)
                     .EUt(VA[UV])
@@ -453,7 +453,7 @@ internal object WetwareCircuits
             fluidInputs(Polybenzimidazole.getFluid(L * 8))
             output(WETWARE_MAINFRAME_UHV)
             EUt(300_000) // UV
-            duration(15 * SECOND)
+            duration(15.s)
             stationResearch {
                 it.researchStack(WETWARE_SUPER_COMPUTER_UV)
                     .EUt(VA[UV])

@@ -27,11 +27,11 @@ import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueVitriol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChalcogenAnodeMud
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cuprite
@@ -56,7 +56,7 @@ internal object SeleniumTelluriumProcessing
             fluidOutputs(BlueVitriol.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // CuO + H2SO4 -> CuSO4 + H2O
@@ -67,7 +67,7 @@ internal object SeleniumTelluriumProcessing
             fluidOutputs(BlueVitriol.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Cu2O + 2H2SO4 -> 2CuSO4 + H2O + 2H (lost)
@@ -78,7 +78,7 @@ internal object SeleniumTelluriumProcessing
             fluidOutputs(BlueVitriol.getFluid(2000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // CuSO4 -> Cu + S + 4O
@@ -89,7 +89,7 @@ internal object SeleniumTelluriumProcessing
             output(dust, Sulfur)
             fluidOutputs(Oxygen.getFluid(4000))
             EUt(VHA[MV])
-            duration(7 * SECOND + 4 * TICK)
+            duration(7.s + 4.t)
         }
 
         // CuSO4 + H2O -> CuSO4·H2O
@@ -99,7 +99,7 @@ internal object SeleniumTelluriumProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(SulfuricCopperSolution.getFluid(1000))
             EUt(VHA[MV])
-            duration(7 * SECOND + 4 * TICK)
+            duration(7.s + 4.t)
         }
 
         // CuSO4 + H2O -> Ag2TeSe + Cu + O + H2SO4
@@ -112,7 +112,7 @@ internal object SeleniumTelluriumProcessing
             fluidOutputs(SulfuricAcid.getFluid(1000))
             fluidOutputs(Oxygen.getFluid(1000))
             EUt(VHA[MV])
-            duration(3 * SECOND + 12 * TICK)
+            duration(3.s + 12.t)
         }
 
         // Optional recovery of metals to provide some nice bonus.
@@ -122,7 +122,7 @@ internal object SeleniumTelluriumProcessing
             chancedOutput(dust, Copper, 1000, 1000)
             chancedOutput(dust, Gold, 750, 750)
             EUt(VHA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         telluriumProcess()
@@ -141,7 +141,7 @@ internal object SeleniumTelluriumProcessing
             output(ingot, Silver, 2)
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[HV])
-            duration(30 * SECOND)
+            duration(30.s)
         } // Because this reaction is above 1900K, so silver will output by ingot form.
 
         // Na2TeO3 + H2O -> TeO2 + 2NaOH
@@ -152,7 +152,7 @@ internal object SeleniumTelluriumProcessing
             output(dust, TelluriumDioxide, 3)
             output(dust, SodiumHydroxide, 6)
             EUt(VA[MV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // TeO2 + 2SO2 + H2O -> Te + H2SO4 + SO3
@@ -165,7 +165,7 @@ internal object SeleniumTelluriumProcessing
             fluidOutputs(SulfuricAcid.getFluid(1000))
             fluidOutputs(SulfurTrioxide.getFluid(1000))
             EUt(VA[EV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
     }
 
@@ -177,7 +177,7 @@ internal object SeleniumTelluriumProcessing
             fluidInputs(Water.getFluid(1000))
             output(dust, SelenousAcid, 6)
             EUt(VA[MV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // H2SeO3 + 2SO2 -> Se + H2SO4 + SO3
@@ -188,7 +188,7 @@ internal object SeleniumTelluriumProcessing
             fluidOutputs(SulfuricAcid.getFluid(1000))
             fluidOutputs(SulfurTrioxide.getFluid(1000))
             EUt(VA[EV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
     }
 

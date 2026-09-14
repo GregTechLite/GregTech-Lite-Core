@@ -9,11 +9,11 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenPeroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumHydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumNiobate
@@ -35,7 +35,7 @@ internal object LithiumNiobateChain
             fluidOutputs(Hydrogen.getFluid(4000))
             fluidOutputs(Steam.getFluid(3 * SU))
             EUt(VA[EV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // NbCl5 + LiH + 2H2O2 -> 6LiNbO4 + 5HCl (cycle)
@@ -46,7 +46,7 @@ internal object LithiumNiobateChain
             output(ingotHot, LithiumNiobate, 6)
             fluidOutputs(HydrochloricAcid.getFluid(5000))
             EUt(VA[IV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
     }
 

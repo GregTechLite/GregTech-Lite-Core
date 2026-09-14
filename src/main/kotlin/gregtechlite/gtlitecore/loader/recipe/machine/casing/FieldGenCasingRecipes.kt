@@ -8,10 +8,10 @@ import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.loaders.recipe.CraftingComponent
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.common.block.variant.component.FieldGenCasing
 import net.minecraft.item.ItemStack
 
@@ -37,7 +37,7 @@ internal object FieldGenCasingRecipes
                 inputs(CraftingComponent.FIELD_GENERATOR.getIngredient(voltage + 1) as ItemStack)
                 outputs(fieldGenCasings[voltage])
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
         }
     }

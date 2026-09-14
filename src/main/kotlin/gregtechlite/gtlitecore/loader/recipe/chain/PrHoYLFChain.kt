@@ -13,13 +13,13 @@ import gregtech.api.unification.material.Materials.CarbonMonoxide
 import gregtech.api.unification.material.Materials.HydrofluoricAcid
 import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumBifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumFluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumNitrate
@@ -45,7 +45,7 @@ internal object PrHoYLFChain
             fluidInputs(HydrofluoricAcid.getFluid(1000))
             output(dust, AmmoniumFluoride, 6)
             EUt(VA[HV])
-            duration(8 * SECOND + 10 * TICK)
+            duration(8.s + 10.t)
         }
 
         // 2NH4F -> NH4HF2 + NH3
@@ -54,7 +54,7 @@ internal object PrHoYLFChain
             output(dust, AmmoniumBifluoride, 8)
             fluidOutputs(Ammonia.getFluid(1000))
             EUt(VA[HV])
-            duration(17 * SECOND)
+            duration(17.s)
         }
 
         // Pr2O3 + Ho2O3 + 3Y2O3 + 30HNO3 -> (Pr(NO3)3)2(Ho(NO3)3)2(Y(NO3)3)6(H2O)15
@@ -66,7 +66,7 @@ internal object PrHoYLFChain
             fluidInputs(NitricAcid.getFluid(30000))
             fluidOutputs(PrHoYNitratesSolution.getFluid(30000))
             EUt(VA[ZPM])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Be + LiF + 2NH4HF2 + 1/15(Pr(NO3)3)2(Ho(NO3)3)2(Y(NO3)3)6(H2O)15 + CO -> 2Pr/Ho:YLF + BeF2 + 2NH4NO3 + 2HF + CO2
@@ -83,7 +83,7 @@ internal object PrHoYLFChain
             fluidOutputs(HydrofluoricAcid.getFluid(2000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
     }

@@ -15,11 +15,11 @@ import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumHydroxide
@@ -40,7 +40,7 @@ internal object AcetyleneChain
             output(dust, CalciumCarbide, 3)
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[MV])
-            duration(25 * SECOND)
+            duration(25.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -50,7 +50,7 @@ internal object AcetyleneChain
             chancedOutput(dust, Ash, 3, 2000, 0)
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[MV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -60,7 +60,7 @@ internal object AcetyleneChain
             chancedOutput(dust, Ash, 3, 2000, 0)
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[MV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -70,7 +70,7 @@ internal object AcetyleneChain
             chancedOutput(dust, Ash, 3, 2000, 0)
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[MV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -80,7 +80,7 @@ internal object AcetyleneChain
             chancedOutput(dust, Ash, 3, 2000, 0)
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[MV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -90,7 +90,7 @@ internal object AcetyleneChain
             chancedOutput(dust, Ash, 3, 2000, 0)
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[MV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         ROASTER_RECIPES.addRecipe {
@@ -100,7 +100,7 @@ internal object AcetyleneChain
             chancedOutput(dust, Ash, 3, 2000, 0)
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[MV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         // CaC2 + 2H2O -> Ca(OH)2 + C2H2
@@ -110,7 +110,7 @@ internal object AcetyleneChain
             output(dust, CalciumHydroxide, 5)
             fluidOutputs(Acetylene.getFluid(1000))
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Ca(OH)2 + CO2 -> CaCO3 + H2O
@@ -120,7 +120,7 @@ internal object AcetyleneChain
             output(dust, Calcite, 5)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 

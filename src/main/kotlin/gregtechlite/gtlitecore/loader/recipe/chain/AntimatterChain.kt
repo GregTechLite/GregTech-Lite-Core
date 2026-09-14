@@ -26,12 +26,12 @@ import gregtech.api.unification.material.Materials.Thorium
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Zinc
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_GENERATOR_FUELS
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HighEnergyQuarkGluonPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
@@ -55,7 +55,7 @@ internal object AntimatterChain
             fluidInputs(QuarkGluonPlasma.getFluid(1000))
             fluidOutputs(Protomatter.getFluid(1000))
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             cleanroom()
         }
 
@@ -64,7 +64,7 @@ internal object AntimatterChain
             fluidInputs(HighEnergyQuarkGluonPlasma.getFluid(1000))
             fluidOutputs(Protomatter.getFluid(10000))
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -78,7 +78,7 @@ internal object AntimatterChain
             fluidInputs(Niobium.getPlasma(1000)) // MK1
             fluidOutputs(SemistableAntimatter.getFluid(10))
             EUt(145_149_830) // OpV
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         ANTIMATTER_FORGE_RECIPES.addRecipe {
@@ -94,7 +94,7 @@ internal object AntimatterChain
             fluidInputs(Sulfur.getPlasma(1000))  // MK2
             fluidOutputs(SemistableAntimatter.getFluid(1000))
             EUt(667_684_600) // MAX
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         ANTIMATTER_FORGE_RECIPES.addRecipe {
@@ -114,7 +114,7 @@ internal object AntimatterChain
             fluidInputs(Titanium.getPlasma(1000)) // MK3
             fluidOutputs(SemistableAntimatter.getFluid(100_000))
             EUt(2_693_264_510) // MAX+
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         ANTIMATTER_FORGE_RECIPES.addRecipe {
@@ -138,7 +138,7 @@ internal object AntimatterChain
             fluidInputs(Tin.getPlasma(1000))      // MK4
             fluidOutputs(SemistableAntimatter.getFluid(10_000_000))
             EUt(10_730_073_930) // MAX+
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         ANTIMATTER_FORGE_RECIPES.addRecipe {
@@ -166,7 +166,7 @@ internal object AntimatterChain
             fluidInputs(Fermium.getPlasma(1000))  // MK5
             fluidOutputs(SemistableAntimatter.getFluid(1_000_000_000))
             EUt(42_767_675_200) // MAX+
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Semistable Antimatter -> Antimatter
@@ -174,7 +174,7 @@ internal object AntimatterChain
             fluidInputs(SemistableAntimatter.getFluid(1000))
             fluidOutputs(Antimatter.getFluid(100))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // region Antimatter Annihilation
@@ -184,7 +184,7 @@ internal object AntimatterChain
             fluidInputs(Antimatter.getFluid(1))
             fluidInputs(Lead.getPlasma(1000))
             EUt(1_000_000_000_000)
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 1.5
@@ -192,7 +192,7 @@ internal object AntimatterChain
             fluidInputs(Antimatter.getFluid(1))
             fluidInputs(Infinity.getFluid(L * 4))
             EUt(1_500_000_000_000)
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 2.0
@@ -200,7 +200,7 @@ internal object AntimatterChain
             fluidInputs(Antimatter.getFluid(1))
             fluidInputs(Shirabon.getFluid(L * 4))
             EUt(2_000_000_000_000)
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 4.0
@@ -208,7 +208,7 @@ internal object AntimatterChain
             fluidInputs(Antimatter.getFluid(1))
             fluidInputs(RawStarMatter.getFluid(L * 4))
             EUt(4_000_000_000_000)
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // endregion

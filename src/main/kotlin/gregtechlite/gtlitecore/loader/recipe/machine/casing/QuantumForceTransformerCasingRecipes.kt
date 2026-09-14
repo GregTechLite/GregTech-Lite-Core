@@ -37,11 +37,11 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
@@ -98,7 +98,7 @@ internal object QuantumForceTransformerCasingRecipes
             fluidInputs(QuantumAlloy.getFluid(L * 6))
             outputs(GlassCasing.FORCE_FIELD.stack)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Particle Containment Casing
@@ -114,7 +114,7 @@ internal object QuantumForceTransformerCasingRecipes
             fluidInputs(Trinaquadalloy.getFluid(L * 4))
             outputs(MultiblockCasing.PARTICLE_CONTAINMENT_CASING.getStack(4))
             EUt(VA[ZPM])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Particle Excitation Wire Coil
@@ -125,7 +125,7 @@ internal object QuantumForceTransformerCasingRecipes
             input(screw, Abyssalloy, 8)
             outputs(MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.getStack(2))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Neutron Pulse Manipulator (T1)
@@ -142,7 +142,7 @@ internal object QuantumForceTransformerCasingRecipes
             fluidInputs(Fermium.getPlasma(500))
             outputs(Manipulator.NEUTRON_PULSE.getStack(16))
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(GlassCasing.FORCE_FIELD.stack)
                     .EUt(VA[UEV])
@@ -165,7 +165,7 @@ internal object QuantumForceTransformerCasingRecipes
             fluidInputs(Fermium.getPlasma(2500))
             outputs(Manipulator.COSMIC_FABRIC.getStack(16))
             EUt(VA[UIV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(Manipulator.NEUTRON_PULSE.stack)
                     .EUt(VA[UIV])
@@ -188,7 +188,7 @@ internal object QuantumForceTransformerCasingRecipes
             fluidInputs(Fermium.getPlasma(10000))
             outputs(Manipulator.INFINITY_INFUSED.getStack(16))
             EUt(VA[UXV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(Manipulator.COSMIC_FABRIC.stack)
                     .EUt(VA[UXV])
@@ -211,7 +211,7 @@ internal object QuantumForceTransformerCasingRecipes
             fluidInputs(Fermium.getPlasma(20000))
             outputs(Manipulator.SPACETIME_CONTINUUM_RIPPER.getStack(16))
             EUt(VA[OpV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(Manipulator.INFINITY_INFUSED.stack)
                     .EUt(VA[OpV])
@@ -229,7 +229,7 @@ internal object QuantumForceTransformerCasingRecipes
             fluidInputs(MutatedLivingSolder.getFluid(L * 10))
             outputs(ShieldingCore.NEUTRON.getStack(16))
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MultiblockCasing.PARTICLE_CONTAINMENT_CASING.stack)
                     .EUt(VA[UEV])
@@ -248,7 +248,7 @@ internal object QuantumForceTransformerCasingRecipes
             fluidInputs(MutatedLivingSolder.getFluid(L * 20))
             outputs(ShieldingCore.COSMIC_FABRIC.getStack(16))
             EUt(VA[UIV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(ShieldingCore.NEUTRON.stack)
                     .EUt(VA[UIV])
@@ -267,7 +267,7 @@ internal object QuantumForceTransformerCasingRecipes
             fluidInputs(MutatedLivingSolder.getFluid(L * 40))
             outputs(ShieldingCore.INFINITY_INFUSED.getStack(16))
             EUt(VA[UXV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(ShieldingCore.COSMIC_FABRIC.stack)
                     .EUt(VA[UXV])
@@ -286,7 +286,7 @@ internal object QuantumForceTransformerCasingRecipes
             fluidInputs(MutatedLivingSolder.getFluid(L * 80))
             outputs(ShieldingCore.SPACETIME_BENDING_CORE.getStack(16))
             EUt(VA[OpV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(ShieldingCore.INFINITY_INFUSED.stack)
                     .EUt(VA[OpV])

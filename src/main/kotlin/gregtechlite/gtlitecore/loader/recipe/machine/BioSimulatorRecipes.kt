@@ -38,13 +38,13 @@ import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.api.util.GTUtility.getTierByVoltage
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_SIMULATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BASE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_BLAZE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MEMORY_CARD_CREEPER
@@ -90,7 +90,7 @@ internal object BioSimulatorRecipes
             input(wireFine, Silver, 2)
             outputs(MEMORY_CARD_BASE.getStackForm(4))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Zombie
@@ -99,7 +99,7 @@ internal object BioSimulatorRecipes
             input(Items.ROTTEN_FLESH)
             output(MEMORY_CARD_ZOMBIE)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Skeleton
@@ -108,7 +108,7 @@ internal object BioSimulatorRecipes
             input(Items.BONE)
             output(MEMORY_CARD_SKELETON)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Creeper
@@ -117,7 +117,7 @@ internal object BioSimulatorRecipes
             input(Items.GUNPOWDER)
             output(MEMORY_CARD_CREEPER)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Slime
@@ -126,7 +126,7 @@ internal object BioSimulatorRecipes
             input(Items.SLIME_BALL)
             output(MEMORY_CARD_SLIME)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Spider
@@ -135,7 +135,7 @@ internal object BioSimulatorRecipes
             input(Items.SPIDER_EYE)
             output(MEMORY_CARD_SPIDER)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Blaze
@@ -144,7 +144,7 @@ internal object BioSimulatorRecipes
             input(Items.BLAZE_POWDER)
             output(MEMORY_CARD_BLAZE)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Ghast
@@ -153,7 +153,7 @@ internal object BioSimulatorRecipes
             input(Items.GHAST_TEAR)
             output(MEMORY_CARD_GHAST)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Guardian
@@ -162,7 +162,7 @@ internal object BioSimulatorRecipes
             input(Items.PRISMARINE_SHARD)
             output(MEMORY_CARD_GUARDIAN)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Wither Skeleton
@@ -171,7 +171,7 @@ internal object BioSimulatorRecipes
             input(Items.SKULL, 1, 1)
             output(MEMORY_CARD_WITHER_SKELETON)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Witch
@@ -180,7 +180,7 @@ internal object BioSimulatorRecipes
             input(Items.GLASS_BOTTLE)
             output(MEMORY_CARD_WITCH)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Enderman
@@ -189,7 +189,7 @@ internal object BioSimulatorRecipes
             input(Items.ENDER_EYE)
             output(MEMORY_CARD_ENDERMAN)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Shulker
@@ -198,7 +198,7 @@ internal object BioSimulatorRecipes
             input(Items.SHULKER_SHELL)
             output(MEMORY_CARD_SHULKER)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Wither
@@ -207,7 +207,7 @@ internal object BioSimulatorRecipes
             input(Items.NETHER_STAR)
             output(MEMORY_CARD_WITHER)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Ender Dragon
@@ -216,7 +216,7 @@ internal object BioSimulatorRecipes
             inputs(ItemStack(Blocks.DRAGON_EGG))
             output(MEMORY_CARD_ENDER_DRAGON)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // ---------------------------------------------------------------------------------------------------------
@@ -390,7 +390,7 @@ internal object BioSimulatorRecipes
             if (Mods.EnderIO.isActive)
                 fluidOutputs(FluidRegistry.getFluidStack("xpjuice", 250 * getTierByVoltage(eut.toLong())))
             EUt(eut)
-            duration(1 * MINUTE)
+            duration(1.min)
         }
     }
 

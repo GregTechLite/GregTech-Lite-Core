@@ -24,8 +24,6 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
@@ -34,6 +32,8 @@ import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BPAPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueSchist
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CBDOPolycarbonate
@@ -79,7 +79,7 @@ internal object PolisherRecipes
             outputs(STONE, 1, 2)
             output(dust, Granite, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         POLISHER_RECIPES.addRecipe {
@@ -87,7 +87,7 @@ internal object PolisherRecipes
             outputs(STONE, 1, 4)
             output(dust, Diorite, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         POLISHER_RECIPES.addRecipe {
@@ -95,7 +95,7 @@ internal object PolisherRecipes
             outputs(STONE, 1, 6)
             output(dust, Andesite, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Modified recipes of GregTech StoneVariantBlock conversions.
@@ -112,7 +112,7 @@ internal object PolisherRecipes
             outputs(GTPolishedStoneBlock.BLACK_GRANITE.stack)
             output(dust, GraniteBlack, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Red Granite
@@ -121,7 +121,7 @@ internal object PolisherRecipes
             outputs(GTPolishedStoneBlock.RED_GRANITE.stack)
             output(dust, GraniteRed, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Marble
@@ -130,7 +130,7 @@ internal object PolisherRecipes
             outputs(GTPolishedStoneBlock.MARBLE.stack)
             output(dust, Marble, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Basalt
@@ -139,7 +139,7 @@ internal object PolisherRecipes
             outputs(GTPolishedStoneBlock.BASALT.stack)
             output(dust, Basalt, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Light Concrete
@@ -148,7 +148,7 @@ internal object PolisherRecipes
             outputs(GTPolishedStoneBlock.CONCRETE_LIGHT.stack)
             output(dust, Concrete, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Dark Concrete
@@ -157,7 +157,7 @@ internal object PolisherRecipes
             outputs(GTPolishedStoneBlock.CONCRETE_DARK.stack)
             output(dust, Concrete, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Limestone
@@ -166,7 +166,7 @@ internal object PolisherRecipes
             outputs(PolishedStoneBlock.LIMESTONE.stack)
             output(dust, Limestone, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Komatiite
@@ -175,7 +175,7 @@ internal object PolisherRecipes
             outputs(PolishedStoneBlock.KOMATIITE.stack)
             output(dust, Komatiite, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Green Schist
@@ -184,7 +184,7 @@ internal object PolisherRecipes
             outputs(PolishedStoneBlock.GREEN_SCHIST.stack)
             output(dust, GreenSchist, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Blue Schist
@@ -193,7 +193,7 @@ internal object PolisherRecipes
             outputs(PolishedStoneBlock.BLUE_SCHIST.stack)
             output(dust, BlueSchist, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Kimberlite
@@ -202,7 +202,7 @@ internal object PolisherRecipes
             outputs(PolishedStoneBlock.KIMBERLITE.stack)
             output(dust, Kimberlite, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Quartzite
@@ -211,7 +211,7 @@ internal object PolisherRecipes
             outputs(PolishedStoneBlock.QUARTZITE.stack)
             output(dust, Quartzite, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Slate
@@ -220,7 +220,7 @@ internal object PolisherRecipes
             outputs(PolishedStoneBlock.SLATE.stack)
             output(dust, Slate, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Polished Shale
@@ -229,7 +229,7 @@ internal object PolisherRecipes
             outputs(PolishedStoneBlock.SHALE.stack)
             output(dust, Shale, 2)
             EUt(V[ULV])
-            duration(1 * SECOND + 4 * TICK)
+            duration(1.s + 4.t)
         }
 
         // Borosilicate Glass
@@ -238,7 +238,7 @@ internal object PolisherRecipes
             outputs(GlassCasing.BOROSILICATE.getStack(2))
             output(dust, BorosilicateGlass)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Silicon Carbide Glass
@@ -247,7 +247,7 @@ internal object PolisherRecipes
             outputs(GlassCasing.SILICON_CARBIDE.getStack(2))
             output(dust, SiliconCarbide)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Woods Glass
@@ -256,7 +256,7 @@ internal object PolisherRecipes
             outputs(GlassCasing.WOODS.getStack(2))
             output(dust, WoodsGlass)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // ZBLAN Glass
@@ -265,7 +265,7 @@ internal object PolisherRecipes
             outputs(GlassCasing.ZBLAN.getStack(2))
             output(dust, ZBLANGlass)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Er-doped ZBLAN Glass
@@ -274,7 +274,7 @@ internal object PolisherRecipes
             outputs(GlassCasing.ERBIUM_ZBLAN.getStack(2))
             output(dust, ErbiumDopedZBLANGlass)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Pr-doped ZBLAN Glass
@@ -283,7 +283,7 @@ internal object PolisherRecipes
             outputs(GlassCasing.PRASEODYMIUM_ZBLAN.getStack(2))
             output(dust, PraseodymiumDopedZBLANGlass)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // GST Glass
@@ -292,7 +292,7 @@ internal object PolisherRecipes
             outputs(GlassCasing.GST.getStack(2))
             output(dust, GSTGlass)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // PMMA Glass
@@ -301,7 +301,7 @@ internal object PolisherRecipes
             outputs(GlassCasing.PMMA.getStack(2))
             output(dust, Polymethylmethacrylate)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // BPA Polycarbonate Glass
@@ -310,7 +310,7 @@ internal object PolisherRecipes
             outputs(GlassCasing.BPA_POLYCARBONATE.getStack(2))
             output(dust, BPAPolycarbonate)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // CBDO Polycarbonate Glass
@@ -319,7 +319,7 @@ internal object PolisherRecipes
             outputs(GlassCasing.CBDO_POLYCARBONATE.getStack(2))
             output(dust, CBDOPolycarbonate)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

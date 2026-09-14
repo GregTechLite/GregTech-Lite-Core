@@ -4,8 +4,8 @@ import gregtech.api.GTValues.MAX
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.ULV
 import gregtechlite.gtlitecore.api.MOD_ID
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import net.minecraftforge.common.config.Config
 import net.minecraftforge.common.config.Config.Comment
 import net.minecraftforge.common.config.Config.Name
@@ -122,9 +122,9 @@ object GTLiteConfigHolder
             @Comment("The progress time for Large Fisher each cycle working consumed",
                      "Default: 20 (1s)")
             @Name("Progress Time Per Cycle")
-            @RangeInt(min = 1 * TICK)
+            @RangeInt(min = 1)
             @JvmField
-            var maxProgressTime = 1 * SECOND
+            var maxProgressTime = 1.s
 
             @Comment("The water fill count in Large Fisher structure for working",
                      "Default: 60")

@@ -14,9 +14,11 @@ import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.client.renderer.ICubeRenderer
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.capability.ModuleProvider
 import gregtechlite.gtlitecore.api.capability.ModuleReceiver
+import gregtechlite.gtlitecore.api.s
+import kotlin.math.min
+import kotlin.math.pow
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.EnumFacing
@@ -24,8 +26,6 @@ import net.minecraft.util.ResourceLocation
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.min
-import kotlin.math.pow
 
 abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
                                     protected val tier: Int,
@@ -98,10 +98,10 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
 
     override fun updateFormedValid()
     {
-        if (offsetTimer % SECOND == 0L && moduleProvider != null)
+        if (offsetTimer % 1.s == 0L && moduleProvider != null)
         {
             if (energyContainer.energyCapacity != energyContainer.energyStored
-                && moduleProvider!!.subEnergyContainer!!.energyStored > energyConsumed * SECOND)
+                && moduleProvider!!.subEnergyContainer!!.energyStored > energyConsumed * 1.s)
             {
                 val maxModuleReceive = energyContainer.energyCapacity - energyContainer.energyStored
                 val energyDrained = min(moduleProvider!!.subEnergyContainer!!.energyStored, maxModuleReceive)

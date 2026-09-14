@@ -10,10 +10,10 @@ import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
 import gregtech.common.items.MetaItems.SENSOR_UHV
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CaesiumCeriumCobaltIndium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SamariumCobalt
@@ -41,7 +41,7 @@ internal object BlackholeFormerCasingRecipes
             fluidInputs(CaesiumCeriumCobaltIndium.getFluid(L * 10))
             outputs(MultiblockCasing.HAWKING_RADIATION_ABSORPTION_CASING.getStack(64))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             tier(1)
         }
     }

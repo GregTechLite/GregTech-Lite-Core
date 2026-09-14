@@ -8,9 +8,9 @@ import gregtech.api.unification.material.Materials.Pyrochlore
 import gregtech.api.unification.material.Materials.Tantalite
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumDifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ManganeseDifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NiobiumPentoxide
@@ -50,7 +50,7 @@ internal object NiobiumTantalumProcessing
             output(dust, CalciumDifluoride, 6)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -65,7 +65,7 @@ internal object NiobiumTantalumProcessing
             output(dust, ManganeseDifluoride, 3)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

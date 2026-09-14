@@ -32,9 +32,10 @@ import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.util.GTUtility
-import gregtechlite.gtlitecore.api.SECOND
+import gregtech.loaders.recipe.handlers.WireRecipeHandler as GTWireRecipeHandler
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LAMINATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimensionallyShiftedSuperfluid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
@@ -44,7 +45,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Zylon
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.POLYMER_INSULATOR_FOIL
 import kotlin.reflect.full.declaredFunctions
 import kotlin.reflect.jvm.isAccessible
-import gregtech.loaders.recipe.handlers.WireRecipeHandler as GTWireRecipeHandler
 
 object WireRecipeHandler
 {
@@ -99,7 +99,7 @@ object WireRecipeHandler
                 .fluidInputs(Rubber.getFluid(L * insulationAmount))
                 .output(cablePrefix, material)
                 .EUt(VA[ULV])
-                .duration(5 * SECOND)
+                .duration(5.s)
 
             // Apply PVC foil for EV cables.
             if (voltageTier == EV)
@@ -116,7 +116,7 @@ object WireRecipeHandler
                 .input(wirePrefix, material)
                 .output(cablePrefix, material)
                 .EUt(VA[ULV])
-                .duration(5 * SECOND)
+                .duration(5.s)
 
             // Apply PVC foil for EV or above cables.
             if (voltageTier >= EV)
@@ -134,7 +134,7 @@ object WireRecipeHandler
                 .input(wirePrefix, material)
                 .output(cablePrefix, material)
                 .EUt(VA[ULV])
-                .duration(5 * SECOND)
+                .duration(5.s)
 
             // Apply PVC foil for EV or above cables.
             if (voltageTier >= EV)
@@ -156,7 +156,7 @@ object WireRecipeHandler
                 .input(wirePrefix, material)
                 .output(cablePrefix, material)
                 .EUt(VA[ULV])
-                .duration(5 * SECOND)
+                .duration(5.s)
 
             // Apply PVC foil for EV or above cables.
             if (voltageTier >= EV)
@@ -182,7 +182,7 @@ object WireRecipeHandler
                 .input(wirePrefix, material)
                 .output(cablePrefix, material)
                 .EUt(VA[ULV])
-                .duration(5 * SECOND)
+                .duration(5.s)
 
             // Apply PVC foil for EV or above cables.
             if (voltageTier >= EV)
@@ -218,7 +218,7 @@ object WireRecipeHandler
                 .fluidInputs(DimensionallyShiftedSuperfluid.getFluid(1000 * insulationAmount / 2))
                 .output(cablePrefix, material)
                 .EUt(VA[ULV])
-                .duration(5 * SECOND)
+                .duration(5.s)
                 .buildAndRegister()
         }
     }

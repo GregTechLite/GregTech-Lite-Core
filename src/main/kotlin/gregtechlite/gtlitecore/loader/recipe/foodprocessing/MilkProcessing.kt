@@ -11,15 +11,15 @@ import gregtech.api.recipes.RecipeMaps.FERMENTING_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
 import gregtech.api.unification.material.Materials.Milk
 import gregtech.api.unification.material.Materials.Water
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.item.MCPotions
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SterilizedMilk
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BREWING_MILK
@@ -37,7 +37,7 @@ internal object MilkProcessing
             fluidInputs(Milk.getFluid(100))
             fluidOutputs(Butter.getFluid(90))
             EUt(VH[LV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Milk -> Sterilized Milk
@@ -46,7 +46,7 @@ internal object MilkProcessing
             fluidInputs(Milk.getFluid(250))
             fluidOutputs(SterilizedMilk.getFluid(250))
             EUt(VA[HV])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
             cleanroom()
         }
 
@@ -55,7 +55,7 @@ internal object MilkProcessing
             fluidInputs(SterilizedMilk.getFluid(250))
             outputs(MILK_POWDER.stack())
             EUt(VH[MV])
-            duration(6 * SECOND)
+            duration(6.s)
             cleanroom()
         }
 
@@ -65,7 +65,7 @@ internal object MilkProcessing
             inputs(MCPotions.WATER)
             output(BREWING_MILK)
             EUt(VA[ULV])
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -74,7 +74,7 @@ internal object MilkProcessing
             fluidInputs(Water.getFluid(250))
             output(BREWING_MILK)
             EUt(VA[ULV])
-            duration(10 * TICK)
+            duration(10.t)
         }
     }
 

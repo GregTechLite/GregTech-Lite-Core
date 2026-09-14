@@ -37,14 +37,14 @@ import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY_WAFER
 import gregtech.common.items.MetaItems.SIMPLE_SYSTEM_ON_CHIP_WAFER
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP_WAFER
 import gregtech.common.items.MetaItems.ULTRA_LOW_POWER_INTEGRATED_CIRCUIT_WAFER
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicSiliconNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicZirconia
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FreeElectronGas
@@ -88,7 +88,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(INTEGRATED_LOGIC_CIRCUIT_WAFER, 32)
             EUt(VA[LuV])
-            duration(10 * TICK)
+            duration(10.t)
             cleanroom()
         }
 
@@ -98,7 +98,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(RANDOM_ACCESS_MEMORY_WAFER, 32)
             EUt(VA[LuV])
-            duration(10 * TICK)
+            duration(10.t)
             cleanroom()
         }
 
@@ -108,7 +108,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(CENTRAL_PROCESSING_UNIT_WAFER, 32)
             EUt(VA[LuV])
-            duration(10 * TICK)
+            duration(10.t)
             cleanroom()
         }
 
@@ -118,7 +118,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(ULTRA_LOW_POWER_INTEGRATED_CIRCUIT_WAFER, 32)
             EUt(VA[LuV])
-            duration(10 * TICK)
+            duration(10.t)
             cleanroom()
         }
 
@@ -128,7 +128,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(LOW_POWER_INTEGRATED_CIRCUIT_WAFER, 32)
             EUt(VA[LuV])
-            duration(10 * TICK)
+            duration(10.t)
             cleanroom()
         }
 
@@ -138,7 +138,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(SIMPLE_SYSTEM_ON_CHIP_WAFER, 32)
             EUt(VA[LuV])
-            duration(10 * TICK)
+            duration(10.t)
             cleanroom()
         }
 
@@ -148,7 +148,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(NAND_MEMORY_CHIP_WAFER, 16)
             EUt(VA[LuV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -158,7 +158,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(NOR_MEMORY_CHIP_WAFER, 16)
             EUt(VA[LuV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -168,7 +168,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(POWER_INTEGRATED_CIRCUIT_WAFER, 16)
             EUt(VA[LuV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -178,7 +178,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(SYSTEM_ON_CHIP_WAFER, 16)
             EUt(VA[LuV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -188,7 +188,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(ADVANCED_SYSTEM_ON_CHIP_WAFER, 8)
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -205,7 +205,7 @@ internal object LaserEngraverRecipes
             input(NEUTRONIUM_WAFER)
             output(HIGHLY_ADVANCED_SOC_WAFER)
             EUt(VA[IV])
-            duration(45 * SECOND)
+            duration(45.s)
             cleanroom()
         }
 
@@ -215,7 +215,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(HIGHLY_ADVANCED_SOC_WAFER, 4)
             EUt(VA[LuV])
-            duration(25 * SECOND)
+            duration(25.s)
             cleanroom()
         }
 
@@ -227,7 +227,7 @@ internal object LaserEngraverRecipes
             input(NEUTRONIUM_WAFER)
             output(ULTRA_HIGHLY_ADVANCED_SOC_WAFER)
             EUt(VA[LuV])
-            duration(45 * SECOND)
+            duration(45.s)
             cleanroom()
         }
 
@@ -238,7 +238,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(ULTRA_HIGHLY_ADVANCED_SOC_WAFER, 4)
             EUt(VA[ZPM])
-            duration(45 * SECOND)
+            duration(45.s)
             cleanroom()
         }
 
@@ -247,7 +247,7 @@ internal object LaserEngraverRecipes
             input(ULTRA_HIGHLY_ADVANCED_SOC_WAFER)
             output(ULTRA_HIGHLY_ADVANCED_SOC_CHIP, 6)
             EUt(VA[LuV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             cleanroom()
         }
 
@@ -257,7 +257,7 @@ internal object LaserEngraverRecipes
             input(NAQUADAH_WAFER)
             output(ADVANCED_RAM_WAFER)
             EUt(VA[ZPM])
-            duration(30 * SECOND)
+            duration(30.s)
             cleanroom()
         }
 
@@ -266,7 +266,7 @@ internal object LaserEngraverRecipes
             input(NEUTRONIUM_WAFER)
             output(ADVANCED_RAM_WAFER, 4)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -275,7 +275,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(ADVANCED_RAM_WAFER, 8)
             EUt(VA[UHV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -284,7 +284,7 @@ internal object LaserEngraverRecipes
             input(ADVANCED_RAM_WAFER, 1)
             output(ADVANCED_RAM_CHIP, 16)
             EUt(VA[ZPM])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
 
@@ -294,7 +294,7 @@ internal object LaserEngraverRecipes
             input(NAQUADAH_WAFER)
             output(NANO_PIC_WAFER)
             EUt(VA[ZPM])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
             cleanroom()
         }
 
@@ -303,7 +303,7 @@ internal object LaserEngraverRecipes
             input(NEUTRONIUM_WAFER)
             output(NANO_PIC_WAFER, 4)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
 
@@ -312,7 +312,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(NANO_PIC_WAFER, 8)
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -321,7 +321,7 @@ internal object LaserEngraverRecipes
             input(NANO_PIC_WAFER)
             output(NANO_PIC_CHIP, 2)
             EUt(VA[ZPM])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             cleanroom()
         }
 
@@ -331,7 +331,7 @@ internal object LaserEngraverRecipes
             input(NAQUADAH_WAFER)
             output(PICO_PIC_WAFER)
             EUt(VA[UV])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
             cleanroom()
         }
 
@@ -340,7 +340,7 @@ internal object LaserEngraverRecipes
             input(NEUTRONIUM_WAFER)
             output(PICO_PIC_WAFER, 4)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
 
@@ -349,7 +349,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(PICO_PIC_WAFER, 8)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -358,7 +358,7 @@ internal object LaserEngraverRecipes
             input(PICO_PIC_WAFER)
             output(PICO_PIC_CHIP, 2)
             EUt(VA[UV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             cleanroom()
         }
 
@@ -368,7 +368,7 @@ internal object LaserEngraverRecipes
             input(NEUTRONIUM_WAFER)
             output(FEMTO_PIC_WAFER)
             EUt(VA[UHV])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
             cleanroom()
         }
 
@@ -377,7 +377,7 @@ internal object LaserEngraverRecipes
             input(HASSIUM_WAFER)
             output(FEMTO_PIC_WAFER, 4)
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
 
@@ -386,7 +386,7 @@ internal object LaserEngraverRecipes
             input(FEMTO_PIC_WAFER)
             output(FEMTO_PIC_CHIP, 2)
             EUt(VA[UHV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             cleanroom()
         }
 
@@ -400,7 +400,7 @@ internal object LaserEngraverRecipes
             fluidInputs(FreeElectronGas.getFluid(4000))
             output(ATTO_PIC_WAFER)
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             cleanroom()
         }
 
@@ -409,7 +409,7 @@ internal object LaserEngraverRecipes
             input(ATTO_PIC_WAFER)
             output(ATTO_PIC_CHIP, 2)
             EUt(VA[UEV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             cleanroom()
         }
 
@@ -419,7 +419,7 @@ internal object LaserEngraverRecipes
             input(plate, Diamond)
             output(ENGRAVED_DIAMOND_CHIP)
             EUt(VA[LV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Engraved Ruby Chip
@@ -428,7 +428,7 @@ internal object LaserEngraverRecipes
             input(plate, Ruby)
             output(ENGRAVED_RUBY_CHIP)
             EUt(VA[LV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Engraved Sapphire Chip
@@ -437,7 +437,7 @@ internal object LaserEngraverRecipes
             input(plate, Sapphire)
             output(ENGRAVED_SAPPHIRE_CHIP)
             EUt(VA[LV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
     }
 

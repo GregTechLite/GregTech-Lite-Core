@@ -21,11 +21,11 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zincite
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GermaniumDioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RoastedSphalerite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.WaelzOxide
@@ -58,7 +58,7 @@ internal object GermaniumZincProcessing
             output(dust, Zincite, 2)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // (GeO2)? + 2Zn -> Zn2(GaGeO2)
@@ -68,7 +68,7 @@ internal object GermaniumZincProcessing
             input(dust, Zinc, 2)
             output(dust, ZincRichSphalerite, 6)
             EUt(VA[LV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // Zn2(GaGeO2) + H2SO4 -> (GeO2)Zn + (ZnSO4)Ga + 2H (lost)
@@ -78,7 +78,7 @@ internal object GermaniumZincProcessing
             output(dust, WaelzOxide, 4)
             output(dust, WaelzSlag, 7)
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // (GeO2)Zn + H2SO4 -> GeO2 + (ZnSO4)Ga + 2H (lost) + (Cd)
@@ -89,7 +89,7 @@ internal object GermaniumZincProcessing
             output(dust, WaelzSlag, 7)
             chancedOutput(dust, Cadmium, 500, 1000)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // GeO2 + 4H -> Ge + 2H2O
@@ -99,7 +99,7 @@ internal object GermaniumZincProcessing
             output(dust, Germanium)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[EV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // GeO2 + C -> Ge + CO2
@@ -109,7 +109,7 @@ internal object GermaniumZincProcessing
             output(dust, Germanium)
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[EV])
-            duration(36 * SECOND)
+            duration(36.s)
         }
 
         // (ZnSO4)Ga + H2O -> ZnO + H2SO4 (cycle) + (Ga)
@@ -120,7 +120,7 @@ internal object GermaniumZincProcessing
             chancedOutput(dust, Gallium, 2000, 1000)
             fluidOutputs(SulfuricAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
     }
 

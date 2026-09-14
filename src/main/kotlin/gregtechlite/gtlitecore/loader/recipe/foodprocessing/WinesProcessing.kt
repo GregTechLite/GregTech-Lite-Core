@@ -8,11 +8,11 @@ import gregtech.api.recipes.RecipeMaps.FERMENTING_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GrapeJuice
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotatoJuice
@@ -39,7 +39,7 @@ internal object WinesProcessing
             fluidInputs(Water.getFluid(750))
             fluidOutputs(GrapeJuice.getFluid(750))
             EUt(4)
-            duration(6 * SECOND + 8 * TICK)
+            duration(6.s + 8.t)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -47,7 +47,7 @@ internal object WinesProcessing
             fluidInputs(GrapeJuice.getFluid(250))
             output(GRAPE_JUICE)
             EUt(4)
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Potato Juice
@@ -56,7 +56,7 @@ internal object WinesProcessing
             fluidInputs(Water.getFluid(750))
             fluidOutputs(PotatoJuice.getFluid(750))
             EUt(4)
-            duration(6 * SECOND + 8 * TICK)
+            duration(6.s + 8.t)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -64,7 +64,7 @@ internal object WinesProcessing
             fluidInputs(PotatoJuice.getFluid(250))
             output(POTATO_JUICE)
             EUt(4)
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Red Wine
@@ -74,7 +74,7 @@ internal object WinesProcessing
             fluidInputs(GrapeJuice.getFluid(100))
             fluidOutputs(RedWine.getFluid(100))
             EUt(2)
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         FERMENTING_RECIPES.addRecipe {
@@ -84,7 +84,7 @@ internal object WinesProcessing
             fluidInputs(AminooxyaceticAcid.getFluid(50))
             fluidOutputs(RedWine.getFluid(400))
             EUt(2)
-            duration(15 * TICK)
+            duration(15.t)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -92,7 +92,7 @@ internal object WinesProcessing
             fluidInputs(RedWine.getFluid(250))
             output(RED_WINE)
             EUt(4)
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Vodka
@@ -101,7 +101,7 @@ internal object WinesProcessing
             fluidInputs(PotatoJuice.getFluid(50))
             fluidOutputs(Vodka.getFluid(25))
             EUt(VH[LV])
-            duration(16 * TICK)
+            duration(16.t)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -109,7 +109,7 @@ internal object WinesProcessing
             fluidInputs(Vodka.getFluid(250))
             output(VODKA)
             EUt(4)
-            duration(10 * TICK)
+            duration(10.t)
         }
     }
 

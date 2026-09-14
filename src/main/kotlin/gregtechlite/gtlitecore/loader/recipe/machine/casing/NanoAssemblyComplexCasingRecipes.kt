@@ -15,10 +15,10 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.common.items.MetaItems.EMITTER_UXV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
@@ -72,7 +72,7 @@ object NanoAssemblyComplexCasingRecipes
             fluidInputs(MetastableOganesson.getFluid(L * 16))
             outputs(ActiveUniqueCasing.NANO_PRECISE_ASSEMBLY_UNIT.getStack(64))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(frameGt, SpaceTime)
                     .EUt(VA[UXV])
@@ -94,7 +94,7 @@ object NanoAssemblyComplexCasingRecipes
             fluidInputs(MetastableHassium.getFluid(L * 64))
             outputs(MultiblockCasing.NANITE_TRANSMISSION_CASING.getStack(64))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.stack)
                     .EUt(VA[UXV])
@@ -126,7 +126,7 @@ object NanoAssemblyComplexCasingRecipes
             fluidInputs(Neutronium.getFluid(L * 256))
             outputs(ActiveUniqueCasing.NANITE_CONTROL_CASING.getStack(64))
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             tier(5)
         }
     }

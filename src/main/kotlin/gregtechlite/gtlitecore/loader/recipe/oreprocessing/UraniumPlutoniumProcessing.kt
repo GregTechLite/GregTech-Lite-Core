@@ -17,12 +17,12 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.UraniumHexafluoride
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 
 internal object UraniumPlutoniumProcessing
 {
@@ -41,7 +41,7 @@ internal object UraniumPlutoniumProcessing
             output(dust, Uranium)
             output(dust, Magnesia, 4)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // UO2 + C -> U + CO2
@@ -51,7 +51,7 @@ internal object UraniumPlutoniumProcessing
             output(ingot, Uranium)
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
             blastFurnaceTemp(600)
         }
 
@@ -60,7 +60,7 @@ internal object UraniumPlutoniumProcessing
             input(dust, Plutonium239)
             output(dust, Plutonium241)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

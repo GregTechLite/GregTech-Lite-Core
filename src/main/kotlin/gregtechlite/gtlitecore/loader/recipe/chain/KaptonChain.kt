@@ -26,10 +26,10 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aminophenol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BiphenylTetracarboxylicAcidDianhydride
@@ -67,7 +67,7 @@ internal object KaptonChain
             output(dust, Durene, 24)
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // C6H2(CH3)4 + 12O -> C6H2(C2O3)2 + 6H2O
@@ -77,7 +77,7 @@ internal object KaptonChain
             output(dust, PyromelliticDianhydride, 3)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
         }
     }
 
@@ -91,7 +91,7 @@ internal object KaptonChain
             output(dust, Aminophenol, 15)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // 6H + C6H5NO2 -> C6H5NH2 + 2H2O
@@ -102,7 +102,7 @@ internal object KaptonChain
             fluidOutputs(Aniline.getFluid(1000))
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 2C6H5NH2 + C2H5OH -> C12H12N2O + 2CH4
@@ -114,7 +114,7 @@ internal object KaptonChain
             output(dust, Oxydianiline, 27)
             fluidOutputs(Methane.getFluid(2000))
             EUt(VA[ZPM])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // HOC6H4NH2 + ClC6H4NO2 + H2O -> C12H12N2O + 3O + HCl
@@ -128,7 +128,7 @@ internal object KaptonChain
             fluidOutputs(Oxygen.getFluid(3000))
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -141,7 +141,7 @@ internal object KaptonChain
             output(dust, BiphenylTetracarboxylicAcidDianhydride, 28)
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -154,7 +154,7 @@ internal object KaptonChain
             output(dust, AmmoniumChloride, 2)
             fluidOutputs(Nitroaniline.getFluid(1000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         //  H2NC6H4NO2 + 6H -> H2NC6H4NH2 + 2H2O
@@ -164,7 +164,7 @@ internal object KaptonChain
             output(dust, ParaPhenylenediamine, 16)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -176,7 +176,7 @@ internal object KaptonChain
             input(dust, Oxydianiline, 3)
             fluidOutputs(KaptonK.getFluid(L))
             EUt(VA[IV])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
         }
 
         // 2C6H2(C2O3)2 + C12H12N2O + C16H6O6 + H2NC6H4NH2 -> C24H18N2O5 + 30C + 12H + 14O + 2N (loss)
@@ -186,7 +186,7 @@ internal object KaptonChain
             fluidInputs(KaptonK.getFluid(L))
             fluidOutputs(KaptonE.getFluid(L))
             EUt(VA[ZPM])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
         }
     }
 

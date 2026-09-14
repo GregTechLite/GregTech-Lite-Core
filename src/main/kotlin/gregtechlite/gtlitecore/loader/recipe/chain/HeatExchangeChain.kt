@@ -8,11 +8,11 @@ import gregtech.api.GTValues.LuV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.V
 import gregtech.api.unification.material.Materials.DistilledWater
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.HOT_COOLANT_TURBINE_FUELS
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SUPERCRITICAL_FLUID_TURBINE_FUELS
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadBismuthEutatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumSodiumPotassiumFluorides
@@ -44,7 +44,7 @@ internal object HeatExchangeChain
             fluidInputs(SuperheatedSteam.getFluid(320))
             fluidOutputs(DistilledWater.getFluid(2))
             EUt(V[MV])
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Superheated Eutatic Sodium Potassium
@@ -52,7 +52,7 @@ internal object HeatExchangeChain
             fluidInputs(SuperheatedSodiumPotassiumEutatic.getFluid(L))
             fluidOutputs(SodiumPotassiumEutatic.getFluid(L))
             EUt(V[HV])
-            duration(2 * SECOND + 16 * TICK)
+            duration(2.s + 16.t)
         }
 
         // Superheated Eutatic Lead Bismuth
@@ -60,7 +60,7 @@ internal object HeatExchangeChain
             fluidInputs(SuperheatedLeadBismuthEutatic.getFluid(L))
             fluidOutputs(LeadBismuthEutatic.getFluid(L))
             EUt(V[HV])
-            duration(2 * SECOND + 18 * TICK)
+            duration(2.s + 18.t)
         }
 
         // Superheated Lithium Sodium Potassium Fluorides
@@ -68,7 +68,7 @@ internal object HeatExchangeChain
             fluidInputs(SuperheatedLithiumSodiumPotassiumFluorides.getFluid(L))
             fluidOutputs(LithiumSodiumPotassiumFluorides.getFluid(L))
             EUt(V[EV])
-            duration(4 * SECOND + 12 * TICK)
+            duration(4.s + 12.t)
         }
 
         // Superheated Lithium Beryllium Fluorides
@@ -76,7 +76,7 @@ internal object HeatExchangeChain
             fluidInputs(SuperheatedLithiumBerylliumFluorides.getFluid(L))
             fluidOutputs(LithiumBerylliumFluorides.getFluid(L))
             EUt(V[EV])
-            duration(4 * SECOND + 8 * TICK)
+            duration(4.s + 8.t)
         }
 
         // Supercritical Steam
@@ -84,7 +84,7 @@ internal object HeatExchangeChain
             fluidInputs(SupercriticalSteam.getFluid(640))
             fluidOutputs(DistilledWater.getFluid(4))
             EUt(V[EV])
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Supercritical Eutatic Sodium Potassium
@@ -92,7 +92,7 @@ internal object HeatExchangeChain
             fluidInputs(SupercriticalSodiumPotassiumEutatic.getFluid(L))
             fluidOutputs(SodiumPotassiumEutatic.getFluid(L))
             EUt(V[IV])
-            duration(2 * SECOND + 12 * TICK)
+            duration(2.s + 12.t)
         }
 
         // Supercritical Eutatic Lead Bismuth
@@ -100,7 +100,7 @@ internal object HeatExchangeChain
             fluidInputs(SupercriticalLeadBismuthEutatic.getFluid(L))
             fluidOutputs(LeadBismuthEutatic.getFluid(L))
             EUt(V[IV])
-            duration(2 * SECOND + 18 * TICK)
+            duration(2.s + 18.t)
         }
 
         // Supercritical Lithium Sodium Potassium Fluorides
@@ -108,7 +108,7 @@ internal object HeatExchangeChain
             fluidInputs(SupercriticalLithiumSodiumPotassiumFluorides.getFluid(L))
             fluidOutputs(LithiumSodiumPotassiumFluorides.getFluid(L))
             EUt(V[LuV])
-            duration(4 * SECOND + 14 * TICK)
+            duration(4.s + 14.t)
         }
 
         // Supercritical Lithium Beryllium Fluorides
@@ -116,7 +116,7 @@ internal object HeatExchangeChain
             fluidInputs(SupercriticalLithiumBerylliumFluorides.getFluid(L))
             fluidOutputs(LithiumBerylliumFluorides.getFluid(L))
             EUt(V[LuV])
-            duration(4 * SECOND + 9 * TICK)
+            duration(4.s + 9.t)
         }
     }
 

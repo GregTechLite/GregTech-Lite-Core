@@ -35,9 +35,7 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
@@ -46,6 +44,8 @@ import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mud
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.OliveOil
@@ -80,14 +80,14 @@ internal object AnimalFatProcessing
             input(OLIVE)
             fluidOutputs(OliveOil.getFluid(10))
             EUt(2) // ULV
-            duration(1 * SECOND + 12 * TICK)
+            duration(1.s + 12.t)
         }
 
         DISTILLATION_RECIPES.addRecipe {
             fluidInputs(OliveOil.getFluid(24))
             fluidOutputs(Lubricant.getFluid(12))
             EUt(96) // MV
-            duration(16 * TICK)
+            duration(16.t)
         }
 
         // Fat
@@ -97,7 +97,7 @@ internal object AnimalFatProcessing
             fluidInputs(OliveOil.getFluid(8000))
             fluidOutputs(Fat.getFluid(4000))
             EUt(VA[LV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         FLUID_SOLIDFICATION_RECIPES.addRecipe {
@@ -105,14 +105,14 @@ internal object AnimalFatProcessing
             fluidInputs(Fat.getFluid(100))
             outputs(ANIMAL_FAT.stack())
             EUt(VH[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             inputs(ANIMAL_FAT.stack())
             fluidOutputs(Fat.getFluid(100))
             EUt(VA[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
     }
 
@@ -126,7 +126,7 @@ internal object AnimalFatProcessing
             outputs(ANIMAL_FAT.getStack(2))
             output(dustTiny, Bone)
             EUt(2) // ULV
-            duration(5 * SECOND + 2 * TICK)
+            duration(5.s + 2.t)
         }
 
         MACERATOR_RECIPES.removeRecipe(BEEF)
@@ -137,7 +137,7 @@ internal object AnimalFatProcessing
             output(dustTiny, Bone)
             chancedOutput(dust, Meat, 5000, 0)
             EUt(2) // ULV
-            duration(5 * SECOND + 2 * TICK)
+            duration(5.s + 2.t)
         }
 
         MACERATOR_RECIPES.removeRecipe(CHICKEN)
@@ -147,7 +147,7 @@ internal object AnimalFatProcessing
             output(dustTiny, Bone)
             outputs(ANIMAL_FAT.stack())
             EUt(2) // ULV
-            duration(5 * SECOND + 2 * TICK)
+            duration(5.s + 2.t)
         }
 
         MACERATOR_RECIPES.removeRecipe(RABBIT)
@@ -158,7 +158,7 @@ internal object AnimalFatProcessing
             outputs(ANIMAL_FAT.stack())
             chancedOutput(dust, Meat, 5000, 0)
             EUt(2) // ULV
-            duration(5 * SECOND + 2 * TICK)
+            duration(5.s + 2.t)
         }
 
         MACERATOR_RECIPES.removeRecipe(MUTTON)
@@ -168,7 +168,7 @@ internal object AnimalFatProcessing
             output(dustTiny, Bone)
             outputs(ANIMAL_FAT.stack())
             EUt(2) // ULV
-            duration(5 * SECOND + 2 * TICK)
+            duration(5.s + 2.t)
         }
 
         // Advanced recipes for Animal Fat.
@@ -182,7 +182,7 @@ internal object AnimalFatProcessing
             fluidOutputs(Fat.getFluid(3200))
             fluidOutputs(Mud.getFluid(12000))
             EUt(VH[HV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -195,7 +195,7 @@ internal object AnimalFatProcessing
             fluidOutputs(Fat.getFluid(3200))
             fluidOutputs(Mud.getFluid(12000))
             EUt(VH[HV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -208,7 +208,7 @@ internal object AnimalFatProcessing
             fluidOutputs(Fat.getFluid(3200))
             fluidOutputs(Mud.getFluid(12000))
             EUt(VH[HV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -221,7 +221,7 @@ internal object AnimalFatProcessing
             fluidOutputs(Fat.getFluid(3200))
             fluidOutputs(Mud.getFluid(12000))
             EUt(VH[HV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -234,7 +234,7 @@ internal object AnimalFatProcessing
             fluidOutputs(Fat.getFluid(3200))
             fluidOutputs(Mud.getFluid(12000))
             EUt(VH[HV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         // Get animal fat with bone.
@@ -244,7 +244,7 @@ internal object AnimalFatProcessing
             outputs(ANIMAL_FAT.stack())
             output(dust, TricalciumPhosphate, 13)
             EUt(VA[LV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Mud -> Biomass
@@ -253,7 +253,7 @@ internal object AnimalFatProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(Biomass.getFluid(1000))
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -261,7 +261,7 @@ internal object AnimalFatProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(Biomass.getFluid(1000))
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Mud and Mud ball converts.
@@ -270,14 +270,14 @@ internal object AnimalFatProcessing
             fluidInputs(Mud.getFluid(100))
             output(MUD_BALL)
             EUt(VA[LV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(MUD_BALL)
             fluidOutputs(Mud.getFluid(100))
             EUt(7) // ULV
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 
@@ -290,7 +290,7 @@ internal object AnimalFatProcessing
             fluidOutputs(Glycerol.getFluid(1000))
             fluidOutputs(StearicAcid.getFluid(3000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C18H36O2 + NaOH -> C18H35O2Na + H2O
@@ -300,7 +300,7 @@ internal object AnimalFatProcessing
             fluidOutputs(SodiumStearate.getFluid(1000))
             fluidOutputs(Steam.getFluid(1 * SU))
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Stearic Acid -> Lubricant
@@ -311,7 +311,7 @@ internal object AnimalFatProcessing
                 fluidInputs(StearicAcid.getFluid(1000))
                 fluidOutputs(Lubricant.getFluid(1000))
                 EUt(4) // ULV
-                duration(6 * SECOND + 8 * TICK)
+                duration(6.s + 8.t)
             }
         }
 
@@ -322,7 +322,7 @@ internal object AnimalFatProcessing
             fluidInputs(Glycerol.getFluid(1000))
             fluidOutputs(BioDiesel.getFluid(4000))
             EUt(VA[MV])
-            duration(1 * SECOND + 12 * TICK)
+            duration(1.s + 12.t)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -331,7 +331,7 @@ internal object AnimalFatProcessing
             fluidInputs(Glycerol.getFluid(4000))
             fluidOutputs(BioDiesel.getFluid(16000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

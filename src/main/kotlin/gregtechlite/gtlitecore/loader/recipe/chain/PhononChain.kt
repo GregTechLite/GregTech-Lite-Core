@@ -45,8 +45,6 @@ import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.api.unification.stack.UnificationEntry
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
@@ -56,6 +54,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RE
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LAMINATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HarmonicPhononMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagMatter
@@ -89,7 +89,7 @@ internal object PhononChain
             fluidInputs(StableBaryonicMatter.getFluid(32000))
             output(PHONONIC_SEED_CRYSTAL)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -99,7 +99,7 @@ internal object PhononChain
             fluidInputs(StableBaryonicMatter.getFluid(4000))
             output(PHONONIC_SEED_CRYSTAL, 5)
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -127,7 +127,7 @@ internal object PhononChain
             output(ingot, HarmonicPhononMatter, 4)
             fluidOutputs(StableBaryonicMatter.getFluid(800))
             EUt(VA[UXV])
-            duration(20 * SECOND)
+            duration(20.s)
             blastFurnaceTemp(26000)
         }
 
@@ -140,7 +140,7 @@ internal object PhononChain
             fluidInputs(Antimatter.getFluid(1000))
             fluidOutputs(MagMatter.getFluid(16000))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Ingot
@@ -152,7 +152,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(ingot, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Block
@@ -164,7 +164,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(block, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Plate
@@ -176,7 +176,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(plate, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Double Plate
@@ -188,7 +188,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(plateDouble, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Dense Plate
@@ -200,7 +200,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(plateDense, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Foil
@@ -212,7 +212,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(foil, MagMatter, 4)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Stick
@@ -224,7 +224,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(stick, MagMatter, 2)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Long Stick
@@ -236,7 +236,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(stickLong, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Bolt
@@ -248,7 +248,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(bolt, MagMatter, 8)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Screw
@@ -260,7 +260,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(screw, MagMatter, 8)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Ring
@@ -272,7 +272,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(ring, MagMatter, 4)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Round
@@ -284,7 +284,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(round, MagMatter, 8)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Gear
@@ -296,7 +296,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(gear, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Small Gear
@@ -308,7 +308,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(gearSmall, MagMatter, 2)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Rotor
@@ -320,7 +320,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(rotor, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Fine Wire
@@ -333,7 +333,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(wireFine, MagMatter, 8)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // 1x Wire
@@ -346,7 +346,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(wireGtSingle, MagMatter, 2)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // 2x Wire
@@ -359,7 +359,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(wireGtDouble, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // 4x Wire
@@ -372,7 +372,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(wireGtQuadruple, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // 8x Wire
@@ -385,7 +385,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(wireGtOctal, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // 16x Wire
@@ -399,7 +399,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(wireGtHex, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // 1x Cable and 2x Cable
@@ -416,7 +416,7 @@ internal object PhononChain
                 fluidInputs(rubber)
                 output(cableGtSingle, MagMatter)
                 EUt(7) // ULV
-                duration(5 * SECOND)
+                duration(5.s)
             }
 
             LAMINATOR_RECIPES.addRecipe {
@@ -428,7 +428,7 @@ internal object PhononChain
                 fluidInputs(rubber)
                 output(cableGtDouble, MagMatter)
                 EUt(7) // ULV
-                duration(5 * SECOND)
+                duration(5.s)
             }
         }
 
@@ -446,7 +446,7 @@ internal object PhononChain
                 fluidInputs(rubber)
                 output(cableGtQuadruple, MagMatter)
                 EUt(7) // ULV
-                duration(5 * SECOND)
+                duration(5.s)
             }
         }
 
@@ -464,7 +464,7 @@ internal object PhononChain
                 fluidInputs(rubber)
                 output(cableGtOctal, MagMatter)
                 EUt(7) // ULV
-                duration(5 * SECOND)
+                duration(5.s)
             }
         }
 
@@ -482,7 +482,7 @@ internal object PhononChain
                 fluidInputs(rubber)
                 output(cableGtHex, MagMatter)
                 EUt(7) // ULV
-                duration(5 * SECOND)
+                duration(5.s)
             }
         }
 
@@ -495,7 +495,7 @@ internal object PhononChain
             fluidInputs(MagMatter.getFluid(1000))
             output(frameGt, MagMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Wall
@@ -510,7 +510,7 @@ internal object PhononChain
             input(screw, MagMatter)
             outputs(GTLiteBlocks.METAL_WALLS[MagMatter]!!.getItem(MagMatter).copy(3))
             EUt(7) // ULV
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         // Sheeted Frame
@@ -525,7 +525,7 @@ internal object PhononChain
             input(frameGt, MagMatter)
             outputs(GTLiteBlocks.SHEETED_FRAMES[MagMatter]!!.getItem(MagMatter).copy(6))
             EUt(7) // ULV
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
     }
 

@@ -20,10 +20,10 @@ import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.plate
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kevlar
@@ -62,7 +62,7 @@ internal object BatteriesChain
             fluidInputs(Kevlar.getFluid(L))
             output(BATTERY_HULL_SMALL_NEUTRONIUM)
             EUt(VA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Medium Neutronium Battery Hull (UEV)
@@ -72,7 +72,7 @@ internal object BatteriesChain
             fluidInputs(Kevlar.getFluid(L * 2))
             output(BATTERY_HULL_MEDIUM_NEUTRONIUM)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Large Neutronium Battery Hull (UIV)
@@ -83,7 +83,7 @@ internal object BatteriesChain
             fluidInputs(Kevlar.getFluid(L * 4))
             output(BATTERY_HULL_LARGE_NEUTRONIUM)
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Small Infinity Battery Hull (UXV)
@@ -94,7 +94,7 @@ internal object BatteriesChain
             fluidInputs(FullerenePolymerMatrix.getFluid(L))
             output(BATTERY_HULL_SMALL_INFINITY)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Medium Infinity Battery Hull (OpV)
@@ -105,7 +105,7 @@ internal object BatteriesChain
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
             output(BATTERY_HULL_MEDIUM_INFINITY)
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Large Infinity Battery Hull (MAX)
@@ -116,7 +116,7 @@ internal object BatteriesChain
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
             output(BATTERY_HULL_LARGE_INFINITY)
             EUt(VA[OpV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // endregion
@@ -129,7 +129,7 @@ internal object BatteriesChain
             input(dust, Neutronium, 2)
             output(BATTERY_UHV_NEUTRONIUM)
             EUt(VH[LuV])
-            duration(17 * SECOND + 10 * TICK)
+            duration(17.s + 10.t)
         }
 
         // Medium Neutronium Battery
@@ -138,7 +138,7 @@ internal object BatteriesChain
             input(dust, Neutronium, 8)
             output(BATTERY_UEV_NEUTRONIUM)
             EUt(VA[LuV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Large Neutronium Battery
@@ -147,7 +147,7 @@ internal object BatteriesChain
             input(dust, Neutronium, 16)
             output(BATTERY_UIV_NEUTRONIUM)
             EUt(VH[ZPM])
-            duration(22 * SECOND + 10 * TICK)
+            duration(22.s + 10.t)
         }
 
         // Small Infinity Battery
@@ -156,7 +156,7 @@ internal object BatteriesChain
             input(dust, Infinity, 2)
             output(BATTERY_UXV_INFINITY)
             EUt(VA[ZPM])
-            duration(25 * SECOND)
+            duration(25.s)
         }
 
         // Medium Infinity Battery
@@ -165,7 +165,7 @@ internal object BatteriesChain
             input(dust, Infinity, 8)
             output(BATTERY_OpV_INFINITY)
             EUt(VH[UV])
-            duration(27 * SECOND + 10 * TICK)
+            duration(27.s + 10.t)
         }
 
         // Large Infinity Battery
@@ -174,7 +174,7 @@ internal object BatteriesChain
             input(dust, Infinity, 16)
             output(BATTERY_MAX_INFINITY)
             EUt(VA[UV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // endregion

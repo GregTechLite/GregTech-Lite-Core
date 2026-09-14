@@ -141,15 +141,15 @@ import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_DRUM
 import gregtech.loaders.recipe.CraftingComponent
 import gregtech.loaders.recipe.MetaTileEntityLoader
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.item.ModItemAdapter
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
 import gregtechlite.gtlitecore.api.recipe.util.TieredAdhesiveFluid
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
@@ -603,7 +603,7 @@ internal object GTMetaTileEntityLoader
             input(pipeNormalItem, Nickel, 2)
             output(INVENTORY_BRIDGE)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Tank Bridge
@@ -618,7 +618,7 @@ internal object GTMetaTileEntityLoader
             input(pipeNormalFluid, Steel, 2)
             output(TANK_BRIDGE)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Inventory Tank Bridge
@@ -635,7 +635,7 @@ internal object GTMetaTileEntityLoader
             input(pipeNormalItem, Nickel, 2)
             output(INVENTORY_TANK_BRIDGE)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Universal Bridge
@@ -660,7 +660,7 @@ internal object GTMetaTileEntityLoader
             input(pipeNormalItem, Electrum, 2)
             output(UNIVERSAL_BRIDGE)
             EUt(VH[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Inventory Extender
@@ -675,7 +675,7 @@ internal object GTMetaTileEntityLoader
             input(pipeNormalItem, Nickel, 2)
             output(INVENTORY_EXTENDER)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Tank Extender
@@ -690,7 +690,7 @@ internal object GTMetaTileEntityLoader
             input(pipeNormalFluid, Steel, 2)
             output(TANK_EXTENDER)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Inventory Tank Extender
@@ -707,7 +707,7 @@ internal object GTMetaTileEntityLoader
             input(pipeNormalItem, Nickel, 2)
             output(INVENTORY_TANK_EXTENDER)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Universal Extender
@@ -732,7 +732,7 @@ internal object GTMetaTileEntityLoader
             input(pipeNormalItem, Electrum, 2)
             output(UNIVERSAL_EXTENDER)
             EUt(VH[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Iron Drum
@@ -750,7 +750,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Iron, 4)
             output(IRON_DRUM)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Copper Drum
@@ -768,7 +768,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Copper, 4)
             output(COPPER_DRUM)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Lead Drum
@@ -786,7 +786,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Lead, 4)
             output(LEAD_DRUM)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Chrome Drum
@@ -804,7 +804,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Chrome, 4)
             output(CHROME_DRUM)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Tungsten Drum
@@ -822,7 +822,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Tungsten, 4)
             output(TUNGSTEN_DRUM)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Iridium Drum
@@ -840,7 +840,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Iridium, 4)
             output(IRIDIUM_DRUM)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Iron Crate
@@ -855,7 +855,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Iron, 4)
             output(IRON_CRATE)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Copper Crate
@@ -870,7 +870,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Copper, 4)
             output(COPPER_CRATE)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Silver Crate
@@ -885,7 +885,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Silver, 4)
             output(SILVER_CRATE)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Gold Crate
@@ -900,7 +900,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Gold, 4)
             output(GOLD_CRATE)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Diamond Crate
@@ -915,7 +915,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Diamond, 4)
             output(DIAMOND_CRATE)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UHV Transformer
@@ -1009,7 +1009,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(Lubricant.getFluid(2000))
             output(POWER_TRANSFORMER[UHV])
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UEV Adjustable Transformer
@@ -1023,7 +1023,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
             output(POWER_TRANSFORMER[UEV])
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UIV Adjustable Transformer
@@ -1037,7 +1037,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
             output(POWER_TRANSFORMER[UIV])
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UXV Adjustable Transformer
@@ -1051,7 +1051,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
             output(POWER_TRANSFORMER[UXV])
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // OpV Adjustable Transformer
@@ -1065,7 +1065,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(2000))
             output(POWER_TRANSFORMER[OpV])
             EUt(VA[OpV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 4A UEV Energy Hatch
@@ -1075,7 +1075,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Vibranium, 2)
             output(ENERGY_INPUT_HATCH_4A[UEV])
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 4A UIV Energy Hatch
@@ -1085,7 +1085,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Shirabon, 2)
             output(ENERGY_INPUT_HATCH_4A[UIV])
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 4A UXV Energy Hatch
@@ -1095,7 +1095,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Creon, 2)
             output(ENERGY_INPUT_HATCH_4A[UXV])
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 4A OpV Energy Hatch
@@ -1105,7 +1105,7 @@ internal object GTMetaTileEntityLoader
             input(plate, BlackDwarfMatter, 2)
             output(ENERGY_INPUT_HATCH_4A[OpV])
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 16A UHV Energy Hatch
@@ -1121,7 +1121,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Neutronium, 4)
             output(ENERGY_INPUT_HATCH_16A[UHV])
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 16A UEV Energy Hatch
@@ -1132,7 +1132,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Vibranium, 4)
             output(ENERGY_INPUT_HATCH_16A[UEV])
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 16A UIV Energy Hatch
@@ -1143,7 +1143,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Shirabon, 4)
             output(ENERGY_INPUT_HATCH_16A[UIV])
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 16A UXV Energy Hatch
@@ -1154,7 +1154,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Creon, 4)
             output(ENERGY_INPUT_HATCH_16A[UXV])
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 16A OpV Energy Hatch
@@ -1165,7 +1165,7 @@ internal object GTMetaTileEntityLoader
             input(plate, BlackDwarfMatter, 4)
             output(ENERGY_INPUT_HATCH_16A[OpV])
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 64A UHV Substation Energy Hatch
@@ -1181,7 +1181,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Neutronium, 6)
             output(SUBSTATION_ENERGY_INPUT_HATCH[UHV])
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 64A UEV Substation Energy Hatch
@@ -1192,7 +1192,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Vibranium, 6)
             output(SUBSTATION_ENERGY_INPUT_HATCH[UEV])
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 64A UIV Substation Energy Hatch
@@ -1203,7 +1203,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Shirabon, 6)
             output(SUBSTATION_ENERGY_INPUT_HATCH[UIV])
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 64A UXV Substation Energy Hatch
@@ -1214,7 +1214,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Creon, 6)
             output(SUBSTATION_ENERGY_INPUT_HATCH[UXV])
             EUt(VA[UIV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 64A OpV Substation Energy Hatch
@@ -1225,7 +1225,7 @@ internal object GTMetaTileEntityLoader
             input(plate, BlackDwarfMatter, 6)
             output(SUBSTATION_ENERGY_INPUT_HATCH[OpV])
             EUt(VA[UXV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 4A UEV Dynamo Hatch
@@ -1235,7 +1235,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Vibranium, 2)
             output(ENERGY_OUTPUT_HATCH_4A[UEV])
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 4A UIV Dynamo Hatch
@@ -1245,7 +1245,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Shirabon, 2)
             output(ENERGY_OUTPUT_HATCH_4A[UIV])
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 4A UXV Dynamo Hatch
@@ -1255,7 +1255,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Creon, 2)
             output(ENERGY_OUTPUT_HATCH_4A[UXV])
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 4A OpV Dynamo Hatch
@@ -1265,7 +1265,7 @@ internal object GTMetaTileEntityLoader
             input(plate, BlackDwarfMatter, 2)
             output(ENERGY_OUTPUT_HATCH_4A[OpV])
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 16A UHV Dynamo Hatch
@@ -1281,7 +1281,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Neutronium, 4)
             output(ENERGY_OUTPUT_HATCH_16A[UHV])
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 16A UEV Dynamo Hatch
@@ -1292,7 +1292,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Vibranium, 4)
             output(ENERGY_OUTPUT_HATCH_16A[UEV])
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 16A UIV Dynamo Hatch
@@ -1303,7 +1303,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Shirabon, 4)
             output(ENERGY_OUTPUT_HATCH_16A[UIV])
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 16A UXV Dynamo Hatch
@@ -1314,7 +1314,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Creon, 4)
             output(ENERGY_OUTPUT_HATCH_16A[UXV])
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 16A OpV Dynamo Hatch
@@ -1325,7 +1325,7 @@ internal object GTMetaTileEntityLoader
             input(plate, BlackDwarfMatter, 4)
             output(ENERGY_OUTPUT_HATCH_16A[OpV])
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 64A UHV Substation Dynamo Hatch
@@ -1341,7 +1341,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Neutronium, 6)
             output(SUBSTATION_ENERGY_OUTPUT_HATCH[UHV])
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 64A UEV Substation Dynamo Hatch
@@ -1352,7 +1352,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Vibranium, 6)
             output(SUBSTATION_ENERGY_OUTPUT_HATCH[UEV])
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 64A UIV Substation Dynamo Hatch
@@ -1363,7 +1363,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Shirabon, 6)
             output(SUBSTATION_ENERGY_OUTPUT_HATCH[UIV])
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 64A UXV Substation Dynamo Hatch
@@ -1374,7 +1374,7 @@ internal object GTMetaTileEntityLoader
             input(plate, Creon, 6)
             output(SUBSTATION_ENERGY_OUTPUT_HATCH[UXV])
             EUt(VA[UIV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 64A OpV Substation Dynamo Hatch
@@ -1385,7 +1385,7 @@ internal object GTMetaTileEntityLoader
             input(plate, BlackDwarfMatter, 6)
             output(SUBSTATION_ENERGY_OUTPUT_HATCH[OpV])
             EUt(VA[UXV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // UHV Rotor Holder
@@ -1434,7 +1434,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(HSSG.getFluid(L * 4))
             output(QUANTUM_ITEM_IMPORT_BUS[IV - IV])
             EUt(VA[IV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // LuV Quantum Item Import Bus
@@ -1448,7 +1448,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(HSSS.getFluid(L * 4))
             output(QUANTUM_ITEM_IMPORT_BUS[LuV - IV])
             EUt(VA[LuV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // ZPM Quantum Item Import Bus
@@ -1462,7 +1462,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(Tritanium.getFluid(L * 4))
             output(QUANTUM_ITEM_IMPORT_BUS[ZPM - IV])
             EUt(VA[ZPM])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // UV Quantum Item Import Bus
@@ -1476,7 +1476,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(Adamantium.getFluid(L * 4))
             output(QUANTUM_ITEM_IMPORT_BUS[UV - IV])
             EUt(VA[UV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // UHV Quantum Item Import Bus
@@ -1490,7 +1490,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(Vibranium.getFluid(L * 4))
             output(QUANTUM_ITEM_IMPORT_BUS[UHV - IV])
             EUt(VA[UHV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // UEV Quantum Item Import Bus
@@ -1504,7 +1504,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(QUANTUM_ITEM_IMPORT_BUS[UEV - IV])
             EUt(VA[UEV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // UIV Quantum Item Import Bus
@@ -1518,7 +1518,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(SpaceTime.getFluid(L * 4))
             output(QUANTUM_ITEM_IMPORT_BUS[UIV - IV])
             EUt(VA[UIV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // UXV Huge Item Import Bus
@@ -1532,7 +1532,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(WhiteDwarfMatter.getFluid(L * 4))
             output(QUANTUM_ITEM_IMPORT_BUS[UXV - IV])
             EUt(VA[UXV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // OpV Huge Item Import Bus
@@ -1546,7 +1546,7 @@ internal object GTMetaTileEntityLoader
             fluidInputs(Universium.getFluid(L * 4))
             output(QUANTUM_ITEM_IMPORT_BUS[OpV - IV])
             EUt(VA[OpV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // Sterile Cleaning Maintenance Hatch
@@ -1639,7 +1639,7 @@ internal object GTMetaTileEntityLoader
                 fluidInputs(adhesiveFluidStack)
                 output(DUAL_IMPORT_HATCH[voltage])
                 EUt(VA[voltage])
-                duration(20 * SECOND)
+                duration(20.s)
             }
 
             // Dual Export Hatch
@@ -1653,7 +1653,7 @@ internal object GTMetaTileEntityLoader
                 fluidInputs(adhesiveFluidStack)
                 output(DUAL_EXPORT_HATCH[voltage])
                 EUt(VA[voltage])
-                duration(20 * SECOND)
+                duration(20.s)
             }
         }
 
@@ -1680,7 +1680,7 @@ internal object GTMetaTileEntityLoader
                 fluidInputs(TungstenSteel.getFluid(L * 4))
                 output(QUANTUM_ACCESS_HATCH)
                 EUt(VA[LuV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Crafting Pattern Input Bus
@@ -1693,7 +1693,7 @@ internal object GTMetaTileEntityLoader
                 fluidInputs(SolderingAlloy.getFluid(L * 4))
                 output(ME_CRAFTING_PATTERN_INPUT_BUS)
                 EUt(VA[IV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // Crafting Pattern Input Buffer
@@ -1710,11 +1710,11 @@ internal object GTMetaTileEntityLoader
                 fluidInputs(Lubricant.getFluid(4000))
                 output(ME_CRAFTING_PATTERN_INPUT_BUFFER)
                 EUt(VA[LuV])
-                duration(30 * SECOND)
+                duration(30.s)
                 scannerResearch {
                     it.researchStack(DUAL_IMPORT_HATCH[LuV])
                         .EUt(VA[IV])
-                        .duration(1 * MINUTE)
+                        .duration(1.min)
                 }
             }
 
@@ -1729,7 +1729,7 @@ internal object GTMetaTileEntityLoader
                 fluidInputs(SolderingAlloy.getFluid(L * 4))
                 output(ME_CRAFTING_PATTERN_INPUT_MIRROR)
                 EUt(VA[LuV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
         }
     }

@@ -10,10 +10,10 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems.EMITTER_UHV
 import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HDCS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pikyonium64B
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
@@ -44,7 +44,7 @@ internal object CosmicRayDetectorCasingRecipes
             input(screw, Pikyonium64B, 2)
             outputs(MultiblockCasing.REFLECTIVE_SURFACE_CASING.getStack(ConfigHolder.recipes.casingsPerCraft * 4))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

@@ -19,13 +19,13 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DegenerateRhenium
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.LEPTONIC_CHARGE
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.NAQUADRIA_CHARGE
@@ -45,7 +45,7 @@ internal object DegenerateRheniumChain
             inputs(NAQUADRIA_CHARGE)
             fluidOutputs(DegenerateRhenium.getPlasma(1000))
             EUt(VA[UHV])
-            duration(2 * MINUTE)
+            duration(2.min)
         }
 
         // Tier 2: 144L * 9 Rhenium -> 1000L * 9 DegenerateRhenium
@@ -54,7 +54,7 @@ internal object DegenerateRheniumChain
             inputs(TARANIUM_CHARGE)
             fluidOutputs(DegenerateRhenium.getFluid(9000))
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Tier 3: 144L * 9 * 16 Rhenium -> 1000L * 9 * 16 DegenerateRhenium
@@ -64,7 +64,7 @@ internal object DegenerateRheniumChain
             inputs(LEPTONIC_CHARGE)
             fluidOutputs(DegenerateRhenium.getFluid(144000))
             EUt(VA[UIV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // Tier 4: 144L * 9 * 64 Rhenium -> 1000L * 9 * 64 DegenerateRhenium
@@ -74,7 +74,7 @@ internal object DegenerateRheniumChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             fluidOutputs(DegenerateRhenium.getFluid(576000))
             EUt(VA[UXV])
-            duration(1 * SECOND + 15 * TICK)
+            duration(1.s + 15.t)
         }
 
         // Solidification of DegenerateRhenium.
@@ -85,7 +85,7 @@ internal object DegenerateRheniumChain
             output(dust, DegenerateRhenium)
             fluidOutputs(Helium.getFluid(250))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -95,7 +95,7 @@ internal object DegenerateRheniumChain
             output(plate, DegenerateRhenium)
             fluidOutputs(Helium.getFluid(250))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Degenerate Rhenium decomposition.
@@ -103,7 +103,7 @@ internal object DegenerateRheniumChain
             input(plate, DegenerateRhenium)
             output(dust, DegenerateRhenium)
             EUt(VA[UHV])
-            duration(9 * SECOND + 6 * TICK)
+            duration(9.s + 6.t)
             category(MACERATOR_RECYCLING)
         }
 
@@ -112,7 +112,7 @@ internal object DegenerateRheniumChain
             fluidInputs(Oxygen.getPlasma(186))
             output(dust, DegenerateRhenium)
             EUt(VA[UHV])
-            duration(9 * SECOND + 6 * TICK)
+            duration(9.s + 6.t)
             category(ARC_FURNACE_RECYCLING)
         }
     }

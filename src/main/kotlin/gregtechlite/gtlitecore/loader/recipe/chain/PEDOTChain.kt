@@ -21,11 +21,11 @@ import gregtech.api.unification.material.Materials.Styrene
 import gregtech.api.unification.material.Materials.SulfurTrioxide
 import gregtech.api.unification.material.Materials.TitaniumTetrachloride
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanediol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diacetyl
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Edot
@@ -60,7 +60,7 @@ internal object PEDOTChain
             fluidOutputs(Hydrogen.getFluid(10000))
             fluidOutputs(Oxygen.getFluid(2000))
             EUt(VHA[MV])
-            duration(4 * SECOND + 16 * TICK)
+            duration(4.s + 16.t)
         }
 
         ELECTROLYZER_RECIPES.addRecipe {
@@ -69,7 +69,7 @@ internal object PEDOTChain
             fluidOutputs(Diacetyl.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(4000))
             EUt(VA[MV])
-            duration(4 * SECOND + 16 * TICK)
+            duration(4.s + 16.t)
         }
 
         // C4H6O2 + C2H6O2 + SCl2 -> C6H6O2S + 2HCl + 2H2O (lost)
@@ -80,7 +80,7 @@ internal object PEDOTChain
             fluidOutputs(Edot.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -93,7 +93,7 @@ internal object PEDOTChain
             fluidInputs(Air.getFluid(1000))
             fluidOutputs(Polystyrene.getFluid(L))
             EUt(VA[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         CHEMICAL_RECIPES.addRecipe {
@@ -102,7 +102,7 @@ internal object PEDOTChain
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(Polystyrene.getFluid(216))
             EUt(VA[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -112,7 +112,7 @@ internal object PEDOTChain
             fluidInputs(TitaniumTetrachloride.getFluid(100))
             fluidOutputs(Polystyrene.getFluid(3240))
             EUt(VA[LV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -122,7 +122,7 @@ internal object PEDOTChain
             fluidInputs(TitaniumTetrachloride.getFluid(100))
             fluidOutputs(Polystyrene.getFluid(4320))
             EUt(VA[LV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // C8H8 + SO3 -> C8H8SO3
@@ -131,7 +131,7 @@ internal object PEDOTChain
             fluidInputs(SulfurTrioxide.getFluid(1000))
             fluidOutputs(PolystyreneSulfonate.getFluid(L))
             EUt(VA[HV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
     }
 
@@ -143,7 +143,7 @@ internal object PEDOTChain
             fluidInputs(PolystyreneSulfonate.getFluid(L))
             fluidOutputs(PedotPSS.getFluid(L * 9))
             EUt(VA[LuV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
 
@@ -153,7 +153,7 @@ internal object PEDOTChain
             fluidInputs(Polymethylmethacrylate.getFluid(L))
             fluidOutputs(PedotTMA.getFluid(L * 9))
             EUt(VA[ZPM])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
     }

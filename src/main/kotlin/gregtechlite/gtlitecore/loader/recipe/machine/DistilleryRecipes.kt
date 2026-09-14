@@ -4,9 +4,9 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.DISTILLERY_RECIPES
 import gregtech.api.unification.material.Materials.Glue
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resin
 
 internal object DistilleryRecipes
@@ -21,7 +21,7 @@ internal object DistilleryRecipes
             fluidInputs(Resin.getFluid(100))
             fluidOutputs(Glue.getFluid(75))
             EUt(VA[LV])
-            duration(15 * TICK)
+            duration(15.t)
         }
     }
 

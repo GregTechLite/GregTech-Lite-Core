@@ -28,15 +28,15 @@ import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CitricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CopperNitrate
@@ -68,7 +68,7 @@ internal object YBCOChain
             output(dust, YttriumNitrate, 26)
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[EV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // Add another recipe of BaS because it is the semi-products of Naquadah Processing.
@@ -79,7 +79,7 @@ internal object YBCOChain
             input(dust, Sulfur)
             output(dust, BariumSulfide, 2)
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // BaS + 2HNO3 -> Ba(NO3)2 + H2S
@@ -88,7 +88,7 @@ internal object YBCOChain
             fluidInputs(NitricAcid.getFluid(2000))
             output(dust, BariumNitrate, 9)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Cu + 2HNO3 -> Cu(NO3)2 + 2H
@@ -98,7 +98,7 @@ internal object YBCOChain
             output(dust, CopperNitrate, 9)
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // CuO + 2HNO3 -> Cu(NO3)2 + H2O
@@ -108,7 +108,7 @@ internal object YBCOChain
             output(dust, CopperNitrate, 9)
             fluidOutputs(Steam.getFluid(1 * SU))
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // Cu2O + 4HNO3 -> 2Cu(NO3)2 + H2O + 2H (drop)
@@ -117,7 +117,7 @@ internal object YBCOChain
             fluidInputs(NitricAcid.getFluid(4000))
             output(dust, CopperNitrate, 18)
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // Y(NO3)3 + 2Ba(NO3)2 + 3Cu(NO3)2 + 2NH3 + C6H8O7 -> YBa2Cu3O6 + 15NO2 + 6CO + 4H2O + 6H
@@ -133,7 +133,7 @@ internal object YBCOChain
             fluidOutputs(Water.getFluid(4000))
             fluidOutputs(Hydrogen.getFluid(6000))
             EUt(VA[IV])
-            duration(12 * SECOND)
+            duration(12.s)
             cleanroom()
         }
 
@@ -143,7 +143,7 @@ internal object YBCOChain
             fluidInputs(Oxygen.getFluid(1000))
             output(ingotHot, YttriumBariumCuprate, 13)
             EUt(VA[IV])
-            duration(2 * MINUTE + 5 * SECOND)
+            duration(2.min + 5.s)
         }
     }
 

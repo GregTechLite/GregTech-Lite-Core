@@ -23,11 +23,11 @@ import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumBronze
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EglinSteel
@@ -126,7 +126,7 @@ internal object MetalCasingRecipes
             input(frameGt, material)
             outputs(outputCasing.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

@@ -24,8 +24,6 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.nugget
 import gregtech.api.unification.ore.OrePrefix.toolHeadBuzzSaw
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
@@ -34,6 +32,8 @@ import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_COLLECTING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_SLAUGHTERING_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Blood
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fat
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HORSE_MEAT
@@ -109,7 +109,7 @@ internal object MobExtractorRecipes
             circuitMeta(1)
             fluidOutputs(Milk.getFluid(10))
             EUt(VA[LV])
-            duration(10 * TICK)
+            duration(10.t)
             mob(EntityCow::class)
         }
 
@@ -117,7 +117,7 @@ internal object MobExtractorRecipes
             circuitMeta(2)
             fluidOutputs(Blood.getFluid(10))
             EUt(VA[LV])
-            duration(10 * TICK)
+            duration(10.t)
             mob(EntityCow::class)
         }
 
@@ -126,7 +126,7 @@ internal object MobExtractorRecipes
             circuitMeta(3)
             outputs(WOOL)
             EUt(VA[MV])
-            duration(10 * TICK)
+            duration(10.t)
             mob(EntitySheep::class)
         }
 
@@ -134,7 +134,7 @@ internal object MobExtractorRecipes
             circuitMeta(4)
             fluidOutputs(Blood.getFluid(5))
             EUt(VA[LV])
-            duration(10 * TICK)
+            duration(10.t)
             mob(EntitySheep::class)
         }
 
@@ -143,7 +143,7 @@ internal object MobExtractorRecipes
             circuitMeta(5)
             fluidOutputs(Blood.getFluid(8))
             EUt(VA[LV])
-            duration(10 * TICK)
+            duration(10.t)
             mob(EntityPig::class)
         }
 
@@ -152,7 +152,7 @@ internal object MobExtractorRecipes
             circuitMeta(6)
             outputs(EGG)
             EUt(VA[LV])
-            duration(10 * TICK)
+            duration(10.t)
             mob(EntityChicken::class)
         }
 
@@ -160,7 +160,7 @@ internal object MobExtractorRecipes
             circuitMeta(7)
             fluidOutputs(Blood.getFluid(3))
             EUt(VA[LV])
-            duration(10 * TICK)
+            duration(10.t)
             mob(EntityChicken::class)
         }
 
@@ -169,7 +169,7 @@ internal object MobExtractorRecipes
             circuitMeta(8)
             fluidOutputs(Blood.getFluid(80))
             EUt(VA[MV])
-            duration(10 * TICK)
+            duration(10.t)
             mob(EntityHorse::class)
         }
 
@@ -178,7 +178,7 @@ internal object MobExtractorRecipes
             circuitMeta(9)
             fluidOutputs(Blood.getFluid(100))
             EUt(VA[HV])
-            duration(10 * TICK)
+            duration(10.t)
             mob(EntityVillager::class)
         }
 
@@ -187,7 +187,7 @@ internal object MobExtractorRecipes
             circuitMeta(10)
             fluidOutputs(Blood.getFluid(200))
             EUt(VA[HV])
-            duration(10 * TICK)
+            duration(10.t)
             mob("player")
         }
     }
@@ -200,7 +200,7 @@ internal object MobExtractorRecipes
             input(EGG)
             output(MEMORY_CARD_CHICKEN)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Cow
@@ -209,7 +209,7 @@ internal object MobExtractorRecipes
             input(MILK_BUCKET)
             output(MEMORY_CARD_COW)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Pig
@@ -218,7 +218,7 @@ internal object MobExtractorRecipes
             input(CARROT)
             output(MEMORY_CARD_PIG)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Sheep
@@ -227,7 +227,7 @@ internal object MobExtractorRecipes
             input(WOOL)
             output(MEMORY_CARD_SHEEP)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Horse
@@ -236,7 +236,7 @@ internal object MobExtractorRecipes
             input(IRON_HORSE_ARMOR)
             output(MEMORY_CARD_HORSE)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Donkey
@@ -245,7 +245,7 @@ internal object MobExtractorRecipes
             input(LEATHER)
             output(MEMORY_CARD_DONKEY)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Mule
@@ -254,7 +254,7 @@ internal object MobExtractorRecipes
             input(SADDLE)
             output(MEMORY_CARD_MULE)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Ocelot
@@ -263,7 +263,7 @@ internal object MobExtractorRecipes
             input(FISH)
             output(MEMORY_CARD_OCELOT)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Wolf
@@ -272,7 +272,7 @@ internal object MobExtractorRecipes
             inputs(DYE.getStack(1, 15))
             output(MEMORY_CARD_WOLF)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Rabbit
@@ -281,7 +281,7 @@ internal object MobExtractorRecipes
             input(BEETROOT)
             output(MEMORY_CARD_RABBIT)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Llama
@@ -290,7 +290,7 @@ internal object MobExtractorRecipes
             input(STRING)
             output(MEMORY_CARD_LLAMA)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Mooshroom
@@ -299,7 +299,7 @@ internal object MobExtractorRecipes
             input(RED_MUSHROOM)
             output(MEMORY_CARD_MOOSHROOM)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Bat
@@ -308,7 +308,7 @@ internal object MobExtractorRecipes
             input(DEADBUSH)
             output(MEMORY_CARD_BAT)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Villager
@@ -317,7 +317,7 @@ internal object MobExtractorRecipes
             input(gem, Emerald)
             output(MEMORY_CARD_VILLAGER)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Trader
@@ -326,7 +326,7 @@ internal object MobExtractorRecipes
             input(LEAD)
             output(MEMORY_CARD_TRADER)
             EUt(7) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // ---------------------------------------------------------------------------------------------------------
@@ -339,7 +339,7 @@ internal object MobExtractorRecipes
             output(EGG)
             fluidOutputs(Blood.getFluid(64))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Cow
@@ -349,7 +349,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(225))
             fluidOutputs(Milk.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Pig
@@ -358,7 +358,7 @@ internal object MobExtractorRecipes
             output(MUD_BALL, 3)
             fluidOutputs(Blood.getFluid(175))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Sheep
@@ -368,7 +368,7 @@ internal object MobExtractorRecipes
             output(STRING, 3)
             fluidOutputs(Blood.getFluid(200))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Horse
@@ -378,7 +378,7 @@ internal object MobExtractorRecipes
             chancedOutput(SADDLE.stack(), 2000, 0)
             fluidOutputs(Blood.getFluid(180))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Donkey
@@ -388,7 +388,7 @@ internal object MobExtractorRecipes
             chancedOutput(SADDLE.stack(), 1500, 0)
             fluidOutputs(Blood.getFluid(175))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Mule
@@ -398,7 +398,7 @@ internal object MobExtractorRecipes
             chancedOutput(LEAD.stack(), 3500, 0)
             fluidOutputs(Blood.getFluid(225))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Ocelot
@@ -406,7 +406,7 @@ internal object MobExtractorRecipes
             notConsumable(MEMORY_CARD_OCELOT)
             fluidOutputs(Blood.getFluid(50))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Wolf
@@ -414,7 +414,7 @@ internal object MobExtractorRecipes
             notConsumable(MEMORY_CARD_WOLF)
             fluidOutputs(Blood.getFluid(80))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Rabbit
@@ -424,7 +424,7 @@ internal object MobExtractorRecipes
             output(RABBIT_FOOT, 2)
             fluidOutputs(Blood.getFluid(65))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Llama
@@ -433,7 +433,7 @@ internal object MobExtractorRecipes
             output(LEATHER)
             fluidOutputs(Blood.getFluid(180))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Mooshroom
@@ -443,7 +443,7 @@ internal object MobExtractorRecipes
             output(RED_MUSHROOM)
             fluidOutputs(Blood.getFluid(200))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Bat
@@ -453,7 +453,7 @@ internal object MobExtractorRecipes
             output(dust, DarkAsh)
             fluidOutputs(Blood.getFluid(10))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Villager
@@ -461,7 +461,7 @@ internal object MobExtractorRecipes
             notConsumable(MEMORY_CARD_VILLAGER)
             fluidOutputs(Blood.getFluid(250))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Wandering Trader
@@ -469,7 +469,7 @@ internal object MobExtractorRecipes
             notConsumable(MEMORY_CARD_TRADER)
             fluidOutputs(Blood.getFluid(250))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // ---------------------------------------------------------------------------------------------------------
@@ -608,7 +608,7 @@ internal object MobExtractorRecipes
             fluidOutputs(Blood.getFluid(bloodAmount * factor))
             fluidOutputs(Fat.getFluid(fatAmount * factor))
             EUt(eut)
-            duration(40 * SECOND)
+            duration(40.s)
         }
     }
 }

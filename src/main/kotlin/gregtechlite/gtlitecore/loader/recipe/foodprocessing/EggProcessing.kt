@@ -19,14 +19,14 @@ import gregtech.api.unification.material.Materials.Ethanol
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EggLiquid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EggWhite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EggYolk
@@ -59,7 +59,7 @@ internal object EggProcessing
             outputs(EGGSHELL.stack())
             fluidOutputs(EggLiquid.getFluid(100))
             EUt(VA[LV])
-            duration(2 * SECOND + 8 * TICK)
+            duration(2.s + 8.t)
         }
 
         // Eggshell -> CaCO3
@@ -67,7 +67,7 @@ internal object EggProcessing
             inputs(EGGSHELL.stack())
             output(dust, Calcite)
             EUt(2) // ULV
-            duration(12 * TICK)
+            duration(12.t)
         }
 
         // Egg Liquid -> Egg White + Egg Yolk
@@ -76,7 +76,7 @@ internal object EggProcessing
             fluidOutputs(EggWhite.getFluid(200))
             fluidOutputs(EggYolk.getFluid(100))
             EUt(VA[LV])
-            duration(3 * SECOND + 12 * TICK)
+            duration(3.s + 12.t)
         }
     }
 
@@ -90,7 +90,7 @@ internal object EggProcessing
             fluidInputs(EggWhite.getFluid(2000))
             fluidOutputs(SugarFreeEggWhite.getFluid(2000))
             EUt(V[ULV] + VH[ULV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         FERMENTING_RECIPES.addRecipe {
@@ -99,7 +99,7 @@ internal object EggProcessing
             fluidInputs(EggWhite.getFluid(18000))
             fluidOutputs(SugarFreeEggWhite.getFluid(18000))
             EUt(V[LV] + VH[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Sugar Free Egg White -> Egg White
@@ -108,7 +108,7 @@ internal object EggProcessing
             output(dust, EggWhite)
             fluidOutputs(Water.getFluid(100))
             EUt(VH[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Egg Yolk
@@ -118,7 +118,7 @@ internal object EggProcessing
             output(dust, EggYolk)
             fluidOutputs(Water.getFluid(100))
             EUt(VH[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -131,7 +131,7 @@ internal object EggProcessing
             outputs(WET_EGG_WHITE_CAKE.stack())
             fluidOutputs(PhospholipidEthanolEmulsion.getFluid(2000))
             EUt(VA[HV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Phospholipid Ethanol Emulsion -> Lecithin + Fat + C2H6O + Water
@@ -142,7 +142,7 @@ internal object EggProcessing
             fluidOutputs(Ethanol.getFluid(900))
             fluidOutputs(Water.getFluid(15))
             EUt(VA[HV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Wet Egg White Cake -> Egg White + C2H6O
@@ -151,7 +151,7 @@ internal object EggProcessing
             output(dust, EggWhite)
             fluidOutputs(Ethanol.getFluid(400))
             EUt(VA[MV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 

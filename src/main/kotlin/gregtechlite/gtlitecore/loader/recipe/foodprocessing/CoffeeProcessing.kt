@@ -15,8 +15,6 @@ import gregtech.api.unification.material.Materials.Paper
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.common.items.MetaItems.PLANT_BALL
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
@@ -25,6 +23,8 @@ import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Coffee
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_CUP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.COFFEE_CHERRY
@@ -62,7 +62,7 @@ internal object CoffeeProcessing
             chancedOutput(COFFEE_SEED, 2, 5000, 1500)
             chancedOutput(COFFEE_SEED, 7500, 2000)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Corn cob decomposition.
@@ -70,7 +70,7 @@ internal object CoffeeProcessing
             inputs(COFFEE_CHERRY.getStack(8))
             output(PLANT_BALL)
             EUt(2) // ULV
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Coffee seed -> Large Green Coffee, Small Green Coffee
@@ -81,7 +81,7 @@ internal object CoffeeProcessing
             chancedOutput(LARGE_GREEN_COFFEE.getStack(2), 4500, 1250)
             chancedOutput(SMALL_GREEN_COFFEE.getStack(6), 6500, 2500)
             EUt(VA[LV])
-            duration(25 * SECOND)
+            duration(25.s)
         }
 
         // Large/Small Green Coffee -> Fermented Large/Small Coffee
@@ -90,7 +90,7 @@ internal object CoffeeProcessing
             fluidInputs(Water.getFluid(500))
             outputs(FERMENTED_LARGE_COFFEE.stack())
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         FERMENTING_RECIPES.addRecipe {
@@ -98,7 +98,7 @@ internal object CoffeeProcessing
             fluidInputs(Water.getFluid(250))
             outputs(FERMENTED_SMALL_COFFEE.stack())
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Fermented Large/Small Coffee -> Dried Large/Small Coffee
@@ -107,7 +107,7 @@ internal object CoffeeProcessing
             outputs(DRIED_LARGE_COFFEE.getStack(8))
             fluidOutputs(Water.getFluid(4000))
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         CHEMICAL_DEHYDRATOR_RECIPES.addRecipe {
@@ -115,7 +115,7 @@ internal object CoffeeProcessing
             outputs(DRIED_SMALL_COFFEE.getStack(16))
             fluidOutputs(Water.getFluid(4000))
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Dried Large/Small Coffee -> Roasted Large/Small Coffee
@@ -123,14 +123,14 @@ internal object CoffeeProcessing
             inputs(DRIED_LARGE_COFFEE.getStack(8))
             outputs(ROASTED_LARGE_COFFEE.getStack(8))
             EUt(VA[LV])
-            duration(12 * SECOND + 10 * TICK)
+            duration(12.s + 10.t)
         }
 
         ROASTER_RECIPES.addRecipe {
             inputs(DRIED_SMALL_COFFEE.getStack(16))
             outputs(ROASTED_SMALL_COFFEE.getStack(16))
             EUt(VA[LV])
-            duration(12 * SECOND + 10 * TICK)
+            duration(12.s + 10.t)
         }
 
         // Roasted Large/Small Coffee -> Ground Coffee
@@ -138,14 +138,14 @@ internal object CoffeeProcessing
             inputs(ROASTED_LARGE_COFFEE.stack())
             outputs(GROUND_COFFEE.getStack(2))
             EUt(7) // ULV
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         MACERATOR_RECIPES.addRecipe {
             inputs(ROASTED_SMALL_COFFEE.stack())
             outputs(GROUND_COFFEE.stack())
             EUt(7) // ULV
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Paper Cone
@@ -158,7 +158,7 @@ internal object CoffeeProcessing
             inputs(PAPER)
             output(PAPER_CONE, 4)
             EUt(7) // ULV
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         BURNER_REACTOR_RECIPES.addRecipe {
@@ -168,7 +168,7 @@ internal object CoffeeProcessing
             output(dustSmall, Paper)
             fluidOutputs(Coffee.getFluid(100))
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -176,7 +176,7 @@ internal object CoffeeProcessing
             fluidInputs(Coffee.getFluid(100))
             output(COFFEE_CUP)
             EUt(VH[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 

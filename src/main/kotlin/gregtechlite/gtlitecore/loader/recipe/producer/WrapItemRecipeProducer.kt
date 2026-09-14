@@ -8,12 +8,12 @@ import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.ore.OrePrefix.circuit
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
 import gregtechlite.gtlitecore.api.recipe.util.wrapItems
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.loader.recipe.component.CraftingComponents
 import net.minecraft.item.ItemStack
 
@@ -31,7 +31,7 @@ internal object WrapItemRecipeProducer
                 fluidInputs(Polyethylene.getFluid(L / 2))
                 outputs(CraftingComponents.WRAP_CIRCUIT.getIngredient(tier) as ItemStack)
                 EUt(VA[LV])
-                duration(5 * SECOND)
+                duration(5.s)
             }
         }
     }
@@ -44,7 +44,7 @@ internal object WrapItemRecipeProducer
             fluidInputs(Polyethylene.getFluid(L / 2))
             outputs(wrapItem)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 }
