@@ -167,9 +167,7 @@ import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FINE_WIRE
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FOIL
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_GEAR
-import gregtech.api.unification.material.info.MaterialFlags.GENERATE_LONG_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_RING
-import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROD
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROTOR
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_ROUND
 import gregtech.api.unification.material.info.MaterialFlags.GENERATE_SMALL_GEAR
@@ -182,9 +180,6 @@ import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.SAND
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty.GasTier
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.blastProp
 import gregtechlite.gtlitecore.api.extension.cableProp
 import gregtechlite.gtlitecore.api.extension.fluidPipeProp
@@ -193,6 +188,9 @@ import gregtechlite.gtlitecore.api.extension.itemPipeProp
 import gregtechlite.gtlitecore.api.extension.liquid
 import gregtechlite.gtlitecore.api.extension.rotorProp
 import gregtechlite.gtlitecore.api.extension.toolProp
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyB
@@ -292,7 +290,6 @@ import net.minecraft.init.Enchantments
 
 object GTLiteSecondDegreeMaterials
 {
-
     // @formatter:off
 
     fun init()
@@ -315,8 +312,8 @@ object GTLiteSecondDegreeMaterials
             components(Iron, 16, Molybdenum, 1, Titanium, 1, Nickel, 4, Cobalt, 2)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR, GENERATE_DOUBLE_PLATE)
             blastProp(2413, GasTier.LOW, // Kanthal
-                      VA[HV], 20 * SECOND,
-                      VA[MV], 2 * SECOND + 2 * TICK)
+                      VA[HV], 20.s,
+                      VA[MV], 2.s + 2.t)
             itemPipeProp(576, 16F)
         }
 
@@ -329,8 +326,8 @@ object GTLiteSecondDegreeMaterials
             components(Nickel, 3, Chrome, 7, Molybdenum, 10, Invar, 10, Nichrome, 13)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_BOLT_SCREW)
             blastProp(2425, GasTier.LOW, // Kanthal
-                      VA[HV], 25 * SECOND,
-                      VA[MV], 4 * SECOND + 4 * TICK)
+                      VA[HV], 25.s,
+                      VA[MV], 4.s + 4.t)
         }
 
         // 4004 Staballoy
@@ -343,8 +340,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR, GENERATE_DOUBLE_PLATE,
                   GENERATE_DENSE)
             blastProp(3450, GasTier.MID, // Nichrome
-                      VA[HV], 37 * SECOND + 10 * TICK,
-                      VA[MV], 21 * SECOND + 9 * TICK)
+                      VA[HV], 37.s + 10.t,
+                      VA[MV], 21.s + 9.t)
         }
 
         // 4005 Talonite
@@ -357,8 +354,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR, GENERATE_ROTOR, GENERATE_SPRING,
                   GENERATE_SPRING_SMALL)
             blastProp(3454, GasTier.MID, // Nichrome
-                      VA[HV], 28 * SECOND + 10 * TICK,
-                      VA[MV], 3 * SECOND + 18 * TICK)
+                      VA[HV], 28.s + 10.t,
+                      VA[MV], 3.s + 18.t)
         }
 
         // 4006 Zeron-100
@@ -370,8 +367,8 @@ object GTLiteSecondDegreeMaterials
             components(Chrome, 13, Nickel, 3, Molybdenum, 2, Copper, 10, Tungsten, 2, Steel, 20)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_BOLT_SCREW, GENERATE_ROTOR)
             blastProp(5400, GasTier.HIGH, // HSS-G
-                      VA[IV], 48 * SECOND,
-                      VA[EV], 5 * SECOND + 8 * TICK)
+                      VA[IV], 48.s,
+                      VA[EV], 5.s + 8.t)
         }
 
         // 4007 Watertight Steel
@@ -383,8 +380,8 @@ object GTLiteSecondDegreeMaterials
             components(Iron, 7, Aluminium, 4, Nickel, 2, Chrome, 1, Sulfur, 1)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             blastProp(3850, GasTier.MID, // RTM Alloy
-                      VA[HV], 24 * SECOND,
-                      VA[MV], 2 * SECOND)
+                      VA[HV], 24.s,
+                      VA[MV], 2.s)
         }
 
         // 4008 Stellite
@@ -396,8 +393,8 @@ object GTLiteSecondDegreeMaterials
             components(Cobalt, 9, Chrome, 9, Manganese, 5, Titanium, 2)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             blastProp(3310, GasTier.MID, // Nichrome
-                      VA[EV], 30 * SECOND,
-                      VA[MV], 6 * SECOND)
+                      VA[EV], 30.s,
+                      VA[MV], 6.s)
         }
 
         // 4009 Tumbaga
@@ -410,7 +407,7 @@ object GTLiteSecondDegreeMaterials
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
                   GENERATE_RING)
             blastProp(1200, GasTier.LOW, // Cupronickel
-                      VA[MV], 24 * SECOND)
+                      VA[MV], 24.s)
         }
 
         // 4010 Eglin Steel Base
@@ -432,7 +429,7 @@ object GTLiteSecondDegreeMaterials
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR, GENERATE_DOUBLE_PLATE,
                   GENERATE_DENSE)
             blastProp(1048, GasTier.LOW, // Cupronickel
-                      VA[MV], 1 * SECOND + 4 * TICK)
+                      VA[MV], 1.s + 4.t)
         }
 
         // 4012 Grisium
@@ -444,8 +441,8 @@ object GTLiteSecondDegreeMaterials
             components(Titanium, 9, Carbon, 9, Potassium, 9, Lithium, 9, Sulfur, 9, Hydrogen, 5)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             blastProp(3550, GasTier.MID, // Nichrome
-                      VA[EV], 26 * SECOND,
-                      VA[HV], 13 * SECOND)
+                      VA[EV], 26.s,
+                      VA[HV], 13.s)
         }
 
         // 4013 Babbit Alloy
@@ -457,7 +454,7 @@ object GTLiteSecondDegreeMaterials
             components(Tin, 5, Lead, 36, Antimony, 8, Arsenic, 1)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             blastProp(737, GasTier.LOW, // Cupronickel
-                      VA[MV], 8 * SECOND)
+                      VA[MV], 8.s)
         }
 
         // 4014 Silicon Carbide
@@ -469,8 +466,8 @@ object GTLiteSecondDegreeMaterials
             components(Silicon, 1, Carbon, 1)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_FOIL, GENERATE_FINE_WIRE)
             blastProp(3850, GasTier.HIGH, // RTM Alloy
-                      VA[IV], 7 * SECOND + 10 * TICK,
-                      VA[EV], 3 * SECOND + 5 * TICK)
+                      VA[IV], 7.s + 10.t,
+                      VA[EV], 3.s + 5.t)
         }
 
         // 4015 HSLA Steel
@@ -482,7 +479,7 @@ object GTLiteSecondDegreeMaterials
             components(Invar, 2, Vanadium, 1, Titanium, 1, Molybdenum, 1)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_RING)
             blastProp(1711, GasTier.LOW, // Kanthal
-                      VA[HV], 25 * SECOND)
+                      VA[HV], 25.s)
         }
 
         // 4016 Incoloy-MA813
@@ -494,8 +491,8 @@ object GTLiteSecondDegreeMaterials
             components(VanadiumSteel, 4, Niobium, 2, Chrome, 3, Nickel, 4)
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_ROTOR)
             blastProp(4800, GasTier.HIGH, // HSS-G
-                      VA[IV], 34 * SECOND,
-                      VA[EV], 17 * SECOND)
+                      VA[IV], 34.s,
+                      VA[EV], 17.s)
         }
 
         // 4017 Monel 500
@@ -507,8 +504,8 @@ object GTLiteSecondDegreeMaterials
             components(Nickel, 23, Manganese, 2, Copper, 10, Aluminium, 4, Titanium, 1)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             blastProp(4500, GasTier.MID, // RTM Alloy
-                      VA[IV], 27 * SECOND,
-                      VA[HV], 20 * SECOND)
+                      VA[IV], 27.s,
+                      VA[HV], 20.s)
         }
 
         // 4018 Incoloy-MA956
@@ -520,8 +517,8 @@ object GTLiteSecondDegreeMaterials
             components(Iron, 16, Aluminium, 3, Chrome, 5, Yttrium, 1)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             blastProp(5325, GasTier.HIGH, // HSS-G
-                      VA[IV], 40 * SECOND,
-                      VA[HV], 25 * SECOND)
+                      VA[IV], 40.s,
+                      VA[HV], 25.s)
         }
 
         // 4019 Zirconium Carbide
@@ -533,8 +530,8 @@ object GTLiteSecondDegreeMaterials
             components(Zirconium, 1, Carbon, 1)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             blastProp(3250, GasTier.MID, // Nichrome
-                      VA[HV], 48 * SECOND,
-                      VA[LV], 24 * SECOND)
+                      VA[HV], 48.s,
+                      VA[LV], 24.s)
         }
 
         // 4020 Tantalum Carbide
@@ -547,8 +544,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR,
                   GENERATE_DOUBLE_PLATE)
             blastProp(4120, GasTier.MID, // RTM Alloy
-                      VA[EV], 1 * MINUTE,
-                      VA[HV], 20 * SECOND)
+                      VA[EV], 1.min,
+                      VA[HV], 20.s)
         }
 
         // 4021 Molybdenum Disilicide
@@ -560,8 +557,8 @@ object GTLiteSecondDegreeMaterials
             components(Molybdenum, 1, Silicon, 2)
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_SPRING, GENERATE_SPRING_SMALL)
             blastProp(2300, GasTier.MID, // Kanthal
-                      VA[EV], 40 * SECOND,
-                      VA[MV], 12 * SECOND)
+                      VA[EV], 40.s,
+                      VA[MV], 12.s)
         }
 
         // 4022 Hastelloy-C276
@@ -573,8 +570,8 @@ object GTLiteSecondDegreeMaterials
             components(Nickel, 12, Molybdenum, 8, Chrome, 7, Tungsten, 1, Cobalt, 1, Copper, 1)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME)
             blastProp(4625, GasTier.MID, // RTM Alloy
-                      VA[IV], 38 * SECOND,
-                      VA[HV], 14 * SECOND)
+                      VA[IV], 38.s,
+                      VA[HV], 14.s)
         }
 
         // 4023 Hastelloy-X
@@ -586,8 +583,8 @@ object GTLiteSecondDegreeMaterials
             components(Nickel, 8, Iron, 3, Tungsten, 4, Molybdenum, 2, Chrome, 1, Niobium, 1)
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             blastProp(4200, GasTier.MID, // RTM Alloy
-                      VA[IV], 30 * SECOND,
-                      VA[HV], 16 * SECOND)
+                      VA[IV], 30.s,
+                      VA[HV], 16.s)
         }
 
         // 4024 Hastelloy-N
@@ -600,8 +597,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING,
                   GENERATE_SPRING_SMALL, GENERATE_DOUBLE_PLATE)
             blastProp(4625, GasTier.HIGH, // HSS-G
-                      VA[IV], 50 * SECOND,
-                      VA[EV], 15 * SECOND)
+                      VA[IV], 50.s,
+                      VA[EV], 15.s)
         }
 
         // 4025 Aluminium Bronze
@@ -613,7 +610,7 @@ object GTLiteSecondDegreeMaterials
             components(Aluminium, 2, Manganese, 1, Bronze, 1)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE)
             blastProp(1073, GasTier.LOW, // Cupronickel
-                      VA[MV], 16 * SECOND)
+                      VA[MV], 16.s)
         }
 
         // 4026 René N5
@@ -625,8 +622,8 @@ object GTLiteSecondDegreeMaterials
             components(Nickel, 22, Cobalt, 4, Chrome, 3, Aluminium, 3, Tungsten, 2, Hafnium, 1, Rhenium, 2, Tantalum, 3)
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_ROTOR)
             blastProp(6800, GasTier.HIGH, // Naquadah
-                      VA[LuV], 30 * SECOND,
-                      VA[EV], 25 * SECOND)
+                      VA[LuV], 30.s,
+                      VA[EV], 25.s)
         }
 
         // 4027 Titanium Carbide
@@ -638,8 +635,8 @@ object GTLiteSecondDegreeMaterials
             components(Titanium, 1, Carbon, 1)
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR)
             blastProp(3430, GasTier.MID, // Nichrome
-                      VA[HV], 50 * SECOND,
-                      VA[MV], 10 * SECOND)
+                      VA[HV], 50.s,
+                      VA[MV], 10.s)
         }
 
         // 4028 Titanium Tungsten Carbide
@@ -651,8 +648,8 @@ object GTLiteSecondDegreeMaterials
             components(TungstenCarbide, 1, TitaniumCarbide, 2)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_FRAME)
             blastProp(3800, GasTier.HIGH, // Nichrome
-                      VA[EV], 50 * SECOND,
-                      VA[HV], 15 * SECOND)
+                      VA[EV], 50.s,
+                      VA[HV], 15.s)
         }
 
         // 4029 Trinaquadalloy
@@ -665,8 +662,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
                   GENERATE_SPRING, GENERATE_SPRING_SMALL)
             blastProp(8747, GasTier.HIGHER, // Trinium
-                      VA[ZPM], 1 * MINUTE,
-                      VA[IV], 45 * SECOND)
+                      VA[ZPM], 1.min,
+                      VA[IV], 45.s)
             fluidPipeProp(7552, 400, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
         }
 
@@ -681,8 +678,8 @@ object GTLiteSecondDegreeMaterials
                   GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_FRAME, GENERATE_RING, GENERATE_SPRING,
                   GENERATE_SPRING_SMALL)
             blastProp(9001, GasTier.HIGHER, // Trinium
-                      VA[ZPM], 1 * MINUTE + 40 * SECOND,
-                      VA[LuV], 30 * SECOND)
+                      VA[ZPM], 1.min + 40.s,
+                      VA[LuV], 30.s)
             toolProp(45.0F, 24.0F, 4096, 6)
             {
                 attackSpeed(0.6F)
@@ -704,8 +701,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
                   GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROTOR, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND)
             blastProp(11400, GasTier.HIGHEST, // Adamantium
-                      VA[UHV], 58 * SECOND,
-                      VA[UV], 29 * SECOND)
+                      VA[UHV], 58.s,
+                      VA[UV], 29.s)
             itemPipeProp(64, 96F)
         }
 
@@ -719,8 +716,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR,
                   GENERATE_DOUBLE_PLATE, GENERATE_RING, GENERATE_SPRING, GENERATE_SPRING, GENERATE_SPRING_SMALL)
             blastProp(10900, GasTier.HIGHEST, // Adamantium
-                      VA[UHV], 1 * MINUTE + 30 * SECOND,
-                      VA[ZPM], 45 * SECOND)
+                      VA[UHV], 1.min + 30.s,
+                      VA[ZPM], 45.s)
             rotorProp(16.5f, 3.5f, 6000)
             toolProp(52.5F, 28.0F, 6144, 7)
             {
@@ -741,8 +738,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_GEAR, GENERATE_FRAME,
                   GENERATE_RING, GENERATE_SMALL_GEAR, GENERATE_SPRING, GENERATE_SPRING_SMALL)
             blastProp(10600, GasTier.HIGHEST, // Tritanium
-                      VA[UHV], 1 * MINUTE,
-                      VA[UV], 28 * SECOND)
+                      VA[UHV], 1.min,
+                      VA[UV], 28.s)
             toolProp(48.0F, 24.0F, 5120, 7)
             {
                 attackSpeed(0.4F)
@@ -763,8 +760,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_GEAR, GENERATE_FOIL,
                   GENERATE_FRAME, GENERATE_RING, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_SMALL_GEAR)
             blastProp(10400, GasTier.HIGHEST, // Tritanium
-                      VA[UHV], 20 * SECOND,
-                      VA[UV], 6 * SECOND + 10 * TICK)
+                      VA[UHV], 20.s,
+                      VA[UV], 6.s + 10.t)
             toolProp(36.5F, 44.2F, 4980, 7)
             {
                 attackSpeed(0.6F)
@@ -787,8 +784,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, NO_UNIFICATION, GENERATE_FOIL, GENERATE_FRAME, GENERATE_SPRING, GENERATE_SPRING_SMALL,
                   GENERATE_DOUBLE_PLATE, GENERATE_DENSE)
             blastProp(13801, GasTier.HIGHEST, // Infinity
-                      VA[UEV], 40 * SECOND,
-                      VA[UHV], 20 * SECOND)
+                      VA[UEV], 40.s,
+                      VA[UHV], 20.s)
             cableProp(V[UIV], 48, 64)
         }
 
@@ -803,8 +800,8 @@ object GTLiteSecondDegreeMaterials
             .flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_RING, GENERATE_FOIL,
                    GENERATE_SMALL_GEAR, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
             blastProp(12300, GasTier.HIGHEST, // Adamantium
-                      VA[UHV], 44 * SECOND,
-                      VA[UV], 22 * SECOND)
+                      VA[UHV], 44.s,
+                      VA[UV], 22.s)
             fluidPipeProp(9300, 640, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
             toolProp(44.8F, 64.4F, 7470, 7)
             {
@@ -824,8 +821,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_RING, GENERATE_SMALL_GEAR,
                   GENERATE_SPRING, GENERATE_SPRING_SMALL)
             blastProp(14000, GasTier.HIGHEST, // Infinity
-                      VA[UEV], 1 * MINUTE + 25 * SECOND,
-                      VA[UHV], 48 * SECOND)
+                      VA[UEV], 1.min + 25.s,
+                      VA[UHV], 48.s)
             toolProp(58.0F, 80.0F, 11205, 8)
             {
                 attackSpeed(0.8F)
@@ -844,8 +841,8 @@ object GTLiteSecondDegreeMaterials
                        Platinum, 2, Ytterbium, 1)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE, GENERATE_FRAME, GENERATE_ROTOR)
             blastProp(10400, GasTier.HIGHER, // Tritanium
-                      VA[UV], 30 * SECOND,
-                      VA[LuV], 15 * SECOND)
+                      VA[UV], 30.s,
+                      VA[LuV], 15.s)
             rotorProp(18.2F, 5.5F, 7200)
         }
 
@@ -858,8 +855,8 @@ object GTLiteSecondDegreeMaterials
             components(Pikyonium64B, 6, Vibranium, 4, Osmiridium, 2, Lawrencium, 3, Thallium, 2, Astatine, 2, Trinium, 1)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROTOR)
             blastProp(13900, GasTier.HIGHEST, // Infinity
-                      VA[UEV], 1 * MINUTE + 15 * SECOND,
-                      VA[UV], 48 * SECOND)
+                      VA[UEV], 1.min + 15.s,
+                      VA[UV], 48.s)
             rotorProp(19.0F, 4.8F, 8400)
         }
 
@@ -872,8 +869,8 @@ object GTLiteSecondDegreeMaterials
             components(Vibranium, 5, Tritanium, 5, ActiniumSuperhydride, 1, BETSPerrhenate, 1, Iron, 1)
             flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
             blastProp(14400, GasTier.HIGHEST, // Infinity
-                      VA[UEV], 30 * SECOND,
-                      VA[UHV], 15 * SECOND)
+                      VA[UEV], 30.s,
+                      VA[UHV], 15.s)
             cableProp(V[UEV], 32, 0, true)
         }
 
@@ -886,8 +883,8 @@ object GTLiteSecondDegreeMaterials
             components(Hafnium, 1, Carbon, 1)
             flags(EXT_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_BOLT_SCREW, GENERATE_DOUBLE_PLATE)
             blastProp(4090, GasTier.MID, // RTM Alloy
-                      VA[EV], 1 * MINUTE + 5 * SECOND,
-                      VA[HV], 30 * SECOND)
+                      VA[EV], 1.min + 5.s,
+                      VA[HV], 30.s)
         }
 
         // 4042 Seaborgium Carbide
@@ -899,8 +896,8 @@ object GTLiteSecondDegreeMaterials
             components(Seaborgium, 1, Carbon, 1)
             flags(STD_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FOIL, GENERATE_DOUBLE_PLATE)
             blastProp(8500, GasTier.HIGH, // Trinium
-                      VA[ZPM], 45 * SECOND,
-                      VA[IV], 22 * SECOND + 10 * TICK)
+                      VA[ZPM], 45.s,
+                      VA[IV], 22.s + 10.t)
             itemPipeProp(288, 48F)
         }
 
@@ -914,8 +911,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FRAME, GENERATE_SPRING,
                   GENERATE_DOUBLE_PLATE)
             blastProp(12900, GasTier.HIGHEST, // Infinity
-                      VA[UHV], 36 * SECOND,
-                      VA[UV], 18 * SECOND)
+                      VA[UHV], 36.s,
+                      VA[UV], 18.s)
         }
 
         // 4044 Superheavy Alloy (Light)
@@ -929,8 +926,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_SPRING, GENERATE_SPRING_SMALL,
                   GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_GEAR, GENERATE_SMALL_GEAR)
             blastProp(13800, GasTier.HIGHEST, // Infinity
-                      VA[UIV], 48 * SECOND,
-                      VA[UHV], 24 * SECOND)
+                      VA[UIV], 48.s,
+                      VA[UHV], 24.s)
             cableProp(V[UIV], 48, 5)
         }
 
@@ -945,8 +942,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_SPRING, GENERATE_SPRING_SMALL,
                   GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR)
             blastProp(15400, GasTier.HIGHEST, // Halkonite Steel
-                      VA[UXV], 1 * MINUTE + 36 * SECOND,
-                      VA[UEV], 48 * SECOND)
+                      VA[UXV], 1.min + 36.s,
+                      VA[UEV], 48.s)
             cableProp(V[UXV], 64, 10)
         }
 
@@ -960,8 +957,8 @@ object GTLiteSecondDegreeMaterials
             components(Ruthenium, 1, Rhodium, 1, Palladium, 1, Silver, 1, Osmium, 1, Iridium, 1, Platinum, 1, Gold, 1)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FINE_WIRE, GENERATE_FRAME)
             blastProp(9900, GasTier.HIGHER, // Tritanium
-                      VA[UV], 1 * MINUTE,
-                      VA[ZPM], 30 * SECOND)
+                      VA[UV], 1.min,
+                      VA[ZPM], 30.s)
         }
 
         // 4047 Nitinol-60
@@ -974,8 +971,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_DOUBLE_PLATE, GENERATE_FRAME, GENERATE_SPRING,
                   GENERATE_RING, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_SPRING_SMALL)
             blastProp(1941, GasTier.HIGH, // Kanthal
-                      VA[EV], 32 * SECOND + 10 * TICK,
-                      VA[MV], 7 * SECOND + 4 * TICK)
+                      VA[EV], 32.s + 10.t,
+                      VA[MV], 7.s + 4.t)
             toolProp(12.0F, 7.0F, 2304, 3)
             {
                 enchantability(16)
@@ -994,8 +991,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_DOUBLE_PLATE,
                   GENERATE_DENSE, GENERATE_FRAME, GENERATE_ROTOR)
             blastProp(12625, GasTier.HIGHEST, // Adamantium
-                      VA[UIV], 4 * MINUTE,
-                      VA[UEV], 2 * MINUTE + 30 * SECOND)
+                      VA[UIV], 4.min,
+                      VA[UEV], 2.min + 30.s)
             itemPipeProp(4096, 576F)
         }
 
@@ -1009,8 +1006,8 @@ object GTLiteSecondDegreeMaterials
                        MetastableOganesson, 3, Xenon, 1)
             flags(STD_METAL, DISABLE_DECOMPOSITION, NO_ALLOY_BLAST_RECIPES, GENERATE_FOIL, GENERATE_FINE_WIRE)
             blastProp(15900, GasTier.HIGHEST, // Halkonite Steel
-                      VA[UIV], 3 * MINUTE + 25 * SECOND,
-                      VA[UEV], 2 * MINUTE)
+                      VA[UIV], 3.min + 25.s,
+                      VA[UEV], 2.min)
             cableProp(V[UIV], 64, 0, true)
         }
 
@@ -1024,8 +1021,8 @@ object GTLiteSecondDegreeMaterials
                        Gadolinium, 1)
             flags(STD_METAL, GENERATE_FOIL)
             blastProp(11400, GasTier.HIGHEST, // Adamantium
-                      VA[UHV], 45 * SECOND,
-                      VA[ZPM], 35 * SECOND)
+                      VA[UHV], 45.s,
+                      VA[ZPM], 35.s)
         }
 
         // 4051 Lanthanum Group Alloy B
@@ -1037,8 +1034,8 @@ object GTLiteSecondDegreeMaterials
             components(Terbium, 1, Dysprosium, 1, Holmium, 1, Erbium, 1, Thulium, 1, Ytterbium, 1, Lutetium, 1, Scandium, 1)
             flags(EXT2_METAL, GENERATE_FOIL)
             blastProp(11400, GasTier.HIGHEST, // Adamantium
-                      VA[UHV], 45 * SECOND,
-                      VA[ZPM], 35 * SECOND)
+                      VA[UHV], 45.s,
+                      VA[ZPM], 35.s)
         }
 
         // 4052 Actinium Group Alloy A
@@ -1051,8 +1048,8 @@ object GTLiteSecondDegreeMaterials
                        Curium, 1)
             flags(STD_METAL, GENERATE_FOIL)
             blastProp(11400, GasTier.HIGHEST, // Adamantium
-                      VA[UHV], 45 * SECOND,
-                      VA[ZPM], 35 * SECOND)
+                      VA[UHV], 45.s,
+                      VA[ZPM], 35.s)
         }
 
         // 4053 Actinium Group Alloy B
@@ -1065,8 +1062,8 @@ object GTLiteSecondDegreeMaterials
                        Lawrencium, 1, Yttrium, 1)
             flags(STD_METAL, GENERATE_FOIL)
             blastProp(11400, GasTier.HIGHEST, // Adamantium
-                      VA[UHV], 45 * SECOND,
-                      VA[ZPM], 35 * SECOND)
+                      VA[UHV], 45.s,
+                      VA[ZPM], 35.s)
         }
 
         // 4054 Cinobite A243
@@ -1079,8 +1076,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_RING, GENERATE_SPRING, GENERATE_SPRING_SMALL,
                   GENERATE_DENSE)
             blastProp(11465, GasTier.HIGHEST, // Adamantium
-                      VA[UEV], 1 * MINUTE + 25 * SECOND,
-                      VA[UHV], 55 * SECOND)
+                      VA[UEV], 1.min + 25.s,
+                      VA[UHV], 55.s)
             toolProp(30.0F, 144.0F, 9760, 9)
             {
                 attackSpeed(0.5F)
@@ -1099,8 +1096,8 @@ object GTLiteSecondDegreeMaterials
             components(HastelloyN, 8, NaquadahAlloy, 4, Samarium, 2, Tungsten, 4, Argon, 2, Aluminium, 6, Nickel, 8, Carbon, 2)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FRAME)
             blastProp(12865, GasTier.HIGHEST, // Adamantium
-                      VA[UEV], 45 * SECOND,
-                      VA[UHV], 22 * SECOND + 10 * TICK)
+                      VA[UEV], 45.s,
+                      VA[UHV], 22.s + 10.t)
             fluidPipeProp(10640, 960, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
         }
 
@@ -1112,8 +1109,8 @@ object GTLiteSecondDegreeMaterials
             colorAverage().iconSet(SHINY)
             components(Lithium, 1, Sodium, 1, Potassium, 1, Rubidium, 1, Caesium, 1, Francium, 1)
             blastProp(6600, GasTier.HIGH, // Naquadah
-                      VA[IV], 20 * SECOND,
-                      VA[HV], 10 * SECOND)
+                      VA[IV], 20.s,
+                      VA[HV], 10.s)
         }
 
         // 4057 Alkali Earth Group Alloy
@@ -1124,8 +1121,8 @@ object GTLiteSecondDegreeMaterials
             colorAverage().iconSet(SHINY)
             components(Beryllium, 1, Magnesium, 1, Calcium, 1, Strontium, 1, Barium, 1, Radium, 1)
             blastProp(7400, GasTier.HIGH, // Trinium
-                      VA[LuV], 25 * SECOND,
-                      VA[EV], 15 * SECOND)
+                      VA[LuV], 25.s,
+                      VA[EV], 15.s)
         }
 
         // 4058 Light Transition Alloy
@@ -1137,8 +1134,8 @@ object GTLiteSecondDegreeMaterials
             components(Titanium, 1, Vanadium, 1, Chrome, 1, Manganese, 1, Iron, 1, Cobalt, 1, Nickel, 1, Copper, 1)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_ROTOR)
             blastProp(8800, GasTier.HIGH, // Trinium
-                      VA[ZPM], 30 * SECOND,
-                      VA[IV], 20 * SECOND)
+                      VA[ZPM], 30.s,
+                      VA[IV], 20.s)
         }
 
         // 4059 Heavy Transition Alloy
@@ -1150,8 +1147,8 @@ object GTLiteSecondDegreeMaterials
             components(Aluminium, 1, Zinc, 1, Gallium, 1, Germanium, 1, Cadmium, 1, Indium, 1, Tin, 1, Antimony, 1)
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_GEAR)
             blastProp(8800, GasTier.HIGH, // Trinium
-                      VA[ZPM], 30 * SECOND,
-                      VA[IV], 20 * SECOND)
+                      VA[ZPM], 30.s,
+                      VA[IV], 20.s)
         }
 
         // 4060 Transition Alloy
@@ -1173,8 +1170,8 @@ object GTLiteSecondDegreeMaterials
                        Rhenium, 1)
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_GEAR)
             blastProp(9900, GasTier.HIGHER, // Tritanium
-                      VA[UV], 35 * SECOND,
-                      VA[LuV], 25 * SECOND)
+                      VA[UV], 35.s,
+                      VA[LuV], 25.s)
         }
 
         // 4062 Toxic Alloy
@@ -1186,8 +1183,8 @@ object GTLiteSecondDegreeMaterials
             components(Arsenic, 1, Tellurium, 1, Mercury, 1, Thallium, 1, Lead, 1, Bismuth, 1, Polonium, 1, Astatine, 1)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_ROTOR)
             blastProp(10800, GasTier.HIGHEST, // Tritanium
-                      VA[UHV], 40 * SECOND,
-                      VA[ZPM], 30 * SECOND)
+                      VA[UHV], 40.s,
+                      VA[ZPM], 30.s)
         }
 
         // 4063 Rare Earth Alloy
@@ -1245,8 +1242,8 @@ object GTLiteSecondDegreeMaterials
                   GENERATE_FINE_WIRE, GENERATE_ROTOR, GENERATE_DOUBLE_PLATE)
             cableProp(V[OpV], 118, 2)
             blastProp(18000, GasTier.HIGHEST, // Space Time
-                      VA[UXV], 10 * SECOND,
-                      VA[UEV], 2 * SECOND + 10 * TICK)
+                      VA[UXV], 10.s,
+                      VA[UEV], 2.s + 10.t)
         }
 
         // 4068 Legendarium
@@ -1260,8 +1257,8 @@ object GTLiteSecondDegreeMaterials
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_RING,
                   GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FOIL)
             blastProp(17800, GasTier.HIGHEST, // Space Time
-                      VA[UXV], 1 * MINUTE + 20 * SECOND,
-                      VA[UEV], 40 * SECOND)
+                      VA[UXV], 1.min + 20.s,
+                      VA[UEV], 40.s)
             toolProp(180.0F, 90.0F, 97600, 20)
             {
                 attackSpeed(0.4F)
@@ -1280,8 +1277,8 @@ object GTLiteSecondDegreeMaterials
                        PlutoniumPhosphide, 2, MetastableHassium, 1, MetastableOganesson, 1)
             flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
             blastProp(17901, GasTier.HIGHEST, // Space Time
-                      VA[UXV], 4 * MINUTE + 25 * SECOND,
-                      VA[UIV], 3 * MINUTE + 12 * SECOND)
+                      VA[UXV], 4.min + 25.s,
+                      VA[UIV], 3.min + 12.s)
             cableProp(V[UXV], 128, 0, true)
         }
 
@@ -1296,13 +1293,11 @@ object GTLiteSecondDegreeMaterials
                        RheniumHassiumThalliumIsophtaloylbisdiethylthioureaHexafluorophosphate, 12)
             flags(STD_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE)
             blastProp(18501, GasTier.HIGHEST, // Eternity
-                      VA[OpV], 6 * MINUTE + 15 * SECOND,
-                      VA[UIV], 4 * MINUTE)
+                      VA[OpV], 6.min + 15.s,
+                      VA[UIV], 4.min)
             cableProp(V[OpV], 256, 0, true)
         }
-
     }
 
     // @formatter:on
-
 }

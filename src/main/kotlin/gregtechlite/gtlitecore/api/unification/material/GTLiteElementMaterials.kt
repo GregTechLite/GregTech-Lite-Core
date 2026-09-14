@@ -103,7 +103,6 @@ import net.minecraft.init.Enchantments
 
 object GTLiteElementMaterials
 {
-
     // @formatter:off
 
     fun init()
@@ -461,5 +460,4 @@ object GTLiteElementMaterials
     }
 
     // @formatter:on
-
 }
