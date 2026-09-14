@@ -1017,7 +1017,6 @@ object GTLiteRecipeMaps
         .fluidOutputs(6)
         .sound(GTSoundEvents.BATH)
         .build()
-        .setSmallRecipeMap(RecipeMaps.PYROLYSE_RECIPES)
 
     // endregion
 
