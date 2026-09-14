@@ -752,6 +752,8 @@ object GTLiteMaterials
     lateinit var Tetramethylcyclobutanediol: Material
     lateinit var CBDOPolycarbonate: Material
     lateinit var PigmentRed: Material
+    lateinit var Methylquinoline: Material
+    lateinit var QuinolineYellow: Material
 
     // endregion
 

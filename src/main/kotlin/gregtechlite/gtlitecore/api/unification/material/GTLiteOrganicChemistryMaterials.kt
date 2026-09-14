@@ -220,6 +220,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylhydrazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MethylhydrazineNitrateRocketFuel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylparatoluate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylquinoline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methyltrichlorosilane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Monoglyceride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.NDifluorophenylpyrrole
@@ -267,6 +268,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Promethazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pyridine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PyromelliticDianhydride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuinolineYellow
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawPolyphosphonitrileFluoroRubber
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RawPolytetramethyleneGlycolRubber
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resorcinol
@@ -2507,6 +2509,23 @@ object GTLiteOrganicChemistryMaterials
             dust()
             color(0xB73F5D)
             components(Carbon, 40, Hydrogen, 26, Nitrogen, 4, Oxygen, 8, Sulfur, 2, Barium, 1)
+            flags(DISABLE_DECOMPOSITION)
+        }
+
+        // 8249 2-Methylquinoline
+        Methylquinoline = addMaterial(8249, "methylquinoline")
+        {
+            liquid()
+            color(0xF0F6B6)
+            components(Carbon, 10, Hydrogen, 9, Nitrogen, 1)
+        }
+
+        // 8250 Quinoline Yellow
+        QuinolineYellow = addMaterial(8250, "quinoline_yellow")
+        {
+            dust()
+            color(0x99FF33).iconSet(SHINY)
+            components(Carbon, 18, Hydrogen, 9, Nitrogen, 1, Sodium, 2, Oxygen, 8, Sulfur, 2)
             flags(DISABLE_DECOMPOSITION)
         }
     }

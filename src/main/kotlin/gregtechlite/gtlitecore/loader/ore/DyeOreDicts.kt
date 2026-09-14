@@ -34,6 +34,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nigrosin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Orpiment
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PigmentRed
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrussianBlue
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuinolineYellow
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ScheelesGreen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sienna
 
@@ -77,7 +78,8 @@ internal object DyeOreDicts
                                    dye, Color.Yellow)
 
         // Lime
-        // TODO
+        OreDictUnifier.registerOre(OreDictUnifier.get(dust, QuinolineYellow),
+                                   dye, Color.Lime)
 
         // Pink
         OreDictUnifier.registerOre(OreDictUnifier.get(dust, EosinY),

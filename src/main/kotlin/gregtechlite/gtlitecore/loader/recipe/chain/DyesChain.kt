@@ -21,6 +21,7 @@ import gregtech.api.unification.material.Materials.Barite
 import gregtech.api.unification.material.Materials.Barium
 import gregtech.api.unification.material.Materials.BariumSulfide
 import gregtech.api.unification.material.Materials.Bromine
+import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.ChromiumTrioxide
@@ -43,6 +44,7 @@ import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Salt
+import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Sulfur
@@ -86,6 +88,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneDibromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fluorescein
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Formaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenCyanide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydroxyquinoline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indigo
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Iron2Chloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylAlcohol
@@ -95,6 +98,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ManganeseBlue
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ManganeseMonoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mauveine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylquinoline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Naphthylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nigrosin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitrotoluene
@@ -105,6 +109,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumHydroxid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumManganate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrussianBlue
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pyridine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuinolineYellow
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resorcinol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ScheelesGreen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sienna
@@ -136,6 +141,7 @@ internal object DyesChain
         eosinYProcess() // Pink
         manganeseBlueProcess() // Light Blue
         pigmentRedProcess() // Magenta
+        quinolineYellowProcess() // Lime
     }
 
     private fun siennaProcess()
@@ -523,6 +529,32 @@ internal object DyesChain
             fluidOutputs(Water.getFluid(6000))
             EUt(VA[IV])
             duration(45 * SECOND)
+        }
+    }
+
+    private fun quinolineYellowProcess()
+    {
+        // C9H7NO + CH4 -> C10H9N + H2O
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Hydroxyquinoline, 18)
+            fluidInputs(Methane.getFluid(1000))
+            fluidOutputs(Methylquinoline.getFluid(1000))
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[EV])
+            duration(4 * SECOND)
+        }
+
+        // C10H9N + Na2CO3 + C6H4(CO)2O + 2SO2 -> C18H9NNa2O8S2 + C + 2H2O
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, PhthalicAnhydride, 15)
+            input(dust, SodaAsh, 6)
+            fluidInputs(Methylquinoline.getFluid(1000))
+            fluidInputs(SulfurDioxide.getFluid(2000))
+            output(dust, QuinolineYellow, 40)
+            output(dust, Carbon)
+            fluidOutputs(Water.getFluid(2000))
+            EUt(VA[IV])
+            duration(10 * SECOND)
         }
     }
 
