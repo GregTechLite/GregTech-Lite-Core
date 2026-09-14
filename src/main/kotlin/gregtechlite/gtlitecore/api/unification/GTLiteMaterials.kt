@@ -503,6 +503,7 @@ object GTLiteMaterials
     // endregion
 
     // region Organic Chemistry Materials (id: 8001-12000)
+
     lateinit var Dicyclopentadiene: Material
     lateinit var Pentane: Material
     lateinit var Polyisoprene: Material
@@ -750,6 +751,7 @@ object GTLiteMaterials
     lateinit var Dimethylketene: Material
     lateinit var Tetramethylcyclobutanediol: Material
     lateinit var CBDOPolycarbonate: Material
+    lateinit var PigmentRed: Material
 
     // endregion
 
