@@ -25,28 +25,39 @@ const val MOD_VERSION = GTLiteTags.MOD_VERSION
 @JvmField
 val LOGGER = SidedLogger(MOD_ID)
 
+// region Constants
+
 @Deprecated(message = "Use Int#tick extension")
 const val TICK = 1
-
-val Int.t
-    get() = this * 1
 
 @Deprecated(message = "Use Int#sec extension")
 const val SECOND = 20 * TICK
 
-val Int.s // 1s = 20t
-    get() = this * 20.t
-
 @Deprecated(message = "Use Int#min extension")
 const val MINUTE = 60 * SECOND
 
-val Int.min // 1min = 60s
+/**
+ * Tick time unit for regular recipes, progress and counter.
+ */
+val Int.t
+    get() = this * 1
+
+/**
+ * Second time unit for regular recipes, progress and counter.
+ */
+val Int.s
+    get() = this * 20.t
+
+/**
+ * Minute time unit for regular recipes, progress and counter.
+ */
+val Int.min
     get() = this * 60.s
 
-@Deprecated(message = "Use Int#hour extension")
-const val HOUR = 60 * MINUTE
-
-val Int.hr // 1hr = 60min
+/**
+ * Hour time unit for regular recipes, progress and counter.
+ */
+val Int.hr
     get() = this * 60.min
 
 /**
@@ -54,3 +65,5 @@ val Int.hr // 1hr = 60min
  * calculated by its Fluid Heater recipes (6:960) and Turbine recipes (4:640).
  */
 const val SU = 160
+
+// endregion
