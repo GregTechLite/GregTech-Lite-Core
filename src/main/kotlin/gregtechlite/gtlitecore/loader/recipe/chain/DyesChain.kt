@@ -19,7 +19,9 @@ import gregtech.api.unification.material.Materials.ArsenicTrioxide
 import gregtech.api.unification.material.Materials.BandedIron
 import gregtech.api.unification.material.Materials.Barite
 import gregtech.api.unification.material.Materials.Barium
+import gregtech.api.unification.material.Materials.BariumSulfide
 import gregtech.api.unification.material.Materials.Bromine
+import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.ChromiumTrioxide
@@ -40,9 +42,12 @@ import gregtech.api.unification.material.Materials.Nitrobenzene
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.RockSalt
+import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Salt
+import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Toluene
@@ -56,12 +61,15 @@ import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumSulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aniline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumManganate
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlueVitriol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BurntSienna
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
@@ -71,6 +79,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CopperArsenite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CopperDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CyanIndigo
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiaminostilbenedisulfonicAcid
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diaminotoluene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diketopyrrolopyrrole
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DirectBrown77
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EosinY
@@ -79,6 +88,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneDibromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fluorescein
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Formaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenCyanide
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydroxyquinoline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Indigo
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Iron2Chloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.IsopropylAlcohol
@@ -88,15 +98,18 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ManganeseBlue
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ManganeseMonoxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mauveine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methylquinoline
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Naphthylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nigrosin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Nitrotoluene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PhthalicAnhydride
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PigmentRed
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumFerrocyanideTrihydrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumManganate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PrussianBlue
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pyridine
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuinolineYellow
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resorcinol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ScheelesGreen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Sienna
@@ -109,7 +122,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tetrabromoindigo
 
 internal object DyesChain
 {
-
     // @formatter:off
 
     fun init()
@@ -128,6 +140,8 @@ internal object DyesChain
         diketopyrrolopyrroleProcess() // Orange
         eosinYProcess() // Pink
         manganeseBlueProcess() // Light Blue
+        pigmentRedProcess() // Magenta
+        quinolineYellowProcess() // Lime
     }
 
     private fun siennaProcess()
@@ -497,6 +511,52 @@ internal object DyesChain
         }
     }
 
-    // @formatter:on
+    private fun pigmentRedProcess()
+    {
+        // 2BaS + H2SO4 + 2C6H3(NH2)2CH3 + 2C10H8 + 6CO2 -> C40H26N4O8S2Ba + 6H2O + BaO + S + O (drop)
+        CHEMICAL_PLANT_RECIPES.addRecipe {
+            notConsumable(dust, Rutile)
+            notConsumable(dust, AluminiumSulfate)
+            input(dust, BariumSulfide, 4)
+            fluidInputs(SulfuricAcid.getFluid(1000))
+            fluidInputs(Diaminotoluene.getFluid(2000))
+            fluidInputs(Naphthalene.getFluid(2000))
+            fluidInputs(CarbonDioxide.getFluid(6000))
+            output(dust, PigmentRed, 64)
+            output(dust, PigmentRed, 17)
+            output(dust, BariumOxide, 2)
+            output(dust, Sulfur)
+            fluidOutputs(Water.getFluid(6000))
+            EUt(VA[IV])
+            duration(45 * SECOND)
+        }
+    }
 
+    private fun quinolineYellowProcess()
+    {
+        // C9H7NO + CH4 -> C10H9N + H2O
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, Hydroxyquinoline, 18)
+            fluidInputs(Methane.getFluid(1000))
+            fluidOutputs(Methylquinoline.getFluid(1000))
+            fluidOutputs(Water.getFluid(1000))
+            EUt(VA[EV])
+            duration(4 * SECOND)
+        }
+
+        // C10H9N + Na2CO3 + C6H4(CO)2O + 2SO2 -> C18H9NNa2O8S2 + C + 2H2O
+        CHEMICAL_RECIPES.addRecipe {
+            input(dust, PhthalicAnhydride, 15)
+            input(dust, SodaAsh, 6)
+            fluidInputs(Methylquinoline.getFluid(1000))
+            fluidInputs(SulfurDioxide.getFluid(2000))
+            output(dust, QuinolineYellow, 40)
+            output(dust, Carbon)
+            fluidOutputs(Water.getFluid(2000))
+            EUt(VA[IV])
+            duration(10 * SECOND)
+        }
+    }
+
+    // @formatter:on
 }

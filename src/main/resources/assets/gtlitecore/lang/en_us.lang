@@ -4127,6 +4127,9 @@ gtlitecore.material.isobutyric_anhydride=Isobutyric Anhydride
 gtlitecore.material.dimethylketene=Dimethylketene
 gtlitecore.material.tetramethylcyclobutanediol=Tetramethylcyclobutanediol (CBDO)
 gtlitecore.material.cbdo_polycarbonate=CBDO Polycarbonate
+gtlitecore.material.pigment_red=Pigment Red 49:1
+gtlitecore.material.methylquinoline=2-Methylquinoline
+gtlitecore.material.quinoline_yellow=Quinoline Yellow
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
