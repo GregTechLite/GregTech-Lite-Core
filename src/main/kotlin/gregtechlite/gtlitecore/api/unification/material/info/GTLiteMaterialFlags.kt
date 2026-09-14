@@ -497,6 +497,7 @@ object GTLiteMaterialFlags
         Polonium.addFlags(GENERATE_PLATE)
         Rubidium.addFlags(GENERATE_PLATE)
         Tellurium.addFlags(GENERATE_PLATE)
+        Francium.addFlags(GENERATE_PLATE)
 
         // plateDouble
         Inconel718.addFlags(GENERATE_DOUBLE_PLATE)

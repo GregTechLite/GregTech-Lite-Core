@@ -212,7 +212,7 @@ internal object NanotubesChain
 
         // C10H12 -> C8H12 + 2C (drop)
         FLUID_HEATER_RECIPES.addRecipe {
-            circuitMeta(1)
+            circuitMeta(2)
             fluidInputs(Dicyclopentadiene.getFluid(100))
             fluidOutputs(Cyclooctadiene.getFluid(100))
             EUt(VA[HV])
