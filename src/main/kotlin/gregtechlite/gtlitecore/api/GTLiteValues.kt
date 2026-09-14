@@ -27,15 +27,6 @@ val LOGGER = SidedLogger(MOD_ID)
 
 // region Constants
 
-@Deprecated(message = "Use Int#tick extension")
-const val TICK = 1
-
-@Deprecated(message = "Use Int#sec extension")
-const val SECOND = 20 * TICK
-
-@Deprecated(message = "Use Int#min extension")
-const val MINUTE = 60 * SECOND
-
 /**
  * Tick time unit for regular recipes, progress and counter.
  */
