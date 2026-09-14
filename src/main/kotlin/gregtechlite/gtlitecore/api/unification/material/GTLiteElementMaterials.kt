@@ -36,9 +36,6 @@ import gregtech.api.unification.material.info.MaterialIconSet.BRIGHT
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.SHINY
 import gregtech.api.unification.material.properties.BlastProperty.GasTier
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.blastProp
 import gregtechlite.gtlitecore.api.extension.cableProp
 import gregtechlite.gtlitecore.api.extension.fluidPipeProp
@@ -47,6 +44,9 @@ import gregtechlite.gtlitecore.api.extension.liquid
 import gregtechlite.gtlitecore.api.extension.plasma
 import gregtechlite.gtlitecore.api.extension.rotorProp
 import gregtechlite.gtlitecore.api.extension.toolProp
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
@@ -118,8 +118,8 @@ object GTLiteElementMaterials
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR,
                   GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
             blastProp(10501, GasTier.HIGH, // Tritanium
-                      VA[UV], 45 * SECOND,
-                      VA[ZPM], 22 * SECOND + 10 * TICK)
+                      VA[UV], 45.s,
+                      VA[ZPM], 22.s + 10.t)
             rotorProp(22.0f, 10.0f, 491520)
             toolProp(140.0F, 95.0F, 49152, 6)
             {
@@ -141,8 +141,8 @@ object GTLiteElementMaterials
             flags(EXT2_METAL, GENERATE_FRAME, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
                   GENERATE_RING, GENERATE_ROTOR, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROUND, GENERATE_SPRING_SMALL)
             blastProp(12001, GasTier.HIGHER, // Adamantium
-                      VA[UHV], 75 * SECOND,
-                      VA[UV], 42 * SECOND + 15 * TICK)
+                      VA[UHV], 1.min + 15.s,
+                      VA[UV], 42.s + 15.t)
             toolProp(155.0F, 120.0F, 73728, 7)
             {
                 attackSpeed(0.8F)
@@ -164,8 +164,8 @@ object GTLiteElementMaterials
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_SPRING_SMALL,
                   GENERATE_DENSE, GENERATE_FRAME)
             blastProp(7000, GasTier.HIGH, // Naquadah
-                      VA[ZPM], 22 * SECOND,
-                      VA[IV], 11 * SECOND)
+                      VA[ZPM], 22.s,
+                      VA[IV], 11.s)
             cableProp(V[UHV], 8, 2)
         }
 
@@ -178,8 +178,8 @@ object GTLiteElementMaterials
             element(Fl)
             flags(EXT_METAL, GENERATE_DOUBLE_PLATE, GENERATE_BOLT_SCREW, GENERATE_FOIL, GENERATE_DENSE)
             blastProp(9900, GasTier.HIGHEST, // Tritanium
-                      VA[UHV], 2 * MINUTE + 35 * SECOND,
-                      VA[UV], 40 * SECOND)
+                      VA[UHV], 2.min + 35.s,
+                      VA[UV], 40.s)
             rotorStats(25.0F, 3.0F, 153_600)
         }
 
@@ -193,8 +193,8 @@ object GTLiteElementMaterials
             flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_RING, GENERATE_DOUBLE_PLATE,
                   GENERATE_FRAME, GENERATE_SMALL_GEAR, GENERATE_SPRING_SMALL, GENERATE_DENSE)
             blastProp(12380, GasTier.HIGHEST, // Adamantium
-                      VA[UEV], 2 * MINUTE,
-                      VA[UV], 40 * SECOND)
+                      VA[UEV], 2.min,
+                      VA[UV], 40.s)
             toolProp(55.0F, 95.0F, 110592, 7)
             {
                 attackSpeed(0.2F)
@@ -214,8 +214,8 @@ object GTLiteElementMaterials
             element(Hs)
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME)
             blastProp(12000, GasTier.HIGHEST, // Adamantium
-                      VA[UEV], 4 * MINUTE + 30 * SECOND,
-                      VA[UV], 1 * MINUTE)
+                      VA[UEV], 4.min + 30.s,
+                      VA[UV], 1.min)
             cableProp(V[UEV], 28, 5)
             itemPipeProp(256, 128F)
         }
@@ -231,8 +231,8 @@ object GTLiteElementMaterials
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_GEAR,
                   GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE)
             blastProp(12600, GasTier.HIGHEST, // Adamantium
-                      VA[UEV], 12 * MINUTE,
-                      VA[UHV], 4 * MINUTE)
+                      VA[UEV], 12.min,
+                      VA[UHV], 4.min)
             cableProp(V[UEV], 24, 4)
         }
 
@@ -246,8 +246,8 @@ object GTLiteElementMaterials
             flags(EXT2_METAL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_DOUBLE_PLATE,
                   GENERATE_DENSE, GENERATE_RING, GENERATE_ROTOR, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FRAME)
             blastProp(12600, GasTier.HIGHEST, // Adamantium
-                      VA[UEV], 16 * MINUTE,
-                      VA[UHV], 8 * MINUTE)
+                      VA[UEV], 16.min,
+                      VA[UHV], 8.min)
             cableProp(V[UEV], 36, 2)
             fluidPipeProp(200_000, 24000, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
         }
@@ -293,8 +293,8 @@ object GTLiteElementMaterials
                   GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROTOR,
                   GENERATE_ROUND, GENERATE_FRAME)
             blastProp(13900, GasTier.HIGHEST, // Infinity
-                      VA[UIV], 30 * SECOND,
-                      VA[UHV], 15 * SECOND)
+                      VA[UIV], 30.s,
+                      VA[UHV], 15.s)
         }
 
         // 12 Rhugnor
@@ -360,8 +360,8 @@ object GTLiteElementMaterials
                   GENERATE_SMALL_GEAR, GENERATE_ROUND, GENERATE_SPRING, GENERATE_SPRING_SMALL, GENERATE_FINE_WIRE,
                   GENERATE_NANITE)
             blastProp(23500, GasTier.HIGHEST, // Eternity Plus
-                      VA[UXV], 3 * MINUTE,
-                      VA[UIV], 2 * MINUTE)
+                      VA[UXV], 3.min,
+                      VA[UIV], 2.min)
             fluidPipeProp(800_000, 40000, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
         }
 
@@ -375,8 +375,8 @@ object GTLiteElementMaterials
             flags(EXT2_METAL, GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_FRAME,
                   GENERATE_GEAR, GENERATE_SMALL_GEAR)
             blastProp(16201, GasTier.HIGHEST, // Halkonite Steel
-                      VA[UXV], 4 * MINUTE + 30 * SECOND,
-                      VA[UIV], 3 * MINUTE + 25 * SECOND)
+                      VA[UXV], 4.min + 30.s,
+                      VA[UIV], 3.min + 25.s)
             cableProp(V[UXV], 96,16)
             fluidPipeProp(1_200_000, 65000, gasProof = true, acidProof = true, cryoProof = true, plasmaProof = true)
         }
@@ -392,8 +392,8 @@ object GTLiteElementMaterials
                   GENERATE_DOUBLE_PLATE, GENERATE_DENSE, GENERATE_ROTOR, GENERATE_FRAME, GENERATE_ROUND, GENERATE_FOIL,
                   GENERATE_FINE_WIRE)
             blastProp(24000, GasTier.HIGHEST, // Eternity Plus
-                      VA[UXV], 2 * MINUTE + 40 * SECOND,
-                      VA[UIV], 1 * MINUTE + 45 * SECOND)
+                      VA[UXV], 2.min + 40.s,
+                      VA[UIV], 1.min + 45.s)
             toolProp(160.0F, 320.0F, 62_914_560, 20)
             {
                 attackSpeed(0.2F)
