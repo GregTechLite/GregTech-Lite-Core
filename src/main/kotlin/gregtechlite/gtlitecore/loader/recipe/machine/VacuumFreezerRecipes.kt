@@ -8,11 +8,11 @@ import gregtech.api.recipes.RecipeMaps.VACUUM_RECIPES
 import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Water
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 
 internal object VacuumFreezerRecipes
 {
@@ -26,7 +26,7 @@ internal object VacuumFreezerRecipes
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(Ice.getFluid(1000))
             EUt(VA[ULV])
-            duration(1 * TICK)
+            duration(1.t)
         }
 
         // Liquid Oxygen
@@ -35,7 +35,7 @@ internal object VacuumFreezerRecipes
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(Oxygen.getFluid(FluidStorageKeys.LIQUID, 1000))
             EUt(VA[EV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

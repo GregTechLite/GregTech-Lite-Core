@@ -12,10 +12,10 @@ import gregtech.api.unification.material.Materials.Phenol
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylenediamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenPeroxide
@@ -45,7 +45,7 @@ internal object EtchingMaterialsChain
             notConsumable(Ethanol.getFluid(4000))
             output(dust, TetramethylammoniumChloride, 18)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // N(CH3)4Cl + KOH -> N(CH3)4OH + KCl
@@ -56,7 +56,7 @@ internal object EtchingMaterialsChain
             output(dust, RockSalt, 2)
             fluidOutputs(TetramethylammoniumHydroxide.getFluid(5000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -69,7 +69,7 @@ internal object EtchingMaterialsChain
             output(dust, Pyrocatechol, 12)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // C6H4(OH)2 + 0.5H2O + C6H6O2 -> (C6H4(OH)2)(C6H6O2)
@@ -79,7 +79,7 @@ internal object EtchingMaterialsChain
             fluidInputs(Ethylenediamine.getFluid(500))
             fluidOutputs(EthylenediaminePyrocatechol.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

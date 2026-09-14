@@ -25,11 +25,11 @@ import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadSulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PoloniumDioxide
@@ -69,7 +69,7 @@ internal object PoloniumRadiumProcessing
             output(dust, Uraninite, 3)
             output(dust, PoloniumNitrate, 17)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Po(NO3)4 + 2Na -> Na2PoO4 + 4NO2
@@ -79,7 +79,7 @@ internal object PoloniumRadiumProcessing
             output(dust, SodiumPolonate, 7)
             fluidOutputs(NitrogenDioxide.getFluid(4000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Na2PoO4 + 2HCl -> PoO2 + 2NaCl + H2O + O (drop)
@@ -90,7 +90,7 @@ internal object PoloniumRadiumProcessing
             output(dust, Salt, 4)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 
@@ -104,7 +104,7 @@ internal object PoloniumRadiumProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(UranylChlorideSolution.getFluid(1000))
             EUt(VA[IV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UO2Cl2·H2O + 2HNO3 -> UO2(NO3)2·H2O + 2HCl (pseudo cycle)
@@ -114,7 +114,7 @@ internal object PoloniumRadiumProcessing
             fluidOutputs(UranylNitrateSolution.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // UO2(NO3)2·H2O -> UO2(NO3)2 + H2O
@@ -124,7 +124,7 @@ internal object PoloniumRadiumProcessing
             output(dust, UranylNitrate, 10)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 2UO2(NO3)2 + 4H2SO4 -> 2RaSO4 + 2PbSO4 + Th(NO3)4 + U + 2H2O
@@ -138,7 +138,7 @@ internal object PoloniumRadiumProcessing
             output(dust, Uranium)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // RaSO4 + 2HCl -> RaCl2 + H2SO4
@@ -148,7 +148,7 @@ internal object PoloniumRadiumProcessing
             output(dust, RadiumDichloride, 3)
             fluidOutputs(SulfuricAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Also allowed use PbSO4 to cycle H2SO4 in this chain.
@@ -159,7 +159,7 @@ internal object PoloniumRadiumProcessing
             output(dust, LeadDichloride, 3)
             fluidOutputs(SulfuricAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Th(NO3)4 + 2Na -> ThO2 + 2NaNO3 + (Ac) + N2O4 + NO2 + O (drop)
@@ -172,7 +172,7 @@ internal object PoloniumRadiumProcessing
             fluidOutputs(NitrogenDioxide.getFluid(1000))
             fluidOutputs(DinitrogenTetroxide.getFluid(1000))
             EUt(VA[EV])
-            duration(2 * SECOND + 15 * TICK)
+            duration(2.s + 15.t)
         }
 
         // RaCl2 + 2H -> Ra + 2HCl (cycle)
@@ -182,7 +182,7 @@ internal object PoloniumRadiumProcessing
             output(dust, Radium)
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[HV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

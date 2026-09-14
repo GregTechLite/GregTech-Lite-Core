@@ -14,12 +14,12 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BATH_CONDENSER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vinegar
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.VINEGAR
@@ -39,7 +39,7 @@ internal object VinegarProcessing
             fluidInputs(Ethanol.getFluid(100))
             fluidOutputs(Vinegar.getFluid(100))
             EUt(2)
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         FERMENTING_RECIPES.addRecipe {
@@ -49,7 +49,7 @@ internal object VinegarProcessing
             fluidInputs(AminooxyaceticAcid.getFluid(50))
             fluidOutputs(Vinegar.getFluid(400))
             EUt(2)
-            duration(15 * TICK)
+            duration(15.t)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -57,7 +57,7 @@ internal object VinegarProcessing
             fluidInputs(Vinegar.getFluid(250))
             output(VINEGAR)
             EUt(4)
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Vinegar -> C2H4O2 (AceticAcid)
@@ -73,7 +73,7 @@ internal object VinegarProcessing
                 fluidInputs(fluid)
                 fluidOutputs(AceticAcid.getFluid(100))
                 EUt(VA[LV])
-                duration(5 * SECOND)
+                duration(5.s)
             }
         }
     }

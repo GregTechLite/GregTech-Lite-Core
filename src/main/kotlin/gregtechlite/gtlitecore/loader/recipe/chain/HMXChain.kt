@@ -9,11 +9,11 @@ import gregtech.api.unification.material.Materials.DinitrogenTetroxide
 import gregtech.api.unification.material.Materials.Ethylene
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CyclotetramethyleneTetranitroamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Formaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hexamethylenetetramine
@@ -32,7 +32,7 @@ internal object HMXChain
             output(dust, Hexamethylenetetramine, 22)
             fluidOutputs(Steam.getFluid(6 * SU))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // (CH2)6N4 + 2N2O4 -> C4H8N8O8 + C2H4
@@ -42,7 +42,7 @@ internal object HMXChain
             fluidOutputs(CyclotetramethyleneTetranitroamine.getFluid(1000))
             fluidOutputs(Ethylene.getFluid(1000))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

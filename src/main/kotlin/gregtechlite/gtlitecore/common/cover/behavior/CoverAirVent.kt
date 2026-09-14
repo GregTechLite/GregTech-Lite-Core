@@ -10,7 +10,7 @@ import gregtech.api.cover.CoverableView
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.properties.impl.DimensionProperty
 import gregtech.client.renderer.texture.Textures
-import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.s
 import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ITickable
@@ -41,7 +41,7 @@ class CoverAirVent(definition: CoverDefinition,
 
     override fun update()
     {
-        if (world.isRemote || offsetTimer % SECOND != 0L) return
+        if (world.isRemote || offsetTimer % 1.s != 0L) return
 
         // Obstructed block in neighbor is not allowed, otherwise stop updating.
         if (world.getBlockState(pos.offset(attachedSide)).isFullBlock) return

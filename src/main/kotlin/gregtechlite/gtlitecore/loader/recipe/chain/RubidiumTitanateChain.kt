@@ -12,12 +12,12 @@ import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RubidiumChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RubidiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumTitanate
@@ -36,7 +36,7 @@ internal object RubidiumTitanateChain
             fluidInputs(Chlorine.getFluid(1000))
             output(dust, RubidiumChloride, 2)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // 2NaOH + TiO2 -> Na2TiO3 + H2O
@@ -46,7 +46,7 @@ internal object RubidiumTitanateChain
             output(dust, SodiumTitanate, 6)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[EV])
-            duration(16 * TICK)
+            duration(16.t)
         }
 
         // 2Na2TiO3 + 4RbCl -> Rb2TiO3 + 4NaCl
@@ -56,7 +56,7 @@ internal object RubidiumTitanateChain
             output(dust, RubidiumTitanate, 6)
             output(dust, Salt, 8)
             EUt(VA[LuV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

@@ -31,9 +31,9 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_UXV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_CHEST
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
@@ -70,7 +70,7 @@ internal object QuantumStorageUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 4))
             outputs(QuantumStorageUnit.T1.stack)
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // T2
@@ -85,7 +85,7 @@ internal object QuantumStorageUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 8))
             outputs(QuantumStorageUnit.T2.stack)
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // T3
@@ -100,7 +100,7 @@ internal object QuantumStorageUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 16))
             outputs(QuantumStorageUnit.T3.stack)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // T4
@@ -115,7 +115,7 @@ internal object QuantumStorageUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 32))
             outputs(QuantumStorageUnit.T4.stack)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // T5
@@ -130,7 +130,7 @@ internal object QuantumStorageUnitRecipes
             fluidInputs(MutatedLivingSolder.getFluid(L * 64))
             outputs(QuantumStorageUnit.T5.stack)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // T6
@@ -145,7 +145,7 @@ internal object QuantumStorageUnitRecipes
             fluidInputs(MutatedLivingSolder.getFluid(L * 128))
             outputs(QuantumStorageUnit.T6.stack)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // T7
@@ -160,7 +160,7 @@ internal object QuantumStorageUnitRecipes
             fluidInputs(MutatedLivingSolder.getFluid(L * 256))
             outputs(QuantumStorageUnit.T7.stack)
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // T8
@@ -175,7 +175,7 @@ internal object QuantumStorageUnitRecipes
             fluidInputs(MutatedLivingSolder.getFluid(L * 512))
             outputs(QuantumStorageUnit.T8.stack)
             EUt(VA[OpV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // T9
@@ -190,7 +190,7 @@ internal object QuantumStorageUnitRecipes
             fluidInputs(MutatedLivingSolder.getFluid(L * 1024))
             outputs(QuantumStorageUnit.T9.stack)
             EUt(VA[MAX])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

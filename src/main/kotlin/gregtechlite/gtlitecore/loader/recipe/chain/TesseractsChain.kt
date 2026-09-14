@@ -24,17 +24,17 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stick
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MATTER_RESHAPING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
@@ -90,7 +90,7 @@ internal object TesseractsChain
             fluidInputs(ResonantStrangeMeson.getFluid(250))
             output(QUANTUM_ANOMALY, 4)
             EUt(VA[UIV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -101,7 +101,7 @@ internal object TesseractsChain
             fluidInputs(ResonantStrangeMeson.getFluid(500))
             output(QUANTUM_ANOMALY, 16)
             EUt(VA[UXV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -112,7 +112,7 @@ internal object TesseractsChain
             fluidInputs(ResonantStrangeMeson.getFluid(1000))
             output(QUANTUM_ANOMALY, 64)
             EUt(VA[OpV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Raw Tesseract
@@ -128,7 +128,7 @@ internal object TesseractsChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             output(RAW_TESSERACT, 4)
             EUt(VA[UXV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -141,7 +141,7 @@ internal object TesseractsChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             output(RAW_TESSERACT, 8)
             EUt(VA[OpV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -153,7 +153,7 @@ internal object TesseractsChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             output(RAW_TESSERACT, 16)
             EUt(VA[MAX])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Energised Tesseract
@@ -162,7 +162,7 @@ internal object TesseractsChain
             input(RAW_TESSERACT)
             output(ENERGISED_TESSERACT)
             EUt(VA[UXV])
-            duration(30 * SECOND)
+            duration(30.s)
             cleanroom()
         }
     }
@@ -174,7 +174,7 @@ internal object TesseractsChain
             input(RAW_TESSERACT)
             output(dust, TranscendentMetal, 8)
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Transcendent Metal dust -> Transcendent Metal ingot
@@ -206,7 +206,7 @@ internal object TesseractsChain
             output(ingot, TranscendentMetal)
             fluidOutputs(Technetium.getFluid(L * 4))
             EUt(VA[UXV])
-            duration(1 * MINUTE)
+            duration(1.min)
             blastFurnaceTemp(23500)
         }
     }
@@ -222,7 +222,7 @@ internal object TesseractsChain
             fluidInputs(Infinity.getFluid(L * 16))
             fluidOutputs(SpaceTime.getFluid(L))
             EUt(VA[UXV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -232,7 +232,7 @@ internal object TesseractsChain
             fluidInputs(Infinity.getFluid(L * 8))
             fluidOutputs(SpaceTime.getFluid(L * 4))
             EUt(VA[OpV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -242,7 +242,7 @@ internal object TesseractsChain
             fluidInputs(Infinity.getFluid(L * 8 * 64))
             fluidOutputs(SpaceTime.getFluid(L * 4 * 64))
             EUt(VA[MAX])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 
@@ -256,7 +256,7 @@ internal object TesseractsChain
             fluidOutputs(SpatiallyEnlargedFluid.getFluid(L * 10))
             fluidOutputs(TachyonRichTemporalFluid.getFluid(L * 10))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Spatially Enlarged Fluid/Tachyon Rich Temporal Fluid converting.
@@ -270,7 +270,7 @@ internal object TesseractsChain
             output(TIMEPIECE, 3)
             fluidOutputs(SpatiallyEnlargedFluid.getFluid(L * 1024))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -283,7 +283,7 @@ internal object TesseractsChain
             output(RAW_TESSERACT)
             fluidOutputs(TachyonRichTemporalFluid.getFluid(L * 4096))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -296,7 +296,7 @@ internal object TesseractsChain
             output(RAW_TESSERACT)
             fluidOutputs(SpatiallyEnlargedFluid.getFluid(L * 4096))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Primordial Matter
@@ -309,7 +309,7 @@ internal object TesseractsChain
             fluidInputs(ResonantStrangeMeson.getFluid(1000))
             fluidOutputs(PrimordialMatter.getFluid(1000))
             EUt(VA[UXV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -321,7 +321,7 @@ internal object TesseractsChain
             fluidInputs(ResonantStrangeMeson.getFluid(1000 * 64))
             fluidOutputs(PrimordialMatter.getFluid(1000 * 64))
             EUt(VA[OpV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -333,7 +333,7 @@ internal object TesseractsChain
             fluidInputs(ResonantStrangeMeson.getFluid(1000 * 256))
             fluidOutputs(PrimordialMatter.getFluid(1000 * 256))
             EUt(VA[MAX])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

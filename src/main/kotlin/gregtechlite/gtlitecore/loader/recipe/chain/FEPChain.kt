@@ -7,10 +7,10 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.unification.material.Materials.Steel
 import gregtech.api.unification.material.Materials.Tetrafluoroethylene
 import gregtech.api.unification.ore.OrePrefix.stick
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPLEX_PYROLYSIS_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FluorinatedEthylenePropylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hexafluoropropylene
 
@@ -27,7 +27,7 @@ internal object FEPChain
             fluidInputs(Tetrafluoroethylene.getFluid(3000))
             fluidOutputs(Hexafluoropropylene.getFluid(2000))
             EUt(VA[HV])
-            duration(20 * SECOND)
+            duration(20.s)
             blastFurnaceTemp(4000)
         }
 
@@ -37,7 +37,7 @@ internal object FEPChain
             fluidInputs(Hexafluoropropylene.getFluid(1000))
             fluidOutputs(FluorinatedEthylenePropylene.getFluid(1000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

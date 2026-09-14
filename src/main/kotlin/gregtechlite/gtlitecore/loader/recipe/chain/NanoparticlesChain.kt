@@ -18,12 +18,12 @@ import gregtech.api.unification.material.Materials.Octane
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.wireFine
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AscorbicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumAlginate
@@ -63,7 +63,7 @@ internal object NanoparticlesChain
             output(dust, SuccinicAcid, 14)
             output(dust, LithiumChloride, 4)
             EUt(VA[EV])
-            duration(10 * TICK)
+            duration(10.t)
             temperature(684)
         }
 
@@ -78,7 +78,7 @@ internal object NanoparticlesChain
             fluidInputs(Butene.getFluid(200))
             fluidOutputs(Octene.getFluid(100))
             EUt(VA[MV])
-            duration(14 * TICK)
+            duration(14.t)
         }
 
         // (CH3)3N + C8H18 + C8H16 + Br -> C19H42BrN + H
@@ -90,7 +90,7 @@ internal object NanoparticlesChain
             fluidOutputs(CetaneTrimethylAmmoniumBromide.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Si(CH3)Cl3 + C19H42BrN + C6H8O7 + 2Na -> Si + 4C + 7C2H4O + 3HCl + N(CH2CH3)4Br + 2NaH
@@ -106,7 +106,7 @@ internal object NanoparticlesChain
             fluidOutputs(HydrochloricAcid.getFluid(3000))
             fluidOutputs(TetraethylammoniumBromide.getFluid(1000))
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             temperature(1342)
         }
 
@@ -123,7 +123,7 @@ internal object NanoparticlesChain
             output(NANOSILICON_CATHODE)
             fluidOutputs(DehydroascorbicAcid.getFluid(1000))
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
     }
 

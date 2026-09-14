@@ -47,14 +47,17 @@ import gregtech.api.util.GTUtility.convertRGBtoOpaqueRGBA_CL
 import gregtech.client.renderer.texture.cube.SimpleOrientedCubeRenderer
 import gregtech.client.renderer.texture.custom.FireboxActiveRenderer
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityItemBus
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.STACK_SIZE_PER_SLOT
 import gregtechlite.gtlitecore.api.capability.handler.ConfigurableItemStackHandler
 import gregtechlite.gtlitecore.api.extension.add
 import gregtechlite.gtlitecore.api.extension.collapseInventorySlotContents
 import gregtechlite.gtlitecore.api.extension.square
 import gregtechlite.gtlitecore.api.gui.sync.SafeIntSyncValue
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.sqrt
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -64,9 +67,6 @@ import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.sqrt
 
 class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     : MetaTileEntityItemBus(id, tier, false), IMultiblockAbilityPart<IItemHandlerModifiable>, IControllable,
@@ -119,7 +119,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
      override fun update()
      {
          super.update()
-         if (!world.isRemote && offsetTimer % (5 * TICK) == 0L)
+         if (!world.isRemote && offsetTimer % (5.t) == 0L)
          {
              if (workingEnabled)
              {

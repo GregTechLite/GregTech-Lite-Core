@@ -26,13 +26,13 @@ import gregtech.api.unification.material.Materials.Styrene
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 
 internal object RecipeConflicts
 {
@@ -60,7 +60,7 @@ internal object RecipeConflicts
             fluidOutputs(HydrochloricAcid.getFluid(6000))
             fluidOutputs(DilutedHydrochloricAcid.getFluid(6000))
             EUt(96) // MV
-            duration(2 * MINUTE + 24 * SECOND)
+            duration(2.min + 24.s)
         }
 
         // Conflict between Methyltrichlorosilane (Si(CH3)Cl3) and Dimethyldichlorosilane (Si(CH3)2Cl2)
@@ -75,7 +75,7 @@ internal object RecipeConflicts
             fluidInputs(Chloromethane.getFluid(2000))
             fluidOutputs(Dimethyldichlorosilane.getFluid(1000))
             EUt(96) // MV
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // Add an int circuit to C4H8O recipe.
@@ -91,7 +91,7 @@ internal object RecipeConflicts
             fluidInputs(CarbonMonoxide.getFluid(1000))
             fluidOutputs(Butyraldehyde.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Conflicts between NaHSO4 and C6H6NNaO3S.
@@ -106,7 +106,7 @@ internal object RecipeConflicts
             output(dust, SodiumBisulfate, 7)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Conflicts between C8H8 and C6H4(CO)2C6H3Et.
@@ -118,7 +118,7 @@ internal object RecipeConflicts
             fluidOutputs(Styrene.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[LV])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
         }
     }
 

@@ -22,9 +22,9 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UHV
 import gregtech.common.items.MetaItems.EMITTER_UHV
 import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
 import gregtech.common.items.MetaItems.SENSOR_UHV
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
@@ -65,7 +65,7 @@ internal object StellarForgeCasingRecipes
             fluidInputs(Bedrockium.getFluid(L * 16))
             outputs(MultiblockCasing.STELLAR_CONTAINMENT_CASING.getStack(16))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(MetalCasing.QUANTUM_ALLOY.stack)
                     .EUt(VA[UHV])
@@ -90,7 +90,7 @@ internal object StellarForgeCasingRecipes
             fluidInputs(StableBaryonicMatter.getFluid(4000))
             outputs(MultiblockCasing.THERMAL_ENERGY_TRANSMISSION_CASING.getStack(32))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(MetaBlocks.BOILER_CASING.getItemVariant(BlockBoilerCasing.BoilerCasingType.TUNGSTENSTEEL_PIPE))
                     .EUt(VA[UHV])

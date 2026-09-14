@@ -23,13 +23,13 @@ import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.plate
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumTrichloride
@@ -54,7 +54,7 @@ internal object GalliumNitrideChain
             fluidInputs(Chlorine.getFluid(3000))
             output(dust, GalliumTrichloride, 4)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // GaO2 + 3Cl -> GaCl3 + 2O
@@ -65,7 +65,7 @@ internal object GalliumNitrideChain
             output(dust, GalliumTrichloride, 4)
             fluidOutputs(Oxygen.getFluid(2000))
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Al + 3Na + 3CH3Cl -> 0.5Al2(CH3)6 + 3NaCl
@@ -76,7 +76,7 @@ internal object GalliumNitrideChain
             fluidOutputs(Trimethylaluminium.getFluid(500))
             output(dust, Salt, 6)
             EUt(VA[EV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // GaCl3 + 0.5Al2(CH3)6 -> Ga(CH3)3 + AlCl3
@@ -86,7 +86,7 @@ internal object GalliumNitrideChain
             output(dust, AluminiumTrichloride, 4)
             fluidOutputs(Trimethylgallium.getFluid(1000))
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // AlCl3 + 3H2O -> Al(OH)3 + 3HCl
@@ -96,7 +96,7 @@ internal object GalliumNitrideChain
             output(dust, AluminiumHydroxide, 7)
             fluidOutputs(HydrochloricAcid.getFluid(3000))
             EUt(VA[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // 2Al(OH)3 -> Al2O3 + 3H2O
@@ -105,7 +105,7 @@ internal object GalliumNitrideChain
             output(dust, Alumina, 5)
             fluidOutputs(Water.getFluid(3000))
             EUt(VH[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // 2Ga(CH3)3 + 3H2O -> Ga2O3 + 3CH4 + 3H (drop)
@@ -116,7 +116,7 @@ internal object GalliumNitrideChain
             output(dust, GalliumTrioxide, 5)
             fluidOutputs(Methane.getFluid(3000))
             EUt(VA[HV])
-            duration(8 * SECOND)
+            duration(8.s)
             temperature(923)
         }
 
@@ -127,7 +127,7 @@ internal object GalliumNitrideChain
             output(dust, GalliumNitride, 4)
             fluidOutputs(Steam.getFluid(3 * SU))
             EUt(VA[LuV])
-            duration(12 * SECOND + 10 * TICK)
+            duration(12.s + 10.t)
             temperature(1023)
         }
     }

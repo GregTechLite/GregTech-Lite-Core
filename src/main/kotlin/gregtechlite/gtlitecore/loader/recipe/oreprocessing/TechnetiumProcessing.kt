@@ -12,10 +12,10 @@ import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumNitrate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPertechnetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Pertechnetate
@@ -36,7 +36,7 @@ internal object TechnetiumProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(Pertechnetate.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // NH3 + HNO3 -> NH4NO3
@@ -45,7 +45,7 @@ internal object TechnetiumProcessing
             fluidInputs(NitricAcid.getFluid(1000))
             output(dust, AmmoniumNitrate, 2) // Special count like NH4Cl.
             EUt(VA[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // HTcO4 + NH4NO3 -> NH4TcO4 + HNO3
@@ -55,7 +55,7 @@ internal object TechnetiumProcessing
             output(dust, AmmoniumPertechnetate, 10)
             fluidOutputs(NitricAcid.getFluid(1000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 2NH4TcO4 -> 2TcO2 + 4H2O + 2N (drop)
@@ -64,7 +64,7 @@ internal object TechnetiumProcessing
             output(dust, TechnetiumDioxide, 6)
             fluidOutputs(Water.getFluid(4000))
             EUt(VA[IV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // TcO2 -> Tc + 2O by electrolysis decomposition.

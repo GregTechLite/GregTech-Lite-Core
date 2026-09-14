@@ -15,10 +15,10 @@ import gregtech.api.unification.ore.OrePrefix.pipeNormalFluid
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 
@@ -37,7 +37,7 @@ internal object BoilerCasingRecipes
             input(frameGt, Bronze)
             outputs(GTBoilerCasing.BRONZE_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Steel Pipe Casing
@@ -48,7 +48,7 @@ internal object BoilerCasingRecipes
             input(frameGt, Steel)
             outputs(GTBoilerCasing.STEEL_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Titanium Pipe Casing
@@ -59,7 +59,7 @@ internal object BoilerCasingRecipes
             input(frameGt, Titanium)
             outputs(GTBoilerCasing.TITANIUM_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Tungsten Steel Pipe Casing
@@ -70,7 +70,7 @@ internal object BoilerCasingRecipes
             input(frameGt, TungstenSteel)
             outputs(GTBoilerCasing.TUNGSTENSTEEL_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Polytetrafluoroethylene Pipe Casing
@@ -81,7 +81,7 @@ internal object BoilerCasingRecipes
             input(frameGt, Polytetrafluoroethylene)
             outputs(GTBoilerCasing.POLYTETRAFLUOROETHYLENE_PIPE.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Polybenzimidazole Pipe Casing
@@ -98,7 +98,7 @@ internal object BoilerCasingRecipes
             input(frameGt, Polybenzimidazole)
             outputs(BoilerCasing.POLYBENZIMIDAZOLE.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

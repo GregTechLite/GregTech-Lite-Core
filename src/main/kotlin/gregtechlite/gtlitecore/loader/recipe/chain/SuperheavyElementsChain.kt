@@ -24,12 +24,12 @@ import gregtech.api.unification.material.Materials.Ytterbium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FleroviumYtterbiumPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableFlerovium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
@@ -59,7 +59,7 @@ internal object SuperheavyElementsChain
             fluidInputs(Titanium.getFluid(L))
             fluidOutputs(ScandiumTitaniumMixture.getFluid(L * 2))
             EUt(VA[ZPM])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // Ra + Rn -> RaRn
@@ -68,7 +68,7 @@ internal object SuperheavyElementsChain
             fluidInputs(Radon.getFluid(125))
             fluidOutputs(RadiumRadonMixture.getFluid(L * 2))
             EUt(VA[ZPM])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         BLAST_RECIPES.removeRecipe(
@@ -85,7 +85,7 @@ internal object SuperheavyElementsChain
             fluidInputs(MetastableHassium.getPlasma(L))
             output(ingotHot, MetastableHassium)
             EUt(VA[UV])
-            duration(14 * SECOND)
+            duration(14.s)
         }
     }
 
@@ -97,7 +97,7 @@ internal object SuperheavyElementsChain
             fluidInputs(Uranium238.getFluid(L))
             fluidOutputs(QuasifissioningPlasma.getPlasma(L * 2))
             EUt(VA[ZPM])
-            duration(5 * SECOND)
+            duration(5.s)
             EUToStart(325_000_000L) // 325M EU (MK3)
         }
 
@@ -106,7 +106,7 @@ internal object SuperheavyElementsChain
             fluidInputs(QuasifissioningPlasma.getPlasma(L * 4))
             fluidOutputs(FleroviumYtterbiumPlasma.getPlasma(L * 4))
             EUt(VA[ZPM])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // FlYb? -> Fl + Yb
@@ -115,7 +115,7 @@ internal object SuperheavyElementsChain
             output(dust, Ytterbium, 2)
             fluidOutputs(MetastableFlerovium.getPlasma(L * 2))
             EUt(VA[UV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         BLAST_RECIPES.removeRecipe(
@@ -132,7 +132,7 @@ internal object SuperheavyElementsChain
             fluidInputs(MetastableFlerovium.getPlasma(L))
             output(ingotHot, MetastableFlerovium)
             EUt(VA[IV])
-            duration(7 * SECOND + 15 * TICK)
+            duration(7.s + 15.t)
         }
     }
 
@@ -144,7 +144,7 @@ internal object SuperheavyElementsChain
             fluidInputs(Californium.getFluid(L * 2))
             fluidOutputs(OganessonBreedingBase.getFluid(L * 4))
             EUt(VA[IV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         BLAST_RECIPES.removeRecipe(
@@ -161,7 +161,7 @@ internal object SuperheavyElementsChain
             fluidInputs(MetastableOganesson.getPlasma(L))
             output(ingotHot, MetastableOganesson)
             EUt(VA[ZPM])
-            duration(12 * SECOND + 15 * TICK)
+            duration(12.s + 15.t)
         }
     }
 

@@ -14,9 +14,9 @@ import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Nitrogen
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichAmmoniaMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RichNitrogenMixture
 
@@ -33,7 +33,7 @@ internal object AmmoniaChain
             fluidInputs(Air.getFluid(1500))
             fluidOutputs(RichNitrogenMixture.getFluid(2500))
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -41,7 +41,7 @@ internal object AmmoniaChain
             fluidInputs(Nitrogen.getFluid(1000))
             fluidOutputs(RichNitrogenMixture.getFluid(2500))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // CH4N + 2H2O -> NH4 + CH4 (cycle) + O2 (lost)
@@ -52,7 +52,7 @@ internal object AmmoniaChain
             fluidOutputs(RichAmmoniaMixture.getFluid(1000))
             fluidOutputs(Methane.getFluid(1000))
             EUt(VA[MV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // NH4 -> NH3 + H (lost)
@@ -61,7 +61,7 @@ internal object AmmoniaChain
             fluidInputs(RichAmmoniaMixture.getFluid(1000))
             fluidOutputs(Ammonia.getFluid(1000))
             EUt(VA[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
     }
 

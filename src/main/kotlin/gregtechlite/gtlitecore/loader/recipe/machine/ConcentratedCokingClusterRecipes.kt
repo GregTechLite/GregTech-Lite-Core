@@ -42,11 +42,11 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.common.items.MetaItems.BIO_CHAFF
 import gregtech.common.items.MetaItems.FERTILIZER
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPLEX_PYROLYSIS_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Guaiacol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hydroquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resorcinol
@@ -72,7 +72,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(WoodGas.getFluid(1500))
             fluidOutputs(OilHeavy.getFluid(200))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(2400)
         }
 
@@ -87,7 +87,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Guaiacol.getFluid(600))
             fluidOutputs(Lubricant.getFluid(400))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(2400)
         }
 
@@ -102,7 +102,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Ethanol.getFluid(40))
             fluidOutputs(MethylAcetate.getFluid(40))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(2400)
         }
 
@@ -117,7 +117,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(CarbonDioxide.getFluid(1960))
             fluidOutputs(CarbonMonoxide.getFluid(1360))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(2400)
         }
 
@@ -132,7 +132,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Creosote.getFluid(32000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(2600)
         }
 
@@ -143,7 +143,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Creosote.getFluid(32000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(2600)
         }
 
@@ -154,7 +154,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Creosote.getFluid(288000))
             fluidOutputs(CarbonDioxide.getFluid(9000))
             EUt(VA[HV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             blastFurnaceTemp(2600)
         }
 
@@ -165,7 +165,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Creosote.getFluid(288000))
             fluidOutputs(CarbonDioxide.getFluid(9000))
             EUt(VA[HV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             blastFurnaceTemp(2600)
         }
 
@@ -181,7 +181,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Ethylbenzene.getFluid(1000))
             fluidOutputs(Phenol.getFluid(400))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(2600)
         }
 
@@ -197,7 +197,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Ethylbenzene.getFluid(1000))
             fluidOutputs(Phenol.getFluid(400))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(2600)
         }
 
@@ -213,7 +213,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Ethylbenzene.getFluid(9000))
             fluidOutputs(Phenol.getFluid(3600))
             EUt(VA[HV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             blastFurnaceTemp(2600)
         }
 
@@ -229,7 +229,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Ethylbenzene.getFluid(9000))
             fluidOutputs(Phenol.getFluid(3600))
             EUt(VA[HV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             blastFurnaceTemp(2600)
         }
 
@@ -244,7 +244,7 @@ internal object ConcentratedCokingClusterRecipes
             fluidOutputs(Biomass.getFluid(80000))
             fluidOutputs(FermentedBiomass.getFluid(96000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(1200)
         }
 
@@ -254,7 +254,7 @@ internal object ConcentratedCokingClusterRecipes
             output(dust, Charcoal, 48)
             fluidOutputs(Water.getFluid(4500))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             blastFurnaceTemp(500)
         }
 
@@ -264,7 +264,7 @@ internal object ConcentratedCokingClusterRecipes
             output(block, Charcoal, 48)
             fluidOutputs(Water.getFluid(40500))
             EUt(VA[HV])
-            duration(90 * SECOND)
+            duration(90.s)
             blastFurnaceTemp(500)
         }
 

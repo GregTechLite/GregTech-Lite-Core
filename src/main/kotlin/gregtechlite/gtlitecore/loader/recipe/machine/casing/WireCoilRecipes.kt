@@ -44,12 +44,12 @@ import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
@@ -83,7 +83,7 @@ internal object WireCoilRecipes
             fluidInputs(TinAlloy.getFluid(L))
             outputs(GTWireCoil.CUPRONICKEL.stack)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -93,7 +93,7 @@ internal object WireCoilRecipes
             fluidInputs(TinAlloy.getFluid(L))
             outputs(GTWireCoil.CUPRONICKEL.stack)
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Kanthal Wire Coil
@@ -109,7 +109,7 @@ internal object WireCoilRecipes
             fluidInputs(Copper.getFluid(L))
             outputs(GTWireCoil.KANTHAL.stack)
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -119,7 +119,7 @@ internal object WireCoilRecipes
             fluidInputs(Copper.getFluid(L))
             outputs(GTWireCoil.KANTHAL.stack)
             EUt(VA[MV])
-            duration(3 * SECOND + 15 * TICK)
+            duration(3.s + 15.t)
         }
 
         // Nichrome Wire Coil
@@ -135,7 +135,7 @@ internal object WireCoilRecipes
             fluidInputs(Aluminium.getFluid(L))
             outputs(GTWireCoil.NICHROME.stack)
             EUt(VA[HV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -145,7 +145,7 @@ internal object WireCoilRecipes
             fluidInputs(Aluminium.getFluid(L))
             outputs(GTWireCoil.NICHROME.stack)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // RTM Alloy Wire Coil
@@ -161,7 +161,7 @@ internal object WireCoilRecipes
             fluidInputs(Titanium.getFluid(L))
             outputs(GTWireCoil.RTM_ALLOY.stack)
             EUt(VA[EV])
-            duration(25 * SECOND)
+            duration(25.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -171,7 +171,7 @@ internal object WireCoilRecipes
             fluidInputs(Titanium.getFluid(L))
             outputs(GTWireCoil.RTM_ALLOY.stack)
             EUt(VA[EV])
-            duration(6 * SECOND + 5 * TICK)
+            duration(6.s + 5.t)
         }
 
         // HSS-G Wire Coil
@@ -187,7 +187,7 @@ internal object WireCoilRecipes
             fluidInputs(Tungsten.getFluid(L))
             outputs(GTWireCoil.HSS_G.stack)
             EUt(VA[IV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -197,7 +197,7 @@ internal object WireCoilRecipes
             fluidInputs(Tungsten.getFluid(L))
             outputs(GTWireCoil.HSS_G.stack)
             EUt(VA[IV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // Naquadah Wire Coil
@@ -213,7 +213,7 @@ internal object WireCoilRecipes
             fluidInputs(TungstenSteel.getFluid(L))
             outputs(GTWireCoil.NAQUADAH.stack)
             EUt(VA[LuV])
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -223,7 +223,7 @@ internal object WireCoilRecipes
             fluidInputs(TungstenSteel.getFluid(L))
             outputs(GTWireCoil.NAQUADAH.stack)
             EUt(VA[LuV])
-            duration(8 * SECOND + 15 * TICK)
+            duration(8.s + 15.t)
         }
 
         // Trinium Wire Coil
@@ -239,7 +239,7 @@ internal object WireCoilRecipes
             fluidInputs(Naquadah.getFluid(L))
             outputs(GTWireCoil.TRINIUM.stack)
             EUt(VA[ZPM])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -249,7 +249,7 @@ internal object WireCoilRecipes
             fluidInputs(Naquadah.getFluid(L))
             outputs(GTWireCoil.TRINIUM.stack)
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Tritanium Wire Coil
@@ -265,7 +265,7 @@ internal object WireCoilRecipes
             fluidInputs(NaquadahEnriched.getFluid(L))
             outputs(GTWireCoil.TRITANIUM.stack)
             EUt(VA[UV])
-            duration(45 * SECOND)
+            duration(45.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -275,7 +275,7 @@ internal object WireCoilRecipes
             fluidInputs(NaquadahEnriched.getFluid(L))
             outputs(GTWireCoil.TRITANIUM.stack)
             EUt(VA[UV])
-            duration(11 * SECOND + 5 * TICK)
+            duration(11.s + 5.t)
         }
 
         // Adamantium Wire Coil
@@ -286,7 +286,7 @@ internal object WireCoilRecipes
             fluidInputs(Naquadria.getFluid(L))
             outputs(WireCoil.ADAMANTIUM.stack)
             EUt(VA[UHV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -296,7 +296,7 @@ internal object WireCoilRecipes
             fluidInputs(Naquadria.getFluid(L))
             outputs(WireCoil.ADAMANTIUM.stack)
             EUt(VA[UHV])
-            duration(12 * SECOND + 10 * TICK)
+            duration(12.s + 10.t)
         }
 
         // Infinity Wire Coil Block
@@ -308,7 +308,7 @@ internal object WireCoilRecipes
             fluidInputs(Adamantium.getFluid(L * 4))
             outputs(WireCoil.INFINITY.stack)
             EUt(VA[UEV])
-            duration(55 * SECOND)
+            duration(55.s)
             stationResearch {
                 it.researchStack(WireCoil.ADAMANTIUM.stack)
                     .EUt(VA[UHV])
@@ -324,7 +324,7 @@ internal object WireCoilRecipes
             fluidInputs(Adamantium.getFluid(L * 4))
             outputs(WireCoil.INFINITY.stack)
             EUt(VA[UEV])
-            duration(13 * SECOND + 15 * TICK)
+            duration(13.s + 15.t)
             stationResearch {
                 it.researchStack(WireCoil.ADAMANTIUM.stack)
                     .EUt(VA[UHV])
@@ -342,7 +342,7 @@ internal object WireCoilRecipes
             fluidInputs(Infinity.getFluid(L * 4))
             outputs(WireCoil.HALKONITE_STEEL.stack)
             EUt(VA[UIV])
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(WireCoil.INFINITY.stack)
                     .EUt(VA[UEV])
@@ -358,7 +358,7 @@ internal object WireCoilRecipes
             fluidInputs(Infinity.getFluid(L * 4))
             outputs(WireCoil.HALKONITE_STEEL.stack)
             EUt(VA[UIV])
-            duration(15 * SECOND)
+            duration(15.s)
             stationResearch {
                 it.researchStack(WireCoil.INFINITY.stack)
                     .EUt(VA[UEV])
@@ -378,7 +378,7 @@ internal object WireCoilRecipes
             fluidInputs(HalkoniteSteel.getFluid(L * 4))
             outputs(WireCoil.SPACE_TIME.stack)
             EUt(VA[UXV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(WireCoil.HALKONITE_STEEL.stack)
                     .EUt(VA[UIV])
@@ -394,7 +394,7 @@ internal object WireCoilRecipes
             fluidInputs(HalkoniteSteel.getFluid(L * 4))
             outputs(WireCoil.SPACE_TIME.stack)
             EUt(VA[UXV])
-            duration(22 * SECOND + 10 * TICK)
+            duration(22.s + 10.t)
             stationResearch {
                 it.researchStack(WireCoil.HALKONITE_STEEL.stack)
                     .EUt(VA[UIV])
@@ -418,7 +418,7 @@ internal object WireCoilRecipes
             fluidInputs(SpaceTime.getFluid(L * 4))
             outputs(WireCoil.ETERNITY.stack)
             EUt(VA[OpV])
-            duration(2 * MINUTE)
+            duration(2.min)
             stationResearch {
                 it.researchStack(WireCoil.SPACE_TIME.stack)
                     .EUt(VA[UXV])
@@ -435,7 +435,7 @@ internal object WireCoilRecipes
             fluidInputs(SpaceTime.getFluid(L * 4))
             outputs(WireCoil.ETERNITY.stack)
             EUt(VA[OpV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(WireCoil.SPACE_TIME.stack)
                     .EUt(VA[UXV])

@@ -35,13 +35,17 @@ import gregtech.api.util.TextFormattingUtil.formatNumbers
 import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinHandler
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTMetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
+import java.util.function.UnaryOperator
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.round
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -53,10 +57,6 @@ import net.minecraft.world.World
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.function.UnaryOperator
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.round
 
 class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     : MultiblockWithDisplayBase(id), IWorkable, ITieredMetaTileEntity, ProgressBarMultiblock
@@ -65,7 +65,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     companion object
     {
         private const val FLUID_USE_AMOUNT = 1000
-        private const val MAX_PROGRESS = 5 * SECOND
+        private const val MAX_PROGRESS = 5.s
         private const val MAX_MULTIPLIER = 20
 
         private val casingState = MetalCasing.WATERTIGHT_STEEL.state
@@ -202,9 +202,9 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     {
         var canRun = true
         if (!drainEnergy(true)) {
-            if (progressTime >= (2 * TICK)) {
+            if (progressTime >= (2.t)) {
                 progressTime = if (ConfigHolder.machines.recipeProgressLowEnergy)
-                    1 * TICK else max(1 * TICK, progressTime - 2 * TICK)
+                    1.t else max(1.t, progressTime - 2.t)
             }
             canRun = false
         }

@@ -10,11 +10,11 @@ import gregtech.api.unification.material.Materials.Polyethylene
 import gregtech.api.unification.material.Materials.Polytetrafluoroethylene
 import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.properties.PropertyKey
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.item.GTLiteToolHelper
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOOL_CASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_BUTCHERY_KNIFE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_CROWBAR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_FILE
@@ -69,7 +69,7 @@ internal object DisposableToolRecipeProducer
             fluidInputs(Rubber.getFluid(L))
             output(DISPOSABLE_SOFT_MALLET, 42)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         TOOL_CASTER_RECIPES.addRecipe {
@@ -78,7 +78,7 @@ internal object DisposableToolRecipeProducer
             output(DISPOSABLE_SOFT_MALLET, 64)
             output(DISPOSABLE_SOFT_MALLET, 20)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         TOOL_CASTER_RECIPES.addRecipe {
@@ -88,7 +88,7 @@ internal object DisposableToolRecipeProducer
             output(DISPOSABLE_SOFT_MALLET, 64)
             output(DISPOSABLE_SOFT_MALLET, 40)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -116,7 +116,7 @@ internal object DisposableToolRecipeProducer
                 fluidInputs(material.getFluid(L))
                 outputs(outputStacks)
                 EUt(VA[MV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
         }
     }

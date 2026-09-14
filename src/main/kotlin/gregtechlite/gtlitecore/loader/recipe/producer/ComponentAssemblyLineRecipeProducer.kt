@@ -40,13 +40,13 @@ import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.loaders.recipe.CraftingComponent
 import gregtechlite.gtlitecore.api.LOGGER
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.collection.obj2LongHashMapOf
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPONENT_ASSEMBLY_LINE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.util.TierBridge
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromiumGermaniumTellurideMagnetic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
@@ -95,10 +95,10 @@ internal object ComponentAssemblyLineRecipeProducer
     private const val MAX_FLUID_INPUTS = 12
     private const val MAX_FLUID_AMOUNT = Int.MAX_VALUE.toLong()
 
-    private val DURATION_BY_TIER = intArrayOf(0, 15 * TICK, 1 * SECOND + 10 * TICK, 1 * SECOND + 10 * TICK,
-        2 * SECOND + 5 * TICK, 2 * SECOND + 5 * TICK, 3 * SECOND, 3 * SECOND, 3 * SECOND + 15 * TICK,
-        3 * SECOND + 15 * TICK, 4 * SECOND + 10 * TICK, 4 * SECOND + 10 * TICK, 5 * SECOND + 5 * TICK,
-        5 * SECOND + 5 * TICK, 6 * SECOND)
+    private val DURATION_BY_TIER = intArrayOf(0, 15.t, 1.s + 10.t, 1.s + 10.t,
+        2.s + 5.t, 2.s + 5.t, 3.s, 3.s, 3.s + 15.t,
+        3.s + 15.t, 4.s + 10.t, 4.s + 10.t, 5.s + 5.t,
+        5.s + 5.t, 6.s)
 
     // Magnetic rods stay solid even at LuV+, everything else rod-like melts.
     private val MAGNETIC_STICK_LONG_MATERIALS = setOf(SamariumMagnetic, ChromiumGermaniumTellurideMagnetic, Magnetium)
@@ -258,7 +258,7 @@ internal object ComponentAssemblyLineRecipeProducer
             COMPONENT_ASSEMBLY_LINE_RECIPES.addRecipe {
                 circuitMeta(target.circuit)
                 EUt(VA[target.tier])
-                duration(DURATION_BY_TIER[target.tier] * SECOND)
+                duration(DURATION_BY_TIER[target.tier].s)
                 tier(target.tier)
                 variant.items.forEach { inputs(it) }
                 variant.fluids.forEach { (material, amount) -> fluidInputs(material.getFluid(amount.toInt())) }

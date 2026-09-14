@@ -28,8 +28,6 @@ import gregtech.api.unification.material.Materials.Wood
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.blocks.MetaBlocks
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.outputs
@@ -37,6 +35,8 @@ import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bitumen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FulvicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kerogen
@@ -56,7 +56,7 @@ internal object KerogenChain
             fluidInputs(FermentedBiomass.getFluid(1000))
             fluidOutputs(FulvicAcid.getFluid(1000))
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // C14H12O8 -> Kerogen
@@ -65,7 +65,7 @@ internal object KerogenChain
             fluidInputs(FulvicAcid.getFluid(100))
             fluidOutputs(Kerogen.getFluid(100))
             EUt(VA[LV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // Kerogen -> Oil
@@ -74,7 +74,7 @@ internal object KerogenChain
             fluidInputs(Kerogen.getFluid(250))
             fluidOutputs(Oil.getFluid(500))
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Light Oil distillation
@@ -104,7 +104,7 @@ internal object KerogenChain
             fluidOutputs(SulfuricNaphtha.getFluid(30))
             fluidOutputs(SulfuricGas.getFluid(240))
             EUt(96) // MV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Medium Oil
@@ -134,7 +134,7 @@ internal object KerogenChain
             fluidOutputs(SulfuricNaphtha.getFluid(150))
             fluidOutputs(SulfuricGas.getFluid(60))
             EUt(96) // MV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Oil
@@ -164,7 +164,7 @@ internal object KerogenChain
             fluidOutputs(SulfuricNaphtha.getFluid(20))
             fluidOutputs(SulfuricGas.getFluid(60))
             EUt(96) // MV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Heavy Oil
@@ -194,7 +194,7 @@ internal object KerogenChain
             fluidOutputs(SulfuricNaphtha.getFluid(15))
             fluidOutputs(SulfuricGas.getFluid(60))
             EUt(96) // MV, original recipe's EUt required is HV (288 EU/t), we down-tier this recipe.
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         GTLiteRecipeHandler.removeMixerRecipes(
@@ -213,7 +213,7 @@ internal object KerogenChain
             input(dust, Bitumen, 4)
             outputs(MetaBlocks.ASPHALT)
             EUt(VA[ULV])
-            duration(5 * TICK)
+            duration(5.t)
         }
 
         // Treated Wood

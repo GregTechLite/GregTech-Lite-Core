@@ -31,14 +31,14 @@ import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.round
 import gregtech.common.items.MetaItems.COVER_SOLAR_PANEL
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthyleneVinylAcetatePolymer
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Methyltrichlorosilane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Silane
@@ -63,7 +63,7 @@ object SolarPanelChain
             fluidOutputs(Silane.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(3000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // SiH4 + Na2O2 + 2Cl -> Si + 2NaCl + 2H2O
@@ -76,7 +76,7 @@ object SolarPanelChain
             output(dust, Salt, 4)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[HV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // 3C2H4 + 2C4H6O2 -> (C2H4)3(C4H6O2)2
@@ -85,7 +85,7 @@ object SolarPanelChain
             fluidInputs(PolyvinylAcetate.getFluid(2000))
             fluidOutputs(EthyleneVinylAcetatePolymer.getFluid(1000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -110,7 +110,7 @@ object SolarPanelChain
             fluidInputs(EthyleneVinylAcetatePolymer.getFluid(500))
             output(COVER_SOLAR_PANEL)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -127,7 +127,7 @@ object SolarPanelChain
             fluidInputs(EthyleneVinylAcetatePolymer.getFluid(500))
             output(COVER_SOLAR_PANEL)
             EUt(VA[IV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 

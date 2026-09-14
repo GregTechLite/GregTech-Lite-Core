@@ -17,11 +17,11 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.COVER_SOLAR_PANEL
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SolarGradeSilicon
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DYSON_SWARM_PHOTOVOLTAIC_PANEL
@@ -40,7 +40,7 @@ internal object BlackholeFormerRecipes
             input(ingot, Iron, 2)
             output(FUEL_ROD_EMPTY)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -49,7 +49,7 @@ internal object BlackholeFormerRecipes
             input(ingot, WroughtIron, 2)
             output(FUEL_ROD_EMPTY)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -58,7 +58,7 @@ internal object BlackholeFormerRecipes
             input(ingot, Steel, 2)
             output(FUEL_ROD_EMPTY)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -67,7 +67,7 @@ internal object BlackholeFormerRecipes
             input(ingot, VanadiumSteel, 2)
             output(FUEL_ROD_EMPTY, 4)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -76,7 +76,7 @@ internal object BlackholeFormerRecipes
             input(ingot, BlueSteel, 2)
             output(FUEL_ROD_EMPTY, 8)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -85,7 +85,7 @@ internal object BlackholeFormerRecipes
             input(ingot, HSSG, 2)
             output(FUEL_ROD_EMPTY, 16)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -94,7 +94,7 @@ internal object BlackholeFormerRecipes
             input(ingot, HSSE, 2)
             output(FUEL_ROD_EMPTY, 32)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -103,7 +103,7 @@ internal object BlackholeFormerRecipes
             input(ingot, HSSS, 2)
             output(FUEL_ROD_EMPTY, 64)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -117,7 +117,7 @@ internal object BlackholeFormerRecipes
             input(wireFine, Germanium, 16)
             output(DYSON_SWARM_PHOTOVOLTAIC_PANEL, 64)
             EUt(VA[UHV])
-            duration(2 * SECOND)
+            duration(2.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }

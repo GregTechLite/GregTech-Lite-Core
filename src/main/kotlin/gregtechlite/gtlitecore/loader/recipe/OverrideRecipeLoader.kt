@@ -126,9 +126,6 @@ import gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR
 import gregtech.common.metatileentities.MetaTileEntities.HULL
 import gregtech.common.metatileentities.MetaTileEntities.LARGE_PLASMA_TURBINE
 import gregtech.loaders.recipe.CraftingComponent
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
@@ -137,6 +134,9 @@ import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Plutonium244
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polyetheretherketone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
@@ -231,7 +231,7 @@ internal object OverrideRecipeLoader
             inputs(SAND)
             outputs(DUST_BLOCK)
             EUt(VH[LV])
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Dust Block + H2O -> Clay
@@ -240,7 +240,7 @@ internal object OverrideRecipeLoader
             fluidInputs(Water.getFluid(1000))
             outputs(CLAY)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Down-tier Clay electrolysis from MV stage to LV stage.
@@ -252,7 +252,7 @@ internal object OverrideRecipeLoader
             output(dust, Silicon, 2)
             fluidOutputs(Water.getFluid(6000))
             EUt(VA[LV])
-            duration(9 * SECOND + 2 * TICK)
+            duration(9.s + 2.t)
         }
 
         // endregion
@@ -271,7 +271,7 @@ internal object OverrideRecipeLoader
             fluidOutputs(Hydrogen.getFluid(2000))
             fluidOutputs(Oxygen.getFluid(1000))
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // endregion
@@ -292,7 +292,7 @@ internal object OverrideRecipeLoader
             fluidInputs(Concrete.getFluid(L))
             outputs(GTCleanroomCasing.PLASCRETE.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // endregion
@@ -333,7 +333,7 @@ internal object OverrideRecipeLoader
                 input("plateAnyRubber", 6)
                 outputs(CraftingComponent.CONVEYOR.getIngredient(voltage) as ItemStack)
                 EUt(VA[LV])
-                duration(5 * SECOND)
+                duration(5.s)
             }
         }
 
@@ -361,7 +361,7 @@ internal object OverrideRecipeLoader
             input("plateAnySyntheticRubber", 6)
             output(CONVEYOR_MODULE_IV)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Override all electric pumps recipes with new ore dictionary to compatible with several synthetic rubbers.
@@ -401,7 +401,7 @@ internal object OverrideRecipeLoader
                 inputs(CraftingComponent.MOTOR.getIngredient(voltage) as ItemStack)
                 outputs(CraftingComponent.PUMP.getIngredient(voltage) as ItemStack)
                 EUt(VA[LV])
-                duration(5 * SECOND)
+                duration(5.s)
             }
         }
 
@@ -436,7 +436,7 @@ internal object OverrideRecipeLoader
             input(ELECTRIC_MOTOR_IV)
             output(ELECTRIC_PUMP_IV)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // endregion
@@ -467,11 +467,11 @@ internal object OverrideRecipeLoader
             fluidInputs(NiobiumTitanium.getFluid(L * 8))
             output(FUSION_REACTOR[0])
             EUt(VA[LuV])
-            duration(30 * SECOND)
+            duration(30.s)
             scannerResearch {
                 it.researchStack(wireGtSingle, IndiumTinBariumTitaniumCuprate)
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -500,7 +500,7 @@ internal object OverrideRecipeLoader
             fluidInputs(VanadiumGallium.getFluid(L * 8))
             output(FUSION_REACTOR[1])
             EUt(61440) // ZPM
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(FUSION_REACTOR[0])
                     .EUt(VA[ZPM])
@@ -533,7 +533,7 @@ internal object OverrideRecipeLoader
             fluidInputs(YttriumBariumCuprate.getFluid(L * 8))
             output(FUSION_REACTOR[2])
             EUt(VA[ZPM])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(FUSION_REACTOR[1])
                     .EUt(VA[UV])
@@ -555,7 +555,7 @@ internal object OverrideRecipeLoader
             fluidInputs(Naquadria.getFluid(L))
             fluidOutputs(Neutronium.getFluid(L / 2))
             EUt(98304) // ZPM
-            duration(10 * SECOND)
+            duration(10.s)
             EUToStart(600_000_000L) // 600M EU (MK3)
         }
 
@@ -591,7 +591,7 @@ internal object OverrideRecipeLoader
             output(dust, Plutonium244, 8)
             fluidOutputs(Radon.getFluid(1000))
             EUt(VA[HV])
-            duration(3 * MINUTE + 20 * SECOND)
+            duration(3.min + 20.s)
         }
 
         // endregion
@@ -645,7 +645,7 @@ internal object OverrideRecipeLoader
             fluidInputs(SolderingAlloy.getFluid(L * 10))
             output(ENERGY_MODULE)
             EUt(100_000) // ZPM
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(ENERGY_LAPOTRONIC_ORB_CLUSTER)
                     .EUt(VA[LuV])
@@ -691,7 +691,7 @@ internal object OverrideRecipeLoader
             fluidInputs(Polybenzimidazole.getFluid(L * 4))
             output(ENERGY_CLUSTER)
             EUt(200_000) // UV
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(ENERGY_MODULE)
                     .EUt(VA[ZPM])
@@ -738,7 +738,7 @@ internal object OverrideRecipeLoader
             fluidInputs(Vibranium.getFluid(L * 18))
             output(ULTIMATE_BATTERY)
             EUt(800_000) // UHV
-            duration(2 * MINUTE)
+            duration(2.min)
             stationResearch {
                 it.researchStack(ENERGY_CLUSTER)
                     .EUt(VA[UHV])

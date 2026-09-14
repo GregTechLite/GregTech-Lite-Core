@@ -21,11 +21,11 @@ import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AdamantiumUnstable
@@ -51,7 +51,7 @@ internal object AdamantiumProcessing
             chancedOutput(dust, Hafnium, 3, 6000, 0)
             chancedOutput(dust, Zirconium, 4, 4500, 0)
             EUt(VA[IV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // 4Ad + 4Nq -> Ad* + Nq (part cycle) + U238
@@ -62,7 +62,7 @@ internal object AdamantiumProcessing
             output(dust, Uranium238)
             fluidOutputs(AdamantiumUnstable.getFluid(L * 4))
             EUt(VA[LuV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Dr + Ad* -> Ad
@@ -71,7 +71,7 @@ internal object AdamantiumProcessing
             fluidInputs(AdamantiumUnstable.getFluid(16))
             fluidOutputs(Adamantium.getPlasma(16))
             EUt(VA[LuV])
-            duration(1 * SECOND + 12 * TICK)
+            duration(1.s + 12.t)
             EUToStart(300_000_000L) // 300M EU （MK1）
         }
 
@@ -91,7 +91,7 @@ internal object AdamantiumProcessing
             fluidInputs(Adamantium.getPlasma(L))
             output(ingotHot, Adamantium)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

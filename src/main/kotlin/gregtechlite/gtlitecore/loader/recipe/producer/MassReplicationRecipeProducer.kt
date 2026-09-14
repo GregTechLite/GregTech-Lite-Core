@@ -8,9 +8,9 @@ import gregtech.api.recipes.RecipeMaps.REPLICATOR_RECIPES
 import gregtech.api.unification.material.Materials.UUMatter
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BosonicUUMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FermionicUUMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FreeElectronGas
@@ -35,7 +35,7 @@ internal object MassReplicationRecipeProducer
 
     fun produce()
     {
-        val t = 37 * SECOND + 10 * TICK // Time unit of replications.
+        val t = 37.s + 10.t // Time unit of replications.
         for (material in MaterialInfoCache.periodicTableMaterials)
         {
             val mass = material.mass.toInt()

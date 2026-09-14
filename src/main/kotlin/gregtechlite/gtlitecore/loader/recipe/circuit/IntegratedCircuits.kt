@@ -56,11 +56,11 @@ import gregtech.common.items.MetaItems.RESISTOR
 import gregtech.common.items.MetaItems.SILICON_WAFER
 import gregtech.common.items.MetaItems.STICKY_RESIN
 import gregtech.common.items.MetaItems.TRANSISTOR
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lignite
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
@@ -91,7 +91,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(TRANSISTOR, 8)
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -101,7 +101,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(TRANSISTOR, 16)
             EUt(VA[MV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Resistor
@@ -155,7 +155,7 @@ internal object IntegratedCircuits
             input(wireFine, Copper, 4)
             output(RESISTOR, 4)
             EUt(6) // ULV
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -164,7 +164,7 @@ internal object IntegratedCircuits
             input(wireFine, Copper, 4)
             output(RESISTOR, 4)
             EUt(6) // ULV
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -173,7 +173,7 @@ internal object IntegratedCircuits
             input(wireFine, Copper, 4)
             output(RESISTOR, 4)
             EUt(6) // ULV
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -182,7 +182,7 @@ internal object IntegratedCircuits
             input(wireFine, Copper, 4)
             output(RESISTOR, 4)
             EUt(6) // ULV
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -191,7 +191,7 @@ internal object IntegratedCircuits
             input(wireFine, AnnealedCopper, 4)
             output(RESISTOR, 8)
             EUt(6) // ULV
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -200,7 +200,7 @@ internal object IntegratedCircuits
             input(wireFine, AnnealedCopper, 4)
             output(RESISTOR, 8)
             EUt(6) // ULV
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -209,7 +209,7 @@ internal object IntegratedCircuits
             input(wireFine, AnnealedCopper, 4)
             output(RESISTOR, 8)
             EUt(6) // ULV
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -218,7 +218,7 @@ internal object IntegratedCircuits
             input(wireFine, AnnealedCopper, 4)
             output(RESISTOR, 8)
             EUt(6) // ULV
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Capacitor
@@ -234,7 +234,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(CAPACITOR, 8)
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -244,7 +244,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(CAPACITOR, 16)
             EUt(VA[MV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Diode
@@ -285,7 +285,7 @@ internal object IntegratedCircuits
             fluidInputs(Glass.getFluid(L))
             output(DIODE, 2)
             EUt(VA[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -295,7 +295,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(DIODE, 2)
             EUt(VA[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -305,7 +305,7 @@ internal object IntegratedCircuits
             fluidInputs(Glass.getFluid(L))
             output(DIODE, 4)
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -315,7 +315,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(DIODE, 4)
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -325,7 +325,7 @@ internal object IntegratedCircuits
             fluidInputs(Glass.getFluid(L))
             output(DIODE, 8)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -335,7 +335,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(DIODE, 8)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -345,7 +345,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(DIODE, 8)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -355,7 +355,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(DIODE, 8)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -365,7 +365,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(DIODE, 16)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Inductor
@@ -396,7 +396,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L / 4))
             output(INDUCTOR, 2)
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -406,7 +406,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L / 4))
             output(INDUCTOR, 4)
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -416,7 +416,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L / 4))
             output(INDUCTOR, 4)
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -426,7 +426,7 @@ internal object IntegratedCircuits
             fluidInputs(Polyethylene.getFluid(L / 4))
             output(INDUCTOR, 8)
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
     }
@@ -461,7 +461,7 @@ internal object IntegratedCircuits
             input(bolt, Tin, 2)
             output(INTEGRATED_CIRCUIT_LV, 4)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // MV Integrated Circuit
@@ -492,7 +492,7 @@ internal object IntegratedCircuits
             input(bolt, Silver, 4)
             output(INTEGRATED_CIRCUIT_MV, 3)
             EUt(24) // LV
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // HV Integrated Circuit
@@ -523,7 +523,7 @@ internal object IntegratedCircuits
             input(bolt, AnnealedCopper, 8)
             output(INTEGRATED_CIRCUIT_HV, 2)
             EUt(VA[LV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
     }
 

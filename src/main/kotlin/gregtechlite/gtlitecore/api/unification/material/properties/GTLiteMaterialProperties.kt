@@ -130,14 +130,14 @@ import gregtech.api.unification.material.properties.MaterialToolProperty
 import gregtech.api.unification.material.properties.OreProperty
 import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.unification.material.properties.WireProperties
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.addDust
 import gregtechlite.gtlitecore.api.extension.addIngot
 import gregtechlite.gtlitecore.api.extension.addLiquid
 import gregtechlite.gtlitecore.api.extension.addLiquidAndPlasma
 import gregtechlite.gtlitecore.api.extension.addPlasma
 import gregtechlite.gtlitecore.api.extension.setFormula
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetonitrile
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetylChloride
@@ -432,52 +432,52 @@ object GTLiteMaterialProperties
         // region Blast Properties
 
         Rhenium.setProperty(PropertyKey.BLAST, BlastProperty(3459))
-        Rhenium.getProperty(PropertyKey.BLAST).durationOverride = 13 * SECOND + 8 * TICK
+        Rhenium.getProperty(PropertyKey.BLAST).durationOverride = 13.s + 8.t
 
         Uranium.setProperty(PropertyKey.BLAST, BlastProperty(600))
         Uranium.getProperty(PropertyKey.BLAST).setEutOverride(VA[MV])
-        Uranium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
+        Uranium.getProperty(PropertyKey.BLAST).durationOverride = 15.s
 
         Germanium.setProperty(PropertyKey.BLAST, BlastProperty(1211))
 
         Americium.setProperty(PropertyKey.BLAST, BlastProperty(7500))
         Americium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
-        Americium.getProperty(PropertyKey.BLAST).durationOverride = 12 * SECOND
+        Americium.getProperty(PropertyKey.BLAST).durationOverride = 12.s
         Americium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[LuV])
-        Americium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 18 * SECOND
+        Americium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 18.s
 
         Seaborgium.setProperty(PropertyKey.BLAST, BlastProperty(8300))
         Seaborgium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
-        Seaborgium.getProperty(PropertyKey.BLAST).durationOverride = 16 * SECOND
+        Seaborgium.getProperty(PropertyKey.BLAST).durationOverride = 16.s
         Seaborgium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
-        Seaborgium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 22 * SECOND
+        Seaborgium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 22.s
 
         Bohrium.setProperty(PropertyKey.BLAST, BlastProperty(8500))
         Bohrium.getProperty(PropertyKey.BLAST).setEutOverride(VA[ZPM])
-        Bohrium.getProperty(PropertyKey.BLAST).durationOverride = 18 * SECOND
+        Bohrium.getProperty(PropertyKey.BLAST).durationOverride = 18.s
         Bohrium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
-        Bohrium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 14 * SECOND
+        Bohrium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 14.s
 
         RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).blastTemperature = 12100
         RutheniumTriniumAmericiumNeutronate.getProperty(PropertyKey.BLAST).setEutOverride(VA[UHV])
 
         Fermium.setProperty(PropertyKey.BLAST, BlastProperty(9500))
         Fermium.getProperty(PropertyKey.BLAST).setEutOverride(VA[UV])
-        Fermium.getProperty(PropertyKey.BLAST).durationOverride = 22 * SECOND
+        Fermium.getProperty(PropertyKey.BLAST).durationOverride = 22.s
         Fermium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[IV])
-        Fermium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 12 * SECOND
+        Fermium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 12.s
 
         Neptunium.setProperty(PropertyKey.BLAST, BlastProperty(3440))
         Neptunium.getProperty(PropertyKey.BLAST).setEutOverride(VA[EV])
-        Neptunium.getProperty(PropertyKey.BLAST).durationOverride = 14 * SECOND
+        Neptunium.getProperty(PropertyKey.BLAST).durationOverride = 14.s
         Neptunium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[MV])
-        Neptunium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 6 * SECOND + 5 * TICK
+        Neptunium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 6.s + 5.t
 
         Technetium.setProperty(PropertyKey.BLAST, BlastProperty(2800))
         Technetium.getProperty(PropertyKey.BLAST).setEutOverride(VA[IV])
-        Technetium.getProperty(PropertyKey.BLAST).durationOverride = 15 * SECOND
+        Technetium.getProperty(PropertyKey.BLAST).durationOverride = 15.s
         Technetium.getProperty(PropertyKey.BLAST).setVacuumEutOverride(VA[HV])
-        Technetium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 4 * SECOND + 10 * TICK
+        Technetium.getProperty(PropertyKey.BLAST).vacuumDurationOverride = 4.s + 10.t
 
         // endregion
 

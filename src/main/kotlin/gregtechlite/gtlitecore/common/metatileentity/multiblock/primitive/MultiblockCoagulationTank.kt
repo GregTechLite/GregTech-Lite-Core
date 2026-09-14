@@ -30,12 +30,13 @@ import gregtech.api.util.GTTransferUtils.addFluidsToFluidHandler
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.mui.widget.GTFluidSlot
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.SNOW_LAYER
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.PrimitiveCasing
+import kotlin.math.min
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -49,7 +50,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 import net.minecraftforge.items.ItemHandlerHelper.insertItem
 import net.minecraftforge.items.ItemStackHandler
-import kotlin.math.min
 
 class MultiblockCoagulationTank(id: ResourceLocation)
     : RecipeMapPrimitiveMultiblockController(id, COAGULATION_RECIPES), IGhostSlotConfigurable
@@ -121,7 +121,7 @@ class MultiblockCoagulationTank(id: ResourceLocation)
     override fun update()
     {
         super.update()
-        if (offsetTimer % 5 * TICK == 0L && isStructureFormed)
+        if (offsetTimer % 5.t == 0L && isStructureFormed)
         {
             // Extracted all fluids which in import hatches to fluid container.
             for (tank in getAbilities(IMPORT_FLUIDS))

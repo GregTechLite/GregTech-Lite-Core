@@ -37,12 +37,12 @@ import gregtech.common.metatileentities.MetaTileEntities.NONUPLE_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.NONUPLE_IMPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_EXPORT_HATCH
 import gregtech.common.metatileentities.MetaTileEntities.QUADRUPLE_IMPORT_HATCH
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.getGTRecipeInput
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.util.TieredAdhesiveFluid
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreBlueSchist
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreGreenSchist
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreKimberlite
@@ -209,7 +209,7 @@ object GTLiteRecipeHandler
                     fluidInputs(it)
                     output(input)
                     EUt(VA[tier])
-                    duration(15 * SECOND)
+                    duration(15.s)
                 }
 
                 ASSEMBLER_RECIPES.addRecipe {
@@ -219,7 +219,7 @@ object GTLiteRecipeHandler
                     fluidInputs(it)
                     output(output)
                     EUt(VA[tier])
-                    duration(15 * SECOND)
+                    duration(15.s)
                 }
             }
     }
@@ -246,7 +246,7 @@ object GTLiteRecipeHandler
             fluidInputs(adhesiveFluid.getFluid(L * 4))
             output(QUADRUPLE_IMPORT_HATCH[tier])
             EUt(VA[tier])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // add Quadruple Export Hatch recipe
@@ -257,7 +257,7 @@ object GTLiteRecipeHandler
             fluidInputs(adhesiveFluid.getFluid(L * 4))
             output(QUADRUPLE_EXPORT_HATCH[tier])
             EUt(VA[tier])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // add Nonuple Import Hatch recipe
@@ -268,7 +268,7 @@ object GTLiteRecipeHandler
             fluidInputs(adhesiveFluid.getFluid(L * 9))
             output(NONUPLE_IMPORT_HATCH[tier])
             EUt(VA[tier])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // add Nonuple Export Hatch recipe
@@ -279,7 +279,7 @@ object GTLiteRecipeHandler
             fluidInputs(adhesiveFluid.getFluid(L * 9))
             output(NONUPLE_EXPORT_HATCH[tier])
             EUt(VA[tier])
-            duration(30 * SECOND)
+            duration(30.s)
         }
     }
 

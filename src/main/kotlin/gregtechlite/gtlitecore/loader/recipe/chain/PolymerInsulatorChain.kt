@@ -32,13 +32,13 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_FOIL
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AdipicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminatedFullerene
@@ -71,7 +71,7 @@ internal object PolymerInsulatorChain
             output(dust, AdipicAcid, 20)
             fluidOutputs(Water.getFluid(4000))
             EUt(VA[EV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // C6H14O2 + 2NH3 -> C6H16N2 + 2H2O
@@ -83,7 +83,7 @@ internal object PolymerInsulatorChain
             fluidOutputs(Hexamethylenediamine.getFluid(1000))
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[EV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // C3H6O + CH4 -> C4H10O
@@ -93,7 +93,7 @@ internal object PolymerInsulatorChain
             fluidInputs(Methane.getFluid(1000))
             fluidOutputs(Tertbutanol.getFluid(1000))
             EUt(VA[MV])
-            duration(4 * SECOND + 5 * TICK)
+            duration(4.s + 5.t)
         }
 
         // 2C4H10O + 2CO2 -> C10H18O5 + H2O
@@ -103,7 +103,7 @@ internal object PolymerInsulatorChain
             output(dust, DitertbutylDicarbonate, 33)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(4 * SECOND + 16 * TICK)
+            duration(4.s + 16.t)
         }
 
         // C10H18O5 + 3C + 4NH3 + C4H8 -> (NH2CH2CH2)3N + 2C4H10O + 3CO
@@ -116,7 +116,7 @@ internal object PolymerInsulatorChain
             fluidOutputs(Tertbutanol.getFluid(2000))
             fluidOutputs(CarbonMonoxide.getFluid(3000))
             EUt(VA[EV])
-            duration(8 * SECOND + 15 * TICK)
+            duration(8.s + 15.t)
         }
 
         // PEEK-Polyamide Foil
@@ -129,7 +129,7 @@ internal object PolymerInsulatorChain
             fluidInputs(Trisaminoethylamine.getFluid(500))
             output(PEEK_POLYAMIDE_FOIL, 3)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // C10H18O5 + 2NaN3 + 2K -> 2Na + 2K2O + 2C5H9N3O2
@@ -141,7 +141,7 @@ internal object PolymerInsulatorChain
             output(dust, Potash, 6)
             fluidOutputs(TertbutylAzidoformate.getFluid(2000))
             EUt(VA[EV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // C60 + 4C5H9N3O2 + 8H2O + 4CO -> C60N12H12-NH + 8CO2 + 4C4H10O
@@ -154,7 +154,7 @@ internal object PolymerInsulatorChain
             fluidOutputs(CarbonDioxide.getFluid(8000))
             fluidOutputs(Tertbutanol.getFluid(4000))
             EUt(VA[LuV])
-            duration(13 * SECOND + 10 * TICK)
+            duration(13.s + 10.t)
         }
 
         // C60N12H12-NH -> C60N12H12-N
@@ -163,7 +163,7 @@ internal object PolymerInsulatorChain
             fluidInputs(AminatedFullerene.getFluid(100))
             fluidOutputs(Azafullerene.getFluid(100))
             EUt(VA[IV])
-            duration(2 * TICK)
+            duration(2.t)
         }
 
         // Polymer Insulator Foil
@@ -172,7 +172,7 @@ internal object PolymerInsulatorChain
             fluidInputs(Azafullerene.getFluid(10))
             output(POLYMER_INSULATOR_FOIL, 8)
             EUt(VA[UV])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
         }
     }
 

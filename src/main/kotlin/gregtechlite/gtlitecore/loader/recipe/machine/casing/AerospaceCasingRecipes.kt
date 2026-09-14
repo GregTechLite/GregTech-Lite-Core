@@ -65,11 +65,11 @@ import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_CONTROL
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_EXTENDER
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_STORAGE_PROXY
 import gregtech.common.metatileentities.MetaTileEntities.QUANTUM_TANK
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
@@ -125,7 +125,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(Adamantium.getFluid(L))
             outputs(AerospaceCasing.HIGH_STRENGTH_CONCRETE.getStack(4))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Space Elevator Base Casing
@@ -141,7 +141,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(Iridium.getFluid(L * 8))
             outputs(AerospaceCasing.ELEVATOR_BASE_CASING.getStack(16))
             EUt(VA[UV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MetalCasing.OSMIRIDIUM.stack)
                     .EUt(VA[UV])
@@ -160,7 +160,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(Iridium.getFluid(L * 10))
             outputs(AerospaceCasing.SUPPORT_STRUCTURE_CASING.getStack(16))
             EUt(VA[UV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(OreDictUnifier.get(frameGt, Neutronium))
                     .EUt(VA[UV])
@@ -179,7 +179,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(Concrete.getFluid(L * 10))
             outputs(AerospaceCasing.INTERNAL_STRUCTURE_CASING.getStack(16))
             EUt(VA[UV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(GTComputerCasing.HIGH_POWER_CASING.stack)
                     .EUt(VA[UV])
@@ -202,7 +202,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(Lubricant.getFluid(16000))
             outputs(AccelerationTrack.MK1.getStack(8))
             EUt(VA[UV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(AerospaceCasing.ELEVATOR_BASE_CASING.stack)
                     .EUt(VA[UV])
@@ -225,7 +225,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(Lubricant.getFluid(16000))
             outputs(AccelerationTrack.MK2.getStack(8))
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(AccelerationTrack.MK1.stack)
                     .EUt(VA[UV])
@@ -248,7 +248,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
             outputs(AccelerationTrack.MK3.getStack(8))
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(AccelerationTrack.MK2.stack)
                     .EUt(VA[UHV])
@@ -271,7 +271,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
             outputs(AccelerationTrack.MK4.getStack(8))
             EUt(VA[UIV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(AccelerationTrack.MK3.stack)
                     .EUt(VA[UEV])
@@ -294,7 +294,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
             outputs(AccelerationTrack.MK5.getStack(8))
             EUt(VA[UXV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(AccelerationTrack.MK4.stack)
                     .EUt(VA[UIV])
@@ -315,7 +315,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(UUMatter.getFluid(8000))
             outputs(AerospaceCasing.DYSON_SWARM_ENERGY_RECEIVER_BASE_CASING.getStack(16))
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(POWER_TRANSFORMER[UHV].stack())
                     .EUt(VA[UHV])
@@ -337,7 +337,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(UUMatter.getFluid(8000))
             outputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_BASE_CASING.getStack(16))
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(QUANTUM_CHEST[UHV].stack())
                     .EUt(VA[UHV])
@@ -361,7 +361,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(UUMatter.getFluid(8000))
             outputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_CORE.stack)
             EUt(VA[UHV])
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(QUANTUM_STORAGE_CONTROLLER.stack())
                     .EUt(VA[UHV])
@@ -381,7 +381,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(UUMatter.getFluid(8000))
             outputs(AerospaceCasing.DYSON_SWARM_MODULE_DEPLOYMENT_UNIT_SUPERCONDUCTING_MAGNET.getStack(16))
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(POLARIZER[UHV].stack())
                     .EUt(VA[UHV])
@@ -400,7 +400,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(UUMatter.getFluid(8000))
             outputs(AerospaceCasing.DYSON_SWARM_CONTROL_CENTER_BASE_CASING.getStack(16))
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(HIGH_PERFORMANCE_COMPUTING_ARRAY.stack())
                     .EUt(VA[UHV])
@@ -422,7 +422,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(UUMatter.getFluid(8000))
             outputs(AerospaceCasing.DYSON_SWARM_CONTROL_CENTER_PRIMARY_WINDINGS.getStack(4))
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(VOLTAGE_COIL_UHV.stack())
                     .EUt(VA[UHV])
@@ -440,7 +440,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(UUMatter.getFluid(8000))
             outputs(AerospaceCasing.DYSON_SWARM_CONTROL_CENTER_PRIMARY_WINDINGS.getStack(4))
             EUt(VA[UHV])
-            duration(7 * SECOND + 10 * SECOND)
+            duration(7.s + 10.s)
             stationResearch {
                 it.researchStack(VOLTAGE_COIL_UHV.stack())
                     .EUt(VA[UHV])
@@ -461,7 +461,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(UUMatter.getFluid(8000))
             outputs(AerospaceCasing.DYSON_SWARM_CONTROL_CENTER_SECONDARY_WINDINGS.getStack(4))
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(GTFusionCasing.SUPERCONDUCTOR_COIL.stack)
                     .EUt(VA[UHV])
@@ -481,7 +481,7 @@ internal object AerospaceCasingRecipes
             fluidInputs(UUMatter.getFluid(8000))
             outputs(AerospaceCasing.DYSON_SWARM_CONTROL_CENTER_TOROID_CASING.getStack(64))
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(OreDictUnifier.get(frameGt, MetastableOganesson))
                     .EUt(VA[UHV])

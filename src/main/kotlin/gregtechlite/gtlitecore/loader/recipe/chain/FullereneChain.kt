@@ -42,8 +42,6 @@ import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
@@ -51,6 +49,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPE
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPLEX_PYROLYSIS_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetylChloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzylBromide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BenzyltrimethylammoniumBromide
@@ -103,7 +103,7 @@ internal object FullereneChain
             fluidInputs(CoalTar.getFluid(1000))
             fluidOutputs(SodioIndene.getFluid(1000))
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Na(C6H4C3H4)? + H2O -> Na(C6H4C3H4)·H2O
@@ -113,7 +113,7 @@ internal object FullereneChain
             fluidInputs(Steam.getFluid(1000))
             fluidOutputs(SteamCrackedSodioIndene.getFluid(1000))
             EUt(VA[IV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // Distilled Na(C6H4C3H4)·H2O to split Na and C6H4C3H4
@@ -122,7 +122,7 @@ internal object FullereneChain
             output(dust, Sodium)
             fluidOutputs(Indene.getFluid(1000))
             EUt(VA[IV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // C6H4C3H4 + O -> C6H4C3H4O
@@ -131,7 +131,7 @@ internal object FullereneChain
             fluidInputs(Oxygen.getFluid(1000))
             output(dust, Indanone, 18)
             EUt(VA[IV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // 3C9H8O -> C27H18 + 3H2O
@@ -140,7 +140,7 @@ internal object FullereneChain
             fluidOutputs(Truxene.getFluid(1000))
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[EV])
-            duration(24 * SECOND)
+            duration(24.s)
         }
     }
 
@@ -153,7 +153,7 @@ internal object FullereneChain
             fluidOutputs(Bromomethane.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // C10H8 + 2CH3Br -> C11H8Br2 + CH4 + 2H (lost)
@@ -163,7 +163,7 @@ internal object FullereneChain
             fluidOutputs(BromoBromomethylNaphthalene.getFluid(1000))
             fluidOutputs(Methane.getFluid(1000))
             EUt(VA[IV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
     }
 
@@ -175,7 +175,7 @@ internal object FullereneChain
             fluidInputs(Bromine.getFluid(1000))
             fluidOutputs(BenzylBromide.getFluid(1000))
             EUt(VA[HV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // C6H5CH2Br + (CH3)3N -> C6H5CH2N(CH3)3Br
@@ -184,7 +184,7 @@ internal object FullereneChain
             fluidInputs(Trimethylamine.getFluid(1000))
             output(dust, BenzyltrimethylammoniumBromide, 28)
             EUt(VA[LuV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // C6H5CH2N(CH3)3Br decomposition.
@@ -193,7 +193,7 @@ internal object FullereneChain
             fluidOutputs(BenzylBromide.getFluid(1000))
             fluidOutputs(Trimethylamine.getFluid(1000))
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
     }
 
@@ -207,7 +207,7 @@ internal object FullereneChain
             fluidOutputs(Chlorobutane.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C4H9Cl + H2O -> C4H10O + HCl
@@ -217,7 +217,7 @@ internal object FullereneChain
             fluidOutputs(TertbutylAlcohol.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[EV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // KOH + C4H10O -> C4H9OK + H2O
@@ -227,7 +227,7 @@ internal object FullereneChain
             output(dust, PotassiumTertbutoxide, 15)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -239,7 +239,7 @@ internal object FullereneChain
             fluidInputs(HydrogenPeroxide.getFluid(1000))
             output(dust, CaesiumHydroxide, 6)
             EUt(VA[HV])
-            duration(9 * SECOND)
+            duration(9.s)
         }
 
         // CsOH + CO2 -> Cs2CO3
@@ -248,7 +248,7 @@ internal object FullereneChain
             fluidInputs(CarbonDioxide.getFluid(1000))
             output(dust, CaesiumCarbonate, 6)
             EUt(VA[EV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
     }
 
@@ -262,7 +262,7 @@ internal object FullereneChain
             fluidOutputs(SulfurDioxide.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // NaOH + CH3COCl + (CH3)2NH -> (CH3)2NC(O)CH3 + NaCl + H2O
@@ -274,7 +274,7 @@ internal object FullereneChain
             fluidOutputs(Dimethylacetamide.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[IV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -305,7 +305,7 @@ internal object FullereneChain
             fluidOutputs(HydrobromicAcid.getFluid(2000))
             fluidOutputs(Hydrogen.getFluid(10000))
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             cleanroom()
         }
 
@@ -316,7 +316,7 @@ internal object FullereneChain
             output(dust, Fullerene)
             fluidOutputs(Hydrogen.getFluid(500))
             EUt(VA[UHV])
-            duration(10 * TICK)
+            duration(10.t)
             blastFurnaceTemp(9800)
         }
 
@@ -336,7 +336,7 @@ internal object FullereneChain
             output(dust, GeodesicPolyarene, 52)
             fluidOutputs(Hydrogen.getFluid(90000))
             EUt(VA[UXV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
     }

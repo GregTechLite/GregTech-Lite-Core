@@ -9,10 +9,10 @@ import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Sugar
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CranberryEtirps
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CranberryExtract
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CranberrySodaSyrup
@@ -39,7 +39,7 @@ internal object EtirpsProcessing
             fluidInputs(SodiumCarbonateSolution.getFluid(250))
             output(SPARKLING_WATER)
             EUt(4) // ULV
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Lemon-Lime Soda Syrup
@@ -49,7 +49,7 @@ internal object EtirpsProcessing
             fluidInputs(SodiumCarbonateSolution.getFluid(1000))
             fluidOutputs(LemonLimeSodaSyrup.getFluid(2000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Etirps™
@@ -58,7 +58,7 @@ internal object EtirpsProcessing
             fluidInputs(LemonLimeSodaSyrup.getFluid(100))
             fluidOutputs(Etirps.getFluid(100))
             EUt(VA[LV])
-            duration(15 * TICK)
+            duration(15.t)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -66,7 +66,7 @@ internal object EtirpsProcessing
             fluidInputs(Etirps.getFluid(250))
             output(ETIRPS)
             EUt(4) // ULV
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Cranberry Extract
@@ -74,7 +74,7 @@ internal object EtirpsProcessing
             input(CRANBERRY)
             fluidOutputs(CranberryExtract.getFluid(25))
             EUt(5) // ULV
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Cranberry Soda Syrup
@@ -84,7 +84,7 @@ internal object EtirpsProcessing
             fluidInputs(SodiumCarbonateSolution.getFluid(1000))
             fluidOutputs(CranberrySodaSyrup.getFluid(2000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         FLUID_HEATER_RECIPES.addRecipe {
@@ -92,7 +92,7 @@ internal object EtirpsProcessing
             fluidInputs(CranberrySodaSyrup.getFluid(100))
             fluidOutputs(CranberryEtirps.getFluid(100))
             EUt(VA[LV])
-            duration(15 * TICK)
+            duration(15.t)
         }
 
         // Cranberry Etirps™
@@ -101,7 +101,7 @@ internal object EtirpsProcessing
             fluidInputs(CranberryEtirps.getFluid(250))
             output(CRANBERRY_ETIRPS)
             EUt(4) // ULV
-            duration(10 * TICK)
+            duration(10.t)
         }
 
     }

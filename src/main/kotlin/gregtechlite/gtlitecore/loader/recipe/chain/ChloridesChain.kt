@@ -9,9 +9,9 @@ import gregtech.api.unification.material.Materials.Chlorine
 import gregtech.api.unification.material.Materials.Chloroform
 import gregtech.api.unification.material.Materials.Chloromethane
 import gregtech.api.unification.material.Materials.Methane
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonTetrachloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChlorinatedSolvents
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dichloromethane
@@ -29,7 +29,7 @@ internal object ChloridesChain
             fluidInputs(Chlorine.getFluid(5000))
             fluidOutputs(ChlorinatedSolvents.getFluid(7000))
             EUt(VA[EV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // 14(CH4)2Cl5 -> CH3Cl + CH2Cl2 + CHCl3 + CCl4
@@ -40,7 +40,7 @@ internal object ChloridesChain
             fluidOutputs(Chloroform.getFluid(2170))
             fluidOutputs(CarbonTetrachloride.getFluid(1330))
             EUt(VA[IV])
-            duration(18 * SECOND)
+            duration(18.s)
             disableDistilleryRecipes()
         }
     }

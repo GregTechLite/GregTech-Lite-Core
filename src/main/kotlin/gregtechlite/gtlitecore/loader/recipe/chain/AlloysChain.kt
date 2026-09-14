@@ -23,13 +23,13 @@ import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
 
 internal object AlloysChain
@@ -55,7 +55,7 @@ internal object AlloysChain
             fluidInputs(Oxygen.getFluid(2000))
             output(dust, SiliconDioxide, 3)
             EUt(VA[LV])
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // SiO2 -> Si + 2O
@@ -66,7 +66,7 @@ internal object AlloysChain
             output(dust, Silicon)
             fluidOutputs(Oxygen.getFluid(2000))
             EUt(VA[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         ARC_FURNACE_RECIPES.addRecipe {
@@ -76,7 +76,7 @@ internal object AlloysChain
             output(dust, Silicon)
             fluidOutputs(Oxygen.getFluid(2000))
             EUt(VA[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         ARC_FURNACE_RECIPES.addRecipe {
@@ -86,7 +86,7 @@ internal object AlloysChain
             output(dust, Silicon)
             fluidOutputs(Oxygen.getFluid(2000))
             EUt(VA[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         ARC_FURNACE_RECIPES.addRecipe {
@@ -96,7 +96,7 @@ internal object AlloysChain
             output(dust, Silicon)
             fluidOutputs(Oxygen.getFluid(2000))
             EUt(VA[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // SiO2 + 2C -> Si + 2CO
@@ -107,7 +107,7 @@ internal object AlloysChain
             output(dust, Silicon)
             fluidOutputs(CarbonMonoxide.getFluid(2000))
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         ARC_FURNACE_RECIPES.addRecipe {
@@ -117,7 +117,7 @@ internal object AlloysChain
             output(dust, Silicon)
             fluidOutputs(CarbonMonoxide.getFluid(2000))
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         ARC_FURNACE_RECIPES.addRecipe {
@@ -127,7 +127,7 @@ internal object AlloysChain
             output(dust, Silicon)
             fluidOutputs(CarbonMonoxide.getFluid(2000))
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         ARC_FURNACE_RECIPES.addRecipe {
@@ -137,7 +137,7 @@ internal object AlloysChain
             output(dust, Silicon)
             fluidOutputs(CarbonMonoxide.getFluid(2000))
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // SiO2 + 3C -> SiC + 2CO
@@ -148,7 +148,7 @@ internal object AlloysChain
             output(ingotHot, SiliconCarbide, 2)
             fluidOutputs(CarbonMonoxide.getFluid(2000))
             EUt(VA[EV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         ARC_FURNACE_RECIPES.addRecipe {
@@ -158,7 +158,7 @@ internal object AlloysChain
             output(ingotHot, SiliconCarbide, 2)
             fluidOutputs(CarbonMonoxide.getFluid(2000))
             EUt(VA[EV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         ARC_FURNACE_RECIPES.addRecipe {
@@ -168,7 +168,7 @@ internal object AlloysChain
             output(ingotHot, SiliconCarbide, 2)
             fluidOutputs(CarbonMonoxide.getFluid(2000))
             EUt(VA[EV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         ARC_FURNACE_RECIPES.addRecipe {
@@ -178,7 +178,7 @@ internal object AlloysChain
             output(ingotHot, SiliconCarbide, 2)
             fluidOutputs(CarbonMonoxide.getFluid(2000))
             EUt(VA[EV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
     }
 
@@ -198,7 +198,7 @@ internal object AlloysChain
             fluidInputs(Oxygen.getFluid(600))
             output(ingotHot, RhodiumPlatedPalladium, 4)
             EUt(VA[IV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
     }
 

@@ -4,10 +4,10 @@ import gregtech.api.recipes.RecipeMaps.WIREMILL_RECIPES
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Polycaprolactam
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.s
 import net.minecraft.init.Items.STRING
 
 internal object WiremillRecipes
@@ -24,7 +24,7 @@ internal object WiremillRecipes
             input(ingot, Polycaprolactam)
             outputs(STRING, 32)
             EUt(48) // MV
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 

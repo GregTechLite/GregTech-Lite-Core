@@ -25,11 +25,11 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.ore
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Albite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Augite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Azurite
@@ -67,7 +67,7 @@ internal object CentrifugeRecipes
             output(dust, Dolomite, 1)
             chancedOutput(dustSmall, Quicklime, 2, 2750, 850)
             EUt(VA[LV])
-            duration(9 * SECOND + 9 * TICK)
+            duration(9.s + 9.t)
         }
 
         // Komatiite decomposition.
@@ -78,7 +78,7 @@ internal object CentrifugeRecipes
             output(dustSmall, Flint, 2)
             output(dustTiny, DarkAsh, 3)
             EUt(VA[LV])
-            duration(6 * SECOND + 18 * TICK)
+            duration(6.s + 18.t)
         }
 
         // Green Schist decomposition.
@@ -89,7 +89,7 @@ internal object CentrifugeRecipes
             output(dust, Talc)
             chancedOutput(dustSmall, Calcite, 3, 750, 250)
             EUt(VA[LV])
-            duration(8 * SECOND + 11 * TICK)
+            duration(8.s + 11.t)
         }
 
         // Blue Schist decomposition.
@@ -99,7 +99,7 @@ internal object CentrifugeRecipes
             output(dust, Sodalite, 2)
             chancedOutput(dustTiny, Iron, 7, 1650, 350)
             EUt(VA[LV])
-            duration(12 * SECOND + 12 * TICK)
+            duration(12.s + 12.t)
         }
 
         // Kimberlite decomposition.
@@ -110,7 +110,7 @@ internal object CentrifugeRecipes
             output(dust, Andradite, 2)
             output(dustSmall, Lizardite, 3)
             EUt(VA[LV])
-            duration(14 * SECOND + 4 * TICK)
+            duration(14.s + 4.t)
         }
 
         // Slate decomposition.
@@ -121,7 +121,7 @@ internal object CentrifugeRecipes
             output(dust, Clinochlore, 2)
             output(dustSmall, Albite, 3)
             EUt(VA[LV])
-            duration(12 * SECOND + 15 * TICK)
+            duration(12.s + 15.t)
         }
 
         // Shale decomposition.
@@ -132,7 +132,7 @@ internal object CentrifugeRecipes
             output(dust, SiliconDioxide, 1)
             output(dustSmall, Fluorite, 3)
             EUt(VA[LV])
-            duration(14 * SECOND + 5 * TICK)
+            duration(14.s + 5.t)
         }
 
         // Zephyrean Aerotheum decomposition.
@@ -142,7 +142,7 @@ internal object CentrifugeRecipes
             output(dust, Saltpeter)
             fluidOutputs(Air.getFluid(1000))
             EUt(VA[LV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // Oilsands decomposition.
@@ -155,7 +155,7 @@ internal object CentrifugeRecipes
             chancedOutput(dustSmall, Clay, 2, 1650, 500)
             fluidOutputs(OilHeavy.getFluid(2000))
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

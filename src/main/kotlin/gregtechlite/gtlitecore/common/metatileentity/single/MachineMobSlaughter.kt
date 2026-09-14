@@ -17,8 +17,8 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.mui.GTGuis
 import gregtech.api.unification.material.Materials.NitrousOxide
 import gregtech.common.mui.widget.GTFluidSlot
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.entity.GTLiteDamageSources
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.EntityLivingBase
@@ -83,7 +83,7 @@ class MachineMobSlaughter(id: ResourceLocation, tier: Int) : TieredMetaTileEntit
             isWorking = canWork
             writeCustomData(IS_WORKING) { it.writeBoolean(canWork) }
         }
-        if (offsetTimer % SECOND != 0L || !canWork) return
+        if (offsetTimer % 1.s != 0L || !canWork) return
         processMobs()
     }
 

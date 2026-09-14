@@ -28,10 +28,10 @@ import gregtech.api.unification.ore.OrePrefix.screw
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZirconiumCarbide
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.fuelRodHighDensity
 import gregtechlite.gtlitecore.common.block.adapter.GTBoilerCasing
@@ -56,7 +56,7 @@ internal object NuclearCasingRecipes
             fluidInputs(ZirconiumCarbide.getFluid(L * 4))
             outputs(ActiveUniqueCasing.TEMPERATURE_CONTROLLER.stack)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Thorium Nuclear Reactor Core
@@ -75,7 +75,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.THORIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Protactinium Nuclear Reactor Core
@@ -94,7 +94,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.PROTACTINIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Uranium Nuclear Reactor Core
@@ -113,7 +113,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.URANIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Neptunium Nuclear Reactor Core
@@ -132,7 +132,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.NEPTUNIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Plutonium Nuclear Reactor Core
@@ -151,7 +151,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.PLUTONIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Americium Nuclear Reactor Core
@@ -170,7 +170,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.AMERICIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Curium Nuclear Reactor Core
@@ -189,7 +189,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.CURIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Berkelium Nuclear Reactor Core
@@ -208,7 +208,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.BERKELIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Californium Nuclear Reactor Core
@@ -227,7 +227,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.CALIFORNIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Einsteinium Nuclear Reactor Core
@@ -246,7 +246,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.EINSTEINIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Fermium Nuclear Reactor Core
@@ -265,7 +265,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.FERMIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Mendelevium Nuclear Reactor Core
@@ -284,7 +284,7 @@ internal object NuclearCasingRecipes
             input(stickLong, StainlessSteel, 2)
             outputs(NuclearReactorCore.MENDELEVIUM.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

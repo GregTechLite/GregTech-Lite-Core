@@ -10,15 +10,15 @@ import gregtech.api.pattern.BlockPattern
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.capability.ModuleProvider
 import gregtechlite.gtlitecore.api.capability.ModuleReceiver
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
+import gregtechlite.gtlitecore.api.s
+import kotlin.math.min
+import kotlin.math.pow
 import net.minecraft.util.ResourceLocation
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.min
-import kotlin.math.pow
 
 /**
  * @param tier          The voltage tier of this mte.
@@ -78,11 +78,11 @@ abstract class RecipeMapModuleMultiblockController(metaTileEntityId: ResourceLoc
     override fun updateFormedValid()
     {
         super.updateFormedValid()
-        if (offsetTimer % SECOND == 0L)
+        if (offsetTimer % 1.s == 0L)
         {
             moduleProvider?.also {
                 if (energyContainer.energyCapacity != energyContainer.energyStored
-                    && it.subEnergyContainer!!.energyStored > energyConsumed * SECOND)
+                    && it.subEnergyContainer!!.energyStored > energyConsumed * 1.s)
                 {
                     val maxModuleReceive = energyContainer.energyCapacity - energyContainer.energyStored
                     val energyDrained = min(it.subEnergyContainer!!.energyStored, maxModuleReceive)

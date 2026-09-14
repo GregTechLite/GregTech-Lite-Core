@@ -29,8 +29,11 @@ import gregtech.api.recipes.properties.impl.DimensionProperty
 import gregtech.api.unification.material.Materials
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart
 import gregtech.common.mui.widget.GTFluidSlot
-import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
+import java.util.*
+import kotlin.math.cos
+import kotlin.math.sin
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.network.PacketBuffer
@@ -50,9 +53,6 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 import net.minecraftforge.items.ItemStackHandler
-import java.util.*
-import kotlin.math.cos
-import kotlin.math.sin
 
 class PartMachineAirIntakeHatch(id: ResourceLocation, tier: Int, private val capacity: Int, private val transferRate: Int)
     : MetaTileEntityMultiblockNotifiablePart(id, tier, false), IMultiblockAbilityPart<IFluidTank>
@@ -95,7 +95,7 @@ class PartMachineAirIntakeHatch(id: ResourceLocation, tier: Int, private val cap
                                       pos.y + frontFacing.yOffset,
                                       pos.z + frontFacing.zOffset)
 
-        if (offsetTimer % (5 * TICK) == 0L && world.isAirBlock(blockFacingPos))
+        if (offsetTimer % (5.t) == 0L && world.isAirBlock(blockFacingPos))
         {
             if (!world.isRemote)
             {

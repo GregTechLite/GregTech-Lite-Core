@@ -172,13 +172,13 @@ import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyB
@@ -294,7 +294,7 @@ internal object MixerRecipes
             fluidInputs(Oxygen.getFluid(19000))
             output(dust, StrontiumFerrite, 32)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // ZBLAN Glass
@@ -308,7 +308,7 @@ internal object MixerRecipes
             fluidInputs(Fluorine.getFluid(6200))
             output(dust, ZBLANGlass, 11)
             EUt(VA[HV])
-            duration(25 * SECOND)
+            duration(25.s)
         }
 
         // GST Glass
@@ -319,7 +319,7 @@ internal object MixerRecipes
             input(dust, Tellurium, 5)
             output(dust, GSTGlass, 9)
             EUt(VA[HV])
-            duration(12 * SECOND + 10)
+            duration(12.s + 10)
         }
 
         // Samarium Cobalt
@@ -329,7 +329,7 @@ internal object MixerRecipes
             input(dust, Cobalt, 5)
             output(dust, SamariumCobalt, 6)
             EUt(VA[LuV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Sodium Potassium
@@ -339,7 +339,7 @@ internal object MixerRecipes
             input(dust, Potassium, 3)
             output(dust, SodiumPotassiumEutatic, 10)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Eutatic Lead Bismuth
@@ -349,7 +349,7 @@ internal object MixerRecipes
             input(dust, Bismuth, 7)
             output(dust, LeadBismuthEutatic, 10)
             EUt(VA[MV].toLong())
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Lutetium Manganese Germanium
@@ -360,7 +360,7 @@ internal object MixerRecipes
             input(dust, Germanium, 6)
             output(dust, LutetiumManganeseGermanium, 10)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Chromium Germanium Telluride
@@ -371,7 +371,7 @@ internal object MixerRecipes
             input(dust, Tellurium, 3)
             output(dust, ChromiumGermaniumTelluride, 5)
             EUt(VA[UV])
-            duration(45 * SECOND)
+            duration(45.s)
         }
 
         // Woods Glass
@@ -383,7 +383,7 @@ internal object MixerRecipes
             input(dust, Garnierite, 2)
             output(dust, WoodsGlass, 13)
             EUt(VA[IV])
-            duration(45 * SECOND)
+            duration(45.s)
         }
 
         // Mellion
@@ -398,7 +398,7 @@ internal object MixerRecipes
             fluidInputs(ResonantStrangeMeson.getFluid(1000))
             output(dust, Mellion, 64)
             EUt(VA[UXV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Kovar
@@ -408,7 +408,7 @@ internal object MixerRecipes
             input(dust, Cobalt, 3)
             output(dust, Kovar, 18)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -418,7 +418,7 @@ internal object MixerRecipes
             input(dust, Cobalt, 3)
             output(dust, Kovar, 18)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Maraging Steel 250
@@ -431,7 +431,7 @@ internal object MixerRecipes
             input(dust, Cobalt, 2)
             output(dust, MaragingSteel250, 24)
             EUt(VA[EV])
-            duration(25 * SECOND)
+            duration(25.s)
         }
 
         // Inconel-625
@@ -444,7 +444,7 @@ internal object MixerRecipes
             input(dust, Nichrome, 13)
             output(dust, Inconel625, 48)
             EUt(VA[EV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Staballoy
@@ -454,7 +454,7 @@ internal object MixerRecipes
             input(dust, Titanium, 1)
             output(dust, Staballoy, 10)
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Talonite
@@ -466,7 +466,7 @@ internal object MixerRecipes
             input(dust, Molybdenum, 1)
             output(dust, Talonite, 10)
             EUt(VA[HV])
-            duration(24 * SECOND)
+            duration(24.s)
         }
 
         // Zeron-100
@@ -480,7 +480,7 @@ internal object MixerRecipes
             input(dust, Steel, 20)
             output(dust, Zeron100, 60)
             EUt(VA[IV])
-            duration(48 * SECOND)
+            duration(48.s)
         }
 
         // Watertight Steel
@@ -493,7 +493,7 @@ internal object MixerRecipes
             input(dust, Sulfur, 1)
             output(dust, WatertightSteel, 15)
             EUt(VA[HV])
-            duration(25 * SECOND)
+            duration(25.s)
         }
 
         // Stellite
@@ -505,7 +505,7 @@ internal object MixerRecipes
             input(dust, Titanium, 2)
             output(dust, Stellite, 25)
             EUt(VA[HV])
-            duration(18 * SECOND)
+            duration(18.s)
         }
 
         // Tumbaga
@@ -515,7 +515,7 @@ internal object MixerRecipes
             input(dust, Bronze, 3)
             output(dust, Tumbaga, 10)
             EUt(VA[MV])
-            duration(14 * SECOND)
+            duration(14.s)
         }
 
         // Eglin Steel Base
@@ -526,7 +526,7 @@ internal object MixerRecipes
             input(dust, Invar, 5)
             output(dust, EglinSteelBase, 10)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Eglin Steel
@@ -538,7 +538,7 @@ internal object MixerRecipes
             input(dust, Carbon, 1)
             output(dust, EglinSteel, 13)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // One-Step recipe of Eglin Steel.
@@ -552,7 +552,7 @@ internal object MixerRecipes
             input(dust, Carbon, 1)
             output(dust, EglinSteel, 13)
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Grisium
@@ -566,7 +566,7 @@ internal object MixerRecipes
             fluidInputs(Hydrogen.getFluid(5000))
             output(dust, Grisium, 50)
             EUt(VA[EV])
-            duration(38 * SECOND)
+            duration(38.s)
         }
 
         // Babbit Alloy
@@ -578,7 +578,7 @@ internal object MixerRecipes
             input(dust, Arsenic)
             output(dust, BabbitAlloy, 50)
             EUt(VA[MV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // HSLA Steel
@@ -590,7 +590,7 @@ internal object MixerRecipes
             input(dust, Molybdenum)
             output(dust, HSLASteel, 5)
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Incoloy-MA813
@@ -602,7 +602,7 @@ internal object MixerRecipes
             input(dust, Nickel, 4)
             output(dust, IncoloyMA813, 13)
             EUt(VA[IV])
-            duration(22 * SECOND)
+            duration(22.s)
         }
 
         // Monel-500
@@ -615,7 +615,7 @@ internal object MixerRecipes
             input(dust, Titanium)
             output(dust, Monel500, 40)
             EUt(VA[IV])
-            duration(56 * SECOND)
+            duration(56.s)
         }
 
         // Incoloy-MA956
@@ -627,7 +627,7 @@ internal object MixerRecipes
             input(dust, Yttrium)
             output(dust, IncoloyMA956, 25)
             EUt(VA[IV])
-            duration(34 * SECOND)
+            duration(34.s)
         }
 
         // Zirconium Carbide
@@ -637,7 +637,7 @@ internal object MixerRecipes
             input(dust, Carbon)
             output(dust, ZirconiumCarbide, 2)
             EUt(VA[HV])
-            duration(18 * SECOND)
+            duration(18.s)
         }
 
         // Tantalum Carbide
@@ -647,7 +647,7 @@ internal object MixerRecipes
             input(dust, Carbon)
             output(dust, TantalumCarbide, 2)
             EUt(VA[EV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Molybdenum Disilicide
@@ -657,7 +657,7 @@ internal object MixerRecipes
             input(dust, Silicon, 2)
             output(dust, MolybdenumDisilicide, 3)
             EUt(VA[EV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // Hastelloy-C276
@@ -671,7 +671,7 @@ internal object MixerRecipes
             input(dust, Copper)
             output(dust, HastelloyC276, 30)
             EUt(VA[IV])
-            duration(45 * SECOND)
+            duration(45.s)
         }
 
         // Hastelloy-X
@@ -685,7 +685,7 @@ internal object MixerRecipes
             input(dust, Niobium, 1)
             output(dust, HastelloyX, 19)
             EUt(VA[IV])
-            duration(43 * SECOND)
+            duration(43.s)
         }
 
         // Hastelloy-N
@@ -698,7 +698,7 @@ internal object MixerRecipes
             input(dust, Nickel, 15)
             output(dust, HastelloyN, 25)
             EUt(VA[IV])
-            duration(38 * SECOND)
+            duration(38.s)
         }
 
         // Aluminium Bronze
@@ -709,7 +709,7 @@ internal object MixerRecipes
             input(dust, Bronze)
             output(dust, AluminiumBronze, 4)
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Rene N5
@@ -725,7 +725,7 @@ internal object MixerRecipes
             input(dust, Tantalum, 3)
             output(dust, ReneN5, 40)
             EUt(VA[LuV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Titanium Carbide
@@ -735,7 +735,7 @@ internal object MixerRecipes
             input(dust, Carbon, 1)
             output(dust, TitaniumCarbide, 2)
             EUt(VA[HV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Titanium Tungsten Carbide
@@ -745,7 +745,7 @@ internal object MixerRecipes
             input(dust, TitaniumCarbide, 2)
             output(dust, TitaniumTungstenCarbide, 3)
             EUt(VA[EV])
-            duration(24 * SECOND)
+            duration(24.s)
         }
 
         // Trinaquadalloy
@@ -756,7 +756,7 @@ internal object MixerRecipes
             input(dust, Carbon)
             output(dust, Trinaquadalloy, 9)
             EUt(VA[ZPM])
-            duration(25 * SECOND)
+            duration(25.s)
         }
 
         // Enriched Naquadah Alloy
@@ -767,7 +767,7 @@ internal object MixerRecipes
             input(dust, Rutherfordium)
             output(dust, EnrichedNaquadahAlloy, 7)
             EUt(VA[ZPM])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // HDCS
@@ -781,7 +781,7 @@ internal object MixerRecipes
             input(dust, Plutonium241)
             output(dust, HDCS, 33)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Titan Steel
@@ -792,7 +792,7 @@ internal object MixerRecipes
             input(dust, Tritanium, 2)
             output(dust, TitanSteel, 8)
             EUt(VA[UHV])
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Tairitsium
@@ -806,7 +806,7 @@ internal object MixerRecipes
             input(dust, Francium)
             output(dust, Tairitsium, 26)
             EUt(VA[UHV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Hastelloy-X78
@@ -822,7 +822,7 @@ internal object MixerRecipes
             input(dust, Fermium)
             output(dust, HastelloyX78, 30)
             EUt(VA[UHV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Hastelloy-K243
@@ -836,7 +836,7 @@ internal object MixerRecipes
             input(dust, Mendelevium)
             output(dust, HastelloyK243, 20)
             EUt(VA[UEV])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
         }
 
         // Pikyonium 64B
@@ -852,7 +852,7 @@ internal object MixerRecipes
             input(dust, Ytterbium)
             output(dust, Pikyonium64B, 29)
             EUt(VA[UV])
-            duration(45 * SECOND)
+            duration(45.s)
         }
 
         // Arceus Alloy 2B
@@ -867,7 +867,7 @@ internal object MixerRecipes
             input(dust, Trinium)
             output(dust, ArceusAlloy2B, 20)
             EUt(VA[UEV])
-            duration(1 * MINUTE + 25 * SECOND)
+            duration(1.min + 25.s)
         }
 
         // Vibranium Tritanium Actinium Iron Superhydride
@@ -880,7 +880,7 @@ internal object MixerRecipes
             fluidInputs(Iron.getPlasma(L))
             output(dust, VibraniumTritaniumActiniumIronSuperhydride, 13)
             EUt(VA[UEV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Hafnium Carbide
@@ -890,7 +890,7 @@ internal object MixerRecipes
             input(dust, Carbon)
             output(dust, HafniumCarbide, 2)
             EUt(VA[EV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Seaborgium Carbide
@@ -900,7 +900,7 @@ internal object MixerRecipes
             input(dust, Carbon)
             output(dust, SeaborgiumCarbide, 2)
             EUt(VA[ZPM])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Superheavy Alloy (Light)
@@ -916,7 +916,7 @@ internal object MixerRecipes
             input(dust, Roentgenium)
             output(dust, SuperheavyAlloyA, 8)
             EUt(VA[UEV])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
         }
 
         // Superheavy Alloy (Heavy)
@@ -931,7 +931,7 @@ internal object MixerRecipes
             input(dust, MetastableOganesson)
             output(dust, SuperheavyAlloyB, 7)
             EUt(VA[UIV])
-            duration(2 * MINUTE + 40 * SECOND)
+            duration(2.min + 40.s)
         }
 
         // Precious Metal Alloy
@@ -947,7 +947,7 @@ internal object MixerRecipes
             input(dust, Gold)
             output(dust, PreciousMetalAlloy, 8)
             EUt(VA[UV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
         }
 
         // Nitinol 60
@@ -957,7 +957,7 @@ internal object MixerRecipes
             input(dust, Titanium, 3)
             output(dust, Nitinol60, 5)
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Abyssal Alloy
@@ -973,7 +973,7 @@ internal object MixerRecipes
             fluidInputs(Radon.getFluid(1000))
             output(dust, Abyssalloy, 28)
             EUt(VA[UIV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // Fullerene Superconductor
@@ -986,7 +986,7 @@ internal object MixerRecipes
             fluidInputs(Xenon.getPlasma(1000))
             output(dust, FullereneSuperconductor, 28)
             EUt(VA[UIV])
-            duration(3 * MINUTE)
+            duration(3.min)
         }
 
         // Lanthanum Group Alloy (Light)
@@ -1002,7 +1002,7 @@ internal object MixerRecipes
             input(dust, Gadolinium)
             output(dust, LanthanumGroupAlloyA, 8)
             EUt(VA[UHV])
-            duration(45 * SECOND)
+            duration(45.s)
         }
 
         // Lanthanum Group Alloy (Heavy)
@@ -1018,7 +1018,7 @@ internal object MixerRecipes
             input(dust, Scandium)
             output(dust, LanthanumGroupAlloyB, 8)
             EUt(VA[UHV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Actinium Group Alloy (Light)
@@ -1034,7 +1034,7 @@ internal object MixerRecipes
             input(dust, Curium)
             output(dust, ActiniumGroupAlloyA, 8)
             EUt(VA[UHV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Actinium Group Alloy (Heavy)
@@ -1050,7 +1050,7 @@ internal object MixerRecipes
             input(dust, Yttrium)
             output(dust, ActiniumGroupAlloyB, 8)
             EUt(VA[UHV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Cinobite A243
@@ -1066,7 +1066,7 @@ internal object MixerRecipes
             fluidInputs(Mercury.getFluid(1000))
             output(dust, CinobiteA243, 26)
             EUt(VA[UEV])
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Alkali Group Alloy
@@ -1080,7 +1080,7 @@ internal object MixerRecipes
             input(dust, Francium)
             output(dust, AlkaliGroupAlloy, 6)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Alkali Earth Group Alloy
@@ -1094,7 +1094,7 @@ internal object MixerRecipes
             input(dust, Radium)
             output(dust, AlkaliEarthGroupAlloy, 6)
             EUt(VA[LuV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Light Transition Alloy
@@ -1110,7 +1110,7 @@ internal object MixerRecipes
             input(dust, Copper)
             output(dust, TransitionAlloyA, 8)
             EUt(VA[ZPM])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Heavy Transition Alloy
@@ -1126,7 +1126,7 @@ internal object MixerRecipes
             input(dust, Antimony)
             output(dust, TransitionAlloyB, 8)
             EUt(VA[ZPM])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Transition Alloy
@@ -1136,7 +1136,7 @@ internal object MixerRecipes
             input(dust, TransitionAlloyB, 8)
             output(dust, TransitionAlloy, 16)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Refractory Alloy
@@ -1152,7 +1152,7 @@ internal object MixerRecipes
             input(dust, Rhenium)
             output(dust, RefractoryAlloy, 8)
             EUt(VA[UV])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
         }
 
         // Toxic Alloy
@@ -1168,7 +1168,7 @@ internal object MixerRecipes
             fluidInputs(Mercury.getFluid(1000))
             output(dust, ToxicAlloy, 8)
             EUt(VA[UHV])
-            duration(1 * MINUTE + 40 * SECOND)
+            duration(1.min + 40.s)
         }
 
         // Rare Earth Alloy
@@ -1180,7 +1180,7 @@ internal object MixerRecipes
             input(dust, ActiniumGroupAlloyB, 8)
             output(dust, RareEarthAlloy, 32)
             EUt(VA[IV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Light Non-Metallic Mixture
@@ -1194,7 +1194,7 @@ internal object MixerRecipes
             fluidInputs(Bromine.getFluid(1000))
             fluidOutputs(NonMetallicMixtureA.getFluid(6000))
             EUt(VA[LuV])
-            duration(45 * SECOND)
+            duration(45.s)
         }
 
         // Heavy Non-Metallic Mixture
@@ -1209,7 +1209,7 @@ internal object MixerRecipes
             input(dust, Iodine)
             fluidOutputs(NonMetallicMixtureB.getFluid(7000))
             EUt(VA[LuV])
-            duration(45 * SECOND)
+            duration(45.s)
         }
 
         // Noble Gas Mixture
@@ -1223,7 +1223,7 @@ internal object MixerRecipes
             fluidInputs(Radon.getFluid(1000))
             fluidOutputs(NobleGasMixture.getFluid(6000))
             EUt(VA[ZPM])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Periodicium
@@ -1246,7 +1246,7 @@ internal object MixerRecipes
             fluidInputs(NobleGasMixture.getFluid(6000))     // He Ne Ar Kr Xe Rn
             output(dust, Periodicium, 118)
             EUt(VA[UXV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Legendarium
@@ -1262,7 +1262,7 @@ internal object MixerRecipes
             input(dust, Taranium)
             output(dust, Legendarium, 8)
             EUt(VA[UXV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
         }
 
         // Blazing Pyrotheum
@@ -1273,7 +1273,7 @@ internal object MixerRecipes
             input(dust, Sulfur)
             output(dust, BlazingPyrotheum, 4)
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Gelid Cryotheum
@@ -1284,7 +1284,7 @@ internal object MixerRecipes
             fluidInputs(Water.getFluid(1000))
             output(dust, GelidCryotheum, 4)
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Tectonic Petrotheum
@@ -1295,7 +1295,7 @@ internal object MixerRecipes
             input(dust, Stone)
             output(dust, TectonicPetrotheum, 4)
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Zephyrean Aerotheum
@@ -1306,7 +1306,7 @@ internal object MixerRecipes
             fluidInputs(Air.getFluid(1000))
             output(dust, ZephyreanAerotheum, 4)
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // UU Matter
@@ -1316,7 +1316,7 @@ internal object MixerRecipes
             fluidInputs(FreeElectronGas.getFluid(2000))
             fluidOutputs(UUMatter.getFluid(1000))
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -1329,7 +1329,7 @@ internal object MixerRecipes
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(FracturingFluid.getFluid(1000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -1340,7 +1340,7 @@ internal object MixerRecipes
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(FracturingFluid.getFluid(1000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Potin
@@ -1350,7 +1350,7 @@ internal object MixerRecipes
             input(dust, Lead)
             output(dust, Potin, 9)
             EUt(VH[LV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
     }
 

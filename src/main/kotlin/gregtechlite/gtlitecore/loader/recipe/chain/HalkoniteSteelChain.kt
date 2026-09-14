@@ -32,12 +32,12 @@ import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MATTER_RESHAPING_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HalkoniteSteel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PolyphosphonitrileFluoroRubber
@@ -50,7 +50,7 @@ internal object HalkoniteSteelChain
 
     // @formatter:off
 
-    private const val DURATION_PER_M = 8 * SECOND
+    private const val DURATION_PER_M = 8.s
 
     fun init()
     {
@@ -64,7 +64,7 @@ internal object HalkoniteSteelChain
             input(ingot, Bedrockium, 3)
             output(plate, Bedrockium, 2)
             EUt(VA[LV])
-            duration(4 * SECOND + 18 * TICK)
+            duration(4.s + 18.t)
         }
 
         // Resolve recipe conflicts between bedrockium stick to long stick with bedrockium stick to halkonite steel stick.
@@ -75,7 +75,7 @@ internal object HalkoniteSteelChain
             input(stick, Bedrockium, 2)
             output(stickLong, Bedrockium)
             EUt(VA[LV])
-            duration(4 * SECOND + 18 * TICK)
+            duration(4.s + 18.t)
         }
 
         // endregion

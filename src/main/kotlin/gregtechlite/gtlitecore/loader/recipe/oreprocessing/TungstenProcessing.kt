@@ -17,14 +17,14 @@ import gregtech.api.unification.material.Materials.TungsticAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TungstenTrioxide
 
 internal object TungstenProcessing
@@ -43,7 +43,7 @@ internal object TungstenProcessing
             output(dust, TungstenTrioxide, 4)
             fluidOutputs(Water.getFluid(1000))
             EUt(VH[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // Choices of WO3 -> W process:
@@ -59,7 +59,7 @@ internal object TungstenProcessing
             fluidOutputs(CarbonDioxide.getFluid(3000))
             blastFurnaceTemp(Tungsten.blastTemperature)
             EUt(VA[EV])
-            duration(2 * MINUTE)
+            duration(2.min)
         }
 
         //  WO3 + 6H -> W + 3H2O
@@ -69,7 +69,7 @@ internal object TungstenProcessing
             output(dust, Tungsten)
             fluidOutputs(Water.getFluid(3000))
             EUt(VHA[EV])
-            duration(10 * SECOND + 10 * TICK)
+            duration(10.s + 10.t)
         }
 
         // 2WO3 + 3C -> 2W + 3CO2
@@ -79,7 +79,7 @@ internal object TungstenProcessing
             output(dust, Tungsten, 2)
             fluidOutputs(CarbonDioxide.getFluid(3000))
             EUt(VA[EV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
     }
 

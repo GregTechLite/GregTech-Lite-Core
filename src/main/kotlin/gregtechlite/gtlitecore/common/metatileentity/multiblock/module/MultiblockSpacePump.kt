@@ -40,15 +40,17 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.gui.sync.FluidDisplaySyncHandler
 import gregtechlite.gtlitecore.api.gui.widget.DisplayOnlyFluidSlot
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.ModuleMultiblockBase
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
+import java.util.function.Consumer
+import kotlin.math.max
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -61,8 +63,6 @@ import net.minecraftforge.common.util.Constants
 import net.minecraftforge.fluids.FluidStack
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.function.Consumer
-import kotlin.math.max
 
 class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minCasingTier: Int)
     : ModuleMultiblockBase(id, tier, moduleTier, minCasingTier)
@@ -73,7 +73,7 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
     private val planets = intArrayOf(0, 0, 0, 0)
     private val fluids = intArrayOf(0, 0, 0, 0)
     private val parallels = intArrayOf(0, 0, 0, 0)
-    private val baseRecipeTime = 4 * SECOND
+    private val baseRecipeTime = 4.s
 
     init
     {
@@ -314,9 +314,9 @@ class MultiblockSpacePump(id: ResourceLocation, tier: Int, moduleTier: Int, minC
 
         if (!drainEnergy(true, totalEnergyConsumed))
         {
-            if (progress >= 2 * TICK)
+            if (progress >= 2.t)
             {
-                progress = if (ConfigHolder.machines.recipeProgressLowEnergy) TICK else max(TICK, progress - 2 * TICK)
+                progress = if (ConfigHolder.machines.recipeProgressLowEnergy) 1.t else max(1.t, progress - 2.t)
             }
             return
         }

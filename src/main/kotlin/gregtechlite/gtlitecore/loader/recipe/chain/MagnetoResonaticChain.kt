@@ -13,10 +13,10 @@ import gregtech.api.unification.material.Materials.Tellurium
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthTelluride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicZirconia
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetoResonatic
@@ -35,7 +35,7 @@ internal object MagnetoResonaticChain
             fluidInputs(Oxygen.getFluid(2000))
             output(gem, CubicZirconia)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             temperature(1132)
         }
 
@@ -45,7 +45,7 @@ internal object MagnetoResonaticChain
             input(dust, Bismuth, 2)
             output(dust, BismuthTelluride, 5)
             EUt(VA[MV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // 4Bi2Te3 + 3(SiO2)5Fe + c-ZrO2 + Fe -> (Bi2Te3)4((SiO2)5Fe)3(ZrO2)Fe
@@ -57,7 +57,7 @@ internal object MagnetoResonaticChain
             input(dust, SteelMagnetic, 1)
             output(dust, MagnetoResonatic, 9)
             EUt(VA[EV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 

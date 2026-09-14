@@ -12,10 +12,10 @@ import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.PalladiumRaw
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumAcetate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumNitrate
 
@@ -33,7 +33,7 @@ internal object PalladiumAcetateChain
             output(dust, PalladiumNitrate, 9)
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // PdCl2 + 2HNO3 -> Pd(NO3)2 + 2HCl
@@ -44,7 +44,7 @@ internal object PalladiumAcetateChain
             output(dust, PalladiumNitrate, 9)
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Pd(NO3)2 + 2CH3COOH -> Pd(CH3COOH)2 + 2HNO3
@@ -54,7 +54,7 @@ internal object PalladiumAcetateChain
             output(dust, PalladiumAcetate, 15)
             fluidOutputs(NitricAcid.getFluid(2000))
             EUt(VA[EV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

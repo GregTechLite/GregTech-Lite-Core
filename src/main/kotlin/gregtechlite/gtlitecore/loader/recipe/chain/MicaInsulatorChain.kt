@@ -21,9 +21,9 @@ import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
 import gregtech.common.items.MetaItems.STICKY_RESIN
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Latex
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Lizardite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Muscovite
@@ -73,7 +73,7 @@ internal object MicaInsulatorChain
                     inputs(gel)
                     output(MICA_PULP, 4)
                     EUt(V[ULV])
-                    duration(10 * SECOND)
+                    duration(10.s)
                     buildAndRegister()
                 }
             }
@@ -90,7 +90,7 @@ internal object MicaInsulatorChain
                 inputs(oreFiber)
                 output(MICA_PLATE, 4)
                 EUt(28) // LV
-                duration(5 * SECOND)
+                duration(5.s)
             }
         }
 
@@ -100,7 +100,7 @@ internal object MicaInsulatorChain
             input(dust, Quartzite)
             output(MICA_INSULATOR_PLATE, 2)
             EUt(15) // LV
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         ALLOY_SMELTER_RECIPES.addRecipe {
@@ -108,7 +108,7 @@ internal object MicaInsulatorChain
             input(dust, SiliconDioxide)
             output(MICA_INSULATOR_PLATE, 4)
             EUt(15) // LV
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         ALLOY_SMELTER_RECIPES.addRecipe {
@@ -116,7 +116,7 @@ internal object MicaInsulatorChain
             input(dust, NetherQuartz)
             output(MICA_INSULATOR_PLATE, 4)
             EUt(15) // LV
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         ALLOY_SMELTER_RECIPES.addRecipe {
@@ -124,7 +124,7 @@ internal object MicaInsulatorChain
             input(dust, CertusQuartz)
             output(MICA_INSULATOR_PLATE, 4)
             EUt(15) // LV
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Mica Insulator Plate -> Mica Insulator Foil
@@ -133,7 +133,7 @@ internal object MicaInsulatorChain
             input(MICA_INSULATOR_PLATE)
             output(MICA_INSULATOR_FOIL, 4)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

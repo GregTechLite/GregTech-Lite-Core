@@ -32,14 +32,14 @@ import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.STEM_CELLS
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_FORGE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.builder.NanoForgeRecipeBuilder.Companion.structT2
 import gregtechlite.gtlitecore.api.recipe.builder.NanoForgeRecipeBuilder.Companion.structT3
 import gregtechlite.gtlitecore.api.recipe.builder.NanoForgeRecipeBuilder.Companion.structT4
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
@@ -121,7 +121,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(16000))
             output(nanite, Carbon, 2)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(block, Carbon)
                     .EUt(VA[ZPM])
@@ -137,7 +137,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(200_000))
             output(nanite, Carbon, 64)
             EUt(10_000_000) // UIV
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Silver Nanite (for PCB Factory T2 recipes, some QFT Catalysts)
@@ -148,7 +148,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(200_000))
             output(nanite, Silver)
             EUt(10_000_000) // UIV
-            duration(40 * SECOND)
+            duration(40.s)
             requireStruct(structT2)
         }
 
@@ -160,7 +160,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(300_000))
             output(nanite, Gold)
             EUt(100_000_000) // UXV
-            duration(1 * MINUTE)
+            duration(1.min)
             requireStruct(structT3)
         }
 
@@ -172,7 +172,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(50_000))
             output(nanite, Glowstone, 64)
             EUt(50_000_000) // UXV
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             requireStruct(structT2)
         }
 
@@ -185,7 +185,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(200_000))
             output(nanite, Neutronium)
             EUt(100_000_000) // UIV
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         // Copper Nanite (for some QFT Catalysts and Mag Matter)
@@ -197,7 +197,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(120_000))
             output(nanite, Copper, 16)
             EUt(10_000_000) // UIV
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Zinc Nanite (for QFT casing and some QFT Catalysts)
@@ -208,7 +208,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(160_000))
             output(nanite, Zinc, 8)
             EUt(10_000_000) // UIV
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Iron Nanite (for Harmonic Phonon Matter blasting and Nano Shielding Frame)
@@ -220,7 +220,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(400_000))
             output(nanite, Iron, 4)
             EUt(50_000_000) // UXV
-            duration(30 * SECOND)
+            duration(30.s)
             requireStruct(structT2)
         }
 
@@ -234,7 +234,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(2_000_000))
             output(nanite, TranscendentMetal)
             EUt(1_000_000_000) // MAX
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
             requireStruct(structT2)
         }
 
@@ -248,7 +248,7 @@ internal object NanitesChain
             fluidInputs(UUMatter.getFluid(2_500_000))
             output(nanite, Chrome, 2)
             EUt(1_500_000_000) // MAX
-            duration(2 * MINUTE)
+            duration(2.min)
             requireStruct(structT3)
         }
 
@@ -265,7 +265,7 @@ internal object NanitesChain
             fluidInputs(TachyonRichTemporalFluid.getFluid(L * 5))
             output(nanite, WhiteDwarfMatter, 16)
             EUt(2_000_000_000) // MAX
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             requireStruct(structT4)
         }
 
@@ -282,7 +282,7 @@ internal object NanitesChain
             fluidInputs(SpatiallyEnlargedFluid.getFluid(L * 5))
             output(nanite, BlackDwarfMatter, 16)
             EUt(2_000_000_000) // MAX
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             requireStruct(structT4)
         }
 
@@ -299,7 +299,7 @@ internal object NanitesChain
             fluidInputs(PrimordialMatter.getFluid(64_000))
             output(nanite, Universium, 16)
             EUt(2_000_000_000) // MAX
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             requireStruct(structT4)
         }
 
@@ -316,7 +316,7 @@ internal object NanitesChain
             fluidInputs(PrimordialMatter.getFluid(64_000))
             output(nanite, Eternity, 16)
             EUt(2_000_000_000) // MAX
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             requireStruct(structT4)
         }
 
@@ -333,7 +333,7 @@ internal object NanitesChain
             fluidInputs(PrimordialMatter.getFluid(64_000))
             output(nanite, MagMatter, 4)
             EUt(2_000_000_000) // MAX
-            duration(2 * MINUTE)
+            duration(2.min)
             requireStruct(structT4)
         }
 
@@ -350,7 +350,7 @@ internal object NanitesChain
             fluidInputs(BlackDwarfMatter.getFluid(L * 64))
             output(nanite, Shirabon, 16)
             EUt(4_800_000_000) // MAX+
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
             requireStruct(structT4)
         }
 
@@ -367,7 +367,7 @@ internal object NanitesChain
             fluidInputs(Universium.getFluid(L * 16))
             output(nanite, Mellion, 16)
             EUt(4_800_000_000) // MAX+
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
             requireStruct(structT4)
         }
     }

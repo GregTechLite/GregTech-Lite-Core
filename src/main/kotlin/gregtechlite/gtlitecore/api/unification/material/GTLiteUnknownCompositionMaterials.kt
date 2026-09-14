@@ -29,7 +29,6 @@ import gregtech.api.unification.material.info.MaterialIconSet.DULL
 import gregtech.api.unification.material.info.MaterialIconSet.FINE
 import gregtech.api.unification.material.info.MaterialIconSet.METALLIC
 import gregtech.api.unification.material.info.MaterialIconSet.ROUGH
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.cableProp
 import gregtechlite.gtlitecore.api.extension.colorAverage
 import gregtechlite.gtlitecore.api.extension.gas
@@ -37,6 +36,7 @@ import gregtechlite.gtlitecore.api.extension.liquid
 import gregtechlite.gtlitecore.api.extension.plasma
 import gregtechlite.gtlitecore.api.extension.rotorProp
 import gregtechlite.gtlitecore.api.extension.toolProp
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcidicSaltWater
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AlgaeMixture
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
@@ -293,7 +293,7 @@ object GTLiteUnknownCompositionMaterials
         // 12028 Paraffin
         Paraffin = addMaterial(12028, "paraffin")
         {
-            dust(0, 40 * SECOND)
+            dust(0, 40.s)
             color(0xD2D2FA).iconSet(WAX)
             flags(FLAMMABLE)
         }

@@ -48,19 +48,19 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.common.items.MetaItems.PETRI_DISH
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.sterileCleanroom
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BIO_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BFGF
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Biotin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Blood
@@ -114,7 +114,7 @@ internal object GrowthMediumChain
             fluidOutputs(BloodCells.getFluid(500))
             fluidOutputs(BloodPlasma.getFluid(500))
             EUt(VA[HV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Blood Plasma -> bFGF, EGF, CAT
@@ -124,7 +124,7 @@ internal object GrowthMediumChain
             fluidOutputs(EGF.getFluid(200))
             fluidOutputs(CAT.getFluid(200))
             EUt(VA[HV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Blood and Meat convert.
@@ -133,14 +133,14 @@ internal object GrowthMediumChain
             fluidInputs(Blood.getFluid(L))
             output(dust, Meat)
             EUt(VA[ULV])
-            duration(4 * TICK)
+            duration(4.t)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(dust, Meat)
             fluidOutputs(Blood.getFluid(L))
             EUt(V[ULV])
-            duration(8 * TICK)
+            duration(8.t)
         }
     }
 
@@ -165,7 +165,7 @@ internal object GrowthMediumChain
             fluidInputs(BacterialSludge.getFluid(200))
             fluidOutputs(EnrichedBacterialSludge.getFluid(100))
             EUt(VA[EV])
-            duration(6 * SECOND + 8 * TICK)
+            duration(6.s + 8.t)
             sterileCleanroom()
         }
 
@@ -180,7 +180,7 @@ internal object GrowthMediumChain
             fluidInputs(EnrichedBacterialSludge.getFluid(1000))
             fluidOutputs(Mutagen.getFluid(1000))
             EUt(VHA[HV])
-            duration(20 * SECOND)
+            duration(20.s)
             sterileCleanroom()
         }
 
@@ -198,7 +198,7 @@ internal object GrowthMediumChain
             fluidInputs(DistilledWater.getFluid(2000))
             fluidOutputs(GelatinMixture.getFluid(6000))
             EUt(VA[HV])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
             sterileCleanroom()
         }
     }
@@ -211,7 +211,7 @@ internal object GrowthMediumChain
             fluidInputs(Water.getFluid(1000))
             output(MUD_BALL, 4)
             EUt(VA[ULV])
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Yeast
@@ -220,7 +220,7 @@ internal object GrowthMediumChain
             fluidInputs(Water.getFluid(1000))
             output(dust, Yeast, 2)
             EUt(VA[LV])
-            duration(4 * TICK)
+            duration(4.t)
         }
 
         // H2SO4 + H2O2 -> (H2SO4)(H2O2)
@@ -229,7 +229,7 @@ internal object GrowthMediumChain
             fluidInputs(HydrogenPeroxide.getFluid(1000))
             fluidOutputs(PiranhaSolution.getFluid(2000))
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Dirty Petri Dish -> Petri Dish convert
@@ -238,7 +238,7 @@ internal object GrowthMediumChain
             fluidInputs(PiranhaSolution.getFluid(100))
             output(PETRI_DISH)
             EUt(VA[LV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
         }
 
         CHEMICAL_BATH_RECIPES.addRecipe {
@@ -246,7 +246,7 @@ internal object GrowthMediumChain
             fluidInputs(SodiumStearate.getFluid(100))
             output(PETRI_DISH)
             EUt(VA[LV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
         }
 
         // Brevibacterium Flavum Petri Dish
@@ -256,7 +256,7 @@ internal object GrowthMediumChain
             fluidInputs(RawGrowthMedium.getFluid(100))
             output(BREVIBACTERIUM_FLAVUM_PETRI_DISH)
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             sterileCleanroom()
         }
 
@@ -265,7 +265,7 @@ internal object GrowthMediumChain
             output(dust, BrevibacteriumFlavum)
             output(DIRTY_PETRI_DISH)
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Cupriavidus Necator Petri Dish
@@ -275,7 +275,7 @@ internal object GrowthMediumChain
             fluidInputs(RawGrowthMedium.getFluid(100))
             output(CUPRIAVIDUS_NECATOR_PETRI_DISH)
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             sterileCleanroom()
         }
 
@@ -284,7 +284,7 @@ internal object GrowthMediumChain
             output(dust, CupriavidusNecator)
             output(DIRTY_PETRI_DISH)
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Streptococcus Pyogenes Petri Dish (for Sugar processing, it is not required in this chain).
@@ -294,7 +294,7 @@ internal object GrowthMediumChain
             fluidInputs(RawGrowthMedium.getFluid(100))
             output(STREPTOCOCCUS_PYOGENES_PETRI_DISH)
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             sterileCleanroom()
         }
 
@@ -303,7 +303,7 @@ internal object GrowthMediumChain
             output(dust, StreptococcusPyogenes)
             output(DIRTY_PETRI_DISH)
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Escherichia Coli Petri Dish (for Succinic Acid processing, it is not required in this chain).
@@ -313,7 +313,7 @@ internal object GrowthMediumChain
             fluidInputs(RawGrowthMedium.getFluid(100))
             output(ESCHERICHIA_COLI_PETRI_DISH)
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             sterileCleanroom()
         }
 
@@ -322,7 +322,7 @@ internal object GrowthMediumChain
             output(dust, EscherichiaColi)
             output(DIRTY_PETRI_DISH)
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
     }
 
@@ -336,7 +336,7 @@ internal object GrowthMediumChain
             fluidInputs(DistilledWater.getFluid(1000))
             output(dust, Glutamine, 40)
             EUt(VA[IV])
-            duration(25 * SECOND)
+            duration(25.s)
             sterileCleanroom()
         }
 
@@ -348,7 +348,7 @@ internal object GrowthMediumChain
             fluidInputs(DistilledWater.getFluid(1000))
             output(dust, BrevibacteriumFlavum, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             sterileCleanroom()
         }
 
@@ -358,7 +358,7 @@ internal object GrowthMediumChain
             fluidInputs(Biomass.getFluid(1000))
             fluidOutputs(LinoleicAcid.getFluid(1000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -371,7 +371,7 @@ internal object GrowthMediumChain
             fluidInputs(Hydrogen.getFluid(1000))
             output(dust, Biotin, 64)
             EUt(VA[IV])
-            duration(25 * SECOND)
+            duration(25.s)
             sterileCleanroom()
         }
 
@@ -383,7 +383,7 @@ internal object GrowthMediumChain
             fluidInputs(DistilledWater.getFluid(1000))
             output(dust, CupriavidusNecator, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             sterileCleanroom()
         }
 
@@ -404,7 +404,7 @@ internal object GrowthMediumChain
             fluidInputs(CAT.getFluid(100))
             fluidOutputs(SterileGrowthMedium.getFluid(64000))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
             sterileCleanroom()
         }
 
@@ -415,7 +415,7 @@ internal object GrowthMediumChain
             input(dust, Glucose, 24)
             output(dust, Sorbose, 24)
             EUt(VA[IV])
-            duration(25 * SECOND)
+            duration(25.s)
             sterileCleanroom()
         }
 
@@ -427,7 +427,7 @@ internal object GrowthMediumChain
             fluidInputs(DistilledWater.getFluid(1000))
             output(dust, StreptococcusPyogenes, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             sterileCleanroom()
         }
 
@@ -438,7 +438,7 @@ internal object GrowthMediumChain
             input(dust, Sugar)
             output(dust, SuccinicAcid, 14)
             EUt(VA[IV])
-            duration(25 * SECOND)
+            duration(25.s)
             sterileCleanroom()
         }
 
@@ -450,7 +450,7 @@ internal object GrowthMediumChain
             fluidInputs(DistilledWater.getFluid(1000))
             output(dust, EscherichiaColi, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
             sterileCleanroom()
         }
 
@@ -461,7 +461,7 @@ internal object GrowthMediumChain
             input(dust, Cellulose, 21)
             output(dust, Glucose, 24)
             EUt(VA[IV])
-            duration(25 * SECOND)
+            duration(25.s)
             sterileCleanroom()
         }
     }

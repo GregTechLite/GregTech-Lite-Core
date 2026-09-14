@@ -17,10 +17,10 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.craftingLens
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
 import gregtechlite.gtlitecore.common.block.GTLiteStoneVariantBlock
 
@@ -59,7 +59,7 @@ internal object StoneVariantRecipeProducer
                 inputs(cobblestone)
                 outputs(stoneSmooth)
                 EUt(V[ULV])
-                duration(1 * SECOND + 4 * TICK)
+                duration(1.s + 4.t)
             }
 
             // Rock Breaker make smooth stone.
@@ -67,7 +67,7 @@ internal object StoneVariantRecipeProducer
                 notConsumable(stoneSmooth)
                 outputs(stoneSmooth)
                 EUt(VHA[HV])
-                duration(16 * TICK)
+                duration(16.t)
             }
 
             // Smooth stone hamming to cobblestone.
@@ -75,7 +75,7 @@ internal object StoneVariantRecipeProducer
                 inputs(stoneSmooth)
                 outputs(cobblestone)
                 EUt(VH[ULV])
-                duration(12 * TICK)
+                duration(12.t)
             }
 
             // Cobblestone -> Mossy Cobblestone
@@ -84,7 +84,7 @@ internal object StoneVariantRecipeProducer
                 fluidInputs(Water.getFluid(100))
                 outputs(cobblestoneMossy)
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
 
             // Smooth stone polishing to polished stone, see: PolisherRecipes#init().
@@ -95,7 +95,7 @@ internal object StoneVariantRecipeProducer
                 inputs(stoneSmooth)
                 outputs(bricks)
                 EUt(V[ULV])
-                duration(SECOND + 4 * TICK)
+                duration(1.s + 4.t)
             }
 
             // Polished stone laser engraving to bricks.
@@ -104,7 +104,7 @@ internal object StoneVariantRecipeProducer
                 inputs(stonePolished)
                 outputs(bricks)
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
 
             // Bricks hamming to cracked bricks.
@@ -112,7 +112,7 @@ internal object StoneVariantRecipeProducer
                 inputs(bricks)
                 outputs(bricksCracked)
                 EUt(VH[ULV])
-                duration(12 * TICK)
+                duration(12.t)
             }
 
             // Bricks -> Mossy Bricks
@@ -121,7 +121,7 @@ internal object StoneVariantRecipeProducer
                 fluidInputs(Water.getFluid(100))
                 outputs(bricksMossy)
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
 
             // Polished stone laser engraving to chiseled stone.
@@ -130,7 +130,7 @@ internal object StoneVariantRecipeProducer
                 inputs(stonePolished)
                 outputs(stoneChiseled)
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
 
             // Polished stone laser engraving to tiles.
@@ -139,7 +139,7 @@ internal object StoneVariantRecipeProducer
                 inputs(stonePolished)
                 outputs(tiles)
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
 
             // Tiles laser engraving to small tiles
@@ -148,7 +148,7 @@ internal object StoneVariantRecipeProducer
                 inputs(tiles)
                 outputs(tilesSmall)
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
 
             // Polished stone laser engraving to small bricks.
@@ -157,7 +157,7 @@ internal object StoneVariantRecipeProducer
                 inputs(stonePolished)
                 outputs(bricksSmall)
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
 
             // Polished stone laser engraving to windmill tiles A.
@@ -166,7 +166,7 @@ internal object StoneVariantRecipeProducer
                 inputs(stonePolished)
                 outputs(tilesWindmillA)
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
 
             // Polished stone laser engraving to windmill tiles B.
@@ -175,7 +175,7 @@ internal object StoneVariantRecipeProducer
                 inputs(stonePolished)
                 outputs(tilesWindmillB)
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
 
             // Polished stone laser engraving to square bricks.
@@ -184,7 +184,7 @@ internal object StoneVariantRecipeProducer
                 inputs(stonePolished)
                 outputs(bricksSquare)
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
         }
     }

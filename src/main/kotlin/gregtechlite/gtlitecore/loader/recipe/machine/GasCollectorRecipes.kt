@@ -31,10 +31,10 @@ import gregtech.common.items.MetaItems.ELECTRIC_PUMP_HV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_IV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_LV
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_MV
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_GAS_COLLECTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 
 internal object GasCollectorRecipes
 {
@@ -52,7 +52,7 @@ internal object GasCollectorRecipes
             fluidOutputs(CarbonDioxide.getFluid(1200))
             fluidOutputs(Helium.getFluid(450))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Nether Air
@@ -64,7 +64,7 @@ internal object GasCollectorRecipes
             fluidOutputs(HydrogenSulfide.getFluid(1400))
             fluidOutputs(Neon.getFluid(600))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Ender Air
@@ -76,7 +76,7 @@ internal object GasCollectorRecipes
             fluidOutputs(Deuterium.getFluid(1600))
             fluidOutputs(Tritium.getFluid(1100))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Liquid Air
@@ -88,7 +88,7 @@ internal object GasCollectorRecipes
             fluidOutputs(Helium.getFluid(1400))
             fluidOutputs(Argon.getFluid(700))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Liquid Nether Air
@@ -100,7 +100,7 @@ internal object GasCollectorRecipes
             fluidOutputs(Helium3.getFluid(2600))
             fluidOutputs(Krypton.getFluid(1200))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Liquid Ender Air
@@ -112,7 +112,7 @@ internal object GasCollectorRecipes
             fluidOutputs(Xenon.getFluid(2100))
             fluidOutputs(Radon.getFluid(1500))
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

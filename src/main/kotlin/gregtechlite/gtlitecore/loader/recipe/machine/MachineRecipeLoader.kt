@@ -281,13 +281,13 @@ import gregtech.common.metatileentities.MetaTileEntities.SUBSTATION_ENERGY_INPUT
 import gregtech.common.metatileentities.MetaTileEntities.THERMAL_CENTRIFUGE
 import gregtech.common.metatileentities.MetaTileEntities.VACUUM_FREEZER
 import gregtech.common.metatileentities.MetaTileEntities.WIREMILL
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumBronze
@@ -474,6 +474,11 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.LASER_OUTPUT_HATCH_1048576
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MASS_FABRICATOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MATTER_RESHAPING_FRAMEWORK
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_GAS_TURBINE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_HOT_COOLANT_TURBINE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_PLASMA_TURBINE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_STEAM_TURBINE
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_SUPERCRITICAL_FLUID_TURBINE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MICROSCALE_CIRCUIT_DETECTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MINING_DRONE_AIRPORT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MOB_EXTRACTOR
@@ -511,11 +516,6 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.VIRT
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.VOLCANUS
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WATER_COOLING_TOWER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.WIRELESS_ENERGY_INPUT_HATCH
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_STEAM_TURBINE
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_GAS_TURBINE
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_HOT_COOLANT_TURBINE
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_SUPERCRITICAL_FLUID_TURBINE
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.MEGA_PLASMA_TURBINE
 import net.minecraft.init.Items.FISHING_ROD
 
 internal object MachineRecipeLoader
@@ -920,11 +920,11 @@ internal object MachineRecipeLoader
             fluidInputs(Thulium.getFluid(L * 4))
             output(LARGE_MASS_FABRICATOR)
             EUt(VA[ZPM])
-            duration(2 * MINUTE)
+            duration(2.min)
             scannerResearch {
                 it.researchStack(MASS_FABRICATOR[LuV]!!.stack())
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -947,7 +947,7 @@ internal object MachineRecipeLoader
             fluidInputs(Promethium.getFluid(L * 4))
             output(LARGE_REPLICATOR)
             EUt(VA[UV])
-            duration(2 * MINUTE)
+            duration(2.min)
             stationResearch {
                 it.researchStack(REPLICATOR[ZPM]!!.stack())
                     .EUt(VA[ZPM])
@@ -967,11 +967,11 @@ internal object MachineRecipeLoader
             fluidInputs(SolderingAlloy.getFluid(L * 10))
             output(CIRCUIT_ASSEMBLY_LINE)
             EUt(VA[LuV])
-            duration(MINUTE)
+            duration(1.min)
             scannerResearch {
                 it.researchStack(CIRCUIT_ASSEMBLER[LuV].stack())
                     .EUt(VA[IV])
-                    .duration(30 * SECOND)
+                    .duration(30.s)
             }
         }
 
@@ -1066,7 +1066,7 @@ internal object MachineRecipeLoader
             fluidInputs(Europium.getFluid(L * 8))
             output(FUSION_REACTOR_MK4)
             EUt(VA[UV])
-            duration(2 * MINUTE)
+            duration(2.min)
             stationResearch {
                 it.researchStack(FUSION_REACTOR[2].stack())
                     .EUt(VA[UHV])
@@ -1087,7 +1087,7 @@ internal object MachineRecipeLoader
             fluidInputs(Seaborgium.getFluid(L * 8))
             output(FUSION_REACTOR_MK5)
             EUt(VA[UHV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
             stationResearch {
                 it.researchStack(FUSION_REACTOR_MK4.stack())
                     .EUt(VA[UEV])
@@ -1112,11 +1112,11 @@ internal object MachineRecipeLoader
             fluidInputs(ReneN5.getFluid(L * 4))
             output(ADVANCED_FUSION_REACTOR)
             EUt(VA[LuV])
-            duration(2 * MINUTE)
+            duration(2.min)
             scannerResearch {
                 it.researchStack(OreDictUnifier.get(block, Duranium))
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -1142,7 +1142,7 @@ internal object MachineRecipeLoader
             fluidInputs(Trinaquadalloy.getFluid(L * 4))
             output(COMPONENT_ASSEMBLY_LINE)
             EUt(VA[UV])
-            duration(5 * MINUTE)
+            duration(5.min)
             stationResearch {
                 it.researchStack(GTMultiblockCasing.ASSEMBLY_LINE_CASING.stack)
                     .EUt(VA[ZPM])
@@ -1165,7 +1165,7 @@ internal object MachineRecipeLoader
             fluidInputs(Trinaquadalloy.getFluid(L * 8))
             output(COSMIC_RAY_DETECTOR)
             EUt(VA[UHV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
             stationResearch {
                 it.researchStack(SCANNER[UHV].stack())
                     .EUt(VA[UV])
@@ -1191,7 +1191,7 @@ internal object MachineRecipeLoader
             fluidInputs(HDCS.getFluid(L * 4))
             output(STELLAR_FORGE)
             EUt(VA[UHV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
             stationResearch {
                 it.researchStack(VOLCANUS.stack())
                     .EUt(VA[UV])
@@ -1252,7 +1252,7 @@ internal object MachineRecipeLoader
             fluidInputs(PreciousMetalAlloy.getFluid(L * 10))
             output(LARGE_NAQUADAH_REACTOR)
             EUt(VA[UHV])
-            duration(5 * MINUTE)
+            duration(5.min)
             stationResearch {
                 it.researchStack(NAQUADAH_REACTOR[3].stack())
                     .EUt(VA[UV])
@@ -1277,7 +1277,7 @@ internal object MachineRecipeLoader
             fluidInputs(Osmiridium.getFluid(L * 16))
             output(NANO_FORGE)
             EUt(VA[ZPM])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
             stationResearch {
                 it.researchStack(OreDictUnifier.get(nanite, Carbon))
                     .EUt(VA[ZPM])
@@ -1298,7 +1298,7 @@ internal object MachineRecipeLoader
             fluidInputs(UUMatter.getFluid(256000))
             output(CONSCIOUSNESS_STORAGE_CENTER)
             EUt(VA[UV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
             stationResearch {
                 it.researchStack(OreDictUnifier.get(nanite, Copper))
                     .EUt(VA[UV])
@@ -1323,7 +1323,7 @@ internal object MachineRecipeLoader
             fluidInputs(HeavyLeptonMixture.getFluid(8000))
             output(NANITE_REPLICATION_UNRESTRICOR)
             EUt(VA[UHV])
-            duration(5 * MINUTE)
+            duration(5.min)
             stationResearch {
                 it.researchStack(OreDictUnifier.get(nanite, Neutronium))
                     .EUt(VA[UHV])
@@ -1353,7 +1353,7 @@ internal object MachineRecipeLoader
             fluidInputs(SuperheavyAlloyA.getFluid(L * 40))
             output(VIRTUAL_GESTALT_COMPUTING_UPLINK)
             EUt(VA[UIV])
-            duration(10 * MINUTE)
+            duration(10.min)
             stationResearch {
                 it.researchStack(OreDictUnifier.get(nanite, TranscendentMetal))
                     .EUt(VA[UIV])
@@ -1373,11 +1373,11 @@ internal object MachineRecipeLoader
             fluidInputs(SolderingAlloy.getFluid(L * 40))
             output(PCB_FACTORY)
             EUt(VA[LuV])
-            duration(1 * MINUTE)
+            duration(1.min)
             scannerResearch {
                 it.researchStack(ELITE_CIRCUIT_BOARD.stack())
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -1397,7 +1397,7 @@ internal object MachineRecipeLoader
             fluidInputs(CadmiumSelenide.getFluid(L * 4))
             output(NANOLITHOGRAPHY_ARRAY)
             EUt(VA[ZPM])
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(NANOSCALE_FABRICATOR.stack())
                     .EUt(VA[ZPM])
@@ -1425,7 +1425,7 @@ internal object MachineRecipeLoader
             fluidInputs(Naquadria.getFluid(L * 32))
             output(MICROSCALE_CIRCUIT_DETECTOR)
             EUt(VA[UV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(OBJECT_HOLDER.stack())
                     .EUt(VA[UV])
@@ -1446,11 +1446,11 @@ internal object MachineRecipeLoader
             fluidInputs(SterileGrowthMedium.getFluid(8000))
             output(BIO_CULTIVATION_CHAMBER)
             EUt(VA[ZPM])
-            duration(45 * SECOND)
+            duration(45.s)
             scannerResearch {
                 it.researchStack(WETWARE_CIRCUIT_BOARD)
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE + 30 * SECOND)
+                    .duration(1.min + 30.s)
             }
         }
 
@@ -1466,11 +1466,11 @@ internal object MachineRecipeLoader
             fluidInputs(ZephyreanAerotheum.getFluid(64000))
             output(WATER_COOLING_TOWER)
             EUt(VA[ZPM])
-            duration(30 * SECOND)
+            duration(30.s)
             scannerResearch {
                 it.researchStack(GTComputerCasing.COMPUTER_HEAT_VENT.stack)
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -1488,7 +1488,7 @@ internal object MachineRecipeLoader
             fluidInputs(CosmicNeutronium.getFluid(L * 8))
             output(THERMOSINK_COOLING_TOWER)
             EUt(VA[UEV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
             stationResearch {
                 it.researchStack(MultiblockCasing.INFINITY_COOLING_CASING.stack)
                     .EUt(VA[UEV])
@@ -1508,7 +1508,7 @@ internal object MachineRecipeLoader
             fluidInputs(Pikyonium64B.getFluid(L * 32))
             output(QUANTUM_FORCE_TRANSFORMER)
             EUt(VA[UEV])
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.stack)
                     .EUt(VA[UEV])
@@ -1534,7 +1534,7 @@ internal object MachineRecipeLoader
             fluidInputs(Protomatter.getFluid(16000))
             output(ANTIMATTER_FORGE)
             EUt(VA[UEV])
-            duration(10 * MINUTE)
+            duration(10.min)
             stationResearch {
                 it.researchStack(ADVANCED_FUSION_REACTOR.stack())
                     .EUt(VA[UEV])
@@ -1561,7 +1561,7 @@ internal object MachineRecipeLoader
             fluidInputs(Antimatter.getFluid(16000))
             output(ANTIMATTER_GENERATOR)
             EUt(VA[UEV])
-            duration(10 * MINUTE)
+            duration(10.min)
             stationResearch {
                 it.researchStack(LARGE_NAQUADAH_REACTOR.stack())
                     .EUt(VA[UEV])
@@ -1587,7 +1587,7 @@ internal object MachineRecipeLoader
             fluidInputs(Iridium.getFluid(L * 10))
             output(SPACE_ELEVATOR)
             EUt(VA[UHV])
-            duration(2 * MINUTE)
+            duration(2.min)
             stationResearch {
                 it.researchStack(MINING_DRONE_AIRPORT.stack())
                     .EUt(VA[UV])
@@ -1613,7 +1613,7 @@ internal object MachineRecipeLoader
             fluidInputs(Lubricant.getFluid(16000))
             output(SPACE_ASSEMBLER_MK1)
             EUt(VA[UHV])
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(ASSEMBLER[UHV].stack())
                     .EUt(VA[UHV])
@@ -1639,7 +1639,7 @@ internal object MachineRecipeLoader
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
             output(SPACE_ASSEMBLER_MK2)
             EUt(VA[UEV])
-            duration(2 * MINUTE)
+            duration(2.min)
             stationResearch {
                 it.researchStack(SPACE_ASSEMBLER_MK1.stack())
                     .EUt(VA[UEV])
@@ -1665,7 +1665,7 @@ internal object MachineRecipeLoader
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
             output(SPACE_ASSEMBLER_MK3)
             EUt(VA[UIV])
-            duration(5 * MINUTE)
+            duration(5.min)
             stationResearch {
                 it.researchStack(SPACE_ASSEMBLER_MK2.stack())
                     .EUt(VA[UIV])
@@ -1686,7 +1686,7 @@ internal object MachineRecipeLoader
             fluidInputs(Adamantium.getFluid(L * 4))
             output(SPACE_PUMP_MK1)
             EUt(VA[UV])
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(ADVANCED_FLUID_DRILLING_RIG.stack())
                     .EUt(VA[UV])
@@ -1706,7 +1706,7 @@ internal object MachineRecipeLoader
             fluidInputs(SolderingAlloy.getFluid(L * 32))
             output(SPACE_PUMP_MK2)
             EUt(VA[UHV])
-            duration(2 * MINUTE)
+            duration(2.min)
         }
 
         ASSEMBLY_LINE_RECIPES.addRecipe {
@@ -1721,7 +1721,7 @@ internal object MachineRecipeLoader
             fluidInputs(CosmicNeutronium.getFluid(L * 16))
             output(SPACE_PUMP_MK2)
             EUt(VA[UHV])
-            duration(2 * MINUTE)
+            duration(2.min)
             stationResearch {
                 it.researchStack(SPACE_PUMP_MK1.stack())
                     .EUt(VA[UV])
@@ -1741,7 +1741,7 @@ internal object MachineRecipeLoader
             fluidInputs(MutatedLivingSolder.getFluid(L * 64))
             output(SPACE_PUMP_MK3)
             EUt(VA[UEV])
-            duration(5 * MINUTE)
+            duration(5.min)
         }
 
         ASSEMBLY_LINE_RECIPES.addRecipe {
@@ -1756,7 +1756,7 @@ internal object MachineRecipeLoader
             fluidInputs(Rhugnor.getFluid(L * 32))
             output(SPACE_PUMP_MK3)
             EUt(VA[UEV])
-            duration(5 * MINUTE)
+            duration(5.min)
             stationResearch {
                 it.researchStack(SPACE_PUMP_MK2.stack())
                     .EUt(VA[UEV])
@@ -1775,7 +1775,7 @@ internal object MachineRecipeLoader
             fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 2000))
             output(ENERGY_INFUSER)
             EUt(100_000) // ZPM
-            duration(5 * MINUTE)
+            duration(5.min)
             stationResearch {
                 it.researchStack(CHARGER[ZPM].stack())
                     .EUt(VA[ZPM])
@@ -1807,7 +1807,7 @@ internal object MachineRecipeLoader
             fluidInputs(Shirabon.getFluid(L * 40))
             output(ENTRODYNAMICALLY_PHASE_CHANGER)
             EUt(VA[UIV])
-            duration(5 * MINUTE)
+            duration(5.min)
             stationResearch {
                 it.researchStack(ANTIMATTER_GENERATOR.stack())
                     .EUt(VA[UEV])
@@ -1876,7 +1876,7 @@ internal object MachineRecipeLoader
             fluidInputs(Oxygen.getPlasma(256_000))
             output(PLASMA_ARC_TRANSMITTER)
             EUt(VA[UHV])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // Electron-Phonon Coupling Accelerator
@@ -1892,7 +1892,7 @@ internal object MachineRecipeLoader
             fluidInputs(Trinium.getFluid(L * 40))
             output(EP_COUPLING_ACCELERATOR)
             EUt(VA[ZPM])
-            duration(2 * MINUTE + 30 * SECOND)
+            duration(2.min + 30.s)
         }
 
         // Nano Assembly Complex
@@ -1919,7 +1919,7 @@ internal object MachineRecipeLoader
             fluidInputs(HeavyQuarkDegenerateMatter.getFluid(L * 200))
             output(NANO_ASSEMBLY_COMPLEX)
             EUt(VA[UXV])
-            duration(10 * MINUTE)
+            duration(10.min)
             stationResearch {
                 it.researchStack(COMPONENT_ASSEMBLY_LINE)
                     .EUt(VA[UXV])
@@ -1946,7 +1946,7 @@ internal object MachineRecipeLoader
             fluidInputs(Trinium.getFluid(L * 4))
             output(INTEGRATED_ORE_PROCESSOR)
             EUt(VA[ZPM])
-            duration(1 * MINUTE)
+            duration(1.min)
             stationResearch {
                 it.researchStack(COMPONENT_GRINDER_TUNGSTEN)
                     .EUt(VA[ZPM])
@@ -1967,7 +1967,7 @@ internal object MachineRecipeLoader
             fluidInputs(PreciousMetalAlloy.getFluid(L * 20))
             output(MATTER_RESHAPING_FRAMEWORK)
             EUt(VA[UV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
         }
 
         // Mega Steam Turbine
@@ -1982,7 +1982,7 @@ internal object MachineRecipeLoader
             fluidInputs(Molybdenum.getFluid(L * 4))
             output(MEGA_STEAM_TURBINE)
             EUt(VA[EV])
-            duration(2 * MINUTE + 8 * TICK)
+            duration(2.min + 8.t)
         }
 
         // Mega Gas Turbine
@@ -1997,7 +1997,7 @@ internal object MachineRecipeLoader
             fluidInputs(Rhodium.getFluid(L * 4))
             output(MEGA_GAS_TURBINE)
             EUt(VA[IV])
-            duration(2 * MINUTE + 8 * TICK)
+            duration(2.min + 8.t)
         }
 
         // Mega Hot Coolant Turbine
@@ -2012,7 +2012,7 @@ internal object MachineRecipeLoader
             fluidInputs(Osmium.getFluid(L * 4))
             output(MEGA_HOT_COOLANT_TURBINE)
             EUt(VA[LuV])
-            duration(2 * MINUTE + 8 * TICK)
+            duration(2.min + 8.t)
         }
 
         // Mega Plasma Turbine
@@ -2027,7 +2027,7 @@ internal object MachineRecipeLoader
             fluidInputs(Trinium.getFluid(L * 4))
             output(MEGA_PLASMA_TURBINE)
             EUt(VA[ZPM])
-            duration(2 * MINUTE + 8 * TICK)
+            duration(2.min + 8.t)
         }
 
         // Mega Supercritical Fluid Turbine
@@ -2042,7 +2042,7 @@ internal object MachineRecipeLoader
             fluidInputs(Tritanium.getFluid(L * 4))
             output(MEGA_SUPERCRITICAL_FLUID_TURBINE)
             EUt(VA[UV])
-            duration(2 * MINUTE + 8 * TICK)
+            duration(2.min + 8.t)
         }
 
         // Blackhole Former
@@ -2064,7 +2064,7 @@ internal object MachineRecipeLoader
             fluidInputs(HeavyLeptonMixture.getFluid(4000))
             output(BLACKHOLE_FORMER)
             EUt(VA[UHV])
-            duration(2 * MINUTE)
+            duration(2.min)
             tier(1)
         }
 
@@ -2084,7 +2084,7 @@ internal object MachineRecipeLoader
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(DYSON_SWARM_GROUND_UNIT)
             EUt(VA[UHV])
-            duration(2 * MINUTE)
+            duration(2.min)
             tier(1)
         }
 
@@ -2101,11 +2101,11 @@ internal object MachineRecipeLoader
             fluidInputs(Lubricant.getFluid(1000))
             output(LARGE_QUANTUM_CHEST)
             EUt(VA[LuV])
-            duration(5 * MINUTE)
+            duration(5.min)
             scannerResearch {
                 it.researchStack(QUANTUM_CHEST[IV])
                     .EUt(VA[IV])
-                    .duration(2 * MINUTE + 30 * SECOND)
+                    .duration(2.min + 30.s)
             }
         }
 
@@ -2122,11 +2122,11 @@ internal object MachineRecipeLoader
             fluidInputs(Lubricant.getFluid(1000))
             output(LARGE_QUANTUM_TANK)
             EUt(VA[LuV])
-            duration(5 * MINUTE)
+            duration(5.min)
             scannerResearch {
                 it.researchStack(QUANTUM_TANK[IV])
                     .EUt(VA[IV])
-                    .duration(2 * MINUTE + 30 * SECOND)
+                    .duration(2.min + 30.s)
             }
         }
 
@@ -2141,7 +2141,7 @@ internal object MachineRecipeLoader
             fluidInputs(Protactinium.getFluid(L * 10))
             output(CONCENTRATED_COKING_CLUSTER)
             EUt(VA[LuV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
     }
 

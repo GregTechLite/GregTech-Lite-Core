@@ -58,14 +58,14 @@ import gregtech.api.util.DyeUtil.determineDyeColor
 import gregtech.api.util.GTUtility.scaleVoltage
 import gregtech.common.ConfigHolder
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROD
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.duration
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Albite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Baddeleyite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Celestine
@@ -225,7 +225,7 @@ object PartsRecipeHandler
                 .fluidInputs(material.getFluid(L / 2))
                 .output(stickPrefix, material)
                 .EUt(scaleVoltage(VA[LV], workingTier))
-                .duration(7 * SECOND + 5 * TICK)
+                .duration(7.s + 5.t)
                 .buildAndRegister()
         }
     }
@@ -245,7 +245,7 @@ object PartsRecipeHandler
                 .output(lensPrefix, material)
                 .output(dustSmall, material)
                 .EUt(scaleVoltage(VA[MV], workingTier))
-                .duration(1 * MINUTE)
+                .duration(1.min)
                 .buildAndRegister()
         }
 
@@ -257,7 +257,7 @@ object PartsRecipeHandler
                 .output(lensPrefix, material)
                 .output(dust, material, 2)
                 .EUt(scaleVoltage(VA[LV], workingTier))
-                .duration(2 * MINUTE)
+                .duration(2.min)
                 .buildAndRegister()
         }
 
@@ -269,7 +269,7 @@ object PartsRecipeHandler
                 .output(lensPrefix, material, 2)
                 .output(dust, material, 4)
                 .EUt(scaleVoltage(VA[MV], workingTier))
-                .duration(1 * MINUTE)
+                .duration(1.min)
                 .buildAndRegister()
         }
 
@@ -326,7 +326,7 @@ object PartsRecipeHandler
                 .output(lensPrefix, material)
                 .output(dustSmall, material)
                 .EUt(scaleVoltage(VA[MV], workingTier))
-                .duration(1 * MINUTE)
+                .duration(1.min)
                 .buildAndRegister()
         }
     }
@@ -341,7 +341,7 @@ object PartsRecipeHandler
                 .fluidInputs(material.getFluid(L / 8))
                 .output(screwPrefix, material)
                 .EUt(scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
-                .duration(2 * SECOND + 5 * TICK)
+                .duration(2.s + 5.t)
                 .buildAndRegister()
         }
     }
@@ -357,7 +357,7 @@ object PartsRecipeHandler
                 .input(ingot, material)
                 .output(roundPrefix, material, 4)
                 .EUt(scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
-                .duration(2 * SECOND)
+                .duration(2.s)
                 .buildAndRegister()
         }
         else
@@ -367,7 +367,7 @@ object PartsRecipeHandler
                 .input(dust, material)
                 .output(roundPrefix, material, 4)
                 .EUt(scaleVoltage(max(VA[MV].toLong(), 4 * getVoltageMultiplier(material)), workingTier))
-                .duration(2 * SECOND)
+                .duration(2.s)
                 .buildAndRegister()
         }
     }
@@ -382,7 +382,7 @@ object PartsRecipeHandler
                 .fluidInputs(material.getFluid(L * 4)) // Cost less material than hand-crafting recipes.
                 .output(drillHeadPrefix, material)
                 .EUt(scaleVoltage(VA[MV].toLong(), workingTier))
-                .duration(5 * SECOND)
+                .duration(5.s)
                 .buildAndRegister()
         }
 
@@ -391,7 +391,7 @@ object PartsRecipeHandler
             .input(ingot, material, 4) // Cost less material than hand-crafting recipes.
             .output(drillHeadPrefix, material, 1)
             .EUt(scaleVoltage(VA[MV].toLong(), workingTier))
-            .duration(5 * SECOND)
+            .duration(5.s)
             .buildAndRegister()
     }
 
@@ -405,7 +405,7 @@ object PartsRecipeHandler
                 .fluidInputs(material.getFluid(L * 6))
                 .output(turbineBladePrefix, material)
                 .EUt(scaleVoltage(max(VA[MV].toLong(), 6 * getVoltageMultiplier(material)), workingTier))
-                .duration(20 * SECOND)
+                .duration(20.s)
                 .buildAndRegister()
         }
 
@@ -414,7 +414,7 @@ object PartsRecipeHandler
             .input(ingot, material, 6)
             .output(turbineBladePrefix, material)
             .EUt(scaleVoltage(VA[MV].toLong(), workingTier))
-            .duration(20 * SECOND)
+            .duration(20.s)
             .buildAndRegister()
     }
 
@@ -435,7 +435,7 @@ object PartsRecipeHandler
             .input(frameGt, material, 1)
             .output(sheetedFramePrefix, material, 6)
             .EUt(VA[ULV])
-            .duration(2 * SECOND + 5 * TICK)
+            .duration(2.s + 5.t)
             .buildAndRegister()
 
     }
@@ -456,7 +456,7 @@ object PartsRecipeHandler
             .input(screw, material, 1)
             .output(wallGtPrefix, material, 3)
             .EUt(VA[ULV])
-            .duration(2 * SECOND + 5 * TICK)
+            .duration(2.s + 5.t)
             .buildAndRegister()
     }
 

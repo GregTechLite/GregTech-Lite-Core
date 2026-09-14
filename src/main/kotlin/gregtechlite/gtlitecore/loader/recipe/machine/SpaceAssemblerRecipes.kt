@@ -43,11 +43,11 @@ import gregtech.common.items.MetaItems.ENGRAVED_LAPOTRON_CHIP
 import gregtech.common.items.MetaItems.ULTIMATE_BATTERY
 import gregtech.common.items.MetaItems.ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fullerene
@@ -85,7 +85,7 @@ internal object SpaceAssemblerRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 5))
             output(ENERGY_LAPOTRONIC_ORB_CLUSTER, 4)
             EUt(80_000) // ZPM
-            duration(10 * SECOND)
+            duration(10.s)
             tier(1)
         }
 
@@ -101,7 +101,7 @@ internal object SpaceAssemblerRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 10))
             output(ENERGY_MODULE, 4)
             EUt(100_000) // ZPM
-            duration(10 * SECOND)
+            duration(10.s)
             tier(1)
         }
 
@@ -118,7 +118,7 @@ internal object SpaceAssemblerRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 20))
             output(ENERGY_CLUSTER, 4)
             EUt(200_000) // UV
-            duration(10 * SECOND)
+            duration(10.s)
             tier(2)
         }
 
@@ -137,7 +137,7 @@ internal object SpaceAssemblerRecipes
             fluidInputs(MutatedLivingSolder.getFluid(L * 40))
             output(ULTIMATE_BATTERY, 4)
             EUt(800_000) // UHV
-            duration(10 * SECOND)
+            duration(10.s)
             tier(3)
         }
 
@@ -154,7 +154,7 @@ internal object SpaceAssemblerRecipes
             fluidInputs(IncoloyMA956.getFluid(L * 20))
             output(LOW_DENSITY_STRUCTURE, 2)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             tier(1)
         }
 
@@ -170,7 +170,7 @@ internal object SpaceAssemblerRecipes
             fluidInputs(IncoloyMA956.getFluid(L * 40))
             output(LOW_DENSITY_STRUCTURE, 16)
             EUt(VA[UEV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             tier(2)
         }
 
@@ -186,7 +186,7 @@ internal object SpaceAssemblerRecipes
             fluidInputs(IncoloyMA956.getFluid(L * 80))
             output(LOW_DENSITY_STRUCTURE, 64)
             EUt(VA[UIV])
-            duration(1 * SECOND)
+            duration(1.s)
             tier(3)
         }
     }

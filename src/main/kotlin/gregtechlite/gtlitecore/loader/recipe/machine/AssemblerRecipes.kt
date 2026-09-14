@@ -123,8 +123,6 @@ import gregtech.common.metatileentities.MetaTileEntities.TRANSFORMER
 import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_CRATE
 import gregtech.common.metatileentities.MetaTileEntities.TUNGSTENSTEEL_DRUM
 import gregtech.loaders.recipe.CraftingComponent
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
@@ -133,8 +131,10 @@ import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addIOHatchRecipes
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler.addMultiFluidHatchRecipes
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BerylliumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
@@ -293,7 +293,7 @@ internal object AssemblerRecipes
             fluidInputs(Glue.getFluid(1000))
             output(QUADRUPLE_FLUID_IMPORT_HATCH[0])
             EUt(VA[ULV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // LV Quadruple Input Hatch
@@ -304,7 +304,7 @@ internal object AssemblerRecipes
             fluidInputs(Glue.getFluid(2000))
             output(QUADRUPLE_FLUID_IMPORT_HATCH[1])
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // MV Quadruple Input Hatch
@@ -315,7 +315,7 @@ internal object AssemblerRecipes
             fluidInputs(Polyethylene.getFluid(L * 4))
             output(QUADRUPLE_FLUID_IMPORT_HATCH[2])
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // HV Quadruple Input Hatch
@@ -326,7 +326,7 @@ internal object AssemblerRecipes
             fluidInputs(Polyethylene.getFluid(L * 4))
             output(QUADRUPLE_FLUID_IMPORT_HATCH[3])
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // ULV Quadruple Output Hatch
@@ -337,7 +337,7 @@ internal object AssemblerRecipes
             fluidInputs(Glue.getFluid(1000))
             output(QUADRUPLE_FLUID_EXPORT_HATCH[0])
             EUt(VA[ULV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // LV Quadruple Output Hatch
@@ -348,7 +348,7 @@ internal object AssemblerRecipes
             fluidInputs(Glue.getFluid(2000))
             output(QUADRUPLE_FLUID_EXPORT_HATCH[1])
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // MV Quadruple Output Hatch
@@ -359,7 +359,7 @@ internal object AssemblerRecipes
             fluidInputs(Polyethylene.getFluid(L * 4))
             output(QUADRUPLE_FLUID_EXPORT_HATCH[2])
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // HV Quadruple Output Hatch
@@ -370,7 +370,7 @@ internal object AssemblerRecipes
             fluidInputs(Polyethylene.getFluid(L * 4))
             output(QUADRUPLE_FLUID_EXPORT_HATCH[3])
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // ULV Nonuple Input Hatch
@@ -381,7 +381,7 @@ internal object AssemblerRecipes
             fluidInputs(Glue.getFluid(2250))
             output(NONUPLE_FLUID_IMPORT_HATCH[0])
             EUt(VA[ULV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // LV Nonuple Input Hatch
@@ -392,7 +392,7 @@ internal object AssemblerRecipes
             fluidInputs(Glue.getFluid(4500))
             output(NONUPLE_FLUID_IMPORT_HATCH[1])
             EUt(VA[LV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // MV Nonuple Input Hatch
@@ -403,7 +403,7 @@ internal object AssemblerRecipes
             fluidInputs(Polyethylene.getFluid(L * 9))
             output(NONUPLE_FLUID_IMPORT_HATCH[2])
             EUt(VA[MV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // HV Nonuple Input Hatch
@@ -414,7 +414,7 @@ internal object AssemblerRecipes
             fluidInputs(Polyethylene.getFluid(L * 9))
             output(NONUPLE_FLUID_IMPORT_HATCH[3])
             EUt(VA[HV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // ULV Nonuple Export Hatch
@@ -425,7 +425,7 @@ internal object AssemblerRecipes
             fluidInputs(Glue.getFluid(2250))
             output(NONUPLE_FLUID_EXPORT_HATCH[0])
             EUt(VA[ULV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // LV Nonuple Export Hatch
@@ -436,7 +436,7 @@ internal object AssemblerRecipes
             fluidInputs(Glue.getFluid(4500))
             output(NONUPLE_FLUID_EXPORT_HATCH[1])
             EUt(VA[LV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // MV Nonuple Export Hatch
@@ -447,7 +447,7 @@ internal object AssemblerRecipes
             fluidInputs(Polyethylene.getFluid(L * 9))
             output(NONUPLE_FLUID_EXPORT_HATCH[2])
             EUt(VA[MV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // HV Nonuple Export Hatch
@@ -458,7 +458,7 @@ internal object AssemblerRecipes
             fluidInputs(Polyethylene.getFluid(L * 9))
             output(NONUPLE_FLUID_EXPORT_HATCH[3])
             EUt(VA[HV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Modify UHV 4x/9x Hatch to use Kevlar to align the plastic requirement remove original UHV 4x/9x Hatch recipe.
@@ -536,7 +536,7 @@ internal object AssemblerRecipes
                 input(cableGtSingle, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                 output(LASER_INPUT_HATCH_256[actualTier])
                 EUt(VA[tier].toLong())
-                duration(15 * SECOND)
+                duration(15.s)
             }
 
             // 256A Laser Source Hatch
@@ -549,7 +549,7 @@ internal object AssemblerRecipes
                 input(cableGtSingle, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                 output(LASER_OUTPUT_HATCH_256[actualTier])
                 EUt(VA[tier].toLong())
-                duration(15 * SECOND)
+                duration(15.s)
             }
 
             // 1024A Laser Target Hatch
@@ -562,7 +562,7 @@ internal object AssemblerRecipes
                 input(cableGtDouble, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                 output(LASER_INPUT_HATCH_1024[actualTier])
                 EUt(VA[tier])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // 1024A Laser Source Hatch
@@ -575,7 +575,7 @@ internal object AssemblerRecipes
                 input(cableGtDouble, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                 output(LASER_OUTPUT_HATCH_1024[actualTier])
                 EUt(VA[tier])
-                duration(30 * SECOND)
+                duration(30.s)
             }
 
             // 4096A Laser Target Hatch
@@ -588,7 +588,7 @@ internal object AssemblerRecipes
                 input(cableGtQuadruple, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                 output(LASER_INPUT_HATCH_4096[actualTier])
                 EUt(VA[tier])
-                duration(1 * MINUTE)
+                duration(1.min)
             }
 
             // 4096A Large Source Hatch
@@ -601,7 +601,7 @@ internal object AssemblerRecipes
                 input(cableGtQuadruple, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                 output(LASER_OUTPUT_HATCH_4096[actualTier])
                 EUt(VA[tier])
-                duration(1 * MINUTE)
+                duration(1.min)
             }
         }
         // Advanced laser hatches consists of 16384A-1048576A, these recipes is added for these parts.
@@ -618,7 +618,7 @@ internal object AssemblerRecipes
                 input(cableGtOctal, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                 output(LASER_INPUT_HATCH_16384[actualTier])
                 EUt(VA[tier])
-                duration(2 * MINUTE)
+                duration(2.min)
             }
 
             // 16384A Laser Source Hatch
@@ -631,7 +631,7 @@ internal object AssemblerRecipes
                 input(cableGtOctal, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                 output(LASER_OUTPUT_HATCH_16384[actualTier])
                 EUt(VA[tier])
-                duration(2 * MINUTE)
+                duration(2.min)
             }
 
             // 65536A Laser Target Hatch
@@ -644,7 +644,7 @@ internal object AssemblerRecipes
                 input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                 output(LASER_INPUT_HATCH_65536[actualTier])
                 EUt(VA[tier])
-                duration(4 * MINUTE)
+                duration(4.min)
             }
 
             // 65536A Laser Source Hatch
@@ -657,7 +657,7 @@ internal object AssemblerRecipes
                 input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 4)
                 output(LASER_OUTPUT_HATCH_65536[actualTier])
                 EUt(VA[tier])
-                duration(4 * MINUTE)
+                duration(4.min)
             }
 
             // 262144A Laser Target Hatch
@@ -670,7 +670,7 @@ internal object AssemblerRecipes
                 input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 8)
                 output(LASER_INPUT_HATCH_262144[actualTier])
                 EUt(VA[tier])
-                duration(8 * MINUTE)
+                duration(8.min)
             }
 
             // 262144A Laser Source Hatch
@@ -683,7 +683,7 @@ internal object AssemblerRecipes
                 input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 8)
                 output(LASER_OUTPUT_HATCH_262144[actualTier])
                 EUt(VA[tier])
-                duration(8 * MINUTE)
+                duration(8.min)
             }
 
             // 1048576A Laser Target Hatch
@@ -696,7 +696,7 @@ internal object AssemblerRecipes
                 input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 16)
                 output(LASER_INPUT_HATCH_1048576[actualTier])
                 EUt(VA[tier])
-                duration(16 * MINUTE)
+                duration(16.min)
             }
 
             // 1048576A Laser Source Hatch
@@ -709,7 +709,7 @@ internal object AssemblerRecipes
                 input(cableGtHex, (CraftingComponent.CABLE.getIngredient(tier) as UnificationEntry).material, 16)
                 output(LASER_OUTPUT_HATCH_1048576[actualTier])
                 EUt(VA[tier])
-                duration(16 * MINUTE)
+                duration(16.min)
             }
         }
     }
@@ -726,7 +726,7 @@ internal object AssemblerRecipes
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(WIRELESS_STORAGE_HATCH[IV - IV])
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // LuV Wireless Storage Hatch
@@ -739,7 +739,7 @@ internal object AssemblerRecipes
             fluidInputs(HadronicResonantGas.getFluid(500))
             output(WIRELESS_STORAGE_HATCH[LuV - IV])
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // ZPM Wireless Storage Hatch
@@ -752,7 +752,7 @@ internal object AssemblerRecipes
             fluidInputs(HadronicResonantGas.getFluid(750))
             output(WIRELESS_STORAGE_HATCH[ZPM - IV])
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UV Wireless Storage Hatch
@@ -765,7 +765,7 @@ internal object AssemblerRecipes
             fluidInputs(HadronicResonantGas.getFluid(1000))
             output(WIRELESS_STORAGE_HATCH[UV - IV])
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UHV Wireless Storage Hatch
@@ -778,7 +778,7 @@ internal object AssemblerRecipes
             fluidInputs(StableBaryonicMatter.getFluid(1000))
             output(WIRELESS_STORAGE_HATCH[UHV - IV])
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UEV Wireless Storage Hatch
@@ -791,7 +791,7 @@ internal object AssemblerRecipes
             fluidInputs(StableBaryonicMatter.getFluid(2000))
             output(WIRELESS_STORAGE_HATCH[UEV - IV])
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UIV Wireless Storage Hatch
@@ -804,7 +804,7 @@ internal object AssemblerRecipes
             fluidInputs(StableBaryonicMatter.getFluid(4000))
             output(WIRELESS_STORAGE_HATCH[UIV - IV])
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UXV Wireless Storage Hatch
@@ -817,7 +817,7 @@ internal object AssemblerRecipes
             fluidInputs(StableBaryonicMatter.getFluid(8000))
             output(WIRELESS_STORAGE_HATCH[UXV - IV])
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // OpV Wireless Storage Hatch
@@ -830,7 +830,7 @@ internal object AssemblerRecipes
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(16000))
             output(WIRELESS_STORAGE_HATCH[OpV - IV])
             EUt(VA[OpV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // MAX Wireless Storage Hatch
@@ -843,7 +843,7 @@ internal object AssemblerRecipes
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(64000))
             output(WIRELESS_STORAGE_HATCH[MAX - IV])
             EUt(VA[MAX])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -856,7 +856,7 @@ internal object AssemblerRecipes
             input(wireFine, Taranium, 16)
             output(VOLTAGE_COIL_UHV)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UEV Voltage Coil
@@ -866,7 +866,7 @@ internal object AssemblerRecipes
             input(wireFine, MetastableOganesson, 16)
             output(VOLTAGE_COIL_UEV)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UIV Voltage Coil
@@ -876,7 +876,7 @@ internal object AssemblerRecipes
             input(wireFine, QuantumchromodynamicallyConfinedMatter, 16)
             output(VOLTAGE_COIL_UIV)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // UXV Voltage Coil
@@ -886,7 +886,7 @@ internal object AssemblerRecipes
             input(wireFine, Mellion, 16)
             output(VOLTAGE_COIL_UXV)
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // OpV Voltage Coil
@@ -896,7 +896,7 @@ internal object AssemblerRecipes
             input(wireFine, WhiteDwarfMatter, 16)
             output(VOLTAGE_COIL_OpV)
             EUt(VA[OpV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // TODO: Max Voltage Coil
@@ -918,7 +918,7 @@ internal object AssemblerRecipes
             fluidInputs(TinAlloy.getFluid(L * 4))
             output(MINING_DRONE_LV)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // MV Mining Drone
@@ -935,7 +935,7 @@ internal object AssemblerRecipes
             fluidInputs(Kanthal.getFluid(L * 4))
             output(MINING_DRONE_MV)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // HV Mining Drone
@@ -952,7 +952,7 @@ internal object AssemblerRecipes
             fluidInputs(Nichrome.getFluid(L * 4))
             output(MINING_DRONE_HV)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // EV Mining Drone
@@ -969,7 +969,7 @@ internal object AssemblerRecipes
             fluidInputs(TungstenCarbide.getFluid(L * 4))
             output(MINING_DRONE_EV)
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // IV Mining Drone
@@ -986,7 +986,7 @@ internal object AssemblerRecipes
             fluidInputs(Ultimet.getFluid(L * 4))
             output(MINING_DRONE_IV)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -1000,7 +1000,7 @@ internal object AssemblerRecipes
             input(VACUUM_TUBE)
             output(MAGNETRON)
             EUt(VA[IV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Advanced recipe for Neutron Reflector.
@@ -1011,7 +1011,7 @@ internal object AssemblerRecipes
             fluidInputs(TinAlloy.getFluid(L * 16))
             output(NEUTRON_REFLECTOR, 4)
             EUt(VA[EV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Ultimate recipe for Neutron Reflector.
@@ -1022,7 +1022,7 @@ internal object AssemblerRecipes
             fluidInputs(TinAlloy.getFluid(L * 8))
             output(NEUTRON_REFLECTOR, 16)
             EUt(VA[LuV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Perfect recipe for Neutron Reflector.
@@ -1033,7 +1033,7 @@ internal object AssemblerRecipes
             fluidInputs(TinAlloy.getFluid(L * 4))
             output(NEUTRON_REFLECTOR, 64)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Advanced recipes for Optical Pipe.
@@ -1043,7 +1043,7 @@ internal object AssemblerRecipes
             fluidInputs(Polybenzimidazole.getFluid(L))
             outputs(MetaBlocks.OPTICAL_PIPES[0].getStack(16))
             EUt(VA[ZPM])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -1053,7 +1053,7 @@ internal object AssemblerRecipes
             fluidInputs(ChromaticGlass.getFluid(L))
             outputs(MetaBlocks.OPTICAL_PIPES[0].getStack(64))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -1064,7 +1064,7 @@ internal object AssemblerRecipes
             fluidInputs(Polybenzimidazole.getFluid(L))
             outputs(MetaBlocks.LASER_PIPES[0].getStack(16))
             EUt(VA[ZPM])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -1074,7 +1074,7 @@ internal object AssemblerRecipes
             fluidInputs(ChromaticGlass.getFluid(L))
             outputs(MetaBlocks.LASER_PIPES[0].getStack(64))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -1084,7 +1084,7 @@ internal object AssemblerRecipes
             fluidInputs(ChromaticGlass.getFluid(L))
             outputs(MetaBlocks.LASER_PIPES[0].getStack(64))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
     }
@@ -1099,7 +1099,7 @@ internal object AssemblerRecipes
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             outputs(ELYTRA)
             EUt(VH[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Torch
@@ -1108,7 +1108,7 @@ internal object AssemblerRecipes
             input(stick, Wood)
             outputs(TORCH.getStack(4))
             EUt(1)
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -1116,7 +1116,7 @@ internal object AssemblerRecipes
             input(stick, Wood)
             outputs(TORCH.getStack(4))
             EUt(1)
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

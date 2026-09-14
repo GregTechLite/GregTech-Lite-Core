@@ -27,12 +27,12 @@ import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Diethylthiourea
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylamine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HassiumTetrachloride
@@ -62,7 +62,7 @@ object RHTIHChain
             fluidInputs(Chlorine.getFluid(1000))
             output(dust, ThalliumChloride, 2)
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Hs + 4Cl -> HsCl4
@@ -72,7 +72,7 @@ object RHTIHChain
             fluidInputs(Chlorine.getFluid(4000))
             output(dust, HassiumTetrachloride, 5)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Re + 5Cl -> ReCl5
@@ -82,7 +82,7 @@ object RHTIHChain
             fluidInputs(Chlorine.getFluid(5000))
             output(dust, RheniumPentachloride, 6)
             EUt(VA[MV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // H3PO4 + 6HF -> HPF6 + 4H2O
@@ -92,7 +92,7 @@ object RHTIHChain
             fluidOutputs(HexafluorophosphoricAcid.getFluid(1000))
             fluidOutputs(Water.getFluid(4000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // NaCN + S -> NaSCN
@@ -101,7 +101,7 @@ object RHTIHChain
             input(dust, Sulfur)
             output(dust, SodiumThiocyanate, 4)
             EUt(VA[EV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // C2H4 + NH3 -> C2H5NH2
@@ -110,7 +110,7 @@ object RHTIHChain
             fluidInputs(Ammonia.getFluid(1000))
             fluidOutputs(Ethylamine.getFluid(1000))
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // NaSCN + HCl + 2C2H5NH2 -> NaCl + (C2H5NH)2CS + NH3 (cycle)
@@ -122,7 +122,7 @@ object RHTIHChain
             fluidOutputs(Diethylthiourea.getFluid(1000))
             fluidOutputs(Ammonia.getFluid(1000))
             EUt(VA[LuV])
-            duration(7 * SECOND)
+            duration(7.s)
         }
 
         // C6H6O + H2O2 + 2C2H2O + 2O -> C10H10O6 + H2O
@@ -135,7 +135,7 @@ object RHTIHChain
             fluidOutputs(PhenylenedioxydiaceticAcid.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[UV])
-            duration(17 * SECOND + 10)
+            duration(17.s + 10)
         }
 
         // 2(C2H5NH)2CS + 2SOCl2 + C10H10O6 -> C18H26N4O2S2 + 4HCl + 2SO2
@@ -147,7 +147,7 @@ object RHTIHChain
             fluidOutputs(HydrochloricAcid.getFluid(4000))
             fluidOutputs(SulfurDioxide.getFluid(2000))
             EUt(VA[UEV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // TlCl + HsCl4 + ReCl5 + 3C18H26N4O2S2 + HPF6 -> C60H84O12N12S6F6PReHsTl + 7HCl + 3Cl
@@ -161,7 +161,7 @@ object RHTIHChain
             fluidOutputs(HydrochloricAcid.getFluid(7000))
             fluidOutputs(Chlorine.getFluid(3000))
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

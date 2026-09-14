@@ -19,12 +19,12 @@ import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AstatineAzide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronCarbide
@@ -48,7 +48,7 @@ internal object HeavyConductiveMixtureChain
             output(dust, FranciumCarbide, 4)
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[EV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // 2B2O3 + CH4 -> B4C + 2H2O + 4O (drop)
@@ -58,7 +58,7 @@ internal object HeavyConductiveMixtureChain
             output(gem, BoronCarbide)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
             temperature(922)
         }
 
@@ -71,7 +71,7 @@ internal object HeavyConductiveMixtureChain
             output(dust, Salt, 2)
             fluidOutputs(Hydrogen.getFluid(1000))
             EUt(VA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Ho + 3I -> HoI3
@@ -80,7 +80,7 @@ internal object HeavyConductiveMixtureChain
             input(dust, Iodine, 3)
             output(dust, HolmiumIodide, 4)
             EUt(VA[HV])
-            duration(4 * SECOND + 5 * TICK)
+            duration(4.s + 5.t)
         }
 
         // Fr2C2 + B4C + AtN3 + HoI3 -> (Fr2C2)(B4C)(AtN3)(HoI3)
@@ -92,7 +92,7 @@ internal object HeavyConductiveMixtureChain
             input(dust, HolmiumIodide, 4)
             output(dust, HeavyConductiveMixture, 17)
             EUt(VA[UHV])
-            duration(25 * SECOND)
+            duration(25.s)
         }
     }
 

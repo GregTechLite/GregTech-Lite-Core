@@ -18,11 +18,11 @@ import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Phenol
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dustTiny
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bitumen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creosol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Guaiacol
@@ -55,7 +55,7 @@ internal object CreosoteProcessing
             fluidOutputs(Guaiacol.getFluid(150))       // C7H8O2
             fluidOutputs(Lubricant.getFluid(100))
             EUt(VA[MV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // C8H10O + C7H8O2 -> C15H16O2 + H2O
@@ -65,7 +65,7 @@ internal object CreosoteProcessing
             fluidOutputs(BisphenolA.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // C7H8O + C2H6 + 3CO -> 2C6H6O2 + 2H
@@ -75,7 +75,7 @@ internal object CreosoteProcessing
             fluidOutputs(Resorcinol.getFluid(2000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[IV])
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         // C8H10O2 -> C6H4(OH)2 + C2H4
@@ -84,7 +84,7 @@ internal object CreosoteProcessing
             fluidOutputs(Hydroquinone.getFluid(1000))
             fluidOutputs(Ethylene.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
