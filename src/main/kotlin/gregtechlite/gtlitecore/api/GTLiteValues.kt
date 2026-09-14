@@ -25,31 +25,29 @@ const val MOD_VERSION = GTLiteTags.MOD_VERSION
 @JvmField
 val LOGGER = SidedLogger(MOD_ID)
 
-/**
- * Regular time units in the game, used in recipes by default and tickable checks.
- */
+@Deprecated(message = "Use Int#tick extension")
 const val TICK = 1
 
-/**
- * Regular time units in the game, used in recipes by default and tickable checks.
- *
- * 1 sec = 20 tick
- */
+val Int.t
+    get() = this * 1
+
+@Deprecated(message = "Use Int#sec extension")
 const val SECOND = 20 * TICK
 
-/**
- * Regular time units in the game, used in recipes by default and tickable checks.
- *
- * 1 min = 60 sec
- */
+val Int.s // 1s = 20t
+    get() = this * 20.t
+
+@Deprecated(message = "Use Int#min extension")
 const val MINUTE = 60 * SECOND
 
-/**
- * Regular time units in the game, used in recipes by default and tickable checks.
- *
- * 1 hr = 60 min
- */
+val Int.min // 1min = 60s
+    get() = this * 60.s
+
+@Deprecated(message = "Use Int#hour extension")
 const val HOUR = 60 * MINUTE
+
+val Int.hr // 1hr = 60min
+    get() = this * 60.min
 
 /**
  * Represent a Unit of Steam, based on the conversion radio of Steam and (Distilled) Water,
