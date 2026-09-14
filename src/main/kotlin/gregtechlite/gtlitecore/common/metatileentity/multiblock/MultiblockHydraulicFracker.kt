@@ -35,7 +35,6 @@ import gregtech.api.util.TextFormattingUtil.formatNumbers
 import gregtech.api.worldgen.bedrockFluids.BedrockFluidVeinHandler
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -65,7 +64,7 @@ class MultiblockHydraulicFracker(id: ResourceLocation, private val tier: Int)
     companion object
     {
         private const val FLUID_USE_AMOUNT = 1000
-        private const val MAX_PROGRESS = 5.s
+        private const val MAX_PROGRESS = 100
         private const val MAX_MULTIPLIER = 20
 
         private val casingState = MetalCasing.WATERTIGHT_STEEL.state

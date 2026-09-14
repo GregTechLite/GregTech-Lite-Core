@@ -122,7 +122,7 @@ object GTLiteConfigHolder
             @Comment("The progress time for Large Fisher each cycle working consumed",
                      "Default: 20 (1s)")
             @Name("Progress Time Per Cycle")
-            @RangeInt(min = 1.t)
+            @RangeInt(min = 1)
             @JvmField
             var maxProgressTime = 1.s
 

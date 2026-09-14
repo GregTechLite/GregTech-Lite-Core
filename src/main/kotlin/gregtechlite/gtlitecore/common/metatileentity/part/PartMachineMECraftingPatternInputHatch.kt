@@ -125,8 +125,8 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         private const val DATA_STICK_TAG = "MECraftingPatternInputBus"
         const val MIRROR_LINK_TAG = "MECraftingPatternInputMirrorLink"
 
-        private const val PATTERN_SYNC_DURATION = 10.t
-        private const val ME_STATUS_SYNC_DURATION = 20.t
+        private const val PATTERN_SYNC_DURATION = 10
+        private const val ME_STATUS_SYNC_DURATION = 20
     }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity

@@ -50,7 +50,7 @@ internal object HalkoniteSteelChain
 
     // @formatter:off
 
-    private const val DURATION_PER_M = 8.s
+    private const val DURATION_PER_M = 160
 
     fun init()
     {
