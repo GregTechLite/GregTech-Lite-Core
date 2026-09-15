@@ -4687,6 +4687,9 @@ gtlitecore.command.material.usage=用法：/gtlite material
 gtlitecore.command.material.info.usage=用法：/gtlite material info
 gtlitecore.command.material.info.name=材料名：%s 注册模组：%s
 gtlitecore.command.material.info.color=颜色：%s 图标集：%s
+gtlitecore.command.material.component.usage=用法：/gtlite material component
+gtlitecore.command.material.component.formula=化学式：%s
+gtlitecore.command.material.component.components=材料成分：%s
 
 gtlitecore.command.error.not_player=这条命令只能由玩家使用。
 gtlitecore.command.error.no_item=必须在主/副手持有物品时执行此命令。

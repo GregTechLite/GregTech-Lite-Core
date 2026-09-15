@@ -4687,6 +4687,9 @@ gtlitecore.command.material.usage=Usage: /gtlite material
 gtlitecore.command.material.info.usage=Usage: /gtlite material info
 gtlitecore.command.material.info.name=Name: %s Mod: %s
 gtlitecore.command.material.info.color=Color: %s Icon Set: %s
+gtlitecore.command.material.component.usage=Usage: /gtlite material component
+gtlitecore.command.material.component.formula=Chemical Formula: %s
+gtlitecore.command.material.component.components=Components: %s
 
 gtlitecore.command.error.not_player=This command can only executed by player.
 gtlitecore.command.error.no_item=Must has item on main/off hand when command executed.

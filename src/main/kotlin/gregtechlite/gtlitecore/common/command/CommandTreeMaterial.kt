@@ -8,6 +8,7 @@ class CommandTreeMaterial : CommandTreeBase()
     init
     {
         addSubcommand(CommandMaterialInfo())
+        addSubcommand(CommandMaterialComponent())
     }
 
     override fun getName(): String = "material"
