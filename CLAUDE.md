@@ -19,11 +19,11 @@ Support **Mixins** (`org.spongepowered.asm.mixin`) and **MixinExtras** (`com.lla
 
 Browse raw source code instead of guessing APIs:
 
-| Source | Path |
-|---|---|
-| Minecraft Source Code | `build/rfg/minecraft-src` |
-| GregTech (GTCEu) Source Code | `GregTech/` — workspace-local clone of `https://github.com/GregTechCEu/GregTech` |
-| Modular UI 2 Source Code | `ModularUI/` — workspace-local clone of `https://github.com/CleanroomMC/ModularUI` |
+| Source                       | Path                                                                               |
+|------------------------------|------------------------------------------------------------------------------------|
+| Minecraft Source Code        | `build/rfg/minecraft-src`                                                          |
+| GregTech (GTCEu) Source Code | `GregTech/` — workspace-local clone of `https://github.com/GregTechCEu/GregTech`   |
+| Modular UI 2 Source Code     | `ModularUI/` — workspace-local clone of `https://github.com/CleanroomMC/ModularUI` |
 
 MorphismLib sources are not provided in this repository; find and add them yourself if needed.
 Note: `libs/*.jar` (GregTech, MorphismLib) are **build dependencies only — do not use them as reference source code**.
@@ -53,9 +53,10 @@ Module layout — keep files under the package matching their domain: `api`, `co
 6. **MoreCollections for hot paths.** When high performance is required, use `MoreCollections` (`gregtechlite.gtlitecore.api.collection.MoreCollections`); it wraps **FastUtil** and some Java collections — see the `// region` blocks in `api/collection/MoreCollections.kt`.
 7. Use `BlockVariant` (`gregtechlite.gtlitecore.api.block.variant.BlockVariant`) and its related system but not `MetaBlock` / `VariantBlock` by GregTech.
 8. Use `BlockAttributeRegistry` (`gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry`) and its related system (registered in `GTLiteAPI`) but not block tier registration in `GregTechAPI` by GregTech.
-9. **Sync via MetaTileEntitySyncer.** Use `MetaTileEntitySyncer` and its related system by default (see `api/metatileentity/sync/MetaTileEntitySyncer.kt`); do not hand-write `writeToNBT` / `readFromNBT` or custom packets for synced fields.
-10. **Never hand-edit `docs/*`** — it is the `dokkaGfm` output (git-ignored); regenerate it instead.
-11. **Never hand-edit `manuscripts/*`** — manuscriptal (SAI2) asset sources archived by the `processManuscriptalResources` task; edit the originals under `src/main/resources/textures/` and re-run the task.
+9. Use extension methods `t` / `s` / `min` / `hr` in `GTLiteValues` for time / duration representation in progress or recipe map duration.
+10. **Sync via MetaTileEntitySyncer.** Use `MetaTileEntitySyncer` and its related system by default (see `api/metatileentity/sync/MetaTileEntitySyncer.kt`); do not hand-write `writeToNBT` / `readFromNBT` or custom packets for synced fields.
+11. **Never hand-edit `docs/*`** — it is the `dokkaGfm` output (git-ignored); regenerate it instead.
+12. **Never hand-edit `manuscripts/*`** — manuscriptal (SAI2) asset sources archived by the `processManuscriptalResources` task; edit the originals under `src/main/resources/textures/` and re-run the task.
 
 ### Examples
 
