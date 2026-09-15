@@ -1,5 +1,5 @@
 {
-  "parent": "gtlitecore:item/fuel_rod_enriched",
+  "parent": "gtlitecore:item/fuel_rod_enriched_depleted",
   "textures": {
     "4": "gregtech:items/material_sets/dull/fuel_rod_depleted"
   }
