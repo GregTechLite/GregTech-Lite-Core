@@ -12,7 +12,7 @@ import gregtechlite.gtlitecore.api.unification.ore.GTLiteStoneTypes
 import gregtechlite.gtlitecore.common.CommonProxy
 import gregtechlite.gtlitecore.common.EventHandlers
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
-import gregtechlite.gtlitecore.common.command.CommandMaterialComponent
+import gregtechlite.gtlitecore.common.command.CommandTreeMaterial
 import gregtechlite.gtlitecore.common.cover.GTLiteCoverBehaviors
 import gregtechlite.gtlitecore.common.entity.GTLiteMetaEntities
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems
@@ -157,7 +157,7 @@ internal class CoreModule : CustomModule
         val commandManager = CommandManagerImpl.instance
         GTLiteAPI.commandManager = commandManager
         commandManager.registerServerCommand(event)
-        GTLiteAPI.commandManager.addCommand(CommandMaterialComponent())
+        GTLiteAPI.commandManager.addCommand(CommandTreeMaterial())
     }
     
     override fun serverStarted(event: FMLServerStartedEvent)
