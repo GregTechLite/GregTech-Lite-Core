@@ -2,11 +2,11 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "gtlitecore:blocks/casings/nuclear/reactor_core.frame",
-		"2": "gregtech:blocks/casings/solid/machine_casing_clean_stainless_steel",
+		"2": "gregtech:blocks/casings/solid/machine_casing_solid_steel",
 		"3": "gregtech:blocks/casings/transparent/cleanroom_glass",
 		"4": "#all",
 		"5": "gtlitecore:blocks/casings/nuclear/reactor_core.pad",
-		"particle": "gregtech:blocks/casings/solid/machine_casing_clean_stainless_steel"
+		"particle": "gregtech:blocks/casings/solid/machine_casing_solid_steel"
 	},
 	"elements": [
 		{
