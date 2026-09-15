@@ -4683,11 +4683,14 @@ itemGroup.gtlite.decoration=GregTech Lite | Decorations
 itemGroup.gtlite.food=GregTech Lite | Foods
 
 # Commands
-gtlitecore.command.component.usage=Usage: /gtlite component
-gtlitecore.command.component.print=Material Components: %s
-gtlitecore.command.component.no_item=Must has item on main/off hand when command executed.
-gtlitecore.command.component.no_component=Item has not material component yet.
-gtlitecore.command.component.not_player=This command can only executed by player.
+gtlitecore.command.material.usage=Usage: /gtlite material
+gtlitecore.command.material.info.usage=Usage: /gtlite material info
+gtlitecore.command.material.info.name=Name: %s Mod: %s
+gtlitecore.command.material.info.color=Color: %s Icon Set: %s
+
+gtlitecore.command.error.not_player=This command can only executed by player.
+gtlitecore.command.error.no_item=Must has item on main/off hand when command executed.
+gtlitecore.command.error.no_component=Item has not material component yet.
 
 # Sounds
 gtlitecore.subtitle.tick.stellar_forge.name=Stellar Forge: Supernova Explosion

@@ -4683,11 +4683,14 @@ itemGroup.gtlite.decoration=格雷科技精简版 | 装饰
 itemGroup.gtlite.food=格雷科技精简版 | 食品
 
 # Commands
-gtlitecore.command.component.usage=用法：/gtlite component
-gtlitecore.command.component.print=材料成分：%s
-gtlitecore.command.component.no_item=必须在主/副手持有物品时执行此命令。
-gtlitecore.command.component.no_component=当前手持物品没有材料成分。
-gtlitecore.command.component.not_player=这条命令只能由玩家使用。
+gtlitecore.command.material.usage=用法：/gtlite material
+gtlitecore.command.material.info.usage=用法：/gtlite material info
+gtlitecore.command.material.info.name=材料名：%s 注册模组：%s
+gtlitecore.command.material.info.color=颜色：%s 图标集：%s
+
+gtlitecore.command.error.not_player=这条命令只能由玩家使用。
+gtlitecore.command.error.no_item=必须在主/副手持有物品时执行此命令。
+gtlitecore.command.error.no_component=当前手持物品没有材料成分。
 
 # Sounds
 gtlitecore.subtitle.tick.stellar_forge.name=恒星炎炀锻炉：超新星爆发
