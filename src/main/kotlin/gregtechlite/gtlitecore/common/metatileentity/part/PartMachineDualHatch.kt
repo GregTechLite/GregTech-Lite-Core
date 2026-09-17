@@ -45,6 +45,7 @@ import gregtech.common.mui.widget.GTFluidSlot
 import gregtechlite.gtlitecore.api.extension.collapseInventorySlotContents
 import gregtechlite.gtlitecore.api.extension.square
 import gregtechlite.gtlitecore.api.t
+import gregtechlite.gtlitecore.client.util.renderColorChannelOverlay
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.mixins.hooks.Implemented
 import kotlin.math.max
@@ -319,6 +320,7 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
         renderer.renderSided(frontFacing, renderState, translation, pipeline)
         val overlay = if (isExportHatch) GTLiteOverlays.DUAL_HATCH_OUTPUT_OVERLAY else GTLiteOverlays.DUAL_HATCH_INPUT_OVERLAY
         overlay.renderSided(frontFacing, renderState, translation, pipeline)
+        renderColorChannelOverlay(renderState, translation, pipeline)
     }
     
     override fun writeInitialSyncData(buf: PacketBuffer)

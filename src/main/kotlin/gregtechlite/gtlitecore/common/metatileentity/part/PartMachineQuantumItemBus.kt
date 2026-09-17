@@ -54,6 +54,7 @@ import gregtechlite.gtlitecore.api.extension.collapseInventorySlotContents
 import gregtechlite.gtlitecore.api.extension.square
 import gregtechlite.gtlitecore.api.gui.sync.SafeIntSyncValue
 import gregtechlite.gtlitecore.api.t
+import gregtechlite.gtlitecore.client.util.renderColorChannelOverlay
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import kotlin.math.max
 import kotlin.math.min
@@ -420,5 +421,6 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
             baseTexture.render(renderState, translation, coloredPipeline)
         if (shouldRenderOverlay())
             GTLiteOverlays.QUANTUM_ITEM_BUS_OVERLAY.renderSided(frontFacing, renderState, translation, pipeline)
+        renderColorChannelOverlay(renderState, translation, pipeline)
     }
 }
