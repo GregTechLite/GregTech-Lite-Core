@@ -16,6 +16,11 @@ import net.minecraftforge.common.config.Config.RequiresMcRestart
 @Config(modid = MOD_ID, name = "$MOD_ID/$MOD_ID")
 object GTLiteConfigHolder
 {
+    @Comment("Config options for Client-side rendering features")
+    @Name("Client Options")
+    @JvmField
+    val client = ClientOptions()
+
     @Comment("Config options for Mod Compatibility features")
     @Name("Compatibility Options")
     @RequiresMcRestart
@@ -45,6 +50,15 @@ object GTLiteConfigHolder
     @RequiresMcRestart
     @JvmField
     val worldgen = WorldGenOptions()
+
+    class ClientOptions
+    {
+        @Comment("Hide the painting color for Color-Based Distinct support buses or hatches.",
+                 "Default: false")
+        @Name("Hide Multiblock Part Body Color")
+        @JvmField
+        var hideMultiblockPartBodyColor: Boolean = false
+    }
 
     class CompatibilityOptions
     {

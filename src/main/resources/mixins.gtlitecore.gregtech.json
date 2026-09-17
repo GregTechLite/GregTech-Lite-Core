@@ -59,6 +59,7 @@
     "client.MixinMetaTileEntityFluidHatch",
     "client.MixinMetaTileEntityItemBus",
     "client.MixinMetaTileEntityLargeTurbine",
+    "client.MixinMetaTileEntityMultiblockPart",
     "client.MixinMetaValueItem",
     "client.MixinProspectingTexture"
   ]
