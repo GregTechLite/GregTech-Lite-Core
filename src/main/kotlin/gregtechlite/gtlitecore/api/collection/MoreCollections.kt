@@ -6,6 +6,8 @@ import com.google.common.collect.HashBasedTable
 import com.google.common.collect.HashBiMap
 import it.unimi.dsi.fastutil.chars.Char2ObjectMap
 import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap
+import it.unimi.dsi.fastutil.ints.Int2ByteMap
+import it.unimi.dsi.fastutil.ints.Int2ByteOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2LongMap
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
@@ -196,5 +198,11 @@ fun <K> obj2LongHashMapOf(map: Map<K, Long>): Object2LongMap<K> = Object2LongOpe
 fun <K> obj2LongHashMapOf(vararg pairs: Pair<K, Long>): Object2LongMap<K> = Object2LongOpenHashMap<K>().apply {
     pairs.forEach { put(it.first, it.second) }
 }
+
+// endregion
+
+// region FastUtil: Int2ByteOpenHashMap
+
+fun int2ByteHashMapOf(): Int2ByteMap = Int2ByteOpenHashMap()
 
 // endregion
