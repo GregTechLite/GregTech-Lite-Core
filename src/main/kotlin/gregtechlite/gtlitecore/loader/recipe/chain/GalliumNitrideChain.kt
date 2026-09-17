@@ -19,11 +19,9 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.Sodium
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.plate
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
@@ -125,7 +123,7 @@ internal object GalliumNitrideChain
             input(dust, GalliumTrioxide, 5)
             fluidInputs(Ammonia.getFluid(2000))
             output(dust, GalliumNitride, 4)
-            fluidOutputs(Steam.getFluid(3 * SU))
+            fluidOutputs(Water.getFluid(3000))
             EUt(VA[LuV])
             duration(12.s + 10.t)
             temperature(1023)

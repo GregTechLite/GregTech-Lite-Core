@@ -41,7 +41,6 @@ import gregtech.api.unification.material.Materials.Rubber
 import gregtech.api.unification.material.Materials.SiliconeRubber
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SodiumBisulfate
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.StyreneButadieneRubber
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfuricAcid
@@ -66,7 +65,6 @@ import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_INGOT
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_PLATE
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_RING
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_ROD
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
@@ -478,7 +476,7 @@ internal object RubbersChain
             fluidInputs(PhosphorylChloride.getFluid(3000))
             fluidOutputs(PhosphonitrilicChlorideTrimer.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(6000))
-            fluidOutputs(Steam.getFluid(3 * SU))
+            fluidOutputs(Water.getFluid(3000))
             EUt(VA[EV])
             duration(4.s)
         }

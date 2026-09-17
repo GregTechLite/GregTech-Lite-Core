@@ -42,7 +42,6 @@ import gregtech.api.unification.material.Materials.RefineryGas
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.SodiumHydroxide
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.SteamCrackedButadiene
 import gregtech.api.unification.material.Materials.SteamCrackedButane
 import gregtech.api.unification.material.Materials.SteamCrackedEthane
@@ -55,7 +54,6 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
@@ -441,7 +439,7 @@ internal object OilsChain
             input(dust, Aluminium, 2)
             fluidInputs(SulfuricAcid.getFluid(3000))
             output(dust, AluminiumSulfite, 14)
-            fluidOutputs(Steam.getFluid(3 * SU))
+            fluidOutputs(Water.getFluid(3000))
             EUt(VA[MV])
             duration(5.s)
         }

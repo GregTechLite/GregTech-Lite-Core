@@ -58,7 +58,6 @@ import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Quicklime
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.SodiumSulfide
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfuricAcid
@@ -70,7 +69,6 @@ import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
@@ -235,8 +233,8 @@ internal object NaquadahProcessing
         ROASTER_RECIPES.addRecipe {
             input(dust, TriniumTrioxide, 5)
             fluidInputs(HydrogenSulfide.getFluid(2000))
-            output(dust, TriniumSulfide, 2)
-            fluidOutputs(Steam.getFluid(2 * SU))
+            output(dust, TriniumSulfide, 4)
+            fluidOutputs(Water.getFluid(2000))
             EUt(VA[HV])
             duration(2.s + 15.t)
         }

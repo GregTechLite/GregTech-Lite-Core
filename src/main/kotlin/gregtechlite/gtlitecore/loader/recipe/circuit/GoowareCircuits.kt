@@ -38,7 +38,6 @@ import gregtech.api.unification.material.Materials.RutheniumTriniumAmericiumNeut
 import gregtech.api.unification.material.Materials.SamariumMagnetic
 import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.SolderingAlloy
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.TitaniumTetrachloride
 import gregtech.api.unification.material.Materials.Trinium
 import gregtech.api.unification.material.Materials.Water
@@ -57,7 +56,6 @@ import gregtech.common.items.MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT
 import gregtech.common.items.MetaItems.ELECTRIC_MOTOR_LuV
 import gregtech.common.items.MetaItems.FLUID_CELL_LARGE_STAINLESS_STEEL
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
@@ -217,7 +215,7 @@ internal object GoowareCircuits
             fluidInputs(HydroselenicAcid.getFluid(2000))
             output(dust, CopperGalliumIndiumSelenide, 5)
             fluidOutputs(Oxygen.getFluid(6000))
-            fluidOutputs(Steam.getFluid(2 * SU))
+            fluidOutputs(Water.getFluid(2000))
             EUt(VA[LuV])
             duration(5.s)
         }

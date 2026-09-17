@@ -20,13 +20,12 @@ import gregtech.api.unification.material.Materials.Gold
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.NitricOxide
 import gregtech.api.unification.material.Materials.Silver
-import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.nugget
 import gregtech.api.unification.ore.OrePrefix.springSmall
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
@@ -71,7 +70,7 @@ internal object GoldenFruitsProcessing
             fluidInputs(HydrochloricAcid.getFluid(2000))
             fluidOutputs(ChloroauricAcid.getFluid(1000))
             fluidOutputs(NitricOxide.getFluid(1000))
-            fluidOutputs(Steam.getFluid(2 * SU))
+            fluidOutputs(Water.getFluid(2000))
             EUt(VA[LV])
             duration(10.s)
         }

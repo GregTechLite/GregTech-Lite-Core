@@ -27,7 +27,6 @@ import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.Soapstone
 import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.SodiumHydroxide
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Talc
 import gregtech.api.unification.material.Materials.TricalciumPhosphate
 import gregtech.api.unification.material.Materials.Water
@@ -35,7 +34,6 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
@@ -298,7 +296,7 @@ internal object AnimalFatProcessing
             input(dust, SodiumHydroxide, 3)
             fluidInputs(StearicAcid.getFluid(1000))
             fluidOutputs(SodiumStearate.getFluid(1000))
-            fluidOutputs(Steam.getFluid(1 * SU))
+            fluidOutputs(Water.getFluid(1000))
             EUt(VA[MV])
             duration(2.s + 10.t)
         }

@@ -46,7 +46,6 @@ import gregtech.api.unification.material.Materials.Rutile
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.SodiumHydroxide
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.SulfuricAcid
@@ -54,7 +53,6 @@ import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
@@ -200,7 +198,7 @@ internal object DyesChain
             input(dust, Massicot, 2)
             fluidInputs(NitricAcid.getFluid(2000))
             output(dust, LeadNitrate, 9)
-            fluidOutputs(Steam.getFluid(1 * SU))
+            fluidOutputs(Water.getFluid(1000))
             EUt(VA[MV])
             duration(4.s)
         }
@@ -265,7 +263,7 @@ internal object DyesChain
             input(dust, Iodine, 4)
             output(dust, Erythrosine, 37)
             fluidOutputs(Hydrogen.getFluid(4000))
-            fluidOutputs(Steam.getFluid(2 * SU))
+            fluidOutputs(Water.getFluid(2000))
             EUt(VHA[HV])
             duration(7.s + 10.t)
         }
@@ -472,7 +470,7 @@ internal object DyesChain
             fluidInputs(Oxygen.getFluid(2000))
             output(dust, EosinY, 37)
             fluidOutputs(Butanol.getFluid(1000))
-            fluidOutputs(Steam.getFluid(2 * SU))
+            fluidOutputs(Water.getFluid(2000))
             EUt(VA[IV])
             duration(10.s)
         }

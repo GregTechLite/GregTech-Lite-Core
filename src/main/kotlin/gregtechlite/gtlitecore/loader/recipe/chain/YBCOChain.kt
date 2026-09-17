@@ -21,14 +21,12 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.NitrogenDioxide
 import gregtech.api.unification.material.Materials.Oxygen
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Sulfur
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Yttrium
 import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
@@ -106,7 +104,7 @@ internal object YBCOChain
             input(dust, Tenorite, 2)
             fluidInputs(NitricAcid.getFluid(2000))
             output(dust, CopperNitrate, 9)
-            fluidOutputs(Steam.getFluid(1 * SU))
+            fluidOutputs(Water.getFluid(1000))
             EUt(VA[MV])
             duration(8.s)
         }

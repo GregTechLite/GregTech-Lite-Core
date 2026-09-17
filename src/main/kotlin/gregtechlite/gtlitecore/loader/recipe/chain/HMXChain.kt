@@ -7,9 +7,8 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.unification.material.Materials.Ammonia
 import gregtech.api.unification.material.Materials.DinitrogenTetroxide
 import gregtech.api.unification.material.Materials.Ethylene
-import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
@@ -30,7 +29,7 @@ internal object HMXChain
             fluidInputs(Formaldehyde.getFluid(6000))
             fluidInputs(Ammonia.getFluid(4000))
             output(dust, Hexamethylenetetramine, 22)
-            fluidOutputs(Steam.getFluid(6 * SU))
+            fluidOutputs(Water.getFluid(6000))
             EUt(VA[HV])
             duration(5.s)
         }

@@ -15,9 +15,8 @@ import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Platinum
-import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
@@ -53,7 +52,7 @@ internal object PMMAChain
             fluidInputs(Ammonia.getFluid(3000))
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(HydrogenCyanide.getFluid(3000))
-            fluidOutputs(Steam.getFluid(8 * SU))
+            fluidOutputs(Water.getFluid(8000))
             EUt(VA[HV])
             duration(3.s)
         }

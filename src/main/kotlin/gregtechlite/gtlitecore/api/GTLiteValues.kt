@@ -51,10 +51,4 @@ val Int.min
 val Int.hr
     get() = this * 60.min
 
-/**
- * Represent a Unit of Steam, based on the conversion radio of Steam and (Distilled) Water,
- * calculated by its Fluid Heater recipes (6:960) and Turbine recipes (4:640).
- */
-const val SU = 160
-
 // endregion
