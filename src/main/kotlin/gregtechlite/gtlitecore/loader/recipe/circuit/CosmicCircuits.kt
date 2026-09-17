@@ -41,7 +41,6 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sodium
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Thorium
@@ -66,7 +65,6 @@ import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.QUBIT_CENTRAL_PROCESSING_UNIT_WAFER
 import gregtech.common.items.MetaItems.SENSOR_UHV
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
@@ -241,7 +239,7 @@ internal object CosmicCircuits
             fluidInputs(Hydrogen.getFluid(20000))
             output(dust, Tetracene, 30)
             fluidOutputs(Acetylene.getFluid(1000))
-            fluidOutputs(Steam.getFluid(10 * SU))
+            fluidOutputs(Water.getFluid(10000))
             EUt(VA[UV])
             duration(10.s)
             cleanroom()

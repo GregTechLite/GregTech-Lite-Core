@@ -12,10 +12,9 @@ import gregtech.api.unification.material.Materials.Magnesium
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Palladium
 import gregtech.api.unification.material.Materials.Silver
-import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.spring
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
@@ -41,7 +40,7 @@ internal object EthyleneGlycolChain
             fluidInputs(Oxygen.getFluid(12000))
             fluidOutputs(EthyleneOxide.getFluid(6000))
             fluidOutputs(CarbonDioxide.getFluid(2000))
-            fluidOutputs(Steam.getFluid(2 * SU))
+            fluidOutputs(Water.getFluid(2000))
             EUt(VA[HV])
             duration(7.s + 10.t)
         }
@@ -54,7 +53,7 @@ internal object EthyleneGlycolChain
             fluidInputs(Oxygen.getFluid(12000))
             fluidOutputs(Acetaldehyde.getFluid(6000))
             fluidOutputs(CarbonDioxide.getFluid(2000))
-            fluidOutputs(Steam.getFluid(2 * SU))
+            fluidOutputs(Water.getFluid(2000))
             EUt(VA[EV])
             duration(15.s)
         }

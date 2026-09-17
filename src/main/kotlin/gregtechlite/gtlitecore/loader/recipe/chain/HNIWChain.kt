@@ -32,12 +32,10 @@ import gregtech.api.unification.material.Materials.Ice
 import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.NitricOxide
 import gregtech.api.unification.material.Materials.Oxygen
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
@@ -155,7 +153,7 @@ internal object HNIWChain
             fluidInputs(NitricAcid.getFluid(2000))
             fluidOutputs(Glyoxal.getFluid(2000))
             fluidOutputs(NitricOxide.getFluid(1000))
-            fluidOutputs(Steam.getFluid(3 * SU))
+            fluidOutputs(Water.getFluid(3000))
             EUt(VA[HV])
             duration(2.s)
         }

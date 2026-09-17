@@ -6,10 +6,9 @@ import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.ARC_FURNACE_RECIPES
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
-import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
@@ -33,7 +32,7 @@ internal object LithiumNiobateChain
             fluidInputs(HydrochloricAcid.getFluid(10000))
             output(dust, NiobiumPentachloride, 12)
             fluidOutputs(Hydrogen.getFluid(4000))
-            fluidOutputs(Steam.getFluid(3 * SU))
+            fluidOutputs(Water.getFluid(3000))
             EUt(VA[EV])
             duration(20.s)
         }

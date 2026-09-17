@@ -35,7 +35,6 @@ import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SodiumHydroxide
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.crushed
@@ -45,7 +44,6 @@ import gregtech.api.unification.ore.OrePrefix.dustImpure
 import gregtech.api.unification.ore.OrePrefix.dustPure
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtechlite.gtlitecore.api.SU
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
@@ -251,7 +249,7 @@ internal object AluminiumSodiumProcessing
             input(dust, Alumina, 5)
             fluidInputs(Hydrogen.getFluid(3000))
             output(ingot, Aluminium)
-            fluidOutputs(Steam.getFluid(3 * SU))
+            fluidOutputs(Water.getFluid(3000))
             EUt(VA[MV])
             duration(1.min + 20.s)
             blastFurnaceTemp(963) // Cupronickel
