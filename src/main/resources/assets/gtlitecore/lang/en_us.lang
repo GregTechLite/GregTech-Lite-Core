@@ -3348,7 +3348,7 @@ gtlitecore.top.wireless_hatch.amperage=Amperage: %sA
 gtlitecore.top.wireless_hatch.overflow=Overflow: %s EU
 gtlitecore.top.color_channel.part=Color Channel:
 gtlitecore.top.color_channel.controller=Color Channels:
-gtlitecore.top.color_channel.shared=Shared
+gtlitecore.top.color_channel.uncolored=Uncolored
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s

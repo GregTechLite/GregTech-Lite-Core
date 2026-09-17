@@ -3348,7 +3348,7 @@ gtlitecore.top.wireless_hatch.amperage=电流: %sA
 gtlitecore.top.wireless_hatch.overflow=溢出: %s EU
 gtlitecore.top.color_channel.part=染色频道:
 gtlitecore.top.color_channel.controller=染色频道:
-gtlitecore.top.color_channel.shared=共享
+gtlitecore.top.color_channel.uncolored=未染色
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s

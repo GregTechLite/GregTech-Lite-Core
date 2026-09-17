@@ -73,7 +73,7 @@ class ColorChannelInfoProvider : IProbeInfoProvider
     private fun addControllerChannels(info: IProbeInfo, controller: RecipeMapMultiblockController)
     {
         val channels = sortedSetOf<Int>()
-        var shared = false
+        var uncolored = false
 
         for (part in controller.multiblockParts)
         {
@@ -82,7 +82,7 @@ class ColorChannelInfoProvider : IProbeInfoProvider
 
             val channel = part.colorChannel
             if (channel == ColorChannel.NONE)
-                shared = true
+                uncolored = true
             else
                 channels.add(channel)
         }
@@ -92,8 +92,8 @@ class ColorChannelInfoProvider : IProbeInfoProvider
         val entries = mutableListOf<String>()
         for (channel in channels)
             entries.add(channelName(channel))
-        if (shared)
-            entries.add(TextFormatting.GRAY.toString() + loc("gtlitecore.top.color_channel.shared"))
+        if (uncolored)
+            entries.add(TextFormatting.GRAY.toString() + loc("gtlitecore.top.color_channel.uncolored"))
 
         info.text(TextStyleClass.LABEL.toString() + loc("gtlitecore.top.color_channel.controller") + " "
                 + entries.joinToString(TextFormatting.GRAY.toString() + ", "))

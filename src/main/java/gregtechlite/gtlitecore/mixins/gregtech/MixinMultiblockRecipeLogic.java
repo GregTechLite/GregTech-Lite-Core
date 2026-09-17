@@ -348,6 +348,12 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
     @Unique
     private int gtlitecore$lastLoggedChannelMask = 0;
 
+    @Unique
+    private int gtlitecore$lastChannel = -2;
+
+    @Unique
+    private @Nullable IItemHandlerModifiable gtlitecore$lastBus = null;
+
     @Inject(method = "trySearchNewRecipe",
             at = @At("HEAD"),
             cancellable = true)
@@ -383,20 +389,20 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
 
             IMultiblockAbilityPart<?> abilityPart = (IMultiblockAbilityPart<?>) part;
             int channel = ColorChannel.ofPaintingColor(((MetaTileEntity) part).getPaintingColor());
-            int bucketIndex = channel == ColorChannel.NONE ? 0 : channel + 1;
+            int cacheIdx = channel == ColorChannel.NONE ? 0 : channel + 1;
 
             if (abilityPart.getAbilities().contains(MultiblockAbility.IMPORT_ITEMS))
             {
                 AbilityInstances instances = new AbilityInstances(MultiblockAbility.IMPORT_ITEMS);
                 abilityPart.registerAbilities(instances);
-                gtlitecore$addUniqueCache(gtlitecore$buildItemCache(itemCache, bucketIndex),
+                gtlitecore$addUniqueCache(gtlitecore$buildItemCache(itemCache, cacheIdx),
                         instances.cast());
             }
             if (abilityPart.getAbilities().contains(MultiblockAbility.IMPORT_FLUIDS))
             {
                 AbilityInstances instances = new AbilityInstances(MultiblockAbility.IMPORT_FLUIDS);
                 abilityPart.registerAbilities(instances);
-                gtlitecore$addUniqueCache(gtlitecore$buildFluidCache(fluidCache, bucketIndex),
+                gtlitecore$addUniqueCache(gtlitecore$buildFluidCache(fluidCache, cacheIdx),
                         instances.cast());
             }
         }
@@ -411,7 +417,7 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
         if (presentMask != gtlitecore$lastLoggedChannelMask)
         {
             gtlitecore$lastLoggedChannelMask = presentMask;
-            GTLiteValues.LOGGER.info("[HatchChannel] controller at {} channel set changed, channels in use: {}",
+            GTLiteValues.LOGGER.info("[ColorChannel] controller at {} channel set changed, channels in use: {}",
                     controller.getPos(), gtlitecore$channelList(presentMask));
         }
 
@@ -427,26 +433,58 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
         boolean allowSameFluidFill = getInputTank().allowSameFluidFill();
         boolean anyRecipeFound = false;
 
+        int[] groupCache = new int[ColorChannel.COUNT + 1];
+        int groupCount = 0;
         for (int channel = 0; channel < ColorChannel.COUNT; channel++)
         {
-            if ((presentMask & (1 << channel)) == 0)
-                continue;
+            if ((presentMask & (1 << channel)) != 0)
+                groupCache[groupCount++] = channel + 1;
+        }
+        if (itemCache[0] != null || fluidCache[0] != null)
+            groupCache[groupCount++] = 0;
+
+        int startGroup = 0; // do robin rotation
+        int lastCache = gtlitecore$lastChannel == ColorChannel.NONE ? 0 : gtlitecore$lastChannel + 1;
+        for (int i = 0; i < groupCount; i++)
+        {
+            if (groupCache[i] == lastCache)
+            {
+                startGroup = (i + 1) % groupCount;
+                break;
+            }
+        }
+
+        for (int groupIndex = 0; groupIndex < groupCount; groupIndex++)
+        {
+            int cache = groupCache[(startGroup + groupIndex) % groupCount];
+            int channel = cache == 0 ? ColorChannel.NONE : cache - 1;
 
             ObjectList<IItemHandlerModifiable> itemGroup = new ObjectArrayList<>();
-            gtlitecore$addUniqueCache(itemGroup, itemCache[0]);
-            gtlitecore$addUniqueCache(itemGroup, itemCache[channel + 1]);
+            gtlitecore$addUniqueCache(itemGroup, itemCache[cache]);
 
             ObjectList<IFluidTank> fluidGroup = new ObjectArrayList<>();
-            gtlitecore$addUniqueCache(fluidGroup, fluidCache[0]);
-            gtlitecore$addUniqueCache(fluidGroup, fluidCache[channel + 1]);
+            gtlitecore$addUniqueCache(fluidGroup, fluidCache[cache]);
 
             if (distinct)
             {
                 if (itemGroup.isEmpty())
                     continue;
 
-                for (IItemHandlerModifiable bus : itemGroup)
+                int startBus = 0; // do intra rotation
+                if (gtlitecore$lastBus != null)
                 {
+                    int found = itemGroup.indexOf(gtlitecore$lastBus);
+                    if (found >= 0)
+                        startBus = (found + 1) % itemGroup.size();
+                }
+
+                for (int i = 0; i < itemGroup.size(); i++)
+                {
+                    IItemHandlerModifiable bus = itemGroup.get((startBus + i) % itemGroup.size());
+
+                    if (invalidatedInputList.contains(bus))
+                        continue;
+
                     ObjectList<IFluidTank> tanks = new ObjectArrayList<>(fluidGroup);
                     gtlitecore$addHandlerFluidTanks(tanks, bus);
                     IMultipleTankHandler fluids = new FluidTankList(allowSameFluidFill, tanks);
@@ -455,16 +493,21 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
                             ? previousRecipe : findRecipe(maxVoltage, bus, fluids);
 
                     if (currentRecipe == null)
+                    {
+                        invalidatedInputList.add(bus);
                         continue;
+                    }
                     anyRecipeFound = true;
                     if (!checkRecipe(currentRecipe))
                         continue;
 
-                    previousRecipe = currentRecipe;
-                    currentDistinctInputBus = bus;
                     if (gtlitecore$prepareRecipeDistinctByChannel(currentRecipe, bus, fluids))
                     {
+                        previousRecipe = currentRecipe;
+                        currentDistinctInputBus = bus;
                         lastRecipeIndex = gtlitecore$busIndex(bus);
+                        gtlitecore$lastChannel = channel;
+                        gtlitecore$lastBus = bus;
                         return true;
                     }
                 }
@@ -482,13 +525,13 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
                         ? previousRecipe : findRecipe(maxVoltage, items, fluids);
 
                 if (currentRecipe != null)
-                {
-                    previousRecipe = currentRecipe;
                     anyRecipeFound = true;
-                }
 
                 if (currentRecipe != null && checkRecipe(currentRecipe) && prepareRecipe(currentRecipe, items, fluids))
                 {
+                    previousRecipe = currentRecipe;
+                    gtlitecore$lastChannel = channel;
+                    gtlitecore$lastBus = null;
                     return true;
                 }
             }
@@ -499,27 +542,27 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
     }
 
     @Unique
-    private ObjectList<IItemHandlerModifiable> gtlitecore$buildItemCache(ObjectList<IItemHandlerModifiable>[] buckets, int index)
+    private ObjectList<IItemHandlerModifiable> gtlitecore$buildItemCache(ObjectList<IItemHandlerModifiable>[] caches, int index)
     {
-        ObjectList<IItemHandlerModifiable> bucket = buckets[index];
-        if (bucket == null)
+        ObjectList<IItemHandlerModifiable> cache = caches[index];
+        if (cache == null)
         {
-            bucket = new ObjectArrayList<>();
-            buckets[index] = bucket;
+            cache = new ObjectArrayList<>();
+            caches[index] = cache;
         }
-        return bucket;
+        return cache;
     }
 
     @Unique
-    private ObjectList<IFluidTank> gtlitecore$buildFluidCache(ObjectList<IFluidTank>[] buckets, int index)
+    private ObjectList<IFluidTank> gtlitecore$buildFluidCache(ObjectList<IFluidTank>[] caches, int index)
     {
-        ObjectList<IFluidTank> bucket = buckets[index];
-        if (bucket == null)
+        ObjectList<IFluidTank> cache = caches[index];
+        if (cache == null)
         {
-            bucket = new ObjectArrayList<>();
-            buckets[index] = bucket;
+            cache = new ObjectArrayList<>();
+            caches[index] = cache;
         }
-        return bucket;
+        return cache;
     }
 
     @Unique
