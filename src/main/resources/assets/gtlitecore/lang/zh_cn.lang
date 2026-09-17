@@ -3346,6 +3346,9 @@ gtlitecore.top.wireless_hatch.no_channel=未连接频道
 gtlitecore.top.wireless_hatch.error_unknown=未知错误
 gtlitecore.top.wireless_hatch.amperage=电流: %sA
 gtlitecore.top.wireless_hatch.overflow=溢出: %s EU
+gtlitecore.top.color_channel.part=染色频道:
+gtlitecore.top.color_channel.controller=染色频道:
+gtlitecore.top.color_channel.shared=共享
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s
