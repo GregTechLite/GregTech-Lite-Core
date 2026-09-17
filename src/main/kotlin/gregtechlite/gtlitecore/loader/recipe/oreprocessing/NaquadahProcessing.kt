@@ -235,7 +235,7 @@ internal object NaquadahProcessing
         ROASTER_RECIPES.addRecipe {
             input(dust, TriniumTrioxide, 5)
             fluidInputs(HydrogenSulfide.getFluid(2000))
-            output(dust, TriniumSulfide, 2)
+            output(dust, TriniumSulfide, 4)
             fluidOutputs(Steam.getFluid(2 * SU))
             EUt(VA[HV])
             duration(2.s + 15.t)
