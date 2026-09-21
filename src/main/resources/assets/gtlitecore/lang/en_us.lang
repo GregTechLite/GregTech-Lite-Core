@@ -4562,6 +4562,7 @@ gtlitecore.jei.group.nuclear_reactor_core=Nuclear Reactor Cores
 gtlitecore.jei.group.borosilicate_glass=Borosilicate Glasses
 gtlitecore.jei.group.manipulator=Manipulator Blocks
 gtlitecore.jei.group.shielding_core=Shielding Core Blocks
+gtlitecore.jei.group.quantum_storage_unit=Quantum Storage Units
 gtlitecore.jei.group.additional_mold=Shape Molds
 gtlitecore.jei.group.additional_extruder=Shape Extruders
 gtlitecore.jei.group.slicer_blade=Slicer Blades
