@@ -44,7 +44,6 @@ import kotlin.math.min
 
 class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(id, NUCLEAR_FUELS, EV)
 {
-
     private var coreTier = 0
     private var isExcessMode = false
 
@@ -225,16 +224,13 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
     private inner class NuclearReactorWorkableHandler(mte: RecipeMapMultiblockController)
         : MultiblockFuelRecipeLogic(mte)
     {
-
         override fun boostProduction(production: Long): Long
             = (production * getBoostedFromCoreTier(coreTier)).toLong()
 
         override fun drawEnergy(recipeEUt: Long, simulate: Boolean): Boolean
         {
-            val generateEut = if(isExcessMode) min(recipeEUt,this.energyCapacity-this.energyStored) else recipeEUt
-            return super.drawEnergy(generateEut, simulate)
+            val generateEUt = if (isExcessMode) min(recipeEUt, energyCapacity - energyStored) else recipeEUt
+            return super.drawEnergy(generateEUt, simulate)
         }
-
     }
-
 }
