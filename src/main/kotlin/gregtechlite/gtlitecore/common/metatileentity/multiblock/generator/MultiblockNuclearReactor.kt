@@ -40,6 +40,7 @@ import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import kotlin.math.min
 
 class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(id, NUCLEAR_FUELS, EV)
 {
@@ -229,7 +230,10 @@ class MultiblockNuclearReactor(id: ResourceLocation) : FuelMultiblockController(
             = (production * getBoostedFromCoreTier(coreTier)).toLong()
 
         override fun drawEnergy(recipeEUt: Long, simulate: Boolean): Boolean
-            = if (isExcessMode) true else super.drawEnergy(recipeEUt, simulate)
+        {
+            val generateEut = if(isExcessMode) min(recipeEUt,this.energyCapacity-this.energyStored) else recipeEUt
+            return super.drawEnergy(generateEut, simulate)
+        }
 
     }
 
