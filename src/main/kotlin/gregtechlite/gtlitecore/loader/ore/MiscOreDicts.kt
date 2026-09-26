@@ -11,6 +11,7 @@ internal object MiscOreDicts
     fun init()
     {
         WorldGeneratorTreeRegistry.forEach { OreDictionary.registerOre("treeSapling", it.saplingState.toItem()) }
+        WorldGeneratorTreeRegistry.forEach { OreDictionary.registerOre("treeLeaves", it.leaveState.toItem()) }
     }
 
     // @formatter:on
