@@ -16,6 +16,7 @@ internal object MachineRecipeList
         CentrifugeRecipes.init()
         ChemicalBathRecipes.init()
         CircuitAssemblerRecipes.init()
+        CompressorRecipes.init()
         CutterRecipes.init()
         DistilleryRecipes.init()
         ElectricBlastFurnaceRecipes.init()
