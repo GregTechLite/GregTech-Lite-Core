@@ -22,13 +22,10 @@ class CoverAirVent(definition: CoverDefinition,
                    attachedSide: EnumFacing,
                    private var transferRate: Int) : CoverBase(definition, coverableView, attachedSide), ITickable
 {
-
     private var airType: FluidStack? = null
 
     override fun canAttach(coverableView: CoverableView, attachedSide: EnumFacing): Boolean
-    {
-        return coverableView.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, attachedSide)
-    }
+        = coverableView.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, attachedSide)
 
     override fun renderCover(renderState: CCRenderState,
                              translation: Matrix4,
@@ -65,10 +62,10 @@ class CoverAirVent(definition: CoverDefinition,
                 ?.fluidOutputs
                 ?.firstOrNull()
                 ?.let {
-                    this.airType = FluidStack(it.fluid, this.transferRate)
+                    airType = FluidStack(it.fluid, transferRate)
                 }
         }
-
-        fluidHandler.fill(this.airType!!.copy(), true)
+        val _airType = airType ?: return
+        fluidHandler.fill(_airType.copy(), true)
     }
 }
