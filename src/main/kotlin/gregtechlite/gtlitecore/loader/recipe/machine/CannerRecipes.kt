@@ -37,11 +37,11 @@ import gregtech.api.unification.ore.OrePrefix.wireGtHex
 import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
 import gregtech.api.unification.ore.OrePrefix.wireGtSingle
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.outputs
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EnrichedNaquadahAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trinaquadalloy
@@ -93,7 +93,7 @@ internal object CannerRecipes
             inputs(ENDER_EYE)
             outputs(END_PORTAL_FRAME)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Shape Force Fields
@@ -142,7 +142,7 @@ internal object CannerRecipes
                     input(prefix, QuantumAlloy)
                     output(fieldItem)
                     EUt(VA[ULV])
-                    duration(1 * SECOND)
+                    duration(1.s)
                 }
             }
             FieldType.CableOrTool ->
@@ -152,7 +152,7 @@ internal object CannerRecipes
                     input(prefix, EnrichedNaquadahAlloy)
                     output(fieldItem)
                     EUt(VA[ULV])
-                    duration(1 * SECOND)
+                    duration(1.s)
                 }
             }
             FieldType.Pipe ->
@@ -162,7 +162,7 @@ internal object CannerRecipes
                     input(prefix, Trinaquadalloy)
                     output(fieldItem)
                     EUt(VA[ULV])
-                    duration(1 * SECOND)
+                    duration(1.s)
                 }
             }
         }

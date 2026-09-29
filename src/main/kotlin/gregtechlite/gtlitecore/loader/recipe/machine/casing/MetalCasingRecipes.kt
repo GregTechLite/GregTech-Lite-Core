@@ -23,11 +23,11 @@ import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.block.variant.BlockVariant
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumBronze
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BabbitAlloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EglinSteel
@@ -50,6 +50,7 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SiliconCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Staballoy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Stellite
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Talonite
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TantalumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TitaniumTungstenCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Trinaquadalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Tumbaga
@@ -60,7 +61,6 @@ import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 
 internal object MetalCasingRecipes
 {
-
     // @formatter:off
 
     fun init()
@@ -109,12 +109,12 @@ internal object MetalCasingRecipes
         create(MetalCasing.NITINOL_60, Nitinol60)
         create(MetalCasing.LAFIUM, Lafium)
         create(MetalCasing.VANADIUM_GALLIUM, VanadiumGallium)
-
+        create(MetalCasing.TANTALUM_CARBIDE, TantalumCarbide)
     }
 
     private fun create(outputCasing: BlockVariant, material: Material)
     {
-        ModHandler.addShapedRecipe(true, material.name.lowercase() + "_casing",
+        ModHandler.addShapedRecipe(true, "${material.name.lowercase()}_casing",
             outputCasing.getStack(ConfigHolder.recipes.casingsPerCraft),
             "PhP", "PFP", "PwP",
             'P', UnificationEntry(plate, material),
@@ -126,10 +126,9 @@ internal object MetalCasingRecipes
             input(frameGt, material)
             outputs(outputCasing.getStack(ConfigHolder.recipes.casingsPerCraft))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 
     // @formatter:on
-
 }

@@ -11,13 +11,13 @@ import gregtech.api.recipes.RecipeMaps.EXTRACTOR_RECIPES
 import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.SeedOil
 import gregtech.common.items.MetaItems.PLANT_BALL
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MULTICOOKER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polenta
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_BOWL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CORN
@@ -49,7 +49,7 @@ internal object CornProcessing
             outputs(CORN_KERNEL.getStack(16))
             outputs(CORN_COB.stack())
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Corn Kernel -> Bare Corn Kernel
@@ -61,7 +61,7 @@ internal object CornProcessing
             inputs(CORN_KERNEL.stack())
             outputs(BARE_CORN_KERNEL.stack())
             EUt(7) // ULV
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // Bare Corn Kernel decomposition.
@@ -69,7 +69,7 @@ internal object CornProcessing
             inputs(BARE_CORN_KERNEL.stack())
             fluidOutputs(SeedOil.getFluid(8))
             EUt(2) // ULV
-            duration(1 * SECOND + 12 * TICK)
+            duration(1.s + 12.t)
         }
 
         // Corn cob decomposition.
@@ -77,7 +77,7 @@ internal object CornProcessing
             inputs(CORN_COB.getStack(8))
             output(PLANT_BALL)
             EUt(2) // ULV
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Bare Corn Kernel + H2O -> Polenta
@@ -86,7 +86,7 @@ internal object CornProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(Polenta.getFluid(250))
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -94,7 +94,7 @@ internal object CornProcessing
             fluidInputs(Polenta.getFluid(250))
             output(POLENTA)
             EUt(VH[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 

@@ -7,9 +7,9 @@ import gregtech.api.unification.material.Materials.Protactinium
 import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustSmall
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminooxyaceticAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylEther
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThoriumDioxide
@@ -36,7 +36,7 @@ internal object ProtactiniumProcessing
             output(dustSmall, ThoriumDioxide, 3)
             fluidOutputs(AminooxyaceticAcid.getFluid(1000))
             EUt(VA[ZPM])
-            duration(14 * SECOND)
+            duration(14.s)
         }
     }
 

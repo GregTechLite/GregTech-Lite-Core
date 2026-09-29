@@ -147,6 +147,9 @@ object GTLiteGuiTextures
     @JvmField
     val PROGRESS_BAR_BLACKHOLE_FORMING = texture("textures/gui/progress_bar/progress_bar_blackhole_forming.png")
 
+    @JvmField
+    val PROGRESS_BAR_COMPLEX_PYROLYSIS = texture("textures/gui/progress_bar/progress_bar_complex_pyrolysis.png")
+
     // endregion
 
     // region Widget Textures

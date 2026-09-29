@@ -17,8 +17,8 @@ import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.AbilityInstances
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.metatileentity.wireless.WirelessRole
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -69,7 +69,7 @@ class PartMachineWirelessDynamoHatch(id: ResourceLocation, tier: Int, initialAmp
         if (world.isRemote) return
 
         updateWireless()
-        if (offsetTimer % (5 * TICK) == 0L)
+        if (offsetTimer % (5.t) == 0L)
         {
             val holder = wirelessHolder ?: return
             val available = energyContainer.energyStored

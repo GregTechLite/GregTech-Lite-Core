@@ -15,14 +15,13 @@ import gregtech.api.unification.material.Materials.Methane
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Platinum
-import gregtech.api.unification.material.Materials.Steam
+import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AcetoneCyanohydrin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenCyanide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Polymethylmethacrylate
@@ -43,7 +42,7 @@ internal object PMMAChain
             fluidOutputs(HydrogenCyanide.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(4000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // 3CH4 + 3NH3 + 8O -> 3HCN + 8H2O + H (lost)
@@ -53,9 +52,9 @@ internal object PMMAChain
             fluidInputs(Ammonia.getFluid(3000))
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(HydrogenCyanide.getFluid(3000))
-            fluidOutputs(Steam.getFluid(8 * SU))
+            fluidOutputs(Water.getFluid(8000))
             EUt(VA[HV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // (CH3)2CO + HCN -> C4H7NO
@@ -64,7 +63,7 @@ internal object PMMAChain
             fluidInputs(HydrogenCyanide.getFluid(1000))
             fluidOutputs(AcetoneCyanohydrin.getFluid(2000))
             EUt(VH[HV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // C4H7NO + CH3OH -> C5H8O2 + NH3
@@ -74,7 +73,7 @@ internal object PMMAChain
             fluidOutputs(Polymethylmethacrylate.getFluid(L * 4))
             fluidOutputs(Ammonia.getFluid(1000))
             EUt(VH[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

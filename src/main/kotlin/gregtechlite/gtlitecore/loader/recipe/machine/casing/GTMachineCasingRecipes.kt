@@ -19,11 +19,11 @@ import gregtech.api.unification.ore.OrePrefix.cableGtSingle
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.metatileentities.MetaTileEntities.HULL
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
@@ -55,7 +55,7 @@ internal object GTMachineCasingRecipes
             input(plate, Vibranium, 8)
             outputs(GTMachineCasing.UEV.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UIV Machine Casing
@@ -68,7 +68,7 @@ internal object GTMachineCasingRecipes
             input(plate, Shirabon, 8)
             outputs(GTMachineCasing.UIV.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UXV Machine Casing
@@ -81,7 +81,7 @@ internal object GTMachineCasingRecipes
             input(plate, Creon, 8)
             outputs(GTMachineCasing.UXV.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // OpV Machine Casing
@@ -94,7 +94,7 @@ internal object GTMachineCasingRecipes
             input(plate, BlackDwarfMatter, 8)
             outputs(GTMachineCasing.OpV.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // MAX Machine Casing
@@ -107,7 +107,7 @@ internal object GTMachineCasingRecipes
             input(plate, AxinoFusedRedMatter, 8)
             outputs(GTMachineCasing.MAX.stack)
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UHV Machine Hull
@@ -122,7 +122,7 @@ internal object GTMachineCasingRecipes
             fluidInputs(Kevlar.getFluid(L * 2))
             output(HULL[UHV])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UEV Machine Hull
@@ -132,7 +132,7 @@ internal object GTMachineCasingRecipes
             fluidInputs(Kevlar.getFluid(L * 2))
             output(HULL[UEV])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UIV Machine Hull
@@ -142,7 +142,7 @@ internal object GTMachineCasingRecipes
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
             output(HULL[UIV])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UXV Machine Hull
@@ -152,7 +152,7 @@ internal object GTMachineCasingRecipes
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
             output(HULL[UXV])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // OpV Machine Hull
@@ -162,7 +162,7 @@ internal object GTMachineCasingRecipes
             fluidInputs(CosmicFabric.getFluid(L * 2))
             output(HULL[OpV])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // MAX Machine Hull
@@ -172,7 +172,7 @@ internal object GTMachineCasingRecipes
             fluidInputs(CosmicFabric.getFluid(L * 2))
             output(HULL[MAX])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

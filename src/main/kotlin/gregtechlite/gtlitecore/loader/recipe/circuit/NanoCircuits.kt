@@ -70,14 +70,14 @@ import gregtech.common.items.MetaItems.SMD_DIODE
 import gregtech.common.items.MetaItems.SMD_INDUCTOR
 import gregtech.common.items.MetaItems.SMD_RESISTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PalladiumLoadedRutileNanoparticles
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.StrontiumFerrite
@@ -111,7 +111,7 @@ internal object NanoCircuits
                 fluidInputs(etchingLiquid)
                 output(ADVANCED_CIRCUIT_BOARD)
                 EUt(VA[LV])
-                duration(45 * SECOND)
+                duration(45.s)
             }
         }
     }
@@ -131,7 +131,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L))
             output(ADVANCED_SMD_TRANSISTOR, 16)
             EUt(VHA[IV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -142,7 +142,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L))
             output(ADVANCED_SMD_TRANSISTOR, 32)
             EUt(VHA[IV])
-            duration(4 * SECOND)
+            duration(4.s)
             cleanroom()
         }
 
@@ -153,7 +153,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L))
             output(ADVANCED_SMD_TRANSISTOR, 64)
             EUt(VHA[IV])
-            duration(2 * SECOND)
+            duration(2.s)
             cleanroom()
         }
 
@@ -170,7 +170,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L * 2))
             output(ADVANCED_SMD_RESISTOR, 16)
             EUt(VHA[IV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -181,7 +181,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L * 2))
             output(ADVANCED_SMD_RESISTOR, 32)
             EUt(VHA[IV])
-            duration(4 * SECOND)
+            duration(4.s)
             cleanroom()
         }
 
@@ -192,7 +192,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L * 2))
             output(ADVANCED_SMD_RESISTOR, 64)
             EUt(VHA[IV])
-            duration(2 * SECOND)
+            duration(2.s)
             cleanroom()
         }
 
@@ -209,7 +209,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L / 2))
             output(ADVANCED_SMD_CAPACITOR, 16)
             EUt(VHA[IV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -220,7 +220,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L / 2))
             output(ADVANCED_SMD_CAPACITOR, 32)
             EUt(VHA[IV])
-            duration(4 * SECOND)
+            duration(4.s)
             cleanroom()
         }
 
@@ -231,7 +231,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L / 2))
             output(ADVANCED_SMD_CAPACITOR, 64)
             EUt(VHA[IV])
-            duration(2 * SECOND)
+            duration(2.s)
             cleanroom()
         }
 
@@ -248,7 +248,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L * 2))
             output(ADVANCED_SMD_DIODE, 64)
             EUt(VHA[IV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -259,7 +259,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L * 2))
             output(ADVANCED_SMD_DIODE, 64)
             EUt(VHA[IV])
-            duration(4 * SECOND)
+            duration(4.s)
             cleanroom()
         }
 
@@ -276,7 +276,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L))
             output(ADVANCED_SMD_INDUCTOR, 16)
             EUt(VHA[IV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -287,7 +287,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L))
             output(ADVANCED_SMD_INDUCTOR, 32)
             EUt(VHA[IV])
-            duration(4 * SECOND)
+            duration(4.s)
             cleanroom()
         }
 
@@ -298,7 +298,7 @@ internal object NanoCircuits
             fluidInputs(Polybenzimidazole.getFluid(L))
             output(ADVANCED_SMD_INDUCTOR, 64)
             EUt(VHA[IV])
-            duration(4 * SECOND)
+            duration(4.s)
             cleanroom()
         }
     }
@@ -319,7 +319,7 @@ internal object NanoCircuits
             fluidInputs(Glowstone.getFluid(L * 4))
             output(NANO_CENTRAL_PROCESSING_UNIT_WAFER, 4)
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -331,7 +331,7 @@ internal object NanoCircuits
             fluidInputs(Glowstone.getFluid(L * 16))
             output(NANO_CENTRAL_PROCESSING_UNIT_WAFER, 16)
             EUt(VA[EV])
-            duration(15 * SECOND)
+            duration(15.s)
             cleanroom()
         }
 
@@ -343,7 +343,7 @@ internal object NanoCircuits
             fluidInputs(Glowstone.getFluid(L * 64))
             output(NANO_CENTRAL_PROCESSING_UNIT_WAFER, 36)
             EUt(VA[EV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
     }
@@ -410,7 +410,7 @@ internal object NanoCircuits
             input(wireFine, Electrum, 8)
             output(NANO_PROCESSOR_HV, 4)
             EUt(600) // EV
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -423,7 +423,7 @@ internal object NanoCircuits
             input(wireFine, Electrum, 8)
             output(NANO_PROCESSOR_HV, 4)
             EUt(600) // EV
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -434,7 +434,7 @@ internal object NanoCircuits
             input(bolt, Platinum, 4)
             output(NANO_PROCESSOR_HV, 8)
             EUt(9600) // LuV
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -484,7 +484,7 @@ internal object NanoCircuits
             input(wireFine, Electrum, 16)
             output(NANO_PROCESSOR_ASSEMBLY_EV, 3)
             EUt(600) // EV
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -498,7 +498,7 @@ internal object NanoCircuits
             input(wireFine, Electrum, 16)
             output(NANO_PROCESSOR_ASSEMBLY_EV, 3)
             EUt(600) // EV
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -549,7 +549,7 @@ internal object NanoCircuits
             input(wireFine, Electrum, 16)
             output(NANO_COMPUTER_IV, 2)
             EUt(600) // EV
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -563,7 +563,7 @@ internal object NanoCircuits
             input(wireFine, Electrum, 16)
             output(NANO_COMPUTER_IV, 2)
             EUt(600) // EV
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -614,7 +614,7 @@ internal object NanoCircuits
             input(wireGtSingle, AnnealedCopper, 32)
             output(NANO_MAINFRAME_LUV)
             EUt(VA[EV])
-            duration(40 * SECOND)
+            duration(40.s)
             solderMultiplier(4)
             cleanroom()
         }
@@ -628,7 +628,7 @@ internal object NanoCircuits
             input(wireGtSingle, AnnealedCopper, 32)
             output(NANO_MAINFRAME_LUV)
             EUt(VA[EV])
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(4)
             cleanroom()
         }
@@ -642,7 +642,7 @@ internal object NanoCircuits
             input(wireGtSingle, AnnealedCopper, 32)
             output(NANO_MAINFRAME_LUV)
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(4)
             cleanroom()
         }

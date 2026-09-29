@@ -15,8 +15,8 @@ import gregtech.api.unification.material.Materials.Tungsten
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.stack.UnificationEntry
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmorphousBoronNitride
 import gregtechlite.gtlitecore.common.block.variant.Crucible
 
@@ -37,7 +37,7 @@ internal object CrucibleRecipes
             input(plate, Bronze, 7)
             outputs(Crucible.BRONZE.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Invar Crucible
@@ -50,7 +50,7 @@ internal object CrucibleRecipes
             input(plate, Invar, 7)
             outputs(Crucible.INVAR.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Quartzite Crucible
@@ -63,7 +63,7 @@ internal object CrucibleRecipes
             input(plate, Quartzite, 7)
             outputs(Crucible.QUARTZ.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Chrome Crucible
@@ -76,7 +76,7 @@ internal object CrucibleRecipes
             input(plate, Chrome, 7)
             outputs(Crucible.CHROME.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Vanadium Crucible
@@ -89,7 +89,7 @@ internal object CrucibleRecipes
             input(plate, Vanadium, 7)
             outputs(Crucible.VANADIUM.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Niobium Titanium Crucible
@@ -102,7 +102,7 @@ internal object CrucibleRecipes
             input(plate, NiobiumTitanium, 7)
             outputs(Crucible.NIOBIUM_TITANIUM.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Iridium Crucible
@@ -115,7 +115,7 @@ internal object CrucibleRecipes
             input(plate, Iridium, 7)
             outputs(Crucible.IRIDIUM.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Molybdenum Crucible
@@ -128,7 +128,7 @@ internal object CrucibleRecipes
             input(plate, Molybdenum, 7)
             outputs(Crucible.MOLYBDENUM.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Tungsten Crucible
@@ -141,7 +141,7 @@ internal object CrucibleRecipes
             input(plate, Tungsten, 7)
             outputs(Crucible.TUNGSTEN.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Osmium Crucible
@@ -154,7 +154,7 @@ internal object CrucibleRecipes
             input(plate, Osmium, 7)
             outputs(Crucible.OSMIUM.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Graphite Crucible
@@ -167,7 +167,7 @@ internal object CrucibleRecipes
             input(plate, Graphene, 7)
             outputs(Crucible.GRAPHITE.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
 
         // Boron Nitride Crucible
@@ -180,7 +180,7 @@ internal object CrucibleRecipes
             input(plate, AmorphousBoronNitride, 7)
             outputs(Crucible.BORON_NITRIDE.stack)
             EUt(4) // ULV
-            duration(35 * SECOND)
+            duration(35.s)
         }
     }
 

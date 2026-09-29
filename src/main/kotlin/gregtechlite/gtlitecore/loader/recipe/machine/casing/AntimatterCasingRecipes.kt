@@ -22,9 +22,9 @@ import gregtech.common.items.MetaItems.ENERGY_CLUSTER
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
 import gregtech.common.items.MetaItems.GRAVI_STAR
 import gregtech.common.items.MetaItems.SENSOR_UEV
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyA
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyB
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Antimatter
@@ -63,7 +63,7 @@ internal object AntimatterCasingRecipes
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
             outputs(GlassCasing.ANTIMATTER_CONTAINMENT.getStack(64))
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(GlassCasing.PMMA.stack)
                     .EUt(VA[UEV])
@@ -87,7 +87,7 @@ internal object AntimatterCasingRecipes
             fluidInputs(DimensionallyShiftedSuperfluid.getFluid(L * 16))
             outputs(MultiblockCasing.GRAVITY_STABILIZATION_CASING.getStack(64))
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(MetalCasing.NEUTRONIUM.stack)
                     .EUt(VA[UEV])
@@ -110,7 +110,7 @@ internal object AntimatterCasingRecipes
             fluidInputs(Protomatter.getFluid(500))
             outputs(MultiblockCasing.PROTOMATTER_ACTIVATION_COIL.getStack(32))
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(FusionCoil.ULTIMATE.stack)
                     .EUt(VA[UEV])
@@ -134,7 +134,7 @@ internal object AntimatterCasingRecipes
             fluidInputs(Antimatter.getFluid(200))
             outputs(MultiblockCasing.ANTIMATTER_ANNIHILATION_MATRIX.getStack(64))
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             stationResearch {
                 it.researchStack(ScienceCasing.MOLECULAR_COIL.stack)
                     .EUt(VA[UEV])

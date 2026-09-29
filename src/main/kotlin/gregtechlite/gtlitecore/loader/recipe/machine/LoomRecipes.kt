@@ -7,8 +7,6 @@ import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.common.items.MetaItems.PLANT_BALL
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
@@ -16,6 +14,8 @@ import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LOOM_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import net.minecraft.init.Blocks.CARPET
 import net.minecraft.init.Blocks.TALLGRASS
 import net.minecraft.init.Blocks.VINE
@@ -42,7 +42,7 @@ internal object LoomRecipes
             inputs(STRING, 4)
             outputs(WEB)
             EUt(V[ULV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // 4x string -> 1x wool
@@ -55,7 +55,7 @@ internal object LoomRecipes
             inputs(STRING, 4)
             outputs(WOOL)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // 8x string -> 3x carpet
@@ -64,7 +64,7 @@ internal object LoomRecipes
             inputs(STRING, 8)
             outputs(CARPET, 3)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Leather armors.
@@ -73,7 +73,7 @@ internal object LoomRecipes
             inputs(LEATHER, 5)
             outputs(LEATHER_HELMET)
             EUt(VA[ULV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         LOOM_RECIPES.addRecipe {
@@ -81,7 +81,7 @@ internal object LoomRecipes
             inputs(LEATHER, 8)
             outputs(LEATHER_CHESTPLATE)
             EUt(VA[ULV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         LOOM_RECIPES.addRecipe {
@@ -89,7 +89,7 @@ internal object LoomRecipes
             inputs(LEATHER, 7)
             outputs(LEATHER_LEGGINGS)
             EUt(VA[ULV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         LOOM_RECIPES.addRecipe {
@@ -97,7 +97,7 @@ internal object LoomRecipes
             inputs(LEATHER, 4)
             outputs(LEATHER_BOOTS)
             EUt(VA[ULV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 1x plant ball -> 2x grass
@@ -106,7 +106,7 @@ internal object LoomRecipes
             input(PLANT_BALL)
             outputs(TALLGRASS, 1, 1)
             EUt(VA[ULV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // 1x plant ball -> 2x tall grass
@@ -115,7 +115,7 @@ internal object LoomRecipes
             input(PLANT_BALL)
             outputs(TALLGRASS, 1, 2)
             EUt(VA[ULV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // 2x plant ball -> 1x vine
@@ -124,7 +124,7 @@ internal object LoomRecipes
             input(PLANT_BALL, 2)
             outputs(VINE)
             EUt(VA[ULV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // 4x plant ball -> 1x waterlily
@@ -133,7 +133,7 @@ internal object LoomRecipes
             input(PLANT_BALL, 4)
             outputs(WATERLILY)
             EUt(VA[ULV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
     }
 

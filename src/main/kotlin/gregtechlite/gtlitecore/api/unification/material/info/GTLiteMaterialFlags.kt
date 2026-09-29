@@ -118,6 +118,7 @@ import gregtech.api.unification.material.Materials.RhodiumPlatedPalladium
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Roentgenium
 import gregtech.api.unification.material.Materials.RoseGold
+import gregtech.api.unification.material.Materials.Ruridit
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Ruby
 import gregtech.api.unification.material.Materials.Ruthenium
@@ -496,6 +497,7 @@ object GTLiteMaterialFlags
         Polonium.addFlags(GENERATE_PLATE)
         Rubidium.addFlags(GENERATE_PLATE)
         Tellurium.addFlags(GENERATE_PLATE)
+        Francium.addFlags(GENERATE_PLATE)
 
         // plateDouble
         Inconel718.addFlags(GENERATE_DOUBLE_PLATE)
@@ -535,6 +537,7 @@ object GTLiteMaterialFlags
         Moscovium.addFlags(GENERATE_DOUBLE_PLATE)
         Copernicium.addFlags(GENERATE_DOUBLE_PLATE)
         NaquadahEnriched.addFlags(GENERATE_DOUBLE_PLATE)
+        Ruridit.addFlags(GENERATE_DOUBLE_PLATE)
 
         // plateDense
         WroughtIron.addFlags(GENERATE_DENSE)
@@ -650,6 +653,7 @@ object GTLiteMaterialFlags
         Platinum.addFlags(GENERATE_SPRING)
         Nickel.addFlags(GENERATE_SPRING)
         BlackBronze.addFlags(GENERATE_SPRING)
+        HSSE.addFlags(GENERATE_SPRING)
 
         // springSmall
         WroughtIron.addFlags(GENERATE_SPRING_SMALL)

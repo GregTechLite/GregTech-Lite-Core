@@ -9,10 +9,10 @@ import gregtech.api.unification.material.Materials.TreatedWood
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.stack.UnificationEntry
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.common.block.variant.PrimitiveCasing
 
 internal object PrimitiveCasingRecipes
@@ -36,7 +36,7 @@ internal object PrimitiveCasingRecipes
             input(frameGt, TreatedWood)
             outputs(PrimitiveCasing.REINFORCED_TREATED_WOOD_WALL.getStack(2))
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

@@ -19,12 +19,12 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plate
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.outputs
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CyclotetramethyleneTetranitroamine
@@ -60,7 +60,7 @@ internal object ChargersChain
             fluidInputs(GlycerylTrinitrate.getFluid(16000))
             outputs(NAQUADRIA_CHARGE)
             EUt(VA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -75,7 +75,7 @@ internal object ChargersChain
             fluidInputs(CyclotetramethyleneTetranitroamine.getFluid(4000))
             outputs(TARANIUM_CHARGE)
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -90,7 +90,7 @@ internal object ChargersChain
             fluidInputs(HeavyLeptonMixture.getFluid(1000))
             outputs(LEPTONIC_CHARGE)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -105,7 +105,7 @@ internal object ChargersChain
             fluidInputs(HadronicResonantGas.getFluid(500))
             outputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
     }

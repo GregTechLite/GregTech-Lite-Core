@@ -5,9 +5,9 @@ import gregtech.api.GTValues.ZPM
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
 import gregtech.api.unification.material.Materials.Calcite
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthStrontiumCalciumCuprate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BismuthTrioxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Strontianite
@@ -29,7 +29,7 @@ internal object BSCCOChain
             input(dust, Tenorite, 4)
             output(dust, BismuthStrontiumCalciumCuprate, 15)
             EUt(VA[ZPM])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
     }
 

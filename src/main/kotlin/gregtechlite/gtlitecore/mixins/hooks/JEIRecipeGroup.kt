@@ -47,6 +47,8 @@ object JEIRecipeGroup
         addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, RecipeMaps.EXTRUDER_RECIPES)
         addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, RecipeMaps.WIREMILL_RECIPES)
         addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, GTLiteRecipeMaps.LOOM_RECIPES)
+
+        addRecipeGroup(GTLiteMetaTileEntities.CONCENTRATED_COKING_CLUSTER, RecipeMaps.PYROLYSE_RECIPES)
     }
 
     private fun <T : MetaTileEntity> addRecipeGroup(mte: T, recipeMap: RecipeMap<*>)

@@ -9,10 +9,10 @@ import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.spring
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.common.block.variant.component.ProcessorCasing
 
 internal object ProcessorCasingRecipes
@@ -40,7 +40,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.LV)
             outputs(processorCasings[0])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // MV Processor Casing
@@ -52,7 +52,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.MV)
             outputs(processorCasings[1])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // HV Processor Casing
@@ -64,7 +64,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.HV)
             outputs(processorCasings[2])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // EV Processor Casing
@@ -76,7 +76,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.EV)
             outputs(processorCasings[3])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // IV Processor Casing
@@ -88,7 +88,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.IV)
             outputs(processorCasings[4])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // LuV Processor Casing
@@ -100,7 +100,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.LuV)
             outputs(processorCasings[5])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // ZPM Processor Casing
@@ -112,7 +112,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.ZPM)
             outputs(processorCasings[6])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UV Processor Casing
@@ -124,7 +124,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.UV)
             outputs(processorCasings[7])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UHV Processor Casing
@@ -136,7 +136,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.UHV)
             outputs(processorCasings[8])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UEV Processor Casing
@@ -148,7 +148,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.UEV)
             outputs(processorCasings[9])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UIV Processor Casing
@@ -160,7 +160,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.UIV)
             outputs(processorCasings[10])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // UXV Processor Casing
@@ -172,7 +172,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.UXV)
             outputs(processorCasings[11])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // OpV Processor Casing
@@ -184,7 +184,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.OpV)
             outputs(processorCasings[12])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // MAX Processor Casing
@@ -196,7 +196,7 @@ internal object ProcessorCasingRecipes
             input(circuit, Tier.MAX)
             outputs(processorCasings[13])
             EUt(VH[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

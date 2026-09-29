@@ -8,10 +8,10 @@ import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.ring
 import gregtech.loaders.recipe.CraftingComponent
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.common.block.variant.component.MotorCasing
 import net.minecraft.item.ItemStack
 
@@ -37,7 +37,7 @@ internal object MotorCasingRecipes
                 inputs(CraftingComponent.MOTOR.getIngredient(voltage + 1) as ItemStack)
                 outputs(motorCasings[voltage])
                 EUt(VH[LV])
-                duration(2 * SECOND + 10 * TICK)
+                duration(2.s + 10.t)
             }
         }
     }

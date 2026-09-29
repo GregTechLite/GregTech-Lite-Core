@@ -4,10 +4,10 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES
 import gregtech.common.items.MetaItems.PLANT_BALL
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ARTICHOKE_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AUBERGINE_SEED
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.BASIL_SEED
@@ -51,7 +51,7 @@ internal object SifterRecipes
             chancedOutput(CUCUMBER_SEED.stack(), 2300, 325)
             chancedOutput(GRAPE_SEED.stack(), 2250, 275)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         SIFTER_RECIPES.addRecipe {
@@ -67,7 +67,7 @@ internal object SifterRecipes
             chancedOutput(AUBERGINE_SEED, 2400, 425)
             chancedOutput(CORN_SEED.stack(), 2250, 350)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         SIFTER_RECIPES.addRecipe {
@@ -79,7 +79,7 @@ internal object SifterRecipes
             chancedOutput(WHITE_GRAPE_SEED.stack(), 2750, 475)
             chancedOutput(COTTON_SEED.stack(), 2500, 350)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

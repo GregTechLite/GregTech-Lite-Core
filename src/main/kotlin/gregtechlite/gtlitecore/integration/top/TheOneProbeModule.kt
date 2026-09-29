@@ -5,6 +5,7 @@ import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.module.Module
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_TOP
 import gregtechlite.gtlitecore.integration.IntegrationSubModule
+import gregtechlite.gtlitecore.integration.top.provider.ColorChannelInfoProvider
 import gregtechlite.gtlitecore.integration.top.provider.DelegatorInfoProvider
 import gregtechlite.gtlitecore.integration.top.provider.EnergyDistributorInfoProvider
 import gregtechlite.gtlitecore.integration.top.provider.WirelessHatchInfoProvider
@@ -34,6 +35,7 @@ class TheOneProbeModule : IntegrationSubModule()
         top.registerProvider(DelegatorInfoProvider())
         top.registerProvider(WirelessHatchInfoProvider())
         top.registerProvider(EnergyDistributorInfoProvider())
+        top.registerProvider(ColorChannelInfoProvider())
     }
 
     override val logger: Logger = Companion.logger

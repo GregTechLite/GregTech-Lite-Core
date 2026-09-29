@@ -27,12 +27,12 @@ import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Eternity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MagnetohydrodynamicallyConstrainedStarMatter
@@ -57,7 +57,7 @@ internal object MHDCSMChain
             fluidInputs(RawStarMatter.getFluid(L * 128))
             fluidOutputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 32))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Advanced recipes for Raw Star Matter.
@@ -67,7 +67,7 @@ internal object MHDCSMChain
             fluidInputs(RawStarMatter.getFluid(L * 512))
             fluidOutputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 128))
             EUt(VA[OpV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Ingot
@@ -76,7 +76,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(ingot, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Plate
@@ -85,7 +85,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(plate, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Double Plate
@@ -94,7 +94,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 2))
             output(plateDouble, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Dense Plate
@@ -103,7 +103,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 9))
             output(plateDense, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(9 * SECOND)
+            duration(9.s)
         }
 
         // Foil
@@ -112,7 +112,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(foil, MagnetohydrodynamicallyConstrainedStarMatter, 4)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Stick
@@ -121,7 +121,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(stick, MagnetohydrodynamicallyConstrainedStarMatter, 2)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Long Stick
@@ -130,7 +130,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(stickLong, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Bolt
@@ -139,7 +139,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(bolt, MagnetohydrodynamicallyConstrainedStarMatter, 8)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Screw
@@ -148,7 +148,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(screw, MagnetohydrodynamicallyConstrainedStarMatter, 8)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Ring
@@ -157,7 +157,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(ring, MagnetohydrodynamicallyConstrainedStarMatter, 4)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Round
@@ -166,7 +166,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(round, MagnetohydrodynamicallyConstrainedStarMatter, 8)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Spring
@@ -175,7 +175,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(spring, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Small Spring
@@ -184,7 +184,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(springSmall, MagnetohydrodynamicallyConstrainedStarMatter, 4)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Gear
@@ -193,7 +193,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 4))
             output(gear, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Small Gear
@@ -202,7 +202,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(gearSmall, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Fine Wire
@@ -211,7 +211,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L))
             output(wireFine, MagnetohydrodynamicallyConstrainedStarMatter, 8)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Rotor
@@ -220,7 +220,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 4))
             output(rotor, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Block
@@ -229,7 +229,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 9))
             output(block, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(9 * SECOND)
+            duration(9.s)
         }
 
         // Frame
@@ -238,7 +238,7 @@ internal object MHDCSMChain
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 2))
             output(frameGt, MagnetohydrodynamicallyConstrainedStarMatter)
             EUt(VA[UXV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // sheetedFrame
@@ -253,7 +253,7 @@ internal object MHDCSMChain
             input(frameGt, MagnetohydrodynamicallyConstrainedStarMatter)
             outputs(GTLiteBlocks.SHEETED_FRAMES[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(6))
             EUt(7) // ULV
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         // wallGt
@@ -268,7 +268,7 @@ internal object MHDCSMChain
             input(screw, MagnetohydrodynamicallyConstrainedStarMatter)
             outputs(GTLiteBlocks.METAL_WALLS[MagnetohydrodynamicallyConstrainedStarMatter]!!.getItem(MagnetohydrodynamicallyConstrainedStarMatter).copy(3))
             EUt(7)
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
     }
 

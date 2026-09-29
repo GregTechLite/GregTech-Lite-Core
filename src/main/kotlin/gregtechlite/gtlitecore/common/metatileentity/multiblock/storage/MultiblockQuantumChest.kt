@@ -21,18 +21,19 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.renderer.texture.Textures
-import gregtechlite.gtlitecore.api.capability.handler.QuantumStorageHandler
-import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
-import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
 import gregtechlite.gtlitecore.api.LOGGER
-import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.capability.handler.QuantumStorageHandler
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.longValue
+import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
+import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.quantumStorageUnits
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.readBlockCount
-import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.common.block.adapter.GTComputerCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
+import java.math.BigInteger
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -43,7 +44,6 @@ import net.minecraft.world.World
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.math.BigInteger
 
 class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(id), IControllable, SyncedMetaTileEntity
 {
@@ -139,7 +139,7 @@ class MultiblockQuantumChest(id: ResourceLocation) : MultiblockWithDisplayBase(i
 
     override fun updateFormedValid()
     {
-        if (!world.isRemote && _isWorkingEnabled && offsetTimer % (1 * SECOND) == 0L)
+        if (!world.isRemote && _isWorkingEnabled && offsetTimer % (1.s) == 0L)
         {
             if (shouldImport) importItems()
             if (shouldExport) exportItems()

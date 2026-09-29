@@ -13,12 +13,12 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Strontium
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Celestine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Strontianite
@@ -44,7 +44,7 @@ internal object StrontiumProcessing
             output(dust, StrontiumOxide, 2)
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // 3SrO + 2Fe -> 3Sr + Fe2O3
@@ -54,7 +54,7 @@ internal object StrontiumProcessing
             output(dust, Strontium, 3)
             output(dust, BandedIron, 5)
             EUt(VA[MV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 3SrO + 2Al -> 3Sr + Al2O3
@@ -64,7 +64,7 @@ internal object StrontiumProcessing
             output(dust, Strontium, 3)
             output(dust, Alumina, 5)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -77,7 +77,7 @@ internal object StrontiumProcessing
             output(dust, StrontiumSulfide, 2)
             fluidOutputs(CarbonMonoxide.getFluid(4000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // SrS + 2O -> Sr + SO2
@@ -87,7 +87,7 @@ internal object StrontiumProcessing
             output(dust, Strontium)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

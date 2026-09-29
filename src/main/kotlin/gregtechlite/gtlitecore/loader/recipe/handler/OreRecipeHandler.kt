@@ -29,10 +29,11 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.stack.UnificationEntry
 import gregtech.api.util.GTUtility.copyFirst
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
+import gregtech.loaders.recipe.handlers.OreRecipeHandler as GTOreRecipeHandler
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TectonicPetrotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ZephyreanAerotheum
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.gemSolitary
@@ -44,7 +45,6 @@ import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreLimestone
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreQuartzite
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreShale
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.oreSlate
-import gregtech.loaders.recipe.handlers.OreRecipeHandler as GTOreRecipeHandler
 
 object OreRecipeHandler
 {
@@ -82,7 +82,7 @@ object OreRecipeHandler
             input(purifiedPrefix, material)
             outputs(dustStack)
             EUt(VH[LV])
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Macerating crushedPurifiedX -> dustPureX + (dustX: byproduct).
@@ -90,7 +90,7 @@ object OreRecipeHandler
             input(purifiedPrefix, material)
             outputs(dustStack)
             chancedOutput(byproductStack, 1400, 850)
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Hand-hamming crushedPurifiedX -> dustPureX.
@@ -130,7 +130,7 @@ object OreRecipeHandler
                     chancedOutput(chippedStack, 3000, 350)
                     chancedOutput(dustStack, 2500, 500)
                     EUt(VH[LV])
-                    duration(20 * SECOND)
+                    duration(20.s)
                 }
 
                 SIFTER_RECIPES.addRecipe {
@@ -145,7 +145,7 @@ object OreRecipeHandler
                     chancedOutput(chippedStack, 6000, 700)
                     chancedOutput(dustStack, 5000, 1000)
                     EUt(VH[LV])
-                    duration(10 * SECOND)
+                    duration(10.s)
                 }
             }
             else
@@ -161,7 +161,7 @@ object OreRecipeHandler
                     chancedOutput(chippedStack, 3500, 400)
                     chancedOutput(dustStack, 5000, 750)
                     EUt(VH[LV])
-                    duration(20 * SECOND)
+                    duration(20.s)
                 }
 
                 SIFTER_RECIPES.addRecipe {
@@ -176,7 +176,7 @@ object OreRecipeHandler
                     chancedOutput(chippedStack, 7000, 800)
                     outputs(dustStack)
                     EUt(VH[LV])
-                    duration(10 * SECOND)
+                    duration(10.s)
                 }
             }
         }
@@ -197,7 +197,7 @@ object OreRecipeHandler
             outputs(crushedPurifiedOre)
             output(dust, Stone)
             chancedOutput(dust, byproductMaterial, 6666, 0)
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

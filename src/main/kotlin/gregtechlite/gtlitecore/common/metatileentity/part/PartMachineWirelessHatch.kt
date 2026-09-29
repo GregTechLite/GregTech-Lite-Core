@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.common.metatileentity.part
 
+import codechicken.lib.raytracer.CuboidRayTraceResult
 import com.cleanroommc.modularui.api.drawable.IKey
 import com.cleanroommc.modularui.drawable.Rectangle
 import com.cleanroommc.modularui.factory.PosGuiData
@@ -9,15 +10,16 @@ import com.cleanroommc.modularui.utils.MouseData
 import com.cleanroommc.modularui.value.sync.IntSyncValue
 import com.cleanroommc.modularui.value.sync.PanelSyncManager
 import com.cleanroommc.modularui.widgets.ButtonWidget
-import com.cleanroommc.modularui.widgets.layout.Flow
 import com.cleanroommc.modularui.widgets.SliderWidget
+import com.cleanroommc.modularui.widgets.layout.Flow
 import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget
-import gregtech.api.mui.GTGuiTextures
-import gregtech.common.mui.widget.GTTextFieldWidget
+import gregtech.api.GTValues.V
 import gregtech.api.capability.IEnergyContainer
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart
+import gregtech.api.mui.GTGuiTextures
 import gregtech.api.mui.GTGuis
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart
+import gregtech.common.mui.widget.GTTextFieldWidget
 import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_AMPERAGE
 import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_BUFFER_DURATION
 import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_CHANNEL
@@ -25,9 +27,7 @@ import gregtechlite.gtlitecore.api.capability.GTLiteDataCodes.UPDATE_WIRELESS_PR
 import gregtechlite.gtlitecore.api.metatileentity.wireless.WirelessEnergyHolder
 import gregtechlite.gtlitecore.api.metatileentity.wireless.WirelessNetworkManager
 import gregtechlite.gtlitecore.api.metatileentity.wireless.WirelessRole
-import codechicken.lib.raytracer.CuboidRayTraceResult
-import gregtech.api.GTValues.V
-import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.t
 import net.minecraft.client.gui.GuiScreen
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.nbt.NBTTagCompound
@@ -195,7 +195,7 @@ abstract class PartMachineWirelessHatch(id: ResourceLocation, tier: Int, initial
 
     protected fun updateWireless()
     {
-        if (offsetTimer % (5 * TICK) == 0L)
+        if (offsetTimer % (5.t) == 0L)
         {
             updateWirelessConnection()
         }

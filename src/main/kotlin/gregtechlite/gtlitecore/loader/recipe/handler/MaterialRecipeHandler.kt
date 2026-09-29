@@ -60,8 +60,6 @@ import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_ROD
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BLOCK
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_NUGGET
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
@@ -69,14 +67,16 @@ import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.material.properties.AlloyBlastProperty
 import gregtechlite.gtlitecore.api.unification.material.properties.GTLitePropertyKey
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.gemSolitary
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_FLAT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_OCTAGONAL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SLICER_BLADE_STRIPES
-import net.minecraft.item.ItemStack
 import kotlin.math.max
+import net.minecraft.item.ItemStack
 
 @Suppress("unused")
 object MaterialRecipeHandler
@@ -172,7 +172,7 @@ object MaterialRecipeHandler
                 fluidInputs(material.getProperty(PropertyKey.FLUID).solidifiesFrom(L))
                 output(ingotPrefix, material)
                 EUt(scaleVoltage(VA[ULV], workingTier))
-                duration(1 * SECOND)
+                duration(1.s)
             }
         }
 
@@ -184,7 +184,7 @@ object MaterialRecipeHandler
                 input(dust, material)
                 output(ingotPrefix, material)
                 EUt(scaleVoltage(4 * getVoltageMultiplier(material), workingTier))
-                duration(10 * TICK)
+                duration(10.t)
             }
         }
 
@@ -375,7 +375,7 @@ object MaterialRecipeHandler
                     input(ingot, material, (materialAmount / M).toInt())
                     outputs(blockStack)
                     EUt(scaleVoltage(8 * getVoltageMultiplier(material), workingTier))
-                    duration(10 * TICK)
+                    duration(10.t)
                 }
 
                 ALLOY_SMELTER_RECIPES.addRecipe {
@@ -383,7 +383,7 @@ object MaterialRecipeHandler
                     input(ingot, material, (materialAmount / M).toInt())
                     outputs(blockStack)
                     EUt(scaleVoltage(4 * getVoltageMultiplier(material), workingTier))
-                    duration(5 * TICK)
+                    duration(5.t)
                 }
             }
             else if (material.hasProperty(PropertyKey.GEM))
@@ -392,14 +392,14 @@ object MaterialRecipeHandler
                     input(gem, material, (block.getMaterialAmount(material) / M).toInt())
                     outputs(blockStack)
                     EUt(scaleVoltage(2, workingTier)) // ULV
-                    duration(15 * SECOND)
+                    duration(15.s)
                 }
 
                 FORGE_HAMMER_RECIPES.addRecipe {
                     input(blockPrefix, material)
                     output(gem, material, (block.getMaterialAmount(material) / M).toInt())
                     EUt(scaleVoltage(24, workingTier)) // LV
-                    duration(5 * SECOND)
+                    duration(5.s)
                 }
             }
         }
@@ -432,7 +432,7 @@ object MaterialRecipeHandler
                 input(gemPrefix, material)
                 outputs(prevStack)
                 EUt(VH[LV])
-                duration(1 * SECOND)
+                duration(1.s)
             }
 
             LASER_ENGRAVER_RECIPES.addRecipe {
@@ -440,7 +440,7 @@ object MaterialRecipeHandler
                 inputs(prevStack)
                 output(gemPrefix, material)
                 EUt(scaleVoltage(VHA[HV], workingTier))
-                duration(15 * SECOND)
+                duration(15.s)
             }
         }
     }
@@ -460,7 +460,7 @@ object MaterialRecipeHandler
                     outputs(gemStack.copy(3))
                     chancedOutput(dust, DarkAsh, 2500, 0)
                     EUt(scaleVoltage(VA[LV], workingTier))
-                    duration(1 * SECOND)
+                    duration(1.s)
                 }
             }
         }

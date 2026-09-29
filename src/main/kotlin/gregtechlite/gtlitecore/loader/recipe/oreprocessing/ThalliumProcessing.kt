@@ -23,11 +23,11 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Iron3Sulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ThalliumSulfate
 
@@ -58,7 +58,7 @@ internal object ThalliumProcessing
             output(dust, Iron3Sulfate)
             output(dust, Sulfur)
             EUt(VA[ULV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // FeS2 + 6O -> Fe + Tl2SO4 + SO2
@@ -70,7 +70,7 @@ internal object ThalliumProcessing
             output(dust, ThalliumSulfate, 7)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // PbS + 3O -> PbO + 1/3Ag + SO2
@@ -86,7 +86,7 @@ internal object ThalliumProcessing
             output(dustTiny, Silver, 6)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // 2PbS + 6O -> 2Pb + Tl2SO4 + SO2
@@ -98,7 +98,7 @@ internal object ThalliumProcessing
             output(dust, ThalliumSulfate, 7)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Tl2SO4 + H2O -> 2Tl + H2SO4 + O
@@ -110,7 +110,7 @@ internal object ThalliumProcessing
             fluidOutputs(SulfuricAcid.getFluid(1000))
             fluidOutputs(Oxygen.getFluid(1000))
             EUt(VHA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

@@ -95,10 +95,10 @@ import gregtech.common.items.MetaItems.ROBOT_ARM_UV
 import gregtech.common.items.MetaItems.ROBOT_ARM_UXV
 import gregtech.common.items.MetaItems.ROBOT_ARM_ZPM
 import gregtech.common.items.MetaItems.SMART_FILTER
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ArceusAlloy2B
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
@@ -167,7 +167,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 4))
             outputs(ComponentAssemblyCasing.LV.getStack(4))
             EUt(VA[LV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // MV CoAL Casing
@@ -184,7 +184,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 4))
             outputs(ComponentAssemblyCasing.MV.getStack(4))
             EUt(VA[MV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // HV CoAL Casing
@@ -201,7 +201,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 4))
             outputs(ComponentAssemblyCasing.HV.getStack(4))
             EUt(VA[HV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // EV CoAL Casing
@@ -218,7 +218,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 4))
             outputs(ComponentAssemblyCasing.EV.getStack(4))
             EUt(VA[EV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // IV CoAL Casing
@@ -235,7 +235,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 4))
             outputs(ComponentAssemblyCasing.IV.getStack(4))
             EUt(VA[IV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // LuV CoAL Casing
@@ -256,11 +256,11 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(TitaniumTungstenCarbide.getFluid(L * 6))
             outputs(ComponentAssemblyCasing.LuV.getStack(4))
             EUt(VA[LuV])
-            duration(32 * SECOND)
+            duration(32.s)
             scannerResearch {
                 it.researchStack(ComponentAssemblyCasing.IV.stack)
                     .EUt(VA[HV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -282,11 +282,11 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(Zeron100.getFluid(L * 8))
             outputs(ComponentAssemblyCasing.ZPM.getStack(4))
             EUt(VA[ZPM])
-            duration(32 * SECOND)
+            duration(32.s)
             scannerResearch {
                 it.researchStack(ComponentAssemblyCasing.LuV.stack)
                     .EUt(VA[IV])
-                    .duration(1 * MINUTE)
+                    .duration(1.min)
             }
         }
 
@@ -308,7 +308,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(EnrichedNaquadahAlloy.getFluid(L * 8))
             outputs(ComponentAssemblyCasing.UV.getStack(4))
             EUt(VA[UV])
-            duration(32 * SECOND)
+            duration(32.s)
             stationResearch {
                 it.researchStack(ComponentAssemblyCasing.ZPM.stack)
                     .EUt(VA[ZPM])
@@ -334,7 +334,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(Pikyonium64B.getFluid(L * 8))
             outputs(ComponentAssemblyCasing.UHV.getStack(4))
             EUt(VA[UHV])
-            duration(32 * SECOND)
+            duration(32.s)
             stationResearch {
                 it.researchStack(ComponentAssemblyCasing.UV.stack)
                     .EUt(VA[UV])
@@ -360,7 +360,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(HastelloyX78.getFluid(L * 8))
             outputs(ComponentAssemblyCasing.UEV.getStack(4))
             EUt(VA[UEV])
-            duration(32 * SECOND)
+            duration(32.s)
             stationResearch {
                 it.researchStack(ComponentAssemblyCasing.UHV.stack)
                     .EUt(VA[UHV])
@@ -386,7 +386,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(ArceusAlloy2B.getFluid(L * 8))
             outputs(ComponentAssemblyCasing.UIV.getStack(4))
             EUt(VA[UIV])
-            duration(32 * SECOND)
+            duration(32.s)
             stationResearch {
                 it.researchStack(ComponentAssemblyCasing.UEV.stack)
                     .EUt(VA[UEV])
@@ -412,7 +412,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(QuantumAlloy.getFluid(L * 8))
             outputs(ComponentAssemblyCasing.UXV.getStack(4))
             EUt(VA[UXV])
-            duration(32 * SECOND)
+            duration(32.s)
             stationResearch {
                 it.researchStack(ComponentAssemblyCasing.UIV.stack)
                     .EUt(VA[UIV])
@@ -438,7 +438,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(Lafium.getFluid(L * 8))
             outputs(ComponentAssemblyCasing.OpV.getStack(4))
             EUt(VA[OpV])
-            duration(32 * SECOND)
+            duration(32.s)
             stationResearch {
                 it.researchStack(ComponentAssemblyCasing.UXV.stack)
                     .EUt(VA[UXV])
@@ -464,7 +464,7 @@ internal object ComponentAssemblyCasingRecipes
             fluidInputs(SelfInteractingDarkMatter.getFluid(L * 8))
             outputs(ComponentAssemblyCasing.MAX.getStack(4))
             EUt(VA[MAX])
-            duration(32 * SECOND)
+            duration(32.s)
             stationResearch {
                 it.researchStack(ComponentAssemblyCasing.OpV.stack)
                     .EUt(VA[OpV])

@@ -9,10 +9,10 @@ import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumHydroxide
 
 internal object PotassiumProcessing
@@ -29,7 +29,7 @@ internal object PotassiumProcessing
             output(dust, Potassium)
             fluidOutputs(Chlorine.getFluid(1000))
             EUt(VA[LV])
-            duration(3 * SECOND + 12 * TICK)
+            duration(3.s + 12.t)
         }
 
         // KCl + H2O -> KOH + Cl + H
@@ -41,7 +41,7 @@ internal object PotassiumProcessing
             fluidOutputs(Chlorine.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(1000))
             EUt(VA[LV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 

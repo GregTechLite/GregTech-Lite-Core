@@ -4,10 +4,10 @@ import gregtech.api.GTValues.ULV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Lubricant
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SAP_COLLECTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RainbowSap
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resin
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
@@ -26,7 +26,7 @@ internal object SapCollectorRecipes
             notConsumable(DistilledWater.getFluid(10))
             fluidOutputs(Resin.getFluid(100))
             EUt(VA[ULV].toLong())
-            duration(1 * SECOND)
+            duration(1.s)
             blockStates("common", listOf(
                 Blocks.LOG.getStateFromMeta(0),
                 Blocks.LOG.getStateFromMeta(1),
@@ -41,7 +41,7 @@ internal object SapCollectorRecipes
             notConsumable(Lubricant.getFluid(10))
             fluidOutputs(RainbowSap.getFluid(100))
             EUt(VA[ULV])
-            duration(1 * SECOND)
+            duration(1.s)
             blockStates("rainbow", listOf(GTLiteBlocks.LOGS[2].getStateFromMeta(5)))
         }
     }

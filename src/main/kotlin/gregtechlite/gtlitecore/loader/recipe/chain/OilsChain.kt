@@ -42,7 +42,6 @@ import gregtech.api.unification.material.Materials.RefineryGas
 import gregtech.api.unification.material.Materials.Rhenium
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.SodiumHydroxide
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.SteamCrackedButadiene
 import gregtech.api.unification.material.Materials.SteamCrackedButane
 import gregtech.api.unification.material.Materials.SteamCrackedEthane
@@ -55,9 +54,6 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
@@ -65,6 +61,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CATALYTIC_REFORMER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumSulfate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Carbon5Fraction
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dicyclopentadiene
@@ -99,7 +97,7 @@ internal object OilsChain
             fluidOutputs(Butane.getFluid(64))   // C4H10
             fluidOutputs(Helium.getFluid(24))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -121,7 +119,7 @@ internal object OilsChain
             fluidOutputs(Methane.getFluid(1750)) // CH4
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Deleted vanilla steam cracked ethane recipes.
@@ -141,7 +139,7 @@ internal object OilsChain
             fluidOutputs(Ethylene.getFluid(250)) // C2H4
             fluidOutputs(Methane.getFluid(1125)) // CH4
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -159,7 +157,7 @@ internal object OilsChain
             fluidOutputs(Carbon5Fraction.getFluid(200))
             fluidOutputs(Ethane.getFluid(800)) // C2H6
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Deleted vanilla steam cracked ethylene recipes.
@@ -175,7 +173,7 @@ internal object OilsChain
             fluidOutputs(Carbon5Fraction.getFluid(200))
             fluidOutputs(Methane.getFluid(800)) // CH3
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -197,7 +195,7 @@ internal object OilsChain
             fluidOutputs(Ethane.getFluid(875)) // C2H6
             fluidOutputs(Methane.getFluid(875)) // CH4
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Deleted vanilla steam cracked propane recipes.
@@ -217,7 +215,7 @@ internal object OilsChain
             fluidOutputs(Ethylene.getFluid(750)) // C2H4
             fluidOutputs(Methane.getFluid(1000)) // CH4
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -243,7 +241,7 @@ internal object OilsChain
             fluidOutputs(Ethylene.getFluid(250)) // C2H4
             fluidOutputs(Methane.getFluid(250))  // CH4
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Deleted vanilla steam cracked ethylene recipes.
@@ -263,7 +261,7 @@ internal object OilsChain
             fluidOutputs(Ethylene.getFluid(1000)) // C2H4
             fluidOutputs(Methane.getFluid(250))   // CH4
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -289,7 +287,7 @@ internal object OilsChain
             fluidOutputs(Ethane.getFluid(750))  // C2H6
             fluidOutputs(Methane.getFluid(250)) // CH4
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Deleted vanilla steam cracked butane recipes.
@@ -317,7 +315,7 @@ internal object OilsChain
             fluidOutputs(Ethylene.getFluid(750)) // C2H4
             fluidOutputs(Methane.getFluid(250))  // CH4
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -339,7 +337,7 @@ internal object OilsChain
             fluidOutputs(Butane.getFluid(500))   // C4H8
             fluidOutputs(Ethylene.getFluid(500)) // C2H4
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Deleted vanilla steam cracked butadiene recipes.
@@ -363,7 +361,7 @@ internal object OilsChain
             fluidOutputs(Ethylene.getFluid(250)) // C2H4
             fluidOutputs(Methane.getFluid(1000)) // CH4
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 
@@ -387,7 +385,7 @@ internal object OilsChain
             fluidInputs(Carbon5Fraction.getFluid(100))
             fluidOutputs(DimerizedCarbon5Fraction.getFluid(87))
             EUt(VA[LV])
-            duration(15 * TICK)
+            duration(15.t)
         }
 
         // Dimerized C5 Fraction -> C10H12 + C5H12 + C5H8
@@ -397,7 +395,7 @@ internal object OilsChain
             fluidOutputs(Pentane.getFluid(380))
             fluidOutputs(Isoprene.getFluid(360))
             EUt(VA[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // C10H12 -> 2C5H8
@@ -406,7 +404,7 @@ internal object OilsChain
             fluidInputs(Dicyclopentadiene.getFluid(100))
             fluidOutputs(Isoprene.getFluid(200))
             EUt(VA[LV])
-            duration(4 * TICK)
+            duration(4.t)
         }
     }
 
@@ -416,7 +414,7 @@ internal object OilsChain
         COMBUSTION_GENERATOR_FUELS.addRecipe {
             fluidInputs(Pentane.getFluid(1))
             EUt(V[LV])
-            duration(2 * TICK)
+            duration(2.t)
         }
     }
 
@@ -432,7 +430,7 @@ internal object OilsChain
             output(dust, AluminiumSulfate, 17)
             fluidOutputs(Hydrogen.getFluid(6000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 2Al + 3H2SO4 -> Al2(SO3)3 + 3H2O
@@ -441,9 +439,9 @@ internal object OilsChain
             input(dust, Aluminium, 2)
             fluidInputs(SulfuricAcid.getFluid(3000))
             output(dust, AluminiumSulfite, 14)
-            fluidOutputs(Steam.getFluid(3 * SU))
+            fluidOutputs(Water.getFluid(3000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // NaOH + 3SiO2 + Al2(SO4)3 + H2O -> Na(Al2(SO4)3)(SiO2)2(H2O)2
@@ -456,7 +454,7 @@ internal object OilsChain
             notConsumable(Ethanol.getFluid(1))
             output(plate, ZSM5) // Actually outputs 30, but this is only useful for some recipes.
             EUt(VA[IV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // endregion
@@ -473,7 +471,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(250))
             fluidOutputs(Dimethylbenzene.getFluid(300))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         CATALYTIC_REFORMER_RECIPES.addRecipe {
@@ -484,7 +482,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(500))
             fluidOutputs(Dimethylbenzene.getFluid(600))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         CATALYTIC_REFORMER_RECIPES.addRecipe {
@@ -495,7 +493,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(1000))
             fluidOutputs(Dimethylbenzene.getFluid(1200))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Heavy Fuel
@@ -507,7 +505,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(150))
             fluidOutputs(Dimethylbenzene.getFluid(400))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         CATALYTIC_REFORMER_RECIPES.addRecipe {
@@ -518,7 +516,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(300))
             fluidOutputs(Dimethylbenzene.getFluid(800))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         CATALYTIC_REFORMER_RECIPES.addRecipe {
@@ -529,7 +527,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(600))
             fluidOutputs(Dimethylbenzene.getFluid(1600))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Naphtha
@@ -541,7 +539,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(350))
             fluidOutputs(Ethylbenzene.getFluid(200))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         CATALYTIC_REFORMER_RECIPES.addRecipe {
@@ -552,7 +550,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(700))
             fluidOutputs(Ethylbenzene.getFluid(400))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         CATALYTIC_REFORMER_RECIPES.addRecipe {
@@ -563,7 +561,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(1400))
             fluidOutputs(Ethylbenzene.getFluid(800))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Refinery Gas
@@ -575,7 +573,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(250))
             fluidOutputs(Dimethylbenzene.getFluid(150))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         CATALYTIC_REFORMER_RECIPES.addRecipe {
@@ -586,7 +584,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(500))
             fluidOutputs(Dimethylbenzene.getFluid(300))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         CATALYTIC_REFORMER_RECIPES.addRecipe {
@@ -597,7 +595,7 @@ internal object OilsChain
             fluidOutputs(ParaXylene.getFluid(1000))
             fluidOutputs(Dimethylbenzene.getFluid(600))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
     }
 

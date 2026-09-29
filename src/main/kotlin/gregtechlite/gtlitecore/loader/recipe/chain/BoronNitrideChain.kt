@@ -42,8 +42,6 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadBuzzSaw
 import gregtech.common.items.MetaItems.DYNAMITE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
@@ -52,6 +50,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_R
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmorphousBoronNitride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Borazine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoricAcid
@@ -90,7 +90,7 @@ internal object BoronNitrideChain
             output(dust, Salt, 4)
             fluidOutputs(Water.getFluid(5000))
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // 2H3BO3 -> B2O3 + 3H2O
@@ -99,7 +99,7 @@ internal object BoronNitrideChain
             output(dust, BoronTrioxide, 5)
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -112,7 +112,7 @@ internal object BoronNitrideChain
             fluidOutputs(BoronTrifluoride.getFluid(2000))
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[HV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // Li + H -> LiH
@@ -122,7 +122,7 @@ internal object BoronNitrideChain
             fluidInputs(Hydrogen.getFluid(1000))
             output(ingot, LithiumHydride, 2)
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // 8BF3 + 6LiH -> B2H6 + 6LiBF4
@@ -132,7 +132,7 @@ internal object BoronNitrideChain
             output(dust, LithiumTetrafluoroborate, 36)
             fluidOutputs(Diborane.getFluid(1000))
             EUt(VA[HV])
-            duration(32 * SECOND)
+            duration(32.s)
         }
 
         // LiBF4 -> BF3 + LiH (cycle)
@@ -144,7 +144,7 @@ internal object BoronNitrideChain
             output(dust, LithiumHydride, 2)
             fluidOutputs(BoronTrifluoride.getFluid(1000))
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // 3B2H6 + 6NH3 -> 2B3H6N3 + 24H
@@ -154,7 +154,7 @@ internal object BoronNitrideChain
             fluidOutputs(Borazine.getFluid(2000))
             fluidOutputs(Hydrogen.getFluid(24000))
             EUt(VA[LuV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
     }
 
@@ -167,7 +167,7 @@ internal object BoronNitrideChain
             fluidOutputs(BoronTrichloride.getFluid(4000))
             fluidOutputs(CarbonDioxide.getFluid(3000))
             EUt(VA[HV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // 3BCl3 + 3NH4Cl -> B3Cl3H3N3 + 9HCl
@@ -177,7 +177,7 @@ internal object BoronNitrideChain
             fluidOutputs(Trichloroborazine.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(9000))
             EUt(VA[IV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // B3H6N3 + 3O -> 3h-BN + 3H2O
@@ -187,7 +187,7 @@ internal object BoronNitrideChain
             output(gem, HexagonalBoronNitride, 6)
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             temperature(1300)
         }
 
@@ -199,7 +199,7 @@ internal object BoronNitrideChain
             fluidInputs(Nitrogen.getFluid(1000))
             output(gem, HexagonalBoronNitride, 2)
             EUt(VA[UEV])
-            duration(4 * SECOND)
+            duration(4.s)
             temperature(2900)
         }
 
@@ -208,7 +208,7 @@ internal object BoronNitrideChain
             input(dust, HexagonalBoronNitride, 1)
             output(gem, CubicBoronNitride, 1)
             EUt(VA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
             temperature(3501)
         }
 
@@ -219,7 +219,7 @@ internal object BoronNitrideChain
             output(dust, AmorphousBoronNitride, 6)
             fluidOutputs(HydrochloricAcid.getFluid(3000))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // c-BN + C -> BCN
@@ -228,7 +228,7 @@ internal object BoronNitrideChain
             input(dust, Carbon)
             output(gem, Heterodiamond, 2)
             EUt(VA[LV])
-            duration(1 * SECOND)
+            duration(1.s)
             explosives(32)
         }
 
@@ -237,7 +237,7 @@ internal object BoronNitrideChain
             input(dust, Carbon)
             output(gem, Heterodiamond, 2)
             EUt(VA[LV])
-            duration(1 * SECOND)
+            duration(1.s)
             explosives(DYNAMITE.getStack(16))
         }
 
@@ -246,7 +246,7 @@ internal object BoronNitrideChain
             input(dust, Carbon)
             output(gem, Heterodiamond, 2)
             EUt(VA[LV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // BCN + C -> c-BC2N
@@ -255,7 +255,7 @@ internal object BoronNitrideChain
             input(dust, Carbon)
             output(gem, CubicHeterodiamond)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             temperature(2200)
         }
 
@@ -267,7 +267,7 @@ internal object BoronNitrideChain
             input(gemExquisite, CubicBoronNitride)
             output(toolHeadBuzzSaw, CubicBoronNitride)
             EUt(56) // MV
-            duration(2 * SECOND + 8 * TICK) // same as gear lathing to buzz saw.
+            duration(2.s + 8.t) // same as gear lathing to buzz saw.
         }
 
         // Crystallized stick and plate gluing to gear.
@@ -278,7 +278,7 @@ internal object BoronNitrideChain
             fluidInputs(Glue.getFluid(250))
             output(gear, CubicBoronNitride)
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
     }
 

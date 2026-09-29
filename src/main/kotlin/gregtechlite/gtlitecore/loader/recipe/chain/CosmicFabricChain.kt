@@ -16,12 +16,12 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicFabric
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FullerenePolymerMatrix
@@ -49,7 +49,7 @@ internal object CosmicFabricChain
             input(plate, LanthanumFullereneNanotube, 3)
             output(HIGHLY_DENSE_POLYMER_PLATE, 3)
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Highly Dense Polymer Plate -> Cosmic Fabric (plasma)
@@ -59,7 +59,7 @@ internal object CosmicFabricChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             fluidOutputs(CosmicFabric.getPlasma(1000))
             EUt(VA[UXV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -68,7 +68,7 @@ internal object CosmicFabricChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             fluidOutputs(CosmicFabric.getPlasma(64000))
             EUt(VA[OpV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -80,7 +80,7 @@ internal object CosmicFabricChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             fluidOutputs(CosmicFabric.getPlasma(256000))
             EUt(VA[MAX])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Cosmic Fabric (plasma) -> Cosmic Fabric (liquid)
@@ -91,7 +91,7 @@ internal object CosmicFabricChain
             fluidOutputs(CosmicFabric.getFluid(L))
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -101,7 +101,7 @@ internal object CosmicFabricChain
             output(dust, CosmicFabric)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -111,7 +111,7 @@ internal object CosmicFabricChain
             output(dustSmall, CosmicFabric, 4)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -121,7 +121,7 @@ internal object CosmicFabricChain
             output(dustTiny, CosmicFabric, 9)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -131,7 +131,7 @@ internal object CosmicFabricChain
             output(ingot, CosmicFabric)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         VACUUM_RECIPES.addRecipe {
@@ -141,7 +141,7 @@ internal object CosmicFabricChain
             output(plate, CosmicFabric)
             fluidOutputs(Helium.getFluid(500))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

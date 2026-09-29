@@ -17,9 +17,9 @@ import gregtech.api.unification.material.properties.PropertyKey
 import gregtech.api.util.GTUtility
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.TooltipHelper
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.collection.to
 import gregtechlite.gtlitecore.api.extension.add
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.renderer.texture.TextureAtlasSprite
 import net.minecraft.client.resources.I18n
@@ -151,7 +151,7 @@ class MetaTileEntityPlasticCan(id: ResourceLocation, private val fluidFilter: IP
     override fun update()
     {
         super.update()
-        if (!world.isRemote && isAutoOutput && offsetTimer % (5 * TICK) == 0L)
+        if (!world.isRemote && isAutoOutput && offsetTimer % (5.t) == 0L)
         {
             pushFluidsIntoNearbyHandlers(*arrayOf(EnumFacing.DOWN))
         }

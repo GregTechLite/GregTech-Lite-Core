@@ -33,10 +33,10 @@ import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Wulfenite
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPerrhenate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MolybdenumFlue
@@ -77,7 +77,7 @@ internal object MolybdenumRheniumProcessing
             fluidOutputs(SulfurDioxide.getFluid(2000))
             fluidOutputs(MolybdenumFlue.getFluid(1000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // MoO3 + 6H -> Mo + 3H2O
@@ -87,7 +87,7 @@ internal object MolybdenumRheniumProcessing
             output(dust, Molybdenum)
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // CaMoO4 + 2HCl -> MoO3 + CaCl2 + H2O
@@ -98,7 +98,7 @@ internal object MolybdenumRheniumProcessing
             output(dust, CalciumChloride, 3)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // PbMoO4 + 2HCl -> MoO3 + H2O + PbCl2
@@ -109,7 +109,7 @@ internal object MolybdenumRheniumProcessing
             output(dust, LeadDichloride, 3)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Another recipes for PbCl2.
@@ -121,7 +121,7 @@ internal object MolybdenumRheniumProcessing
             fluidInputs(Chlorine.getFluid(2000))
             output(dust, LeadDichloride, 3)
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // PbO + 2HCl -> PbCl2 + H2O
@@ -131,7 +131,7 @@ internal object MolybdenumRheniumProcessing
             output(dust, LeadDichloride, 3)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
     }
 
@@ -143,7 +143,7 @@ internal object MolybdenumRheniumProcessing
             output(dust, MolybdenumTrioxide)
             fluidOutputs(TraceRheniumFlue.getFluid(500))
             EUt(VH[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // ReO2 + Na2CO3 + NaOH + 3Cl -> HReO4 + 3NaCl + CO2
@@ -156,7 +156,7 @@ internal object MolybdenumRheniumProcessing
             output(dust, Salt, 6)
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // HReO4 + NH3 -> NH4ReO4
@@ -165,7 +165,7 @@ internal object MolybdenumRheniumProcessing
             fluidInputs(Ammonia.getFluid(1000))
             output(dust, AmmoniumPerrhenate, 10)
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // NH4ReO4 + H2S + Cl -> Re + NH4Cl + H2SO4
@@ -177,7 +177,7 @@ internal object MolybdenumRheniumProcessing
             output(dust, AmmoniumChloride, 2)
             fluidOutputs(SulfuricAcid.getFluid(1000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

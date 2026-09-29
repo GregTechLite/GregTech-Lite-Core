@@ -7,9 +7,9 @@ import gregtech.api.unification.material.Materials.Thulium
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.rotor
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hypogen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
@@ -29,7 +29,7 @@ internal object PCBFactoryCasingRecipes
             input(plate, Thulium, 6)
             outputs(MultiblockCasing.INFINITY_COOLING_CASING.getStack(2))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

@@ -28,12 +28,12 @@ import gregtech.api.unification.material.Materials.Silicon
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.ingotHot
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BATH_CONDENSER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 
 internal object BathCondenserRecipes
 {
@@ -48,7 +48,7 @@ internal object BathCondenserRecipes
             fluidInputs(Water.getFluid(100))
             fluidOutputs(Ice.getFluid(100))
             EUt(VA[ULV])
-            duration(2 * TICK)
+            duration(2.t)
         }
 
         // Oxygen -> Liquid Oxygen
@@ -57,7 +57,7 @@ internal object BathCondenserRecipes
             fluidInputs(Oxygen.getFluid(100))
             fluidOutputs(Oxygen.getFluid(FluidStorageKeys.LIQUID, 100))
             EUt(VA[MV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Helium -> Liquid Helium
@@ -66,7 +66,7 @@ internal object BathCondenserRecipes
             fluidInputs(Helium.getFluid(100))
             fluidOutputs(Helium.getFluid(FluidStorageKeys.LIQUID, 100))
             EUt(VA[EV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         for (fluid in arrayOf(
@@ -82,7 +82,7 @@ internal object BathCondenserRecipes
                 fluidInputs(fluid)
                 fluidOutputs(LiquidAir.getFluid(500))
                 EUt(VA[HV])
-                duration(2 * SECOND)
+                duration(2.s)
             }
 
             // Nether Air -> Liquid Air
@@ -91,7 +91,7 @@ internal object BathCondenserRecipes
                 fluidInputs(fluid)
                 fluidOutputs(LiquidNetherAir.getFluid(500))
                 EUt(VA[EV])
-                duration(2 * SECOND)
+                duration(2.s)
             }
 
             // Ender Air -> Liquid Ender Air
@@ -100,7 +100,7 @@ internal object BathCondenserRecipes
                 fluidInputs(fluid)
                 fluidOutputs(LiquidEnderAir.getFluid(500))
                 EUt(VA[IV])
-                duration(2 * SECOND)
+                duration(2.s)
             }
         }
 
@@ -156,7 +156,7 @@ internal object BathCondenserRecipes
                 fluidInputs(fluid)
                 output(ingot, Silicon)
                 EUt(VA[MV])
-                duration(5 * SECOND)
+                duration(5.s)
             }
 
             BATH_CONDENSER_RECIPES.addRecipe {
@@ -164,7 +164,7 @@ internal object BathCondenserRecipes
                 fluidInputs(fluid)
                 output(ingot, Kanthal)
                 EUt(VA[MV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
 
             BATH_CONDENSER_RECIPES.addRecipe {
@@ -172,7 +172,7 @@ internal object BathCondenserRecipes
                 fluidInputs(fluid)
                 output(ingot, BlackSteel)
                 EUt(VA[MV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
 
             BATH_CONDENSER_RECIPES.addRecipe {
@@ -180,7 +180,7 @@ internal object BathCondenserRecipes
                 fluidInputs(fluid)
                 output(ingot, RedSteel)
                 EUt(VA[MV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
 
             BATH_CONDENSER_RECIPES.addRecipe {
@@ -188,7 +188,7 @@ internal object BathCondenserRecipes
                 fluidInputs(fluid)
                 output(ingot, BlueSteel)
                 EUt(VA[MV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
 
             BATH_CONDENSER_RECIPES.addRecipe {
@@ -196,7 +196,7 @@ internal object BathCondenserRecipes
                 fluidInputs(fluid)
                 output(ingot, MagnesiumDiboride)
                 EUt(VA[MV])
-                duration(10 * SECOND)
+                duration(10.s)
             }
         }
     }

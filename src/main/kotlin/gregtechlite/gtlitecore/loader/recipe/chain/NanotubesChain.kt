@@ -26,7 +26,6 @@ import gregtech.api.recipes.RecipeMaps.FLUID_HEATER_RECIPES
 import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.recipes.RecipeMaps.MIXER_RECIPES
-import gregtech.api.recipes.RecipeMaps.PYROLYSE_RECIPES
 import gregtech.api.unification.material.Materials.Acetone
 import gregtech.api.unification.material.Materials.Aluminium
 import gregtech.api.unification.material.Materials.Ammonia
@@ -72,15 +71,16 @@ import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_FOIL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.duration
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COMPLEX_PYROLYSIS_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PLASMA_CVD_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetaldehyde
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPersulfate
@@ -150,7 +150,7 @@ internal object NanotubesChain
             fluidOutputs(Water.getFluid(3000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[EV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // 2C5H5N -> C10H8N2 + 2H
@@ -160,7 +160,7 @@ internal object NanotubesChain
             output(dust, Bipyridine, 20)
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 
@@ -173,7 +173,7 @@ internal object NanotubesChain
             fluidInputs(Chlorine.getFluid(2000))
             output(dust, PalladiumRaw, 3)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2C7H6O + C3H6O -> C17H14O + 2H2O
@@ -183,7 +183,7 @@ internal object NanotubesChain
             fluidOutputs(Dibenzylideneacetone.getFluid(1000))
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 2PdCl2 + 3C17H14O -> C51H42O3Pd2 + 4Cl
@@ -194,28 +194,29 @@ internal object NanotubesChain
             output(dust, PalladiumBisdibenzylidieneacetone, 34)
             fluidOutputs(Chlorine.getFluid(4000))
             EUt(VA[IV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 
     private fun dichlorocyclooctadieneplatiniumProcess()
     {
         // 2C4H6 -> C8H12
-        PYROLYSE_RECIPES.addRecipe {
+        COMPLEX_PYROLYSIS_RECIPES.addRecipe {
             notConsumable(dust, Nickel)
             fluidInputs(Butadiene.getFluid(2000))
             fluidOutputs(Cyclooctadiene.getFluid(1000))
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
+            blastFurnaceTemp(3400)
         }
 
         // C10H12 -> C8H12 + 2C (drop)
         FLUID_HEATER_RECIPES.addRecipe {
-            circuitMeta(1)
+            circuitMeta(2)
             fluidInputs(Dicyclopentadiene.getFluid(100))
             fluidOutputs(Cyclooctadiene.getFluid(100))
             EUt(VA[HV])
-            duration(12 * TICK)
+            duration(12.t)
         }
 
         // C5H8 + C3H4O4 -> C8H12 + 4O
@@ -225,7 +226,7 @@ internal object NanotubesChain
             fluidOutputs(Cyclooctadiene.getFluid(1000))
             fluidOutputs(Oxygen.getFluid(4000))
             EUt(VA[EV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // Pt + 2HCl + 4Cl -> H2PtCl6
@@ -235,7 +236,7 @@ internal object NanotubesChain
             fluidInputs(Chlorine.getFluid(4000))
             fluidOutputs(HexachloroplatinicAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // K2 + H2PtCl6 -> K2PtCl4 + 2HCl
@@ -245,7 +246,7 @@ internal object NanotubesChain
             output(dust, PotassiumTetrachloroplatinate, 7)
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // K2PtCl4 + C8H12 -> C8H12Cl2Pt + 2KCl
@@ -255,7 +256,7 @@ internal object NanotubesChain
             output(dust, Dichlorocyclooctadieneplatinium, 23)
             output(dust, RockSalt, 4)
             EUt(VA[HV])
-            duration(18 * SECOND)
+            duration(18.s)
         }
     }
 
@@ -271,7 +272,7 @@ internal object NanotubesChain
             output(dust, AmmoniumPersulfate, 20)
             fluidOutputs(Hydrogen.getFluid(4000))
             EUt(VA[HV])
-            duration(13 * SECOND)
+            duration(13.s)
         }
 
         // (NH4)2S2O8 + 2H -> (NH2)4SO4 + H2SO4 (cycle)
@@ -281,7 +282,7 @@ internal object NanotubesChain
             output(dust, AmmoniumSulfate, 17)
             fluidOutputs(SulfuricAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(6 * SECOND + 10 * TICK)
+            duration(6.s + 10.t)
         }
 
         // SnCl2 + 3CH4 + O -> (CH3)3SnCl + (HCl)(H2O)
@@ -293,7 +294,7 @@ internal object NanotubesChain
             fluidOutputs(TrimethyltinChloride.getFluid(1000))
             fluidOutputs(DilutedHydrochloricAcid.getFluid(2000))
             EUt(VA[EV])
-            duration(6 * SECOND + 10 * TICK)
+            duration(6.s + 10.t)
         }
 
         // Ag + Cl -> AgCl
@@ -303,7 +304,7 @@ internal object NanotubesChain
             fluidInputs(Chlorine.getFluid(1000))
             output(dust, SilverChloride, 2)
             EUt(VA[MV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // 3Ag2O + 2BF3 -> B2O3 + AgBF4
@@ -314,7 +315,7 @@ internal object NanotubesChain
             output(dust, SilverTetrafluoroborate, 6)
             output(dust, BoronTrioxide, 5)
             EUt(VA[IV])
-            duration(32 * SECOND + 10 * TICK)
+            duration(32.s + 10.t)
         }
 
         // 2AgCl + H2O -> Ag2O + 2HCl
@@ -325,7 +326,7 @@ internal object NanotubesChain
             output(dust, SilverOxide, 3)
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[HV])
-            duration(9 * SECOND)
+            duration(9.s)
         }
 
         // 2C8H12Cl2Pt + 2C12H8I2 + 8C + 4AgBF4 + 4(CH3)3SnCl
@@ -349,7 +350,7 @@ internal object NanotubesChain
             fluidOutputs(Octene.getFluid(3000))                             // C8H16
             fluidOutputs(HydrofluoricAcid.getFluid(4000))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -359,7 +360,7 @@ internal object NanotubesChain
             fluidInputs(Octene.getFluid(1000))
             fluidOutputs(Butadiene.getFluid(2000))
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // C8H16 -> C8H12 + 4C (drop)
@@ -368,7 +369,7 @@ internal object NanotubesChain
             fluidInputs(Octene.getFluid(1000))
             fluidOutputs(Cyclooctadiene.getFluid(1000))
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 
@@ -383,7 +384,7 @@ internal object NanotubesChain
             fluidInputs(Nitrogen.getPlasma(10000))
             output(ingot, CarbonNanotube)
             EUt(VA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
             temperature(993)
         }
 
@@ -397,7 +398,7 @@ internal object NanotubesChain
             output(ingot, CarbonNanotube, 4)
             fluidOutputs(Ammonia.getFluid(40000))
             EUt(VA[UEV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
             temperature(993)
         }
 
@@ -436,7 +437,7 @@ internal object NanotubesChain
             input(dust, CarbonNanotube)
             output(CARBON_ALLOTROPE_MIXTURE)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -446,7 +447,7 @@ internal object NanotubesChain
             output(ingot, CarbonNanotube)
             output(GRAPHENE_ALIGNED_CNT, 4)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -456,7 +457,7 @@ internal object NanotubesChain
             output(dust, Carbon, 3)
             fluidOutputs(Cycloparaphenylene.getFluid(1750))
             EUt(VA[HV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 
@@ -472,7 +473,7 @@ internal object NanotubesChain
             fluidInputs(Nitrogen.getPlasma(10000))
             output(ingot, SeaborgiumDopedCarbonNanotube)
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             temperature(2876)
         }
 
@@ -487,7 +488,7 @@ internal object NanotubesChain
             output(ingot, SeaborgiumDopedCarbonNanotube, 4)
             fluidOutputs(Ammonia.getFluid(40000))
             EUt(VA[UEV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
             temperature(6364)
         }
     }
@@ -501,7 +502,7 @@ internal object NanotubesChain
             input(dust, Lanthanum, 2)
             output(dust, LanthanumFullereneMixture, 4)
             EUt(VA[LuV])
-            duration(2 * SECOND)
+            duration(2.s)
             cleanroom()
         }
 
@@ -513,7 +514,7 @@ internal object NanotubesChain
             output(dust, LanthanumEmbeddedFullerene, 4)
             fluidOutputs(Ammonia.getFluid(20000))
             EUt(VA[UHV])
-            duration(16 * SECOND)
+            duration(16.s)
             cleanroom()
         }
 
@@ -527,7 +528,7 @@ internal object NanotubesChain
             fluidInputs(Nitrogen.getPlasma(10000))
             output(ingot, LanthanumFullereneNanotube)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             temperature(1986)
         }
 
@@ -542,7 +543,7 @@ internal object NanotubesChain
             output(ingot, LanthanumFullereneNanotube, 4)
             fluidOutputs(Ammonia.getFluid(40000))
             EUt(VA[UIV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
             temperature(7944)
         }
     }
@@ -559,7 +560,7 @@ internal object NanotubesChain
             fluidInputs(Nitrogen.getPlasma(10000))
             output(ingot, NeutroniumDopedCarbonNanotube)
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             temperature(3302)
         }
 
@@ -574,7 +575,7 @@ internal object NanotubesChain
             output(ingot, NeutroniumDopedCarbonNanotube, 4)
             fluidOutputs(Ammonia.getFluid(40000))
             EUt(VA[OpV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
             temperature(8208)
         }
     }

@@ -124,14 +124,14 @@ import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM
 import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_LUV
 import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtech.common.items.MetaItems.WORKSTATION_EV
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CIRCUIT_ASSEMBLY_LINE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.util.circuitInfo
 import gregtechlite.gtlitecore.api.recipe.util.createCircuitPatternRecipe
 import gregtechlite.gtlitecore.api.recipe.util.createWrapItemMap
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
@@ -338,7 +338,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(ELECTRONIC_CIRCUIT_LV, 64)
             EUt(VH[LV])
-            duration(1 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(1.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(ELECTRONIC_CIRCUIT_LV)
         }
 
@@ -351,7 +351,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(ELECTRONIC_CIRCUIT_MV, 32)
             EUt(VH[LV])
-            duration(1 * MINUTE + 20 * SECOND) // Original: 15s, Wrapped: 15s * 16 = 240s
+            duration(1.min + 20.s) // Original: 15s, Wrapped: 15s * 16 = 240s
             circuitInfo(ELECTRONIC_CIRCUIT_MV)
         }
 
@@ -370,7 +370,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(INTEGRATED_CIRCUIT_LV, 64)
             EUt(VH[LV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(INTEGRATED_CIRCUIT_LV)
         }
 
@@ -385,7 +385,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(INTEGRATED_CIRCUIT_MV, 48)
             EUt(24) // LV
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(INTEGRATED_CIRCUIT_MV)
         }
 
@@ -400,7 +400,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(INTEGRATED_CIRCUIT_HV, 32)
             EUt(VA[LV])
-            duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
             circuitInfo(INTEGRATED_CIRCUIT_HV)
         }
 
@@ -418,7 +418,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(NAND_CHIP_ULV, 64)
             output(NAND_CHIP_ULV, 64)
             EUt(VA[MV])
-            duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
+            duration(3.min) // Original: 15s, Wrapped: 15s * 16 = 240s
             circuitInfo(NAND_CHIP_ULV)
         }
 
@@ -433,7 +433,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(NAND_CHIP_ULV, 64)
             output(NAND_CHIP_ULV, 64)
             EUt(VA[MV])
-            duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
+            duration(3.min) // Original: 15s, Wrapped: 15s * 16 = 240s
             circuitInfo(NAND_CHIP_ULV)
         }
 
@@ -448,7 +448,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(MICROPROCESSOR_LV, 64)
             EUt(VHA[MV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(MICROPROCESSOR_LV)
         }
 
@@ -461,7 +461,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(MICROPROCESSOR_LV, 64)
             output(MICROPROCESSOR_LV, 64)
             EUt(600) // EV
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(MICROPROCESSOR_LV)
         }
 
@@ -476,7 +476,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(PROCESSOR_MV, 64)
             EUt(VHA[MV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(PROCESSOR_MV)
         }
 
@@ -489,7 +489,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(PROCESSOR_MV, 64)
             output(PROCESSOR_MV, 64)
             EUt(2400) // IV
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(PROCESSOR_MV)
         }
 
@@ -504,7 +504,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(PROCESSOR_ASSEMBLY_HV, 48)
             EUt(90) // MV
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(PROCESSOR_ASSEMBLY_HV)
         }
 
@@ -519,7 +519,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(WORKSTATION_EV, 32)
             EUt(VA[MV])
-            duration(5 * MINUTE) // Original: 20s, Wrapped: 20ss * 16 = 320s
+            duration(5.min) // Original: 20s, Wrapped: 20ss * 16 = 320s
             circuitInfo(WORKSTATION_EV)
         }
 
@@ -534,7 +534,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L * 2))
             output(MAINFRAME_IV, 16)
             EUt(VA[HV])
-            duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
             circuitInfo(MAINFRAME_IV)
         }
 
@@ -553,7 +553,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(NANO_PROCESSOR_HV, 64)
             EUt(600) // EV
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(NANO_PROCESSOR_HV)
         }
 
@@ -567,7 +567,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(NANO_PROCESSOR_HV, 64)
             EUt(600) // EV
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(NANO_PROCESSOR_HV)
         }
 
@@ -580,7 +580,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(NANO_PROCESSOR_HV, 64)
             output(NANO_PROCESSOR_HV, 64)
             EUt(9600) // LuV
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(NANO_PROCESSOR_HV)
         }
 
@@ -595,7 +595,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(NANO_PROCESSOR_ASSEMBLY_EV, 48)
             EUt(600) // EV
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(NANO_PROCESSOR_ASSEMBLY_EV)
         }
 
@@ -609,7 +609,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(NANO_PROCESSOR_ASSEMBLY_EV, 48)
             EUt(600) // EV
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(NANO_PROCESSOR_ASSEMBLY_EV)
         }
 
@@ -624,7 +624,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(NANO_COMPUTER_IV, 32)
             EUt(600) // EV
-            duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(5.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(NANO_COMPUTER_IV)
         }
 
@@ -638,7 +638,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(NANO_COMPUTER_IV, 32)
             EUt(600) // EV
-            duration(2 * MINUTE + 30 * SECOND) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min + 30.s) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(NANO_COMPUTER_IV)
         }
 
@@ -653,7 +653,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L * 2))
             output(NANO_MAINFRAME_LUV, 16)
             EUt(VA[EV])
-            duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
             circuitInfo(NANO_MAINFRAME_LUV)
         }
 
@@ -667,7 +667,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L * 2))
             output(NANO_MAINFRAME_LUV, 16)
             EUt(VA[EV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(NANO_MAINFRAME_LUV)
         }
 
@@ -681,7 +681,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L * 2))
             output(NANO_MAINFRAME_LUV, 16)
             EUt(VA[EV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(NANO_MAINFRAME_LUV)
         }
 
@@ -700,7 +700,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(QUANTUM_PROCESSOR_EV, 64)
             EUt(2400) // IV
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(QUANTUM_PROCESSOR_EV)
         }
 
@@ -714,7 +714,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(QUANTUM_PROCESSOR_EV, 64)
             EUt(2400) // IV
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(QUANTUM_PROCESSOR_EV)
         }
 
@@ -727,7 +727,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(QUANTUM_PROCESSOR_EV, 64)
             output(QUANTUM_PROCESSOR_EV, 64)
             EUt(38400) // ZPM
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(QUANTUM_PROCESSOR_EV)
         }
 
@@ -742,7 +742,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(QUANTUM_ASSEMBLY_IV, 48)
             EUt(2400) // IV
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(QUANTUM_ASSEMBLY_IV)
         }
 
@@ -756,7 +756,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(QUANTUM_ASSEMBLY_IV, 48)
             EUt(2400) // IV
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(QUANTUM_ASSEMBLY_IV)
         }
 
@@ -771,7 +771,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(QUANTUM_COMPUTER_LUV, 32)
             EUt(2400) // IV
-            duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(5.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(QUANTUM_COMPUTER_LUV)
         }
 
@@ -785,7 +785,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(QUANTUM_COMPUTER_LUV, 32)
             EUt(2400) // IV
-            duration(2 * MINUTE + 30 * SECOND) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min + 30.s) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(QUANTUM_COMPUTER_LUV)
         }
 
@@ -800,7 +800,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L * 2))
             output(QUANTUM_MAINFRAME_ZPM, 16)
             EUt(VA[IV])
-            duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
             circuitInfo(QUANTUM_MAINFRAME_ZPM)
         }
 
@@ -814,7 +814,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L * 2))
             output(QUANTUM_MAINFRAME_ZPM, 16)
             EUt(VA[IV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(QUANTUM_MAINFRAME_ZPM)
         }
 
@@ -833,7 +833,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(CRYSTAL_PROCESSOR_IV, 64)
             EUt(9600) // LuV
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(CRYSTAL_PROCESSOR_IV)
         }
 
@@ -847,7 +847,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(CRYSTAL_PROCESSOR_IV, 64)
             EUt(9600) // LuV
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(CRYSTAL_PROCESSOR_IV)
         }
 
@@ -860,7 +860,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(CRYSTAL_PROCESSOR_IV, 64)
             output(CRYSTAL_PROCESSOR_IV, 64)
             EUt(86000) // ZPM
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(CRYSTAL_PROCESSOR_IV)
         }
 
@@ -875,7 +875,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(CRYSTAL_ASSEMBLY_LUV, 48)
             EUt(9600) // LuV
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(CRYSTAL_ASSEMBLY_LUV)
         }
 
@@ -889,7 +889,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(CRYSTAL_ASSEMBLY_LUV, 48)
             EUt(9600) // LuV
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(CRYSTAL_ASSEMBLY_LUV)
         }
 
@@ -904,7 +904,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(CRYSTAL_COMPUTER_ZPM, 32)
             EUt(9600) // LuV
-            duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(5.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(CRYSTAL_COMPUTER_ZPM)
         }
 
@@ -925,7 +925,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(WETWARE_PROCESSOR_LUV, 64)
             EUt(38400) // ZPM
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(WETWARE_PROCESSOR_LUV)
         }
 
@@ -939,7 +939,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(WETWARE_PROCESSOR_LUV, 64)
             EUt(38400) // ZPM
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(WETWARE_PROCESSOR_LUV)
         }
 
@@ -952,7 +952,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(WETWARE_PROCESSOR_LUV, 64)
             output(WETWARE_PROCESSOR_LUV, 64)
             EUt(150_000) // UV
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(WETWARE_PROCESSOR_LUV)
         }
 
@@ -967,7 +967,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
             EUt(38400) // ZPM
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
         }
 
@@ -981,7 +981,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
             EUt(38400) // ZPM
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
         }
 
@@ -996,7 +996,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(WETWARE_SUPER_COMPUTER_UV, 32)
             EUt(38400) // ZPM
-            duration(5 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(5.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(WETWARE_SUPER_COMPUTER_UV)
         }
 
@@ -1017,7 +1017,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(GOOWARE_PROCESSOR_ZPM, 64)
             EUt(VHA[UV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(GOOWARE_PROCESSOR_ZPM)
         }
 
@@ -1031,7 +1031,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(GOOWARE_PROCESSOR_ZPM, 64)
             EUt(VHA[UV])
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(GOOWARE_PROCESSOR_ZPM)
         }
 
@@ -1045,7 +1045,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(GOOWARE_PROCESSOR_ZPM, 64)
             EUt(VHA[UV])
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(GOOWARE_PROCESSOR_ZPM)
         }
 
@@ -1059,7 +1059,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(GOOWARE_PROCESSOR_ZPM, 64)
             output(GOOWARE_PROCESSOR_ZPM, 64)
             EUt(VHA[UHV])
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(GOOWARE_PROCESSOR_ZPM)
         }
 
@@ -1074,7 +1074,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(GOOWARE_ASSEMBLY_UV, 48)
             EUt(VHA[UV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(GOOWARE_ASSEMBLY_UV)
         }
 
@@ -1088,7 +1088,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(GOOWARE_ASSEMBLY_UV, 48)
             EUt(VHA[UV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(GOOWARE_ASSEMBLY_UV)
         }
 
@@ -1102,7 +1102,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(GOOWARE_ASSEMBLY_UV, 48)
             EUt(VHA[UV])
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(GOOWARE_ASSEMBLY_UV)
         }
 
@@ -1125,7 +1125,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(OPTICAL_PROCESSOR_UV, 64)
             EUt(VA[UHV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(OPTICAL_PROCESSOR_UV)
         }
 
@@ -1139,7 +1139,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(OPTICAL_PROCESSOR_UV, 64)
             EUt(VA[UHV])
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(OPTICAL_PROCESSOR_UV)
         }
 
@@ -1153,7 +1153,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(OPTICAL_PROCESSOR_UV, 64)
             EUt(VA[UHV])
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(OPTICAL_PROCESSOR_UV)
         }
 
@@ -1166,7 +1166,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(OPTICAL_PROCESSOR_UV, 64)
             output(OPTICAL_PROCESSOR_UV, 64)
             EUt(VA[UEV])
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(OPTICAL_PROCESSOR_UV)
         }
 
@@ -1181,7 +1181,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(OPTICAL_ASSEMBLY_UHV, 48)
             EUt(VA[UHV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(OPTICAL_ASSEMBLY_UHV)
         }
 
@@ -1195,7 +1195,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(OPTICAL_ASSEMBLY_UHV, 48)
             EUt(VA[UHV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(OPTICAL_ASSEMBLY_UHV)
         }
 
@@ -1209,7 +1209,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(OPTICAL_ASSEMBLY_UHV, 48)
             EUt(VA[UHV])
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(OPTICAL_ASSEMBLY_UHV)
         }
 
@@ -1232,7 +1232,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(SPINTRONIC_PROCESSOR_UHV, 64)
             EUt(VA[UEV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(SPINTRONIC_PROCESSOR_UHV)
         }
 
@@ -1246,7 +1246,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(SPINTRONIC_PROCESSOR_UHV, 64)
             EUt(VA[UEV])
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(SPINTRONIC_PROCESSOR_UHV)
         }
 
@@ -1260,7 +1260,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(SPINTRONIC_PROCESSOR_UHV, 64)
             EUt(VA[UEV])
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(SPINTRONIC_PROCESSOR_UHV)
         }
 
@@ -1273,7 +1273,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(SPINTRONIC_PROCESSOR_UHV, 64)
             output(SPINTRONIC_PROCESSOR_UHV, 64)
             EUt(VA[UIV])
-            duration(30 * SECOND) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
+            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
             circuitInfo(SPINTRONIC_PROCESSOR_UHV)
         }
 
@@ -1298,7 +1298,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(COSMIC_PROCESSOR_UEV, 64)
             EUt(VA[UIV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(COSMIC_PROCESSOR_UEV)
         }
 
@@ -1312,7 +1312,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(COSMIC_PROCESSOR_UEV, 64)
             EUt(VA[UIV])
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(COSMIC_PROCESSOR_UEV)
         }
 
@@ -1349,7 +1349,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(ENERGY_LAPOTRONIC_ORB, 16)
             EUt(VH[EV])
-            duration(6 * MINUTE) // Original: 25.6s, Wrapped: 25.6s * 16 = 409.6s
+            duration(6.min) // Original: 25.6s, Wrapped: 25.6s * 16 = 409.6s
             circuitInfo(ENERGY_LAPOTRONIC_ORB)
         }
 
@@ -1364,7 +1364,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(TOOL_DATA_STICK, 16)
             EUt(1200) // EV
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(TOOL_DATA_STICK)
         }
 
@@ -1379,7 +1379,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(TOOL_DATA_ORB, 16)
             EUt(9600) // LuV
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(TOOL_DATA_ORB)
         }
 
@@ -1394,7 +1394,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L))
             output(TOOL_DATA_MODULE, 16)
             EUt(38400) // ZPM
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(TOOL_DATA_MODULE)
         }
 
@@ -1408,7 +1408,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(DIAMOND_MODULATOR, 64)
             output(DIAMOND_MODULATOR, 64)
             EUt(VA[IV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(DIAMOND_MODULATOR)
         }
 
@@ -1422,7 +1422,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(RUBY_MODULATOR, 64)
             output(RUBY_MODULATOR, 64)
             EUt(VA[IV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(RUBY_MODULATOR)
         }
 
@@ -1436,7 +1436,7 @@ internal object CircuitAssemblyLineRecipeProducer
             output(SAPPHIRE_MODULATOR, 64)
             output(SAPPHIRE_MODULATOR, 64)
             EUt(VA[IV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(SAPPHIRE_MODULATOR)
         }
 
@@ -1450,7 +1450,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SolderingAlloy.getFluid(L / 2))
             output(CRYSTAL_SOC_SOCKET, 16)
             EUt(VA[LuV])
-            duration(20 * SECOND) // Original: 5s, Wrapped: 5s * 16 = 40s
+            duration(20.s) // Original: 5s, Wrapped: 5s * 16 = 40s
             circuitInfo(CRYSTAL_SOC_SOCKET)
         }
 
@@ -1465,7 +1465,7 @@ internal object CircuitAssemblyLineRecipeProducer
             fluidInputs(SterileGrowthMedium.getFluid(250))
             output(NEURO_PROCESSOR, 32)
             EUt(80000) // ZPM
-            duration(6 * MINUTE) // Original: 30s, Wrapped: 30s * 16 = 480s
+            duration(6.min) // Original: 30s, Wrapped: 30s * 16 = 480s
             circuitInfo(NEURO_PROCESSOR)
         }
 

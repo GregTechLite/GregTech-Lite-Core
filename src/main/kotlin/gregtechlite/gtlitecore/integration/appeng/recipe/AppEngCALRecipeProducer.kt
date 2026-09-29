@@ -6,7 +6,6 @@ import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.MarkerMaterials.Tier
-import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtech.api.unification.material.Materials.AnnealedCopper
 import gregtech.api.unification.material.Materials.Electrum
 import gregtech.api.unification.material.Materials.Gold
@@ -19,8 +18,9 @@ import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.circuit
 import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
-import gregtechlite.gtlitecore.api.MINUTE
 import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CIRCUIT_ASSEMBLY_LINE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.util.circuitInfo
 import gregtechlite.gtlitecore.api.recipe.util.createCircuitPatternRecipeFromItemStack
@@ -77,7 +77,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.LOGIC_PROCESSOR.getStack(64))
             outputs(AE2Item.LOGIC_PROCESSOR.getStack(64))
             EUt(VA[LV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(AE2Item.LOGIC_PROCESSOR.getStack())
         }
 
@@ -92,7 +92,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.LOGIC_PROCESSOR.getStack(64))
             outputs(AE2Item.LOGIC_PROCESSOR.getStack(64))
             EUt(VA[LV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(AE2Item.LOGIC_PROCESSOR.getStack())
         }
 
@@ -106,7 +106,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.CALCULATION_PROCESSOR.getStack(64))
             outputs(AE2Item.CALCULATION_PROCESSOR.getStack(64))
             EUt(VA[LV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(AE2Item.CALCULATION_PROCESSOR.getStack())
         }
 
@@ -121,7 +121,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.CALCULATION_PROCESSOR.getStack(64))
             outputs(AE2Item.CALCULATION_PROCESSOR.getStack(64))
             EUt(VA[LV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(AE2Item.CALCULATION_PROCESSOR.getStack())
         }
 
@@ -135,7 +135,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.ENGINEERING_PROCESSOR.getStack(64))
             outputs(AE2Item.ENGINEERING_PROCESSOR.getStack(64))
             EUt(VA[LV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(AE2Item.ENGINEERING_PROCESSOR.getStack())
         }
 
@@ -150,7 +150,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.ENGINEERING_PROCESSOR.getStack(64))
             outputs(AE2Item.ENGINEERING_PROCESSOR.getStack(64))
             EUt(VA[LV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(AE2Item.ENGINEERING_PROCESSOR.getStack())
         }
 
@@ -166,7 +166,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.STORAGE_COMPONENT_1K.getStack(64))
             outputs(AE2Item.STORAGE_COMPONENT_1K.getStack(64))
             EUt(VA[LV])
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(AE2Item.STORAGE_COMPONENT_1K.getStack())
         }
 
@@ -182,7 +182,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.FLUID_STORAGE_COMPONENT_1K.getStack(64))
             outputs(AE2Item.FLUID_STORAGE_COMPONENT_1K.getStack(64))
             EUt(VA[LV])
-            duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             circuitInfo(AE2Item.FLUID_STORAGE_COMPONENT_1K.getStack())
         }
 
@@ -198,7 +198,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.STORAGE_COMPONENT_4K.getStack(64))
             outputs(AE2Item.STORAGE_COMPONENT_4K.getStack(64))
             EUt(VA[LV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(AE2Item.STORAGE_COMPONENT_4K.getStack())
         }
 
@@ -214,7 +214,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.FLUID_STORAGE_COMPONENT_4K.getStack(64))
             outputs(AE2Item.FLUID_STORAGE_COMPONENT_4K.getStack(64))
             EUt(VA[LV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             circuitInfo(AE2Item.FLUID_STORAGE_COMPONENT_4K.getStack())
         }
 
@@ -230,7 +230,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.STORAGE_COMPONENT_16K.getStack(64))
             outputs(AE2Item.STORAGE_COMPONENT_16K.getStack(64))
             EUt(VA[LV])
-            duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
+            duration(3.min) // Original: 15s, Wrapped: 15s * 16 = 240s
             circuitInfo(AE2Item.STORAGE_COMPONENT_16K.getStack())
         }
 
@@ -246,7 +246,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.FLUID_STORAGE_COMPONENT_16K.getStack(64))
             outputs(AE2Item.FLUID_STORAGE_COMPONENT_16K.getStack(64))
             EUt(VA[LV])
-            duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
+            duration(3.min) // Original: 15s, Wrapped: 15s * 16 = 240s
             circuitInfo(AE2Item.FLUID_STORAGE_COMPONENT_16K.getStack())
         }
 
@@ -262,7 +262,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.STORAGE_COMPONENT_64K.getStack(64))
             outputs(AE2Item.STORAGE_COMPONENT_64K.getStack(64))
             EUt(VA[MV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(AE2Item.STORAGE_COMPONENT_64K.getStack())
         }
 
@@ -278,7 +278,7 @@ object AppEngCALRecipeProducer
             outputs(AE2Item.FLUID_STORAGE_COMPONENT_64K.getStack(64))
             outputs(AE2Item.FLUID_STORAGE_COMPONENT_64K.getStack(64))
             EUt(VA[MV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             circuitInfo(AE2Item.FLUID_STORAGE_COMPONENT_64K.getStack())
         }
 

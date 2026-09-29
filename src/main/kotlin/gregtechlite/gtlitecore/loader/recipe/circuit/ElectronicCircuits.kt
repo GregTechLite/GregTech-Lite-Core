@@ -56,13 +56,13 @@ import gregtech.common.items.MetaItems.GOOD_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.PHENOLIC_BOARD
 import gregtech.common.items.MetaItems.RESISTOR
 import gregtech.common.items.MetaItems.VACUUM_TUBE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Kovar
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resin
@@ -97,7 +97,7 @@ internal object ElectronicCircuits
             notConsumable(stick, Iron)
             fluidInputs(Resin.getFluid(1000))
             output(dust, Resin)
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         COAGULATION_RECIPES.addRecipe {
@@ -105,7 +105,7 @@ internal object ElectronicCircuits
             notConsumable(dust, CalciumChloride)
             fluidInputs(Resin.getFluid(1000))
             output(dust, Resin)
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         COAGULATION_RECIPES.addRecipe {
@@ -113,7 +113,7 @@ internal object ElectronicCircuits
             notConsumable(SulfuricAcid.getFluid(1))
             fluidInputs(Resin.getFluid(1000))
             output(dust, Resin)
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         COAGULATION_RECIPES.addRecipe {
@@ -121,7 +121,7 @@ internal object ElectronicCircuits
             notConsumable(AceticAcid.getFluid(1))
             fluidInputs(Resin.getFluid(1000))
             output(dust, Resin)
-            duration(5 * TICK)
+            duration(5.t)
         }
 
         // New phenolic board recipes.
@@ -131,7 +131,7 @@ internal object ElectronicCircuits
             fluidInputs(Glue.getFluid(50))
             output(PHENOLIC_BOARD)
             EUt(VA[LV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // Add advanced recipes of phenolic board.
@@ -141,7 +141,7 @@ internal object ElectronicCircuits
             fluidInputs(Glue.getFluid(50))
             output(PHENOLIC_BOARD, 8)
             EUt(VA[LV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -150,7 +150,7 @@ internal object ElectronicCircuits
             fluidInputs(Glue.getFluid(50))
             output(PHENOLIC_BOARD, 16)
             EUt(VA[LV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // Advanced recipes of basic circuit board.
@@ -160,7 +160,7 @@ internal object ElectronicCircuits
             fluidInputs(Glue.getFluid(100))
             output(BASIC_CIRCUIT_BOARD, 4)
             EUt(7) // ULV
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -169,7 +169,7 @@ internal object ElectronicCircuits
             fluidInputs(Glue.getFluid(100))
             output(BASIC_CIRCUIT_BOARD, 16)
             EUt(7) // ULV
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Advanced etching liquids recipe addition.
@@ -183,7 +183,7 @@ internal object ElectronicCircuits
                 fluidInputs(etchingLiquid)
                 output(GOOD_CIRCUIT_BOARD)
                 EUt(VA[LV])
-                duration(15 * SECOND)
+                duration(15.s)
             }
         }
 
@@ -225,7 +225,7 @@ internal object ElectronicCircuits
             input(bolt, Steel, 4)
             output(VACUUM_TUBE_COMPONENT, 6)
             EUt(VA[LV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -235,7 +235,7 @@ internal object ElectronicCircuits
             input(bolt, Steel, 4)
             output(VACUUM_TUBE_COMPONENT, 12)
             EUt(VA[LV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -246,7 +246,7 @@ internal object ElectronicCircuits
             input(dustSmall, Quicklime)
             output(VACUUM_TUBE_COMPONENT, 8)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -257,7 +257,7 @@ internal object ElectronicCircuits
             input(dustSmall, Quicklime)
             output(VACUUM_TUBE_COMPONENT, 16)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Vacuum Tube
@@ -287,7 +287,7 @@ internal object ElectronicCircuits
             input(ring, Kovar)
             output(VACUUM_TUBE, 2)
             EUt(VA[ULV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -323,7 +323,7 @@ internal object ElectronicCircuits
             input(wireGtSingle, RedAlloy, 2)
             output(ELECTRONIC_CIRCUIT_LV, 4)
             EUt(VH[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Deleted original recipes for Electronic Circuit MV (player do not
@@ -356,7 +356,7 @@ internal object ElectronicCircuits
             input(wireGtSingle, Copper, 2)
             output(ELECTRONIC_CIRCUIT_MV, 2)
             EUt(VH[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
     }
 

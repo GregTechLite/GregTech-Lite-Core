@@ -8,7 +8,7 @@ import gregtech.api.cover.CoverBase
 import gregtech.api.cover.CoverDefinition
 import gregtech.api.cover.CoverableView
 import gregtech.api.unification.material.Materials
-import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.init.Blocks
 import net.minecraft.util.BlockRenderLayer
@@ -40,7 +40,7 @@ class CoverDrain(definition: CoverDefinition,
 
     override fun update()
     {
-        if (world.isRemote || offsetTimer % SECOND != 0L) return
+        if (world.isRemote || offsetTimer % 1.s != 0L) return
 
         val neighborBlock = world.getBlockState(pos.offset(attachedSide))
 

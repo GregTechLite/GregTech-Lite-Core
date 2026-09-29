@@ -24,12 +24,12 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.common.items.MetaItems.FERTILIZER
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BeanPhospholipid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CrudeSoybeanOil
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LinoleicAcid
@@ -51,7 +51,7 @@ internal object SoybeanProcessing
             outputs(SOYBEAN_MEAL.stack())
             fluidOutputs(CrudeSoybeanOil.getFluid(40))
             EUt(2) // ULV
-            duration(1 * SECOND + 12 * TICK)
+            duration(1.s + 12.t)
         }
 
         // Crude Soybean Oil -> Soybean Oil + Bean Phospholipid
@@ -61,7 +61,7 @@ internal object SoybeanProcessing
             fluidOutputs(BeanPhospholipid.getFluid(140))
             fluidOutputs(LinoleicAcid.getFluid(80))
             EUt(VH[HV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Soybean Meal -> Fertilizer
@@ -70,7 +70,7 @@ internal object SoybeanProcessing
             fluidInputs(Water.getFluid(100))
             output(FERTILIZER)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Soybean Meal -> Plant Protein
@@ -78,7 +78,7 @@ internal object SoybeanProcessing
             inputs(SOYBEAN_MEAL.stack())
             outputs(PLANT_PROTEIN.stack())
             EUt(VA[LV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Crude Soybean Oil -> Glycerol & Bio Diesel
@@ -89,7 +89,7 @@ internal object SoybeanProcessing
             fluidOutputs(Glycerol.getFluid(1000))
             fluidOutputs(BioDiesel.getFluid(6000))
             EUt(VA[LV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         CHEMICAL_RECIPES.addRecipe {
@@ -99,7 +99,7 @@ internal object SoybeanProcessing
             fluidOutputs(Glycerol.getFluid(1000))
             fluidOutputs(BioDiesel.getFluid(6000))
             EUt(VA[LV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -109,7 +109,7 @@ internal object SoybeanProcessing
             fluidOutputs(Glycerol.getFluid(9000))
             fluidOutputs(BioDiesel.getFluid(54000))
             EUt(VA[LV])
-            duration(4 * MINUTE + 30 * SECOND)
+            duration(4.min + 30.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -119,7 +119,7 @@ internal object SoybeanProcessing
             fluidOutputs(Glycerol.getFluid(9000))
             fluidOutputs(BioDiesel.getFluid(54000))
             EUt(VA[LV])
-            duration(4 * MINUTE + 30 * SECOND)
+            duration(4.min + 30.s)
         }
 
         // Soybean Oil -> Glycerol & Bio Diesel
@@ -130,7 +130,7 @@ internal object SoybeanProcessing
             fluidOutputs(Glycerol.getFluid(1000))
             fluidOutputs(BioDiesel.getFluid(6000))
             EUt(VA[LV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         CHEMICAL_RECIPES.addRecipe {
@@ -140,7 +140,7 @@ internal object SoybeanProcessing
             fluidOutputs(Glycerol.getFluid(1000))
             fluidOutputs(BioDiesel.getFluid(6000))
             EUt(VA[LV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -150,7 +150,7 @@ internal object SoybeanProcessing
             fluidOutputs(Glycerol.getFluid(9000))
             fluidOutputs(BioDiesel.getFluid(54000))
             EUt(VA[LV])
-            duration(4 * MINUTE + 30 * SECOND)
+            duration(4.min + 30.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -160,7 +160,7 @@ internal object SoybeanProcessing
             fluidOutputs(Glycerol.getFluid(9000))
             fluidOutputs(BioDiesel.getFluid(54000))
             EUt(VA[LV])
-            duration(4 * MINUTE + 30 * SECOND)
+            duration(4.min + 30.s)
         }
 
         // Soybean Oil -> Lubricant
@@ -171,7 +171,7 @@ internal object SoybeanProcessing
                 fluidInputs(SoybeanOil.getFluid(1000))
                 fluidOutputs(Lubricant.getFluid(1000))
                 EUt(4) // ULV
-                duration(6 * SECOND + 8 * TICK)
+                duration(6.s + 8.t)
             }
         }
     }

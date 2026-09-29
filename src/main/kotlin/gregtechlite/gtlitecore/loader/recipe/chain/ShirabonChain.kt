@@ -8,12 +8,12 @@ import gregtech.api.GTValues.VA
 import gregtech.api.unification.material.Materials.Iron
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.ore.OrePrefix.block
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HighEnergyQuarkGluonPlasma
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableOganesson
@@ -42,7 +42,7 @@ internal object ShirabonChain
             output(block, Neutronium, 8)
             fluidOutputs(Shirabon.getFluid(L * 4))
             EUt(VA[UEV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -56,7 +56,7 @@ internal object ShirabonChain
             output(block, Neutronium, 8)
             fluidOutputs(Shirabon.getFluid(L * 4))
             EUt(VA[UEV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         // Tier 2
@@ -73,7 +73,7 @@ internal object ShirabonChain
             output(block, Neutronium, 64)
             fluidOutputs(Shirabon.getFluid(L * 4 * 16))
             EUt(VA[UIV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -89,7 +89,7 @@ internal object ShirabonChain
             output(block, Neutronium, 64)
             fluidOutputs(Shirabon.getFluid(L * 4 * 16))
             EUt(VA[UIV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Tier 3
@@ -110,7 +110,7 @@ internal object ShirabonChain
             output(block, Neutronium, 64)
             fluidOutputs(Shirabon.getFluid(L * 4 * 32))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -130,7 +130,7 @@ internal object ShirabonChain
             output(block, Neutronium, 64)
             fluidOutputs(Shirabon.getFluid(L * 4 * 32))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

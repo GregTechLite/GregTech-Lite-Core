@@ -81,12 +81,10 @@ import gregtech.common.items.MetaItems.ENGRAVED_LAPOTRON_CHIP
 import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
 import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_WIRE
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
@@ -98,6 +96,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LASER_CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PLASMA_CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumStrontiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumTitanate
@@ -210,7 +210,7 @@ internal object OpticalCircuits
             fluidInputs(PolyethyleneTerephthalate.getFluid(L * 2))
             output(OPTICAL_BOARD)
             EUt(VA[UHV])
-            duration(2 * SECOND)
+            duration(2.s)
             temperature(980)
         }
 
@@ -227,7 +227,7 @@ internal object OpticalCircuits
                 fluidInputs(etchingLiquid)
                 output(PERFECT_CIRCUIT_BOARD)
                 EUt(VA[EV])
-                duration(1 * MINUTE + 45 * SECOND)
+                duration(1.min + 45.s)
                 cleanroom()
             }
         }
@@ -244,7 +244,7 @@ internal object OpticalCircuits
             output(dust, Potash, 6)
             fluidOutputs(Oxygen.getFluid(5000))
             EUt(VA[ZPM])
-            duration(14 * SECOND)
+            duration(14.s)
         }
 
         // La2O3 + 2K2MnO4 + Ga2O3 -> 2LaGaMnO4 + 2K2O + 4O
@@ -256,7 +256,7 @@ internal object OpticalCircuits
             output(dust, Potash, 6)
             fluidOutputs(Oxygen.getFluid(4000))
             EUt(VA[ZPM])
-            duration(7 * SECOND)
+            duration(7.s)
         }
 
         // BaTiO3 + SrO -> BaSrTiO4
@@ -266,7 +266,7 @@ internal object OpticalCircuits
             input(dust, StrontiumOxide, 2)
             output(dust, BariumStrontiumTitanate, 7)
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Optical SMD Transistor
@@ -277,7 +277,7 @@ internal object OpticalCircuits
             fluidInputs(KaptonE.getFluid(L))
             output(OPTICAL_SMD_TRANSISTOR, 32)
             EUt(VA[UV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -289,7 +289,7 @@ internal object OpticalCircuits
             fluidInputs(KaptonE.getFluid(L * 2))
             output(OPTICAL_SMD_RESISTOR, 32)
             EUt(VA[UV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -300,7 +300,7 @@ internal object OpticalCircuits
             fluidInputs(Bromine.getFluid(1000))
             output(dust, CaesiumBromide, 2)
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Fr + HBr -> FrBr + H
@@ -310,7 +310,7 @@ internal object OpticalCircuits
             output(dust, FranciumBromide, 2)
             fluidOutputs(Hydrogen.getFluid(1000))
             EUt(VA[EV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // FrBr + CsBr + 2CdBr2 -> FrCsCd2Br6
@@ -320,7 +320,7 @@ internal object OpticalCircuits
             input(dust, CadmiumBromide, 6)
             output(dust, FranciumCaesiumCadmiumBromide, 10)
             EUt(VA[UV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // Optical SMD Capacitor
@@ -331,7 +331,7 @@ internal object OpticalCircuits
             fluidInputs(KaptonE.getFluid(L / 2))
             output(OPTICAL_SMD_CAPACITOR, 32)
             EUt(VA[UV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -344,7 +344,7 @@ internal object OpticalCircuits
             fluidOutputs(DinitrogenTetroxide.getFluid(2000))
             fluidOutputs(Oxygen.getFluid(6000))
             EUt(VA[ZPM])
-            duration(7 * SECOND + 15 * TICK)
+            duration(7.s + 15.t)
         }
 
         // TlCl + 2BaO + 2CaO + 3CuO + 3O -> TlBa2Ca2Cu3O10 + Cl
@@ -357,7 +357,7 @@ internal object OpticalCircuits
             output(ingotHot, ThalliumBariumCalciumCuprate, 18)
             fluidOutputs(Chlorine.getFluid(1000))
             EUt(VA[ZPM])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // Optical SMD Diode
@@ -368,7 +368,7 @@ internal object OpticalCircuits
             fluidInputs(KaptonE.getFluid(288))
             output(OPTICAL_SMD_DIODE, 64)
             EUt(VA[UV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -380,7 +380,7 @@ internal object OpticalCircuits
             fluidInputs(KaptonE.getFluid(L))
             output(OPTICAL_SMD_INDUCTOR, 32)
             EUt(VA[UV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -391,7 +391,7 @@ internal object OpticalCircuits
             fluidInputs(Chlorine.getFluid(4000))
             fluidOutputs(GermaniumTetrachloride.getFluid(1000))
             EUt(VA[HV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // GeO2 + 4HCl -> GeCl4 + 2H2O
@@ -402,7 +402,7 @@ internal object OpticalCircuits
             fluidOutputs(GermaniumTetrachloride.getFluid(1000))
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[HV])
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         // Si + 4Cl -> SiCl4
@@ -412,7 +412,7 @@ internal object OpticalCircuits
             fluidInputs(Chlorine.getFluid(4000))
             fluidOutputs(SiliconTetrachloride.getFluid(1000))
             EUt(VA[MV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // SiO2 + 4HCl -> SiCl4 + 2H2O
@@ -423,7 +423,7 @@ internal object OpticalCircuits
             fluidOutputs(SiliconTetrachloride.getFluid(1000))
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[HV])
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         // Optical Fiber
@@ -435,7 +435,7 @@ internal object OpticalCircuits
             fluidInputs(SiliconTetrachloride.getFluid(1000))
             output(OPTICAL_FIBER, 8)
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             temperature(1800)
         }
 
@@ -447,7 +447,7 @@ internal object OpticalCircuits
             fluidInputs(SiliconTetrachloride.getFluid(8000))
             output(OPTICAL_FIBER, 64)
             EUt(VA[UV])
-            duration(2 * MINUTE)
+            duration(2.min)
             temperature(1800)
         }
 
@@ -460,7 +460,7 @@ internal object OpticalCircuits
             output(OPTICAL_FIBER, 64)
             output(OPTICAL_FIBER, 64)
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             temperature(900)
         }
     }
@@ -476,7 +476,7 @@ internal object OpticalCircuits
             fluidInputs(GSTGlass.getFluid(L * 2))
             output(EMPTY_LASER)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Helium-Neon Laser
@@ -485,7 +485,7 @@ internal object OpticalCircuits
             fluidInputs(Neon.getFluid(1000))
             fluidOutputs(HeliumNeon.getFluid(1000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         CANNER_RECIPES.addRecipe {
@@ -493,7 +493,7 @@ internal object OpticalCircuits
             fluidInputs(HeliumNeon.getFluid(1000))
             output(HELIUM_NEON_LASER)
             EUt(VA[HV])
-            duration(6 * SECOND)
+            duration(6.s)
             cleanroom()
         }
 
@@ -503,7 +503,7 @@ internal object OpticalCircuits
             input(gem, NdYAG)
             output(ND_YAG_LASER)
             EUt(VA[HV])
-            duration(6 * SECOND)
+            duration(6.s)
             cleanroom()
         }
 
@@ -516,7 +516,7 @@ internal object OpticalCircuits
             fluidInputs(SolderingAlloy.getFluid(L))
             output(OPTICAL_LASER_CONTROL_UNIT)
             EUt(VA[UHV])
-            duration(30 * SECOND)
+            duration(30.s)
             cleanroom()
         }
 
@@ -527,7 +527,7 @@ internal object OpticalCircuits
             input(foil, Einsteinium, 8)
             output(PHASE_CHANGE_RAM_CHIP, 4)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -538,7 +538,7 @@ internal object OpticalCircuits
             input(wireFine, WoodsGlass, 4)
             output(ALL_OPTICAL_CASCADE_NOR_CHIP, 4)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
     }
@@ -553,7 +553,7 @@ internal object OpticalCircuits
             output(dust, SodiumHydroxide, 9)
             fluidOutputs(Oxygen.getFluid(1000))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Ce2(CO3)3 + Bh -> Bh-doped Ce2(CO3)3 Boule
@@ -562,7 +562,7 @@ internal object OpticalCircuits
             input(dust, Bohrium, 8)
             output(BOHRIUM_DOPED_CERIUM_CARBONATE_BOULE)
             EUt(VA[EV])
-            duration(6 * SECOND)
+            duration(6.s)
             blastFurnaceTemp(6000) // Naquadah
         }
 
@@ -572,7 +572,7 @@ internal object OpticalCircuits
             fluidInputs(Lubricant.getFluid(100))
             output(BOHRIUM_DOPED_CERIUM_CARBONATE_WAFER, 4)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -582,7 +582,7 @@ internal object OpticalCircuits
             input(dust, Sulfur)
             output(dust, ZincSulfide, 2)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Mn + 2F -> MnF2
@@ -592,7 +592,7 @@ internal object OpticalCircuits
             fluidInputs(Fluorine.getFluid(2000))
             output(dust, ManganeseDifluoride, 3)
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // MnF2 + ZnS + Ta2O5 + TiO2 + C2H6O -> (MnF2)(ZnS)(Ta2O5)(TiO2)(C2H6O)
@@ -605,7 +605,7 @@ internal object OpticalCircuits
             fluidInputs(Ethanol.getFluid(1000))
             fluidOutputs(DielectricFormationMixture.getFluid(8000))
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // (MnF2)(ZnS)(Ta2O5)(TiO2)(C2H6O) -> MnF2 + ZnS + Ta2O5 + TiO2 + C2H6O
@@ -617,7 +617,7 @@ internal object OpticalCircuits
             output(dust, Rutile, 3)
             fluidOutputs(Ethanol.getFluid(1000))
             EUt(VA[MV])
-            duration(4 * SECOND + 5 * TICK)
+            duration(4.s + 5.t)
         }
 
         // Bh-doped Ce2(CO3)3 Wafer -> Periodically Poled Optical Chip
@@ -626,7 +626,7 @@ internal object OpticalCircuits
             fluidInputs(DielectricFormationMixture.getFluid(200))
             output(PERIODICALLY_POLED_OPTICAL_CHIP, 2)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -639,7 +639,7 @@ internal object OpticalCircuits
             fluidInputs(LightQuarks.getFluid(500))
             output(OPTICAL_IMC_UNIT, 4)
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -652,7 +652,7 @@ internal object OpticalCircuits
             input(OPTICAL_FIBER, 8)
             output(OPTOELECTRONIC_SYSTEM_ON_CHIP, 2)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
@@ -669,7 +669,7 @@ internal object OpticalCircuits
             input(OPTICAL_FIBER, 8)
             output(OPTICAL_PROCESSOR_UV, 4)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
             solderMultiplier(1)
         }
@@ -683,7 +683,7 @@ internal object OpticalCircuits
             input(OPTICAL_FIBER, 8)
             output(OPTICAL_PROCESSOR_UV, 4)
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
             solderMultiplier(1)
         }
@@ -697,7 +697,7 @@ internal object OpticalCircuits
             input(OPTICAL_FIBER, 8)
             output(OPTICAL_PROCESSOR_UV, 4)
             EUt(VA[UHV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
             solderMultiplier(1)
         }
@@ -709,7 +709,7 @@ internal object OpticalCircuits
             input(bolt, Bedrockium, 8)
             output(OPTICAL_PROCESSOR_UV, 8)
             EUt(VA[UEV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
             solderMultiplier(1)
         }
@@ -724,7 +724,7 @@ internal object OpticalCircuits
             input(OPTICAL_FIBER, 16)
             output(OPTICAL_ASSEMBLY_UHV, 3)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
             solderMultiplier(2)
         }
@@ -738,7 +738,7 @@ internal object OpticalCircuits
             input(OPTICAL_FIBER, 16)
             output(OPTICAL_ASSEMBLY_UHV, 3)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
             solderMultiplier(2)
         }
@@ -752,7 +752,7 @@ internal object OpticalCircuits
             input(OPTICAL_FIBER, 16)
             output(OPTICAL_ASSEMBLY_UHV, 3)
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
             solderMultiplier(2)
         }
@@ -771,7 +771,7 @@ internal object OpticalCircuits
             fluidInputs(Polyetheretherketone.getFluid(L * 4))
             output(OPTICAL_COMPUTER_UEV, 2)
             EUt(VA[UHV])
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(OPTICAL_ASSEMBLY_UHV)
                     .EUt(VA[UHV])
@@ -792,7 +792,7 @@ internal object OpticalCircuits
             fluidInputs(Polyetheretherketone.getFluid(L * 4))
             output(OPTICAL_COMPUTER_UEV, 2)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(OPTICAL_ASSEMBLY_UHV)
                     .EUt(VA[UHV])
@@ -818,7 +818,7 @@ internal object OpticalCircuits
             fluidInputs(Polyetheretherketone.getFluid(L * 8))
             output(OPTICAL_MAINFRAME_UIV)
             EUt(VA[UEV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(OPTICAL_COMPUTER_UEV)
                     .EUt(VA[UEV])
@@ -843,7 +843,7 @@ internal object OpticalCircuits
             fluidInputs(Polyetheretherketone.getFluid(L * 8))
             output(OPTICAL_MAINFRAME_UIV)
             EUt(VA[UEV])
-            duration(45 * SECOND)
+            duration(45.s)
             stationResearch {
                 it.researchStack(OPTICAL_COMPUTER_UEV)
                     .EUt(VA[UEV])
@@ -868,7 +868,7 @@ internal object OpticalCircuits
             fluidInputs(Polyetheretherketone.getFluid(L * 8))
             output(OPTICAL_MAINFRAME_UIV)
             EUt(VA[UEV])
-            duration(25 * SECOND)
+            duration(25.s)
             stationResearch {
                 it.researchStack(OPTICAL_COMPUTER_UEV)
                     .EUt(VA[UEV])
@@ -893,7 +893,7 @@ internal object OpticalCircuits
             fluidInputs(Polyetheretherketone.getFluid(L * 8))
             output(OPTICAL_MAINFRAME_UIV)
             EUt(VA[UEV])
-            duration(15 * SECOND)
+            duration(15.s)
             stationResearch {
                 it.researchStack(OPTICAL_COMPUTER_UEV)
                     .EUt(VA[UEV])

@@ -14,9 +14,9 @@ import gregtech.api.unification.ore.OrePrefix.gearSmall
 import gregtech.common.items.MetaItems.GRAVITATION_ENGINE
 import gregtech.common.metatileentities.MetaTileEntities.FUSION_REACTOR
 import gregtech.common.metatileentities.MetaTileEntities.WORLD_ACCELERATOR
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Mellion
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
@@ -64,7 +64,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(SpacetimeCompressionFieldGenerator.CRUDE.getStack(4))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(ScienceCasing.REINFORCED_SPATIAL_STRUCTURE_CASING.stack)
                     .EUt(VA[UXV])
@@ -85,7 +85,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(SpacetimeCompressionFieldGenerator.PRIMITIVE.getStack(4))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(SpacetimeCompressionFieldGenerator.CRUDE.stack)
                     .EUt(VA[UXV])
@@ -106,7 +106,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(SpacetimeCompressionFieldGenerator.STABLE.getStack(4))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(SpacetimeCompressionFieldGenerator.PRIMITIVE.stack)
                     .EUt(VA[UXV])
@@ -127,7 +127,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(SpacetimeCompressionFieldGenerator.ADVANCED.getStack(4))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(SpacetimeCompressionFieldGenerator.STABLE.stack)
                     .EUt(VA[UXV])
@@ -148,7 +148,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(SpacetimeCompressionFieldGenerator.SUPERB.getStack(4))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(SpacetimeCompressionFieldGenerator.ADVANCED.stack)
                     .EUt(VA[UXV])
@@ -169,7 +169,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(SpacetimeCompressionFieldGenerator.EXOTIC.getStack(4))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(SpacetimeCompressionFieldGenerator.SUPERB.stack)
                     .EUt(VA[UXV])
@@ -190,7 +190,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(SpacetimeCompressionFieldGenerator.PERFECT.getStack(4))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(SpacetimeCompressionFieldGenerator.EXOTIC.stack)
                     .EUt(VA[UXV])
@@ -211,7 +211,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(SpacetimeCompressionFieldGenerator.TIPLER.getStack(4))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(SpacetimeCompressionFieldGenerator.PERFECT.stack)
                     .EUt(VA[UXV])
@@ -232,7 +232,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(SpacetimeCompressionFieldGenerator.GALLIFREYAN.getStack(4))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(SpacetimeCompressionFieldGenerator.TIPLER.stack)
                     .EUt(VA[UXV])
@@ -258,7 +258,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(TimeAccelerationFieldGenerator.CRUDE.getStack(8))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(ScienceCasing.REINFORCED_TEMPORAL_STRUCTURE_CASING.stack)
                     .EUt(VA[UXV])
@@ -280,7 +280,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(TimeAccelerationFieldGenerator.PRIMITIVE.getStack(8))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(TimeAccelerationFieldGenerator.CRUDE.stack)
                     .EUt(VA[UXV])
@@ -302,7 +302,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(TimeAccelerationFieldGenerator.STABLE.getStack(8))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(TimeAccelerationFieldGenerator.PRIMITIVE.stack)
                     .EUt(VA[UXV])
@@ -324,7 +324,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(TimeAccelerationFieldGenerator.ADVANCED.getStack(8))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(TimeAccelerationFieldGenerator.STABLE.stack)
                     .EUt(VA[UXV])
@@ -346,7 +346,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(TimeAccelerationFieldGenerator.SUPERB.getStack(8))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(TimeAccelerationFieldGenerator.ADVANCED.stack)
                     .EUt(VA[UXV])
@@ -368,7 +368,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(TimeAccelerationFieldGenerator.EXOTIC.getStack(8))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(TimeAccelerationFieldGenerator.SUPERB.stack)
                     .EUt(VA[UXV])
@@ -390,7 +390,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(TimeAccelerationFieldGenerator.PERFECT.getStack(8))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(TimeAccelerationFieldGenerator.EXOTIC.stack)
                     .EUt(VA[UXV])
@@ -412,7 +412,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(TimeAccelerationFieldGenerator.TIPLER.getStack(8))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(TimeAccelerationFieldGenerator.PERFECT.stack)
                     .EUt(VA[UXV])
@@ -434,7 +434,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(TimeAccelerationFieldGenerator.GALLIFREYAN.getStack(8))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(TimeAccelerationFieldGenerator.TIPLER.stack)
                     .EUt(VA[UXV])
@@ -470,7 +470,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(StabilizationFieldGenerator.CRUDE.getStack(16))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(ScienceCasing.INFINITE_SPACETIME_ENERGY_BOUNDARY_CASING.stack)
                     .EUt(VA[UXV])
@@ -502,7 +502,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(StabilizationFieldGenerator.PRIMITIVE.getStack(16))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(StabilizationFieldGenerator.CRUDE.stack)
                     .EUt(VA[UXV])
@@ -534,7 +534,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(StabilizationFieldGenerator.STABLE.getStack(16))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(StabilizationFieldGenerator.PRIMITIVE.stack)
                     .EUt(VA[UXV])
@@ -566,7 +566,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(StabilizationFieldGenerator.ADVANCED.getStack(16))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(StabilizationFieldGenerator.STABLE.stack)
                     .EUt(VA[UXV])
@@ -598,7 +598,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(StabilizationFieldGenerator.SUPERB.getStack(16))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(StabilizationFieldGenerator.ADVANCED.stack)
                     .EUt(VA[UXV])
@@ -630,7 +630,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(StabilizationFieldGenerator.EXOTIC.getStack(16))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(StabilizationFieldGenerator.SUPERB.stack)
                     .EUt(VA[UXV])
@@ -662,7 +662,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(StabilizationFieldGenerator.PERFECT.getStack(16))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(StabilizationFieldGenerator.EXOTIC.stack)
                     .EUt(VA[UXV])
@@ -694,7 +694,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(StabilizationFieldGenerator.TIPLER.getStack(16))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(StabilizationFieldGenerator.PERFECT.stack)
                     .EUt(VA[UXV])
@@ -726,7 +726,7 @@ internal object EyeOfHarmonyCasingRecipes
             fluidInputs(SpaceTime.getFluid(L * 10))
             outputs(StabilizationFieldGenerator.GALLIFREYAN.getStack(16))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(StabilizationFieldGenerator.TIPLER.stack)
                     .EUt(VA[UXV])

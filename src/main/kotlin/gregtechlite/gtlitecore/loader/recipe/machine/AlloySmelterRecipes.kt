@@ -25,9 +25,9 @@ import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plate
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AxinoFusedRedMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
@@ -51,7 +51,7 @@ internal object AlloySmelterRecipes
             input(ingot, Erbium)
             output(ingot, ErbiumDopedZBLANGlass, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         ALLOY_SMELTER_RECIPES.addRecipe {
@@ -59,7 +59,7 @@ internal object AlloySmelterRecipes
             input(dust, Erbium)
             output(ingot, ErbiumDopedZBLANGlass, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         ALLOY_SMELTER_RECIPES.addRecipe {
@@ -67,7 +67,7 @@ internal object AlloySmelterRecipes
             input(ingot, Erbium)
             output(ingot, ErbiumDopedZBLANGlass, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         ALLOY_SMELTER_RECIPES.addRecipe {
@@ -75,7 +75,7 @@ internal object AlloySmelterRecipes
             input(dust, Erbium)
             output(ingot, ErbiumDopedZBLANGlass, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Pr-doped ZBLAN Glass
@@ -84,7 +84,7 @@ internal object AlloySmelterRecipes
             input(ingot, Praseodymium)
             output(ingot, PraseodymiumDopedZBLANGlass, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         ALLOY_SMELTER_RECIPES.addRecipe {
@@ -92,7 +92,7 @@ internal object AlloySmelterRecipes
             input(dust, Praseodymium)
             output(ingot, PraseodymiumDopedZBLANGlass, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         ALLOY_SMELTER_RECIPES.addRecipe {
@@ -100,7 +100,7 @@ internal object AlloySmelterRecipes
             input(ingot, Praseodymium)
             output(ingot, PraseodymiumDopedZBLANGlass, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         ALLOY_SMELTER_RECIPES.addRecipe {
@@ -108,7 +108,7 @@ internal object AlloySmelterRecipes
             input(dust, Praseodymium)
             output(ingot, PraseodymiumDopedZBLANGlass, 2)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Titanium reinforced Borosilicate Glass
@@ -117,7 +117,7 @@ internal object AlloySmelterRecipes
             input(plate, Titanium, 4)
             outputs(GlassCasing.TITANIUM_BOROSILICATE.stack)
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Tungsten Steel reinforced Borosilicate Glass
@@ -126,7 +126,7 @@ internal object AlloySmelterRecipes
             input(plate, TungstenSteel, 4)
             outputs(GlassCasing.TUNGSTEN_STEEL_BOROSILICATE.stack)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Rhodium Plated Palladium reinforced Borosilicate Glass
@@ -135,7 +135,7 @@ internal object AlloySmelterRecipes
             input(plate, RhodiumPlatedPalladium, 4)
             outputs(GlassCasing.RHODIUM_PLATED_PALLADIUM_BOROSILICATE.stack)
             EUt(VA[LuV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Osmiridium reinforced Borosilicate Glass
@@ -144,7 +144,7 @@ internal object AlloySmelterRecipes
             input(plate, Osmiridium, 4)
             outputs(GlassCasing.OSMIRIDIUM_BOROSILICATE.stack)
             EUt(VA[ZPM])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Tritanium reinforced Borosilicate Glass
@@ -153,7 +153,7 @@ internal object AlloySmelterRecipes
             input(plate, Tritanium, 4)
             outputs(GlassCasing.TRITANIUM_BOROSILICATE.stack)
             EUt(VA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Neutronium reinforced Borosilicate Glass
@@ -162,7 +162,7 @@ internal object AlloySmelterRecipes
             input(plate, Neutronium, 4)
             outputs(GlassCasing.NEUTRONIUM_BOROSILICATE.stack)
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Cosmic Neutronium reinforced Borosilicate Glass
@@ -171,7 +171,7 @@ internal object AlloySmelterRecipes
             input(plate, CosmicNeutronium, 4)
             outputs(GlassCasing.COSMIC_NEUTRONIUM_BOROSILICATE.stack)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Infinity reinforced Borosilicate Glass
@@ -180,7 +180,7 @@ internal object AlloySmelterRecipes
             input(plate, Infinity, 4)
             outputs(GlassCasing.INFINITY_BOROSILICATE.stack)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Transcendent Metal reinforced Borosilicate Glass
@@ -189,7 +189,7 @@ internal object AlloySmelterRecipes
             input(plate, TranscendentMetal, 4)
             outputs(GlassCasing.TRANSCENDENT_METAL_BOROSILICATE.stack)
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Space Time reinforced Borosilicate Glass
@@ -198,7 +198,7 @@ internal object AlloySmelterRecipes
             input(plate, SpaceTime, 4)
             outputs(GlassCasing.SPACE_TIME_BOROSILICATE.stack)
             EUt(VA[OpV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Red Matter reinforced Borosilicate glass
@@ -207,7 +207,7 @@ internal object AlloySmelterRecipes
             input(plate, AxinoFusedRedMatter, 4)
             outputs(GlassCasing.RED_MATTER_BOROSILICATE.stack)
             EUt(VA[MAX])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

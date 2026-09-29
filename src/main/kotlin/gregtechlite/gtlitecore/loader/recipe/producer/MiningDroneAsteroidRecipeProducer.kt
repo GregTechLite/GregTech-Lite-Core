@@ -152,11 +152,11 @@ import gregtech.api.unification.ore.OrePrefix.oreEndstone
 import gregtech.api.unification.ore.OrePrefix.oreNetherrack
 import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.toolHeadDrill
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.getStack
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MINING_DRONE_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aegirine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Albite
@@ -372,39 +372,39 @@ internal object MiningDroneAsteroidRecipeProducer
     private val asteroidTiers = arrayOf(
         // Tier 1 (Basic) LV-HV
         arrayOf(
-            AsteroidRank(1, 1, 2 * MINUTE, 3000, multipliers[0], arrayOf(Iron, Bronze, Invar), arrayOf(Iron, Bronze, Invar), ore),
-            AsteroidRank(2, 2, 1 * MINUTE, 6000, multipliers[1], arrayOf(WroughtIron, Steel, Diamond), arrayOf(WroughtIron, Steel, Diamond), ore),
-            AsteroidRank(3, 3, 30 * SECOND, 9000, multipliers[2], arrayOf(Aluminium, CobaltBrass, StainlessSteel), arrayOf(Aluminium, CobaltBrass, StainlessSteel), ore)),
+            AsteroidRank(1, 1, 2.min, 3000, multipliers[0], arrayOf(Iron, Bronze, Invar), arrayOf(Iron, Bronze, Invar), ore),
+            AsteroidRank(2, 2, 1.min, 6000, multipliers[1], arrayOf(WroughtIron, Steel, Diamond), arrayOf(WroughtIron, Steel, Diamond), ore),
+            AsteroidRank(3, 3, 30.s, 9000, multipliers[2], arrayOf(Aluminium, CobaltBrass, StainlessSteel), arrayOf(Aluminium, CobaltBrass, StainlessSteel), ore)),
 
         // Tier 2 (Advanced) MV-EV
         arrayOf(
-            AsteroidRank(2, 2, 2 * MINUTE, 3000, multipliers[0], arrayOf(WroughtIron, Steel, Diamond), arrayOf(WroughtIron, Steel, Diamond), ore),
-            AsteroidRank(3, 3, 1 * MINUTE, 6000, multipliers[1], arrayOf(Aluminium, CobaltBrass, StainlessSteel), arrayOf(Aluminium, CobaltBrass, StainlessSteel), ore),
-            AsteroidRank(4, 4, 30 * SECOND, 9000, multipliers[2], arrayOf(VanadiumSteel, BlueSteel, RedSteel), arrayOf(VanadiumSteel, BlueSteel, RedSteel), oreNetherrack)),
+            AsteroidRank(2, 2, 2.min, 3000, multipliers[0], arrayOf(WroughtIron, Steel, Diamond), arrayOf(WroughtIron, Steel, Diamond), ore),
+            AsteroidRank(3, 3, 1.min, 6000, multipliers[1], arrayOf(Aluminium, CobaltBrass, StainlessSteel), arrayOf(Aluminium, CobaltBrass, StainlessSteel), ore),
+            AsteroidRank(4, 4, 30.s, 9000, multipliers[2], arrayOf(VanadiumSteel, BlueSteel, RedSteel), arrayOf(VanadiumSteel, BlueSteel, RedSteel), oreNetherrack)),
 
         // Tier 3 (Elite) HV-IV
         arrayOf(
-            AsteroidRank(3, 3, 2 * MINUTE, 3000, multipliers[0], arrayOf(Aluminium, CobaltBrass, StainlessSteel), arrayOf(Aluminium, CobaltBrass, StainlessSteel), ore),
-            AsteroidRank(4, 4, 1 * MINUTE, 6000, multipliers[1], arrayOf(VanadiumSteel, BlueSteel, RedSteel), arrayOf(VanadiumSteel, BlueSteel, RedSteel), oreNetherrack),
-            AsteroidRank(5, 5, 30 * SECOND, 9000, multipliers[2], arrayOf(Titanium, Ultimet, TungstenCarbide), arrayOf(Titanium, Ultimet, TungstenCarbide), oreNetherrack)),
+            AsteroidRank(3, 3, 2.min, 3000, multipliers[0], arrayOf(Aluminium, CobaltBrass, StainlessSteel), arrayOf(Aluminium, CobaltBrass, StainlessSteel), ore),
+            AsteroidRank(4, 4, 1.min, 6000, multipliers[1], arrayOf(VanadiumSteel, BlueSteel, RedSteel), arrayOf(VanadiumSteel, BlueSteel, RedSteel), oreNetherrack),
+            AsteroidRank(5, 5, 30.s, 9000, multipliers[2], arrayOf(Titanium, Ultimet, TungstenCarbide), arrayOf(Titanium, Ultimet, TungstenCarbide), oreNetherrack)),
 
         // Tier 4 (Ultimate) EV-LuV
         arrayOf(
-            AsteroidRank(4, 4, 2 * MINUTE, 3000, multipliers[0], arrayOf(VanadiumSteel, BlueSteel, RedSteel), arrayOf(VanadiumSteel, BlueSteel, RedSteel), oreNetherrack),
-            AsteroidRank(5, 5, 1 * MINUTE, 6000, multipliers[1], arrayOf(Titanium, Ultimet, TungstenCarbide), arrayOf(Titanium, Ultimet, TungstenCarbide), oreNetherrack),
-            AsteroidRank(6, 6, 30 * SECOND, 9000, multipliers[2], arrayOf(TungstenSteel, Naquadah, LithiumTitanate), arrayOf(TungstenSteel, Naquadah, LithiumTitanate), oreEndstone)),
+            AsteroidRank(4, 4, 2.min, 3000, multipliers[0], arrayOf(VanadiumSteel, BlueSteel, RedSteel), arrayOf(VanadiumSteel, BlueSteel, RedSteel), oreNetherrack),
+            AsteroidRank(5, 5, 1.min, 6000, multipliers[1], arrayOf(Titanium, Ultimet, TungstenCarbide), arrayOf(Titanium, Ultimet, TungstenCarbide), oreNetherrack),
+            AsteroidRank(6, 6, 30.s, 9000, multipliers[2], arrayOf(TungstenSteel, Naquadah, LithiumTitanate), arrayOf(TungstenSteel, Naquadah, LithiumTitanate), oreEndstone)),
 
         // Tier 5 (Epic) IV-ZPM
         arrayOf(
-            AsteroidRank(5, 5, 2 * MINUTE, 3000, multipliers[0], arrayOf(Titanium, Ultimet, TungstenCarbide), arrayOf(Titanium, Ultimet, TungstenCarbide), oreNetherrack),
-            AsteroidRank(6, 6, 1 * MINUTE, 6000, multipliers[1], arrayOf(TungstenSteel, Naquadah, LithiumTitanate), arrayOf(TungstenSteel, Naquadah, LithiumTitanate), oreEndstone),
-            AsteroidRank(7, 7, 30 * SECOND, 9000, multipliers[2], arrayOf(Iridium, HSSE, NaquadahAlloy), arrayOf(Iridium, HSSE, NaquadahAlloy), oreEndstone)),
+            AsteroidRank(5, 5, 2.min, 3000, multipliers[0], arrayOf(Titanium, Ultimet, TungstenCarbide), arrayOf(Titanium, Ultimet, TungstenCarbide), oreNetherrack),
+            AsteroidRank(6, 6, 1.min, 6000, multipliers[1], arrayOf(TungstenSteel, Naquadah, LithiumTitanate), arrayOf(TungstenSteel, Naquadah, LithiumTitanate), oreEndstone),
+            AsteroidRank(7, 7, 30.s, 9000, multipliers[2], arrayOf(Iridium, HSSE, NaquadahAlloy), arrayOf(Iridium, HSSE, NaquadahAlloy), oreEndstone)),
 
         // Tier 6 (Legendary) LuV-UV
         arrayOf(
-            AsteroidRank(6, 6, 2 * MINUTE, 3000, multipliers[0], arrayOf(TungstenSteel, Naquadah, LithiumTitanate), arrayOf(TungstenSteel, Naquadah, LithiumTitanate), oreEndstone),
-            AsteroidRank(7, 7, 1 * MINUTE, 6000, multipliers[1], arrayOf(Iridium, HSSE, NaquadahAlloy), arrayOf(Iridium, HSSE, NaquadahAlloy), oreEndstone),
-            AsteroidRank(8, 8, 30 * SECOND, 9000, multipliers[2], arrayOf(Duranium, Neutronium, Adamantium), arrayOf(Duranium, Neutronium, Adamantium), oreEndstone)))
+            AsteroidRank(6, 6, 2.min, 3000, multipliers[0], arrayOf(TungstenSteel, Naquadah, LithiumTitanate), arrayOf(TungstenSteel, Naquadah, LithiumTitanate), oreEndstone),
+            AsteroidRank(7, 7, 1.min, 6000, multipliers[1], arrayOf(Iridium, HSSE, NaquadahAlloy), arrayOf(Iridium, HSSE, NaquadahAlloy), oreEndstone),
+            AsteroidRank(8, 8, 30.s, 9000, multipliers[2], arrayOf(Duranium, Neutronium, Adamantium), arrayOf(Duranium, Neutronium, Adamantium), oreEndstone)))
 
     // Fuel arrays indexed by asteroid tier (1-6)
     private val tierFuels = arrayOf(null, fuelBasic, fuelAdvanced, fuelElite, fuelUltimate, fuelEpic, fuelLegendary)

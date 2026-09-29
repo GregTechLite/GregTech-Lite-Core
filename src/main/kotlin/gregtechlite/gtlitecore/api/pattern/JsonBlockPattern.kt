@@ -1,7 +1,7 @@
 package gregtechlite.gtlitecore.api.pattern
 
 import gregtech.api.util.RelativeDirection
-import gregtechlite.gtlitecore.api.collection.charHashMapOf
+import gregtechlite.gtlitecore.api.collection.char2ObjHashMapOf
 import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
 import net.minecraft.util.EnumFacing
@@ -15,7 +15,7 @@ class JsonBlockPattern
     lateinit var blockPattern: Array<Array<String>>
     lateinit var aisleRepetitions: Array<IntArray>
 
-    val symbols = charHashMapOf<MutableSet<String>>()
+    val symbols = char2ObjHashMapOf<MutableSet<String>>()
 
     init
     {

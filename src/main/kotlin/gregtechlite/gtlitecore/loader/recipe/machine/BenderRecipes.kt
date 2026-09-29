@@ -13,9 +13,9 @@ import gregtech.api.unification.material.Materials.VanadiumSteel
 import gregtech.api.unification.material.Materials.WroughtIron
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.api.unification.ore.OrePrefix.plateDouble
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CASTING_MOLD_EMPTY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FUEL_ROD_EMPTY
 
@@ -32,7 +32,7 @@ internal object BenderRecipes
             input(plate, VanadiumSteel, 4)
             output(CASTING_MOLD_EMPTY)
             EUt(12) // LV
-            duration(9 * SECOND)
+            duration(9.s)
         }
 
         // Empty Fuel Rod
@@ -41,7 +41,7 @@ internal object BenderRecipes
             input(plateDouble, Iron)
             output(FUEL_ROD_EMPTY)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         BENDER_RECIPES.addRecipe {
@@ -49,7 +49,7 @@ internal object BenderRecipes
             input(plateDouble, WroughtIron)
             output(FUEL_ROD_EMPTY)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         BENDER_RECIPES.addRecipe {
@@ -57,7 +57,7 @@ internal object BenderRecipes
             input(plateDouble, Steel)
             output(FUEL_ROD_EMPTY)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         BENDER_RECIPES.addRecipe {
@@ -65,7 +65,7 @@ internal object BenderRecipes
             input(plateDouble, VanadiumSteel)
             output(FUEL_ROD_EMPTY, 4)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         BENDER_RECIPES.addRecipe {
@@ -73,7 +73,7 @@ internal object BenderRecipes
             input(plateDouble, BlueSteel)
             output(FUEL_ROD_EMPTY, 8)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         BENDER_RECIPES.addRecipe {
@@ -81,7 +81,7 @@ internal object BenderRecipes
             input(plateDouble, HSSG)
             output(FUEL_ROD_EMPTY, 16)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         BENDER_RECIPES.addRecipe {
@@ -89,7 +89,7 @@ internal object BenderRecipes
             input(plateDouble, HSSE)
             output(FUEL_ROD_EMPTY, 32)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         BENDER_RECIPES.addRecipe {
@@ -97,7 +97,7 @@ internal object BenderRecipes
             input(plateDouble, HSSS)
             output(FUEL_ROD_EMPTY, 64)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

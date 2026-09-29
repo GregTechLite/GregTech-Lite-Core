@@ -21,11 +21,11 @@ import gregtech.api.unification.material.Materials.VinylChloride
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CopperDichloride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dichloroethane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EDTA
@@ -48,7 +48,7 @@ internal object EDTAChain
             fluidInputs(Chlorine.getFluid(2000))
             output(dust, CopperDichloride, 3)
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // C2H4 + 2HCl -> C2H4Cl2 + 2H
@@ -60,7 +60,7 @@ internal object EDTAChain
             fluidOutputs(Dichloroethane.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Another usage of 1,2-Dichloroethane (C2H4Cl2).
@@ -71,7 +71,7 @@ internal object EDTAChain
             fluidOutputs(VinylChloride.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // C2H4Cl2 + 2NH3 -> C2H4(NH2)2 + 2HCl
@@ -81,7 +81,7 @@ internal object EDTAChain
             fluidOutputs(Ethylenediamine.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // NaOH + HCN -> NaCN + H2O
@@ -91,7 +91,7 @@ internal object EDTAChain
             output(dust, SodiumCyanide, 3)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[LV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // CH3OH -> CH2O + 2H
@@ -101,7 +101,7 @@ internal object EDTAChain
             fluidOutputs(Formaldehyde.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[HV])
-            duration(9 * SECOND)
+            duration(9.s)
         }
 
         // C2H4(NH2)2 + 4CH2O + 4NaCN + 6H2O -> C10H12Na4N2O8 + 4NH3 + 2O
@@ -114,7 +114,7 @@ internal object EDTAChain
             fluidOutputs(Ammonia.getFluid(4000))
             fluidOutputs(Oxygen.getFluid(2000))
             EUt(VA[HV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         //  C10H12Na4N2O8 + 4HCl -> C10H16N2O8 + 4NaCl
@@ -124,7 +124,7 @@ internal object EDTAChain
             output(dust, EDTA, 32)
             output(dust, Salt, 8)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

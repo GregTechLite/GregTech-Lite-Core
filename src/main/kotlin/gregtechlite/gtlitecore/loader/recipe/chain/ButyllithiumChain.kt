@@ -7,9 +7,9 @@ import gregtech.api.unification.material.Materials.Bromine
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bromobutane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butyllithium
@@ -31,7 +31,7 @@ internal object ButyllithiumChain
             fluidOutputs(Bromobutane.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Li + C4H9Br -> C4H9Li + Br
@@ -41,7 +41,7 @@ internal object ButyllithiumChain
             fluidOutputs(Butyllithium.getFluid(1000))
             fluidOutputs(Bromine.getFluid(1000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

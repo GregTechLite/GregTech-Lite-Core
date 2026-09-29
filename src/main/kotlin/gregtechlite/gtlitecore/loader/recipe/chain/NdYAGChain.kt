@@ -19,13 +19,13 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zeolite
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminaSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumNitrate
@@ -71,7 +71,7 @@ internal object NdYAGChain
             fluidOutputs(AmmoniumCyanate.getFluid(5000))
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[EV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // NH4CNO -> CH4N2O
@@ -79,7 +79,7 @@ internal object NdYAGChain
             fluidInputs(AmmoniumCyanate.getFluid(1000))
             output(dust, Carbamide, 8)
             EUt(VA[HV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
     }
 
@@ -91,7 +91,7 @@ internal object NdYAGChain
             fluidInputs(Hydrogen.getFluid(2000))
             fluidOutputs(Butanol.getFluid(1000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 3C4H10O + NH3 -> (C4H9)3N + 3H2O
@@ -102,7 +102,7 @@ internal object NdYAGChain
             fluidOutputs(Tributylamine.getFluid(1000))
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[HV])
-            duration(7 * SECOND)
+            duration(7.s)
         }
     }
 
@@ -115,7 +115,7 @@ internal object NdYAGChain
             output(dust, AluminiumNitrate, 26)
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[LV])
-            duration(9 * SECOND + 10 * TICK)
+            duration(9.s + 10.t)
         }
 
         // 2Al(NO3)3 + CH2Cl2 + 2(C4H9)3N -> (Al2O3)(CH2Cl2)(C12H27N)2 + 2HNO3 (cycle) + NO2
@@ -128,7 +128,7 @@ internal object NdYAGChain
             fluidOutputs(NitricAcid.getFluid(2000))
             fluidOutputs(NitrogenDioxide.getFluid(1000))
             EUt(VA[HV])
-            duration(14 * SECOND)
+            duration(14.s)
         }
     }
 
@@ -140,7 +140,7 @@ internal object NdYAGChain
             input(dust, NeodymiumOxide, 5)
             output(dust, NeodymiumDopedYttriumOxide, 10)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // CH4N2O + (Y2O3)(Nd2O3) + (Al2O3)(CH2Cl2)(C12H27N)2 -> 2Nd:YAG? + 2(C4H9)3N (cycle)
@@ -151,7 +151,7 @@ internal object NdYAGChain
             fluidOutputs(UnprocessedNdYAGSolution.getFluid(2000))
             fluidOutputs(Tributylamine.getFluid(2000))
             EUt(VA[IV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // Nd:YAG? -> Nd:YAG + CH2Cl2 (cycle)
@@ -160,7 +160,7 @@ internal object NdYAGChain
             output(gem, NdYAG)
             fluidOutputs(Dichloromethane.getFluid(1000))
             EUt(VA[ZPM])
-            duration(27 * SECOND + 10 * TICK)
+            duration(27.s + 10.t)
             temperature(1884)
         }
     }

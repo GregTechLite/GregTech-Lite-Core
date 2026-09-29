@@ -11,9 +11,9 @@ import gregtech.api.unification.material.Materials.CarbonDioxide
 import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Phenol
 import gregtech.api.unification.material.Materials.Water
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BPAPolycarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiphenylCarbonate
@@ -31,7 +31,7 @@ internal object BPAPolycarbonateChain
             fluidOutputs(DimethylCarbonate.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // C3H6O3 + 2C6H6O -> C13H10O3 + 2CH4O (cycle)
@@ -41,7 +41,7 @@ internal object BPAPolycarbonateChain
             fluidOutputs(DiphenylCarbonate.getFluid(1000))
             fluidOutputs(Methanol.getFluid(2000))
             EUt(VA[EV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // C13H10O3 + C15H16O2 -> BPA Polycarbonate + 2C6H6O (cycle)
@@ -51,7 +51,7 @@ internal object BPAPolycarbonateChain
             fluidOutputs(BPAPolycarbonate.getFluid(L))
             fluidOutputs(Phenol.getFluid(2000))
             EUt(VA[IV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
     }
 

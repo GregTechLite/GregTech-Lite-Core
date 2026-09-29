@@ -9,11 +9,11 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Pyrolusite
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumManganate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PotassiumPermanganate
@@ -33,7 +33,7 @@ internal object PotassiumPermanganateChain
             output(dust, PotassiumManganate, 7)
             fluidOutputs(Water.getFluid(1000))
             EUt(VHA[MV] / 2L)
-            duration(8 * SECOND + 10 * TICK)
+            duration(8.s + 10.t)
         }
 
         // 3K2MnO4 + 2H2O -> 2KMnO4 + MnO2 (cycle) + 4KOH (cycle)
@@ -44,7 +44,7 @@ internal object PotassiumPermanganateChain
             output(dust, Pyrolusite, 3)
             fluidOutputs(PotassiumHydroxide.getFluid(L * 12))
             EUt(VA[MV])
-            duration(12 * SECOND + 10 * TICK)
+            duration(12.s + 10.t)
         }
     }
 

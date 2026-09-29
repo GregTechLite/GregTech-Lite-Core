@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures" : {
-    "layer0": "gtlitecore:items/metaitems/fuel_rod.empty"
+  "parent": "gtlitecore:item/fuel_rod",
+  "textures": {
+    "4": "gtlitecore:items/void"
   }
 }

@@ -15,12 +15,12 @@ import gregtech.api.unification.material.Materials.Pollucite
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CaesiumHexachlorotinate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HeavyAlkaliChloridesSolution
@@ -54,7 +54,7 @@ internal object CaesiumRubidiumProcessing
             output(dust, SiliconDioxide, 4)
             fluidOutputs(HeavyAlkaliChloridesSolution.getFluid(1000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 2(RbCl)(CsCl)2(H2O)2 + 3SnCl4 -> Rb2SnCl6 + 2Cs2SnCl6 + 4H2O
@@ -65,7 +65,7 @@ internal object CaesiumRubidiumProcessing
             output(dust, CaesiumHexachlorotinate, 18)
             fluidOutputs(Ice.getFluid(4000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // SnCl2 and SnCl4 recipes and convert recipes.
@@ -77,7 +77,7 @@ internal object CaesiumRubidiumProcessing
             fluidInputs(Chlorine.getFluid(2000))
             output(dust, TinDichloride, 3)
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Sn + 4Cl -> SnCl4
@@ -87,7 +87,7 @@ internal object CaesiumRubidiumProcessing
             fluidInputs(Chlorine.getFluid(4000))
             output(dust, TinTetrachloride, 5)
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // SnCl2 + 2Cl -> SnCl4
@@ -96,7 +96,7 @@ internal object CaesiumRubidiumProcessing
             fluidInputs(Chlorine.getFluid(2000))
             output(dust, TinTetrachloride, 5)
             EUt(VA[HV])
-            duration(15 * TICK)
+            duration(15.t)
         }
 
         // SnCl4 + 2H -> SnCl2 + 2HCl
@@ -106,7 +106,7 @@ internal object CaesiumRubidiumProcessing
             output(dust, TinDichloride, 3)
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[HV])
-            duration(15 * TICK)
+            duration(15.t)
         }
     }
 

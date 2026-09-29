@@ -7,11 +7,11 @@ import gregtech.api.unification.material.Materials.EnderPearl
 import gregtech.api.unification.material.Materials.Lava
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.block
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.outputs
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.DIMENSION_DISPLAY_END
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks.DIMENSION_DISPLAY_NETHER
@@ -45,7 +45,7 @@ internal object EyeOfHarmonyRecipes
             fluidInputs(Water.getFluid(16000))
             outputs(DIMENSION_DISPLAY_OVERWORLD)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Nether
@@ -58,7 +58,7 @@ internal object EyeOfHarmonyRecipes
             fluidInputs(Lava.getFluid(16000))
             outputs(DIMENSION_DISPLAY_NETHER)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // End
@@ -71,7 +71,7 @@ internal object EyeOfHarmonyRecipes
             fluidInputs(EnderPearl.getFluid(16000))
             outputs(DIMENSION_DISPLAY_END)
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // TODO: EoH recipes.

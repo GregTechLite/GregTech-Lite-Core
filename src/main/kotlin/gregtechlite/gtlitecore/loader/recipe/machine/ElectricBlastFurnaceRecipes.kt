@@ -24,11 +24,11 @@ import gregtech.common.items.MetaItems.NAQUADAH_BOULE
 import gregtech.common.items.MetaItems.NEUTRONIUM_BOULE
 import gregtech.common.items.MetaItems.PHOSPHORUS_BOULE
 import gregtech.common.items.MetaItems.SILICON_BOULE
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MetastableHassium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SolarGradeSilicon
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HASSIUM_BOULE
@@ -47,7 +47,7 @@ internal object ElectricBlastFurnaceRecipes
             input(dustSmall, GalliumArsenide)
             output(SILICON_BOULE)
             EUt(VA[MV])
-            duration(1 * MINUTE + 52 * SECOND + 10 * TICK) // 450sec / 4
+            duration(1.min + 52.s + 10.t) // 450sec / 4
             blastFurnaceTemp(1784) // Cupronickel
         }
 
@@ -59,7 +59,7 @@ internal object ElectricBlastFurnaceRecipes
             fluidInputs(Nitrogen.getFluid(8000))
             output(PHOSPHORUS_BOULE)
             EUt(VA[HV])
-            duration(2 * MINUTE + 30 * SECOND) // 600sec / 4
+            duration(2.min + 30.s) // 600sec / 4
             blastFurnaceTemp(2484) // Kanthal
         }
 
@@ -71,7 +71,7 @@ internal object ElectricBlastFurnaceRecipes
             fluidInputs(Argon.getFluid(8000))
             output(NAQUADAH_BOULE)
             EUt(VA[EV])
-            duration(3 * MINUTE + 7 * SECOND + 10 * TICK) // 750sec / 4
+            duration(3.min + 7.s + 10.t) // 750sec / 4
             blastFurnaceTemp(5400) // HSS-G
         }
 
@@ -83,7 +83,7 @@ internal object ElectricBlastFurnaceRecipes
             fluidInputs(Xenon.getFluid(8000))
             output(NEUTRONIUM_BOULE)
             EUt(VA[IV])
-            duration(3 * MINUTE + 45 * SECOND) // 900sec / 4
+            duration(3.min + 45.s) // 900sec / 4
             blastFurnaceTemp(6484) // Naquadah
         }
 
@@ -95,7 +95,7 @@ internal object ElectricBlastFurnaceRecipes
             fluidInputs(Radon.getFluid(8000))
             output(HASSIUM_BOULE)
             EUt(VA[LuV])
-            duration(17 * MINUTE + 30 * SECOND)
+            duration(17.min + 30.s)
             blastFurnaceTemp(9400) // Tritanium
         }
 
@@ -106,7 +106,7 @@ internal object ElectricBlastFurnaceRecipes
             fluidInputs(Radon.getFluid(8000))
             output(HASSIUM_BOULE)
             EUt(VA[LuV])
-            duration(4 * MINUTE + 22 * SECOND + 10 * TICK) // 1050sec / 4
+            duration(4.min + 22.s + 10.t) // 1050sec / 4
             blastFurnaceTemp(9400) // Tritanium
         }
     }

@@ -40,11 +40,13 @@ import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.mui.GTGuis
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.longValue
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.storage.MultiblockQuantumChest
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.storage.MultiblockQuantumTank
+import java.math.BigInteger
+import java.util.EnumSet
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -55,8 +57,6 @@ import net.minecraft.world.World
 import net.minecraftforge.fluids.FluidStack
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.math.BigInteger
-import java.util.EnumSet
 
 class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
     : MetaTileEntityMultiblockPart(id, tier), IGridProxyable, IActionHost, ICellContainer
@@ -84,7 +84,7 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
     override fun update()
     {
         super.update()
-        if (!world.isRemote && offsetTimer % (1 * SECOND) == 0L)
+        if (!world.isRemote && offsetTimer % (1.s) == 0L)
         {
             val controller = getController()
             val totalCapacity = when (controller)

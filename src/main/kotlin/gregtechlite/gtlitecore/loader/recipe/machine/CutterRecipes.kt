@@ -9,13 +9,13 @@ import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Water
 import gregtech.common.items.MetaItems.NEUTRONIUM_BOULE
 import gregtech.common.items.MetaItems.NEUTRONIUM_WAFER
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HASSIUM_BOULE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.HASSIUM_WAFER
 
@@ -43,7 +43,7 @@ internal object CutterRecipes
             output(NEUTRONIUM_WAFER, 64)
             output(NEUTRONIUM_WAFER, 64)
             EUt(VA[IV])
-            duration(2 * MINUTE)
+            duration(2.min)
             cleanroom()
         }
 
@@ -55,7 +55,7 @@ internal object CutterRecipes
             output(HASSIUM_WAFER, 64)
             output(HASSIUM_WAFER, 64)
             EUt(VA[LuV])
-            duration(2 * MINUTE + 40 * SECOND)
+            duration(2.min + 40.s)
             cleanroom()
         }
     }

@@ -18,17 +18,17 @@ import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.gem
 import gregtech.api.unification.ore.OrePrefix.lens
 import gregtech.api.unification.ore.OrePrefix.springSmall
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.inputs
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COSMIC_RAY_DETECTING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicHeterodiamond
@@ -69,7 +69,7 @@ internal object ParticlesChain
             circuitMeta(1)
             fluidOutputs(NeutronProtonFermiSuperfluid.getFluid(10))
             EUt(VA[UHV])
-            duration(10 * TICK)
+            duration(10.t)
             minHeight(100)
         }
 
@@ -78,7 +78,7 @@ internal object ParticlesChain
             circuitMeta(2)
             fluidOutputs(HeavyLeptonMixture.getFluid(10))
             EUt(VA[UHV])
-            duration(10 * TICK)
+            duration(10.t)
             minHeight(120)
         }
 
@@ -92,7 +92,7 @@ internal object ParticlesChain
             fluidInputs(UUMatter.getFluid(1000))
             fluidOutputs(HadronicResonantGas.getFluid(1000))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Stable Baryonic Matter
@@ -105,7 +105,7 @@ internal object ParticlesChain
             fluidInputs(NaquadriaEnergetic.getFluid(1000))
             fluidOutputs(StableBaryonicMatter.getFluid(9000))
             EUt(VA[UHV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             blastFurnaceTemp(9800) // Tritanium
         }
 
@@ -120,7 +120,7 @@ internal object ParticlesChain
             fluidInputs(Gluons.getFluid(100))
             fluidOutputs(DimensionallyShiftedSuperfluid.getFluid(4000))
             EUt(VA[UEV])
-            duration(2 * MINUTE)
+            duration(2.min)
             cleanroom()
         }
 
@@ -130,7 +130,7 @@ internal object ParticlesChain
             fluidInputs(HadronicResonantGas.getFluid(200))
             fluidOutputs(ResonantStrangeMeson.getFluid(100))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -143,7 +143,7 @@ internal object ParticlesChain
             chancedOutput(QUANTUM_ANOMALY, 1000, 0)
             chancedOutput(QUANTUM_ANOMALY, 500, 0)
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Advanced recipes for Quantum Anomaly.
@@ -154,7 +154,7 @@ internal object ParticlesChain
             fluidInputs(Duranium.getFluid(L))
             output(QUANTUM_ANOMALY, 16)
             EUt(VA[UEV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -164,7 +164,7 @@ internal object ParticlesChain
             fluidInputs(Tritanium.getFluid(L))
             output(QUANTUM_ANOMALY, 64)
             EUt(VA[UIV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         STELLAR_FORGE_RECIPES.addRecipe {
@@ -175,7 +175,7 @@ internal object ParticlesChain
             output(QUANTUM_ANOMALY, 64)
             output(QUANTUM_ANOMALY, 64)
             EUt(VA[UXV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
     }
 

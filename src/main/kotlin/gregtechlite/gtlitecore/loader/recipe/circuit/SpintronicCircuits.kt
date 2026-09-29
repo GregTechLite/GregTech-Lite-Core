@@ -76,12 +76,10 @@ import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.CRYSTAL_SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_IV
 import gregtech.common.items.MetaItems.NAND_MEMORY_CHIP
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
@@ -90,6 +88,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_REC
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
@@ -222,7 +222,7 @@ internal object SpintronicCircuits
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 4))
             output(SPINTRONIC_BOARD)
             EUt(VA[UEV])
-            duration(2 * SECOND)
+            duration(2.s)
             temperature(3580)
         }
 
@@ -239,7 +239,7 @@ internal object SpintronicCircuits
                 fluidInputs(etchingLiquid)
                 output(INFINITE_CIRCUIT_BOARD)
                 EUt(VA[IV])
-                duration(2 * MINUTE)
+                duration(2.min)
                 cleanroom()
             }
         }
@@ -255,7 +255,7 @@ internal object SpintronicCircuits
             fluidInputs(Mercury.getFluid(2000))
             output(dust, MercuryCadmiumTelluride, 5)
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
 
@@ -267,7 +267,7 @@ internal object SpintronicCircuits
             fluidInputs(Kevlar.getFluid(L))
             output(SPINTRONIC_SMD_TRANSISTOR, 32)
             EUt(VA[UHV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -279,7 +279,7 @@ internal object SpintronicCircuits
             output(dust, IndiumPhosphate, 6)
             fluidOutputs(Hydrogen.getFluid(3000))
             EUt(VA[HV])
-            duration(2 * SECOND + 16 * TICK)
+            duration(2.s + 16.t)
         }
 
         // CsOH + CeO2 + 2CoAl2O4 + 10InPO4 + 9H -> CsCeCo2In10 + 2Al2O3 + 10PO4 + 5H2O
@@ -295,7 +295,7 @@ internal object SpintronicCircuits
             fluidOutputs(Oxygen.getFluid(40000))
             fluidOutputs(Water.getFluid(5000))
             EUt(VA[UHV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
 
@@ -307,7 +307,7 @@ internal object SpintronicCircuits
             fluidInputs(Kevlar.getFluid(L * 2))
             output(SPINTRONIC_SMD_RESISTOR, 32)
             EUt(VA[UHV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -318,7 +318,7 @@ internal object SpintronicCircuits
             input(dust, SeaborgiumCarbide, 2)
             output(ingotHot, TantalumHafniumSeaborgiumCarbide, 32)
             EUt(VA[UHV])
-            duration(1 * MINUTE + 12 * SECOND)
+            duration(1.min + 12.s)
         }
 
         // Spintronic SMD Capacitor
@@ -329,7 +329,7 @@ internal object SpintronicCircuits
             fluidInputs(Kevlar.getFluid(L / 2))
             output(SPINTRONIC_SMD_CAPACITOR, 32)
             EUt(VA[UHV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -342,7 +342,7 @@ internal object SpintronicCircuits
             output(dust, SodiumSeaborgate, 7)
             fluidOutputs(HydrofluoricAcid.getFluid(6000))
             EUt(VA[UV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // Spintronic SMD Diode
@@ -353,7 +353,7 @@ internal object SpintronicCircuits
             fluidInputs(Kevlar.getFluid(L * 2))
             output(SPINTRONIC_SMD_DIODE, 64)
             EUt(VA[UHV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -365,7 +365,7 @@ internal object SpintronicCircuits
             fluidInputs(Chlorine.getFluid(3000))
             output(dust, ThalliumRoentgeniumChloride, 5)
             EUt(VA[UHV])
-            duration(24 * SECOND)
+            duration(24.s)
         }
 
         // Spintronic SMD Inductor
@@ -376,7 +376,7 @@ internal object SpintronicCircuits
             fluidInputs(Kevlar.getFluid(L))
             output(SPINTRONIC_SMD_INDUCTOR, 32)
             EUt(VA[UHV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
     }
@@ -389,7 +389,7 @@ internal object SpintronicCircuits
             input(spring, CarbonNanotube)
             output(TOPOLOGICAL_INSULATOR_TUBE)
             EUt(VA[IV])
-            duration(1 * SECOND)
+            duration(1.s)
             cleanroom()
         }
 
@@ -402,7 +402,7 @@ internal object SpintronicCircuits
             inputs(GlassCasing.PMMA.getStack(2))
             output(CONDENSATE_CONTAINMENT_UNIT)
             EUt(VA[UV])
-            duration(4 * SECOND)
+            duration(4.s)
             cleanroom()
         }
 
@@ -412,7 +412,7 @@ internal object SpintronicCircuits
             input(dust, Rubidium, 8)
             output(BOSE_EINSTEIN_CONDENSATE)
             EUt(VA[UV])
-            duration(1 * SECOND)
+            duration(1.s)
             cleanroom()
         }
 
@@ -425,7 +425,7 @@ internal object SpintronicCircuits
             output(dust, BismuthChalcogenide, 15)
             output(dust, Bismuth)
             EUt(VA[UV])
-            duration(4 * SECOND)
+            duration(4.s)
             temperature(4876)
         }
 
@@ -436,7 +436,7 @@ internal object SpintronicCircuits
             fluidInputs(Hydrogen.getFluid(3000))
             output(dust, PlutoniumTrihydride, 4)
             EUt(VA[IV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // Pu + PH3 -> PuP + 6H
@@ -446,7 +446,7 @@ internal object SpintronicCircuits
             output(dust, PlutoniumPhosphide, 2)
             fluidOutputs(Hydrogen.getFluid(6000))
             EUt(VA[LuV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // ESR Computation Unit
@@ -461,7 +461,7 @@ internal object SpintronicCircuits
             fluidInputs(SolderingAlloy.getFluid(L))
             output(ESR_COMPUTATION_UNIT)
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
             cleanroom()
         }
 
@@ -474,7 +474,7 @@ internal object SpintronicCircuits
             input(wireFine, PedotTMA, 16)
             output(SPIN_TRANSFER_TORQUE_RAM_CHIP, 4)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -487,7 +487,7 @@ internal object SpintronicCircuits
             input(wireFine, FullerenePolymerMatrix, 8)
             output(MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP, 4)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
@@ -503,7 +503,7 @@ internal object SpintronicCircuits
             fluidInputs(FreeElectronGas.getFluid(16000))
             output(EXCITATION_MAINTAINER)
             EUt(VA[UHV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -515,7 +515,7 @@ internal object SpintronicCircuits
             output(dust, TrichlorocyclopentadienylTitanium, 24)
             fluidOutputs(HydrogenPeroxide.getFluid(1000))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             temperature(1442)
         }
 
@@ -526,7 +526,7 @@ internal object SpintronicCircuits
             output(dust, SilverPerchlorate, 12)
             output(dust, SodiumOxide, 3)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // C4H6O2 + C6H5NH2 + 2HF -> C10H7F2N + 2H2O + 4H
@@ -538,7 +538,7 @@ internal object SpintronicCircuits
             fluidOutputs(Hydrogen.getFluid(4000))
             fluidOutputs(Ice.getFluid(2000))
             EUt(VA[IV])
-            duration(4 * SECOND + 5 * TICK)
+            duration(4.s + 5.t)
         }
 
         // HBr + NH3 + 4C2H4 -> N(CH2CH3)4Br
@@ -548,7 +548,7 @@ internal object SpintronicCircuits
             fluidInputs(Ethylene.getFluid(4000))
             fluidOutputs(TetraethylammoniumBromide.getFluid(1000))
             EUt(VA[IV])
-            duration(2 * SECOND + 15 * TICK)
+            duration(2.s + 15.t)
         }
 
         // Na + C6H5F -> C6H5Na + NaF
@@ -558,7 +558,7 @@ internal object SpintronicCircuits
             output(dust, SodiumFluoride, 2)
             fluidOutputs(Phenylsodium.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 3(C5H5)2Cl3Ti + 2AgBF4 + 2AgClO4 + 6C10H7F2N + 2N(CH2CH3)4Br + 8C6H5Na
@@ -578,7 +578,7 @@ internal object SpintronicCircuits
             fluidOutputs(PhotopolymerSolution.getFluid(4000))
             fluidOutputs(SaltWater.getFluid(6000))
             EUt(VA[UIV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // X-Ray Waveguide
@@ -587,7 +587,7 @@ internal object SpintronicCircuits
             fluidInputs(PhotopolymerSolution.getFluid(100))
             output(X_RAY_WAVEGUIDE)
             EUt(VA[UHV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -604,7 +604,7 @@ internal object SpintronicCircuits
             fluidInputs(CadmiumSelenide.getFluid(L))
             output(RYDBERG_SPINOR_ARRAY)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             tier(3)
         }
 
@@ -621,7 +621,7 @@ internal object SpintronicCircuits
             fluidInputs(CadmiumSelenide.getFluid(L * 2))
             output(RYDBERG_SPINOR_ARRAY, 4)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
             tier(4)
         }
 
@@ -638,7 +638,7 @@ internal object SpintronicCircuits
             fluidInputs(CadmiumSelenide.getFluid(L * 4))
             output(RYDBERG_SPINOR_ARRAY, 16)
             EUt(VA[UIV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             tier(5)
         }
 
@@ -652,7 +652,7 @@ internal object SpintronicCircuits
             input(bolt, Rhugnor, 4)
             output(EXOTIC_SYSTEM_ON_CHIP, 2)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
@@ -670,7 +670,7 @@ internal object SpintronicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(SPINTRONIC_PROCESSOR_UHV, 4)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -684,7 +684,7 @@ internal object SpintronicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(SPINTRONIC_PROCESSOR_UHV, 4)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -698,7 +698,7 @@ internal object SpintronicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(SPINTRONIC_PROCESSOR_UHV, 4)
             EUt(VA[UEV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -710,7 +710,7 @@ internal object SpintronicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(SPINTRONIC_PROCESSOR_UHV, 8)
             EUt(VA[UIV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -726,7 +726,7 @@ internal object SpintronicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L * 4))
             output(SPINTRONIC_ASSEMBLY_UEV, 3)
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(SPINTRONIC_PROCESSOR_UHV)
                     .EUt(VA[UEV])
@@ -745,7 +745,7 @@ internal object SpintronicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L * 4))
             output(SPINTRONIC_ASSEMBLY_UEV, 3)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(SPINTRONIC_PROCESSOR_UHV)
                     .EUt(VA[UEV])
@@ -764,7 +764,7 @@ internal object SpintronicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L * 8))
             output(SPINTRONIC_ASSEMBLY_UEV, 3)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             stationResearch {
                 it.researchStack(SPINTRONIC_PROCESSOR_UHV)
                     .EUt(VA[UEV])
@@ -787,7 +787,7 @@ internal object SpintronicCircuits
             fluidInputs(Adamantium.getFluid(L * 4))
             output(SPINTRONIC_COMPUTER_UIV, 2)
             EUt(VA[UEV])
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(SPINTRONIC_ASSEMBLY_UEV)
                     .EUt(VA[UEV])
@@ -809,7 +809,7 @@ internal object SpintronicCircuits
             fluidInputs(Adamantium.getFluid(L * 4))
             output(SPINTRONIC_COMPUTER_UIV, 2)
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(SPINTRONIC_ASSEMBLY_UEV)
                     .EUt(VA[UEV])
@@ -831,7 +831,7 @@ internal object SpintronicCircuits
             fluidInputs(Adamantium.getFluid(L * 4))
             output(SPINTRONIC_COMPUTER_UIV, 2)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(SPINTRONIC_ASSEMBLY_UEV)
                     .EUt(VA[UEV])
@@ -858,7 +858,7 @@ internal object SpintronicCircuits
             fluidInputs(Adamantium.getFluid(L * 8))
             output(SPINTRONIC_MAINFRAME_UXV)
             EUt(VA[UIV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(SPINTRONIC_COMPUTER_UIV)
                     .EUt(VA[UIV])
@@ -884,7 +884,7 @@ internal object SpintronicCircuits
             fluidInputs(Adamantium.getFluid(L * 8))
             output(SPINTRONIC_MAINFRAME_UXV)
             EUt(VA[UIV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(SPINTRONIC_COMPUTER_UIV)
                     .EUt(VA[UIV])
@@ -910,7 +910,7 @@ internal object SpintronicCircuits
             fluidInputs(Adamantium.getFluid(L * 8))
             output(SPINTRONIC_MAINFRAME_UXV)
             EUt(VA[UIV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(SPINTRONIC_COMPUTER_UIV)
                     .EUt(VA[UIV])

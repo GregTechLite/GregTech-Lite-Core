@@ -32,13 +32,13 @@ import gregtech.api.unification.ore.OrePrefix.stick
 import gregtech.api.unification.ore.OrePrefix.stickLong
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.stack.UnificationEntry
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HadronicResonantGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Magnetium
 import gregtechlite.gtlitecore.common.block.GTLiteBlocks
@@ -57,14 +57,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(ingot, Magnetium)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(ingot, Magnetium)
             fluidOutputs(Magnetium.getFluid(L))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -75,14 +75,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(plate, Magnetium)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(plate, Magnetium)
             fluidOutputs(Magnetium.getFluid(L))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -92,14 +92,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(500))
             output(plateDouble, Magnetium)
             EUt(VA[UIV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(plateDouble, Magnetium)
             fluidOutputs(Magnetium.getFluid(L * 2))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -109,14 +109,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(2250))
             output(plateDense, Magnetium)
             EUt(VA[UIV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(plateDense, Magnetium)
             fluidOutputs(Magnetium.getFluid(L * 9))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -127,14 +127,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(foil, Magnetium, 4)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(foil, Magnetium)
             fluidOutputs(Magnetium.getFluid(L / 4))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -145,14 +145,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(stick, Magnetium, 2)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(stick, Magnetium)
             fluidOutputs(Magnetium.getFluid(L / 2))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -163,14 +163,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(stickLong, Magnetium)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(stickLong, Magnetium)
             fluidOutputs(Magnetium.getFluid(L))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -180,14 +180,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(bolt, Magnetium, 8)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(bolt, Magnetium)
             fluidOutputs(Magnetium.getFluid(L / 8))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -197,14 +197,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(screw, Magnetium, 8)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(screw, Magnetium)
             fluidOutputs(Magnetium.getFluid(L / 8))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -214,14 +214,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(ring, Magnetium, 4)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(ring, Magnetium)
             fluidOutputs(Magnetium.getFluid(L / 4))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -231,14 +231,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(round, Magnetium, 8)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(round, Magnetium)
             fluidOutputs(Magnetium.getFluid(L / 8))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -248,14 +248,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(spring, Magnetium)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(spring, Magnetium)
             fluidOutputs(Magnetium.getFluid(L))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -265,14 +265,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(springSmall, Magnetium, 4)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(springSmall, Magnetium)
             fluidOutputs(Magnetium.getFluid(L / 4))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -282,14 +282,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(1000))
             output(gear, Magnetium)
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(gear, Magnetium)
             fluidOutputs(Magnetium.getFluid(L * 4))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -299,14 +299,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(gearSmall, Magnetium)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(gearSmall, Magnetium)
             fluidOutputs(Magnetium.getFluid(L))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -317,14 +317,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(250))
             output(wireFine, Magnetium, 8)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(wireFine, Magnetium)
             fluidOutputs(Magnetium.getFluid(L / 8))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -334,14 +334,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(1000))
             output(rotor, Magnetium)
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(rotor, Magnetium)
             fluidOutputs(Magnetium.getFluid(L * 4))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -352,14 +352,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(2250))
             output(block, Magnetium)
             EUt(VA[UIV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(block, Magnetium)
             fluidOutputs(Magnetium.getFluid(L * 9))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -369,14 +369,14 @@ internal object MagnetiumChain
             fluidInputs(HadronicResonantGas.getFluid(500))
             output(frameGt, Magnetium)
             EUt(VA[UIV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         EXTRACTOR_RECIPES.addRecipe {
             input(frameGt, Magnetium)
             fluidOutputs(Magnetium.getFluid(L * 2))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(EXTRACTOR_RECYCLING)
         }
 
@@ -392,7 +392,7 @@ internal object MagnetiumChain
             input(frameGt, Magnetium)
             outputs(GTLiteBlocks.SHEETED_FRAMES[Magnetium]!!.getItem(Magnetium).copy(6))
             EUt(7) // ULV
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         // Wall
@@ -407,7 +407,7 @@ internal object MagnetiumChain
             input(screw, Magnetium)
             outputs(GTLiteBlocks.METAL_WALLS[Magnetium]!!.getItem(Magnetium).copy(3))
             EUt(7)
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
     }
 

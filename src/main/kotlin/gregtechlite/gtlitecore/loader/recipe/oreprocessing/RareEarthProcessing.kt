@@ -24,10 +24,10 @@ import gregtech.api.unification.material.Materials.RareEarth
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CeriumOxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DiethylhexylPhosphoricAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErTmYbLuOxidesSolution
@@ -73,7 +73,7 @@ internal object RareEarthProcessing
             fluidInputs(Hydrogen.getFluid(4000))
             fluidOutputs(Ethylhexanol.getFluid(1000))
             EUt(VA[MV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // 0.5P4O10 + 5C8H18O -> 2C16H35O4P + 2C4H10 + 2O (lost)
@@ -83,7 +83,7 @@ internal object RareEarthProcessing
             fluidOutputs(DiethylhexylPhosphoricAcid.getFluid(2000))
             fluidOutputs(Butane.getFluid(2000))
             EUt(VH[LV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
     }
 
@@ -98,7 +98,7 @@ internal object RareEarthProcessing
             fluidInputs(Water.getFluid(900))
             fluidOutputs(RareEarthHydroxidesSolution.getFluid(1000))
             EUt(VA[HV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // (REHS) + HCl -> (RECS) + NaOH (cycle)
@@ -108,7 +108,7 @@ internal object RareEarthProcessing
             output(dust, SodiumHydroxide, 3)
             fluidOutputs(RareEarthChloridesSolution.getFluid(1000))
             EUt(VA[LV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Neodymium Processing for optional choice of EV stage, this reaction can
@@ -119,7 +119,7 @@ internal object RareEarthProcessing
             output(dust, NeodymiumOxide)
             fluidOutputs(HydrochloricAcid.getFluid(900))
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Cerium Processing for option choice of ZPM stage (Plutonium-241 Fusion).
@@ -129,7 +129,7 @@ internal object RareEarthProcessing
             output(dust, CeriumOxide)
             fluidOutputs(HydrochloricAcid.getFluid(850))
             EUt(VHA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Samarium Processing for option choice of IV-LuV stage (consists of
@@ -140,7 +140,7 @@ internal object RareEarthProcessing
             output(dust, SamariumOxide)
             fluidOutputs(HydrochloricAcid.getFluid(800))
             EUt(VHA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Yttrium Processing for IV stage (Alloy Component of Incoloy-MA956).
@@ -150,7 +150,7 @@ internal object RareEarthProcessing
             output(dust, YttriumOxide)
             fluidOutputs(HydrochloricAcid.getFluid(750))
             EUt(VHA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Lanthanum Processing for optional choice of LuV and UV stage (consists of
@@ -161,7 +161,7 @@ internal object RareEarthProcessing
             output(dust, LanthanumOxide)
             fluidOutputs(HydrochloricAcid.getFluid(500))
             EUt(VHA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // (RECS) -> (REEs)
@@ -174,7 +174,7 @@ internal object RareEarthProcessing
             fluidOutputs(ErTmYbLuOxidesSolution.getFluid(250))
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[ZPM]) // Required double LuV Energy Hatches.
-            duration(10 * SECOND)
+            duration(10.s)
             disableDistilleryRecipes()
         }
     }

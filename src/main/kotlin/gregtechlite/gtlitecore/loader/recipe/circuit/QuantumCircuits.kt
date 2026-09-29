@@ -42,15 +42,15 @@ import gregtech.common.items.MetaItems.SMD_CAPACITOR
 import gregtech.common.items.MetaItems.SMD_DIODE
 import gregtech.common.items.MetaItems.SMD_INDUCTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CadmiumSelenide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
@@ -80,7 +80,7 @@ internal object QuantumCircuits
                 fluidInputs(etchingLiquid)
                 output(EXTREME_CIRCUIT_BOARD)
                 EUt(VA[LV])
-                duration(1 * MINUTE)
+                duration(1.min)
                 cleanroom()
             }
         }
@@ -107,7 +107,7 @@ internal object QuantumCircuits
             fluidInputs(GalliumArsenide.getFluid(L))
             output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 2)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -119,7 +119,7 @@ internal object QuantumCircuits
             fluidInputs(Radon.getFluid(50))
             output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 2)
             EUt(VA[IV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
 
@@ -131,7 +131,7 @@ internal object QuantumCircuits
             fluidInputs(GalliumArsenide.getFluid(L * 4))
             output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 8)
             EUt(VA[IV])
-            duration(15 * SECOND)
+            duration(15.s)
             cleanroom()
         }
 
@@ -143,7 +143,7 @@ internal object QuantumCircuits
             fluidInputs(Radon.getFluid(200))
             output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 8)
             EUt(VA[IV])
-            duration(25 * SECOND)
+            duration(25.s)
             cleanroom()
         }
 
@@ -155,7 +155,7 @@ internal object QuantumCircuits
             fluidInputs(GalliumArsenide.getFluid(L * 9))
             output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 18)
             EUt(VA[IV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
 
@@ -167,7 +167,7 @@ internal object QuantumCircuits
             fluidInputs(Radon.getFluid(450))
             output(QUBIT_CENTRAL_PROCESSING_UNIT_WAFER, 18)
             EUt(VA[IV])
-            duration(30 * SECOND)
+            duration(30.s)
             cleanroom()
         }
     }
@@ -234,7 +234,7 @@ internal object QuantumCircuits
             input(wireFine, Platinum, 12)
             output(QUANTUM_PROCESSOR_EV, 4)
             EUt(2400) // IV
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -247,7 +247,7 @@ internal object QuantumCircuits
             input(wireFine, Platinum, 12)
             output(QUANTUM_PROCESSOR_EV, 4)
             EUt(2400) // IV
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -258,7 +258,7 @@ internal object QuantumCircuits
             input(bolt, NiobiumTitanium, 8)
             output(QUANTUM_PROCESSOR_EV, 8)
             EUt(38400) // ZPM
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -308,7 +308,7 @@ internal object QuantumCircuits
             input(wireFine, Platinum, 16)
             output(QUANTUM_ASSEMBLY_IV, 3)
             EUt(2400) // IV
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -322,7 +322,7 @@ internal object QuantumCircuits
             input(wireFine, Platinum, 16)
             output(QUANTUM_ASSEMBLY_IV, 3)
             EUt(2400) // IV
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -373,7 +373,7 @@ internal object QuantumCircuits
             input(wireFine, Platinum, 32)
             output(QUANTUM_COMPUTER_LUV, 2)
             EUt(2400) // IV
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -387,7 +387,7 @@ internal object QuantumCircuits
             input(wireFine, Platinum, 32)
             output(QUANTUM_COMPUTER_LUV, 2)
             EUt(2400) // IV
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(2)
             cleanroom()
         }

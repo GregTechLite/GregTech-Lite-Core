@@ -29,14 +29,15 @@ import gregtech.api.util.KeyUtil
 import gregtech.api.util.RelativeDirection.*
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.api.GTLiteAPI.ACCELERATION_TRACK_TIER
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.capability.ModuleProvider
 import gregtechlite.gtlitecore.api.capability.ModuleReceiver
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.accelerationTracks
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
+import java.util.concurrent.ConcurrentHashMap
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -46,7 +47,6 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.concurrent.ConcurrentHashMap
 
 class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(id), ModuleProvider
 {
@@ -87,7 +87,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         {
             if (!checkModules()) invalidateStructure()
         }
-        if (offsetTimer % SECOND == 0L)
+        if (offsetTimer % 1.s == 0L)
         {
             moduleReceivers.removeIf { it.moduleProvider == null }
         }
@@ -112,7 +112,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
     override fun checkStructurePattern()
     {
         super.checkStructurePattern()
-        if (offsetTimer % (5 * SECOND) == 0L || isFirstTick)
+        if (offsetTimer % (5.s) == 0L || isFirstTick)
         {
             if (!isStructureFormed) reinitializeStructurePattern()
             super.checkStructurePattern()

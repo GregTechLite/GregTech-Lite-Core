@@ -76,11 +76,11 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_UV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_ZPM
 import gregtech.common.items.MetaItems.NEUTRON_REFLECTOR
 import gregtech.common.metatileentities.MetaTileEntities.HULL
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumStrontiumTitanate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BariumTitanate
@@ -128,7 +128,7 @@ internal object FusionCasingRecipes
             fluidInputs(Trinium.getFluid(L * 2))
             outputs(GTFusionCasing.FUSION_COIL.stack)
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -137,7 +137,7 @@ internal object FusionCasingRecipes
             fluidInputs(Trinium.getFluid(L))
             outputs(GTFusionCasing.FUSION_COIL.stack)
             EUt(VA[UEV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -146,7 +146,7 @@ internal object FusionCasingRecipes
             fluidInputs(Trinium.getFluid(L / 2))
             outputs(GTFusionCasing.FUSION_COIL.getStack(2))
             EUt(VA[UIV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -155,7 +155,7 @@ internal object FusionCasingRecipes
             fluidInputs(Trinium.getFluid(L / 4))
             outputs(GTFusionCasing.FUSION_COIL.getStack(4))
             EUt(VA[UXV])
-            duration(12 * TICK)
+            duration(12.t)
         }
 
         // Advanced Fusion Coil
@@ -170,7 +170,7 @@ internal object FusionCasingRecipes
             fluidInputs(YttriumBariumCuprate.getFluid(L * 4))
             outputs(FusionCoil.ADVANCED.stack)
             EUt(VA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -186,7 +186,7 @@ internal object FusionCasingRecipes
             fluidInputs(Europium.getFluid(L * 4))
             outputs(FusionCoil.ULTIMATE.stack)
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -200,7 +200,7 @@ internal object FusionCasingRecipes
             fluidInputs(Kevlar.getFluid(L * 8))
             outputs(FusionCasing.MK4.getStack(2))
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -214,7 +214,7 @@ internal object FusionCasingRecipes
             fluidInputs(Kevlar.getFluid(L * 16))
             outputs(FusionCasing.MK5.getStack(2))
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -231,7 +231,7 @@ internal object FusionCasingRecipes
             fluidInputs(Duranium.getFluid(L * 4))
             outputs(FusionCryostat.MK1.getStack(4))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -248,7 +248,7 @@ internal object FusionCasingRecipes
             fluidInputs(Francium.getFluid(L * 4))
             outputs(FusionCryostat.MK2.getStack(4))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -265,7 +265,7 @@ internal object FusionCasingRecipes
             fluidInputs(Meitnerium.getFluid(L * 4))
             outputs(FusionCryostat.MK3.getStack(4))
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -282,7 +282,7 @@ internal object FusionCasingRecipes
             fluidInputs(Copernicium.getFluid(L * 4))
             outputs(FusionCryostat.MK4.getStack(4))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -299,7 +299,7 @@ internal object FusionCasingRecipes
             fluidInputs(Moscovium.getFluid(L * 4))
             outputs(FusionCryostat.MK5.getStack(4))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -316,7 +316,7 @@ internal object FusionCasingRecipes
             fluidInputs(Duranium.getFluid(L * 4))
             outputs(FusionDivertor.MK1.getStack(4))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -333,7 +333,7 @@ internal object FusionCasingRecipes
             fluidInputs(Francium.getFluid(L * 4))
             outputs(FusionDivertor.MK2.getStack(4))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -350,7 +350,7 @@ internal object FusionCasingRecipes
             fluidInputs(Meitnerium.getFluid(L * 4))
             outputs(FusionDivertor.MK3.getStack(4))
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -367,7 +367,7 @@ internal object FusionCasingRecipes
             fluidInputs(Copernicium.getFluid(L * 4))
             outputs(FusionDivertor.MK4.getStack(4))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -384,7 +384,7 @@ internal object FusionCasingRecipes
             fluidInputs(Moscovium.getFluid(L * 4))
             outputs(FusionDivertor.MK5.getStack(4))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -401,7 +401,7 @@ internal object FusionCasingRecipes
             fluidInputs(Duranium.getFluid(L * 4))
             outputs(FusionVacuum.MK1.getStack(4))
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -418,7 +418,7 @@ internal object FusionCasingRecipes
             fluidInputs(Francium.getFluid(L * 4))
             outputs(FusionVacuum.MK2.getStack(4))
             EUt(VA[ZPM])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -435,7 +435,7 @@ internal object FusionCasingRecipes
             fluidInputs(Meitnerium.getFluid(L * 4))
             outputs(FusionVacuum.MK3.getStack(4))
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -452,7 +452,7 @@ internal object FusionCasingRecipes
             fluidInputs(Copernicium.getFluid(L * 4))
             outputs(FusionVacuum.MK4.getStack(4))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -469,7 +469,7 @@ internal object FusionCasingRecipes
             fluidInputs(Moscovium.getFluid(L * 4))
             outputs(FusionVacuum.MK5.getStack(4))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
     }

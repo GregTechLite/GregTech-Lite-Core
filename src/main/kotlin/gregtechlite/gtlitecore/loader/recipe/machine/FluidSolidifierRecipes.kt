@@ -10,13 +10,13 @@ import gregtech.api.unification.material.Materials.Glue
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_ROD
 import gregtech.common.items.MetaItems.STICKY_RESIN
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.outputs
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Resin
 import net.minecraft.init.Items.BLAZE_ROD
 import net.minecraft.init.Items.ENDER_PEARL
@@ -35,7 +35,7 @@ internal object FluidSolidifierRecipes
             fluidInputs(Resin.getFluid(250))
             output(STICKY_RESIN)
             EUt(2) // ULV
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Ender Pearl Solidification.
@@ -44,7 +44,7 @@ internal object FluidSolidifierRecipes
             fluidInputs(EnderPearl.getFluid(L))
             outputs(ENDER_PEARL)
             EUt(7) // ULV
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Slime Ball Solidification.
@@ -53,7 +53,7 @@ internal object FluidSolidifierRecipes
             fluidInputs(Glue.getFluid(250))
             outputs(SLIME_BALL)
             EUt(7) // ULV
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Fix incorrect solidified amount for blaze rod.
@@ -66,7 +66,7 @@ internal object FluidSolidifierRecipes
             fluidInputs(Blaze.getFluid(L * 4))
             outputs(BLAZE_ROD)
             EUt(VA[LV])
-            duration(7 * SECOND + 5 * TICK)
+            duration(7.s + 5.t)
         }
     }
 

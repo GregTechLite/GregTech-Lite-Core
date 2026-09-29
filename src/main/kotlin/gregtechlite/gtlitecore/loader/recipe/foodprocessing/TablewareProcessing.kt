@@ -17,10 +17,10 @@ import gregtech.api.unification.stack.UnificationEntry
 import gregtech.common.items.MetaItems.SHAPE_EXTRUDER_BOTTLE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BOTTLE
 import gregtech.common.items.MetaItems.SHAPE_MOLD_CYLINDER
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PiranhaSolution
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumStearate
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.CERAMIC_BOWL
@@ -63,7 +63,7 @@ internal object TablewareProcessing
             fluidInputs(Water.getFluid(100))
             output(CERAMIC_BOWL)
             EUt(VA[LV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
         }
 
         CHEMICAL_BATH_RECIPES.addRecipe {
@@ -71,7 +71,7 @@ internal object TablewareProcessing
             fluidInputs(PiranhaSolution.getFluid(100))
             output(CERAMIC_BOWL)
             EUt(VA[LV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
         }
 
         CHEMICAL_BATH_RECIPES.addRecipe {
@@ -79,7 +79,7 @@ internal object TablewareProcessing
             fluidInputs(SodiumStearate.getFluid(100))
             output(CERAMIC_BOWL)
             EUt(VA[LV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
         }
 
         // Plastic Bottle
@@ -88,7 +88,7 @@ internal object TablewareProcessing
             input(ingot, Polyethylene)
             output(PLASTIC_BOTTLE)
             EUt(VA[LV])
-            duration(1 * SECOND + 12 * TICK)
+            duration(1.s + 12.t)
         }
 
         FLUID_SOLIDFICATION_RECIPES.addRecipe {
@@ -96,7 +96,7 @@ internal object TablewareProcessing
             fluidInputs(Polyethylene.getFluid(L))
             output(PLASTIC_BOTTLE)
             EUt(4) // ULV
-            duration(12 * TICK)
+            duration(12.t)
         }
 
         // PVC Can
@@ -105,7 +105,7 @@ internal object TablewareProcessing
             input(ingot, PolyvinylChloride)
             output(PVC_CAN)
             EUt(VA[LV])
-            duration(1 * SECOND + 12 * TICK)
+            duration(1.s + 12.t)
         }
 
         FLUID_SOLIDFICATION_RECIPES.addRecipe {
@@ -113,7 +113,7 @@ internal object TablewareProcessing
             fluidInputs(PolyvinylChloride.getFluid(L))
             output(PVC_CAN)
             EUt(4) // ULV
-            duration(12 * TICK)
+            duration(12.t)
         }
     }
 

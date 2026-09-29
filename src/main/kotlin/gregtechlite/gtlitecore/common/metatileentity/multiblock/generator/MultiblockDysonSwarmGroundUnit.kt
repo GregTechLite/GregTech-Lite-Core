@@ -27,7 +27,6 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
-import gregtechlite.gtlitecore.api.HOUR
 import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
 import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.DYSON_SWARM_FUELS
@@ -42,6 +41,7 @@ import gregtechlite.gtlitecore.api.GTLiteAPI.COIL_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.SENSOR_CASING_TIER
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.hr
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.sensorCasings
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy
@@ -105,7 +105,7 @@ class MultiblockDysonSwarmGroundUnit(id: ResourceLocation)
         {
             DYSON_SWARM_FUELS.addRecipe {
                 fluidInputs(GelidCryotheum.getFluid(COOLANT_PER_HOUR))
-                duration(HOUR)
+                duration(1.hr)
                 EUt(1)
             }
         }
@@ -312,7 +312,7 @@ class MultiblockDysonSwarmGroundUnit(id: ResourceLocation)
                 {
                     getEnergyContainer().changeEnergy(toProduce)
 
-                    if (generator.offsetTimer % HOUR == 0L)
+                    if (generator.offsetTimer % 1.hr == 0L)
                     {
                         consumeCoolantAndDestroyPanels()
                     }

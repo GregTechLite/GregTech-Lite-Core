@@ -9,13 +9,13 @@ import gregtech.api.GTValues.UXV
 import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.FUSION_RECIPES
 import gregtech.api.unification.material.Materials.Neutronium
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Hypogen
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.QuantumAlloy
@@ -36,7 +36,7 @@ internal object HypogenChain
             fluidInputs(QuantumAlloy.getFluid(L))
             fluidOutputs(Rhugnor.getFluid(L * 2))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             EUToStart(980_000_000L) // 980M EU (MK4)
         }
 
@@ -46,7 +46,7 @@ internal object HypogenChain
             fluidInputs(Infinity.getFluid(L))
             fluidOutputs(Hypogen.getFluid(L / 4))
             EUt(VA[UEV])
-            duration(1 * MINUTE)
+            duration(1.min)
             EUToStart(1_600_000_000L) // 1,600M EU (MK5)
         }
 
@@ -62,7 +62,7 @@ internal object HypogenChain
             fluidInputs(Infinity.getFluid(L * 10))
             fluidOutputs(Hypogen.getFluid(L * 11))
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Tier 2: x160
@@ -75,7 +75,7 @@ internal object HypogenChain
             fluidInputs(Infinity.getFluid(L * 10 * 16))
             fluidOutputs(Hypogen.getFluid(L * 11 * 16))
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Tier 3: x640
@@ -88,7 +88,7 @@ internal object HypogenChain
             fluidInputs(Infinity.getFluid(L * 10 * 64))
             fluidOutputs(Hypogen.getFluid(L * 11 * 64))
             EUt(VA[OpV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

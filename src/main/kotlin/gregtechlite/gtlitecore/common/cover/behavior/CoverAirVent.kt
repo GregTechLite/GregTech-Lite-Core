@@ -10,7 +10,7 @@ import gregtech.api.cover.CoverableView
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.properties.impl.DimensionProperty
 import gregtech.client.renderer.texture.Textures
-import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.s
 import net.minecraft.util.BlockRenderLayer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ITickable
@@ -22,13 +22,10 @@ class CoverAirVent(definition: CoverDefinition,
                    attachedSide: EnumFacing,
                    private var transferRate: Int) : CoverBase(definition, coverableView, attachedSide), ITickable
 {
-
     private var airType: FluidStack? = null
 
     override fun canAttach(coverableView: CoverableView, attachedSide: EnumFacing): Boolean
-    {
-        return coverableView.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, attachedSide)
-    }
+        = coverableView.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, attachedSide)
 
     override fun renderCover(renderState: CCRenderState,
                              translation: Matrix4,
@@ -41,7 +38,7 @@ class CoverAirVent(definition: CoverDefinition,
 
     override fun update()
     {
-        if (world.isRemote || offsetTimer % SECOND != 0L) return
+        if (world.isRemote || offsetTimer % 1.s != 0L) return
 
         // Obstructed block in neighbor is not allowed, otherwise stop updating.
         if (world.getBlockState(pos.offset(attachedSide)).isFullBlock) return
@@ -65,10 +62,10 @@ class CoverAirVent(definition: CoverDefinition,
                 ?.fluidOutputs
                 ?.firstOrNull()
                 ?.let {
-                    this.airType = FluidStack(it.fluid, this.transferRate)
+                    airType = FluidStack(it.fluid, transferRate)
                 }
         }
-
-        fluidHandler.fill(this.airType!!.copy(), true)
+        val _airType = airType ?: return
+        fluidHandler.fill(_airType.copy(), true)
     }
 }

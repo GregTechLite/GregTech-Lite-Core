@@ -8,11 +8,11 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Plutonium241
 import gregtech.api.unification.material.Materials.Uraninite
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MOX
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.PlutoniumDioxide
 
@@ -35,7 +35,7 @@ object FissionFuelChain
             fluidInputs(Oxygen.getFluid(2000))
             output(dust, PlutoniumDioxide, 3)
             EUt(VA[LV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // PuO2 + 2UO2 -> (PuO2)(UO2)2
@@ -45,7 +45,7 @@ object FissionFuelChain
             input(dust, Uraninite, 6)
             output(dust, MOX, 9)
             EUt(VA[HV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

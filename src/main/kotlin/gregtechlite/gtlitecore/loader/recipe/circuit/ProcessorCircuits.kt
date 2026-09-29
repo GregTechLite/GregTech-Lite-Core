@@ -63,12 +63,12 @@ import gregtech.common.items.MetaItems.SMD_RESISTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.WORKSTATION_EV
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.EthylenediaminePyrocatechol
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.TetramethylammoniumHydroxide
 
@@ -97,7 +97,7 @@ internal object ProcessorCircuits
                 fluidInputs(etchingLiquid)
                 output(PLASTIC_CIRCUIT_BOARD)
                 EUt(VA[LV])
-                duration(30 * SECOND)
+                duration(30.s)
             }
         }
     }
@@ -124,7 +124,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(SMD_TRANSISTOR, 16)
             EUt(VA[HV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -134,7 +134,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(SMD_TRANSISTOR, 32)
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -144,7 +144,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(SMD_TRANSISTOR, 64)
             EUt(VA[HV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // SMD Resistor
@@ -165,7 +165,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L * 2))
             output(SMD_RESISTOR, 16)
             EUt(VA[HV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -175,7 +175,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L * 2))
             output(SMD_RESISTOR, 32)
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -185,7 +185,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L * 2))
             output(SMD_RESISTOR, 64)
             EUt(VA[HV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // SMD Capacitor
@@ -216,7 +216,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L / 2))
             output(SMD_CAPACITOR, 16)
             EUt(VA[HV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -226,7 +226,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L / 2))
             output(SMD_CAPACITOR, 32)
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -236,7 +236,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L / 2))
             output(SMD_CAPACITOR, 64)
             EUt(VA[HV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // SMD Diode
@@ -252,7 +252,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L * 2))
             output(SMD_DIODE, 32)
             EUt(VA[HV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -262,7 +262,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L * 2))
             output(SMD_DIODE, 64)
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // SMD Inductor
@@ -283,7 +283,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(SMD_INDUCTOR, 16)
             EUt(VA[HV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -293,7 +293,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(SMD_INDUCTOR, 32)
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         ASSEMBLER_RECIPES.addRecipe {
@@ -303,7 +303,7 @@ internal object ProcessorCircuits
             fluidInputs(Polyethylene.getFluid(L))
             output(SMD_INDUCTOR, 64)
             EUt(VA[HV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
     }
 
@@ -345,7 +345,7 @@ internal object ProcessorCircuits
             input(bolt, RedAlloy, 2)
             output(NAND_CHIP_ULV, 8)
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
@@ -355,7 +355,7 @@ internal object ProcessorCircuits
             input(bolt, RedAlloy, 2)
             output(NAND_CHIP_ULV, 16)
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // LV Microprocessor
@@ -400,7 +400,7 @@ internal object ProcessorCircuits
             input(wireFine, Copper)
             output(MICROPROCESSOR_LV, 4)
             EUt(VHA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
@@ -410,7 +410,7 @@ internal object ProcessorCircuits
             input(bolt, Tin, 2)
             output(MICROPROCESSOR_LV, 8)
             EUt(600) // EV
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -456,7 +456,7 @@ internal object ProcessorCircuits
             input(wireFine, RedAlloy, 4)
             output(PROCESSOR_MV, 4)
             EUt(VHA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         CIRCUIT_ASSEMBLER_RECIPES.addRecipe {
@@ -466,7 +466,7 @@ internal object ProcessorCircuits
             input(bolt, AnnealedCopper, 4)
             output(PROCESSOR_MV, 8)
             EUt(2400) // IV
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             cleanroom()
         }
 
@@ -498,7 +498,7 @@ internal object ProcessorCircuits
             input(wireFine, RedAlloy, 8)
             output(PROCESSOR_ASSEMBLY_HV, 3)
             EUt(90) // MV
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(2)
         }
 
@@ -530,7 +530,7 @@ internal object ProcessorCircuits
             input(bolt, BlueAlloy, 16)
             output(WORKSTATION_EV, 2)
             EUt(VA[MV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
             solderMultiplier(2)
         }

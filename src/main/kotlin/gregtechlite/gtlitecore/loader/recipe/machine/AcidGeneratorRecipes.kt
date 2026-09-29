@@ -10,11 +10,11 @@ import gregtech.api.unification.material.Materials.Mercury
 import gregtech.api.unification.material.Materials.NitricAcid
 import gregtech.api.unification.material.Materials.Redstone
 import gregtech.api.unification.material.Materials.SulfuricAcid
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ACID_GENERATOR_FUELS
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 
 internal object AcidGeneratorRecipes
 {
@@ -26,31 +26,31 @@ internal object AcidGeneratorRecipes
         ACID_GENERATOR_FUELS.addRecipe {
             fluidInputs(Redstone.getFluid(L / 4))
             EUt(V[LV])
-            duration(1 * SECOND + 15 * TICK)
+            duration(1.s + 15.t)
         }
 
         ACID_GENERATOR_FUELS.addRecipe {
             fluidInputs(Mercury.getFluid(500))
             EUt(VA[MV])
-            duration(3 * SECOND + 10 * TICK)
+            duration(3.s + 10.t)
         }
 
         ACID_GENERATOR_FUELS.addRecipe {
             fluidInputs(SulfuricAcid.getFluid(250))
             EUt(VA[MV])
-            duration(6 * SECOND + 10 * TICK)
+            duration(6.s + 10.t)
         }
 
         ACID_GENERATOR_FUELS.addRecipe {
             fluidInputs(HydrochloricAcid.getFluid(500))
             EUt(VA[MV])
-            duration(4 * SECOND + 15 * TICK)
+            duration(4.s + 15.t)
         }
 
         ACID_GENERATOR_FUELS.addRecipe {
             fluidInputs(NitricAcid.getFluid(125))
             EUt(VA[MV])
-            duration(6 * SECOND + 15 * TICK)
+            duration(6.s + 15.t)
         }
 
         // TODO: Organic Acids and other recipes.

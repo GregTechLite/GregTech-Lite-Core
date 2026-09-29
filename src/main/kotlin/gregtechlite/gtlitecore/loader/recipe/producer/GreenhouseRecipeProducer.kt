@@ -10,12 +10,12 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.common.blocks.MetaBlocks
 import gregtech.common.items.MetaItems.FERTILIZER
 import gregtech.common.items.MetaItems.STICKY_RESIN
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.GREENHOUSE_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GreenhouseGas
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Latex
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.RainbowSap
@@ -120,7 +120,7 @@ internal object GreenhouseRecipeProducer
             fluidInputs(Air.getFluid(100))
             fluidOutputs(GreenhouseGas.getFluid(100))
             EUt(VA[MV])
-            duration(1 * SECOND + 5 * TICK)
+            duration(1.s + 5.t)
         }
 
         // region Vanilla Trees Recipes
@@ -397,7 +397,7 @@ internal object GreenhouseRecipeProducer
                     .notConsumable(frontend.gas)
                     .fluidInputs(Water.getFluid(1000))
                     .EUt(VA[LV])
-                    .duration(frontend.duration * SECOND)
+                    .duration(frontend.duration.s)
 
                 if (frontend.fertilizer > 0)
                     builder.input(FERTILIZER, frontend.fertilizer)

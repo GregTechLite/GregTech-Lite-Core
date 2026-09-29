@@ -21,11 +21,11 @@ import gregtech.api.unification.material.Materials.Tetrafluoroethylene
 import gregtech.api.unification.material.Materials.TitaniumTetrachloride
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumPerrhenate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETS
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETSPerrhenate
@@ -53,7 +53,7 @@ internal object BETSPerrhenateChain
             fluidInputs(CarbonMonoxide.getFluid(1000))
             output(dust, SodiumFormate, 5)
             EUt(VA[LV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // HCOONa + H2SO4 -> Na2S2O3 + 2HCOOH (cycle)
@@ -63,7 +63,7 @@ internal object BETSPerrhenateChain
             output(dust, SodiumThiosulfate, 7)
             fluidOutputs(FormicAcid.getFluid(1000))
             EUt(VA[LV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // 4Na + 2HCOOH + 2Br + 2H2O -> 4NaOH + C2H2Br2O2 + 2H
@@ -76,7 +76,7 @@ internal object BETSPerrhenateChain
             fluidOutputs(Dibromoacrolein.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[EV])
-            duration(18 * SECOND)
+            duration(18.s)
         }
 
         // 2Na2S2O3 + C2H2Br2O2 + C2H4Cl2 -> 2NaCl + 2NaHSO4 + C4H4S2Br2
@@ -88,7 +88,7 @@ internal object BETSPerrhenateChain
             output(dust, SodiumBisulfate, 14)
             fluidOutputs(Bromodihydrothiine.getFluid(1000))
             EUt(VA[IV])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // 2Se + C4H4S2Br2 + 2C4H9Li -> C4H4S2Li2Se2 + 2C4H9Br
@@ -99,7 +99,7 @@ internal object BETSPerrhenateChain
             output(dust, LithiumThiinediselenide, 14)
             fluidOutputs(Bromobutane.getFluid(2000))
             EUt(VA[LuV])
-            duration(17 * SECOND)
+            duration(17.s)
         }
 
         // 2C4H4S2Li2Se2 + C2F4 -> C10H8S4Se4 + 4LiF
@@ -110,7 +110,7 @@ internal object BETSPerrhenateChain
             output(dust, BETS, 26)
             output(dust, LithiumFluoride, 8)
             EUt(VA[UHV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // C10H8S4Se4 + NH4ReO4 -> (C10H8S4Se4)ReO4
@@ -119,7 +119,7 @@ internal object BETSPerrhenateChain
             input(dust, AmmoniumPerrhenate, 10)
             output(dust, BETSPerrhenate, 31)
             EUt(VA[ZPM])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

@@ -8,6 +8,7 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.client.renderer.texture.Textures
 import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
+import gregtechlite.gtlitecore.api.extension.formatting
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.client.renderer.handler.world.StructureSelectRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
@@ -76,7 +77,7 @@ object ClientEventHandlers
             .filter { ItemUtil.areItemTypeEqual(it.stack, stack) }
             .forEach {
                 tooltip.add(I18n.format("gtlitecore.tooltip.storage_type", it.distinctSlots))
-                tooltip.add(I18n.format("gtlitecore.tooltip.storage_capacity", it.totalCapacity))
+                tooltip.add(I18n.format("gtlitecore.tooltip.storage_capacity", it.totalCapacity.formatting()))
             }
 
         // Added tooltips for bottlecrate.

@@ -22,10 +22,10 @@ import gregtech.common.items.MetaItems.CREDIT_SILVER
 import gregtech.common.items.MetaItems.SHAPE_EMPTY
 import gregtech.common.items.MetaItems.SHAPE_MOLD_CREDIT
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.outputs
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cellulose
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
@@ -66,7 +66,7 @@ internal object FormingPressRecipes
             input(SHAPE_EMPTY)
             output(SHAPE_MOLD_SCREW)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Shape Mold (Turbine Blade)
@@ -75,7 +75,7 @@ internal object FormingPressRecipes
             input(SHAPE_EMPTY)
             output(SHAPE_MOLD_TURBINE_BLADE)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Shape Mold (Drill Head)
@@ -84,7 +84,7 @@ internal object FormingPressRecipes
             input(SHAPE_EMPTY)
             output(SHAPE_MOLD_DRILL_HEAD)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Saw)
@@ -93,7 +93,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_SAW)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Hard Hammer)
@@ -102,7 +102,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_HARD_HAMMER)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Soft Mallet)
@@ -111,7 +111,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_SOFT_MALLET)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Wrench)
@@ -120,7 +120,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_WRENCH)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (File)
@@ -129,7 +129,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_FILE)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Crowbar)
@@ -138,7 +138,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_CROWBAR)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Screwdriver)
@@ -147,7 +147,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_SCREWDRIVER)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Mortar)
@@ -156,7 +156,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_MORTAR)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Wire Cutter)
@@ -165,7 +165,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_WIRE_CUTTER)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Knife)
@@ -174,7 +174,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_KNIFE)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Butchery Knife)
@@ -183,7 +183,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_BUTCHERY_KNIFE)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Casting Mold (Rolling Pin)
@@ -192,7 +192,7 @@ internal object FormingPressRecipes
             input(CASTING_MOLD_EMPTY)
             output(CASTING_MOLD_ROLLING_PIN)
             EUt(22) // LV
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Copper Credit
@@ -201,7 +201,7 @@ internal object FormingPressRecipes
             input(plate, Copper)
             output(CREDIT_COPPER, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Silver Credit
@@ -210,7 +210,7 @@ internal object FormingPressRecipes
             input(plate, Silver)
             output(CREDIT_SILVER, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Gold Credit
@@ -219,7 +219,7 @@ internal object FormingPressRecipes
             input(plate, Gold)
             output(CREDIT_GOLD, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Platinum Credit
@@ -228,7 +228,7 @@ internal object FormingPressRecipes
             input(plate, Platinum)
             output(CREDIT_PLATINUM, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Osmium Credit
@@ -237,7 +237,7 @@ internal object FormingPressRecipes
             input(plate, Osmium)
             output(CREDIT_OSMIUM, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Naquadah Credit
@@ -246,7 +246,7 @@ internal object FormingPressRecipes
             input(plate, Naquadah)
             output(CREDIT_NAQUADAH, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Neutronium Credit
@@ -255,7 +255,7 @@ internal object FormingPressRecipes
             input(plate, Neutronium)
             output(CREDIT_NEUTRONIUM, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Adamantium Credit
@@ -264,7 +264,7 @@ internal object FormingPressRecipes
             input(plate, Adamantium)
             output(CREDIT_ADAMANTIUM, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Vibranium Credit
@@ -273,7 +273,7 @@ internal object FormingPressRecipes
             input(plate, Vibranium)
             output(CREDIT_VIBRANIUM, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Cosmic Neutronium Credit
@@ -282,7 +282,7 @@ internal object FormingPressRecipes
             input(plate, CosmicNeutronium)
             output(CREDIT_COSMIC_NEUTRONIUM, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Infinity Credit
@@ -291,7 +291,7 @@ internal object FormingPressRecipes
             input(plate, Infinity)
             output(CREDIT_INFINITY, 4)
             EUt(VH[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Paper
@@ -300,7 +300,7 @@ internal object FormingPressRecipes
             input(dust, Cellulose)
             outputs(PAPER)
             EUt(4) // ULV
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

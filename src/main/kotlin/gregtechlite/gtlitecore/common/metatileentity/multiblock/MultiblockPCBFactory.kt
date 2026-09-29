@@ -28,11 +28,11 @@ import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtechlite.gtlitecore.GTLiteMod
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.capability.logic.ExtendableMultiblockRecipeLogic
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.AdditionalMultiblockBase
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.extendable.RecipeMapExtendableMultiblock
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PCB_FACTORY_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HSLASteel
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.nanite
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -46,6 +46,8 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.Multibloc
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockNanolithographyArray
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockThermosinkCoolingTower
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.module.MultiblockWaterCoolingTower
+import kotlin.math.max
+import kotlin.math.min
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -54,8 +56,6 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import kotlin.math.max
-import kotlin.math.min
 
 /**
  * Additional Structures:
@@ -263,7 +263,7 @@ class MultiblockPCBFactory<T : MultiblockPCBFactory<T>>(id: ResourceLocation)
                 if (++progressTime > maxProgressTime)
                     completeRecipe()
 
-                if (hasNotEnoughEnergy && energyInputPerSecond > ((SECOND - 1) * recipeEUt))
+                if (hasNotEnoughEnergy && energyInputPerSecond > ((1.s - 1) * recipeEUt))
                     hasNotEnoughEnergy = false
             }
             else if (recipeEUt > 0)

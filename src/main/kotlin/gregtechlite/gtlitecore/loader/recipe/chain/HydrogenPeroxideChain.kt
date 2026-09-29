@@ -19,11 +19,11 @@ import gregtech.api.unification.material.Materials.YttriumBariumCuprate
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.common.items.MetaItems.BLACKLIGHT
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthrahydroquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Ethylanthraquinone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.HydrogenPeroxide
@@ -43,7 +43,7 @@ internal object HydrogenPeroxideChain
             output(dust, PhthalicAnhydride, 15)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         anthraquinoneProcess() // Basic processing of H2O2 at EV-IV stage.
@@ -56,7 +56,7 @@ internal object HydrogenPeroxideChain
             fluidInputs(Oxygen.getFluid(2000))
             fluidOutputs(HydrogenPeroxide.getFluid(1000))
             EUt(VA[LuV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // 6H + 2O3 -> 3H2O2
@@ -66,7 +66,7 @@ internal object HydrogenPeroxideChain
             fluidInputs(Ozone.getFluid(2000))
             fluidOutputs(HydrogenPeroxide.getFluid(3000))
             EUt(VA[LuV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Water decompose reaction for ZPM/UV stage.
@@ -79,7 +79,7 @@ internal object HydrogenPeroxideChain
             fluidOutputs(HydrogenPeroxide.getFluid(8000))
             fluidOutputs(Hydrogen.getFluid(8000))
             EUt(VA[UV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
     }
 
@@ -92,7 +92,7 @@ internal object HydrogenPeroxideChain
             fluidOutputs(Ethylanthraquinone.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[EV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // C6H4(CO)2C6H3Et + 6H -> C6H4(CH2OH)2C6H3Et
@@ -102,7 +102,7 @@ internal object HydrogenPeroxideChain
             fluidInputs(Hydrogen.getFluid(6000))
             fluidOutputs(Ethylanthrahydroquinone.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // C6H4(CH2OH)2C6H3Et + 6O -> C6H4(CO)2C6H3Et + 3H2O2
@@ -112,7 +112,7 @@ internal object HydrogenPeroxideChain
             fluidOutputs(Ethylanthraquinone.getFluid(1000))
             fluidOutputs(HydrogenPeroxide.getFluid(3000))
             EUt(VA[EV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // C6H4(CH2OH)2C6H3Et + 2O3 -> C6H4(CO)2C6H3Et + 3H2O2
@@ -122,7 +122,7 @@ internal object HydrogenPeroxideChain
             fluidOutputs(Ethylanthraquinone.getFluid(1000))
             fluidOutputs(HydrogenPeroxide.getFluid(3000))
             EUt(VA[EV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
     }
 

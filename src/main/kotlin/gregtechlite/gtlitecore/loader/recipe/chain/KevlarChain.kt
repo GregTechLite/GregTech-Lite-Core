@@ -32,12 +32,12 @@ import gregtech.api.unification.material.Materials.Titanium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.foil
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.VACUUM_CHAMBER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bistrichloromethylbenzene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanediol
@@ -71,7 +71,7 @@ internal object KevlarChain
             fluidInputs(Butanediol.getFluid(1000))
             fluidOutputs(GammaButyrolactone.getFluid(1000))
             EUt(VA[EV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // CH3NH2 + C4H6O2 -> C5H9NO + H2O
@@ -81,7 +81,7 @@ internal object KevlarChain
             fluidOutputs(NMethylPyrrolidone.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[IV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
     }
 
@@ -95,7 +95,7 @@ internal object KevlarChain
             fluidInputs(Acetylene.getFluid(1000))
             fluidOutputs(Tetrabromoethane.getFluid(1000))
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // C6H4(CH3)2 + 6O -> C6H4(CO2H)2 + 2H2O
@@ -110,7 +110,7 @@ internal object KevlarChain
             output(dust, TerephthalicAcid, 3)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[ZPM])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // C6H4(CH3)2 + 6O -> C6H4(CO2H)2 + 2H2O
@@ -120,7 +120,7 @@ internal object KevlarChain
             fluidOutputs(Bistrichloromethylbenzene.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(6000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // C6H4(CCl3)2 + C6H4(CO2H)2 -> 2C6H4(COCl)2 + 2HCl
@@ -130,7 +130,7 @@ internal object KevlarChain
             output(dust, TerephthaloylChloride, 6)
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VH[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -146,7 +146,7 @@ internal object KevlarChain
             fluidOutputs(Kevlar.getFluid(L * 4))
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[UV])
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
         }
 
@@ -160,7 +160,7 @@ internal object KevlarChain
             fluidOutputs(Kevlar.getFluid(L * 8))
             fluidOutputs(DilutedHydrochloricAcid.getFluid(4000))
             EUt(VA[UEV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Addition recipe of CaCl2, because this compound used for this chain.
@@ -172,7 +172,7 @@ internal object KevlarChain
             fluidInputs(Chlorine.getFluid(2000))
             output(dust, CalciumChloride, 3)
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
     }
 

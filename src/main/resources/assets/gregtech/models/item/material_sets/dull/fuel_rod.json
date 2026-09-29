@@ -1,7 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "gtlitecore:item/fuel_rod",
   "textures": {
-    "layer0": "gregtech:items/material_sets/dull/fuel_rod",
-    "layer1": "gregtech:items/material_sets/dull/fuel_rod_overlay"
+    "4": "gregtech:items/material_sets/dull/fuel_rod"
   }
 }

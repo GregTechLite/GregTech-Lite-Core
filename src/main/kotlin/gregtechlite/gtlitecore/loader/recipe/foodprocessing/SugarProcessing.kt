@@ -18,8 +18,6 @@ import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtech.common.items.MetaItems.SHAPE_MOLD_PLATE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.getStack
@@ -27,6 +25,8 @@ import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SLICER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AppleCaneSyrup
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AppleSyrup
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CaneSyrup
@@ -59,7 +59,7 @@ internal object SugarProcessing
             output(dust, Glucose, 24)
             output(dust, Fructose, 24)
             EUt(VA[HV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // C6H12O6 + 9O -> 3C2H2O4 + 3H2O
@@ -70,7 +70,7 @@ internal object SugarProcessing
             fluidOutputs(OxalicAcid.getFluid(3000))
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C6H12O6 + 3O -> C6H10O8 + H2O
@@ -81,7 +81,7 @@ internal object SugarProcessing
             output(dust, SacchariaAcid, 24)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C6H12O6 + H2O -> C6H14O2 + 5O
@@ -91,7 +91,7 @@ internal object SugarProcessing
             fluidOutputs(Hexanediol.getFluid(1000))
             fluidOutputs(Oxygen.getFluid(5000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // region Apple Sugar Processing
@@ -103,7 +103,7 @@ internal object SugarProcessing
             chancedOutput(APPLE_PULP.stack(), 3000, 0)
             chancedOutput(APPLE_PULP.stack(), 1500, 0)
             EUt(4) // ULV
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Apple Pulp -> Apple Syrup
@@ -113,7 +113,7 @@ internal object SugarProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(AppleSyrup.getFluid(2000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -122,7 +122,7 @@ internal object SugarProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(AppleSyrup.getFluid(2000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Cane Syrup
@@ -132,7 +132,7 @@ internal object SugarProcessing
             fluidInputs(Water.getFluid(250))
             fluidOutputs(CaneSyrup.getFluid(100))
             EUt(VA[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // Apple-Cane Syrup
@@ -141,7 +141,7 @@ internal object SugarProcessing
             fluidInputs(CaneSyrup.getFluid(500))
             fluidOutputs(AppleCaneSyrup.getFluid(1000))
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Apple-Cane Syrup -> Hard Apple Candy Syrup
@@ -150,7 +150,7 @@ internal object SugarProcessing
             fluidInputs(AppleCaneSyrup.getFluid(200))
             fluidOutputs(HardAppleCandySyrup.getFluid(100))
             EUt(VA[LV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // Hard Apple Candy Syrup -> Hard Apple Candy Chunk
@@ -159,7 +159,7 @@ internal object SugarProcessing
             fluidInputs(HardAppleCandySyrup.getFluid(1000))
             outputs(HARD_APPLE_CANDY_CHUNK.stack())
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Hard Apple Candy Chunk -> Hard Apple Candy Plate
@@ -168,7 +168,7 @@ internal object SugarProcessing
             inputs(HARD_APPLE_CANDY_CHUNK.stack())
             outputs(HARD_APPLE_CANDY_PLATE.getStack(9))
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Hard Apple Candy Plate -> Hard Apple Candy
@@ -177,7 +177,7 @@ internal object SugarProcessing
             inputs(HARD_APPLE_CANDY_PLATE.stack())
             output(HARD_APPLE_CANDY)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Hard Apple Candy -> Hard Apple Candy Dust
@@ -185,7 +185,7 @@ internal object SugarProcessing
             input(HARD_APPLE_CANDY)
             outputs(HARD_APPLE_CANDY_DUST.getStack(2))
             EUt(4) // ULV
-            duration(12 * TICK)
+            duration(12.t)
         }
 
         // endregion

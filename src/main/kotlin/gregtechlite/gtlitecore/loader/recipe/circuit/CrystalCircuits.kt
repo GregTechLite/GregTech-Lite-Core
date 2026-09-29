@@ -60,16 +60,16 @@ import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.PLASTIC_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY
 import gregtech.common.items.MetaItems.RAW_CRYSTAL_CHIP
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aegirine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CubicZirconia
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ErbiumDopedZBLANGlass
@@ -140,7 +140,7 @@ internal object CrystalCircuits
                 fluidInputs(etchingLiquid)
                 output(ELITE_CIRCUIT_BOARD)
                 EUt(VA[MV])
-                duration(1 * MINUTE + 15 * SECOND)
+                duration(1.min + 15.s)
                 cleanroom()
             }
         }
@@ -155,7 +155,7 @@ internal object CrystalCircuits
             fluidInputs(Helium.getFluid(1000))
             output(ENGRAVED_CRYSTAL_CHIP)
             EUt(VA[HV])
-            duration(45 * SECOND)
+            duration(45.s)
             blastFurnaceTemp(5000) // HSSG
         }
 
@@ -165,7 +165,7 @@ internal object CrystalCircuits
             fluidInputs(Helium.getFluid(1000))
             output(ENGRAVED_CRYSTAL_CHIP)
             EUt(VA[HV])
-            duration(45 * SECOND)
+            duration(45.s)
             blastFurnaceTemp(5000) // HSSG
         }
 
@@ -175,7 +175,7 @@ internal object CrystalCircuits
             fluidInputs(Helium.getFluid(1000))
             output(ENGRAVED_CRYSTAL_CHIP)
             EUt(VA[HV])
-            duration(45 * SECOND)
+            duration(45.s)
             blastFurnaceTemp(5000) // HSSG
         }
 
@@ -185,7 +185,7 @@ internal object CrystalCircuits
             fluidInputs(Helium.getFluid(1000))
             output(ENGRAVED_CRYSTAL_CHIP)
             EUt(VA[HV])
-            duration(45 * SECOND)
+            duration(45.s)
             blastFurnaceTemp(5000) // HSSG
         }
 
@@ -197,7 +197,7 @@ internal object CrystalCircuits
             input(dust, TantalumPentoxide, 7)
             output(DIELECTRIC_MIRROR)
             EUt(VA[LuV])
-            duration(30 * SECOND)
+            duration(30.s)
             temperature(2820)
         }
 
@@ -212,7 +212,7 @@ internal object CrystalCircuits
             input(ENGRAVED_CRYSTAL_CHIP)
             output(CRYSTAL_CENTRAL_PROCESSING_UNIT)
             EUt(10000) // LuV
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
     }
@@ -230,7 +230,7 @@ internal object CrystalCircuits
             input(dust, Europium, 8)
             output(EUROPIUM_DOPED_CUBIC_ZIRCONIA_BOULE)
             EUt(VA[MV])
-            duration(6 * SECOND)
+            duration(6.s)
             blastFurnaceTemp(3000) // Nichrome
         }
 
@@ -240,7 +240,7 @@ internal object CrystalCircuits
             fluidInputs(Lubricant.getFluid(100))
             output(EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER, 8)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -250,7 +250,7 @@ internal object CrystalCircuits
             input(EUROPIUM_DOPED_CUBIC_ZIRCONIA_WAFER)
             output(CRYSTAL_INTERFACE_WAFER)
             EUt(VA[LuV])
-            duration(1 * SECOND)
+            duration(1.s)
             cleanroom()
         }
 
@@ -260,7 +260,7 @@ internal object CrystalCircuits
             fluidInputs(Lubricant.getFluid(100))
             output(CRYSTAL_INTERFACE_CHIP, 8)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -272,7 +272,7 @@ internal object CrystalCircuits
             input(bolt, Platinum, 4)
             output(DIAMOND_MODULATOR, 8)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(1)
             cleanroom()
         }
@@ -285,7 +285,7 @@ internal object CrystalCircuits
             input(bolt, Platinum, 4)
             output(RUBY_MODULATOR, 8)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(1)
             cleanroom()
         }
@@ -298,7 +298,7 @@ internal object CrystalCircuits
             input(bolt, Platinum, 4)
             output(SAPPHIRE_MODULATOR, 8)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(1)
             cleanroom()
         }
@@ -312,7 +312,7 @@ internal object CrystalCircuits
             input(wireFine, Europium, 4)
             output(CRYSTAL_SOC_SOCKET)
             EUt(VA[LuV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -322,7 +322,7 @@ internal object CrystalCircuits
             input(CRYSTAL_CENTRAL_PROCESSING_UNIT)
             output(CRYSTAL_SYSTEM_ON_CHIP)
             EUt(VA[ZPM])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
     }
@@ -372,7 +372,7 @@ internal object CrystalCircuits
             input(wireFine, NiobiumTitanium, 8)
             output(CRYSTAL_PROCESSOR_IV, 4)
             EUt(9600) // LuV
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(1)
             cleanroom()
         }
@@ -386,7 +386,7 @@ internal object CrystalCircuits
             input(wireFine, NiobiumTitanium, 8)
             output(CRYSTAL_PROCESSOR_IV, 4)
             EUt(9600) // LuV
-            duration(5 * SECOND)
+            duration(5.s)
             solderMultiplier(1)
             cleanroom()
         }
@@ -398,7 +398,7 @@ internal object CrystalCircuits
             input(bolt, YttriumBariumCuprate, 8)
             output(CRYSTAL_PROCESSOR_IV, 8)
             EUt(86000) // ZPM
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             solderMultiplier(1)
             cleanroom()
         }
@@ -431,7 +431,7 @@ internal object CrystalCircuits
             input(wireFine, NiobiumTitanium, 16)
             output(CRYSTAL_ASSEMBLY_LUV, 3)
             EUt(9600) // LuV
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -445,7 +445,7 @@ internal object CrystalCircuits
             input(wireFine, NiobiumTitanium, 16)
             output(CRYSTAL_ASSEMBLY_LUV, 3)
             EUt(9600) // LuV
-            duration(10 * SECOND)
+            duration(10.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -478,7 +478,7 @@ internal object CrystalCircuits
             input(wireFine, NiobiumTitanium, 32)
             output(CRYSTAL_COMPUTER_ZPM, 2)
             EUt(9600) // LuV
-            duration(20 * SECOND)
+            duration(20.s)
             solderMultiplier(2)
             cleanroom()
         }
@@ -507,7 +507,7 @@ internal object CrystalCircuits
             fluidInputs(SolderingAlloy.getFluid(L * 10))
             output(CRYSTAL_MAINFRAME_UV)
             EUt(VA[LuV])
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(CRYSTAL_COMPUTER_ZPM)
                     .EUt(VA[LuV])
@@ -527,7 +527,7 @@ internal object CrystalCircuits
             fluidInputs(SolderingAlloy.getFluid(L * 10))
             output(CRYSTAL_MAINFRAME_UV)
             EUt(VA[LuV])
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(CRYSTAL_COMPUTER_ZPM)
                     .EUt(VA[LuV])
@@ -547,7 +547,7 @@ internal object CrystalCircuits
             fluidInputs(SolderingAlloy.getFluid(L * 10))
             output(CRYSTAL_MAINFRAME_UV)
             EUt(VA[LuV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(CRYSTAL_COMPUTER_ZPM)
                     .EUt(VA[LuV])

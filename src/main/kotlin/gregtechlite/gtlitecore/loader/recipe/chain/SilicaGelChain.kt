@@ -11,11 +11,11 @@ import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilicaGel
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SilicaGelBase
 
@@ -35,7 +35,7 @@ internal object SilicaGelChain
             fluidInputs(Steam.getFluid(1000))
             fluidOutputs(SilicaGelBase.getFluid(1000))
             EUt(VA[MV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // (SiNa(OH)O2)(HCl)(H2O) -> SiO2 + NaCl + 2H2O
@@ -45,7 +45,7 @@ internal object SilicaGelChain
             output(dust, Salt, 2)
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[HV])
-            duration(6 * SECOND)
+            duration(6.s)
             cleanroom()
         }
     }

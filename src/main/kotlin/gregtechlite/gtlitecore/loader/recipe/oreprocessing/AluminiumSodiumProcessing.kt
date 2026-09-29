@@ -35,7 +35,6 @@ import gregtech.api.unification.material.Materials.Sapphire
 import gregtech.api.unification.material.Materials.SodaAsh
 import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SodiumHydroxide
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.Vanadium
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.crushed
@@ -45,14 +44,13 @@ import gregtech.api.unification.ore.OrePrefix.dustImpure
 import gregtech.api.unification.ore.OrePrefix.dustPure
 import gregtech.api.unification.ore.OrePrefix.dustTiny
 import gregtech.api.unification.ore.OrePrefix.ingot
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Cryolite
@@ -91,7 +89,7 @@ internal object AluminiumSodiumProcessing
                 fluidInputs(HydrochloricAcid.getFluid(1000))
                 fluidOutputs(GreenSapphireJuice.getFluid(1000))
                 EUt(VA[MV])
-                duration(2 * SECOND)
+                duration(2.s)
             }
 
             // Sapphire Juice
@@ -102,7 +100,7 @@ internal object AluminiumSodiumProcessing
                 fluidInputs(HydrochloricAcid.getFluid(1000))
                 fluidOutputs(SapphireJuice.getFluid(1000))
                 EUt(VA[MV])
-                duration(2 * SECOND)
+                duration(2.s)
             }
 
             // Ruby Juice
@@ -113,7 +111,7 @@ internal object AluminiumSodiumProcessing
                 fluidInputs(HydrochloricAcid.getFluid(1000))
                 fluidOutputs(RubyJuice.getFluid(1000))
                 EUt(VA[MV])
-                duration(2 * SECOND)
+                duration(2.s)
             }
         }
 
@@ -126,7 +124,7 @@ internal object AluminiumSodiumProcessing
             chancedOutput(dust, Beryllium, 200, 100)
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         CENTRIFUGE_RECIPES.addRecipe {
@@ -137,7 +135,7 @@ internal object AluminiumSodiumProcessing
             chancedOutput(dust, Magnesium, 200, 100)
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         CENTRIFUGE_RECIPES.addRecipe {
@@ -149,7 +147,7 @@ internal object AluminiumSodiumProcessing
             chancedOutput(dust, Magnesium, 200, 100)
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[MV])
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
     }
 
@@ -163,7 +161,7 @@ internal object AluminiumSodiumProcessing
             output(dust, SodiumHydroxide, 3)
             fluidOutputs(Hydrogen.getFluid(1000))
             EUt(VA[MV])
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
         }
 
         // (Al2O3)3(TiO2)2(H2O)2? (bauxite) + 4NaOH + H2O -> 4NaAlO2
@@ -174,7 +172,7 @@ internal object AluminiumSodiumProcessing
             fluidInputs(Water.getFluid(1000))
             output(dust, SodiumAluminate, 16)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // NaAlO2 + 2H2O -> Al(OH)3 + NaOH
@@ -184,7 +182,7 @@ internal object AluminiumSodiumProcessing
             output(dust, AluminiumHydroxide, 4)
             output(dust, SodiumHydroxide, 3)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // 2NaAlO2 + CO2 -> Al2O3 + Na2CO3
@@ -194,7 +192,7 @@ internal object AluminiumSodiumProcessing
             output(dust, Alumina, 5)
             output(dust, SodaAsh, 6)
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200) // Cupronickel
         }
 
@@ -204,7 +202,7 @@ internal object AluminiumSodiumProcessing
             output(dust, SodaAsh, 6)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[LV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Another Na2CO3 recipes.
@@ -214,7 +212,7 @@ internal object AluminiumSodiumProcessing
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(SodiumCarbonateSolution.getFluid(1000))
             EUt(VA[LV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Chemistry cryolite processing.
@@ -226,7 +224,7 @@ internal object AluminiumSodiumProcessing
             output(dust, Cryolite, 10)
             fluidOutputs(Water.getFluid(6000))
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         LARGE_CHEMICAL_RECIPES.addRecipe {
@@ -238,7 +236,7 @@ internal object AluminiumSodiumProcessing
             output(dust, Cryolite, 6)
             fluidOutputs(Water.getFluid(42000))
             EUt(VA[HV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
     }
 
@@ -251,9 +249,9 @@ internal object AluminiumSodiumProcessing
             input(dust, Alumina, 5)
             fluidInputs(Hydrogen.getFluid(3000))
             output(ingot, Aluminium)
-            fluidOutputs(Steam.getFluid(3 * SU))
+            fluidOutputs(Water.getFluid(3000))
             EUt(VA[MV])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
             blastFurnaceTemp(963) // Cupronickel
         }
 
@@ -264,7 +262,7 @@ internal object AluminiumSodiumProcessing
             input(dust, Cryolite, 5)
             output(ingot, Aluminium, 4)
             EUt(VA[MV])
-            duration(80 * SECOND)
+            duration(80.s)
             blastFurnaceTemp(963) // Cupronickel
         }
 
@@ -276,7 +274,7 @@ internal object AluminiumSodiumProcessing
             output(ingot, Aluminium, 4)
             fluidOutputs(CarbonDioxide.getFluid(3000))
             EUt(VA[MV])
-            duration(1 * MINUTE)
+            duration(1.min)
             blastFurnaceTemp(2054) // Kanthal
         }
     }
@@ -291,7 +289,7 @@ internal object AluminiumSodiumProcessing
             output(dust, SodiumHypochlorite, 3)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // NaOH + HCl -> NaClO + 2H
@@ -302,7 +300,7 @@ internal object AluminiumSodiumProcessing
             output(dust, SodiumHypochlorite, 3)
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 2NaOH + 2Cl -> NaClO + NaCl + H2O
@@ -314,7 +312,7 @@ internal object AluminiumSodiumProcessing
             output(dust, Salt, 2)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Modified Salt (NaCl) electrolysis recipes.
@@ -326,7 +324,7 @@ internal object AluminiumSodiumProcessing
             output(dust, Sodium)
             fluidOutputs(Chlorine.getFluid(1000))
             EUt(VA[LV])
-            duration(2 * SECOND + 16 * TICK)
+            duration(2.s + 16.t)
         }
 
         // NaCl + 3H2O -> NaClO3 + 6H
@@ -337,7 +335,7 @@ internal object AluminiumSodiumProcessing
             output(dust, SodiumChlorate, 5)
             fluidOutputs(Hydrogen.getFluid(6000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Dehydration decompose of NaClO3 -> NaCl + 3O
@@ -346,7 +344,7 @@ internal object AluminiumSodiumProcessing
             output(dust, Salt, 2)
             fluidOutputs(Oxygen.getFluid(3000))
             EUt(VHA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Common decompose of NaClO3.
@@ -357,7 +355,7 @@ internal object AluminiumSodiumProcessing
             fluidOutputs(Chlorine.getFluid(1000))
             fluidOutputs(Oxygen.getFluid(3000))
             EUt(VHA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // NaClO3 + H2O -> NaClO4 + 2H
@@ -368,7 +366,7 @@ internal object AluminiumSodiumProcessing
             output(dust, SodiumPerchlorate, 6)
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

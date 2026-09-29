@@ -56,8 +56,6 @@ import gregtech.api.unification.material.Materials.SulfuricCopperSolution
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.crushedPurified
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
@@ -65,6 +63,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeHandler
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumHexachloropalladate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumHexachloroplatinate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Azurite
@@ -163,7 +163,7 @@ internal object PlatinumGroupProcessing
             output(dust, PlatinumGroupSludge, 2)
             fluidOutputs(SulfuricCopperSolution.getFluid(1000))
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         CHEMICAL_RECIPES.addRecipe {
@@ -172,7 +172,7 @@ internal object PlatinumGroupProcessing
             output(dust, PlatinumGroupSludge, 2)
             fluidOutputs(SulfuricCopperSolution.getFluid(1000))
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         CHEMICAL_RECIPES.addRecipe {
@@ -181,7 +181,7 @@ internal object PlatinumGroupProcessing
             output(dust, PlatinumGroupSludge, 2)
             fluidOutputs(SulfuricCopperSolution.getFluid(1000))
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // (PGS) + 3(HCl)2(HNO3) -> RuRhIr2Os(HNO3)3 + AuPtPd(HCl)6
@@ -191,7 +191,7 @@ internal object PlatinumGroupProcessing
             output(dust, PlatinumGroupResidue)
             fluidOutputs(PlatinumGroupConcentrate.getFluid(1000))
             EUt(VHA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // AuPtPd(HCl)6 -> H2PtPdCl6 + Au + 4H (lost)
@@ -200,7 +200,7 @@ internal object PlatinumGroupProcessing
             output(dust, PlatinumSludgeResidue)
             fluidOutputs(PurifiedPlatinumGroupConcentrate.getFluid(1000))
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // H2PtPdCl6 + 2NH4Cl -> 0.625 (NH4)2PtCl6 + 0.375 (NH4)2PdCl6 + 2HCl
@@ -211,7 +211,7 @@ internal object PlatinumGroupProcessing
             fluidOutputs(AmmoniumHexachloropalladate.getFluid(375))
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // RuRhIr2Os(HNO3)3 + 3NaHSO4 -> RhRu + Ir2Os + 3NaNO3 + 3H2SO4
@@ -223,7 +223,7 @@ internal object PlatinumGroupProcessing
             output(dust, SodiumNitrate, 5)
             fluidOutputs(SulfuricAcid.getFluid(3000))
             EUt(VHA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // NaHSO4-NaNO3 raw cycling the sodium (3Na) by both decomposition.
@@ -236,7 +236,7 @@ internal object PlatinumGroupProcessing
             fluidInputs(HydrochloricAcid.getFluid(1000))
             output(dust, AmmoniumChloride, 2)
             EUt(VA[LV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // Another recipe of NaNO3, prepare for other chemistry processing.
@@ -248,7 +248,7 @@ internal object PlatinumGroupProcessing
             output(dust, SodiumNitrate, 5)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -260,7 +260,7 @@ internal object PlatinumGroupProcessing
             fluidOutputs(HexachloroplatinicAcid.getFluid(1000))
             fluidOutputs(Ammonia.getFluid(2000))
             EUt(VA[LV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // H2PtCl6 decompose to Pt dust by electrolysis reaction.
@@ -273,7 +273,7 @@ internal object PlatinumGroupProcessing
             fluidOutputs(Ammonia.getFluid(2000))
             fluidOutputs(HydrochloricAcid.getFluid(4000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // CH3OH + CO -> HCO2CH3
@@ -283,7 +283,7 @@ internal object PlatinumGroupProcessing
             fluidInputs(CarbonMonoxide.getFluid(1000))
             fluidOutputs(MethylFormate.getFluid(1000))
             EUt(VA[LV])
-            duration(16 * TICK)
+            duration(16.t)
         }
 
         // HCO2CH3 + H2O -> HCOOH + CH3OH (353K)
@@ -293,7 +293,7 @@ internal object PlatinumGroupProcessing
             fluidOutputs(FormicAcid.getFluid(1000))
             fluidOutputs(Methanol.getFluid(1000))
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // PdCl2 + HCOOH -> Pd + 2HCl (cycling with Aqua Regia) + CO2
@@ -304,7 +304,7 @@ internal object PlatinumGroupProcessing
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             fluidOutputs(CarbonDioxide.getFluid(1000))
             EUt(VA[LV])
-            duration(12 * SECOND + 10 * TICK)
+            duration(12.s + 10.t)
         }
     }
 
@@ -318,7 +318,7 @@ internal object PlatinumGroupProcessing
             fluidOutputs(CarbonTetrachloride.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(4000))
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // 2RhRu + 2CCl4 + 3H2SO4 -> 2RuCl3 + Rh2(SO4)3 + 2HCl + CH4 + C (lost)
@@ -331,7 +331,7 @@ internal object PlatinumGroupProcessing
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             fluidOutputs(Methane.getFluid(1000))
             EUt(VA[EV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 2Na + 2O -> Na2O2
@@ -341,7 +341,7 @@ internal object PlatinumGroupProcessing
             fluidInputs(Oxygen.getFluid(2000))
             output(dust, SodiumPeroxide, 4)
             EUt(VA[LV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // 6Na + 2O3 -> 3Na2O2
@@ -351,7 +351,7 @@ internal object PlatinumGroupProcessing
             fluidInputs(Ozone.getFluid(2000))
             output(dust, SodiumPeroxide, 12)
             EUt(VA[MV])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
         }
 
         // RuCl3 + 2Na2O2 + Cl -> RuO4 + 4NaCl
@@ -362,7 +362,7 @@ internal object PlatinumGroupProcessing
             output(dust, RutheniumTetroxide, 5)
             output(dust, Salt, 8)
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // RuO4 + 2C -> Ru + 2CO
@@ -372,7 +372,7 @@ internal object PlatinumGroupProcessing
             output(dust, Ruthenium)
             fluidOutputs(CarbonDioxide.getFluid(2000))
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Rh2(SO4)3 + 3H2O -> Rh2O3 + 3H2SO4
@@ -382,7 +382,7 @@ internal object PlatinumGroupProcessing
             output(dust, RhodiumTrioxide, 5)
             fluidOutputs(SulfuricAcid.getFluid(3000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Rh2O3 decompose to Rh dust by electrolysis reaction.
@@ -399,7 +399,7 @@ internal object PlatinumGroupProcessing
             output(dust, OsmiumTetroxide, 5)
             output(dust, Salt, 4)
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Ir2O3 + 6HCl -> 2IrCl3 + 3H2O
@@ -409,7 +409,7 @@ internal object PlatinumGroupProcessing
             output(dust, IridiumChloride, 8)
             fluidOutputs(Water.getFluid(3000))
             EUt(VHA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // IrCl3 decompose to Ir dust by original processing.
@@ -421,7 +421,7 @@ internal object PlatinumGroupProcessing
             fluidInputs(Chlorine.getFluid(2000))
             fluidOutputs(SulfurDichloride.getFluid(1000))
             EUt(VA[MV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // SO3 + SCl2 -> SOCl2 + SO2
@@ -431,7 +431,7 @@ internal object PlatinumGroupProcessing
             fluidOutputs(ThionylChloride.getFluid(1000))
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // OsO4 + 2SOCl2 -> OsCl4 + 2SO3

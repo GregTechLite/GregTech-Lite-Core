@@ -8,6 +8,7 @@ import gregtechlite.gtlitecore.common.block.variant.ComponentAssemblyCasing
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.Manipulator
 import gregtechlite.gtlitecore.common.block.variant.NuclearReactorCore
+import gregtechlite.gtlitecore.common.block.variant.QuantumStorageUnit
 import gregtechlite.gtlitecore.common.block.variant.ShieldingCore
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AccelerationTrack
 import gregtechlite.gtlitecore.common.block.variant.component.ConveyorCasing
@@ -53,6 +54,7 @@ object GTLiteCollapsibleGroups
         registry.addCasingGroup<GlassCasing.Enum01>("borosilicate_glass")
         registry.addCasingGroup<Manipulator>("manipulator")
         registry.addCasingGroup<ShieldingCore>("shielding_core")
+        registry.addCasingGroup<QuantumStorageUnit>("quantum_storage_unit")
 
         registry.addGroupBy("additional_mold", "shape.mold")
         registry.addGroupBy("additional_extruder", "shape.extruder")

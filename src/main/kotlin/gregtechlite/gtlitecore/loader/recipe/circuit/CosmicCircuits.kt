@@ -41,7 +41,6 @@ import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Rubidium
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.material.Materials.Sodium
-import gregtech.api.unification.material.Materials.Steam
 import gregtech.api.unification.material.Materials.SulfurDioxide
 import gregtech.api.unification.material.Materials.Thallium
 import gregtech.api.unification.material.Materials.Thorium
@@ -66,13 +65,10 @@ import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.QUBIT_CENTRAL_PROCESSING_UNIT_WAFER
 import gregtech.common.items.MetaItems.SENSOR_UHV
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.SU
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
@@ -80,6 +76,8 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPE
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOLECULAR_BEAM_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Acetylene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumGroupAlloyA
@@ -209,7 +207,7 @@ internal object CosmicCircuits
             fluidInputs(UUMatter.getFluid(4000))
             output(COSMIC_INFORMATION_MODULE)
             EUt(VA[UHV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             tier(3)
         }
 
@@ -219,7 +217,7 @@ internal object CosmicCircuits
             input(dust, Iodine)
             output(dust, CaesiumIodide, 2)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // CsI + Tl + Tm -> Tl/Tm:CsI
@@ -230,7 +228,7 @@ internal object CosmicCircuits
             input(dust, Thulium)
             output(dust, ThalliumThuliumDopedCaesiumIodide, 4)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C4H6O4 + 2C6H4(CO)2O + 20H -> C18H12 + C2H2 + 10H2O
@@ -241,9 +239,9 @@ internal object CosmicCircuits
             fluidInputs(Hydrogen.getFluid(20000))
             output(dust, Tetracene, 30)
             fluidOutputs(Acetylene.getFluid(1000))
-            fluidOutputs(Steam.getFluid(10 * SU))
+            fluidOutputs(Water.getFluid(10000))
             EUt(VA[UV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -255,7 +253,7 @@ internal object CosmicCircuits
             output(dust, CadmiumTungstate, 6)
             fluidOutputs(SulfurDioxide.getFluid(1000))
             EUt(VA[LuV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // 3GeO2 + 2Bi2O3 -> Bi4Ge3O12
@@ -264,7 +262,7 @@ internal object CosmicCircuits
             input(dust, BismuthTrioxide, 10)
             output(dust, BismuthGermanate, 19)
             EUt(VA[LuV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // Scintillator Crystal
@@ -276,7 +274,7 @@ internal object CosmicCircuits
             input(dust, BismuthGermanate)
             output(SCINTILLATOR_CRYSTAL, 2)
             EUt(VA[UHV])
-            duration(14 * SECOND)
+            duration(14.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -292,7 +290,7 @@ internal object CosmicCircuits
             fluidOutputs(DinitrogenTetroxide.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[UHV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // Scintillator
@@ -308,7 +306,7 @@ internal object CosmicCircuits
             fluidInputs(Trinaquadalloy.getFluid(L))
             output(SCINTILLATOR)
             EUt(VA[UEV])
-            duration(8 * SECOND)
+            duration(8.s)
             tier(4)
         }
 
@@ -322,7 +320,7 @@ internal object CosmicCircuits
             fluidInputs(Thorium.getPlasma(L))
             output(NUCLEAR_CLOCK)
             EUt(VA[UEV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             stationResearch {
                 it.researchStack(ND_YAG_LASER)
                     .EUt(VA[UEV])
@@ -340,7 +338,7 @@ internal object CosmicCircuits
             fluidInputs(CosmicNeutronium.getFluid(L * 4))
             output(CLOSED_TIMELIKE_CURVE_GUIDANCE_UNIT)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -351,7 +349,7 @@ internal object CosmicCircuits
             fluidInputs(HadronicResonantGas.getFluid(2000))
             output(MANIFOLD_OSCILLATORY_POWER_CELL)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Closed Timelike Curve Computational Unit
@@ -363,7 +361,7 @@ internal object CosmicCircuits
             fluidInputs(NeutronProtonFermiSuperfluid.getFluid(4000))
             output(CLOSED_TIMELIKE_CURVE_COMPUTATIONAL_UNIT, 2)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -379,7 +377,7 @@ internal object CosmicCircuits
             fluidInputs(Protomatter.getFluid(4000))
             output(HOLOGRAPHIC_INFORMATION_IMC, 2)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             tier(4)
         }
     }
@@ -395,7 +393,7 @@ internal object CosmicCircuits
             output(dust, LanthanumZirconate, 11)
             output(dust, Salt, 16)
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             temperature(5225)
         }
 
@@ -408,7 +406,7 @@ internal object CosmicCircuits
             fluidInputs(FullerenePolymerMatrix.getFluid(L))
             output(COSMIC_SMD_TRANSISTOR, 64)
             EUt(VA[UEV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -421,7 +419,7 @@ internal object CosmicCircuits
             output(dust, Manganese)
             fluidOutputs(HydromoscovicAcid.getFluid(1000))
             EUt(VA[UV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Ir + 3Cl -> IrCl3
@@ -431,7 +429,7 @@ internal object CosmicCircuits
             fluidInputs(Chlorine.getFluid(3000))
             output(dust, IridiumChloride, 4)
             EUt(VA[LV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // 2HMcO4 + 2IrCl3 + 6Na -> Mc2Ir2O7 + 2HCl + 4NaCl + Na2O
@@ -444,7 +442,7 @@ internal object CosmicCircuits
             output(dust, SodiumOxide, 3)
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[UEV])
-            duration(4 * SECOND + 10 * TICK)
+            duration(4.s + 10.t)
         }
 
         // Cosmic SMD Resistor
@@ -456,7 +454,7 @@ internal object CosmicCircuits
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
             output(COSMIC_SMD_RESISTOR, 64)
             EUt(VA[UEV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -469,7 +467,7 @@ internal object CosmicCircuits
             fluidInputs(FullerenePolymerMatrix.getFluid(L / 2))
             output(COSMIC_SMD_CAPACITOR, 64)
             EUt(VA[UEV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -481,7 +479,7 @@ internal object CosmicCircuits
             fluidInputs(Oxygen.getFluid(3000))
             output(dust, StrontiumEuropiumNihonate, 16)
             EUt(VA[UEV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Cosmic SMD Diode
@@ -493,7 +491,7 @@ internal object CosmicCircuits
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
             output(COSMIC_SMD_DIODE, 64)
             EUt(VA[UEV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -506,7 +504,7 @@ internal object CosmicCircuits
             fluidInputs(FullerenePolymerMatrix.getFluid(L * 2))
             output(COSMIC_SMD_INDUCTOR, 64)
             EUt(VA[UEV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
     }
@@ -523,7 +521,7 @@ internal object CosmicCircuits
             fluidInputs(Rubidium.getPlasma(L))
             output(EXOTIC_ATOM_RESTRICT_CPU_WAFER)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -533,7 +531,7 @@ internal object CosmicCircuits
             fluidInputs(NaquadriaEnergetic.getFluid(1000))
             output(EXCITED_EXOTIC_ATOM_RESTRICT_CPU_WAFER)
             EUt(VA[UIV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Excited Exotic Atom Restrict Central Processing Unit Chip
@@ -541,7 +539,7 @@ internal object CosmicCircuits
             input(EXCITED_EXOTIC_ATOM_RESTRICT_CPU_WAFER)
             output(EXCITED_EXOTIC_ATOM_RESTRICT_CPU_CHIP, 2)
             EUt(VA[UIV])
-            duration(1 * SECOND)
+            duration(1.s)
             cleanroom()
         }
 
@@ -555,7 +553,7 @@ internal object CosmicCircuits
             input(wireFine, HeavyQuarkDegenerateMatter, 16)
             output(AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP, 4)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
@@ -569,7 +567,7 @@ internal object CosmicCircuits
             input(wireFine, HastelloyX78, 24)
             output(EXCITATION_SPECTRUM_COMPOSITE_LOGICAL_GATE_CHIP, 4)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
     }
@@ -587,7 +585,7 @@ internal object CosmicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(COSMIC_PROCESSOR_UEV, 4)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
         }
 
@@ -601,7 +599,7 @@ internal object CosmicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L / 2))
             output(COSMIC_PROCESSOR_UEV, 4)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
             cleanroom()
         }
 
@@ -617,7 +615,7 @@ internal object CosmicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L * 4))
             output(COSMIC_ASSEMBLY_UIV, 3)
             EUt(VA[UIV])
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(COSMIC_PROCESSOR_UEV)
                     .EUt(VA[UIV])
@@ -636,7 +634,7 @@ internal object CosmicCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L * 4))
             output(COSMIC_ASSEMBLY_UIV, 3)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
             stationResearch {
                 it.researchStack(COSMIC_PROCESSOR_UEV)
                     .EUt(VA[UIV])
@@ -659,7 +657,7 @@ internal object CosmicCircuits
             fluidInputs(CosmicNeutronium.getFluid(L * 8))
             output(COSMIC_COMPUTER_UXV, 2)
             EUt(VA[UIV])
-            duration(40 * SECOND)
+            duration(40.s)
             stationResearch {
                 it.researchStack(COSMIC_ASSEMBLY_UIV)
                     .EUt(VA[UIV])
@@ -681,7 +679,7 @@ internal object CosmicCircuits
             fluidInputs(CosmicNeutronium.getFluid(L * 8))
             output(COSMIC_COMPUTER_UXV, 2)
             EUt(VA[UIV])
-            duration(20 * SECOND)
+            duration(20.s)
             stationResearch {
                 it.researchStack(COSMIC_ASSEMBLY_UIV)
                     .EUt(VA[UIV])
@@ -708,7 +706,7 @@ internal object CosmicCircuits
             fluidInputs(Vibranium.getFluid(L * 8))
             output(COSMIC_MAINFRAME_OpV)
             EUt(VA[UXV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(COSMIC_COMPUTER_UXV)
                     .EUt(VA[UXV])
@@ -734,7 +732,7 @@ internal object CosmicCircuits
             fluidInputs(Vibranium.getFluid(L * 8))
             output(COSMIC_MAINFRAME_OpV)
             EUt(VA[UXV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             stationResearch {
                 it.researchStack(COSMIC_COMPUTER_UXV)
                     .EUt(VA[UXV])

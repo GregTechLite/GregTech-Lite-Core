@@ -15,11 +15,11 @@ import gregtech.api.unification.material.Materials.Sodium
 import gregtech.api.unification.material.Materials.SodiumHydroxide
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Octaazacubane
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAzanide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SodiumAzide
@@ -40,7 +40,7 @@ internal object OctaazacubaneChain
             output(dust, SodiumAzanide, 4)
             fluidOutputs(Hydrogen.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 2NaNH2 + NO2 -> NaN3 + NaOH + H2O + H (drop)
@@ -51,7 +51,7 @@ internal object OctaazacubaneChain
             output(dust, SodiumHydroxide, 3)
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[ZPM])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 2NaN3 + N2O4 -> N8 + Na2O + 3O
@@ -62,7 +62,7 @@ internal object OctaazacubaneChain
             output(dust, SodiumOxide, 3)
             fluidOutputs(Oxygen.getFluid(3000))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
             temperature(1442)
         }
     }

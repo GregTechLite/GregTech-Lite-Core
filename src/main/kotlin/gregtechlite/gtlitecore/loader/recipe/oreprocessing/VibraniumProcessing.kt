@@ -26,13 +26,13 @@ import gregtech.api.unification.material.Materials.Tritanium
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.api.unification.ore.OrePrefix.ingotHot
 import gregtech.common.items.MetaItems.SHAPE_MOLD_INGOT
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AdamantiumEnriched
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BedrockGas
@@ -59,7 +59,7 @@ internal object VibraniumProcessing
             output(dust, Osmium, 2)
             fluidOutputs(DilutedSulfuricAcid.getFluid(900))
             EUt(VA[UHV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Fe2KeIn -> 2Fe + Ke + In
@@ -69,7 +69,7 @@ internal object VibraniumProcessing
             output(dust, Trinium)
             output(dust, Indium)
             EUt(VA[IV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // 4Vb? + 4Nq+ -> Vb* + 2Nq+ (part cycle) + Pu239
@@ -80,7 +80,7 @@ internal object VibraniumProcessing
             output(dust, Plutonium239, 1)
             fluidOutputs(VibraniumUnstable.getFluid(L * 4))
             EUt(VA[ZPM])
-            duration(1 * MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
         }
 
         // Tr + Vb* -> Vb
@@ -89,7 +89,7 @@ internal object VibraniumProcessing
             fluidInputs(VibraniumUnstable.getFluid(L))
             fluidOutputs(Vibranium.getPlasma(L))
             EUt(VA[ZPM] * 2L) // ZPM
-            duration(3 * SECOND + 4 * TICK)
+            duration(3.s + 4.t)
             EUToStart(620_000_000L) // 620M EU, MK3
         }
 
@@ -110,7 +110,7 @@ internal object VibraniumProcessing
             fluidInputs(Vibranium.getPlasma(L))
             output(ingotHot, Vibranium)
             EUt(500_000) // UV
-            duration(20 * SECOND)
+            duration(20.s)
         }
     }
 

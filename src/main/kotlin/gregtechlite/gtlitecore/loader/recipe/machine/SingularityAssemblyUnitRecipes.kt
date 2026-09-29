@@ -29,11 +29,11 @@ import gregtech.common.items.MetaItems.CRYSTAL_COMPUTER_ZPM
 import gregtech.common.items.MetaItems.CRYSTAL_MAINFRAME_UV
 import gregtech.common.items.MetaItems.WETWARE_MAINFRAME_UHV
 import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SINGULARITY_ASSEMBLY_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BoronFranciumCarbideSuperconductor
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
@@ -140,7 +140,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 10))
             output(CRYSTAL_MAINFRAME_UV, 16)
             EUt(VA[LuV])
-            duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -156,7 +156,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 10 * 64))
             output(CRYSTAL_MAINFRAME_UV, 16 * 64)
             EUt(VA[LuV])
-            duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -172,7 +172,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 10))
             output(CRYSTAL_MAINFRAME_UV, 16)
             EUt(VA[LuV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -188,7 +188,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 10 * 64))
             output(CRYSTAL_MAINFRAME_UV, 16 * 64)
             EUt(VA[LuV])
-            duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -204,7 +204,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 10))
             output(CRYSTAL_MAINFRAME_UV, 16)
             EUt(VA[LuV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -220,7 +220,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 10 * 64))
             output(CRYSTAL_MAINFRAME_UV, 16 * 64)
             EUt(VA[LuV])
-            duration(2 * MINUTE * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
         }
 
         // endregion
@@ -244,7 +244,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Europium.getFluid(L * 4 * 64)) // plate (144) * 4 * 64
             output(WETWARE_MAINFRAME_UHV, 16)
             EUt(300_000) // UV
-            duration(12 * MINUTE) // Original: 60s, Wrapped: 60s * 16 = 960s
+            duration(12.min) // Original: 60s, Wrapped: 60s * 16 = 960s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -263,7 +263,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Europium.getFluid(L * 4 * 64 * 64)) // plate (144) * 4 * 64
             output(WETWARE_MAINFRAME_UHV, 16 * 64)
             EUt(300_000) // UV
-            duration(12 * MINUTE * 64) // Original: 60s, Wrapped: 60s * 16 = 960s
+            duration(12.min * 64) // Original: 60s, Wrapped: 60s * 16 = 960s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -282,7 +282,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Europium.getFluid(L * 4 * 64)) // plate (144) * 4 * 64
             output(WETWARE_MAINFRAME_UHV, 16)
             EUt(300_000) // UV
-            duration(6 * MINUTE) // Original: 30s, Wrapped: 30s * 16 = 480s
+            duration(6.min) // Original: 30s, Wrapped: 30s * 16 = 480s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -301,7 +301,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Europium.getFluid(L * 4 * 64 * 64)) // plate (144) * 4 * 64
             output(WETWARE_MAINFRAME_UHV, 16 * 64)
             EUt(300_000) // UV
-            duration(6 * MINUTE * 64) // Original: 30s, Wrapped: 30s * 16 = 480s
+            duration(6.min * 64) // Original: 30s, Wrapped: 30s * 16 = 480s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -320,7 +320,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Europium.getFluid(L * 4 * 64)) // plate (144) * 4 * 64
             output(WETWARE_MAINFRAME_UHV, 16)
             EUt(300_000) // UV
-            duration(3 * MINUTE) // Original: 15s, Wrapped: 15s * 16 = 240s
+            duration(3.min) // Original: 15s, Wrapped: 15s * 16 = 240s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -339,7 +339,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Europium.getFluid(L * 4 * 64 * 64)) // plate (144) * 4 * 64
             output(WETWARE_MAINFRAME_UHV, 16 * 64)
             EUt(300_000) // UV
-            duration(3 * MINUTE * 64) // Original: 15s, Wrapped: 15s * 16 = 240s
+            duration(3.min * 64) // Original: 15s, Wrapped: 15s * 16 = 240s
         }
 
         // endregion
@@ -358,7 +358,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 16))
             output(GOOWARE_COMPUTER_UHV, 32)
             EUt(VA[UHV])
-            duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -372,7 +372,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 16 * 64))
             output(GOOWARE_COMPUTER_UHV, 32 * 64)
             EUt(VA[UHV])
-            duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -386,7 +386,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 16))
             output(GOOWARE_COMPUTER_UHV, 32)
             EUt(VA[UHV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -400,7 +400,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(SolderingAlloy.getFluid(L * 16 * 64))
             output(GOOWARE_COMPUTER_UHV, 32 * 64)
             EUt(VA[UHV])
-            duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
         }
 
         // UEV Gooware Mainframe
@@ -421,7 +421,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Americium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(GOOWARE_MAINFRAME_UEV, 16)
             EUt(VA[UHV])
-            duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            duration(20.min) // Original: 90s, Wrapped: 90s * 16 = 1440s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -441,7 +441,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Americium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(GOOWARE_MAINFRAME_UEV, 16 * 64)
             EUt(VA[UHV])
-            duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            duration(20.min * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -461,7 +461,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Americium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(GOOWARE_MAINFRAME_UEV, 16)
             EUt(VA[UHV])
-            duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
+            duration(10.min) // Original: 45s, Wrapped: 45s * 16 = 720s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -481,7 +481,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Americium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(GOOWARE_MAINFRAME_UEV, 16 * 64)
             EUt(VA[UHV])
-            duration(10 * MINUTE * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
+            duration(10.min * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -501,7 +501,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Americium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(GOOWARE_MAINFRAME_UEV, 16)
             EUt(VA[UHV])
-            duration(5 * MINUTE) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
+            duration(5.min) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -521,7 +521,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Americium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(GOOWARE_MAINFRAME_UEV, 16 * 64)
             EUt(VA[UHV])
-            duration(5 * MINUTE * 64) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
+            duration(5.min * 64) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -541,7 +541,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Americium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(GOOWARE_MAINFRAME_UEV, 16)
             EUt(VA[UHV])
-            duration(2 * MINUTE + 30 * SECOND) // Original: 11.25s, Wrapped: 1.25s * 16 = 180s
+            duration(2.min + 30.s) // Original: 11.25s, Wrapped: 1.25s * 16 = 180s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -561,7 +561,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Americium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(GOOWARE_MAINFRAME_UEV, 16 * 64)
             EUt(VA[UHV])
-            duration((2 * MINUTE + 30 * SECOND) * 64) // Original: 11.25s, Wrapped: 1.25s * 16 = 180s
+            duration((2.min + 30.s) * 64) // Original: 11.25s, Wrapped: 1.25s * 16 = 180s
         }
 
         // endregion
@@ -583,7 +583,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 4 * 16)) // plate (144) * 4 * 16
             output(OPTICAL_COMPUTER_UEV, 32)
             EUt(VA[UHV])
-            duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -600,7 +600,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 4 * 16 * 64)) // plate (144) * 4 * 16
             output(OPTICAL_COMPUTER_UEV, 32 * 64)
             EUt(VA[UHV])
-            duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -617,7 +617,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 4 * 16)) // plate (144) * 4 * 16
             output(OPTICAL_COMPUTER_UEV, 32)
             EUt(VA[UHV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -634,7 +634,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 4 * 16 * 64)) // plate (144) * 4 * 16
             output(OPTICAL_COMPUTER_UEV, 32 * 64)
             EUt(VA[UHV])
-            duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
         }
 
         // UIV Optical Mainframe
@@ -655,7 +655,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(OPTICAL_MAINFRAME_UIV, 16)
             EUt(VA[UEV])
-            duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            duration(20.min) // Original: 90s, Wrapped: 90s * 16 = 1440s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -675,7 +675,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(OPTICAL_MAINFRAME_UIV, 16 * 64)
             EUt(VA[UEV])
-            duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            duration(20.min * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -695,7 +695,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(OPTICAL_MAINFRAME_UIV, 16)
             EUt(VA[UEV])
-            duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
+            duration(10.min) // Original: 45s, Wrapped: 45s * 16 = 720s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -715,7 +715,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(OPTICAL_MAINFRAME_UIV, 16 * 64)
             EUt(VA[UEV])
-            duration(10 * MINUTE * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
+            duration(10.min * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -735,7 +735,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(OPTICAL_MAINFRAME_UIV, 16)
             EUt(VA[UEV])
-            duration(5 * MINUTE) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
+            duration(5.min) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -755,7 +755,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(OPTICAL_MAINFRAME_UIV, 16 * 64)
             EUt(VA[UEV])
-            duration(5 * MINUTE * 64) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
+            duration(5.min * 64) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -775,7 +775,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(OPTICAL_MAINFRAME_UIV, 16)
             EUt(VA[UEV])
-            duration(2 * MINUTE + 30 * SECOND) // Original: 11.25s, Wrapped: 11.25s * 16 = 180s
+            duration(2.min + 30.s) // Original: 11.25s, Wrapped: 11.25s * 16 = 180s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -795,7 +795,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Dubnium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(OPTICAL_MAINFRAME_UIV, 16 * 64)
             EUt(VA[UEV])
-            duration((2 * MINUTE + 30 * SECOND) * 64) // Original: 11.25s, Wrapped: 11.25s * 16 = 180s
+            duration((2.min + 30.s) * 64) // Original: 11.25s, Wrapped: 11.25s * 16 = 180s
         }
 
         // endregion
@@ -819,7 +819,7 @@ object SingularityAssemblyUnitRecipes
                 fluidInputs(rubber)
                 output(SPINTRONIC_ASSEMBLY_UEV, 48)
                 EUt(VA[UEV])
-                duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             }
         }
 
@@ -839,7 +839,7 @@ object SingularityAssemblyUnitRecipes
                 fluidInputs(rubber)
                 output(SPINTRONIC_ASSEMBLY_UEV, 48 * 64)
                 EUt(VA[UEV])
-                duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+                duration(4.min * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
             }
         }
 
@@ -859,7 +859,7 @@ object SingularityAssemblyUnitRecipes
                 fluidInputs(rubber)
                 output(SPINTRONIC_ASSEMBLY_UEV, 48)
                 EUt(VA[UEV])
-                duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             }
         }
 
@@ -879,7 +879,7 @@ object SingularityAssemblyUnitRecipes
                 fluidInputs(rubber)
                 output(SPINTRONIC_ASSEMBLY_UEV, 48 * 64)
                 EUt(VA[UEV])
-                duration(2 * MINUTE * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
+                duration(2.min * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
             }
         }
 
@@ -899,7 +899,7 @@ object SingularityAssemblyUnitRecipes
                 fluidInputs(rubber)
                 output(SPINTRONIC_ASSEMBLY_UEV, 48)
                 EUt(VA[UEV])
-                duration(1 * MINUTE) // Original: 5s, Wrapped: 5s * 16 = 80s
+                duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
             }
         }
 
@@ -919,7 +919,7 @@ object SingularityAssemblyUnitRecipes
                 fluidInputs(rubber)
                 output(SPINTRONIC_ASSEMBLY_UEV, 48 * 64)
                 EUt(VA[UEV])
-                duration(1 * MINUTE * 64) // Original: 5s, Wrapped: 5s * 16 = 80s
+                duration(1.min * 64) // Original: 5s, Wrapped: 5s * 16 = 80s
             }
         }
 
@@ -939,7 +939,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(SPINTRONIC_COMPUTER_UIV, 32)
             EUt(VA[UEV])
-            duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -957,7 +957,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(SPINTRONIC_COMPUTER_UIV, 32 * 64)
             EUt(VA[UEV])
-            duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -975,7 +975,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(SPINTRONIC_COMPUTER_UIV, 32)
             EUt(VA[UEV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -993,7 +993,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(SPINTRONIC_COMPUTER_UIV, 32 * 64)
             EUt(VA[UEV])
-            duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1011,7 +1011,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 8 * 16)) // plate (144) * 8 * 16
             output(SPINTRONIC_COMPUTER_UIV, 32)
             EUt(VA[UEV])
-            duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1029,7 +1029,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 8 * 16 * 64)) // plate (144) * 8 * 16
             output(SPINTRONIC_COMPUTER_UIV, 32 * 64)
             EUt(VA[UEV])
-            duration(2 * MINUTE * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
+            duration(2.min * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
         }
 
         // UXV Spintronic Mainframe
@@ -1051,7 +1051,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 16 * 16)) // plate (144) * 16 * 16
             output(SPINTRONIC_MAINFRAME_UXV, 16)
             EUt(VA[UIV])
-            duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            duration(20.min) // Original: 90s, Wrapped: 90s * 16 = 1440s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1072,7 +1072,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 16 * 16 * 64)) // plate (144) * 16 * 16
             output(SPINTRONIC_MAINFRAME_UXV, 16 * 64)
             EUt(VA[UIV])
-            duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            duration(20.min * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1093,7 +1093,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 16 * 16)) // plate (144) * 16 * 16
             output(SPINTRONIC_MAINFRAME_UXV, 16)
             EUt(VA[UIV])
-            duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
+            duration(10.min) // Original: 45s, Wrapped: 45s * 16 = 720s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1114,7 +1114,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 16 * 16 * 64)) // plate (144) * 16 * 16
             output(SPINTRONIC_MAINFRAME_UXV, 16 * 64)
             EUt(VA[UIV])
-            duration(10 * MINUTE * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
+            duration(10.min * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1135,7 +1135,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 16 * 16)) // plate (144) * 16 * 16
             output(SPINTRONIC_MAINFRAME_UXV, 16)
             EUt(VA[UIV])
-            duration(5 * MINUTE) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
+            duration(5.min) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1156,7 +1156,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Bohrium.getFluid(L * 16 * 16 * 64)) // plate (144) * 16 * 16
             output(SPINTRONIC_MAINFRAME_UXV, 16 * 64)
             EUt(VA[UIV])
-            duration(5 * MINUTE * 64) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
+            duration(5.min * 64) // Original: 22.5s, Wrapped: 22.5s * 16 = 360s
         }
 
         // endregion
@@ -1180,7 +1180,7 @@ object SingularityAssemblyUnitRecipes
                 fluidInputs(rubber)
                 output(COSMIC_ASSEMBLY_UIV, 48)
                 EUt(VA[UIV])
-                duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+                duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
             }
         }
 
@@ -1200,7 +1200,7 @@ object SingularityAssemblyUnitRecipes
                 fluidInputs(rubber)
                 output(COSMIC_ASSEMBLY_UIV, 48 * 64)
                 EUt(VA[UIV])
-                duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+                duration(4.min * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
             }
         }
 
@@ -1220,7 +1220,7 @@ object SingularityAssemblyUnitRecipes
                 fluidInputs(rubber)
                 output(COSMIC_ASSEMBLY_UIV, 48)
                 EUt(VA[UIV])
-                duration(2 * MINUTE) // Original: 10s, Wrapped: 10s * 16 = 160s
+                duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
             }
         }
 
@@ -1240,7 +1240,7 @@ object SingularityAssemblyUnitRecipes
                 fluidInputs(rubber)
                 output(COSMIC_ASSEMBLY_UIV, 48 * 64)
                 EUt(VA[UIV])
-                duration(2 * MINUTE * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
+                duration(2.min * 64) // Original: 10s, Wrapped: 10s * 16 = 160s
             }
         }
 
@@ -1260,7 +1260,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Livermorium.getFluid(L * 8 * 16))
             output(COSMIC_COMPUTER_UXV, 32)
             EUt(VA[UIV])
-            duration(8 * MINUTE) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1278,7 +1278,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Livermorium.getFluid(L * 8 * 16 * 64))
             output(COSMIC_COMPUTER_UXV, 32 * 64)
             EUt(VA[UIV])
-            duration(8 * MINUTE * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
+            duration(8.min * 64) // Original: 40s, Wrapped: 40s * 16 = 640s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1296,7 +1296,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Livermorium.getFluid(L * 8 * 16))
             output(COSMIC_COMPUTER_UXV, 32)
             EUt(VA[UIV])
-            duration(4 * MINUTE) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1314,7 +1314,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Livermorium.getFluid(L * 8 * 16 * 64))
             output(COSMIC_COMPUTER_UXV, 32 * 64)
             EUt(VA[UIV])
-            duration(4 * MINUTE * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
+            duration(4.min * 64) // Original: 20s, Wrapped: 20s * 16 = 320s
         }
 
         // OpV Cosmic Mainframe
@@ -1337,7 +1337,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Meitnerium.getFluid(L * 16 * 16)) // plate (144) * 16 * 16
             output(COSMIC_MAINFRAME_OpV, 16)
             EUt(VA[UXV])
-            duration(20 * MINUTE) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            duration(20.min) // Original: 90s, Wrapped: 90s * 16 = 1440s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1359,7 +1359,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Meitnerium.getFluid(L * 16 * 16 * 64)) // plate (144) * 16 * 16
             output(COSMIC_MAINFRAME_OpV, 16 * 64)
             EUt(VA[UXV])
-            duration(20 * MINUTE * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
+            duration(20.min * 64) // Original: 90s, Wrapped: 90s * 16 = 1440s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1381,7 +1381,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Meitnerium.getFluid(L * 16 * 16)) // plate (144) * 16 * 16
             output(COSMIC_MAINFRAME_OpV, 16)
             EUt(VA[UXV])
-            duration(10 * MINUTE) // Original: 45s, Wrapped: 45s * 16 = 720s
+            duration(10.min) // Original: 45s, Wrapped: 45s * 16 = 720s
         }
 
         SINGULARITY_ASSEMBLY_RECIPES.addRecipe {
@@ -1403,7 +1403,7 @@ object SingularityAssemblyUnitRecipes
             fluidInputs(Meitnerium.getFluid(L * 16 * 16 * 64)) // plate (144) * 16 * 16
             output(COSMIC_MAINFRAME_OpV, 16 * 64)
             EUt(VA[UXV])
-            duration(10 * MINUTE * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
+            duration(10.min * 64) // Original: 45s, Wrapped: 45s * 16 = 720s
         }
 
         // endregion

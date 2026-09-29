@@ -9,12 +9,12 @@ import gregtech.api.unification.material.Materials.Tin
 import gregtech.api.unification.ore.OrePrefix.dust
 import gregtech.common.items.MetaItems.GRAVI_STAR
 import gregtech.common.items.MetaItems.STEM_CELLS
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.GelidCryotheum
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
 
@@ -34,7 +34,7 @@ internal object MutatedLivingSolderChain
             fluidInputs(GelidCryotheum.getFluid(4000))
             fluidOutputs(MutatedLivingSolder.getFluid(L * 300))
             EUt(VA[UEV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             cleanroom()
         }
     }

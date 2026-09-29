@@ -399,6 +399,7 @@ tile.gtlitecore.metal_casing_03.inconel_718.name=防辐射镍铬基合金-718机
 tile.gtlitecore.metal_casing_03.nitinol_60.name=高弹性镍钛诺60机器外壳
 tile.gtlitecore.metal_casing_03.lafium.name=高能防护路菲恩合金机器外壳
 tile.gtlitecore.metal_casing_03.vanadium_gallium.name=抗肿胀钒镓合金机器外壳
+tile.gtlitecore.metal_casing_03.tantalum_carbide.name=耐高温碳化钽机器外壳
 
 tile.gtlitecore.boiler_casing_01.polybenzimidazole.name=聚苯并咪唑管道外壳
 
@@ -1862,6 +1863,7 @@ recipemap.recombination_submodule.name=分离重构模组
 recipemap.mob_collecting_mode.name=繁育模式
 recipemap.mob_slaughtering_mode.name=屠宰模式
 recipemap.blackhole_former.name=事件视界引力成形
+recipemap.concentrated_coking_cluster.name=热化学复合热解
 
 recipemap.hot_coolant_turbine.name=热冷却液涡轮
 recipemap.supercritical_fluid_turbine.name=超临界流体涡轮
@@ -2964,6 +2966,8 @@ gtlitecore.machine.blackhole_former.tooltip.2=在§f压模器§7，§f卷板机�
 gtlitecore.machine.blackhole_former.tooltip.3=可以直接通过对应§9形态力场§7与材料制作几乎所有种类的部件
 gtlitecore.machine.blackhole_former.tooltip.4=§a4096 * (稳定力场发生器等级 + 1)
 
+gtlitecore.machine.concentrated_coking_cluster.name=聚热焦化集群
+
 gtlitecore.machine.drum.iron.name=铁桶
 gtlitecore.machine.drum.copper.name=铜桶
 gtlitecore.machine.drum.lead.name=铅桶
@@ -3342,6 +3346,9 @@ gtlitecore.top.wireless_hatch.no_channel=未连接频道
 gtlitecore.top.wireless_hatch.error_unknown=未知错误
 gtlitecore.top.wireless_hatch.amperage=电流: %sA
 gtlitecore.top.wireless_hatch.overflow=溢出: %s EU
+gtlitecore.top.color_channel.part=染色频道:
+gtlitecore.top.color_channel.controller=染色频道:
+gtlitecore.top.color_channel.uncolored=未染色
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=稀世的%s
@@ -4123,6 +4130,9 @@ gtlitecore.material.isobutyric_anhydride=异丁酸酐
 gtlitecore.material.dimethylketene=二甲基乙烯酮
 gtlitecore.material.tetramethylcyclobutanediol=四甲基环丁二醇（CBDO）
 gtlitecore.material.cbdo_polycarbonate=CBDO聚碳酸酯
+gtlitecore.material.pigment_red=立索尔暗红
+gtlitecore.material.methylquinoline=2-甲基喹啉
+gtlitecore.material.quinoline_yellow=溶剂黄33
 
 gtlitecore.material.latex=胶乳
 gtlitecore.material.resin=树脂
@@ -4552,6 +4562,7 @@ gtlitecore.jei.group.nuclear_reactor_core=反应堆堆芯
 gtlitecore.jei.group.borosilicate_glass=硼硅酸盐玻璃
 gtlitecore.jei.group.manipulator=脉冲控制方块
 gtlitecore.jei.group.shielding_core=屏蔽核心方块
+gtlitecore.jei.group.quantum_storage_unit=量子存储单元
 gtlitecore.jei.group.additional_mold=模具
 gtlitecore.jei.group.additional_extruder=模头
 gtlitecore.jei.group.slicer_blade=切片机刀片
@@ -4676,11 +4687,17 @@ itemGroup.gtlite.decoration=格雷科技精简版 | 装饰
 itemGroup.gtlite.food=格雷科技精简版 | 食品
 
 # Commands
-gtlitecore.command.component.usage=用法：/gtlite component
-gtlitecore.command.component.print=材料成分：%s
-gtlitecore.command.component.no_item=必须在主/副手持有物品时执行此命令。
-gtlitecore.command.component.no_component=当前手持物品没有材料成分。
-gtlitecore.command.component.not_player=这条命令只能由玩家使用。
+gtlitecore.command.material.usage=用法：/gtlite material
+gtlitecore.command.material.info.usage=用法：/gtlite material info
+gtlitecore.command.material.info.name=材料名：%s 注册模组：%s
+gtlitecore.command.material.info.color=颜色：%s 图标集：%s
+gtlitecore.command.material.component.usage=用法：/gtlite material component
+gtlitecore.command.material.component.formula=化学式：%s
+gtlitecore.command.material.component.components=材料成分：%s
+
+gtlitecore.command.error.not_player=这条命令只能由玩家使用。
+gtlitecore.command.error.no_item=必须在主/副手持有物品时执行此命令。
+gtlitecore.command.error.no_component=当前手持物品没有材料成分。
 
 # Sounds
 gtlitecore.subtitle.tick.stellar_forge.name=恒星炎炀锻炉：超新星爆发

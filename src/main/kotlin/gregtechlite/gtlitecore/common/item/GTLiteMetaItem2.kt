@@ -4,13 +4,13 @@ import gregtech.api.items.metaitem.MetaItem
 import gregtech.api.util.RandomPotionEffect
 import gregtech.client.utils.TooltipHelper
 import gregtech.common.items.behaviors.TooltipBehavior
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
 import gregtechlite.gtlitecore.api.extension.addOreDicts
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.item.GTLiteMetaItem
+import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.creativetabs.GTLiteCreativeTabs
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.APRICOT
@@ -126,13 +126,13 @@ object GTLiteMetaItem2
         // region 1-300: Crops & Fruits
         BANANA = item(1, "crop.fruit.banana")
             .addComponents(FoodBehavior(2, 1f)
-                .setEatingDuration(3 * SECOND))
+                .setEatingDuration(3.s))
             .addOreDicts("cropBanana", "fruitBanana")
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         ORANGE = item(2, "crop.fruit.orange")
             .addComponents(FoodBehavior(2, 1f)
-                .setEatingDuration(2 * SECOND + 10 * TICK))
+                .setEatingDuration(2.s + 10.t))
             .addOreDicts("cropOrange", "fruitOrange")
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
@@ -305,19 +305,19 @@ object GTLiteMetaItem2
 
         TOMATO = item(202, "crop.fruit.tomato")
             .addComponents(FoodBehavior(3, 0.5f)
-                .setEatingDuration(3 * SECOND + 12 * TICK))
+                .setEatingDuration(3.s + 12.t))
             .addOreDicts("cropTomato", "fruitTomato")
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         ONION = item(203, "crop.fruit.onion")
             .addComponents(FoodBehavior(3, 0.33f)
-                .setEatingDuration(6 * SECOND + 8 * TICK))
+                .setEatingDuration(6.s + 8.t))
             .addOreDicts("cropOnion", "fruitOnion")
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         CUCUMBER = item(204, "crop.fruit.cucumber")
             .addComponents(FoodBehavior(2, 0.5f)
-                .setEatingDuration(3 * SECOND + 4 * TICK))
+                .setEatingDuration(3.s + 4.t))
             .addOreDicts("cropCucumber", "fruitCucumber")
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
@@ -405,29 +405,29 @@ object GTLiteMetaItem2
 
         RED_WINE = item(502, "food.drink.red_wine")
             .addComponents(FoodBehavior(4, 0.7f, true, true, Items.GLASS_BOTTLE.stack(),
-                RandomPotionEffect(MobEffects.NAUSEA, 30 * SECOND, 0, 100 - 60),
-                RandomPotionEffect(MobEffects.RESISTANCE, 20 * SECOND, 0, 100 - 40))
-                .setEatingDuration(8 * SECOND + 16 * TICK))
+                RandomPotionEffect(MobEffects.NAUSEA, 30.s, 0, 100 - 60),
+                RandomPotionEffect(MobEffects.RESISTANCE, 20.s, 0, 100 - 40))
+                .setEatingDuration(8.s + 16.t))
             .addComponents(BottlecrateBehavior(0xFF7D0B07))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         VINEGAR = item(503, "food.drink.vinegar")
             .addComponents(FoodBehavior(2, 0.5f, true, true, Items.GLASS_BOTTLE.stack(),
-                RandomPotionEffect(MobEffects.RESISTANCE, 10 * SECOND, 0, 100 - 30)))
+                RandomPotionEffect(MobEffects.RESISTANCE, 10.s, 0, 100 - 30)))
             .addComponents(BottlecrateBehavior(0xFF5E0805))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         POTATO_JUICE = item(504, "food.drink.potato_juice")
             .addComponents(FoodBehavior(4, 0.4F, true, true, Items.GLASS_BOTTLE.stack(),
-                RandomPotionEffect(MobEffects.NAUSEA, 25 * SECOND, 0, 100 - 80)))
+                RandomPotionEffect(MobEffects.NAUSEA, 25.s, 0, 100 - 80)))
             .addComponents(BottlecrateBehavior(0xFFC3A92C))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         VODKA = item(505, "food.drink.vodka")
             .addComponents(FoodBehavior(4, 0.8F, true, true, Items.GLASS_BOTTLE.stack(),
-                RandomPotionEffect(MobEffects.NAUSEA, 20 * SECOND, 0, 100 - 80),
-                RandomPotionEffect(MobEffects.RESISTANCE, 40 * SECOND, 2, 100 - 80))
-                .setEatingDuration(6 * SECOND + 10 * TICK))
+                RandomPotionEffect(MobEffects.NAUSEA, 20.s, 0, 100 - 80),
+                RandomPotionEffect(MobEffects.RESISTANCE, 40.s, 2, 100 - 80))
+                .setEatingDuration(6.s + 10.t))
             .addComponents(BottlecrateBehavior(0xFFCFDBFF))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
@@ -445,13 +445,13 @@ object GTLiteMetaItem2
 
         ETIRPS = item(508, "food.drink.etirps")
             .addComponents(FoodBehavior(2, 0.4f, true, true, PLASTIC_BOTTLE.stack(),
-                RandomPotionEffect(MobEffects.SPEED, 1 * MINUTE, 2, 0)))
+                RandomPotionEffect(MobEffects.SPEED, 1.min, 2, 0)))
             .addComponents(BottlecrateBehavior(0xFFB0FF73))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         SPARKLING_WATER = item(509, "food.drink.sparkling_water")
             .addComponents(FoodBehavior(2, 0.3F, true, true, PLASTIC_BOTTLE.stack(),
-                RandomPotionEffect(MobEffects.SPEED, 30 * SECOND, 1, 0)))
+                RandomPotionEffect(MobEffects.SPEED, 30.s, 1, 0)))
             .addComponents(BottlecrateBehavior(0xFFDCDCFF))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
@@ -464,7 +464,7 @@ object GTLiteMetaItem2
 
         BREWING_MILK = item(511, "food.drink.brewing_milk")
             .addComponents(FoodBehavior(3, 0.3F, true, true, Items.GLASS_BOTTLE.stack(),
-                 RandomPotionEffect(MobEffects.RESISTANCE, 10 * TICK, 0, 0)))
+                 RandomPotionEffect(MobEffects.RESISTANCE, 10.t, 0, 0)))
             .addComponents(BottlecrateBehavior())
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
@@ -478,7 +478,7 @@ object GTLiteMetaItem2
             })
             .addComponents(FoodBehavior(6, 0.4F)
                                .setReturnStack(DIRTY_CERAMIC_BOWL)
-                               .setPotionEffects(RandomPotionEffect(MobEffects.SATURATION, 1 * SECOND, 0, 100 - 50)))
+                               .setPotionEffects(RandomPotionEffect(MobEffects.SATURATION, 1.s, 0, 100 - 50)))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         // endregion
@@ -513,8 +513,8 @@ object GTLiteMetaItem2
 
         HARD_APPLE_CANDY = item(1701, "food.hard_apple_candy")
             .addComponents(FoodBehavior(3, 0.5f)
-                               .setEatingDuration(1 * SECOND + 4 * TICK)
-                               .setPotionEffects(RandomPotionEffect(MobEffects.REGENERATION, 1 * MINUTE, 1, 50)))
+                               .setEatingDuration(1.s + 4.t)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.REGENERATION, 1.min, 1, 50)))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         // endregion
@@ -522,50 +522,50 @@ object GTLiteMetaItem2
         // region 1901-2100: Fruit Products
         SILVER_APPLE = item(1901, "fruit.product.silver_apple")
             .addComponents(FoodBehavior(4, 3.5F)
-                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 2, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.RESISTANCE, 25 * SECOND, 2, 100 - 100)))
+                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1.t, 2, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.RESISTANCE, 25.s, 2, 100 - 100)))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         SILVER_STRAWBERRY = item(1902, "fruit.product.silver_strawberry")
             .addComponents(FoodBehavior(5, 7.5F)
-                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 3, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.RESISTANCE, 40 * SECOND, 2, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.ABSORPTION, 30 * SECOND, 3, 100 - 75)))
+                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1.t, 3, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.RESISTANCE, 40.s, 2, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.ABSORPTION, 30.s, 3, 100 - 75)))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         GOLDEN_STRAWBERRY = item(1903, "fruit.product.golden_strawberry")
             .addComponents(FoodBehavior(8, 9.6F)
-                               .setEatingDuration(5 * SECOND)
-                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 3, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.REGENERATION, 20 * SECOND, 10, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.RESISTANCE, 2 * MINUTE + 30 * SECOND, 3, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.ABSORPTION, 1 * MINUTE, 6, 100 - 100)))
+                               .setEatingDuration(5.s)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1.t, 3, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.REGENERATION, 20.s, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.RESISTANCE, 2.min + 30.s, 3, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.ABSORPTION, 1.min, 6, 100 - 100)))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         RAINBOW_BERRY = item(1904, "fruit.product.rainbow_berry")
             .addComponents(FoodBehavior(12, 12.8F)
-                               .setEatingDuration(5 * SECOND)
-                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 10, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.REGENERATION, 1 * MINUTE, 10, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.RESISTANCE, 2 * MINUTE, 10, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.ABSORPTION, 2 * MINUTE, 10, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.STRENGTH, 2 * MINUTE, 10, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 5 * MINUTE, 10, 100 - 100)))
+                               .setEatingDuration(5.s)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1.t, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.REGENERATION, 1.min, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.RESISTANCE, 2.min, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.ABSORPTION, 2.min, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.STRENGTH, 2.min, 10, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 5.min, 10, 100 - 100)))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
         MOON_BERRY = item(1905, "fruit.product.moon_berry")
             .addComponents(FoodBehavior(16, 19.2F)
-                               .setEatingDuration(5 * SECOND)
-                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1 * TICK, 127, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.REGENERATION, 2 * MINUTE, 127, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.RESISTANCE, 10 * MINUTE, 127, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.ABSORPTION, 5 * MINUTE, 127, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.STRENGTH, 8 * MINUTE, 127, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 20 * MINUTE, 127, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.WATER_BREATHING, 20 * MINUTE, 127, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.HASTE, 15 * MINUTE, 127, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.SATURATION, 8 * MINUTE, 127, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.LUCK, 10 * MINUTE, 127, 100 - 100)))
+                               .setEatingDuration(5.s)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.INSTANT_HEALTH, 1.t, 127, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.REGENERATION, 2.min, 127, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.RESISTANCE, 10.min, 127, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.ABSORPTION, 5.min, 127, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.STRENGTH, 8.min, 127, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 20.min, 127, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.WATER_BREATHING, 20.min, 127, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.HASTE, 15.min, 127, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.SATURATION, 8.min, 127, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.LUCK, 10.min, 127, 100 - 100)))
             .addComponents(HaloRenderItemBehavior(10, 0xFFFFFFFF.toInt(), {{ GTLiteTextures.HALO }}, true))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
@@ -581,9 +581,9 @@ object GTLiteMetaItem2
                 it.add(I18n.format("metaitem.food.nutrient_paste_meal.tooltip.1"))
             })
             .addComponents(FoodBehavior(4, 6.0F)
-                               .setEatingDuration(10 * TICK)
-                               .setPotionEffects(RandomPotionEffect(MobEffects.NAUSEA, 2 * SECOND, 1, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.HEALTH_BOOST, 30 * SECOND, 1, 100 - 100))
+                               .setEatingDuration(10.t)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.NAUSEA, 2.s, 1, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.HEALTH_BOOST, 30.s, 1, 100 - 100))
                                .setReturnStack(PVC_CAN))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 
@@ -596,10 +596,10 @@ object GTLiteMetaItem2
                 it.add(I18n.format("metaitem.food.rich_nutrient_paste_meal.tooltip.1"))
             })
             .addComponents(FoodBehavior(6, 9.0F)
-                               .setEatingDuration(10 * TICK)
-                               .setPotionEffects(RandomPotionEffect(MobEffects.NAUSEA, 1 * SECOND, 1, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.HEALTH_BOOST, 30 * SECOND, 2, 100 - 100),
-                                                 RandomPotionEffect(MobEffects.HASTE, 2 * MINUTE, 1, 100 - 80))
+                               .setEatingDuration(10.t)
+                               .setPotionEffects(RandomPotionEffect(MobEffects.NAUSEA, 1.s, 1, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.HEALTH_BOOST, 30.s, 2, 100 - 100),
+                                                 RandomPotionEffect(MobEffects.HASTE, 2.min, 1, 100 - 80))
                                .setReturnStack(PVC_CAN))
             .setCreativeTabs(GTLiteCreativeTabs.TAB_FOOD)
 

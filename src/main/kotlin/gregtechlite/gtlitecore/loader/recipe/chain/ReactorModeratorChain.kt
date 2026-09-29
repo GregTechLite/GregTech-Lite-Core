@@ -10,10 +10,10 @@ import gregtech.api.unification.material.Materials.Fluorine
 import gregtech.api.unification.material.Materials.Lithium
 import gregtech.api.unification.material.Materials.Potassium
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BerylliumDifluoride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumFluoride
@@ -35,7 +35,7 @@ internal object ReactorModeratorChain
             fluidInputs(Fluorine.getFluid(1000))
             output(dust, LithiumFluoride, 2)
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // K + F -> KF
@@ -45,7 +45,7 @@ internal object ReactorModeratorChain
             fluidInputs(Fluorine.getFluid(1000))
             output(dust, PotassiumFluoride, 2)
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // LiF + NaF + KF -> F3LiNaK
@@ -56,7 +56,7 @@ internal object ReactorModeratorChain
             input(dust, PotassiumFluoride, 2)
             output(dust, LithiumSodiumPotassiumFluorides, 6)
             EUt(VA[MV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Be + 2F -> BeF2
@@ -66,7 +66,7 @@ internal object ReactorModeratorChain
             fluidInputs(Fluorine.getFluid(2000))
             output(dust, BerylliumDifluoride, 3)
             EUt(VA[MV])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
         }
 
         // LiF + BeF2 -> F3LiBe
@@ -76,7 +76,7 @@ internal object ReactorModeratorChain
             input(dust, BerylliumDifluoride, 3)
             output(dust, LithiumBerylliumFluorides, 5)
             EUt(VA[MV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
     }
 

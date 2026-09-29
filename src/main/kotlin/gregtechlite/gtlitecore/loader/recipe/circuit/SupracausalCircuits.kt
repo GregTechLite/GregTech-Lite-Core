@@ -31,17 +31,17 @@ import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.ELECTRIC_PUMP_UIV
 import gregtech.common.items.MetaItems.EMITTER_UIV
 import gregtech.common.items.MetaItems.SENSOR_UIV
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NANO_ASSEMBLY_MATRIX_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Abyssalloy
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BlackDwarfMatter
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Borazine
@@ -139,7 +139,7 @@ internal object SupracausalCircuits
             fluidOutputs(Ammonia.getFluid(8000))
             fluidOutputs(NitrousOxide.getFluid(3000))
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             temperature(2073)
         }
 
@@ -151,7 +151,7 @@ internal object SupracausalCircuits
             fluidInputs(Helium.getFluid(FluidStorageKeys.LIQUID, 8000))
             output(RELATIVISTIC_HEAT_CAPACITY, 8)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Supracausal Spacetime Condenser
@@ -168,7 +168,7 @@ internal object SupracausalCircuits
             fluidInputs(UUMatter.getFluid(8000))
             output(SUPRACAUSAL_SPACETIME_CONDENSER)
             EUt(VA[UEV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
             stationResearch {
                 it.researchStack(STABILIZED_WORMHOLE_GENERATOR)
                     .EUt(VA[UHV])
@@ -186,7 +186,7 @@ internal object SupracausalCircuits
             fluidInputs(TachyonRichTemporalFluid.getFluid(1000))
             output(TOPOLOGICAL_MANIPULATOR_UNIT, 2)
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Graviton Transducer
@@ -199,7 +199,7 @@ internal object SupracausalCircuits
             fluidInputs(SpatiallyEnlargedFluid.getFluid(1000))
             output(GRAVITON_TRANSDUCER, 2)
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Quantum Spinorial Memory System
@@ -212,7 +212,7 @@ internal object SupracausalCircuits
             fluidInputs(PrimordialMatter.getFluid(500))
             output(QUANTUM_SPINORIAL_MEMORY_SYSTEM, 2)
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Spacetime Light Cone Stabilization Module
@@ -235,7 +235,7 @@ internal object SupracausalCircuits
             fluidInputs(Eternity.getFluid(L * 4))
             output(SPACETIME_LIGHT_CONE_STABILIZATION_MODULE, 2)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
             tier(5)
         }
     }
@@ -252,7 +252,7 @@ internal object SupracausalCircuits
             fluidInputs(CosmicFabric.getFluid(L))
             output(SUPRACAUSAL_SMD_TRANSISTOR, 64)
             EUt(VA[UIV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -266,7 +266,7 @@ internal object SupracausalCircuits
             fluidInputs(CosmicFabric.getFluid(L * 2))
             output(SUPRACAUSAL_SMD_RESISTOR, 64)
             EUt(VA[UIV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -280,7 +280,7 @@ internal object SupracausalCircuits
             fluidInputs(CosmicFabric.getFluid(L / 2))
             output(SUPRACAUSAL_SMD_CAPACITOR, 64)
             EUt(VA[UIV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -294,7 +294,7 @@ internal object SupracausalCircuits
             fluidInputs(CosmicFabric.getFluid(L * 2))
             output(SUPRACAUSAL_SMD_DIODE, 64)
             EUt(VA[UIV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
 
@@ -308,7 +308,7 @@ internal object SupracausalCircuits
             fluidInputs(CosmicFabric.getFluid(L * 2))
             output(SUPRACAUSAL_SMD_INDUCTOR, 64)
             EUt(VA[UIV])
-            duration(8 * SECOND)
+            duration(8.s)
             cleanroom()
         }
     }
@@ -326,7 +326,7 @@ internal object SupracausalCircuits
             fluidInputs(Eternity.getFluid(L * 4))
             output(SPIN_FOAM_ANNIHILATED_RAM_CHIP, 64)
             EUt(VA[OpV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(48000)
         }
 
@@ -341,7 +341,7 @@ internal object SupracausalCircuits
             fluidInputs(MagnetohydrodynamicallyConstrainedStarMatter.getFluid(L * 4))
             output(TEMPORAL_SCALE_WORLDSHEET_LOGICAL_GATE_CHIP, 64)
             EUt(VA[OpV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(48000)
         }
     }
@@ -360,7 +360,7 @@ internal object SupracausalCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L))
             output(SUPRACAUSAL_PROCESSOR_UIV, 4)
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Supracausal Assembly
@@ -376,7 +376,7 @@ internal object SupracausalCircuits
             fluidInputs(MutatedLivingSolder.getFluid(L * 8))
             output(SUPRACAUSAL_ASSEMBLY_UXV, 3)
             EUt(VA[UXV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Supracausal Computer
@@ -396,7 +396,7 @@ internal object SupracausalCircuits
             fluidInputs(TranscendentMetal.getFluid(L * 16))
             output(SUPRACAUSAL_COMPUTER_OpV, 2)
             EUt(VA[UXV])
-            duration(40 * SECOND)
+            duration(40.s)
         }
 
         // Supracausal Mainframe
@@ -418,7 +418,7 @@ internal object SupracausalCircuits
             fluidInputs(Shirabon.getFluid(L * 16))
             output(SUPRACAUSAL_MAINFRAME_MAX)
             EUt(VA[OpV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
         }
     }
 

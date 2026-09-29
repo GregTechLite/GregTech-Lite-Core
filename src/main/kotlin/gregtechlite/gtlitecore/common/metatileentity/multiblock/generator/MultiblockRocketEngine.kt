@@ -29,12 +29,13 @@ import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.LiquidAir
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.energyOutputPredicate
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROCKET_ENGINE_FUELS
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
+import java.util.function.UnaryOperator
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.util.ResourceLocation
@@ -44,7 +45,6 @@ import net.minecraftforge.fluids.FluidStack
 import net.minecraftforge.fluids.capability.IFluidHandler
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
-import java.util.function.UnaryOperator
 
 class MultiblockRocketEngine(id: ResourceLocation?)
     : FuelMultiblockController(id, ROCKET_ENGINE_FUELS, IV), ProgressBarMultiblock
@@ -337,7 +337,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
 
         private fun drainHydrogen()
         {
-            if (isHydrogenBoosted && totalContinuousRunningTime % SECOND == 0L)
+            if (isHydrogenBoosted && totalContinuousRunningTime % 1.s == 0L)
             {
                 (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(hydrogenStack, true)
             }
@@ -359,7 +359,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
 
         private fun drainLiquidAir()
         {
-            if (totalContinuousRunningTime % SECOND == 0L)
+            if (totalContinuousRunningTime % 1.s == 0L)
                 (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(liquidAirStack, true)
         }
 
@@ -379,7 +379,7 @@ class MultiblockRocketEngine(id: ResourceLocation?)
 
         private fun drainCarbonDioxide()
         {
-            if (totalContinuousRunningTime % SECOND == 0L)
+            if (totalContinuousRunningTime % 1.s == 0L)
                 (rocketEngine!!.inputFluidInventory as IFluidHandler).drain(carbonDioxideStack, true)
         }
 

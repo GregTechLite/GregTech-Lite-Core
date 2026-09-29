@@ -43,12 +43,12 @@ import gregtech.api.unification.material.Materials.Uranium
 import gregtech.api.unification.material.Materials.Uranium235
 import gregtech.api.unification.material.Materials.Uranium238
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.duration
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.NUCLEAR_FUELS
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LeadBismuthEutatic
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumBerylliumFluorides
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LithiumSodiumPotassiumFluorides
@@ -82,97 +82,97 @@ internal object NuclearFissionRecipeProducer
         //    Th
         //   /  \
         // U238  Pa
-        createFission(Thorium, MV, 20 * SECOND, 570)
+        createFission(Thorium, MV, 20.s, 570)
         depletedRodRecycling(Thorium, Protactinium, Uranium238)
 
         //    Pa
         //   /  \
         // U235  U
-        createFission(Protactinium, MV, 30 * SECOND, 690)
+        createFission(Protactinium, MV, 30.s, 690)
         depletedRodRecycling(Protactinium, Uranium, Uranium235)
 
         //    U
         //   / \
         // Ac   Np
-        createFission(Uranium, HV, 40 * SECOND, 870)
+        createFission(Uranium, HV, 40.s, 870)
         depletedRodRecycling(Uranium, Neptunium, Actinium)
 
         //     Np
         //    /  \
         // Pu241 Pu239
-        createFission(Neptunium, EV, 15 * SECOND, 1090)
+        createFission(Neptunium, EV, 15.s, 1090)
         depletedRodRecycling(Neptunium, Plutonium239, Plutonium241)
 
         //   Pu239
         //   /   \
         // Pu244  Am
-        createFission(Plutonium239, EV, 35 * SECOND, 1370)
+        createFission(Plutonium239, EV, 35.s, 1370)
         depletedRodRecycling(Plutonium239, Americium, Plutonium244)
 
         //   Am
         //  /  \
         // Lu  Cm
-        createFission(Americium, IV, 48 * SECOND, 1770, true)
+        createFission(Americium, IV, 48.s, 1770, true)
         depletedRodRecycling(Americium, Curium, Lutetium)
 
         //   Cm
         //  /  \
         // Hf   Bk
-        createFission(Curium, IV, 55 * SECOND, 2250, true)
+        createFission(Curium, IV, 55.s, 2250, true)
         depletedRodRecycling(Curium, Berkelium, Hafnium)
 
         //   Bk
         //  /  \
         // Re   Cf
-        createFission(Berkelium, LuV, 1 * MINUTE + 12 * SECOND, 3000, true)
+        createFission(Berkelium, LuV, 1.min + 12.s, 3000, true)
         depletedRodRecycling(Berkelium, Californium, Rhenium)
 
         //   Cf
         //  /  \
         // Es  Sc
-        createFission(Californium, LuV, 1 * MINUTE + 28 * SECOND, 3880, true)
+        createFission(Californium, LuV, 1.min + 28.s, 3880, true)
         depletedRodRecycling(Californium, Einsteinium, Scandium)
 
         //   Es
         //  /  \
         // Po  Fm
-        createFission(Einsteinium, LuV, 2 * MINUTE, 4840, true)
+        createFission(Einsteinium, LuV, 2.min, 4840, true)
         depletedRodRecycling(Einsteinium, Fermium, Polonium)
 
         //   Fm
         //  /  \
         // At  Md
-        createFission(Fermium, ZPM, 1 * MINUTE + 56 * SECOND, 5660, true)
+        createFission(Fermium, ZPM, 1.min + 56.s, 5660, true)
         depletedRodRecycling(Fermium, Mendelevium, Astatine)
 
         //   Md
         //  /  \
         // Lr  No
-        createFission(Mendelevium, ZPM, 2 * MINUTE + 25 * SECOND, 6450, true)
+        createFission(Mendelevium, ZPM, 2.min + 25.s, 6450, true)
         depletedRodRecycling(Mendelevium, Nobelium, Lawrencium)
 
         //    Nq
         //   /  \
         // U235 Nq+
-        createFission(Naquadah, EV, 1 * MINUTE + 30 * SECOND, 980)
+        createFission(Naquadah, EV, 1.min + 30.s, 980)
         depletedRodRecycling(Naquadah, NaquadahEnriched, Uranium235)
 
         //  Nq+
         //  /  \
         // Cs  *Nq*
-        createFission(NaquadahEnriched, IV, 2 * MINUTE, 1660)
+        createFission(NaquadahEnriched, IV, 2.min, 1660)
         depletedRodRecycling(NaquadahEnriched, Naquadria, Caesium)
 
         //  *Nq*
         //  /  \
         // Ke   Ra
-        createFission(Naquadria, LuV, 2 * MINUTE + 30 * SECOND, 2450)
+        createFission(Naquadria, LuV, 2.min + 30.s, 2450)
         depletedRodRecycling(Naquadria, Trinium, Radium)
 
         //    MOX
         //   /   \
         // Pu239 U235
-        createFission(MOX, IV, 45 * SECOND, 1050)
+        createFission(MOX, IV, 45.s, 1050)
         depletedRodRecycling(MOX, Uranium235, Plutonium239)
     }
 
@@ -274,7 +274,7 @@ internal object NuclearFissionRecipeProducer
             output(dust, byproductElement)
             output(dust, nextFissionElement)
             EUt(VA[LV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         THERMAL_CENTRIFUGE_RECIPES.addRecipe {
@@ -284,7 +284,7 @@ internal object NuclearFissionRecipeProducer
             output(dust, byproductElement, 2)
             output(dust, nextFissionElement, 2)
             EUt(VA[LV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         THERMAL_CENTRIFUGE_RECIPES.addRecipe {
@@ -294,7 +294,7 @@ internal object NuclearFissionRecipeProducer
             output(dust, byproductElement, 4)
             output(dust, nextFissionElement, 4)
             EUt(VA[LV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
     }
 

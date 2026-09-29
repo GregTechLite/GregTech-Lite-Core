@@ -12,12 +12,12 @@ import gregtech.api.unification.material.Materials.MethylAcetate
 import gregtech.api.unification.material.Materials.Oxygen
 import gregtech.api.unification.material.Materials.Propene
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AmmoniumCarbonate
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Carbamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.LuTmDopedYttriumVanadateDeposition
@@ -46,7 +46,7 @@ internal object LuTmYVOChain
             fluidInputs(HydrochloricAcid.getFluid(30000))
             fluidOutputs(LuTmYChloridesSolution.getFluid(30000))
             EUt(VA[IV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // 3(Na2CO3)(H2O) + V2O5 -> 2Na3VO4 + C3H6O2 + 7O
@@ -58,7 +58,7 @@ internal object LuTmYVOChain
             fluidOutputs(MethylAcetate.getFluid(1000))
             fluidOutputs(Oxygen.getFluid(7000))
             EUt(VA[IV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Na3VO4 + 2CH4N2O + (LuCl3)2(TmCl3)2(YCl3)6(H2O)15 -> Lu/Tm:YVO? + 0.9Cl
@@ -69,7 +69,7 @@ internal object LuTmYVOChain
             output(dust, LuTmDopedYttriumVanadateDeposition, 10)
             fluidOutputs(Chlorine.getFluid(900))
             EUt(VA[ZPM])
-            duration(6 * SECOND)
+            duration(6.s)
             temperature(1440)
         }
 
@@ -81,7 +81,7 @@ internal object LuTmYVOChain
             output(dust, AmmoniumCarbonate, 14)
             fluidOutputs(Propene.getFluid(1000))
             EUt(VA[IV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

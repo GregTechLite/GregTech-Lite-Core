@@ -42,11 +42,15 @@ import gregtech.api.mui.widget.GhostCircuitSlotWidget
 import gregtech.client.renderer.texture.Textures
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart
 import gregtech.common.mui.widget.GTFluidSlot
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.collapseInventorySlotContents
 import gregtechlite.gtlitecore.api.extension.square
+import gregtechlite.gtlitecore.api.t
+import gregtechlite.gtlitecore.client.util.renderColorChannelOverlay
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.mixins.hooks.Implemented
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.math.sqrt
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
@@ -61,9 +65,6 @@ import net.minecraftforge.fluids.IFluidTank
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.sqrt
 
 // TODO: Remove it when we replace CEu to our port version.
 @Implemented(at = ["https://github.com/GregTechCEu/GregTech/pull/2769"])
@@ -137,7 +138,7 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
     {
         super.update()
 
-        if (!world.isRemote && offsetTimer % (5 * TICK) == 0L)
+        if (!world.isRemote && offsetTimer % (5.t) == 0L)
         {
             if (workingEnabled)
             {
@@ -319,6 +320,7 @@ class PartMachineDualHatch(id: ResourceLocation, tier: Int, isExportHatch: Boole
         renderer.renderSided(frontFacing, renderState, translation, pipeline)
         val overlay = if (isExportHatch) GTLiteOverlays.DUAL_HATCH_OUTPUT_OVERLAY else GTLiteOverlays.DUAL_HATCH_INPUT_OVERLAY
         overlay.renderSided(frontFacing, renderState, translation, pipeline)
+        renderColorChannelOverlay(renderState, translation, pipeline)
     }
     
     override fun writeInitialSyncData(buf: PacketBuffer)

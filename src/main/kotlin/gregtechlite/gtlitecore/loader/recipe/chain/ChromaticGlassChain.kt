@@ -7,11 +7,11 @@ import gregtech.api.recipes.RecipeMaps.LASER_ENGRAVER_RECIPES
 import gregtech.api.unification.material.Materials.Glass
 import gregtech.api.unification.ore.OrePrefix.block
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.POLISHER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ChromaticGlass
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.QUANTUM_ANOMALY
@@ -28,7 +28,7 @@ internal object ChromaticGlassChain
             input(dust, Glass, 64)
             output(dust, ChromaticGlass)
             EUt(VA[UHV])
-            duration(1 * MINUTE)
+            duration(1.min)
         }
 
         POLISHER_RECIPES.addRecipe {
@@ -36,7 +36,7 @@ internal object ChromaticGlassChain
             outputs(GlassCasing.CHROMATIC.getStack(2))
             output(dust, ChromaticGlass)
             EUt(VA[LuV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 

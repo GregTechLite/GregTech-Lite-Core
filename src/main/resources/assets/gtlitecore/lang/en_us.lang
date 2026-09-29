@@ -399,6 +399,7 @@ tile.gtlitecore.metal_casing_03.inconel_718.name=Radiation Protective Inconel-71
 tile.gtlitecore.metal_casing_03.nitinol_60.name=Superelastic Nitinol 60 Machine Casing
 tile.gtlitecore.metal_casing_03.lafium.name=High Energy Protective Lafium Machine Casing
 tile.gtlitecore.metal_casing_03.vanadium_gallium.name=Anti-Swelling Vanadium Gallium Machine Casing
+tile.gtlitecore.metal_casing_03.tantalum_carbide.name=Heatproof Tantalum Carbide Machine Casing
 
 tile.gtlitecore.boiler_casing_01.polybenzimidazole.name=Polybenzimidazole Pipe Casing
 
@@ -1862,6 +1863,7 @@ recipemap.recombination_submodule.name=Separating Recombination Submodule
 recipemap.mob_collecting_mode.name=Collecting
 recipemap.mob_slaughtering_mode.name=Slaughtering
 recipemap.blackhole_former.name=Event Horizon Gravitational Forming
+recipemap.concentrated_coking_cluster.name=Thermochemical Composite Pyrolysis
 
 recipemap.hot_coolant_turbine.name=Hot Coolant Turbine
 recipemap.supercritical_fluid_turbine.name=Supercritical Fluid Turbine
@@ -2964,6 +2966,8 @@ gtlitecore.machine.blackhole_former.tooltip.2=Has §dAdditional Shape Forming Re
 gtlitecore.machine.blackhole_former.tooltip.3=Almost all types of components can be made directly by corresponding §9Force Field Shape§7 and material
 gtlitecore.machine.blackhole_former.tooltip.4=§a4096 * (Stabilization Field Generator Tier + 1)
 
+gtlitecore.machine.concentrated_coking_cluster.name=Concentrated Coking Cluster
+
 gtlitecore.machine.drum.iron.name=Iron Drum
 gtlitecore.machine.drum.copper.name=Copper Drum
 gtlitecore.machine.drum.lead.name=Lead Drum
@@ -3342,6 +3346,9 @@ gtlitecore.top.wireless_hatch.no_channel=Not connected to channel
 gtlitecore.top.wireless_hatch.error_unknown=Unknown Error
 gtlitecore.top.wireless_hatch.amperage=Amperage: %sA
 gtlitecore.top.wireless_hatch.overflow=Overflow: %s EU
+gtlitecore.top.color_channel.part=Color Channel:
+gtlitecore.top.color_channel.controller=Color Channels:
+gtlitecore.top.color_channel.uncolored=Uncolored
 
 # Ore Prefixes
 item.material.oreprefix.gemSolitary=Solitary %s
@@ -4123,6 +4130,9 @@ gtlitecore.material.isobutyric_anhydride=Isobutyric Anhydride
 gtlitecore.material.dimethylketene=Dimethylketene
 gtlitecore.material.tetramethylcyclobutanediol=Tetramethylcyclobutanediol (CBDO)
 gtlitecore.material.cbdo_polycarbonate=CBDO Polycarbonate
+gtlitecore.material.pigment_red=Pigment Red 49:1
+gtlitecore.material.methylquinoline=2-Methylquinoline
+gtlitecore.material.quinoline_yellow=Quinoline Yellow
 
 gtlitecore.material.latex=Latex
 gtlitecore.material.resin=Resin
@@ -4552,6 +4562,7 @@ gtlitecore.jei.group.nuclear_reactor_core=Nuclear Reactor Cores
 gtlitecore.jei.group.borosilicate_glass=Borosilicate Glasses
 gtlitecore.jei.group.manipulator=Manipulator Blocks
 gtlitecore.jei.group.shielding_core=Shielding Core Blocks
+gtlitecore.jei.group.quantum_storage_unit=Quantum Storage Units
 gtlitecore.jei.group.additional_mold=Shape Molds
 gtlitecore.jei.group.additional_extruder=Shape Extruders
 gtlitecore.jei.group.slicer_blade=Slicer Blades
@@ -4676,11 +4687,17 @@ itemGroup.gtlite.decoration=GregTech Lite | Decorations
 itemGroup.gtlite.food=GregTech Lite | Foods
 
 # Commands
-gtlitecore.command.component.usage=Usage: /gtlite component
-gtlitecore.command.component.print=Material Components: %s
-gtlitecore.command.component.no_item=Must has item on main/off hand when command executed.
-gtlitecore.command.component.no_component=Item has not material component yet.
-gtlitecore.command.component.not_player=This command can only executed by player.
+gtlitecore.command.material.usage=Usage: /gtlite material
+gtlitecore.command.material.info.usage=Usage: /gtlite material info
+gtlitecore.command.material.info.name=Name: %s Mod: %s
+gtlitecore.command.material.info.color=Color: %s Icon Set: %s
+gtlitecore.command.material.component.usage=Usage: /gtlite material component
+gtlitecore.command.material.component.formula=Chemical Formula: %s
+gtlitecore.command.material.component.components=Components: %s
+
+gtlitecore.command.error.not_player=This command can only executed by player.
+gtlitecore.command.error.no_item=Must has item on main/off hand when command executed.
+gtlitecore.command.error.no_component=Item has not material component yet.
 
 # Sounds
 gtlitecore.subtitle.tick.stellar_forge.name=Stellar Forge: Supernova Explosion

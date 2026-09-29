@@ -50,11 +50,11 @@ import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plate
 import gregtech.common.items.MetaItems.ENGRAVED_CRYSTAL_CHIP
 import gregtech.common.items.MetaItems.RAW_CRYSTAL_CHIP
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.TOPOLOGICAL_ORDER_CHANGING_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Aegirine
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AminatedFullerene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AppleCaneSyrup
@@ -92,7 +92,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Argon.getFluid(1000))
             fluidOutputs(Argon.getPlasma(1000))
             EUt(VA[LuV])
-            duration(18 * TICK)
+            duration(18.t)
             blastFurnaceTemp(4600)
         }
 
@@ -102,7 +102,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Bismuth)
             fluidOutputs(Bismuth.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -111,7 +111,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Bismuth)
             fluidOutputs(Bismuth.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -120,7 +120,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Bismuth)
             fluidOutputs(Bismuth.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -129,7 +129,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Bismuth)
             fluidOutputs(Bismuth.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -139,7 +139,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Boron)
             fluidOutputs(Boron.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -148,7 +148,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Boron)
             fluidOutputs(Boron.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -158,7 +158,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Calcium)
             fluidOutputs(Calcium.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -167,7 +167,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Calcium)
             fluidOutputs(Calcium.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -176,7 +176,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Calcium)
             fluidOutputs(Calcium.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -185,7 +185,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Calcium)
             fluidOutputs(Calcium.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -195,7 +195,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Helium.getFluid(1000))
             fluidOutputs(Helium.getPlasma(1000))
             EUt(VA[IV])
-            duration(5 * TICK)
+            duration(5.t)
             blastFurnaceTemp(1200)
         }
 
@@ -205,7 +205,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Iron)
             fluidOutputs(Iron.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -214,7 +214,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Iron)
             fluidOutputs(Iron.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -223,7 +223,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Iron)
             fluidOutputs(Iron.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -232,7 +232,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Iron)
             fluidOutputs(Iron.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -242,7 +242,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Krypton.getFluid(1000))
             fluidOutputs(Krypton.getPlasma(1000))
             EUt(VA[ZPM])
-            duration(18 * TICK)
+            duration(18.t)
             blastFurnaceTemp(1200)
         }
 
@@ -252,7 +252,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Lead)
             fluidOutputs(Lead.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -261,7 +261,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Lead)
             fluidOutputs(Lead.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -270,7 +270,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Lead)
             fluidOutputs(Lead.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -279,7 +279,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Lead)
             fluidOutputs(Lead.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -289,7 +289,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Neon.getFluid(1000))
             fluidOutputs(Neon.getPlasma(1000))
             EUt(VA[LuV])
-            duration(1 * SECOND + 12 * TICK)
+            duration(1.s + 12.t)
             blastFurnaceTemp(1200)
         }
 
@@ -299,7 +299,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Nickel)
             fluidOutputs(Nickel.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -308,7 +308,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Nickel)
             fluidOutputs(Nickel.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -317,7 +317,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Nickel)
             fluidOutputs(Nickel.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -326,7 +326,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Nickel)
             fluidOutputs(Nickel.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -336,7 +336,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Nitrogen.getFluid(1000))
             fluidOutputs(Nitrogen.getPlasma(1000))
             EUt(VA[LuV])
-            duration(8 * TICK)
+            duration(8.t)
             blastFurnaceTemp(1200)
         }
 
@@ -346,7 +346,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Oxygen.getFluid(1000))
             fluidOutputs(Oxygen.getPlasma(1000))
             EUt(VA[IV])
-            duration(16 * TICK)
+            duration(16.t)
             blastFurnaceTemp(1200)
         }
 
@@ -356,7 +356,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Radon.getFluid(1000))
             fluidOutputs(Radon.getPlasma(1000))
             EUt(VA[ZPM])
-            duration(16 * TICK)
+            duration(16.t)
             blastFurnaceTemp(1200)
         }
 
@@ -366,7 +366,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Rubidium)
             fluidOutputs(Rubidium.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -375,7 +375,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Rubidium)
             fluidOutputs(Rubidium.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -384,7 +384,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Rubidium)
             fluidOutputs(Rubidium.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -393,7 +393,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Rubidium)
             fluidOutputs(Rubidium.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -403,7 +403,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Silver)
             fluidOutputs(Silver.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1235)
         }
 
@@ -412,7 +412,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Silver)
             fluidOutputs(Silver.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1235)
         }
 
@@ -421,7 +421,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Silver)
             fluidOutputs(Silver.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1235)
         }
 
@@ -430,7 +430,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Silver)
             fluidOutputs(Silver.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1235)
         }
 
@@ -440,7 +440,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Sulfur)
             fluidOutputs(Sulfur.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -449,7 +449,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Sulfur)
             fluidOutputs(Sulfur.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -458,7 +458,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Sulfur)
             fluidOutputs(Sulfur.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -467,7 +467,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Sulfur)
             fluidOutputs(Sulfur.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -477,7 +477,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Thorium)
             fluidOutputs(Thorium.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(2023)
         }
 
@@ -486,7 +486,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Thorium)
             fluidOutputs(Thorium.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(2023)
         }
 
@@ -495,7 +495,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Thorium)
             fluidOutputs(Thorium.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(2023)
         }
 
@@ -504,7 +504,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Thorium)
             fluidOutputs(Thorium.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(2023)
         }
 
@@ -514,7 +514,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Tin)
             fluidOutputs(Tin.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -523,7 +523,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Tin)
             fluidOutputs(Tin.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -532,7 +532,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Tin)
             fluidOutputs(Tin.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -541,7 +541,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Tin)
             fluidOutputs(Tin.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -551,7 +551,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Xenon.getFluid(1000))
             fluidOutputs(Xenon.getPlasma(1000))
             EUt(VA[UV])
-            duration(8 * TICK)
+            duration(8.t)
             blastFurnaceTemp(1200)
         }
 
@@ -561,7 +561,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Zinc)
             fluidOutputs(Zinc.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -570,7 +570,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(dust, Zinc)
             fluidOutputs(Zinc.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -579,7 +579,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Zinc)
             fluidOutputs(Zinc.getFluid(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -588,7 +588,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(ingot, Zinc)
             fluidOutputs(Zinc.getPlasma(L))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -601,7 +601,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Acetone.getFluid(1000))
             fluidOutputs(Ethenone.getFluid(1000))
             EUt(VA[LV])
-            duration(5 * TICK)
+            duration(5.t)
             blastFurnaceTemp(1200)
         }
 
@@ -610,7 +610,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(DissolvedCalciumAcetate.getFluid(2000))
             fluidOutputs(Acetone.getFluid(2000))
             EUt(VA[LV])
-            duration(5 * TICK)
+            duration(5.t)
             blastFurnaceTemp(1200)
         }
 
@@ -619,7 +619,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Ice.getFluid(L))
             fluidOutputs(Water.getFluid(L))
             EUt(4) // ULV
-            duration(16 * TICK)
+            duration(16.t)
             blastFurnaceTemp(1200)
         }
 
@@ -628,7 +628,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(Steam.getFluid(16000))
             EUt(VA[LV])
-            duration(14 * TICK)
+            duration(14.t)
             blastFurnaceTemp(1200)
         }
 
@@ -637,7 +637,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(Steam.getFluid(16000))
             EUt(VA[LV])
-            duration(14 * TICK)
+            duration(14.t)
             blastFurnaceTemp(1200)
         }
 
@@ -646,7 +646,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Air.getFluid(1000))
             fluidOutputs(GreenhouseGas.getFluid(1000))
             EUt(VA[MV])
-            duration(12 * TICK)
+            duration(12.t)
             blastFurnaceTemp(1200)
         }
 
@@ -655,7 +655,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Carbon5Fraction.getFluid(1000))
             fluidOutputs(DimerizedCarbon5Fraction.getFluid(870))
             EUt(VA[LV])
-            duration(6 * TICK)
+            duration(6.t)
             blastFurnaceTemp(1200)
         }
 
@@ -664,7 +664,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Dicyclopentadiene.getFluid(1000))
             fluidOutputs(Isoprene.getFluid(2000))
             EUt(VA[LV])
-            duration(1 * TICK)
+            duration(1.t)
             blastFurnaceTemp(1200)
         }
 
@@ -673,7 +673,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(Butene.getFluid(2000))
             fluidOutputs(Octene.getFluid(1000))
             EUt(VA[MV])
-            duration(6 * TICK)
+            duration(6.t)
             blastFurnaceTemp(1200)
         }
 
@@ -682,7 +682,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(BacterialSludge.getFluid(2000))
             fluidOutputs(EnrichedBacterialSludge.getFluid(2000))
             EUt(VA[EV])
-            duration(3 * SECOND + 4 * TICK)
+            duration(3.s + 4.t)
             blastFurnaceTemp(1200)
         }
 
@@ -691,7 +691,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(HadronicResonantGas.getFluid(2000))
             fluidOutputs(ResonantStrangeMeson.getFluid(1000))
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             blastFurnaceTemp(1200)
         }
 
@@ -700,7 +700,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(AminatedFullerene.getFluid(1000))
             fluidOutputs(Azafullerene.getFluid(1000))
             EUt(VA[IV])
-            duration(1 * TICK)
+            duration(1.t)
             blastFurnaceTemp(1200)
         }
 
@@ -709,7 +709,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(AppleCaneSyrup.getFluid(2000))
             fluidOutputs(HardAppleCandySyrup.getFluid(1000))
             EUt(VA[LV])
-            duration(2 * SECOND + 2 * TICK)
+            duration(2.s + 2.t)
             blastFurnaceTemp(1200)
         }
 
@@ -718,7 +718,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(LemonLimeSodaSyrup.getFluid(1000))
             fluidOutputs(Etirps.getFluid(1000))
             EUt(VA[LV])
-            duration(5 * TICK)
+            duration(5.t)
             blastFurnaceTemp(1200)
         }
 
@@ -727,7 +727,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(CranberrySodaSyrup.getFluid(1000))
             fluidOutputs(CranberryEtirps.getFluid(1000))
             EUt(VA[LV])
-            duration(5 * TICK)
+            duration(5.t)
             blastFurnaceTemp(1200)
         }
 
@@ -736,7 +736,7 @@ object EntrodynamicallyPhaseChangerRecipes
             fluidInputs(FulvicAcid.getFluid(100))
             fluidOutputs(Kerogen.getFluid(100))
             EUt(VA[LV])
-            duration(2 * SECOND + 5 * TICK)
+            duration(2.s + 5.t)
             blastFurnaceTemp(1200)
         }
 
@@ -751,7 +751,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(RAW_CRYSTAL_CHIP)
             output(ENGRAVED_CRYSTAL_CHIP)
             EUt(VA[HV])
-            duration(22 * SECOND + 10 * TICK)
+            duration(22.s + 10.t)
             blastFurnaceTemp(5000)
         }
 
@@ -761,7 +761,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(RAW_CRYSTAL_CHIP)
             output(ENGRAVED_CRYSTAL_CHIP)
             EUt(VA[HV])
-            duration(22 * SECOND + 10 * TICK)
+            duration(22.s + 10.t)
             blastFurnaceTemp(5000)
         }
 
@@ -771,7 +771,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(RAW_CRYSTAL_CHIP)
             output(ENGRAVED_CRYSTAL_CHIP)
             EUt(VA[HV])
-            duration(22 * SECOND + 10 * TICK)
+            duration(22.s + 10.t)
             blastFurnaceTemp(5000)
         }
 
@@ -781,7 +781,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(RAW_CRYSTAL_CHIP)
             output(ENGRAVED_CRYSTAL_CHIP)
             EUt(VA[HV])
-            duration(22 * SECOND + 10 * TICK)
+            duration(22.s + 10.t)
             blastFurnaceTemp(5000)
         }
 
@@ -791,7 +791,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(RAW_CRYSTAL_CHIP)
             output(ENGRAVED_CRYSTAL_CHIP)
             EUt(VA[HV])
-            duration(22 * SECOND + 10 * TICK)
+            duration(22.s + 10.t)
             blastFurnaceTemp(5000)
         }
 
@@ -801,7 +801,7 @@ object EntrodynamicallyPhaseChangerRecipes
             input(RAW_CRYSTAL_CHIP)
             output(ENGRAVED_CRYSTAL_CHIP)
             EUt(VA[HV])
-            duration(22 * SECOND + 10 * TICK)
+            duration(22.s + 10.t)
             blastFurnaceTemp(5000)
         }
 

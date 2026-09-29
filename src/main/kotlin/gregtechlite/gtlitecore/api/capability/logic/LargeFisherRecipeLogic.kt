@@ -8,9 +8,10 @@ import gregtech.api.capability.IWorkable
 import gregtech.api.metatileentity.multiblock.IMaintenance
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.common.ConfigHolder
-import gregtechlite.gtlitecore.api.TICK
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockFisher
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder
+import kotlin.math.pow
 import net.minecraft.init.Blocks
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
@@ -19,7 +20,6 @@ import net.minecraft.world.WorldServer
 import net.minecraft.world.storage.loot.LootContext
 import net.minecraftforge.fluids.FluidRegistry
 import net.minecraftforge.fluids.FluidStack
-import kotlin.math.pow
 
 class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, IControllable
 {
@@ -208,9 +208,9 @@ class LargeFisherRecipeLogic(private val mte: MultiblockFisher) : IWorkable, ICo
     {
         if (!consumeEnergy(true))
         {
-            if (progressTime >= 2 * TICK)
+            if (progressTime >= 2.t)
             {
-                progressTime = if (ConfigHolder.machines.recipeProgressLowEnergy) 1 * TICK else 1.coerceAtLeast(progressTime - 2 * TICK)
+                progressTime = if (ConfigHolder.machines.recipeProgressLowEnergy) 1.t else 1.coerceAtLeast(progressTime - 2.t)
                 isEnergyNotEnough = true
             }
             return false

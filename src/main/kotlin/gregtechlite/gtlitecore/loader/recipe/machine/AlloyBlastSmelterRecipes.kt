@@ -60,12 +60,12 @@ import gregtech.api.unification.material.Materials.Xenon
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.material.Materials.Zirconium
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.MINUTE
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
+import gregtechlite.gtlitecore.api.min
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ALLOY_BLAST_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ActiniumSuperhydride
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Adamantium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.BETSPerrhenate
@@ -119,50 +119,50 @@ internal object AlloyBlastSmelterRecipes
     private fun formulaicRecipes()
     {
         registerBinaryAlloy(Copper, 3, Tin, 1,
-                            Bronze, 4, 20 * SECOND)
+                            Bronze, 4, 20.s)
         registerBinaryAlloy(Copper, 3, Zinc, 1,
-                            Brass, 4, 20 * SECOND)
+                            Brass, 4, 20.s)
         registerBinaryAlloy(Copper, 1, Nickel, 1,
-                            Cupronickel, 2, 10 * SECOND)
+                            Cupronickel, 2, 10.s)
         registerBinaryAlloy(Copper, 1, Redstone, 4,
-                            RedAlloy, 1, 5 * SECOND)
+                            RedAlloy, 1, 5.s)
 
         registerBinaryAlloy(Sodium, 7, Potassium, 3,
-                            SodiumPotassiumEutatic, 10, 5 * SECOND)
+                            SodiumPotassiumEutatic, 10, 5.s)
         registerBinaryAlloy(Lead, 3, Bismuth, 7,
-                            LeadBismuthEutatic, 10, 2 * SECOND + 10 * TICK)
+                            LeadBismuthEutatic, 10, 2.s + 10.t)
         registerBinaryAlloy(BariumTitanate, 5, StrontiumOxide, 2,
-                            BariumStrontiumTitanate, 7, 28 * SECOND)
+                            BariumStrontiumTitanate, 7, 28.s)
 
         registerBinaryAlloy(Iron, 1, Tin, 1,
-                            TinAlloy, 2, 5 * SECOND)
+                            TinAlloy, 2, 5.s)
         registerBinaryAlloy(Iron, 2, Nickel, 1,
-                            Invar, 3, 15 * SECOND)
+                            Invar, 3, 15.s)
         registerBinaryAlloy(Lead, 4, Antimony, 1,
-                            BatteryAlloy, 5, 12 * SECOND + 10 * TICK)
+                            BatteryAlloy, 5, 12.s + 10.t)
         registerBinaryAlloy(Gold, 1, Silver, 1,
-                            Electrum, 2, 10 * SECOND)
+                            Electrum, 2, 10.s)
         registerBinaryAlloy(Magnesium, 1, Aluminium, 2,
-                            Magnalium, 3, 7 * SECOND + 10 * TICK)
+                            Magnalium, 3, 7.s + 10.t)
         registerBinaryAlloy(Silver, 1, Electrotine, 4,
-                            BlueAlloy, 1, 5 * SECOND)
+                            BlueAlloy, 1, 5.s)
         registerBinaryAlloy(Glass, 7, Boron, 1,
-                            BorosilicateGlass, 8, 10 * SECOND)
+                            BorosilicateGlass, 8, 10.s)
         registerBinaryAlloy(LithiumFluoride, 2, BerylliumDifluoride, 3,
-                            LithiumBerylliumFluorides, 5, 5 * SECOND)
+                            LithiumBerylliumFluorides, 5, 5.s)
 
         registerTrinaryAlloy(Brass, 7, Aluminium, 1,
-                             Cobalt, 1, CobaltBrass, 9, 45 * SECOND)
+                             Cobalt, 1, CobaltBrass, 9, 45.s)
         registerTrinaryAlloy(Tin, 6, Lead, 3,
-                             Antimony, 1, SolderingAlloy, 10, 10 * SECOND)
+                             Antimony, 1, SolderingAlloy, 10, 10.s)
 
         registerTrinaryAlloy(Copper, 6, Tin, 2,
-                             Lead, 1, Potin, 9, 20 * SECOND)
+                             Lead, 1, Potin, 9, 20.s)
         registerBinaryAlloy(Bronze, 8, Lead, 1,
-                            Potin, 9, 20 * SECOND)
+                            Potin, 9, 20.s)
 
         registerTrinaryAlloy(LithiumFluoride, 2, SodiumFluoride, 2,
-                             PotassiumFluoride, 2, LithiumSodiumPotassiumFluorides, 6, 5 * SECOND)
+                             PotassiumFluoride, 2, LithiumSodiumPotassiumFluorides, 6, 5.s)
     }
 
     private fun manualRecipes()
@@ -179,7 +179,7 @@ internal object AlloyBlastSmelterRecipes
             fluidInputs(Nitrogen.getFluid(13000))
             fluidOutputs(EglinSteel.getFluid(L * 13))
             EUt(VA[MV])
-            duration(7 * SECOND + 16 * TICK)
+            duration(7.s + 16.t)
             blastFurnaceTemp(1048) // Cupronickel
         }
 
@@ -193,7 +193,7 @@ internal object AlloyBlastSmelterRecipes
             input(dust, Carbon, 1)
             fluidOutputs(EglinSteel.getFluid(L * 13))
             EUt(VA[MV])
-            duration(11 * SECOND + 14 * TICK)
+            duration(11.s + 14.t)
             blastFurnaceTemp(1048) // Cupronickel
         }
 
@@ -208,7 +208,7 @@ internal object AlloyBlastSmelterRecipes
             fluidInputs(Fluorine.getFluid(6200))
             fluidOutputs(ZBLANGlass.getFluid(L * 11))
             EUt(VA[HV])
-            duration(1 * MINUTE + 30 * SECOND)
+            duration(1.min + 30.s)
             blastFurnaceTemp(1073) // Cupronickel
         }
 
@@ -220,7 +220,7 @@ internal object AlloyBlastSmelterRecipes
             input(dust, Tellurium, 5)
             fluidOutputs(GSTGlass.getFluid(L * 9))
             EUt(VA[HV])
-            duration(MINUTE + 20 * SECOND)
+            duration(1.min + 20.s)
             blastFurnaceTemp(873) // Cupronickel
         }
 
@@ -234,7 +234,7 @@ internal object AlloyBlastSmelterRecipes
             fluidInputs(Neon.getFluid(150))
             fluidOutputs(BismuthStrontiumCalciumCuprate.getFluid(L * 15))
             EUt(VA[UV])
-            duration(2 * MINUTE + 9 * SECOND + 12 * TICK)
+            duration(2.min + 9.s + 12.t)
             blastFurnaceTemp(7000) // Naquadah
         }
 
@@ -246,7 +246,7 @@ internal object AlloyBlastSmelterRecipes
             input(dust, Tenorite, 4)
             fluidOutputs(BismuthStrontiumCalciumCuprate.getFluid(L * 15))
             EUt(VA[UV])
-            duration(3 * MINUTE + 13 * SECOND + 10 * TICK)
+            duration(3.min + 13.s + 10.t)
             blastFurnaceTemp(7000) // Naquadah
         }
 
@@ -261,7 +261,7 @@ internal object AlloyBlastSmelterRecipes
             fluidInputs(HeavyLeptonMixture.getFluid(1000))
             fluidOutputs(HalkoniteSteel.getFluid(L * 8))
             EUt(VA[UEV])
-            duration(1 * MINUTE)
+            duration(1.min)
             blastFurnaceTemp(13801) // Infinity
         }
 
@@ -276,7 +276,7 @@ internal object AlloyBlastSmelterRecipes
             fluidInputs(Krypton.getFluid(130))
             fluidOutputs(VibraniumTritaniumActiniumIronSuperhydride.getFluid(L * 13))
             EUt(VA[UEV])
-            duration(195 * SECOND + 19 * TICK)
+            duration(195.s + 19.t)
             blastFurnaceTemp(14400) // Infinity
         }
 
@@ -289,7 +289,7 @@ internal object AlloyBlastSmelterRecipes
             fluidInputs(Iron.getPlasma(L))
             fluidOutputs(VibraniumTritaniumActiniumIronSuperhydride.getFluid(L * 13))
             EUt(VA[UEV])
-            duration(292 * SECOND + 10 * TICK)
+            duration(292.s + 10.t)
             blastFurnaceTemp(14400) // Infinity
         }
 
@@ -305,7 +305,7 @@ internal object AlloyBlastSmelterRecipes
             fluidInputs(ResonantStrangeMeson.getFluid(1000))
             fluidOutputs(Mellion.getFluid(L * 64))
             EUt(VA[UXV])
-            duration(20 * SECOND)
+            duration(20.s)
             blastFurnaceTemp(16000)
         }
 
@@ -320,7 +320,7 @@ internal object AlloyBlastSmelterRecipes
             fluidInputs(Krypton.getFluid(280))
             fluidOutputs(FullereneSuperconductor.getFluid(L * 28))
             EUt(VA[UIV])
-            duration(2884 * SECOND + 7 * TICK)
+            duration(2884.s + 7.t)
             blastFurnaceTemp(15900) // Halkonite Steel
         }
 
@@ -333,7 +333,7 @@ internal object AlloyBlastSmelterRecipes
             fluidInputs(Xenon.getPlasma(1000))
             fluidOutputs(FullereneSuperconductor.getFluid(L * 28))
             EUt(VA[UIV])
-            duration(4305 * SECOND)
+            duration(4305.s)
             blastFurnaceTemp(15900) // Halkonite Steel
         }
     }

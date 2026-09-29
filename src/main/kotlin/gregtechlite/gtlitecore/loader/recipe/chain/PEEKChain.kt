@@ -22,10 +22,10 @@ import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.material.Materials.Zinc
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Difluorobenzophenone
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fluorobenzene
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Fluorotoluene
@@ -49,7 +49,7 @@ internal object PEEKChain
             fluidOutputs(Fluorotoluene.getFluid(1000))
             fluidOutputs(HydrofluoricAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // C6H5F + C7H7F + 6Cl + H2O -> (FC6H4)2CO + 6HCl
@@ -62,7 +62,7 @@ internal object PEEKChain
             output(dust, Difluorobenzophenone, 24)
             fluidOutputs(HydrochloricAcid.getFluid(6000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // C3H6 + C6H6 + 3O -> C6H4(OH)2 + C6H6O2 + C3H6O
@@ -75,7 +75,7 @@ internal object PEEKChain
             fluidOutputs(Resorcinol.getFluid(1000))
             fluidOutputs(Acetone.getFluid(1000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // (FC6H4)2CO + Na2CO3 + C6H4(OH)2 -> C20H12O3 + 2NaF + CO2 + H2O
@@ -88,7 +88,7 @@ internal object PEEKChain
             fluidOutputs(CarbonDioxide.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[ZPM])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // Advanced recipes for PEEK, used C6H5F to skip (FC6H4)2CO
@@ -101,7 +101,7 @@ internal object PEEKChain
             fluidOutputs(Polyetheretherketone.getFluid(L * 18))
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[UHV])
-            duration(24 * SECOND)
+            duration(24.s)
         }
     }
 

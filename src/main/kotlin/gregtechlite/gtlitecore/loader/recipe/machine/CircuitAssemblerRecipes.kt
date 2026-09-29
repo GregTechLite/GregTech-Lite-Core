@@ -14,12 +14,12 @@ import gregtech.common.items.MetaItems.NOR_MEMORY_CHIP
 import gregtech.common.items.MetaItems.RANDOM_ACCESS_MEMORY
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
 import gregtech.common.items.MetaItems.WETWARE_CIRCUIT_BOARD
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.extension.getStack
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_CHIP
 
 internal object CircuitAssemblerRecipes
@@ -58,7 +58,7 @@ internal object CircuitAssemblerRecipes
             input(wireFine, YttriumBariumCuprate, 32)
             output(TOOL_DATA_MODULE)
             EUt(38400) // ZPM
-            duration(20 * SECOND)
+            duration(20.s)
             cleanroom()
             solderMultiplier(2)
         }

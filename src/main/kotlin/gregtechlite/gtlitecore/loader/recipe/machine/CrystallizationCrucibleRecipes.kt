@@ -6,12 +6,12 @@ import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.material.Materials.Carbon
 import gregtech.api.unification.material.Materials.Diamond
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.removeRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYSTALLIZATION_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.boule
 import gregtechlite.gtlitecore.api.unification.ore.GTLiteOrePrefix.seedCrystal
 
@@ -30,7 +30,7 @@ internal object CrystallizationCrucibleRecipes
             input(dust, Carbon, 64)
             output(boule, Diamond)
             EUt(VA[HV])
-            duration(9 * SECOND + 12 * TICK)
+            duration(9.s + 12.t)
             blastFurnaceTemp(1200)
         }
     }

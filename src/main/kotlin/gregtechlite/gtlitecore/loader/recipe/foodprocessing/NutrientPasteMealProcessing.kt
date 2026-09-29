@@ -13,13 +13,13 @@ import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Gelatin
 import gregtech.api.unification.material.Materials.Salt
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LARGE_MIXER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SONICATION_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AscorbicAcid
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Biotin
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CaneSyrup
@@ -53,7 +53,7 @@ internal object NutrientPasteMealProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(NutrientPasteWaterPhaseMixture.getFluid(2000))
             EUt(VA[HV])
-            duration(4 * SECOND + 16 * TICK)
+            duration(4.s + 16.t)
             cleanroom()
         }
 
@@ -69,7 +69,7 @@ internal object NutrientPasteMealProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(RichNutrientPasteWaterPhaseMixture.getFluid(2000))
             EUt(VA[HV])
-            duration(4 * SECOND + 16 * TICK)
+            duration(4.s + 16.t)
             cleanroom()
         }
 
@@ -79,7 +79,7 @@ internal object NutrientPasteMealProcessing
             fluidInputs(FoodOilPhaseMixture.getFluid(1000))
             fluidOutputs(NutrientPasteCrudeEmulsion.getFluid(3000))
             EUt(VA[EV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // Rich Nutrient Paste Water Phase Mixture + Food Oil Phase Mixture -> Rich Nutrient Paste Crude Emulsion
@@ -88,7 +88,7 @@ internal object NutrientPasteMealProcessing
             fluidInputs(FoodOilPhaseMixture.getFluid(1000))
             fluidOutputs(RichNutrientPasteCrudeEmulsion.getFluid(3000))
             EUt(VA[EV])
-            duration(8 * SECOND)
+            duration(8.s)
         }
 
         // Nutrient Paste Crude Emulsion -> Nutrient Paste Emulsion
@@ -97,7 +97,7 @@ internal object NutrientPasteMealProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(NutrientPasteEmulsion.getFluid(4000))
             EUt(VA[EV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Rich Nutrient Paste Crude Emulsion -> Rich Nutrient Paste Emulsion
@@ -106,7 +106,7 @@ internal object NutrientPasteMealProcessing
             fluidInputs(DistilledWater.getFluid(1000))
             fluidOutputs(RichNutrientPasteEmulsion.getFluid(4000))
             EUt(VA[IV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Nutrient Paste Emulsion -> Sterilized Nutrient Paste Emulsion
@@ -115,7 +115,7 @@ internal object NutrientPasteMealProcessing
             fluidInputs(NutrientPasteEmulsion.getFluid(250))
             fluidOutputs(SterilizedNutrientPasteEmulsion.getFluid(250))
             EUt(VA[HV])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
             cleanroom()
         }
 
@@ -125,7 +125,7 @@ internal object NutrientPasteMealProcessing
             fluidInputs(RichNutrientPasteEmulsion.getFluid(250))
             fluidOutputs(SterilizedRichNutrientPasteEmulsion.getFluid(250))
             EUt(VA[HV])
-            duration(1 * SECOND + 10 * TICK)
+            duration(1.s + 10.t)
             cleanroom()
         }
 
@@ -135,7 +135,7 @@ internal object NutrientPasteMealProcessing
             fluidInputs(SterilizedNutrientPasteEmulsion.getFluid(250))
             output(NUTRIENT_PASTE_MEAL)
             EUt(V[ULV])
-            duration(10 * TICK)
+            duration(10.t)
         }
 
         // Rich Nutrient Paste Meal
@@ -144,7 +144,7 @@ internal object NutrientPasteMealProcessing
             fluidInputs(SterilizedRichNutrientPasteEmulsion.getFluid(250))
             output(RICH_NUTRIENT_PASTE_MEAL)
             EUt(V[ULV])
-            duration(10 * TICK)
+            duration(10.t)
         }
     }
 

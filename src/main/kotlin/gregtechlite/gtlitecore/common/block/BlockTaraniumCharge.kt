@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.common.block
 
 import gregtech.common.blocks.explosive.BlockGTExplosive
 import gregtech.common.entities.EntityGTExplosive
-import gregtechlite.gtlitecore.api.SECOND
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.common.entity.EntityTaraniumCharge
 import net.minecraft.block.SoundType
 import net.minecraft.block.material.Material
@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
-class BlockTaraniumCharge : BlockGTExplosive(Material.TNT, true, true, 30 * SECOND)
+class BlockTaraniumCharge : BlockGTExplosive(Material.TNT, true, true, 30.s)
 {
 
     init

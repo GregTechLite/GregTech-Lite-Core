@@ -7,10 +7,10 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMap
 import gregtech.client.renderer.ICubeRenderer
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.capability.logic.MobExtractorRecipeLogic
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.MOB_EXTRACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.property.MobOnTopProperty
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityList
@@ -43,7 +43,7 @@ class MachineMobExtractor(id: ResourceLocation, recipeMap: RecipeMap<*>, rendere
     fun checkRecipe(recipe: Recipe): Boolean
     {
         val entityId = recipe.getProperty(MobOnTopProperty, null)
-        if (entities == null || offsetTimer % 5 * TICK == 0L)
+        if (entities == null || offsetTimer % 5.t == 0L)
             entities = entitiesInProximity
 
         for (entity in entities!!)

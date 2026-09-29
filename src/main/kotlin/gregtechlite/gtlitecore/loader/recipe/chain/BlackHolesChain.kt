@@ -22,14 +22,14 @@ import gregtech.common.items.MetaItems.FIELD_GENERATOR_UEV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UHV
 import gregtech.common.items.MetaItems.FIELD_GENERATOR_UIV
 import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CosmicNeutronium
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Creon
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.FreeElectronGas
@@ -79,7 +79,7 @@ internal object BlackHolesChain
             output(TIME_DILATION_CONTAINMENT_CELL)
             fluidOutputs(Rubidium.getPlasma(L * 8))
             EUt(VA[UXV])
-            duration(2 * TICK)
+            duration(2.t)
         }
 
         // Neutronium Sphere
@@ -88,7 +88,7 @@ internal object BlackHolesChain
             fluidInputs(Neutronium.getFluid(L))
             output(NEUTRONIUM_SPHERE)
             EUt(VA[UHV])
-            duration(1 * TICK)
+            duration(1.t)
         }
 
         // High Density Protonic Matter Containment Cell
@@ -98,7 +98,7 @@ internal object BlackHolesChain
             fluidInputs(NeutronProtonFermiSuperfluid.getFluid(16000))
             output(CONTAINED_HIGH_DENSITY_PROTONIC_MATTER)
             EUt(VA[UIV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         // Exotic Matter Containment Cell
@@ -108,7 +108,7 @@ internal object BlackHolesChain
             output(CONTAINED_EXOTIC_MATTER)
             output(TIME_DILATION_CONTAINMENT_CELL)
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Triplet Neutronium Sphere
@@ -117,7 +117,7 @@ internal object BlackHolesChain
             fluidInputs(Magnetium.getFluid(L * 4))
             output(TRIPLET_NEUTRONIUM_SPHERE)
             EUt(VA[UEV])
-            duration(2 * TICK)
+            duration(2.t)
         }
 
         // Contained RN (Reissner-Nordstrom) Black Hole Singularity
@@ -127,7 +127,7 @@ internal object BlackHolesChain
             inputs(LEPTONIC_CHARGE)
             output(CONTAINED_RN_SINGULARITY)
             EUt(VA[UIV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // Contained KN (Kerr-Newmann) Black Hole Singularity
@@ -137,7 +137,7 @@ internal object BlackHolesChain
             output(CONTAINED_KN_SINGULARITY)
             output(TIME_DILATION_CONTAINMENT_CELL)
             EUt(VA[UXV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Contained Kerr Singularity
@@ -147,7 +147,7 @@ internal object BlackHolesChain
             output(CONTAINED_KERR_SINGULARITY)
             fluidOutputs(FreeElectronGas.getFluid(16000))
             EUt(VA[OpV])
-            duration(1 * TICK)
+            duration(1.t)
         }
 
         // Microwormhole Generator
@@ -159,7 +159,7 @@ internal object BlackHolesChain
             fluidInputs(SpaceTime.getFluid(L))
             output(MICROWORMHOLE_GENERATOR)
             EUt(VA[UHV])
-            duration(5 * SECOND)
+            duration(5.s)
             tier(3)
         }
 
@@ -175,7 +175,7 @@ internal object BlackHolesChain
             fluidInputs(SpaceTime.getFluid(L * 4))
             output(MACROWORMHOLE_GENERATOR)
             EUt(VA[UEV])
-            duration(5 * SECOND)
+            duration(5.s)
             tier(4)
         }
 
@@ -194,7 +194,7 @@ internal object BlackHolesChain
             fluidInputs(SpaceTime.getFluid(L * 16))
             output(STABILIZED_WORMHOLE_GENERATOR)
             EUt(VA[UIV])
-            duration(5 * SECOND)
+            duration(5.s)
             tier(5)
         }
 
@@ -203,14 +203,14 @@ internal object BlackHolesChain
             input(MICROWORMHOLE_GENERATOR)
             output(RECURSIVELY_FOLDED_NEGATIVE_SPACE, 2)
             EUt(VA[UXV])
-            duration(1 * SECOND)
+            duration(1.s)
         }
 
         FORMING_PRESS_RECIPES.addRecipe {
             input(MACROWORMHOLE_GENERATOR)
             output(RECURSIVELY_FOLDED_NEGATIVE_SPACE, 16)
             EUt(VA[UXV])
-            duration(2 * SECOND)
+            duration(2.s)
         }
 
         // Eigenfolded Spacetime Manifold
@@ -220,7 +220,7 @@ internal object BlackHolesChain
             inputs(QUANTUM_CHROMODYNAMIC_CHARGE)
             output(EIGENFOLDED_SPACETIME_MANIFOLD)
             EUt(VA[UXV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
     }
 

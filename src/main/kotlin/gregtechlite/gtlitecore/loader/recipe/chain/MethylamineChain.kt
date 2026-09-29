@@ -19,12 +19,12 @@ import gregtech.api.unification.material.Materials.RockSalt
 import gregtech.api.unification.material.Materials.SiliconDioxide
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
+import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dimethylacetamide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.DimethylamineHydrochloride
@@ -47,7 +47,7 @@ internal object MethylamineChain
             fluidInputs(Ammonia.getFluid(1000))
             fluidOutputs(MethylamineMixture.getFluid(3000))
             EUt(VA[HV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         MIXER_RECIPES.addRecipe {
@@ -57,7 +57,7 @@ internal object MethylamineChain
             fluidInputs(Ammonia.getFluid(1000))
             fluidOutputs(MethylamineMixture.getFluid(3000))
             EUt(VA[HV])
-            duration(50 * SECOND)
+            duration(50.s)
         }
 
         // 6CH3OH + 3NH3 -> CH3NH2 + (CH3)2NH2 + (CH3)3NH2 + 3H2O
@@ -68,7 +68,7 @@ internal object MethylamineChain
             fluidOutputs(Trimethylamine.getFluid(1000))
             fluidOutputs(Water.getFluid(3000))
             EUt(VA[LuV])
-            duration(50 * SECOND)
+            duration(50.s)
             disableDistilleryRecipes()
         }
 
@@ -81,7 +81,7 @@ internal object MethylamineChain
             output(dust, PotassiumFormate, 6)
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // (CH3)2NH + HCl -> C2H8NCl
@@ -90,7 +90,7 @@ internal object MethylamineChain
             fluidInputs(HydrochloricAcid.getFluid(1000))
             fluidOutputs(DimethylamineHydrochloride.getFluid(1000))
             EUt(VA[EV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // CH3OK + C2H8NCl -> KCl + (CH3)2NC(O)H + H + Cl (lost)
@@ -101,7 +101,7 @@ internal object MethylamineChain
             fluidOutputs(Dimethylformamide.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(1000))
             EUt(VA[EV])
-            duration(6 * SECOND)
+            duration(6.s)
         }
 
         // Advanced recipe for (CH3)2NC(O)H and (CH3)2NC(O)CH3.
@@ -113,7 +113,7 @@ internal object MethylamineChain
             fluidInputs(CarbonMonoxide.getFluid(1000))
             fluidOutputs(Dimethylformamide.getFluid(1000))
             EUt(VA[IV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
 
         // C2H7N + C2H4O2 -> (CH3)2NC(O)CH3 + H2O
@@ -124,7 +124,7 @@ internal object MethylamineChain
             fluidOutputs(Dimethylacetamide.getFluid(1000))
             fluidOutputs(Water.getFluid(1000))
             EUt(VA[LuV])
-            duration(12 * SECOND)
+            duration(12.s)
         }
     }
 

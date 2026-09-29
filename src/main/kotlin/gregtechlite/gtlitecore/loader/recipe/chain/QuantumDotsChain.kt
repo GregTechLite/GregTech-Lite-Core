@@ -37,12 +37,12 @@ import gregtech.api.unification.material.Materials.Selenium
 import gregtech.api.unification.material.Materials.SulfuricAcid
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BATH_CONDENSER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumHydroxide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.AluminiumSelenide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Butanediol
@@ -82,7 +82,7 @@ internal object QuantumDotsChain
             fluidOutputs(Butanediol.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(1000))
             EUt(VA[HV])
-            duration(3 * SECOND)
+            duration(3.s)
         }
 
         // C4H10O2 -> C4H8O + H2O
@@ -92,7 +92,7 @@ internal object QuantumDotsChain
             fluidOutputs(Tetrahydrofuran.getFluid(1000))
             fluidOutputs(DilutedSulfuricAcid.getFluid(1500))
             EUt(VA[HV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Add another reaction to produce MgCl2.
@@ -103,7 +103,7 @@ internal object QuantumDotsChain
             fluidInputs(Chlorine.getFluid(2000))
             output(dust, MagnesiumChloride, 3)
             EUt(VA[LV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // MgCl2 + 2K (molten) + C4H8O (semicatalyst) -> *Mg* + 2KCl
@@ -114,7 +114,7 @@ internal object QuantumDotsChain
             output(dust, HRAMagnesium)
             output(dust, RockSalt, 4)
             EUt(VA[IV])
-            duration(7 * SECOND)
+            duration(7.s)
         }
 
         // C2H4 + 2Br -> C2H4Br2
@@ -123,7 +123,7 @@ internal object QuantumDotsChain
             fluidInputs(Bromine.getFluid(2000))
             fluidOutputs(EthyleneDibromide.getFluid(3000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // Mg + C2H4Br2 -> CH3MgBr + HBr + C (lost)
@@ -133,7 +133,7 @@ internal object QuantumDotsChain
             fluidOutputs(GrignardReagent.getFluid(1000))
             fluidOutputs(HydrobromicAcid.getFluid(1000))
             EUt(VA[LV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -153,7 +153,7 @@ internal object QuantumDotsChain
                 fluidInputs(fluid)
                 output(dust, CadmiumBromide, 3)
                 EUt(VA[LV])
-                duration(5 * SECOND)
+                duration(5.s)
             }
         }
 
@@ -164,7 +164,7 @@ internal object QuantumDotsChain
             output(dust, MagnesiumBromide, 6)
             fluidOutputs(Dimethylcadmium.getFluid(1000))
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -177,7 +177,7 @@ internal object QuantumDotsChain
             input(dust, Selenium, 3)
             output(dust, AluminiumSelenide, 5)
             EUt(VA[LV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // Al2Se3 + 6H2O -> 2Al(OH)3 + 3H2Se
@@ -187,7 +187,7 @@ internal object QuantumDotsChain
             output(dust, AluminiumHydroxide, 14)
             fluidOutputs(HydrogenSelenide.getFluid(3000))
             EUt(VA[HV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // (CH3)2Cd + H2Se -> CdSe + 2CH4
@@ -197,7 +197,7 @@ internal object QuantumDotsChain
             output(dust, CadmiumSelenide, 2)
             fluidOutputs(Methane.getFluid(2000))
             EUt(VA[IV])
-            duration(4 * SECOND)
+            duration(4.s)
             temperature(665)
         }
     }
@@ -210,7 +210,7 @@ internal object QuantumDotsChain
             fluidInputs(HydrogenSulfide.getFluid(1000))
             fluidOutputs(DiethylSulfide.getFluid(1000))
             EUt(VA[LV])
-            duration(7 * SECOND + 10 * TICK)
+            duration(7.s + 10.t)
         }
 
         // C4H10S decomposition.
@@ -219,7 +219,7 @@ internal object QuantumDotsChain
             fluidOutputs(Ethylene.getFluid(2000))
             fluidOutputs(HydrogenSulfide.getFluid(1000))
             EUt(VA[LV])
-            duration(15 * SECOND)
+            duration(15.s)
         }
 
         // Cd(CH3)2 + C4H10S -> CdS + C2H6 + C4H10
@@ -230,7 +230,7 @@ internal object QuantumDotsChain
             fluidOutputs(Ethane.getFluid(1000))
             fluidOutputs(Butane.getFluid(1000))
             EUt(VA[UV])
-            duration(4 * SECOND)
+            duration(4.s)
             temperature(742)
         }
     }

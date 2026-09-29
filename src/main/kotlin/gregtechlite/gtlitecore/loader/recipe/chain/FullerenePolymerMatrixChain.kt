@@ -44,14 +44,14 @@ import gregtech.api.unification.material.Materials.TitaniumTetrachloride
 import gregtech.api.unification.material.Materials.Toluene
 import gregtech.api.unification.material.Materials.Water
 import gregtech.api.unification.ore.OrePrefix.dust
-import gregtechlite.gtlitecore.api.SECOND
-import gregtechlite.gtlitecore.api.TICK
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.cleanroom
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.s
+import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Alumina
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CalciumCarbide
 import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Dichloromethane
@@ -102,7 +102,7 @@ internal object FullerenePolymerMatrixChain
             output(dust, Sarcosine, 13)
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[EV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // C2H6O + NaOH -> C2H5ONa + H2O
@@ -112,7 +112,7 @@ internal object FullerenePolymerMatrixChain
             fluidInputs(Ethanol.getFluid(1000))
             output(dust, SodiumEthoxide, 9)
             EUt(VA[MV])
-            duration(2 * SECOND + 10 * TICK)
+            duration(2.s + 10.t)
         }
 
         // Fe + 2HCl -> FeCl2 + 2H
@@ -123,7 +123,7 @@ internal object FullerenePolymerMatrixChain
             fluidOutputs(Iron2Chloride.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[LV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // FeCl2 + C10H12 -> C10H10Fe + 2HCl
@@ -133,7 +133,7 @@ internal object FullerenePolymerMatrixChain
             fluidOutputs(Ferrocene.getFluid(1000))
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             EUt(VA[IV])
-            duration(4 * SECOND + 12 * TICK)
+            duration(4.s + 12.t)
         }
 
         // C60 + C3H7NO2 + 3C2H5ONa + C10H10Fe + CHCl3 + CH4 -> C74H19NFe + 3NaCl + CO2 + 3C2H6O
@@ -151,7 +151,7 @@ internal object FullerenePolymerMatrixChain
             fluidOutputs(CarbonDioxide.getFluid(1000))                 // CO2
             fluidOutputs(Ethanol.getFluid(3000))                       // C2H6O
             EUt(VA[UEV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Pd + C74H19NFe -> (C73H15NFe)Pd + CH4
@@ -162,7 +162,7 @@ internal object FullerenePolymerMatrixChain
             notConsumable(NitricAcid.getFluid(1))
             output(dust, PalladiumFullereneMatrix)
             EUt(VA[UV])
-            duration(30 * SECOND)
+            duration(30.s)
         }
 
         // Advanced recipes of (C73H15NFe)Pd.
@@ -180,7 +180,7 @@ internal object FullerenePolymerMatrixChain
             output(dust, PalladiumFullereneMatrix)
             fluidOutputs(HydrogenPeroxide.getFluid(1000))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -196,7 +196,7 @@ internal object FullerenePolymerMatrixChain
             fluidOutputs(PhenylpentanoicAcid.getFluid(1000))
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             EUt(VA[EV])
-            duration(10 * SECOND)
+            duration(10.s)
         }
 
         // 2CH4O + H2S -> (CH3)2S + 2H2O
@@ -206,7 +206,7 @@ internal object FullerenePolymerMatrixChain
             fluidOutputs(DimethylSulfide.getFluid(1000))
             fluidOutputs(Water.getFluid(2000))
             EUt(VA[MV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // 2C60 + 2C11H14O2 + (CH3)2S + 2C6H5Cl + C2H4 -> 2C72H14O2 + 2C7H8 + 2HCl + H2S
@@ -222,7 +222,7 @@ internal object FullerenePolymerMatrixChain
             fluidOutputs(HydrochloricAcid.getFluid(2000))
             fluidOutputs(HydrogenSulfide.getFluid(1000))
             EUt(VA[ZPM])
-            duration(16 * SECOND)
+            duration(16.s)
         }
 
         // C2H7N + C5H5N -> (CH3)2NC5H4N
@@ -231,7 +231,7 @@ internal object FullerenePolymerMatrixChain
             fluidInputs(Dimethylamine.getFluid(1000))
             output(dust, Dimethylaminopyridine, 19)
             EUt(VA[IV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
 
         // C3H6 + H2O -> C3H8O
@@ -240,7 +240,7 @@ internal object FullerenePolymerMatrixChain
             fluidInputs(Water.getFluid(1000))
             fluidOutputs(IsopropylAlcohol.getFluid(1000))
             EUt(VA[HV])
-            duration(4 * SECOND)
+            duration(4.s)
         }
 
         // 2NH3 + COCl2 + 2C3H8O -> C7H14N2 + 2(HCl)(H2O)
@@ -252,7 +252,7 @@ internal object FullerenePolymerMatrixChain
             fluidOutputs(Diisopropylcarbodiimide.getFluid(1000))
             fluidOutputs(DilutedHydrochloricAcid.getFluid(4000))
             EUt(VA[IV])
-            duration(12 * SECOND + 10 * TICK)
+            duration(12.s + 10.t)
         }
 
         // C72H14O2 + C8H8 + CH2Cl2 + NaOH -> C80H21O2 + NaCl + HCl + CO + 3H
@@ -269,7 +269,7 @@ internal object FullerenePolymerMatrixChain
             fluidOutputs(CarbonMonoxide.getFluid(1000))
             fluidOutputs(Hydrogen.getFluid(3000))
             EUt(VA[UEV])
-            duration(20 * SECOND)
+            duration(20.s)
         }
 
         // 8C60 + 7C8H8 + 8CH2Cl2 + 8C11H14O2 + 8(CH3)2S + 8C6H5Cl -> 8C80H21O2 + 8C7H8 + 8H2S + 24HCl
@@ -286,7 +286,7 @@ internal object FullerenePolymerMatrixChain
             fluidOutputs(HydrogenSulfide.getFluid(8000))
             fluidOutputs(HydrochloricAcid.getFluid(24000))
             EUt(VA[UXV])
-            duration(5 * SECOND)
+            duration(5.s)
         }
     }
 
@@ -298,7 +298,7 @@ internal object FullerenePolymerMatrixChain
             fluidInputs(PhenylC61ButyricStyrene.getFluid(1000))
             output(dust, FullerenePolymerMatrix, 2)
             EUt(VA[UEV])
-            duration(10 * SECOND)
+            duration(10.s)
             cleanroom()
             buildAndRegister()
         }
