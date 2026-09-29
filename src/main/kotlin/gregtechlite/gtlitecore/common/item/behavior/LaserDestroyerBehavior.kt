@@ -2,16 +2,10 @@ package gregtechlite.gtlitecore.common.item.behavior
 
 import gregtech.api.capability.GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM
 import gregtech.api.items.metaitem.stats.IItemBehaviour
-import gregtech.api.pipenet.tile.IPipeTile
-import gregtech.api.util.GTUtility
 import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
-import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder
-import net.minecraft.block.state.IBlockState
 import net.minecraft.client.resources.I18n
-import net.minecraft.enchantment.EnchantmentHelper
-import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.player.EntityPlayerMP
 import net.minecraft.init.Blocks
@@ -84,31 +78,20 @@ class LaserDestroyerBehavior : IItemBehaviour
             return next
         }
 
-        private fun speedTierNameKey(index: Int): String =
-            if (index in 0..3) "metaitem.tool.laser_destroyer.speed.name.$index"
+        private fun speedTierNameKey(index: Int): String
+            = if (index in 0..3) "metaitem.tool.laser_destroyer.speed.name.$index"
             else "metaitem.tool.laser_destroyer.speed.name.generic"
 
         @Suppress("Deprecation")
         fun breakBlock(item: ItemStack, player: EntityPlayer, world: World, pos: BlockPos,
-                       isSilkMode: Boolean, energyCost: Long): Boolean
+                       tool: ItemStack, energyCost: Long): Boolean
         {
             if (world.isRemote) return true
 
             val state = world.getBlockState(pos)
             val block = state.block
-            val mte = GTUtility.getMetaTileEntity(world, pos)
 
             if (block === Blocks.AIR) return false
-
-            val silkLevel = EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.heldItemMainhand)
-            val drops: List<ItemStack> = if (silkLevel != 0)
-            {
-                mte?.let { listOf(it.stack()) } ?: listOf(getSilkDrops(world, pos, state))
-            }
-            else
-            {
-                mte?.let { listOf(it.stack()) } ?: getNormalDrops(world, pos, state)
-            }
 
             val soundType = block.getSoundType(state, world, pos, player)
             world.playSound(player, pos, soundType.breakSound, SoundCategory.BLOCKS, 1.0f, 1.0f)
@@ -118,28 +101,21 @@ class LaserDestroyerBehavior : IItemBehaviour
                 player.connection.sendPacket(SPacketBlockChange(world, pos))
             }
 
-            val removed = block.removedByPlayer(state, world, pos, player, !isSilkMode)
+            val removed = block.removedByPlayer(state, world, pos, player, true)
 
             if (removed)
             {
                 block.onPlayerDestroy(world, pos, state)
+                block.harvestBlock(world, player, pos, state, world.getTileEntity(pos), tool)
+
+                if (world.getBlockState(pos) != Blocks.AIR.defaultState)
+                {
+                    world.setBlockState(pos, Blocks.AIR.defaultState, 3)
+                }
             }
             else
             {
-                block.onPlayerDestroy(world, pos, state)
-                world.setBlockState(pos, Blocks.AIR.defaultState, 3)
-            }
-
-            for (drop in drops)
-            {
-                if (player.isCreative) continue
-                val f = 0.7f
-                val dx = world.rand.nextFloat() * f + (1.0f - f) * 0.5
-                val dy = world.rand.nextFloat() * f + (1.0f - f) * 0.5
-                val dz = world.rand.nextFloat() * f + (1.0f - f) * 0.5
-                val entityItem = EntityItem(world, pos.x.toDouble() + dx, pos.y.toDouble() + dy, pos.z.toDouble() + dz, drop)
-                entityItem.setDefaultPickupDelay()
-                world.spawnEntity(entityItem)
+                return false
             }
 
             if (player.isCreative || drainEnergy(item, energyCost, true))
@@ -151,45 +127,6 @@ class LaserDestroyerBehavior : IItemBehaviour
             }
 
             return true
-        }
-
-        @Suppress("Deprecation")
-        private fun getNormalDrops(world: World, pos: BlockPos, state: IBlockState): List<ItemStack>
-        {
-            if (world.getTileEntity(pos) is IPipeTile<*, *>)
-            {
-                val item = state.block.getItem(world, pos, state)
-                return if (item.isEmpty) emptyList() else listOf(item)
-            }
-            return state.block.getDrops(world, pos, state, 0)
-        }
-
-        @Suppress("Deprecation")
-        private fun getSilkDrops(world: World, pos: BlockPos, state: IBlockState): ItemStack
-        {
-            if (world.getTileEntity(pos) is IPipeTile<*, *>)
-            {
-                val item = state.block.getItem(world, pos, state)
-                if (!item.isEmpty) return item
-            }
-
-            return runCatching {
-                var block: Class<*>? = state.block.javaClass
-                while (block != null)
-                {
-                    try
-                    {
-                        val silkTouchDrop = block.getDeclaredMethod("getSilkTouchDrop", IBlockState::class.java)
-                        silkTouchDrop.isAccessible = true
-                        return@runCatching silkTouchDrop.invoke(state.block, state) as ItemStack
-                    }
-                    catch (_: NoSuchMethodException)
-                    {
-                        block = block.superclass
-                    }
-                }
-                throw NoSuchMethodException()
-            }.getOrDefault(ItemStack(state.block, 1, state.block.getMetaFromState(state)))
         }
 
         private fun drainEnergy(item: ItemStack, amount: Long, simulate: Boolean): Boolean
