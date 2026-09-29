@@ -47,7 +47,7 @@ object ToolEventHandlers
                 world.sendBlockBreakProgress(player.entityId, it.pos, -1)
             }
             world.sendBlockBreakProgress(player.entityId, pos, -1)
-            LaserDestroyerBehavior.breakBlock(item, player, world, pos, isSilk, energyCost(isSilk))
+            LaserDestroyerBehavior.breakBlock(item, player, world, pos, item, energyCost(isSilk))
             return
         }
 
@@ -90,7 +90,7 @@ object ToolEventHandlers
             miningSessions.remove(player.uniqueID)
             world.sendBlockBreakProgress(player.entityId, session.pos, -1)
             val isSilk = LaserDestroyerBehavior.isSilkMode(item)
-            LaserDestroyerBehavior.breakBlock(item, player, world, session.pos, isSilk, energyCost(isSilk))
+            LaserDestroyerBehavior.breakBlock(item, player, world, session.pos, item, energyCost(isSilk))
         }
         else
         {
