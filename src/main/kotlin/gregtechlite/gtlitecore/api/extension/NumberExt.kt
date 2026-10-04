@@ -1,6 +1,9 @@
 package gregtechlite.gtlitecore.api.extension
 
 import java.math.BigInteger
+import kotlin.math.PI
+import kotlin.math.abs
+import kotlin.math.floor
 
 fun Int.square(): Int = this * this
 
@@ -21,3 +24,13 @@ fun BigInteger.formatting(): String
 
     return "10${exp.toSuperscript()}"
 }
+
+/**
+ * Triangle wave in `[0, 1]` for `x` already reduced into `[0, 1]`.
+ */
+val Float.triangle: Float
+    get() = 1f - abs(2f * (this - 0.5f))
+
+fun Float.fract(): Float = this - floor(this)
+
+fun Double.toRadians(): Double = this / 180.0 * PI
