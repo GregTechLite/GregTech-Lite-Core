@@ -1,26 +1,28 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 
+import com.cleanroommc.modularui.widgets.slot.ItemSlot
+import com.cleanroommc.modularui.widgets.slot.ModularSlot
 import com.morphismmc.morphismlib.client.Games
+import gregtech.api.block.machines.MachineItemBlock
+import gregtech.api.capability.IMultipleTankHandler
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
+import gregtech.api.capability.impl.NotifiableItemStackHandler
 import gregtech.api.metatileentity.IFastRenderMetaTileEntity
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.MAINTENANCE_HATCH
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.*
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
+import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
+import gregtech.api.mui.GTGuiTextures
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.RecipeMap
+import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
 import gregtech.api.util.RelativeDirection
@@ -34,7 +36,12 @@ import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.manipulators
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.shieldingCores
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BATH_CONDENSER_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BURNER_REACTOR_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.QUANTUM_FORCE_TRANSFORMER_RECIPES
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ROASTER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeProperties
 import gregtechlite.gtlitecore.client.renderer.handler.bloom.ForceFieldBloomSetup
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
@@ -46,7 +53,9 @@ import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.texture.TextureMap
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import net.minecraft.client.resources.I18n
+import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.SoundEvent
 import net.minecraft.util.math.AxisAlignedBB
@@ -54,18 +63,22 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import net.minecraftforge.items.IItemHandlerModifiable
 import org.lwjgl.opengl.GL11
 import kotlin.math.floor
 import kotlin.math.min
 import kotlin.math.pow
 
 class MultiblockQuantumForceTransformer(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, QUANTUM_FORCE_TRANSFORMER_RECIPES), IFastRenderMetaTileEntity, IBloomEffect
+    : RecipeMapMultiblockController(id, QUANTUM_FORCE_TRANSFORMER_RECIPES
+        ), IFastRenderMetaTileEntity, IBloomEffect
 {
 
     private var manipulatorTier = 0
     private var shieldingCoreTier = 0
     private var tier = 0
+    private var workingRecipeMap: RecipeMap<*>? = null
+    private var installedMachine = InstalledMachineSlot()
 
     @SideOnly(Side.CLIENT)
     private var registeredBloomRenderTicket = false
@@ -80,6 +93,19 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         private val casingState = MultiblockCasing.PARTICLE_CONTAINMENT_CASING.state
         private val coilState = MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.state
         private val glassState = GlassCasing.FORCE_FIELD.state
+    }
+
+    fun getWorkableRecipeMaps(): Array<RecipeMap<*>>
+    {
+        val machine = installedMachine.getStackInSlot(0)
+        if (machine.isEmpty) return arrayOf(QUANTUM_FORCE_TRANSFORMER_RECIPES)
+        return  when(machine.metadata){
+            //10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
+            10125 -> arrayOf(BURNER_REACTOR_RECIPES, ROASTER_RECIPES,QUANTUM_FORCE_TRANSFORMER_RECIPES)
+            10126 -> arrayOf(CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES,QUANTUM_FORCE_TRANSFORMER_RECIPES)
+            10131 -> arrayOf(LARGE_CHEMICAL_RECIPES,CHEMICAL_PLANT_RECIPES,QUANTUM_FORCE_TRANSFORMER_RECIPES)
+            else  -> arrayOf(QUANTUM_FORCE_TRANSFORMER_RECIPES)
+        }
     }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
@@ -170,6 +196,20 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.5"))
         tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.6"))
         tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.7"))
+    }
+
+    @Suppress("UnstableApiUsage")
+    override fun createUIFactory(): MultiblockUIFactory {
+        return super.createUIFactory().createFlexButton { guiData, syncManager ->
+            syncManager?.registerSlotGroup("machine_slot", 1, true)
+            ItemSlot()
+                .slot(object : ModularSlot(installedMachine, 0){
+                    override fun onTake(thePlayer: EntityPlayer, stack: ItemStack): ItemStack {
+                        return super.onTake(thePlayer, stack).also { recipeMapWorkable.forceRecipeRecheck() }
+                    }
+                }.slotGroup("machine_slot")
+            ).background(GTGuiTextures.SLOT)
+        }
     }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)
@@ -347,8 +387,87 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
     override fun isGlobalRenderer(): Boolean = true
 
+    override fun writeToNBT(data: NBTTagCompound): NBTTagCompound {
+        super.writeToNBT(data)
+
+        val stack = installedMachine.getStackInSlot(0)
+        if (!stack.isEmpty) {
+            data.setTag("InstalledMachine", stack.writeToNBT(NBTTagCompound()))
+        }
+
+        return data
+    }
+
+    override fun readFromNBT(data: NBTTagCompound) {
+        super.readFromNBT(data)
+
+        installedMachine.setStackInSlot(0, ItemStack.EMPTY)
+
+        if (data.hasKey("InstalledMachine")) {
+            installedMachine.setStackInSlot(0, ItemStack(data.getCompoundTag("InstalledMachine")))
+        }
+    }
+
+
+    private inner class InstalledMachineSlot: NotifiableItemStackHandler(this, 1, null, false)
+    {
+        //10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
+        private val allowedMachines =arrayOf(10125, 10126, 10131)
+
+        override fun isItemValid(slot: Int, stack: ItemStack): Boolean
+        {
+            if (stack.isEmpty) return false
+            if (stack.item !is MachineItemBlock) return false
+            return stack.metadata in allowedMachines
+        }
+
+        override fun getSlotLimit(slot: Int): Int = 1
+
+        override fun insertItem(slot: Int, stack: ItemStack, simulate: Boolean): ItemStack
+        {
+            if (!simulate) return stack
+            return super.insertItem(slot, stack, true)
+        }
+
+        override fun extractItem(slot: Int, amount: Int, simulate: Boolean): ItemStack
+        {
+            if (!simulate) return ItemStack.EMPTY
+            return super.extractItem(slot, amount, true)
+        }
+
+        override fun setStackInSlot(slot: Int, stack: ItemStack)
+        {
+            var s = stack.copy()
+            if (!s.isEmpty && !isItemValid(slot, s)) s = ItemStack.EMPTY
+            if (s.count > getSlotLimit(slot)) s.count = getSlotLimit(slot)
+            super.setStackInSlot(slot, s)
+        }
+
+        override fun onContentsChanged(slot: Int) {
+            recipeMapWorkable.forceRecipeRecheck()
+            super.onContentsChanged(slot)
+        }
+    }
+
     private inner class QuantumForceTransformerRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
+        override fun findRecipe(
+            maxVoltage: Long,
+            inputs: IItemHandlerModifiable?,
+            fluidInputs: IMultipleTankHandler?
+        ): Recipe? {
+
+            getWorkableRecipeMaps().forEach { map ->
+                val result = map.findRecipe(maxVoltage, inputs, fluidInputs)
+                result?.let {
+                    workingRecipeMap = map
+                    return result
+                }
+            }
+            return null
+        }
+
+        override fun getRecipeMap(): RecipeMap<*>? = workingRecipeMap
 
         override fun setMaxProgress(maxProgress: Int)
         {
