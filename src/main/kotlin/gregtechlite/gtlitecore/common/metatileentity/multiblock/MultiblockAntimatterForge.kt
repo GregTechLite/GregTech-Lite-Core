@@ -31,6 +31,7 @@ import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
+import gregtechlite.gtlitecore.core.GTLiteConfigHolder
 import net.minecraft.client.renderer.BufferBuilder
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
@@ -261,7 +262,9 @@ class MultiblockAntimatterForge(id: ResourceLocation)
             && !registeredBloomRenderTicket)
         {
             registeredBloomRenderTicket = true
-            BloomEffectUtil.registerBloomRender(AntimatterForgeBloomSetup.INSTANCE, BloomType.UNREAL, this, this)
+            val bloom = GTLiteConfigHolder.client.shader.antimatterForgeBloom
+            val bloomType = BloomType.fromValue(if (bloom.useShader) bloom.bloomStyle else -1)
+            BloomEffectUtil.registerBloomRender(AntimatterForgeBloomSetup.INSTANCE, bloomType, this, this)
         }
     }
 

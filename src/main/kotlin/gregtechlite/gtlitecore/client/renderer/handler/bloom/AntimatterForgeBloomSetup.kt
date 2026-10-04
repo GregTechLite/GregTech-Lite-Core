@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.client.renderer.handler.bloom
 
 import gregtech.client.renderer.IRenderSetup
 import gregtech.client.shader.postprocessing.BloomEffect
+import gregtechlite.gtlitecore.core.GTLiteConfigHolder
 import net.minecraft.client.renderer.BufferBuilder
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.OpenGlHelper
@@ -18,10 +19,11 @@ enum class AntimatterForgeBloomSetup : IRenderSetup
 
     override fun preDraw(buffer: BufferBuilder)
     {
-        BloomEffect.strength = 1.5f
-        BloomEffect.baseBrightness = 0.0f
-        BloomEffect.highBrightnessThreshold = 1.3f
-        BloomEffect.lowBrightnessThreshold = 0.3f
+        val bloom = GTLiteConfigHolder.client.shader.antimatterForgeBloom
+        BloomEffect.strength = bloom.strength.toFloat()
+        BloomEffect.baseBrightness = bloom.baseBrightness.toFloat()
+        BloomEffect.highBrightnessThreshold = bloom.highBrightnessThreshold.toFloat()
+        BloomEffect.lowBrightnessThreshold = bloom.lowBrightnessThreshold.toFloat()
         BloomEffect.step = 1f
 
         lastBrightnessX = OpenGlHelper.lastBrightnessX
