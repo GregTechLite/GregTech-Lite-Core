@@ -186,7 +186,7 @@ internal object FieldGenRecipes
             stationResearch {
                 it.researchStack(FIELD_GENERATOR_ZPM)
                     .EUt(VA[ZPM])
-                    .CWUt(48)
+                    .CWUt(16)
             }
         }
 
