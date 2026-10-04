@@ -241,7 +241,7 @@ class MultiblockAntimatterForge(id: ResourceLocation)
     private fun renderAnchor(): BlockPos
     {
         val back = RelativeDirection.BACK.getRelativeFacing(frontFacing, upwardsFacing, isFlipped)
-        return pos.offset(back, -16)
+        return pos.offset(back, 16)
     }
 
     private fun rotationAxis(): Triple<Float, Float, Float>
