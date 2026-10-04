@@ -5,13 +5,13 @@ import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.ULV
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.s
-import gregtechlite.gtlitecore.api.t
 import net.minecraftforge.common.config.Config
 import net.minecraftforge.common.config.Config.Comment
 import net.minecraftforge.common.config.Config.Name
 import net.minecraftforge.common.config.Config.RangeDouble
 import net.minecraftforge.common.config.Config.RangeInt
 import net.minecraftforge.common.config.Config.RequiresMcRestart
+import net.minecraftforge.common.config.Config.SlidingOption
 
 @Config(modid = MOD_ID, name = "$MOD_ID/$MOD_ID")
 object GTLiteConfigHolder
@@ -58,6 +58,69 @@ object GTLiteConfigHolder
         @Name("Hide Multiblock Part Body Color")
         @JvmField
         var hideMultiblockPartBodyColor: Boolean = false
+
+        @Comment("Config options for Shaders and Post-processing Effects")
+        @Name("Shader Options")
+        @JvmField
+        val shader = ShaderOptions()
+
+        class ShaderOptions
+        {
+            @Comment("Bloom config options for the Antimatter Forge.")
+            @Name("Antimatter Forge")
+            @JvmField
+            val antimatterForgeBloom = AntimatterForgeBloom()
+        }
+
+        class AntimatterForgeBloom
+        {
+            @Comment("Whether to render the Antimatter Forge core, protomatter beam and glow ring.",
+                     "Disabling this removes the whole bloom effect while keeping the machine functional.",
+                     "Default: true")
+            @Name("Enable Antimatter Forge Effect")
+            @JvmField
+            var useShader: Boolean = true
+
+            @Comment("Bloom Strength",
+                     "OUTPUT = BACKGROUND + BLOOM * {strength} * (base + LT + (1 - BACKGROUND_BRIGHTNESS)*(HT-LT)))",
+                     "Default: 1.5")
+            @RangeDouble(min = 0.0)
+            @JvmField
+            var strength: Double = 1.5
+
+            @Comment("Bloom Algorithm",
+                     "0 - Simple Gaussian Blur Bloom (Fast)",
+                     "1 - Unity Bloom",
+                     "2 - Unreal Bloom",
+                     "Default: 2")
+            @RangeInt(min = 0, max = 2)
+            @SlidingOption
+            @JvmField
+            var bloomStyle: Int = 2
+
+            @Comment("The brightness after bloom should not exceed this value. It can be used to limit the brightness of highlights",
+                     "(e.g., daytime).",
+                     "This value should be greater than lowBrightnessThreshold.",
+                     "Default: 1.3")
+            @RangeDouble(min = 0.0)
+            @JvmField
+            var highBrightnessThreshold: Double = 1.3
+
+            @Comment("The brightness after bloom should not be smaller than this value. It can be used to limit the brightness of dusky",
+                     "parts (e.g., night/caves).",
+                     "This value should be smaller than highBrightnessThreshold.",
+                     "Default: 0.3")
+            @RangeDouble(min = 0.0)
+            @JvmField
+            var lowBrightnessThreshold: Double = 0.3
+
+            @Comment("The base brightness of the bloom. It is similar to strength.",
+                     "This value should be smaller than highBrightnessThreshold.",
+                     "Default: 0.0")
+            @RangeDouble(min = 0.0)
+            @JvmField
+            var baseBrightness: Double = 0.0
+        }
     }
 
     class CompatibilityOptions
