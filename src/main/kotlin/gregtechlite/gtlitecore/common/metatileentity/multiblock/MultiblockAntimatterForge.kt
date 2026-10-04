@@ -1,6 +1,7 @@
 package gregtechlite.gtlitecore.common.metatileentity.multiblock
 
 import gregtech.api.capability.impl.EnergyContainerList
+import gregtech.api.metatileentity.IFastRenderMetaTileEntity
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
@@ -14,23 +15,51 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.pattern.BlockPattern
 import gregtech.api.pattern.FactoryBlockPattern
+import gregtech.api.util.RelativeDirection
 import gregtech.client.renderer.ICubeRenderer
+import gregtech.client.shader.postprocessing.BloomType
+import gregtech.client.utils.BloomEffectUtil
+import gregtech.client.utils.EffectRenderContext
+import gregtech.client.utils.IBloomEffect
 import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
+import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
+import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ANTIMATTER_FORGE_RECIPES
+import gregtechlite.gtlitecore.client.renderer.handler.bloom.AntimatterForgeBloomSetup
+import gregtechlite.gtlitecore.client.renderer.handler.world.AntimatterForgeCoreRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
+import net.minecraft.client.renderer.BufferBuilder
+import net.minecraft.client.renderer.Tessellator
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
+import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.math.AxisAlignedBB
+import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import org.lwjgl.opengl.GL11
+import kotlin.math.abs
+import kotlin.math.min
+import kotlin.math.pow
 
 class MultiblockAntimatterForge(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, ANTIMATTER_FORGE_RECIPES)
+    : RecipeMapMultiblockController(id, ANTIMATTER_FORGE_RECIPES),
+      IFastRenderMetaTileEntity,
+      IBloomEffect,
+      SyncedMetaTileEntity
 {
+    override val syncer: MetaTileEntitySyncer = MetaTileEntitySyncer(this)
+
+    var antimatterCoreScale by syncer.syncedFloat(0.0f)
+
+    @SideOnly(Side.CLIENT)
+    private var registeredBloomRenderTicket = false
 
     init
     {
@@ -39,6 +68,9 @@ class MultiblockAntimatterForge(id: ResourceLocation)
 
     companion object
     {
+        private const val MAX_RADIUS = 7.0f
+        private const val SPIKE_FACTOR = 0.01f
+
         private val casingState = MetalCasing.QUANTUM_ALLOY.state
         private val secondCasingState = MultiblockCasing.GRAVITY_STABILIZATION_CASING.state
         private val coilState = MultiblockCasing.PROTOMATTER_ACTIVATION_COIL.state
@@ -173,12 +205,122 @@ class MultiblockAntimatterForge(id: ResourceLocation)
             .addRecipeOutputLine(recipeMapWorkable)
     }
 
+    override fun update()
+    {
+        super.update()
+
+        val world = world ?: return
+        if (world.isRemote) return
+
+        if (!isStructureFormed)
+        {
+            if (antimatterCoreScale != 0f)
+                antimatterCoreScale = 0f
+            return
+        }
+
+        val fluidInventory = outputFluidInventory ?: return
+        var amount = 0L
+        for (tank in fluidInventory.fluidTanks)
+        {
+            amount += (tank.fluid?.amount ?: 0)
+        }
+
+        // Core size follows the stored antimatter amount.
+        val maxScale = (MAX_RADIUS / (1f + SPIKE_FACTOR)).toDouble()
+        val scale = amount.toDouble().pow(0.17).coerceAtMost(maxScale).toFloat()
+        if (abs(scale - antimatterCoreScale) > 0.001f)
+        {
+            antimatterCoreScale = scale
+        }
+    }
+
+    /**
+     * controller local (26, 26, 42), center (26, 26, 26).
+     */
+    private fun renderAnchor(): BlockPos
+    {
+        val back = RelativeDirection.BACK.getRelativeFacing(frontFacing, upwardsFacing, isFlipped)
+        return pos.offset(back, -16)
+    }
+
+    private fun rotationAxis(): Triple<Float, Float, Float>
+        = if (frontFacing.axis == EnumFacing.Axis.Y) Triple(1f, 0f, 0f) else Triple(0f, 1f, 0f)
+
+    private fun rotationAngle(): Float = when (getFrontFacing())
+    {
+        EnumFacing.UP   -> -90f
+        EnumFacing.DOWN -> 90f
+        else            -> 90f
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun renderMetaTileEntity(x: Double, y: Double, z: Double, partialTicks: Float)
+    {
+        if (isStructureFormed && (antimatterCoreScale > 0f || recipeMapWorkable.isActive)
+            && !registeredBloomRenderTicket)
+        {
+            registeredBloomRenderTicket = true
+            BloomEffectUtil.registerBloomRender(AntimatterForgeBloomSetup.INSTANCE, BloomType.UNREAL, this, this)
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun renderBloomEffect(buffer: BufferBuilder, context: EffectRenderContext)
+    {
+        val anchor = renderAnchor()
+        val cx = anchor.x - context.cameraX() + 0.5
+        val cy = anchor.y - context.cameraY() + 0.5
+        val cz = anchor.z - context.cameraZ() + 0.5
+
+        val totalTime = (world?.totalWorldTime ?: 0L) + context.partialTicks()
+        val timeSec = totalTime / 20f
+
+        if (antimatterCoreScale <= 0f && !recipeMapWorkable.isActive) return
+
+        val axis = rotationAxis()
+        val angle = rotationAngle()
+
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR)
+
+        if (antimatterCoreScale > 0f)
+        {
+            AntimatterForgeCoreRenderer.renderCore(buffer, cx, cy, cz, antimatterCoreScale, timeSec)
+        }
+
+        if (recipeMapWorkable.isActive)
+        {
+            val spiralRadius = min(antimatterCoreScale / 2f * 0.5f, 0.5f)
+            AntimatterForgeCoreRenderer.renderProtomatterBeam(buffer, cx, cy, cz, 0.2f, spiralRadius,
+                                                              angle, axis.first, axis.second, axis.third, totalTime)
+            AntimatterForgeCoreRenderer.renderGlowRing(buffer, cx, cy, cz, (MAX_RADIUS + 2).toDouble(), 0.3,
+                                                       angle, axis.first, axis.second, axis.third)
+        }
+
+        Tessellator.getInstance().draw()
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun shouldRenderBloomEffect(context: EffectRenderContext): Boolean
+        = isStructureFormed && (antimatterCoreScale > 0f || recipeMapWorkable.isActive)
+            && context.camera().isBoundingBoxInFrustum(getRenderBoundingBox())
+
+    override fun getRenderBoundingBox(): AxisAlignedBB
+    {
+        val anchor = renderAnchor()
+        val r = (MAX_RADIUS + 2).toDouble()
+        return AxisAlignedBB(anchor.x - r, anchor.y - r, anchor.z - r,
+                             anchor.x + r, anchor.y + 24.0, anchor.z + r)
+    }
+
+    @SideOnly(Side.CLIENT)
+    override fun shouldRenderInPass(pass: Int): Boolean = pass == 0
+
+    override fun isGlobalRenderer(): Boolean = true
+
     private inner class AntimatterForgeRecipeLogic(mte: RecipeMapMultiblockController)
         : ExtendedPowerMultiblockRecipeLogic(mte)
     {
-
         override fun getParallelLimit() = Int.MAX_VALUE
-
     }
-
 }
