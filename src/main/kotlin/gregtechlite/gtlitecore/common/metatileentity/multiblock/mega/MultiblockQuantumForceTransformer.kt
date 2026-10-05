@@ -23,6 +23,9 @@ import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMap
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
+import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
+import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
 import gregtech.api.util.RelativeDirection
@@ -33,6 +36,8 @@ import gregtech.client.utils.EffectRenderContext
 import gregtech.client.utils.IBloomEffect
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.api.GTLiteAPI
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.UpgradeMode
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.manipulators
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.shieldingCores
@@ -52,7 +57,6 @@ import net.minecraft.client.renderer.BufferBuilder
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.texture.TextureMap
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
-import net.minecraft.client.resources.I18n
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -65,9 +69,8 @@ import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
 import net.minecraftforge.items.IItemHandlerModifiable
 import org.lwjgl.opengl.GL11
-import kotlin.math.floor
+import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.pow
 
 class MultiblockQuantumForceTransformer(id: ResourceLocation)
     : RecipeMapMultiblockController(id, QUANTUM_FORCE_TRANSFORMER_RECIPES), IFastRenderMetaTileEntity, IBloomEffect
@@ -174,14 +177,20 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, world, tooltip, advanced)
-        tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.1"))
-        tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.4"))
-        tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.5"))
-        tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.6"))
-        tooltip.add(I18n.format("gtlitecore.machine.quantum_force_transformer.tooltip.7"))
+        addTooltip(tooltip)
+        {
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.quantum_force_transformer.tooltip.1",
+                               "gtlitecore.machine.quantum_force_transformer.tooltip.2",
+                               "gtlitecore.machine.quantum_force_transformer.tooltip.3",
+                               "gtlitecore.machine.quantum_force_transformer.tooltip.4")
+            addOverclockInfo("gtlitecore.machine.quantum_force_transformer.tooltip.5")
+            addParallelInfo("gtlitecore.machine.quantum_force_transformer.tooltip.6")
+            addDurationInfo(1200, UpgradeMode.MANIPULATOR)
+            addLaserHatchInfo()
+            addDescriptionLine("gtlitecore.machine.quantum_force_transformer.tooltip.7",
+                               "gtlitecore.machine.quantum_force_transformer.tooltip.8")
+        }
     }
 
     @Suppress("UnstableApiUsage")
@@ -397,7 +406,8 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         val machine = installedMachine.getStackInSlot(0)
         if (machine.isEmpty)
             return arrayOf(QUANTUM_FORCE_TRANSFORMER_RECIPES)
-        return when(machine.metadata){
+        return when (machine.metadata)
+        {
             //10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
             10125 -> arrayOf(BURNER_REACTOR_RECIPES   , ROASTER_RECIPES       , QUANTUM_FORCE_TRANSFORMER_RECIPES)
             10126 -> arrayOf(CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES, QUANTUM_FORCE_TRANSFORMER_RECIPES)
@@ -455,6 +465,9 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
     private inner class QuantumForceTransformerRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
+        private val isQFTRecipeMap: Boolean
+            get() = workingRecipeMap == QUANTUM_FORCE_TRANSFORMER_RECIPES
+
         override fun findRecipe(maxVoltage: Long, inputs: IItemHandlerModifiable?, fluidInputs: IMultipleTankHandler?): Recipe?
         {
             workableRecipeMaps().forEach { map ->
@@ -469,11 +482,19 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
         override fun getRecipeMap(): RecipeMap<*>? = workingRecipeMap
 
-        override fun setMaxProgress(maxProgress: Int)
+        override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
-            super.setMaxProgress(floor(maxProgress * 0.75.pow(manipulatorTier)).toInt())
+            super.modifyOverclockPost(ocResult, storage)
+            // +1200% / manipulator | D' = D / (1 + 12.0 * (T - 1.0)) = D / (12.0 * T - 11.0), where k = 12.0
+            val actualTier = manipulatorTier + 1
+            if (actualTier <= 0) return
+            ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (12.0 * manipulatorTier - 11.0)).toInt()))
         }
 
-        override fun getParallelLimit() = 16 * shieldingCoreTier
+        override fun getOverclockingDurationFactor(): Double
+            = if (!isQFTRecipeMap || (shieldingCoreTier == 4 && manipulatorTier == 4)) PERFECT_DURATION_FACTOR / 2
+              else super.getOverclockingDurationFactor()
+
+        override fun getParallelLimit() = (if (isQFTRecipeMap) 16 else 1024) * shieldingCoreTier
     }
 }

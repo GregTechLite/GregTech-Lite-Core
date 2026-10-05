@@ -2647,12 +2647,13 @@ gtlitecore.machine.virtual_gestalt_computing_uplink.tooltip.3=Unlocked §bDouble
 
 gtlitecore.machine.quantum_force_transformer.name=Quantum Force Transformer
 gtlitecore.machine.quantum_force_transformer.tooltip.1=Make Complex Chemical Processes happen in One-Step
-gtlitecore.machine.quantum_force_transformer.tooltip.2=Each recipe has its own not consumed Catalyst, only used to provide recipe token.
-gtlitecore.machine.quantum_force_transformer.tooltip.3=Manipulator determines maximum executable recipe tier, Shielding Core determines chances of output.
-gtlitecore.machine.quantum_force_transformer.tooltip.4=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
-gtlitecore.machine.quantum_force_transformer.tooltip.5=每提高1个§e脉冲控制方块等级§7，配方所需时间就变为原本的§l75%%§r§7。
-gtlitecore.machine.quantum_force_transformer.tooltip.6=每提高1个§e屏蔽核心方块等级§7，每次运行可以多处理§l16§r§7个物品。
-gtlitecore.machine.quantum_force_transformer.tooltip.7=§f结构底层放置输入仓室，结构顶层放置输出仓室
+gtlitecore.machine.quantum_force_transformer.tooltip.2=Each recipe has own §fCatalyst§7 which used as recipe token only
+gtlitecore.machine.quantum_force_transformer.tooltip.3=Manipulator Block determines §aMaximum Recipe Level§7, Shielding Core determines §bOutput Chance§7.
+gtlitecore.machine.quantum_force_transformer.tooltip.4=Support to put §6Large Chemical Machines§7 to §fController Slot§7 to unlock corresponding mode.
+gtlitecore.machine.quantum_force_transformer.tooltip.5=§bDoubling Perfect Overclocking (Chemical Mode, Unique Mode unlocked when all tier is maximum)
+gtlitecore.machine.quantum_force_transformer.tooltip.6=§a1024§f (Chemical Mode)§7 or §a16§f (Unique Mode)§a×Shielding Core Tier
+gtlitecore.machine.quantum_force_transformer.tooltip.7=Controller Slot Allowed Machines: §eChemical Plant§7, §eLarge Burner Reactor§7, §eLarge Cryogenic Reactor§7
+gtlitecore.machine.quantum_force_transformer.tooltip.8=§fInput Buses/Hatches§7 put on Structure Bottom, §fOutput Buses/Hatches§7 on Top
 
 gtlitecore.machine.quantum_force_transformer.manipulator_info=Manipulator Tier: %s
 gtlitecore.machine.quantum_force_transformer.shielding_core_info=Shielding Core Tier: %s
@@ -4672,6 +4673,7 @@ gtlitecore.tooltip.machine.upgrade.fusion_divertor=Fusion Divertor Tier
 gtlitecore.tooltip.machine.upgrade.fusion_vacuum=Fusion Vacuum Tier
 gtlitecore.tooltip.machine.upgrade.time_acceleration_field_gen=Time Acceleration Field Generator Tier
 gtlitecore.tooltip.machine.upgrade.stabilization_field_gen=Stabilization Field Generator Tier
+gtlitecore.tooltip.machine.upgrade.manipulator=Manipulator Block Tier
 
 gtlitecore.tooltip.machine.excess_mode=Switch the §bExcess Mode§7 to choose whether to destroy excess energy
 gtlitecore.tooltip.gui.excess_mode.enabled=Excess Mode: §aEnabled§r\nWhen Dynamo Hatch is full, continues working and destroys excess energy.
