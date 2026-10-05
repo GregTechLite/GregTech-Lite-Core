@@ -1498,7 +1498,10 @@ internal object MachineRecipeLoader
 
         // Quantum Force Transformer
         ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(LARGE_MASS_FABRICATOR)
+            input(CHEMICAL_REACTOR[UEV], 16)
+            input(CHEMICAL_PLANT, 64)
+            input(LARGE_BURNER_REACTOR, 64)
+            input(LARGE_CRYOGENIC_REACTOR, 64)
             inputs(MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.stack)
             input(circuit, Tier.UEV, 8)
             input(ELECTRIC_PUMP_UEV, 4)
