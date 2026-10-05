@@ -465,8 +465,14 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
     private inner class QuantumForceTransformerRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
-        private val isQFTRecipeMap: Boolean
-            get() = workingRecipeMap == QUANTUM_FORCE_TRANSFORMER_RECIPES
+        private val isInstalledMachineRecipe: Boolean
+            get()
+            {
+                previousRecipe?.let {
+                    return !it.hasProperty(GTLiteRecipeProperties.QUANTUM_FORCE_TRANSFORMER_TIER)
+                }
+                return !installedMachine.getStackInSlot(0).isEmpty
+            }
 
         override fun findRecipe(maxVoltage: Long, inputs: IItemHandlerModifiable?, fluidInputs: IMultipleTankHandler?): Recipe?
         {
@@ -492,9 +498,9 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         }
 
         override fun getOverclockingDurationFactor(): Double
-            = if (!isQFTRecipeMap || (shieldingCoreTier == 4 && manipulatorTier == 4)) PERFECT_DURATION_FACTOR / 2
+            = if (isInstalledMachineRecipe || (shieldingCoreTier == 4 && manipulatorTier == 4)) PERFECT_DURATION_FACTOR / 2
               else super.getOverclockingDurationFactor()
 
-        override fun getParallelLimit() = (if (isQFTRecipeMap) 16 else 1024) * shieldingCoreTier
+        override fun getParallelLimit() = (if (isInstalledMachineRecipe) 1024 else 16) * shieldingCoreTier
     }
 }
