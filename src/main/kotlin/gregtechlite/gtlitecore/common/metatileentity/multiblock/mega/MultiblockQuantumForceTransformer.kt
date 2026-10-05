@@ -70,13 +70,12 @@ import kotlin.math.min
 import kotlin.math.pow
 
 class MultiblockQuantumForceTransformer(id: ResourceLocation)
-    : RecipeMapMultiblockController(id, QUANTUM_FORCE_TRANSFORMER_RECIPES
-        ), IFastRenderMetaTileEntity, IBloomEffect
+    : RecipeMapMultiblockController(id, QUANTUM_FORCE_TRANSFORMER_RECIPES), IFastRenderMetaTileEntity, IBloomEffect
 {
-
     private var manipulatorTier = 0
     private var shieldingCoreTier = 0
     private var tier = 0
+
     private var workingRecipeMap: RecipeMap<*>? = null
     private var installedMachine = InstalledMachineSlot()
 
@@ -93,19 +92,6 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         private val casingState = MultiblockCasing.PARTICLE_CONTAINMENT_CASING.state
         private val coilState = MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.state
         private val glassState = GlassCasing.FORCE_FIELD.state
-    }
-
-    fun getWorkableRecipeMaps(): Array<RecipeMap<*>>
-    {
-        val machine = installedMachine.getStackInSlot(0)
-        if (machine.isEmpty) return arrayOf(QUANTUM_FORCE_TRANSFORMER_RECIPES)
-        return  when(machine.metadata){
-            //10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
-            10125 -> arrayOf(BURNER_REACTOR_RECIPES, ROASTER_RECIPES,QUANTUM_FORCE_TRANSFORMER_RECIPES)
-            10126 -> arrayOf(CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES,QUANTUM_FORCE_TRANSFORMER_RECIPES)
-            10131 -> arrayOf(LARGE_CHEMICAL_RECIPES,CHEMICAL_PLANT_RECIPES,QUANTUM_FORCE_TRANSFORMER_RECIPES)
-            else  -> arrayOf(QUANTUM_FORCE_TRANSFORMER_RECIPES)
-        }
     }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
@@ -199,18 +185,18 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
     }
 
     @Suppress("UnstableApiUsage")
-    override fun createUIFactory(): MultiblockUIFactory {
-        return super.createUIFactory().createFlexButton { guiData, syncManager ->
-            syncManager?.registerSlotGroup("machine_slot", 1, true)
-            ItemSlot()
-                .slot(object : ModularSlot(installedMachine, 0){
-                    override fun onTake(thePlayer: EntityPlayer, stack: ItemStack): ItemStack {
-                        return super.onTake(thePlayer, stack).also { recipeMapWorkable.forceRecipeRecheck() }
-                    }
-                }.slotGroup("machine_slot")
-            ).background(GTGuiTextures.SLOT)
+    override fun createUIFactory(): MultiblockUIFactory = super.createUIFactory()
+        .createFlexButton { guiData, syncManager ->
+            syncManager.registerSlotGroup("machine_slot", 1, true)
+            return@createFlexButton ItemSlot()
+                .slot(object : ModularSlot(installedMachine, 0)
+                {
+                    override fun onTake(thePlayer: EntityPlayer, stack: ItemStack): ItemStack
+                        = super.onTake(thePlayer, stack).also { recipeMapWorkable.forceRecipeRecheck() }
+                }
+                .slotGroup("machine_slot"))
+                .background(GTGuiTextures.SLOT)
         }
-    }
 
     override fun configureDisplayText(builder: MultiblockUIBuilder)
     {
@@ -389,35 +375,48 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
     override fun writeToNBT(data: NBTTagCompound): NBTTagCompound {
         super.writeToNBT(data)
-
         val stack = installedMachine.getStackInSlot(0)
-        if (!stack.isEmpty) {
+        if (!stack.isEmpty)
+        {
             data.setTag("InstalledMachine", stack.writeToNBT(NBTTagCompound()))
         }
-
         return data
     }
 
     override fun readFromNBT(data: NBTTagCompound) {
         super.readFromNBT(data)
-
         installedMachine.setStackInSlot(0, ItemStack.EMPTY)
-
-        if (data.hasKey("InstalledMachine")) {
+        if (data.hasKey("InstalledMachine"))
+        {
             installedMachine.setStackInSlot(0, ItemStack(data.getCompoundTag("InstalledMachine")))
         }
     }
 
+    private fun workableRecipeMaps(): Array<RecipeMap<*>>
+    {
+        val machine = installedMachine.getStackInSlot(0)
+        if (machine.isEmpty)
+            return arrayOf(QUANTUM_FORCE_TRANSFORMER_RECIPES)
+        return when(machine.metadata){
+            //10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
+            10125 -> arrayOf(BURNER_REACTOR_RECIPES   , ROASTER_RECIPES       , QUANTUM_FORCE_TRANSFORMER_RECIPES)
+            10126 -> arrayOf(CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES, QUANTUM_FORCE_TRANSFORMER_RECIPES)
+            10131 -> arrayOf(LARGE_CHEMICAL_RECIPES   , CHEMICAL_PLANT_RECIPES, QUANTUM_FORCE_TRANSFORMER_RECIPES)
+            else  -> arrayOf(                                                   QUANTUM_FORCE_TRANSFORMER_RECIPES)
+        }
+    }
 
     private inner class InstalledMachineSlot: NotifiableItemStackHandler(this, 1, null, false)
     {
         //10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
-        private val allowedMachines =arrayOf(10125, 10126, 10131)
+        private val allowedMachines = arrayOf(10125, 10126, 10131)
 
         override fun isItemValid(slot: Int, stack: ItemStack): Boolean
         {
-            if (stack.isEmpty) return false
-            if (stack.item !is MachineItemBlock) return false
+            if (stack.isEmpty)
+                return false
+            if (stack.item !is MachineItemBlock)
+                return false
             return stack.metadata in allowedMachines
         }
 
@@ -425,25 +424,30 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
         override fun insertItem(slot: Int, stack: ItemStack, simulate: Boolean): ItemStack
         {
-            if (!simulate) return stack
+            if (!simulate)
+                return stack
             return super.insertItem(slot, stack, true)
         }
 
         override fun extractItem(slot: Int, amount: Int, simulate: Boolean): ItemStack
         {
-            if (!simulate) return ItemStack.EMPTY
+            if (!simulate)
+                return ItemStack.EMPTY
             return super.extractItem(slot, amount, true)
         }
 
         override fun setStackInSlot(slot: Int, stack: ItemStack)
         {
             var s = stack.copy()
-            if (!s.isEmpty && !isItemValid(slot, s)) s = ItemStack.EMPTY
-            if (s.count > getSlotLimit(slot)) s.count = getSlotLimit(slot)
+            if (!s.isEmpty && !isItemValid(slot, s))
+                s = ItemStack.EMPTY
+            if (s.count > getSlotLimit(slot))
+                s.count = getSlotLimit(slot)
             super.setStackInSlot(slot, s)
         }
 
-        override fun onContentsChanged(slot: Int) {
+        override fun onContentsChanged(slot: Int)
+        {
             recipeMapWorkable.forceRecipeRecheck()
             super.onContentsChanged(slot)
         }
@@ -451,13 +455,9 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
     private inner class QuantumForceTransformerRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte)
     {
-        override fun findRecipe(
-            maxVoltage: Long,
-            inputs: IItemHandlerModifiable?,
-            fluidInputs: IMultipleTankHandler?
-        ): Recipe? {
-
-            getWorkableRecipeMaps().forEach { map ->
+        override fun findRecipe(maxVoltage: Long, inputs: IItemHandlerModifiable?, fluidInputs: IMultipleTankHandler?): Recipe?
+        {
+            workableRecipeMaps().forEach { map ->
                 val result = map.findRecipe(maxVoltage, inputs, fluidInputs)
                 result?.let {
                     workingRecipeMap = map
@@ -475,6 +475,5 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         }
 
         override fun getParallelLimit() = 16 * shieldingCoreTier
-
     }
 }
