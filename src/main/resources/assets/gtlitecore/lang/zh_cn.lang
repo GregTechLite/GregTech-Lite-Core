@@ -2650,8 +2650,8 @@ gtlitecore.machine.quantum_force_transformer.tooltip.1=让复杂的化学过程�
 gtlitecore.machine.quantum_force_transformer.tooltip.2=每种独立配方都具有§f催化剂§7，仅用于为量子操纵者提供配方识别。
 gtlitecore.machine.quantum_force_transformer.tooltip.3=脉冲控制方块决定了最大的§a可执行配方等级§7，屏蔽核心方块决定了§b配方产出概率§7。
 gtlitecore.machine.quantum_force_transformer.tooltip.4=支持在§f控制器槽位§7中放置§6大型化学机器§7来兼容对应机器的配方模式。
-gtlitecore.machine.quantum_force_transformer.tooltip.5=§b双倍无损超频（化学模式，所有方块等级最高时独立模式解锁）
-gtlitecore.machine.quantum_force_transformer.tooltip.6=§a1024§f（化学模式）§7或§a16§f（独立模式）§a×屏蔽核心方块等级
+gtlitecore.machine.quantum_force_transformer.tooltip.5=§b双倍无损超频§7（化学模式，所有方块等级最高时独立模式解锁）
+gtlitecore.machine.quantum_force_transformer.tooltip.6=§a1024§7（化学模式）或§a16§7（独立模式）§a×屏蔽核心方块等级
 gtlitecore.machine.quantum_force_transformer.tooltip.7=控制器槽位允许附加机器：§e化工厂§7，§e大型燃烧炉§7，§e大型冷冻室§7
 gtlitecore.machine.quantum_force_transformer.tooltip.8=结构底层放置§f输入仓室§7，顶层放置§f输出仓室§7
 

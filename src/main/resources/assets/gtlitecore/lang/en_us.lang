@@ -2650,8 +2650,8 @@ gtlitecore.machine.quantum_force_transformer.tooltip.1=Make Complex Chemical Pro
 gtlitecore.machine.quantum_force_transformer.tooltip.2=Each recipe has own §fCatalyst§7 which used as recipe token only
 gtlitecore.machine.quantum_force_transformer.tooltip.3=Manipulator Block determines §aMaximum Recipe Level§7, Shielding Core determines §bOutput Chance§7.
 gtlitecore.machine.quantum_force_transformer.tooltip.4=Support to put §6Large Chemical Machines§7 to §fController Slot§7 to unlock corresponding mode.
-gtlitecore.machine.quantum_force_transformer.tooltip.5=§bDoubling Perfect Overclocking (Chemical Mode, Unique Mode unlocked when all tier is maximum)
-gtlitecore.machine.quantum_force_transformer.tooltip.6=§a1024§f (Chemical Mode)§7 or §a16§f (Unique Mode)§a×Shielding Core Tier
+gtlitecore.machine.quantum_force_transformer.tooltip.5=§bDoubling Perfect Overclocking§7 (Chemical Mode, Unique Mode unlocked when all tier is maximum)
+gtlitecore.machine.quantum_force_transformer.tooltip.6=§a1024§7 (Chemical Mode) or 16§7 (Unique Mode)§a×Shielding Core Tier
 gtlitecore.machine.quantum_force_transformer.tooltip.7=Controller Slot Allowed Machines: §eChemical Plant§7, §eLarge Burner Reactor§7, §eLarge Cryogenic Reactor§7
 gtlitecore.machine.quantum_force_transformer.tooltip.8=§fInput Buses/Hatches§7 put on Structure Bottom, §fOutput Buses/Hatches§7 on Top
 
