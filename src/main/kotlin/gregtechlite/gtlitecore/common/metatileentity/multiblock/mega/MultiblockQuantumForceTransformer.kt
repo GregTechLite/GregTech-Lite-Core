@@ -12,7 +12,14 @@ import gregtech.api.metatileentity.IFastRenderMetaTileEntity
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
-import gregtech.api.metatileentity.multiblock.MultiblockAbility.*
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_FLUIDS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.IMPORT_ITEMS
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_ENERGY
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.INPUT_LASER
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.MAINTENANCE_HATCH
+import gregtech.api.metatileentity.multiblock.MultiblockAbility.SUBSTATION_INPUT_ENERGY
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIBuilder
 import gregtech.api.metatileentity.multiblock.ui.MultiblockUIFactory
@@ -408,7 +415,7 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
             return arrayOf(QUANTUM_FORCE_TRANSFORMER_RECIPES)
         return when (machine.metadata)
         {
-            //10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
+            // 10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
             10125 -> arrayOf(BURNER_REACTOR_RECIPES   , ROASTER_RECIPES       , QUANTUM_FORCE_TRANSFORMER_RECIPES)
             10126 -> arrayOf(CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES, QUANTUM_FORCE_TRANSFORMER_RECIPES)
             10131 -> arrayOf(LARGE_CHEMICAL_RECIPES   , CHEMICAL_PLANT_RECIPES, QUANTUM_FORCE_TRANSFORMER_RECIPES)
@@ -418,7 +425,7 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
     private inner class InstalledMachineSlot: NotifiableItemStackHandler(this, 1, null, false)
     {
-        //10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
+        // 10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
         private val allowedMachines = arrayOf(10125, 10126, 10131)
 
         override fun isItemValid(slot: Int, stack: ItemStack): Boolean
