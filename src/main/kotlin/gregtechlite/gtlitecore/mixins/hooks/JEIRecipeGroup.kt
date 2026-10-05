@@ -48,6 +48,14 @@ object JEIRecipeGroup
         addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, RecipeMaps.WIREMILL_RECIPES)
         addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, GTLiteRecipeMaps.LOOM_RECIPES)
 
+        addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, RecipeMaps.CHEMICAL_RECIPES)
+        addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, RecipeMaps.LARGE_CHEMICAL_RECIPES)
+        addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES)
+        addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, GTLiteRecipeMaps.BURNER_REACTOR_RECIPES)
+        addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, GTLiteRecipeMaps.ROASTER_RECIPES)
+        addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, GTLiteRecipeMaps.CRYOGENIC_REACTOR_RECIPES)
+        addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, GTLiteRecipeMaps.BATH_CONDENSER_RECIPES)
+
         addRecipeGroup(GTLiteMetaTileEntities.CONCENTRATED_COKING_CLUSTER, RecipeMaps.PYROLYSE_RECIPES)
     }
 
