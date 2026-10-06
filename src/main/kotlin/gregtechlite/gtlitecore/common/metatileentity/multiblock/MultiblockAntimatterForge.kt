@@ -21,6 +21,8 @@ import gregtech.client.shader.postprocessing.BloomType
 import gregtech.client.utils.BloomEffectUtil
 import gregtech.client.utils.EffectRenderContext
 import gregtech.client.utils.IBloomEffect
+import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityEnergyHatch
+import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityLaserHatch
 import gregtechlite.gtlitecore.api.capability.logic.ExtendedPowerMultiblockRecipeLogic
 import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer
 import gregtechlite.gtlitecore.api.metatileentity.sync.SyncedMetaTileEntity
@@ -31,6 +33,7 @@ import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
+import gregtechlite.gtlitecore.common.metatileentity.part.PartMachineWirelessHatch
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder
 import net.minecraft.client.renderer.BufferBuilder
 import net.minecraft.client.renderer.Tessellator
@@ -172,8 +175,17 @@ class MultiblockAntimatterForge(id: ResourceLocation)
     // @formatter:on
 
     @SideOnly(Side.CLIENT)
-    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = if (recipeMapWorkable.isActive)
-        GTLiteOverlays.ANTIMATTER_FORGE_ACTIVE_TEXTURE else GTLiteOverlays.ANTIMATTER_FORGE_TEXTURE
+    override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer
+        = if (sourcePart is MetaTileEntityEnergyHatch || sourcePart is MetaTileEntityLaserHatch
+              || sourcePart is PartMachineWirelessHatch)
+          {
+              GTLiteOverlays.GRAVITY_STABILIZATION_CASING
+          }
+          else
+          {
+              if (recipeMapWorkable.isActive) GTLiteOverlays.ANTIMATTER_FORGE_ACTIVE_TEXTURE
+              else GTLiteOverlays.ANTIMATTER_FORGE_TEXTURE
+          }
 
     @SideOnly(Side.CLIENT)
     override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.ANTIMATTER_FORGE_OVERLAY

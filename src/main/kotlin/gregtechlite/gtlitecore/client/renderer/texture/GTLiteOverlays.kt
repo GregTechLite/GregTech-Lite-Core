@@ -302,6 +302,8 @@ object GTLiteOverlays
     val DYSON_SWARM_ENERGY_RECEIVER_BASE_CASING = complexCasingId("aerospace/dyson_swarm_casing_base")
     @JvmField
     val TANTALUM_CARBIDE_CASING = casingId("metal/tantalum_carbide")
+    @JvmField
+    val GRAVITY_STABILIZATION_CASING = casingId("antimatter/gravity_stabilization_casing")
 
     // endregion
 
