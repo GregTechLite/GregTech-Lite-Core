@@ -8,9 +8,12 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
 import gregtech.api.unification.ore.OrePrefix.bolt
 import gregtech.api.unification.ore.OrePrefix.frameGt
+import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plateDense
 import gregtech.api.unification.ore.OrePrefix.plateDouble
 import gregtech.api.unification.ore.OrePrefix.screw
+import gregtech.api.unification.ore.OrePrefix.spring
+import gregtech.api.unification.ore.OrePrefix.springSmall
 import gregtech.api.unification.ore.OrePrefix.wireFine
 import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
@@ -64,6 +67,8 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROD_LONG
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROTOR
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_ROUND
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_SCREW
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_SPRING
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_SPRING_SMALL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_TURBINE_BLADE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE_DENSE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_PLATE_DOUBLE
@@ -111,7 +116,9 @@ internal object BlackholeFormerRecipeProducer
         wireGtHex          to SHAPE_FIELD_WIRE_HEX.stack(),
         wireFine           to SHAPE_FIELD_WIRE_FINE.stack(),
         plateDouble        to SHAPE_FIELD_PLATE_DOUBLE.stack(),
-        plateDense         to SHAPE_FIELD_PLATE_DENSE.stack())
+        plateDense         to SHAPE_FIELD_PLATE_DENSE.stack(),
+        spring             to SHAPE_FIELD_SPRING.stack(),
+        springSmall        to SHAPE_FIELD_SPRING_SMALL.stack())
 
     fun produce()
     {
@@ -144,10 +151,31 @@ internal object BlackholeFormerRecipeProducer
 
     private fun transcribeRecipe(recipe: Recipe)
     {
-        val outputPrefix = OreDictUnifier.getPrefix(recipe.outputs.firstOrNull() ?: return) ?: return
+        val output = recipe.outputs.firstOrNull() ?: return
+        val outputPrefix = OreDictUnifier.getPrefix(output) ?: return
         val shapeField = prefix2FieldStack[outputPrefix] ?: return
+
+        if (outputPrefix in setOf(spring, springSmall))
+        {
+            addIngotFormedRecipe(recipe, shapeField, output)
+            return
+        }
+
         val circuit = recipe.inputs.firstOrNull { it is IntCircuitIngredient }
         addRecipe(recipe, shapeField, recipe.inputs.filterNot { it === circuit }, recipe.outputs)
+    }
+
+    private fun addIngotFormedRecipe(recipe: Recipe, shapeField: ItemStack, output: ItemStack)
+    {
+        val material = OreDictUnifier.getMaterial(output)?.material ?: return
+        GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES.addRecipe {
+            notConsumable(shapeField)
+            input(ingot, material)
+            outputs(recipe.outputs)
+            EUt(recipe.eUt)
+            duration(recipe.duration)
+            category(GTLiteRecipeCategories.BLACKHOLE_SHAPING)
+        }
     }
 
     private fun addRecipe(recipe: Recipe, shapeField: ItemStack, inputs: List<GTRecipeInput>, outputs: List<ItemStack>,

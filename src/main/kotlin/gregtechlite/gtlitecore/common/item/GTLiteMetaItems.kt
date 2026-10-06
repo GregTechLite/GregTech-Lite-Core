@@ -68,6 +68,8 @@ object GTLiteMetaItems
     lateinit var SHAPE_FIELD_PLATE_DOUBLE: MetaItem<*>.MetaValueItem
     lateinit var SHAPE_FIELD_PLATE_DENSE: MetaItem<*>.MetaValueItem
     lateinit var SHAPE_FIELD_SCREW: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_SPRING: MetaItem<*>.MetaValueItem
+    lateinit var SHAPE_FIELD_SPRING_SMALL: MetaItem<*>.MetaValueItem
 
     lateinit var CREDIT_ADAMANTIUM: MetaItem<*>.MetaValueItem
     lateinit var CREDIT_VIBRANIUM: MetaItem<*>.MetaValueItem

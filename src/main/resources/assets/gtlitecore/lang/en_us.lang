@@ -835,6 +835,10 @@ metaitem.shape.field.plate_dense.name=Shape Force Field (Dense Plate)
 metaitem.shape.field.plate_dense.tooltip=Dense Plate Force Field for §6Event Horizon Gravitational Bundle Former§7
 metaitem.shape.field.screw.name=Shape Force Field (Screw)
 metaitem.shape.field.screw.tooltip=Screw Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.spring.name=Shape Force Field (Spring)
+metaitem.shape.field.spring.tooltip=Spring Force Field for §6Event Horizon Gravitational Bundle Former§7
+metaitem.shape.field.spring_small.name=Shape Force Field (Small Spring)
+metaitem.shape.field.spring_small.tooltip=Small Spring Force Field for §6Event Horizon Gravitational Bundle Former§7
 
 metaitem.credit.adamantium.name=Adamantium Credit
 metaitem.credit.adamantium.tooltip=2097152 Credits

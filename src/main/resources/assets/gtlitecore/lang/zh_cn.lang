@@ -835,6 +835,10 @@ metaitem.shape.field.plate_dense.name=形态力场（致密板）
 metaitem.shape.field.plate_dense.tooltip=用来为§6事件视界引力收束成型装置§7提供形状的致密板状力场
 metaitem.shape.field.screw.name=形态力场（螺丝）
 metaitem.shape.field.screw.tooltip=用来为§6事件视界引力收束成型装置§7提供形状的螺丝状力场
+metaitem.shape.field.spring.name=形态力场（弹簧）
+metaitem.shape.field.spring.tooltip=用来为§6事件视界引力收束成型装置§7提供形状的弹簧状力场
+metaitem.shape.field.spring_small.name=形态力场（小型弹簧）
+metaitem.shape.field.spring_small.tooltip=用来为§6事件视界引力收束成型装置§7提供形状的小型弹簧状力场
 
 metaitem.credit.adamantium.name=精金币
 metaitem.credit.adamantium.tooltip=币值2097152
