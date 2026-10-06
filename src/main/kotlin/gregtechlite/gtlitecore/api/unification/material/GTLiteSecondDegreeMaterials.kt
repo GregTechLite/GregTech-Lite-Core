@@ -699,7 +699,8 @@ object GTLiteSecondDegreeMaterials
             components(Stellite, 15, Jasper, 5, Gallium, 5, Americium, 5, Palladium, 5, Bismuth, 5, Germanium, 5,
                        SiliconCarbide, 5)
             flags(EXT2_METAL, DECOMPOSITION_BY_CENTRIFUGING, GENERATE_FRAME, GENERATE_DOUBLE_PLATE, GENERATE_DENSE,
-                  GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROTOR, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND)
+                  GENERATE_FOIL, GENERATE_FINE_WIRE, GENERATE_ROTOR, GENERATE_GEAR, GENERATE_SMALL_GEAR, GENERATE_ROUND,
+                  GENERATE_SPRING, GENERATE_SPRING_SMALL)
             blastProp(11400, GasTier.HIGHEST, // Adamantium
                       VA[UHV], 58.s,
                       VA[UV], 29.s)
