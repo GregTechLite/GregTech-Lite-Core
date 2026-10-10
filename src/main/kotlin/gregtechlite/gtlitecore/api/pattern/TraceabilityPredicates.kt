@@ -175,7 +175,7 @@ object TraceabilityPredicates
     }
 
     @JvmStatic
-    fun optionalStates(symbol: String, vararg allowedStates: IBlockState) = TraceabilityPredicate { blockWorldState ->
+    fun optionalStates(symbol: String, vararg allowedStates: IBlockState) = TraceabilityPredicate({ blockWorldState ->
         val state: IBlockState = blockWorldState.blockState
         if (state.block is VariantActiveBlock<*>)
         {
@@ -185,7 +185,7 @@ object TraceabilityPredicates
         if (allowedStates.contains(state))
             return@TraceabilityPredicate blockWorldState.matchContext.getOrPut(symbol, true)
         return@TraceabilityPredicate blockWorldState.matchContext.get<String>(symbol) == null
-    }.also { allowedStates.map(::BlockInfo) }
+    }, { allowedStates.map(::BlockInfo).toTypedArray() })
 
     @JvmStatic
     fun quantumStorageUnits(): TraceabilityPredicate = TraceabilityPredicate({ worldState ->
