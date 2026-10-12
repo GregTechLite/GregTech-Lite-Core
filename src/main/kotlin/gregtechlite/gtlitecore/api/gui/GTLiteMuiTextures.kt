@@ -112,6 +112,14 @@ object GTLiteMuiTextures
     val BUTTON_HIGH_SPEED_MODE = texture("textures/gui/widget/button_high_speed_mode.png", 16, 32, 16, 16)
 
     /**
+     * Multiblock Button for Advanced Assembly Line Pipeline Mode.
+     * - 0: false
+     * - 1: true
+     */
+    @JvmField
+    val BUTTON_PIPELINE_MODE = texture("textures/gui/widget/button_pipeline_mode.png", 16, 32, 16, 16)
+
+    /**
      * Space Elevator Logo.
      */
     @JvmField
