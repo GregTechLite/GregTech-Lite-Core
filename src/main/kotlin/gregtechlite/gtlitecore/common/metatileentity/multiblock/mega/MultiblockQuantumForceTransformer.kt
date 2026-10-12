@@ -262,8 +262,8 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
 
     override fun getRenderBoundingBox(): AxisAlignedBB
     {
-        val relativeBack = RelativeDirection.BACK.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped())
-        val relativeRight = RelativeDirection.RIGHT.getRelativeFacing(getFrontFacing(), getUpwardsFacing(), isFlipped())
+        val relativeBack = RelativeDirection.BACK.getRelativeFacing(frontFacing, upwardsFacing, isFlipped)
+        val relativeRight = RelativeDirection.RIGHT.getRelativeFacing(frontFacing, upwardsFacing, isFlipped)
         return AxisAlignedBB(pos.offset(relativeBack, -4).offset(relativeRight, -7),
                              pos.offset(relativeBack, 10).offset(relativeRight, 7).up(4))
     }
