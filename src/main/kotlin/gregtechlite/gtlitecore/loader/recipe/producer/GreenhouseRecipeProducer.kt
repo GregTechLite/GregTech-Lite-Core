@@ -229,6 +229,11 @@ internal object GreenhouseRecipeProducer
             ItemStack(Items.DYE, 12, 3),
             ItemStack(Items.DYE, 6, 3))
 
+        // Reeds
+        addGreenhouseRecipes(ItemStack(Items.REEDS, 6),
+                             ItemStack(Items.REEDS, 6),
+                             ItemStack(Items.REEDS, 6))
+
         // endregion
 
         // region Mod Additional Crops Recipes
