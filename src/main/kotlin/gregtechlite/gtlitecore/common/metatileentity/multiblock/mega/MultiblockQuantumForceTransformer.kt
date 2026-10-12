@@ -3,13 +3,14 @@ package gregtechlite.gtlitecore.common.metatileentity.multiblock.mega
 import com.cleanroommc.modularui.widgets.slot.ItemSlot
 import com.cleanroommc.modularui.widgets.slot.ModularSlot
 import com.morphismmc.morphismlib.client.Games
-import gregtech.api.block.machines.MachineItemBlock
+import gregtech.api.GTValues.UEV
 import gregtech.api.capability.IMultipleTankHandler
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.capability.impl.NotifiableItemStackHandler
 import gregtech.api.metatileentity.IFastRenderMetaTileEntity
 import gregtech.api.metatileentity.MetaTileEntity
+import gregtech.api.metatileentity.SimpleMachineMetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.IMultiblockPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility.EXPORT_FLUIDS
@@ -29,10 +30,10 @@ import gregtech.api.pattern.FactoryBlockPattern
 import gregtech.api.pattern.PatternMatchContext
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMap
-import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.logic.OCResult
 import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
+import gregtech.api.util.GTUtility
 import gregtech.api.util.GTUtility.getTierByVoltage
 import gregtech.api.util.KeyUtil
 import gregtech.api.util.RelativeDirection
@@ -42,6 +43,7 @@ import gregtech.client.utils.BloomEffectUtil
 import gregtech.client.utils.EffectRenderContext
 import gregtech.client.utils.IBloomEffect
 import gregtech.client.utils.TooltipHelper
+import gregtech.common.metatileentities.multi.electric.MetaTileEntityLargeChemicalReactor
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
@@ -61,6 +63,7 @@ import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.common.block.variant.GlassCasing
 import gregtechlite.gtlitecore.common.block.variant.MultiblockCasing
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockChemicalPlant
 import net.minecraft.client.renderer.BufferBuilder
 import net.minecraft.client.renderer.Tessellator
 import net.minecraft.client.renderer.texture.TextureMap
@@ -103,6 +106,9 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         private val casingState = MultiblockCasing.PARTICLE_CONTAINMENT_CASING.state
         private val coilState = MultiblockCasing.PARTICLE_EXCITATION_WIRE_COIL.state
         private val glassState = GlassCasing.FORCE_FIELD.state
+
+        private val singleMachines = setOf(BURNER_REACTOR_RECIPES, ROASTER_RECIPES,
+                                           CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES)
     }
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
@@ -412,47 +418,27 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         }
     }
 
+    private fun moduleRecipeMaps(mte: MetaTileEntity): List<RecipeMap<*>> = when (mte)
+    {
+        is MultiblockChemicalPlant            -> listOf(CHEMICAL_PLANT_RECIPES)
+        is MetaTileEntityLargeChemicalReactor -> listOfNotNull(mte.recipeMap)
+        is SimpleMachineMetaTileEntity        ->
+            if (mte.tier == UEV && mte.recipeMap?.let { it in singleMachines } == true)
+                listOfNotNull(mte.recipeMap) else emptyList()
+        else                                  -> emptyList()
+    }
+
     private fun workableRecipeMaps(): Array<RecipeMap<*>>
     {
         val machine = installedMachine.getStackInSlot(0)
-        if (machine.isEmpty)
-            return arrayOf(QUANTUM_FORCE_TRANSFORMER_RECIPES)
-
-        return when (machine.translationKey)
-        {
-            // Chemical Plant
-            "gregtech.machine.large_chemical_reactor"  -> arrayOf(LARGE_CHEMICAL_RECIPES   , QUANTUM_FORCE_TRANSFORMER_RECIPES)
-            "gtlitecore.machine.chemical_plant"        -> arrayOf(CHEMICAL_PLANT_RECIPES   , QUANTUM_FORCE_TRANSFORMER_RECIPES)
-
-            // Large Burner Reactor
-            "gtlitecore.machine.burner_reactor.uev"    -> arrayOf(BURNER_REACTOR_RECIPES   , QUANTUM_FORCE_TRANSFORMER_RECIPES)
-            "gtlitecore.machine.roaster.uev"           -> arrayOf(ROASTER_RECIPES          , QUANTUM_FORCE_TRANSFORMER_RECIPES)
-
-            // Large Cryogenic Reactor
-            "gtlitecore.machine.cryogenic_reactor.uev" -> arrayOf(CRYOGENIC_REACTOR_RECIPES, QUANTUM_FORCE_TRANSFORMER_RECIPES)
-            "gtlitecore.machine.bath_condenser.uev"    -> arrayOf(BATH_CONDENSER_RECIPES   , QUANTUM_FORCE_TRANSFORMER_RECIPES)
-
-            else                                            -> arrayOf(                           QUANTUM_FORCE_TRANSFORMER_RECIPES)
-        }
+        val moduleMaps = GTUtility.getMetaTileEntity(machine)?.let { moduleRecipeMaps(it) }.orEmpty()
+        return (moduleMaps + QUANTUM_FORCE_TRANSFORMER_RECIPES).toTypedArray()
     }
 
     private inner class InstalledMachineSlot: NotifiableItemStackHandler(this, 1, null, false)
     {
-        private val allowedMachines = arrayOf("gregtech.machine.large_chemical_reactor",
-                                              "gtlitecore.machine.chemical_plant",
-                                              "gtlitecore.machine.burner_reactor.uev",
-                                              "gtlitecore.machine.roaster.uev",
-                                              "gtlitecore.machine.cryogenic_reactor.uev",
-                                              "gtlitecore.machine.bath_condenser.uev")
-
         override fun isItemValid(slot: Int, stack: ItemStack): Boolean
-        {
-            if (stack.isEmpty)
-                return false
-            if (stack.item !is MachineItemBlock)
-                return false
-            return stack.translationKey in allowedMachines
-        }
+            = GTUtility.getMetaTileEntity(stack)?.let { moduleRecipeMaps(it) }?.isNotEmpty() ?: false
 
         override fun getSlotLimit(slot: Int): Int = 1
 
