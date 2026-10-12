@@ -229,6 +229,16 @@ internal object GreenhouseRecipeProducer
             ItemStack(Items.DYE, 12, 3),
             ItemStack(Items.DYE, 6, 3))
 
+        // Reeds
+        addGreenhouseRecipes(ItemStack(Items.REEDS, 6),
+                             ItemStack(Items.REEDS, 3),
+                             ItemStack(Items.REEDS, 6))
+
+        // Cactus
+        addGreenhouseRecipes(ItemStack(Blocks.CACTUS, 6),
+                             ItemStack(Blocks.CACTUS, 3),
+                             ItemStack(Blocks.CACTUS, 6))
+
         // endregion
 
         // region Mod Additional Crops Recipes
@@ -377,6 +387,42 @@ internal object GreenhouseRecipeProducer
         addGreenhouseRecipes(CRANBERRY.getStackForm(6),
             CRANBERRY.getStackForm(12),
             CRANBERRY.getStackForm(6))
+
+        // endregion
+
+        // region Vanilla Flowers Recipes
+
+        addGreenhouseRecipes(ItemStack(Blocks.YELLOW_FLOWER, 3),
+                             ItemStack(Blocks.YELLOW_FLOWER, 2),
+                             ItemStack(Blocks.YELLOW_FLOWER, 1))
+
+        for (i in 0..8)
+        {
+            addGreenhouseRecipes(ItemStack(Blocks.RED_FLOWER, 3, i),
+                                 ItemStack(Blocks.RED_FLOWER, 2, i),
+                                 ItemStack(Blocks.RED_FLOWER, 1, i))
+        }
+
+        addGreenhouseRecipes(ItemStack(Blocks.BROWN_MUSHROOM, 4),
+                             ItemStack(Blocks.BROWN_MUSHROOM, 2),
+                             ItemStack(Blocks.BROWN_MUSHROOM, 2))
+
+        addGreenhouseRecipes(ItemStack(Blocks.RED_MUSHROOM, 4),
+                             ItemStack(Blocks.RED_MUSHROOM, 2),
+                             ItemStack(Blocks.RED_MUSHROOM, 2))
+
+        for (i in 0..1)
+        {
+            addGreenhouseRecipes(ItemStack(Blocks.DOUBLE_PLANT, 3, i),
+                                 ItemStack(Blocks.DOUBLE_PLANT, 1, i),
+                                 ItemStack(Blocks.DOUBLE_PLANT, 1, i))
+        }
+        for (i in 4..5)
+        {
+            addGreenhouseRecipes(ItemStack(Blocks.DOUBLE_PLANT, 3, i),
+                                 ItemStack(Blocks.DOUBLE_PLANT, 1, i),
+                                 ItemStack(Blocks.DOUBLE_PLANT, 1, i))
+        }
 
         // endregion
     }
