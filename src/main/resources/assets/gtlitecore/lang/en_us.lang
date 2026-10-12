@@ -2653,11 +2653,12 @@ gtlitecore.machine.quantum_force_transformer.name=Quantum Force Transformer
 gtlitecore.machine.quantum_force_transformer.tooltip.1=Make Complex Chemical Processes happen in One-Step
 gtlitecore.machine.quantum_force_transformer.tooltip.2=Each recipe has own §fCatalyst§7 which used as recipe token only
 gtlitecore.machine.quantum_force_transformer.tooltip.3=Manipulator Block determines §aMaximum Recipe Level§7, Shielding Core determines §bOutput Chance§7.
-gtlitecore.machine.quantum_force_transformer.tooltip.4=Support to put §6Large Chemical Machines§7 to §fController Slot§7 to unlock corresponding mode.
-gtlitecore.machine.quantum_force_transformer.tooltip.5=§bDoubling Perfect Overclocking§7 (Chemical Mode, Unique Mode unlocked when all tier is maximum)
-gtlitecore.machine.quantum_force_transformer.tooltip.6=§a1024§7 (Chemical Mode) or 16§7 (Unique Mode)§a×Shielding Core Tier
-gtlitecore.machine.quantum_force_transformer.tooltip.7=Controller Slot Allowed Machines: §eChemical Plant§7, §eLarge Burner Reactor§7, §eLarge Cryogenic Reactor§7
+gtlitecore.machine.quantum_force_transformer.tooltip.4=Support to put machine to §fController Slot§7 to unlock corresponding mode.
+gtlitecore.machine.quantum_force_transformer.tooltip.5=Put §aUEV§7-tier §fSingle Machine§7 or special recipe map §6Large Machine§7 to unlocked mode.
+gtlitecore.machine.quantum_force_transformer.tooltip.6=§bDoubling Perfect Overclocking§7 (Chemical Mode, Unique Mode unlocked when all tier is maximum)
+gtlitecore.machine.quantum_force_transformer.tooltip.7=§a1024§7 (Chemical Mode) or 16§7 (Unique Mode)§a×Shielding Core Tier
 gtlitecore.machine.quantum_force_transformer.tooltip.8=§fInput Buses/Hatches§7 put on Structure Bottom, §fOutput Buses/Hatches§7 on Top
+gtlitecore.machine.quantum_force_transformer.tooltip.9=Support Machines: §fBurner Reactor§7, §fRoaster§7, §fCryogenic Reactor§7, §fBath Condenser§7, §fLarge Chemical Reactor§7, §fChemical Plant§7
 
 gtlitecore.machine.quantum_force_transformer.manipulator_info=Manipulator Tier: %s
 gtlitecore.machine.quantum_force_transformer.shielding_core_info=Shielding Core Tier: %s

@@ -41,6 +41,7 @@ import gregtech.client.shader.postprocessing.BloomType
 import gregtech.client.utils.BloomEffectUtil
 import gregtech.client.utils.EffectRenderContext
 import gregtech.client.utils.IBloomEffect
+import gregtech.client.utils.TooltipHelper
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.api.GTLiteAPI
 import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
@@ -190,13 +191,16 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
             addDescriptionLine("gtlitecore.machine.quantum_force_transformer.tooltip.1",
                                "gtlitecore.machine.quantum_force_transformer.tooltip.2",
                                "gtlitecore.machine.quantum_force_transformer.tooltip.3",
-                               "gtlitecore.machine.quantum_force_transformer.tooltip.4")
-            addOverclockInfo("gtlitecore.machine.quantum_force_transformer.tooltip.5")
-            addParallelInfo("gtlitecore.machine.quantum_force_transformer.tooltip.6")
+                               "gtlitecore.machine.quantum_force_transformer.tooltip.4",
+                               "gtlitecore.machine.quantum_force_transformer.tooltip.5")
+            addOverclockInfo("gtlitecore.machine.quantum_force_transformer.tooltip.6")
+            addParallelInfo("gtlitecore.machine.quantum_force_transformer.tooltip.7")
             addDurationInfo(1200, UpgradeMode.MANIPULATOR)
             addLaserHatchInfo()
-            addDescriptionLine("gtlitecore.machine.quantum_force_transformer.tooltip.7",
-                               "gtlitecore.machine.quantum_force_transformer.tooltip.8")
+            addDescriptionLine("gtlitecore.machine.quantum_force_transformer.tooltip.8")
+            addDescriptionLine(if (TooltipHelper.isCtrlDown()) {
+                "gtlitecore.machine.quantum_force_transformer.tooltip.9"
+            } else { "gregtech.tooltip.hold_ctrl" })
         }
     }
 
@@ -413,20 +417,33 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
         val machine = installedMachine.getStackInSlot(0)
         if (machine.isEmpty)
             return arrayOf(QUANTUM_FORCE_TRANSFORMER_RECIPES)
-        return when (machine.metadata)
+
+        return when (machine.translationKey)
         {
-            // 10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
-            10125 -> arrayOf(BURNER_REACTOR_RECIPES   , ROASTER_RECIPES       , QUANTUM_FORCE_TRANSFORMER_RECIPES)
-            10126 -> arrayOf(CRYOGENIC_REACTOR_RECIPES, BATH_CONDENSER_RECIPES, QUANTUM_FORCE_TRANSFORMER_RECIPES)
-            10131 -> arrayOf(LARGE_CHEMICAL_RECIPES   , CHEMICAL_PLANT_RECIPES, QUANTUM_FORCE_TRANSFORMER_RECIPES)
-            else  -> arrayOf(                                                   QUANTUM_FORCE_TRANSFORMER_RECIPES)
+            // Chemical Plant
+            "gregtech.machine.large_chemical_reactor"  -> arrayOf(LARGE_CHEMICAL_RECIPES   , QUANTUM_FORCE_TRANSFORMER_RECIPES)
+            "gtlitecore.machine.chemical_plant"        -> arrayOf(CHEMICAL_PLANT_RECIPES   , QUANTUM_FORCE_TRANSFORMER_RECIPES)
+
+            // Large Burner Reactor
+            "gtlitecore.machine.burner_reactor.uev"    -> arrayOf(BURNER_REACTOR_RECIPES   , QUANTUM_FORCE_TRANSFORMER_RECIPES)
+            "gtlitecore.machine.roaster.uev"           -> arrayOf(ROASTER_RECIPES          , QUANTUM_FORCE_TRANSFORMER_RECIPES)
+
+            // Large Cryogenic Reactor
+            "gtlitecore.machine.cryogenic_reactor.uev" -> arrayOf(CRYOGENIC_REACTOR_RECIPES, QUANTUM_FORCE_TRANSFORMER_RECIPES)
+            "gtlitecore.machine.bath_condenser.uev"    -> arrayOf(BATH_CONDENSER_RECIPES   , QUANTUM_FORCE_TRANSFORMER_RECIPES)
+
+            else                                            -> arrayOf(                           QUANTUM_FORCE_TRANSFORMER_RECIPES)
         }
     }
 
     private inner class InstalledMachineSlot: NotifiableItemStackHandler(this, 1, null, false)
     {
-        // 10125: LARGE_BURNER_REACTOR, 10126: LARGE_CRYOGENIC_REACTOR, 10131: CHEMICAL_PLANT
-        private val allowedMachines = arrayOf(10125, 10126, 10131)
+        private val allowedMachines = arrayOf("gregtech.machine.large_chemical_reactor",
+                                              "gtlitecore.machine.chemical_plant",
+                                              "gtlitecore.machine.burner_reactor.uev",
+                                              "gtlitecore.machine.roaster.uev",
+                                              "gtlitecore.machine.cryogenic_reactor.uev",
+                                              "gtlitecore.machine.bath_condenser.uev")
 
         override fun isItemValid(slot: Int, stack: ItemStack): Boolean
         {
@@ -434,7 +451,7 @@ class MultiblockQuantumForceTransformer(id: ResourceLocation)
                 return false
             if (stack.item !is MachineItemBlock)
                 return false
-            return stack.metadata in allowedMachines
+            return stack.translationKey in allowedMachines
         }
 
         override fun getSlotLimit(slot: Int): Int = 1
