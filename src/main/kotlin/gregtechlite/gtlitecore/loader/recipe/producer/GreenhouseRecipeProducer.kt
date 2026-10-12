@@ -384,6 +384,29 @@ internal object GreenhouseRecipeProducer
             CRANBERRY.getStackForm(6))
 
         // endregion
+
+        // region Vanilla Flowers Recipes
+
+        addGreenhouseRecipes(ItemStack(Blocks.YELLOW_FLOWER, 3),
+                             ItemStack(Blocks.YELLOW_FLOWER, 2),
+                             ItemStack(Blocks.YELLOW_FLOWER, 1))
+
+        for (i in 0..8)
+        {
+            addGreenhouseRecipes(ItemStack(Blocks.RED_FLOWER, 3, i),
+                                 ItemStack(Blocks.RED_FLOWER, 2, i),
+                                 ItemStack(Blocks.RED_FLOWER, 1, i))
+        }
+
+        addGreenhouseRecipes(ItemStack(Blocks.BROWN_MUSHROOM, 4),
+                             ItemStack(Blocks.BROWN_MUSHROOM, 2),
+                             ItemStack(Blocks.BROWN_MUSHROOM, 2))
+
+        addGreenhouseRecipes(ItemStack(Blocks.RED_MUSHROOM, 4),
+                             ItemStack(Blocks.RED_MUSHROOM, 2),
+                             ItemStack(Blocks.RED_MUSHROOM, 2))
+
+        // endregion
     }
 
     private fun addGreenhouseRecipes(saplingStack: ItemStack,
