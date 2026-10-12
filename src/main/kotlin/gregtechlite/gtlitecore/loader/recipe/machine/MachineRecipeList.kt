@@ -40,6 +40,7 @@ internal object MachineRecipeList
         BathCondenserRecipes.init()
         BioSimulatorRecipes.init()
         BlackholeFormerRecipes.init()
+        ChemicalDehydratorRecipes.init()
         ConcentratedCokingClusterRecipes.init()
         CrystallizationCrucibleRecipes.init()
         EntrodynamicallyPhaseChangerRecipes.init()

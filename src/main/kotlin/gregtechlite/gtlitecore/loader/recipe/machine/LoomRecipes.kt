@@ -17,6 +17,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LOOM_RECIPES
 import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.api.t
 import net.minecraft.init.Blocks.CARPET
+import net.minecraft.init.Blocks.DOUBLE_PLANT
 import net.minecraft.init.Blocks.TALLGRASS
 import net.minecraft.init.Blocks.VINE
 import net.minecraft.init.Blocks.WATERLILY
@@ -134,6 +135,18 @@ internal object LoomRecipes
             outputs(WATERLILY)
             EUt(VA[ULV])
             duration(2.s)
+        }
+
+        // Tall Grass
+        for (i in 1..2)
+        {
+            LOOM_RECIPES.addRecipe {
+                circuitMeta(2)
+                inputs(TALLGRASS.getStack(count = 2, meta = i))
+                outputs(DOUBLE_PLANT.getStack(meta = i + 1))
+                EUt(VA[ULV])
+                duration(4.t)
+            }
         }
     }
 
