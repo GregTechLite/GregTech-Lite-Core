@@ -231,8 +231,13 @@ internal object GreenhouseRecipeProducer
 
         // Reeds
         addGreenhouseRecipes(ItemStack(Items.REEDS, 6),
-                             ItemStack(Items.REEDS, 6),
+                             ItemStack(Items.REEDS, 3),
                              ItemStack(Items.REEDS, 6))
+
+        // Cactus
+        addGreenhouseRecipes(ItemStack(Blocks.CACTUS, 6),
+                             ItemStack(Blocks.CACTUS, 3),
+                             ItemStack(Blocks.CACTUS, 6))
 
         // endregion
 
