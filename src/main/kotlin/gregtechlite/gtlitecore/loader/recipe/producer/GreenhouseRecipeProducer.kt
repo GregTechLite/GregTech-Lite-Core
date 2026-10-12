@@ -411,6 +411,19 @@ internal object GreenhouseRecipeProducer
                              ItemStack(Blocks.RED_MUSHROOM, 2),
                              ItemStack(Blocks.RED_MUSHROOM, 2))
 
+        for (i in 0..1)
+        {
+            addGreenhouseRecipes(ItemStack(Blocks.DOUBLE_PLANT, 3, i),
+                                 ItemStack(Blocks.DOUBLE_PLANT, 1, i),
+                                 ItemStack(Blocks.DOUBLE_PLANT, 1, i))
+        }
+        for (i in 4..5)
+        {
+            addGreenhouseRecipes(ItemStack(Blocks.DOUBLE_PLANT, 3, i),
+                                 ItemStack(Blocks.DOUBLE_PLANT, 1, i),
+                                 ItemStack(Blocks.DOUBLE_PLANT, 1, i))
+        }
+
         // endregion
     }
 
