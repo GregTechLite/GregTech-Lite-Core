@@ -2853,6 +2853,23 @@ gtlitecore.machine.circuit_assembly_line.tooltip.11=Regardless of which mode is 
 gtlitecore.machine.circuit_assembly_line.tooltip.12=When using Default Structure (i.e. without any extension), the layer count is 4 and machine will not obtain parallel.
 gtlitecore.machine.circuit_assembly_line.tooltip.13=When extended to maximum allowed Layer Count with 16 layers, the machine will obtain §e48§7 parallel.
 
+gtlitecore.machine.advanced_assembly_line.name=Advanced Assembly Line
+gtlitecore.machine.advanced_assembly_line.tooltip.1=Extreme Precision Assembly Line
+gtlitecore.machine.advanced_assembly_line.tooltip.2=Efficiently Crush same level Assembly Lines!
+gtlitecore.machine.advanced_assembly_line.tooltip.3=Support §fStandard Mode§7 and §aPipeline Mode§7 two modes
+gtlitecore.machine.advanced_assembly_line.tooltip.4=When machine in §fStandard Mode§7, recipe logic is same as Standard Assembly Line,
+gtlitecore.machine.advanced_assembly_line.tooltip.5=When machine in §aPipeline Mode§7, will §cconsume§7 all fluid inputs,
+gtlitecore.machine.advanced_assembly_line.tooltip.6=then calculate Maximum Slice by §fStructure Length§7, and start at the first slice;
+gtlitecore.machine.advanced_assembly_line.tooltip.7=Will consume inputs in the first §2Input Bus§7, and run until the last slice finished:
+gtlitecore.machine.advanced_assembly_line.tooltip.8=- If next slice working: Make it §cstop§7 until next slice relax;
+gtlitecore.machine.advanced_assembly_line.tooltip.9=- If next slice relax: Make this slice be relax, check next §2Input Bus§7, consume and run;
+gtlitecore.machine.advanced_assembly_line.tooltip.10=loops these steps when run finished.
+gtlitecore.machine.advanced_assembly_line.tooltip.11=Working Speed Buff: §d+200%%/Robot Arm Casing Tier and Conveyor Casing Tier
+gtlitecore.machine.advanced_assembly_line.tooltip.12=Energy Request Reduction: §6-5%%/Processor Casing Tier
+
+gtlitecore.machine.advanced_assembly_line.pipeline.enabled=Pipeline Mode: §aEnabled§7\nUse special Pipeline Logic for recipe
+gtlitecore.machine.advanced_assembly_line.pipeline.disabled=Pipeline Mode: §cDisabled§7\nStandard Assembly Line Logic, only has extra efficiency
+
 gtlitecore.machine.large_food_processor.name=Large Food Processor
 
 gtlitecore.machine.large_rocket_engine.name=Large Rocket Engine

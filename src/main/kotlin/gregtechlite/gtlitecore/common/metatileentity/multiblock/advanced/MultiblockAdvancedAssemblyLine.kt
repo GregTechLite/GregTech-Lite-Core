@@ -174,6 +174,9 @@ class MultiblockAdvancedAssemblyLine(id: ResourceLocation) : MetaTileEntityAssem
     @SideOnly(Side.CLIENT)
     override fun getBaseTexture(sourcePart: IMultiblockPart?): ICubeRenderer = GTLiteOverlays.NEUTRONIUM_CASING
 
+    @SideOnly(Side.CLIENT)
+    override fun getFrontOverlay(): ICubeRenderer = GTLiteOverlays.PCB_FACTORY_OVERLAY
+
     override fun createUIFactory(): MultiblockUIFactory = super.createUIFactory()
         .createFlexButton { _, _ ->
             val modeSync = BooleanSyncValue({ isPipelineMode }, { mode -> isPipelineMode = mode })
