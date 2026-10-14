@@ -28,6 +28,7 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
     private var sliceDuration: Int = 0
     private var inputCount: Int = 0
     private var pipelineStuck: Boolean = false
+    private var pipelineActive: Boolean = false
 
     companion object
     {
@@ -42,10 +43,15 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
     {
         if (!controller.isPipelineMode)
         {
-            resetPipeline()
+            if (pipelineActive)
+            {
+                resetPipeline()
+                pipelineActive = false
+            }
             super.updateWorkable()
             return
         }
+        pipelineActive = true
         updatePipeline()
     }
 
@@ -96,7 +102,12 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
         for (i in slices.indices.reversed())
             slices[i].tick()
 
-        if (slices[0].progress < 0)
+        if (slices.any { it.progress >= 0 })
+        {
+            if (slices[0].progress < 0 && currentRecipe != null && slices[0].start())
+                drainAllFluids()
+        }
+        else
         {
             if (currentRecipe == null || !recipeInputsPresent())
             {
