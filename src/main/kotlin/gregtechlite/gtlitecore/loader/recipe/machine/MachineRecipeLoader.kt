@@ -395,6 +395,7 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NANO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.PICO_PIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.QUANTUM_ANOMALY
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ACID_GENERATOR
+import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ADVANCED_ASSEMBLY_LINE
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ADVANCED_FUSION_REACTOR
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ALLOY_BLAST_SMELTER
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.ANTIMATTER_FORGE
@@ -2145,6 +2146,27 @@ internal object MachineRecipeLoader
             output(CONCENTRATED_COKING_CLUSTER)
             EUt(VA[LuV])
             duration(1.min)
+        }
+
+        // Advanced Assembly Line
+        ASSEMBLY_LINE_RECIPES.addRecipe {
+            input(ASSEMBLY_LINE)
+            input(ROBOT_ARM_UV, 4)
+            input(CONVEYOR_MODULE_UV, 4)
+            input(circuit, Tier.UHV, 8)
+            input(plateDouble, PreciousMetalAlloy, 2)
+            input(gear, EnrichedNaquadahAlloy)
+            input(gearSmall, Pikyonium64B, 3)
+            fluidInputs(SolderingAlloy.getFluid(L * 64))
+            fluidInputs(Lubricant.getFluid(32000))
+            output(ADVANCED_ASSEMBLY_LINE)
+            EUt(VA[UV])
+            duration(2.min)
+            stationResearch {
+                it.researchStack(ASSEMBLY_LINE)
+                    .EUt(VA[UV])
+                    .CWUt(16)
+            }
         }
     }
 
