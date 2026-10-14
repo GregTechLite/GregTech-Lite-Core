@@ -5,11 +5,12 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtech.api.recipes.Recipe
 import gregtech.api.recipes.RecipeMaps
 import gregtech.api.recipes.ingredients.GTRecipeInput
+import gregtech.api.recipes.logic.OCParams
 import gregtech.api.recipes.logic.OCResult
+import gregtech.api.recipes.logic.OverclockingLogic
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.api.recipes.properties.impl.ResearchProperty
 import gregtech.api.util.GTTransferUtils
-import gregtech.api.util.GTUtility
 import gregtech.common.ConfigHolder
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockAdvancedAssemblyLine
 import net.minecraft.item.ItemStack
@@ -159,14 +160,27 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
 
             if (recipe.eUt > voltage) continue
 
-            val oc = (GTUtility.getOCTierByVoltage(voltage).toInt()
-                    - GTUtility.getOCTierByVoltage(recipe.eUt).toInt()).coerceAtLeast(0)
-            val multiplier = 1L shl (2 * oc).coerceAtMost(30)
-            val eut = (recipe.eUt * multiplier).coerceAtLeast(1L)
-            val ocDuration = (recipe.duration shr oc.coerceAtMost(30)).coerceAtLeast(1)
-            val duration = (ocDuration / itemInputs.size).coerceAtLeast(1)
+            val ocAmount = getNumberOfOCs(recipe.eUt)
+            val ocParams = OCParams()
+            val ocResult = OCResult()
+            val baseDuration = (recipe.duration / itemInputs.size).coerceAtLeast(1)
+            if (ocAmount <= 0)
+            {
+                ocResult.init(recipe.eUt, baseDuration)
+            }
+            else
+            {
+                val inputPower = energyContainer.inputVoltage * energyContainer.inputAmperage
+                val perSliceBudget = (inputPower / itemInputs.size).coerceAtLeast(recipe.eUt)
+                ocParams.initialize(recipe.eUt, baseDuration, ocAmount)
+                modifyOverclockPre(ocParams, recipe.propertyStorage())
+                OverclockingLogic.subTickNonParallelOC(ocParams, ocResult, perSliceBudget,
+                    OverclockingLogic.STD_DURATION_FACTOR, OverclockingLogic.STD_VOLTAGE_FACTOR)
+            }
+            modifyOverclockPost(ocResult, recipe.propertyStorage())
 
-            if (itemInputs.size.toLong() * eut > energyContainer.energyCapacity) continue
+            val eut = ocResult.eut().coerceAtLeast(1L)
+            val duration = ocResult.duration().coerceAtLeast(1)
 
             currentRecipe = recipe
             sliceEUt = eut
