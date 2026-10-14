@@ -2853,6 +2853,23 @@ gtlitecore.machine.circuit_assembly_line.tooltip.11=无论使用哪种模式，�
 gtlitecore.machine.circuit_assembly_line.tooltip.12=当使用默认结构（即不做任何扩展）时，此时片数为4，机器不会获得并行。
 gtlitecore.machine.circuit_assembly_line.tooltip.13=而扩展到允许的最大长度时片数为16，机器会获得§e48§7次并行。
 
+gtlitecore.machine.advanced_assembly_line.name=进阶装配线
+gtlitecore.machine.advanced_assembly_line.tooltip.1=超高精度装配线
+gtlitecore.machine.advanced_assembly_line.tooltip.2=效率碾压同等级装配线！
+gtlitecore.machine.advanced_assembly_line.tooltip.3=支持§f常规模式§7与§a流水线模式§7两种运行模式
+gtlitecore.machine.advanced_assembly_line.tooltip.4=在§f常规模式§7下，运行逻辑等同于普通的装配线。
+gtlitecore.machine.advanced_assembly_line.tooltip.5=在§a流水线模式§7下，机器会在运行前§c消耗§7所有输入的配方流体，
+gtlitecore.machine.advanced_assembly_line.tooltip.6=然后按照§f结构长度§7决定最大片数，开始运行时会从首片开始运行；
+gtlitecore.machine.advanced_assembly_line.tooltip.7=首片会消耗首个§2输入总线§7内的材料，继续运行至除尾片外的任一片运行完成时：
+gtlitecore.machine.advanced_assembly_line.tooltip.8=- 若下片运行：标记其为§c堵塞状态§7直到下片空闲；
+gtlitecore.machine.advanced_assembly_line.tooltip.9=- 若下片空闲：本片转为空闲，检测下片§2输入总线§7，消耗物品再开始1次运行；
+gtlitecore.machine.advanced_assembly_line.tooltip.10=重复上述过程直至尾片。
+gtlitecore.machine.advanced_assembly_line.tooltip.11=速度加成：§d+200%%/机械臂外壳等级与传送带外壳等级
+gtlitecore.machine.advanced_assembly_line.tooltip.12=耗能减免：§6-5%%/处理器外壳等级
+
+gtlitecore.machine.advanced_assembly_line.pipeline.enabled=流水线模式：§a启用§7\n使用特殊的流水线运行逻辑
+gtlitecore.machine.advanced_assembly_line.pipeline.disabled=流水线模式：§c禁用§7\n常规装配线运行逻辑，仅有额外加成效果
+
 gtlitecore.machine.large_food_processor.name=大型料理烹饪机
 
 gtlitecore.machine.large_rocket_engine.name=大型火箭引擎

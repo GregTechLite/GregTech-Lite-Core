@@ -84,6 +84,7 @@ import gregtechlite.gtlitecore.common.metatileentity.multiblock.storage.Multiblo
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.storage.MultiblockQuantumTank
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockSpaceElevator
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.MultiblockStellarForge
+import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockAdvancedAssemblyLine
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockAdvancedFusionReactor
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockArcFurnace
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.advanced.MultiblockAssembler
@@ -402,6 +403,7 @@ object GTLiteMetaTileEntities
     lateinit var LARGE_FISHER: MultiblockFisher
     lateinit var LARGE_QUANTUM_CHEST: MultiblockQuantumChest
     lateinit var LARGE_QUANTUM_TANK: MultiblockQuantumTank
+    lateinit var ADVANCED_ASSEMBLY_LINE: MultiblockAdvancedAssemblyLine
 
     lateinit var ENTRODYNAMICALLY_PHASE_CHANGER: MultiblockEntrodynamicallyPhaseChanger
     lateinit var PLASMA_ARC_TRANSMITTER: MultiblockPlasmaArcTransmitter
@@ -999,6 +1001,7 @@ object GTLiteMetaTileEntities
         LARGE_FISHER = register(10142, MultiblockFisher(GTLiteMod.id("large_fisher")))
         LARGE_QUANTUM_CHEST = register(10143, MultiblockQuantumChest(GTLiteMod.id("large_quantum_chest")))
         LARGE_QUANTUM_TANK = register(10144, MultiblockQuantumTank(GTLiteMod.id("large_quantum_tank")))
+        ADVANCED_ASSEMBLY_LINE = register(10145, MultiblockAdvancedAssemblyLine(GTLiteMod.id("advanced_assembly_line")))
 
         // ...
 
