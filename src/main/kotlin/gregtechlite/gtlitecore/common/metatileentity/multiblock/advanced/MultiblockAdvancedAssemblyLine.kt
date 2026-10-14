@@ -4,7 +4,6 @@ import com.cleanroommc.modularui.api.drawable.IKey
 import com.cleanroommc.modularui.value.sync.BooleanSyncValue
 import com.cleanroommc.modularui.widgets.ToggleButton
 import gregtech.api.GTValues.ULV
-import gregtech.api.capability.IDataAccessHatch
 import gregtech.api.capability.impl.EnergyContainerList
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
@@ -43,6 +42,7 @@ import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.robotArmCasing
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.adapter.GTCleanroomCasing
 import gregtechlite.gtlitecore.common.block.adapter.GTGlassCasing
+import gregtechlite.gtlitecore.common.block.adapter.GTMultiblockCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.MetalCasing
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities.QUANTUM_ITEM_IMPORT_BUS
@@ -75,6 +75,8 @@ class MultiblockAdvancedAssemblyLine(id: ResourceLocation) : MetaTileEntityAssem
     {
         private val casingState = MetalCasing.NEUTRONIUM.state
         private val secondCasingState = GTCleanroomCasing.FILTER_CASING_STERILE.state
+        private val thirdCasingState = GTMultiblockCasing.ASSEMBLY_CONTROL.state
+        private val fourthCasingState = GTMultiblockCasing.ASSEMBLY_LINE_CASING.state
         private val pipeCasingState = BoilerCasing.POLYBENZIMIDAZOLE.state
         private val glassState = GTGlassCasing.FUSION_GLASS.state
     }
@@ -113,7 +115,7 @@ class MultiblockAdvancedAssemblyLine(id: ResourceLocation) : MetaTileEntityAssem
         .aisle(" P ", " P ", " P ", " F ")
         .aisle("CCC", "CCC", "CCC", " P ")
         .aisle("CCC", "SXC", "CCC", "CPC")
-        .aisle("IYD", "G#R", "G#P", "ECE").setRepeatable(4, 16)
+        .aisle("IKD", "GYR", "GLP", "ECE").setRepeatable(4, 16)
         .aisle("OCC", "CXC", "CPC", "FCF")
         .aisle("F F", "F F", "F F", "   ")
         .where('S', selfPredicate())
@@ -134,6 +136,8 @@ class MultiblockAdvancedAssemblyLine(id: ResourceLocation) : MetaTileEntityAssem
         .where('O', abilities(EXPORT_ITEMS)
             .addTooltips("gregtech.multiblock.pattern.location_end"))
         .where('E', states(secondCasingState))
+        .where('K', states(thirdCasingState))
+        .where('L', states(fourthCasingState))
         .where('P', states(pipeCasingState))
         .where('G', states(glassState))
         .where('F', frames(NaquadahAlloy))
