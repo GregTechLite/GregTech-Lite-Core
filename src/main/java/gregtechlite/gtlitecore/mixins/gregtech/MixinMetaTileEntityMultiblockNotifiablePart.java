@@ -97,17 +97,20 @@ public abstract class MixinMetaTileEntityMultiblockNotifiablePart extends MetaTi
                         IMultipleTankHandler multipleTankHandler = (IMultipleTankHandler) handler;
                         for (IFluidTank tank : multipleTankHandler.getFluidTanks())
                         {
-                            if (tank instanceof INotifiableHandler)
+                            INotifiableHandler notifiableTank = gtlitecore$unwrapTank(tank);
+                            if (notifiableTank != null)
                             {
-                                INotifiableHandler notifiableTank = (INotifiableHandler) tank;
                                 notifiableHandlers.add(notifiableTank);
                             }
                         }
                     }
-                    else if (handler instanceof INotifiableHandler)
+                    else
                     {
-                        INotifiableHandler notifiableHandler = (INotifiableHandler) handler;
-                        notifiableHandlers.add(notifiableHandler);
+                        INotifiableHandler notifiableHandler = gtlitecore$unwrapTank(handler);
+                        if (notifiableHandler != null)
+                        {
+                            notifiableHandlers.add(notifiableHandler);
+                        }
                     }
                 }
             }
@@ -129,14 +132,10 @@ public abstract class MixinMetaTileEntityMultiblockNotifiablePart extends MetaTi
                 {
                     for (IFluidTank fluidTank : fluidTankList)
                     {
-                        if (fluidTank instanceof IMultipleTankHandler.ITankEntry)
+                        INotifiableHandler notifiableTank = gtlitecore$unwrapTank(fluidTank);
+                        if (notifiableTank != null)
                         {
-                            IMultipleTankHandler.ITankEntry entry = (IMultipleTankHandler.ITankEntry) fluidTank;
-                            fluidTank = entry.getDelegate();
-                        }
-                        if (fluidTank instanceof INotifiableHandler)
-                        {
-                            notifiableHandlers.add((INotifiableHandler) fluidTank);
+                            notifiableHandlers.add(notifiableTank);
                         }
                     }
                 }
@@ -144,6 +143,21 @@ public abstract class MixinMetaTileEntityMultiblockNotifiablePart extends MetaTi
         }
 
         return notifiableHandlers;
+    }
+
+    /**
+     * Resolve the underlying notifiable handler from a tank entry, unwrapping
+     * {@link IMultipleTankHandler.ITankEntry} wrappers (such as the ones registered by
+     * {@code MetaTileEntityMultiFluidHatch}) back to their delegate tank.
+     */
+    @Unique
+    private static INotifiableHandler gtlitecore$unwrapTank(Object handler)
+    {
+        if (handler instanceof IMultipleTankHandler.ITankEntry)
+        {
+            handler = ((IMultipleTankHandler.ITankEntry) handler).getDelegate();
+        }
+        return handler instanceof INotifiableHandler ? (INotifiableHandler) handler : null;
     }
 
     @Shadow

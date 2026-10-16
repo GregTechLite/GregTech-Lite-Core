@@ -105,8 +105,8 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
 
         if (slices.any { it.progress >= 0 })
         {
-            if (slices[0].progress < 0 && currentRecipe != null && slices[0].start())
-                drainAllFluids()
+            if (slices[0].progress < 0)
+                startCycle()
         }
         else
         {
@@ -115,8 +115,7 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
                 unlockRecipe()
                 tryLockRecipe()
             }
-            if (currentRecipe != null && slices[0].start())
-                drainAllFluids()
+            startCycle()
         }
 
         val workingSlices = slices.count { it.progress > 0 }
@@ -288,12 +287,26 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
         }
     }
 
+    private fun startCycle(): Boolean
+    {
+        val recipe = currentRecipe ?: return false
+
+        if (!hasAllFluids(recipe.fluidInputs, controller.getAbilities(MultiblockAbility.IMPORT_FLUIDS)))
+            return false
+
+        if (!slices[0].start())
+            return false
+
+        drainAllFluids()
+        return true
+    }
+
     private fun drainFrom(tank: IFluidTank, input: GTRecipeInput, amount: Int): Int
     {
         val fluid = tank.fluid ?: return 0
         if (!input.acceptsFluid(fluid))
             return 0
-        val drained = tank.drain(minOf(amount, fluid.amount), false) ?: return 0
+        val drained = tank.drain(minOf(amount, fluid.amount), true) ?: return 0
         return drained.amount
     }
 
