@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.mixins.gregtech;
 import appeng.api.networking.crafting.ICraftingPatternDetails;
 import appeng.api.networking.crafting.ICraftingProvider;
 import appeng.api.networking.crafting.ICraftingProviderHelper;
+import appeng.helpers.ICustomNameObject;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtechlite.gtlitecore.api.metatileentity.sync.MetaTileEntitySyncer;
@@ -17,10 +18,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = MetaTileEntityHolder.class, remap = false)
-public abstract class MixinMetaTileEntityHolder implements ICraftingProvider
+public abstract class MixinMetaTileEntityHolder implements ICraftingProvider, ICustomNameObject
 {
     @Shadow
     MetaTileEntity metaTileEntity;
+
+    @Shadow
+    private String customName;
 
     @Inject(method = "writeInitialSyncData", at = @At("RETURN"))
     private void gtlitecore$syncWriteInitialSyncData(PacketBuffer buf, CallbackInfo ci)
@@ -72,7 +76,23 @@ public abstract class MixinMetaTileEntityHolder implements ICraftingProvider
     @Override
     public boolean isBusy()
     {
-        return metaTileEntity instanceof ICraftingProvider
-                && ((ICraftingProvider) metaTileEntity).isBusy();
+        return metaTileEntity instanceof ICraftingProvider && ((ICraftingProvider) metaTileEntity).isBusy();
     }
+
+    @Unique
+    @Override
+    public String getCustomInventoryName()
+    {
+        return customName == null ? "" : customName;
+    }
+
+    @Unique
+    @Override
+    public boolean hasCustomInventoryName()
+    {
+        return customName != null && !customName.isEmpty();
+    }
+
+    @Shadow
+    public abstract void setCustomName(String name);
 }

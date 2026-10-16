@@ -13,5 +13,13 @@ interface CustomMixinLoader
      * @param names All distributed names for mixin configurations.
      * @return      Returns all distributed names corresponding mixin configuration files.
      */
-    fun createMixinConfigs(vararg names: String): List<String> = names.map { "mixins.$MOD_ID.$it.json" }.toList()
+    fun createMixinConfigs(vararg names: String): List<String> = names.map { mixinName(it) }.toList()
+
+    /**
+     * The standard mixin file name with default location.
+     *
+     * @param modId The distributed name for mixin file.
+     * @return      Returns the standard mixin file name, format: `mixins.gtlitecore.<modId>.json`.
+     */
+    fun mixinName(modId: String): String = "mixins.$MOD_ID.$modId.json"
 }

@@ -4,6 +4,7 @@ package gregtechlite.gtlitecore.api.collection
 
 import com.google.common.collect.HashBasedTable
 import com.google.common.collect.HashBiMap
+import com.google.common.collect.ImmutableSet
 import it.unimi.dsi.fastutil.chars.Char2ObjectMap
 import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ByteMap
@@ -58,6 +59,12 @@ fun <E> openRefLinkedSetOf(vararg elements: E): ReferenceSet<E> = ReferenceLinke
 fun <E> Collection<E>.toOpenRefLinkedSetOf(): ReferenceSet<E> = ReferenceLinkedOpenHashSet(this)
 
 fun <E> Iterator<E>.toOpenRefLinkedSetOf(): ReferenceSet<E> = ReferenceLinkedOpenHashSet(this)
+
+// endregion
+
+// region Guava: ImmutableSet
+
+fun <E> immutableSetOf(): ImmutableSet<E> = ImmutableSet.of<E>()
 
 // endregion
 
