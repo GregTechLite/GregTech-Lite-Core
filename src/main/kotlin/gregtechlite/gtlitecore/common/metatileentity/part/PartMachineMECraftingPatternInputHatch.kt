@@ -466,6 +466,13 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         needPatternSync = true
     }
 
+    override fun clearMachineInventory(itemBuffer: MutableList<ItemStack>)
+    {
+        super.clearMachineInventory(itemBuffer)
+        patternInventory?.let { clearInventory(itemBuffer, it) }
+        manualInventory?.let { clearInventory(itemBuffer, it) }
+    }
+
     private fun writeInternalInventory(): NBTTagList
     {
         val slots = NBTTagList()
