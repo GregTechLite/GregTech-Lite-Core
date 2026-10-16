@@ -1,7 +1,11 @@
 package gregtechlite.gtlitecore.common.metatileentity.part
 
 import appeng.api.AEApi
+import appeng.api.config.Actionable
+import appeng.api.config.Upgrades
 import appeng.api.implementations.ICraftingPatternItem
+import appeng.api.networking.IGridNode
+import appeng.api.networking.crafting.ICraftingLink
 import appeng.api.networking.crafting.ICraftingPatternDetails
 import appeng.api.networking.crafting.ICraftingProvider
 import appeng.api.networking.crafting.ICraftingProviderHelper
@@ -10,6 +14,9 @@ import appeng.api.networking.security.IActionSource
 import appeng.api.storage.channels.IFluidStorageChannel
 import appeng.api.storage.channels.IItemStorageChannel
 import appeng.api.storage.data.IAEItemStack
+import appeng.api.util.IConfigManager
+import appeng.helpers.DualityInterface
+import appeng.helpers.IInterfaceHost
 import appeng.me.GridAccessException
 import appeng.me.helpers.AENetworkProxy
 import appeng.util.Platform
@@ -31,6 +38,7 @@ import com.cleanroommc.modularui.widgets.layout.Grid
 import com.cleanroommc.modularui.widgets.slot.ItemSlot
 import com.glodblock.github.common.item.fake.FakeFluids
 import com.glodblock.github.common.item.fake.FakeItemRegister
+import com.google.common.collect.ImmutableSet
 import gregtech.api.capability.GregtechDataCodes.WORKING_ENABLED
 import gregtech.api.capability.IControllable
 import gregtech.api.capability.IDataStickIntractable
@@ -59,10 +67,11 @@ import gregtechlite.gtlitecore.api.capability.handler.DynamicFluidTank
 import gregtechlite.gtlitecore.api.capability.handler.DynamicItemHandlerList
 import gregtechlite.gtlitecore.api.capability.handler.DynamicNotifiableItemStackHandler
 import gregtechlite.gtlitecore.api.capability.handler.SingletonDualInputHandler
+import gregtechlite.gtlitecore.api.collection.immutableSetOf
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
-import gregtechlite.gtlitecore.api.t
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
+import java.util.EnumSet
 import java.util.Optional
 import net.minecraft.client.resources.I18n
 import net.minecraft.entity.item.EntityItem
@@ -71,6 +80,8 @@ import net.minecraft.inventory.InventoryCrafting
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.nbt.NBTTagList
+import net.minecraft.tileentity.TileEntity
+import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.world.World
@@ -78,6 +89,7 @@ import net.minecraftforge.common.util.Constants
 import net.minecraftforge.fluids.FluidStack
 import net.minecraftforge.fml.relauncher.Side
 import net.minecraftforge.fml.relauncher.SideOnly
+import net.minecraftforge.items.IItemHandler
 import net.minecraftforge.items.IItemHandlerModifiable
 
 class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, supportFluids: Boolean)
@@ -103,6 +115,8 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
     private var needPatternSync = true
 
     private var sharedItemHandler: DynamicItemHandlerList? = null
+
+    val patternInterfaceHost: MECraftingPatternInterfaceHost by lazy { MECraftingPatternInterfaceHost(this) }
 
     private val mirrors = mutableListOf<PartMachineMECraftingPatternInputMirror>()
     private var lastMirrorValidationTick = -1L
@@ -854,5 +868,60 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
             itemInventory.removeAll { it.isEmpty }
             fluidInventory.removeAll { it == null || it.amount <= 0 }
         }
+    }
+
+    class PatternInventoryExpose(proxy: AENetworkProxy,
+                                 private val owner: MECraftingPatternInterfaceHost) : DualityInterface(proxy, owner)
+    {
+        override fun getPatterns(): IItemHandler = owner.patterns
+
+        override fun getTermName(): String = owner.termName
+
+        override fun getInstalledUpgrades(u: Upgrades): Int
+            = if (u == Upgrades.PATTERN_EXPANSION) PATTERN_SLOT_COUNT / 9 - 1 else 0
+    }
+
+    class MECraftingPatternInterfaceHost(private val owner: PartMachineMECraftingPatternInputHatch) : IInterfaceHost
+    {
+        val patterns: IItemHandler
+            get() = owner.patternInventory!!
+
+        val termName: String
+            get() = "(${owner.pos.x}, ${owner.pos.y}, ${owner.pos.z})"
+
+        val duality: DualityInterface by lazy { PatternInventoryExpose(owner.proxy!!, this) }
+
+        override fun getInterfaceDuality(): DualityInterface = duality
+
+        override fun getTargets(): EnumSet<EnumFacing> = EnumSet.noneOf(EnumFacing::class.java)
+
+        override fun getTileEntity(): TileEntity = owner.holder as TileEntity
+
+        override fun saveChanges() = owner.markDirty()
+
+        override fun getInstalledUpgrades(u: Upgrades): Int
+            = if (u == Upgrades.PATTERN_EXPANSION) PATTERN_SLOT_COUNT / 9 - 1 else 0
+
+        override fun getTile(): TileEntity = owner.holder as TileEntity
+
+        override fun getConfigManager(): IConfigManager = duality.configManager
+
+        override fun getInventoryByName(name: String): IItemHandler?
+            = if (name == "patterns") owner.patternInventory else null
+
+        override fun getRequestedJobs(): ImmutableSet<ICraftingLink> = immutableSetOf()
+
+        override fun injectCraftedItems(link: ICraftingLink?, items: IAEItemStack, mode: Actionable): IAEItemStack = items
+
+        override fun jobStateChange(link: ICraftingLink?) {}
+
+        override fun getActionableNode(): IGridNode = owner.proxy?.node!!
+
+        override fun provideCrafting(tracker: ICraftingProviderHelper) = owner.provideCrafting(tracker)
+
+        override fun pushPattern(details: ICraftingPatternDetails, table: InventoryCrafting): Boolean
+            = owner.pushPattern(details, table)
+
+        override fun isBusy(): Boolean = owner.isBusy()
     }
 }
