@@ -49,6 +49,7 @@ object JEIRecipeGroup
         addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, RecipeMaps.WIREMILL_RECIPES)
         addRecipeGroup(GTLiteMetaTileEntities.BLACKHOLE_FORMER, GTLiteRecipeMaps.LOOM_RECIPES)
 
+        addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, GTLiteRecipeMaps.QUANTUM_FORCE_TRANSFORMER_RECIPES)
         addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, RecipeMaps.CHEMICAL_RECIPES)
         addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, RecipeMaps.LARGE_CHEMICAL_RECIPES)
         addRecipeGroup(GTLiteMetaTileEntities.QUANTUM_FORCE_TRANSFORMER, GTLiteRecipeMaps.CHEMICAL_PLANT_RECIPES)
