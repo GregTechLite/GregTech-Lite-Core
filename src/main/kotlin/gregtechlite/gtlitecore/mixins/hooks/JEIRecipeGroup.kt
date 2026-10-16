@@ -10,6 +10,7 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps
 import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import net.minecraft.item.ItemStack
 
+@Hook
 object JEIRecipeGroup
 {
     @JvmField
