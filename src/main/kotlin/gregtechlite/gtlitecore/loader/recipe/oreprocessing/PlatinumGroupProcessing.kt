@@ -278,6 +278,7 @@ internal object PlatinumGroupProcessing
 
         // CH3OH + CO -> HCO2CH3
         CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(2)
             notConsumable(dust, SodiumHydroxide)
             fluidInputs(Methanol.getFluid(1000))
             fluidInputs(CarbonMonoxide.getFluid(1000))

@@ -7,6 +7,7 @@ import gregtech.api.recipes.RecipeMaps.CHEMICAL_RECIPES
 import gregtech.api.recipes.RecipeMaps.LARGE_CHEMICAL_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Materials.AceticAcid
 import gregtech.api.unification.material.Materials.Butyraldehyde
 import gregtech.api.unification.material.Materials.CarbonMonoxide
 import gregtech.api.unification.material.Materials.Chlorine
@@ -17,6 +18,7 @@ import gregtech.api.unification.material.Materials.Ethylbenzene
 import gregtech.api.unification.material.Materials.HydrochloricAcid
 import gregtech.api.unification.material.Materials.Hydrogen
 import gregtech.api.unification.material.Materials.Methane
+import gregtech.api.unification.material.Materials.Methanol
 import gregtech.api.unification.material.Materials.Polydimethylsiloxane
 import gregtech.api.unification.material.Materials.Propene
 import gregtech.api.unification.material.Materials.Silicon
@@ -119,6 +121,19 @@ internal object RecipeConflicts
             fluidOutputs(Hydrogen.getFluid(2000))
             EUt(VA[LV])
             duration(1.s + 10.t)
+        }
+
+        // Conflicts between HCO2CH3 and C2H4O2
+        GTLiteRecipeHandler.removeChemicalRecipes(Methanol.getFluid(1000), CarbonMonoxide.getFluid(1000))
+
+        // CH4O + CO -> C2H4O2
+        CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
+            fluidInputs(Methanol.getFluid(1000))
+            fluidInputs(CarbonMonoxide.getFluid(1000))
+            fluidOutputs(AceticAcid.getFluid(1000))
+            EUt(VA[LV])
+            duration(15.s)
         }
     }
 
