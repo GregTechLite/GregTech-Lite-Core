@@ -14,12 +14,17 @@ import appeng.api.networking.security.IActionSource
 import appeng.api.storage.channels.IFluidStorageChannel
 import appeng.api.storage.channels.IItemStorageChannel
 import appeng.api.storage.data.IAEItemStack
+import appeng.api.util.AEPartLocation
 import appeng.api.util.IConfigManager
+import appeng.core.sync.GuiBridge
 import appeng.helpers.DualityInterface
+import appeng.helpers.ICustomNameObject
 import appeng.helpers.IInterfaceHost
+import appeng.items.tools.quartz.ToolQuartzCuttingKnife
 import appeng.me.GridAccessException
 import appeng.me.helpers.AENetworkProxy
 import appeng.util.Platform
+import codechicken.lib.raytracer.CuboidRayTraceResult
 import codechicken.lib.render.CCRenderState
 import codechicken.lib.render.pipeline.IVertexOperation
 import codechicken.lib.vec.Matrix4
@@ -82,6 +87,7 @@ import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.nbt.NBTTagList
 import net.minecraft.tileentity.TileEntity
 import net.minecraft.util.EnumFacing
+import net.minecraft.util.EnumHand
 import net.minecraft.util.ResourceLocation
 import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.world.World
@@ -289,6 +295,21 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         {
             updateMEStatus()
         }
+    }
+
+    override fun onRightClick(playerIn: EntityPlayer, hand: EnumHand, facing: EnumFacing,
+                              hitResult: CuboidRayTraceResult): Boolean
+    {
+        if (!playerIn.isSneaking && playerIn.getHeldItem(hand).item is ToolQuartzCuttingKnife)
+        {
+            if (!playerIn.world.isRemote)
+            {
+                val tile = holder as? TileEntity
+                tile?.let { Platform.openGUI(playerIn, it, AEPartLocation.fromFacing(facing), GuiBridge.GUI_RENAMER) }
+            }
+            return true
+        }
+        return super.onRightClick(playerIn, hand, facing, hitResult)
     }
 
     override fun shouldUpdate(): Boolean
@@ -887,7 +908,9 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
             get() = owner.patternInventory!!
 
         val termName: String
-            get() = "(${owner.pos.x}, ${owner.pos.y}, ${owner.pos.z})"
+            get() = (owner.holder as? ICustomNameObject)
+                ?.takeIf { it.hasCustomInventoryName() }?.customInventoryName
+                ?: "(${owner.pos.x}, ${owner.pos.y}, ${owner.pos.z})"
 
         val duality: DualityInterface by lazy { PatternInventoryExpose(owner.proxy!!, this) }
 
