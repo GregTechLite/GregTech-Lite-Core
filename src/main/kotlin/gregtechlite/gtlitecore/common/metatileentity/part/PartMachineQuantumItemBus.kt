@@ -93,6 +93,11 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     private val itemSize: Int // QIB start at IV stage, and it will nerf with LV tier level inventory limit as default.
         get() = (1 + tier - 5).square()
 
+    init
+    {
+        initializeInventory()
+    }
+
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = PartMachineQuantumItemBus(metaTileEntityId, tier)
 
@@ -258,7 +263,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
 
     override fun registerAbilities(abilityInstances: AbilityInstances)
     {
-        abilityInstances.add(importItems)
+        abilityInstances.add(getImportItems())
     }
 
     @SideOnly(Side.CLIENT)
