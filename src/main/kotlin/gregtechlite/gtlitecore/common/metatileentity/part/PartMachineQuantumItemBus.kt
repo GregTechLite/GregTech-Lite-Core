@@ -93,6 +93,11 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
     private val itemSize: Int // QIB start at IV stage, and it will nerf with LV tier level inventory limit as default.
         get() = (1 + tier - 5).square()
 
+    init
+    {
+        initializeInventory()
+    }
+
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = PartMachineQuantumItemBus(metaTileEntityId, tier)
 
@@ -258,7 +263,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
 
     override fun registerAbilities(abilityInstances: AbilityInstances)
     {
-        abilityInstances.add(importItems)
+        abilityInstances.add(getImportItems())
     }
 
     @SideOnly(Side.CLIENT)
@@ -319,11 +324,11 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                                          .accessibility(true, true))
                        })
             .child(Flow.column()
-                       .pos(backgroundWidth - 25, backgroundHeight - 60)
+                       .pos(backgroundWidth - 25, backgroundHeight - 84)
                        .width(18)
                        .height(77)
                        .child(ButtonWidget()
-                                  .size(17)
+                                  .size(18)
                                   .top(59)
                                   .overlay(GTGuiTextures.FILTER_SETTINGS_OVERLAY.asIcon()
                                                .size(16))
@@ -336,7 +341,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                                       return@onMousePressed true
                                   })
                        .child(ToggleButton()
-                                  .top(36)
+                                  .top(18)
                                   .value(workingStateValue)
                                   .overlay(GTGuiTextures.BUTTON_ITEM_OUTPUT)
                                   .tooltipAutoUpdate(true)
@@ -347,7 +352,7 @@ class PartMachineQuantumItemBus(id: ResourceLocation, tier: Int)
                                           it.addLine(IKey.lang("gregtech.gui.item_auto_input.tooltip.disabled"))
                                   })
             .child(ToggleButton()
-                       .top(18)
+                       .top(36)
                        .value(collapseStateValue)
                        .overlay(GTGuiTextures.BUTTON_AUTO_COLLAPSE)
                        .tooltipAutoUpdate(true)
