@@ -2547,6 +2547,7 @@ gtlitecore.machine.nanoscale_fabricator.temperature_range=Workable Temperature R
 gtlitecore.machine.nanoscale_fabricator.required_temperature=Temperature: %s
 
 gtlitecore.machine.sonicator.name=Sonicator
+gtlitecore.machine.sonicator.tooltip.1=High Frequency Cleaner
 
 gtlitecore.machine.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition Unit
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=Promoting Gas-Phase Deposition Reaction with High-Energy Laser Beam
@@ -2575,10 +2576,10 @@ gtlitecore.machine.advanced_fusion_reactor.tooltip.3=Replace higher casings to u
 gtlitecore.machine.advanced_fusion_reactor.tooltip.4=All casings limited maximum fusion level, and all casings must have same tier.
 
 gtlitecore.machine.component_assembly_line.name=Component Assembly Line
-gtlitecore.machine.component_assembly_line.tooltip.1=批量装配各式各样的零部件，效率碾压同等级组装机/装配线！
-gtlitecore.machine.component_assembly_line.tooltip.2=允许使用任意种类的§f能源仓§7或§f激光靶仓§7输入能量
-gtlitecore.machine.component_assembly_line.tooltip.3=允许使用任意等级的§f硼硅酸盐玻璃§7替换结构中的玻璃
-gtlitecore.machine.component_assembly_line.tooltip.4=部件装配外壳限制了机器可执行的§r配方等级§7。
+gtlitecore.machine.component_assembly_line.tooltip.1=Batch Assembly of various components
+gtlitecore.machine.component_assembly_line.tooltip.2=Efficiently Crush same level Assemblers / Assembly Lines!
+gtlitecore.machine.component_assembly_line.tooltip.3=Component Assembly Casing limits the §rRecipe Level§7 can run.
+gtlitecore.machine.component_assembly_line.tooltip.4=Allow to use any tier §fBorosilicate Glass§7 to replace glass in the structure.
 
 gtlitecore.machine.cosmic_ray_detector.name=Cosmic Ray Detector
 gtlitecore.machine.cosmic_ray_detector.tooltip.1=Radio Radiation Reflective Detection Telescope
@@ -2586,11 +2587,11 @@ gtlitecore.machine.cosmic_ray_detector.tooltip.2=Needs to placed at designated �
 
 gtlitecore.machine.stellar_forge.name=Stellar Forge
 gtlitecore.machine.stellar_forge.tooltip.1=Harness the power of stars
-gtlitecore.machine.stellar_forge.tooltip.2=需要使用不同的§c爆弹§7在机器内部引发超新星爆发。
+gtlitecore.machine.stellar_forge.tooltip.2=Require to use different §cCharges§7 to trigger a Supernova Explosion inside the machine.
 
 gtlitecore.machine.plasma_enhanced_cvd_unit.name=Plasma-Enhanced Chemical Vapor Deposition Unit
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=驱使等离子体增强沉积反应活性以加速之
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，拥有§f激光诱导化学气相沉积§r配方对应的高级配方。
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=Drive plasma to enhance deposition reaction activity and accelerate it
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=Compatible with all standard §2CVD§7 recipes, and has advanced recipes for all §fLaser CVD§7 recipes.
 
 gtlitecore.machine.pcb_factory.name=PCB Factory
 gtlitecore.machine.pcb_factory.tooltip.1=Large Factory for Circuit Board Producing
@@ -2968,10 +2969,10 @@ gtlitecore.machine.ep_coupling_accelerator.tooltip.2=耗能减免除数始终固
 
 gtlitecore.machine.nano_assembly_complex.name=Nano Assembly Complex
 gtlitecore.machine.nano_assembly_complex.tooltip.1=The Ultimate Solution of Circuit Assembly
-gtlitecore.machine.nano_assembly_complex.tooltip.2=§fNano Assembly Complex§7模式兼容所有§f装配线§7与§f太空组装机§7配方，且具有一部分独占配方
-gtlitecore.machine.nano_assembly_complex.tooltip.3=§fSingularity Assembly Unit§7模式兼容所有§f电路装配线§7配方，且具有特殊的初始倍率配方
-gtlitecore.machine.nano_assembly_complex.tooltip.4=不需要输入§a研究数据§7且无视装配线的输入顺序限制
-gtlitecore.machine.nano_assembly_complex.tooltip.5=速度加成：§d锁定1/4耗时
+gtlitecore.machine.nano_assembly_complex.tooltip.2=§fNano Assembly Complex§7 mode compatible with all §fAssembly Line§7 and §fSpace Assembler§7 recipes, and has some unique recipes.
+gtlitecore.machine.nano_assembly_complex.tooltip.3=§fSingularity Assembly Unit§7 compatible with all §fCircuit Assembly Line§7 recipes and has some plus recipes
+gtlitecore.machine.nano_assembly_complex.tooltip.4=Not need to input §aResearch Data§7 and ignore input order for Assembly Line
+gtlitecore.machine.nano_assembly_complex.tooltip.5=Working Speed Buff: §dLocked 1/4 Duration
 
 gtlitecore.machine.matter_reshaping_framework.name=Matter Reshaping Framework
 gtlitecore.machine.matter_reshaping_framework.tooltip.1=在§f锻压固化模组§7的§f锻造锤§7模式下使用§f物质重塑§7特殊配方

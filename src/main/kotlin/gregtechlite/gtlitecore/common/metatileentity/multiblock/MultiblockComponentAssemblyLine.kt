@@ -21,6 +21,8 @@ import gregtech.api.unification.material.Materials.TungstenSteel
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.COMPONENT_CASING_TIER
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.MultiblockTooltipBuilder.Companion.addTooltip
+import gregtechlite.gtlitecore.api.metatileentity.multiblock.OverclockMode
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.borosilicateGlasses
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.componentCasings
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.getAttributeOrDefault
@@ -172,13 +174,16 @@ class MultiblockComponentAssemblyLine(id: ResourceLocation)
     @SideOnly(Side.CLIENT)
     override fun addInformation(stack: ItemStack, player: World?, tooltip: MutableList<String>, advanced: Boolean)
     {
-        super.addInformation(stack, player, tooltip, advanced)
-
-        tooltip.add(I18n.format("gtlitecore.machine.component_assembly_line.tooltip.1"))
-        tooltip.add(TooltipHelper.RAINBOW_SLOW.toString() + I18n.format("gregtech.machine.perfect_oc"))
-        tooltip.add(I18n.format("gtlitecore.machine.component_assembly_line.tooltip.2"))
-        tooltip.add(I18n.format("gtlitecore.machine.component_assembly_line.tooltip.3"))
-        tooltip.add(I18n.format("gtlitecore.machine.component_assembly_line.tooltip.4"))
+        addTooltip(tooltip)
+        {
+            addMachineTypeLine()
+            addDescriptionLine("gtlitecore.machine.component_assembly_line.tooltip.1",
+                               "gtlitecore.machine.component_assembly_line.tooltip.2",
+                               "gtlitecore.machine.component_assembly_line.tooltip.3",
+                               "gtlitecore.machine.component_assembly_line.tooltip.4")
+            addOverclockInfo(OverclockMode.PERFECT)
+            addLaserHatchInfo()
+        }
     }
 
     override fun canBeDistinct() = true

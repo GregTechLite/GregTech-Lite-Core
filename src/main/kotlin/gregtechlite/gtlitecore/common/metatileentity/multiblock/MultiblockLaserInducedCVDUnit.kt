@@ -16,6 +16,7 @@ import gregtech.api.recipes.logic.OverclockingLogic.PERFECT_DURATION_FACTOR
 import gregtech.api.recipes.logic.OverclockingLogic.STD_DURATION_FACTOR
 import gregtech.api.recipes.properties.RecipePropertyStorage
 import gregtech.client.renderer.ICubeRenderer
+import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.GTLiteAPI.EMITTER_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.PUMP_CASING_TIER
 import gregtechlite.gtlitecore.api.GTLiteAPI.SENSOR_CASING_TIER
@@ -121,11 +122,15 @@ class MultiblockLaserInducedCVDUnit(id: ResourceLocation)
         addTooltip(tooltip)
         {
             addMachineTypeLine()
-            addDescriptionLine("gtlitecore.machine.laser_induced_cvd_unit.tooltip.1")
+            addDescriptionLine("gtlitecore.machine.laser_induced_cvd_unit.tooltip.1",
+                               "gtlitecore.machine.laser_induced_cvd_unit.tooltip.2")
             addOverclockInfo(OverclockMode.PERFECT_AFTER)
             addParallelInfo(8, UpgradeMode.PUMP_CASING)
             addDurationInfo(400, UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING)
             addEnergyInfo(35)
+            addDescriptionLine(if (TooltipHelper.isCtrlDown()) {
+                "gtlitecore.machine.laser_induced_cvd_unit.tooltip.3"
+            } else { "gregtech.tooltip.hold_ctrl" })
         }
     }
 
