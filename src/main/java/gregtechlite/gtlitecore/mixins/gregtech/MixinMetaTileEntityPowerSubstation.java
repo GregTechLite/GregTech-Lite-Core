@@ -28,7 +28,7 @@ public abstract class MixinMetaTileEntityPowerSubstation
     private EnergyContainerList outputHatches;
 
     /**
-     * @author rainy
+     * @author RainyYC
      * @reason Add the Wireless Energy Storage ability to the input hatches of the Power Substation.
      */
     @ModifyExpressionValue(method = "createStructurePattern",
@@ -45,7 +45,7 @@ public abstract class MixinMetaTileEntityPowerSubstation
     }
 
     /**
-     * @author rainy
+     * @author RainyYC
      * @reason Add the Wireless Energy Storage ability to the output hatches of the Power Substation.
      */
     @ModifyExpressionValue(method = "createStructurePattern",
