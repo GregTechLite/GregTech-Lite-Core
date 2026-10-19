@@ -5,13 +5,12 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder;
 import gregtechlite.gtlitecore.mixins.hooks.Compat;
+import gregtechlite.gtlitecore.mixins.hooks.ItemCountRenderer;
 import mezz.jei.plugins.vanilla.ingredients.item.ItemStackRenderer;
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
 /**
@@ -37,7 +36,7 @@ public class MixinItemStackRenderer
     {
         if (GTLiteConfigHolder.compat.jeiCompat.scaleableFontRenderer)
         {
-            gtlitecore$renderItemAndEffectIntoGUI(fontRenderer, ingredient, x, y);
+            ItemCountRenderer.renderCount(fontRenderer, ingredient.getCount(), x, y);
         }
     }
 
@@ -56,60 +55,5 @@ public class MixinItemStackRenderer
         {
             original.call(renderItem, fontRenderer, stack, x, y, textOverride);
         }
-    }
-
-    /**
-     * @see net.minecraft.client.renderer.RenderItem#renderItemAndEffectIntoGUI
-     */
-    @Unique
-    private void gtlitecore$renderItemAndEffectIntoGUI(FontRenderer fontRenderer, ItemStack stack,
-                                                       int x, int y)
-    {
-        if (stack.getCount() != 1)
-        {
-            String count = gtlitecore$formatCount(stack.getCount());
-
-            GlStateManager.disableLighting();
-            GlStateManager.disableDepth();
-            GlStateManager.disableBlend();
-
-            boolean shouldScale = stack.getCount() > 99;
-            if (shouldScale)
-            {
-                GlStateManager.pushMatrix();
-                GlStateManager.scale(0.5F, 0.5F, 1.0F);
-            }
-
-            int posX = shouldScale ? (x + 16) * 2 - fontRenderer.getStringWidth(count)
-                    : x + 16 - fontRenderer.getStringWidth(count);
-            int posY = shouldScale ? (y + 16) * 2 - 8 : y + 16 - 8;
-            fontRenderer.drawStringWithShadow(count, posX, posY, 0xFFFFFF);
-
-            if (shouldScale) GlStateManager.popMatrix();
-            GlStateManager.enableLighting();
-            GlStateManager.enableDepth();
-            GlStateManager.enableBlend();
-        }
-    }
-
-    @Unique
-    private String gtlitecore$formatCount(int count)
-    {
-        if (count <= 99)
-            return String.valueOf(count);
-        if (count <= 9_999)
-            return String.valueOf(count);
-        if (count <= 999_999)
-        {
-            float k = count / 1000f;
-            return String.format(k % 1 == 0 ? "%.0fk" : "%.1fk", k);
-        }
-        if (count <= 999_999_999)
-        {
-            float m = count / 1_000_000f;
-            return String.format(m % 1 == 0 ? "%.0fm" : "%.1fm", m);
-        }
-        float g = count / 1_000_000_000f;
-        return String.format(g % 1 == 0 ? "%.0fg" : "%.1fg", g);
     }
 }
