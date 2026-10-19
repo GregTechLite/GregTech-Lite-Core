@@ -11,6 +11,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.AbilityInstances
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
+import gregtech.api.metatileentity.multiblock.MultiblockControllerBase
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockNotifiablePart
 import gregtechlite.gtlitecore.api.capability.PatternedSingletonDualInputInventory
@@ -40,8 +41,7 @@ class PartMachineMECraftingPatternInputMirror(id: ResourceLocation, tier: Int)
     private var masterY = 0
     private var masterZ = 0
     private var isMasterInit = false
-
-    private val sharedItemHandler = MirrorSharedItemHandler()
+    private var justHadNewItems = false
 
     companion object
     {
@@ -123,6 +123,19 @@ class PartMachineMECraftingPatternInputMirror(id: ResourceLocation, tier: Int)
         logic.clearInventoryRecipeCache()
     }
 
+    fun onMasterInputsChanged(clearRecipeCache: Boolean)
+    {
+        if (clearRecipeCache) invalidateControllerRecipeCache()
+        justHadNewItems = true
+        controller?.addNotifiedInput(importItems)
+    }
+
+    override fun addToMultiBlock(controllerBase: MultiblockControllerBase)
+    {
+        super.addToMultiBlock(controllerBase)
+        onMasterInputsChanged(true)
+    }
+
     override fun onDataStickLeftClick(player: EntityPlayer, dataStick: ItemStack)
     {
         val linkedMaster = getMaster()
@@ -154,7 +167,12 @@ class PartMachineMECraftingPatternInputMirror(id: ResourceLocation, tier: Int)
 
     override fun getSharedItems(): Array<ItemStack> = getMaster()?.getSharedItems() ?: emptyArray()
 
-    override fun shouldUpdate(): Boolean = getMaster()?.shouldUpdate() ?: false
+    override fun shouldUpdate(): Boolean
+    {
+        val updated = justHadNewItems
+        justHadNewItems = false
+        return updated
+    }
 
     override fun isWorkingEnabled(): Boolean = getMaster()?.isWorkingEnabled() ?: true
 
@@ -169,7 +187,8 @@ class PartMachineMECraftingPatternInputMirror(id: ResourceLocation, tier: Int)
     {
         if (abilityInstances.isKey(MultiblockAbility.IMPORT_ITEMS))
         {
-            abilityInstances.add(sharedItemHandler)
+            // The linked master's shared slots use their own isolated recipe search.
+            abilityInstances.add(importItems)
         }
     }
 
@@ -255,28 +274,4 @@ class PartMachineMECraftingPatternInputMirror(id: ResourceLocation, tier: Int)
         super.addToolUsages(stack, world, tooltip, advanced)
     }
 
-    private inner class MirrorSharedItemHandler : IItemHandlerModifiable
-    {
-        private val delegate: IItemHandlerModifiable?
-            get() = getMaster()?.getSharedItemHandler()
-
-        override fun getSlots(): Int = PartMachineMECraftingPatternInputHatch.SHARED_SLOT_COUNT
-
-        override fun getStackInSlot(slot: Int): ItemStack = delegate?.getStackInSlot(slot) ?: ItemStack.EMPTY
-
-        override fun setStackInSlot(slot: Int, stack: ItemStack)
-        {
-            delegate?.setStackInSlot(slot, stack)
-        }
-
-        override fun getSlotLimit(slot: Int): Int = delegate?.getSlotLimit(slot) ?: 0
-
-        override fun isItemValid(slot: Int, stack: ItemStack): Boolean = delegate?.isItemValid(slot, stack) ?: false
-
-        override fun insertItem(slot: Int, stack: ItemStack, simulate: Boolean): ItemStack
-            = delegate?.insertItem(slot, stack, simulate) ?: stack
-
-        override fun extractItem(slot: Int, amount: Int, simulate: Boolean): ItemStack
-            = delegate?.extractItem(slot, amount, simulate) ?: ItemStack.EMPTY
-    }
 }
