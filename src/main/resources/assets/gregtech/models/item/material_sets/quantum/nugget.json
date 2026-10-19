@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gregtech:items/material_sets/quantum/nugget"
+    "layer0": "gregtech:items/material_sets/quantum/nugget",
+    "layer1": "gregtech:items/material_sets/quantum/nugget_overlay"
   }
 }

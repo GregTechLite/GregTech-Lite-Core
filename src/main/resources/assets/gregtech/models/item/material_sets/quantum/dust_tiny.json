@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gregtech:items/material_sets/quantum/dust_tiny"
+    "layer0": "gregtech:items/material_sets/quantum/dust_tiny",
+    "layer1": "gregtech:items/material_sets/quantum/dust_tiny_overlay"
   }
 }

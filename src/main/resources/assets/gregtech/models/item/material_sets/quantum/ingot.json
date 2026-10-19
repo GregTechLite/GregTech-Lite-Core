@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gregtech:items/material_sets/quantum/ingot"
+    "layer0": "gregtech:items/material_sets/quantum/ingot",
+    "layer1": "gregtech:items/material_sets/quantum/ingot_overlay"
   }
 }

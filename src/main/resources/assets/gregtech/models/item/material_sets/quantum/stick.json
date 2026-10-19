@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gregtech:items/material_sets/quantum/stick"
+    "layer0": "gregtech:items/material_sets/quantum/stick",
+    "layer1": "gregtech:items/material_sets/quantum/stick_overlay"
   }
 }
