@@ -2591,7 +2591,7 @@ gtlitecore.machine.stellar_forge.tooltip.2=需要使用不同的§c爆弹§7在�
 
 gtlitecore.machine.plasma_enhanced_cvd_unit.name=等离子体增强化学气相沉积单元
 gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=驱使等离子体增强沉积反应活性以加速之
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，拥有§f激光诱导化学气相沉积§r配方对应的高级配方。
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，拥有§f激光诱导化学气相沉积§7配方对应的高级配方。
 
 gtlitecore.machine.pcb_factory.name=PCB工厂
 gtlitecore.machine.pcb_factory.tooltip.1=专门用于生产电路基板的大型工厂

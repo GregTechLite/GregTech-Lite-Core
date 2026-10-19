@@ -2590,8 +2590,8 @@ gtlitecore.machine.stellar_forge.tooltip.1=Harness the power of stars
 gtlitecore.machine.stellar_forge.tooltip.2=需要使用不同的§c爆弹§7在机器内部引发超新星爆发。
 
 gtlitecore.machine.plasma_enhanced_cvd_unit.name=Plasma-Enhanced Chemical Vapor Deposition Unit
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=驱使等离子体增强沉积反应活性以加速之
-gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=兼容所有普通§2化学气相沉积§7配方，拥有§f激光诱导化学气相沉积§r配方对应的高级配方。
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=Drive plasma to enhance deposition reaction activity and accelerate it
+gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.2=Compatible with all standard §2CVD§7 recipes, and has advanced recipes for all §fLaser CVD§7 recipes.
 
 gtlitecore.machine.pcb_factory.name=PCB Factory
 gtlitecore.machine.pcb_factory.tooltip.1=Large Factory for Circuit Board Producing
