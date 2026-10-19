@@ -2587,7 +2587,7 @@ gtlitecore.machine.cosmic_ray_detector.tooltip.2=Needs to placed at designated �
 
 gtlitecore.machine.stellar_forge.name=Stellar Forge
 gtlitecore.machine.stellar_forge.tooltip.1=Harness the power of stars
-gtlitecore.machine.stellar_forge.tooltip.2=需要使用不同的§c爆弹§7在机器内部引发超新星爆发。
+gtlitecore.machine.stellar_forge.tooltip.2=Require to use different §cCharges§7 to trigger a Supernova Explosion inside the machine.
 
 gtlitecore.machine.plasma_enhanced_cvd_unit.name=Plasma-Enhanced Chemical Vapor Deposition Unit
 gtlitecore.machine.plasma_enhanced_cvd_unit.tooltip.1=Drive plasma to enhance deposition reaction activity and accelerate it
@@ -2969,10 +2969,10 @@ gtlitecore.machine.ep_coupling_accelerator.tooltip.2=耗能减免除数始终固
 
 gtlitecore.machine.nano_assembly_complex.name=Nano Assembly Complex
 gtlitecore.machine.nano_assembly_complex.tooltip.1=The Ultimate Solution of Circuit Assembly
-gtlitecore.machine.nano_assembly_complex.tooltip.2=§fNano Assembly Complex§7模式兼容所有§f装配线§7与§f太空组装机§7配方，且具有一部分独占配方
-gtlitecore.machine.nano_assembly_complex.tooltip.3=§fSingularity Assembly Unit§7模式兼容所有§f电路装配线§7配方，且具有特殊的初始倍率配方
-gtlitecore.machine.nano_assembly_complex.tooltip.4=不需要输入§a研究数据§7且无视装配线的输入顺序限制
-gtlitecore.machine.nano_assembly_complex.tooltip.5=速度加成：§d锁定1/4耗时
+gtlitecore.machine.nano_assembly_complex.tooltip.2=§fNano Assembly Complex§7 mode compatible with all §fAssembly Line§7 and §fSpace Assembler§7 recipes, and has some unique recipes.
+gtlitecore.machine.nano_assembly_complex.tooltip.3=§fSingularity Assembly Unit§7 compatible with all §fCircuit Assembly Line§7 recipes and has some plus recipes
+gtlitecore.machine.nano_assembly_complex.tooltip.4=Not need to input §aResearch Data§7 and ignore input order for Assembly Line
+gtlitecore.machine.nano_assembly_complex.tooltip.5=Working Speed Buff: §dLocked 1/4 Duration
 
 gtlitecore.machine.matter_reshaping_framework.name=Matter Reshaping Framework
 gtlitecore.machine.matter_reshaping_framework.tooltip.1=在§f锻压固化模组§7的§f锻造锤§7模式下使用§f物质重塑§7特殊配方
