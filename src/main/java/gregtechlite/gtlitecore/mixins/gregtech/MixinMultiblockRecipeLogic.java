@@ -1,6 +1,6 @@
 package gregtechlite.gtlitecore.mixins.gregtech;
 
-import gregtech.api.capability.IMultipleRecipeMaps;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.capability.INotifiableHandler;
 import gregtech.api.capability.impl.AbstractRecipeLogic;
@@ -166,15 +166,13 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
 
     /**
      * @author Magic_Sweepy
-     * @reason Clean {@link #gtlitecore$dualInputRecipeCache} when the logic is invalidated.
+     * @reason Clean {@link #gtlitecore$dualInputRecipeCache} when the logic is invalidated. The upstream
+     *         {@code invalidate} already resets {@code lastRecipeIndex} and clears {@code invalidatedInputList}.
      */
-    @Overwrite
-    @Override
-    public void invalidate()
+    @Inject(method = "invalidate()V",
+            at = @At("TAIL"))
+    private void gtlitecore$invalidateCache(CallbackInfo callbackInfo)
     {
-        super.invalidate();
-        lastRecipeIndex = 0;
-        invalidatedInputList.clear();
         gtlitecore$dualInputRecipeCache.clear();
     }
 
@@ -182,16 +180,10 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
      * @author Magic_Sweepy
      * @reason Auto clean cache and last recipe map check.
      */
-    @Overwrite
-    @Override
-    public @Nullable RecipeMap<?> getRecipeMap()
+    @ModifyReturnValue(method = "getRecipeMap()Lgregtech/api/recipes/RecipeMap;",
+                       at = @At("RETURN"))
+    private @Nullable RecipeMap<?> gtlitecore$resetCacheOnChange(@Nullable RecipeMap<?> recipeMap)
     {
-        RecipeMap<?> recipeMap;
-        if (metaTileEntity instanceof IMultipleRecipeMaps)
-            recipeMap = ((IMultipleRecipeMaps) metaTileEntity).getCurrentRecipeMap();
-        else
-            recipeMap = super.getRecipeMap();
-
         if (recipeMap != gtlitecore$lastRecipeMap)
         {
             if (gtlitecore$lastRecipeMap != null)
