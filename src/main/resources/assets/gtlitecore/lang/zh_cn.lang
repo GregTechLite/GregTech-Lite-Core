@@ -2547,6 +2547,7 @@ gtlitecore.machine.nanoscale_fabricator.temperature_range=可运行温度范围�
 gtlitecore.machine.nanoscale_fabricator.required_temperature=温度：%s
 
 gtlitecore.machine.sonicator.name=超声震荡器
+gtlitecore.machine.sonicator.tooltip.1=高频清洗器
 
 gtlitecore.machine.laser_induced_cvd_unit.name=激光诱导化学气相沉积单元
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=以高能激光束促进气相沉积反应

@@ -2547,6 +2547,7 @@ gtlitecore.machine.nanoscale_fabricator.temperature_range=Workable Temperature R
 gtlitecore.machine.nanoscale_fabricator.required_temperature=Temperature: %s
 
 gtlitecore.machine.sonicator.name=Sonicator
+gtlitecore.machine.sonicator.tooltip.1=High Frequency Cleaner
 
 gtlitecore.machine.laser_induced_cvd_unit.name=Laser-Induced Chemical Vapor Deposition Unit
 gtlitecore.machine.laser_induced_cvd_unit.tooltip.1=Promoting Gas-Phase Deposition Reaction with High-Energy Laser Beam
