@@ -29,7 +29,7 @@ public abstract class MixinMetaTileEntityPowerSubstation
 
     /**
      * @author rainy
-     * @reason Add the wireless energy storage ability to the input hatches of the power substation.
+     * @reason Add the Wireless Energy Storage ability to the input hatches of the Power Substation.
      */
     @ModifyExpressionValue(method = "createStructurePattern",
                            at = @At(value = "INVOKE",
@@ -37,12 +37,16 @@ public abstract class MixinMetaTileEntityPowerSubstation
                                     target = "Lgregtech/common/metatileentities/multi/electric/MetaTileEntityPowerSubstation;abilities([Lgregtech/api/metatileentity/multiblock/MultiblockAbility;)Lgregtech/api/pattern/TraceabilityPredicate;"))
     private TraceabilityPredicate gtlitecore$wirelessInputAbility(TraceabilityPredicate original)
     {
-        return original.or(MultiblockControllerBase.abilities(TraceabilityPredicates.WIRELESS_ENERGY_STORAGE));
+        return MultiblockControllerBase.abilities(
+                MultiblockAbility.INPUT_ENERGY,
+                MultiblockAbility.SUBSTATION_INPUT_ENERGY,
+                MultiblockAbility.INPUT_LASER,
+                TraceabilityPredicates.WIRELESS_ENERGY_STORAGE);
     }
 
     /**
      * @author rainy
-     * @reason Add the wireless energy storage ability to the output hatches of the power substation.
+     * @reason Add the Wireless Energy Storage ability to the output hatches of the Power Substation.
      */
     @ModifyExpressionValue(method = "createStructurePattern",
                            at = @At(value = "INVOKE",
@@ -50,7 +54,10 @@ public abstract class MixinMetaTileEntityPowerSubstation
                                     target = "Lgregtech/common/metatileentities/multi/electric/MetaTileEntityPowerSubstation;abilities([Lgregtech/api/metatileentity/multiblock/MultiblockAbility;)Lgregtech/api/pattern/TraceabilityPredicate;"))
     private TraceabilityPredicate gtlitecore$wirelessOutputAbility(TraceabilityPredicate original)
     {
-        return original.or(MultiblockControllerBase.abilities(TraceabilityPredicates.WIRELESS_ENERGY_STORAGE));
+        return MultiblockControllerBase.abilities(MultiblockAbility.OUTPUT_ENERGY,
+                MultiblockAbility.SUBSTATION_OUTPUT_ENERGY,
+                MultiblockAbility.OUTPUT_LASER,
+                TraceabilityPredicates.WIRELESS_ENERGY_STORAGE);
     }
 
     @Inject(method = "formStructure",
