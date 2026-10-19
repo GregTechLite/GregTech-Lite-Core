@@ -57,6 +57,7 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
     private int gtlitecore$previewPages;
 
     @SuppressWarnings("AddedMixinMembersNamePattern")
+    @Unique
     @Override
     public int getPreviewPages()
     {
@@ -80,6 +81,7 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
 
     // TODO: When CEu rewrite block pattern checks and merged PR, rework this class.
     @SuppressWarnings("AddedMixinMembersNamePattern")
+    @Unique
     @Override
     public @NotNull BlockInfo @NotNull [] @NotNull [] @NotNull [] getPreview(int @NotNull [] repetition, int candidateIndex)
     {

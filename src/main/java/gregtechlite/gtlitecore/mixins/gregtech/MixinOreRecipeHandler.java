@@ -1,13 +1,8 @@
 package gregtechlite.gtlitecore.mixins.gregtech;
 
-import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.properties.OreProperty;
-import gregtech.api.unification.material.properties.PropertyKey;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.common.ConfigHolder;
 import gregtech.loaders.recipe.handlers.OreRecipeHandler;
+import gregtechlite.gtlitecore.mixins.hooks.RecipeHandlerHooks;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -16,43 +11,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MixinOreRecipeHandler
 {
     /**
-     * Disabled crushedPurified recipes initialization.
-     *
-     * @see gregtechlite.gtlitecore.loader.recipe.handler.OreRecipeHandler
+     * @author Magic_Sweepy
+     * @reason Disabled {@code crushedPurified} recipes initialization.
      */
     @Inject(method = "register",
             at = @At("HEAD"),
             cancellable = true)
-    private static void stopInit(CallbackInfo ci)
+    private static void stopInit(CallbackInfo callbackInfo)
     {
-        OrePrefix.ore.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-        OrePrefix.oreEndstone.addProcessingHandler(PropertyKey.ORE, MixinOreRecipeHandler::gtlitecore$processOreQuadruple);
-        OrePrefix.oreNetherrack.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOreDouble);
-
-        if (ConfigHolder.worldgen.allUniqueStoneTypes)
-        {
-            OrePrefix.oreGranite.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-            OrePrefix.oreDiorite.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-            OrePrefix.oreAndesite.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-            OrePrefix.oreBasalt.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-            OrePrefix.oreBlackgranite.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-            OrePrefix.oreMarble.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-            OrePrefix.oreRedgranite.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-            OrePrefix.oreSand.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-            OrePrefix.oreRedSand.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processOre);
-        }
-
-        OrePrefix.crushed.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processCrushedOre);
-        OrePrefix.crushedCentrifuged.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processCrushedCentrifuged);
-        OrePrefix.dustImpure.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processDirtyDust);
-        OrePrefix.dustPure.addProcessingHandler(PropertyKey.ORE, OreRecipeHandler::processPureDust);
-
-        ci.cancel();
-    }
-
-    @Unique
-    private static void gtlitecore$processOreQuadruple(OrePrefix prefix, Material material, OreProperty property)
-    {
-        OreRecipeHandler.processOre(prefix, material, property, 4);
+        RecipeHandlerHooks.registerOreHandlers();
+        callbackInfo.cancel();
     }
 }

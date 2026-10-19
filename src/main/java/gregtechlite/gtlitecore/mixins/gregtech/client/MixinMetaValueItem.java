@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.mixins.gregtech.client;
 
+import com.llamalad7.mixinextras.sugar.Local;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IItemComponent;
 import gregtechlite.gtlitecore.client.renderer.CustomItemRenderer;
@@ -10,7 +11,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(value = MetaItem.MetaValueItem.class, remap = false)
 public abstract class MixinMetaValueItem implements CustomItemRenderer
@@ -18,6 +18,7 @@ public abstract class MixinMetaValueItem implements CustomItemRenderer
     @Unique
     private @UnknownNullability ItemRendererManager gtlitecore$rendererManager;
 
+    @SuppressWarnings("AddedMixinMembersNamePattern")
     @Unique
     @Override
     public ItemRendererManager getRendererManager()
@@ -25,17 +26,11 @@ public abstract class MixinMetaValueItem implements CustomItemRenderer
         return gtlitecore$rendererManager;
     }
 
-    @SuppressWarnings("InvalidInjectorMethodSignature")
-    @Inject(
-            method = "addItemComponentsInternal([Lgregtech/api/items/metaitem/stats/IItemComponent;)V",
+    @Inject(method = "addItemComponentsInternal([Lgregtech/api/items/metaitem/stats/IItemComponent;)V",
             at = @At(value = "FIELD",
-                     target = "Lgregtech/api/items/metaitem/MetaItem$MetaValueItem;allStats:Ljava/util/List;"),
-            locals = LocalCapture.CAPTURE_FAILHARD)
-    private void addItemComponentsInternal(IItemComponent[] stats,
-                                           CallbackInfo ci,
-                                           IItemComponent[] var2,
-                                           int var3, int var4,
-                                           IItemComponent itemComponent)
+                     target = "Lgregtech/api/items/metaitem/MetaItem$MetaValueItem;allStats:Ljava/util/List;"))
+    private void gtlitecore$captureRendererManager(IItemComponent[] stats, CallbackInfo callbackInfo,
+                                                   @Local IItemComponent itemComponent)
     {
         if (itemComponent instanceof ItemRendererManager)
         {

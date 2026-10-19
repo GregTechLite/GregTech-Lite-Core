@@ -1,76 +1,42 @@
 package gregtechlite.gtlitecore.mixins.gregtech;
 
-import gregtech.api.metatileentity.multiblock.MultiblockAbility;
-import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
-import gregtech.api.pattern.BlockPattern;
-import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.common.metatileentities.multi.BoilerType;
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.common.metatileentities.multi.MetaTileEntityLargeBoiler;
 import gregtechlite.gtlitecore.mixins.hooks.Implemented;
-import net.minecraft.util.ResourceLocation;
 import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
-import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
 
 @ScheduledForRemoval(inVersion = "Change gregtech to our forked version")
 @Deprecated
 @Implemented(at = "https://github.com/GregTechCEu/GregTech/pull/2873")
 @Mixin(value = MetaTileEntityLargeBoiler.class, remap = false)
-public abstract class MixinMetaTileEntityLargeBoiler extends MultiblockWithDisplayBase
+public abstract class MixinMetaTileEntityLargeBoiler
 {
-    @Shadow
-    @Final
-    public BoilerType boilerType;
-
-    public MixinMetaTileEntityLargeBoiler(ResourceLocation metaTileEntityId)
+    /**
+     * @author Magic_Sweepy
+     * @reason Upstream calls {@code setMinGlobalLimited(1)} without a preview count.
+     */
+    @ModifyExpressionValue(method = "createStructurePattern",
+                           at = @At(value = "INVOKE",
+                                    ordinal = 1,
+                                    target = "Lgregtech/api/pattern/TraceabilityPredicate;setMinGlobalLimited(I)Lgregtech/api/pattern/TraceabilityPredicate;"))
+    private TraceabilityPredicate gtlitecore$fluidImportPreviewCount(TraceabilityPredicate original)
     {
-        super(metaTileEntityId);
+        return original.setPreviewCount(1);
     }
 
     /**
-     * In original code, the import items and fluids not constrict its count and preview count:
-     * <pre>{@code
-     *      .or(abilities(MultiblockAbility.IMPORT_FLUIDS)
-     *          .setMinGlobalLimited(1))
-     *      .or(abilities(MultiblockAbility.IMPORT_ITEMS)
-     *          .setMaxGlobalLimited(1))
-     * }</pre>
-     * This mixins change the maximum global limit of import items to <tt>2</tt>, and constrict it preview count:
-     * <pre>{@code
-     *      .or(abilities(MultiblockAbility.IMPORT_FLUIDS)
-     *          .setMinGlobalLimited(1, 1))
-     *      .or(abilities(MultiblockAbility.IMPORT_ITEMS)
-     *          .setMaxGlobalLimited(2, 1))
-     * }</pre>
-     * Now the large boiler can preview in JEI page with correct structure normally.
-     *
      * @author Magic_Sweepy
-     * @reason Fix incorrect structure ability of firebox casing part.
+     * @reason Upstream only allows one item import bus and has no preview count.
      */
-    @Overwrite
-    @Override
-    protected @NotNull BlockPattern createStructurePattern()
+    @ModifyExpressionValue(
+            method = "createStructurePattern",
+            at = @At(value = "INVOKE",
+                     target = "Lgregtech/api/pattern/TraceabilityPredicate;setMaxGlobalLimited(I)Lgregtech/api/pattern/TraceabilityPredicate;"))
+    private TraceabilityPredicate gtlitecore$itemImportBusLimit(TraceabilityPredicate original)
     {
-        return FactoryBlockPattern.start()
-                .aisle("XXX", "CCC", "CCC", "CCC")
-                .aisle("XXX", "CPC", "CPC", "CCC")
-                .aisle("XXX", "CSC", "CCC", "CCC")
-                .where('S', selfPredicate())
-                .where('P', states(boilerType.pipeState))
-                .where('X', states(boilerType.fireboxState)
-                        .setMinGlobalLimited(4)
-                        .or(abilities(MultiblockAbility.IMPORT_FLUIDS)
-                                .setMinGlobalLimited(1, 1))
-                        .or(abilities(MultiblockAbility.IMPORT_ITEMS)
-                                .setMaxGlobalLimited(2, 1))
-                        .or(autoAbilities()))
-                .where('C', states(boilerType.casingState)
-                        .setMinGlobalLimited(20)
-                        .or(abilities(MultiblockAbility.EXPORT_FLUIDS)
-                                .setMinGlobalLimited(1)))
-                .build();
+        return original.setMaxGlobalLimited(2).setPreviewCount(1);
     }
 }
