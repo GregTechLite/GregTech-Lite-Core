@@ -1,20 +1,10 @@
 package gregtechlite.gtlitecore.mixins.gregtech.client;
 
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.stack.MaterialStack;
-import gregtech.client.utils.RenderUtil;
 import gregtech.common.gui.widget.prospector.ProspectorMode;
 import gregtech.common.gui.widget.prospector.ProspectingTexture;
 import gregtech.core.network.packets.PacketProspecting;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectOpenHashMap;
-import net.minecraft.client.gui.Gui;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.client.resources.IResourceManager;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,18 +13,11 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.WritableRaster;
-import java.util.HashMap;
 import java.util.Map;
 
-@ScheduledForRemoval(inVersion = "Change gregtech to our forked version")
-@Deprecated
 @Mixin(value = ProspectingTexture.class, remap = false)
-public abstract class MixinProspectingTexture extends AbstractTexture
+public abstract class MixinProspectingTexture
 {
     @Shadow
     @Final
@@ -46,51 +29,22 @@ public abstract class MixinProspectingTexture extends AbstractTexture
 
     @Shadow
     private int playerXGui;
+
     @Shadow
     private int playerYGui;
 
     @Shadow
-    private int imageWidth;
-    @Shadow
-    private int imageHeight;
-
-    @Shadow
     @Final
     private ProspectorMode mode;
-    @Shadow
-    private boolean darkMode;
 
-    @Shadow
-    private String selected;
-
-    @Shadow
-    @Final
-    public static String SELECTED_ALL;
-
-    @Unique
-    private Object[][] gtlitecore$map;
-    @Unique
-    private static Map<Byte, String> gtlitecore$emptyTag;
-
-    @Inject(method = "<init>",
-            at = @At("TAIL"))
-    private void onConstructor(ProspectorMode mode, int radius, boolean darkMode, CallbackInfo ci)
-    {
-        gtlitecore$emptyTag = new HashMap<>();
-        if (mode == ProspectorMode.FLUID)
-        {
-            gtlitecore$map = new HashMap[(radius * 2 - 1)][(radius * 2 - 1)];
-        }
-        else
-        {
-            gtlitecore$map = new HashMap[(radius * 2 - 1) * 16][(radius * 2 - 1) * 16];
-        }
-    }
-
+    /**
+     * @author Magic_Sweepy
+     * @reason Store {@link Byte2ObjectOpenHashMap} copies instead of the packet's {@code HashMap} cells.
+     */
     @Inject(method = "updateTexture",
             at = @At("HEAD"),
             cancellable = true)
-    private void onUpdateTexture(PacketProspecting packet, CallbackInfo ci)
+    private void gtlitecore$updateTexture(PacketProspecting packet, CallbackInfo callbackInfo)
     {
         int playerChunkX = packet.playerChunkX;
         int playerChunkZ = packet.playerChunkZ;
@@ -129,18 +83,13 @@ public abstract class MixinProspectingTexture extends AbstractTexture
         int currentRow = (this.radius - 1) + oy;
         if (currentRow < 0)
         {
-            ci.cancel();
+            callbackInfo.cancel();
             return;
         }
 
         if (mode == ProspectorMode.FLUID)
         {
-            // region patch
-            gtlitecore$map[currentColumn][currentRow] = packet.map[0][0] == null
-                    ? gtlitecore$emptyTag : packet.map[0][0];
-            map[currentColumn][currentRow] = packet.map[0][0] == null
-                    ? new Byte2ObjectOpenHashMap<>(gtlitecore$emptyTag) : new Byte2ObjectOpenHashMap<>(packet.map[0][0]);
-            // endregion
+            map[currentColumn][currentRow] = gtlitecore$copyCell(packet.map[0][0]);
         }
         else
         {
@@ -148,122 +97,18 @@ public abstract class MixinProspectingTexture extends AbstractTexture
             {
                 for (int z = 0; z < 16; z++)
                 {
-                    // region patch
-                    gtlitecore$map[x + currentColumn * 16][z + currentRow * 16] = packet.map[x][z] == null
-                            ? gtlitecore$emptyTag : packet.map[x][z];
-                    map[x + currentColumn * 16][z + currentRow * 16] = packet.map[x][z] == null
-                            ? new Byte2ObjectOpenHashMap<>(gtlitecore$emptyTag) : new Byte2ObjectOpenHashMap<>(packet.map[x][z]);
-                    // endregion
+                    map[x + currentColumn * 16][z + currentRow * 16] = gtlitecore$copyCell(packet.map[x][z]);
                 }
             }
         }
         loadTexture(null);
-        ci.cancel();
+        callbackInfo.cancel();
     }
 
-    @Inject(method = "getImage",
-            at = @At("HEAD"),
-            cancellable = true)
-    private void onGetImage(CallbackInfoReturnable<BufferedImage> cir)
+    @Unique
+    private static Map<Byte, String> gtlitecore$copyCell(@Nullable Map<Byte, String> cell)
     {
-        int wh = (radius * 2 - 1) * 16;
-        BufferedImage image = new BufferedImage(wh, wh, BufferedImage.TYPE_INT_ARGB);
-        WritableRaster raster = image.getRaster();
-
-        for (int i = 0; i < wh; i++)
-        {
-            for (int j = 0; j < wh; j++)
-            {
-                // region patch
-                // noinspection unchecked
-                Map<Byte, String> data = (Map<Byte, String>) gtlitecore$map[mode == ProspectorMode.ORE ? i : i / 16][
-                        mode == ProspectorMode.ORE ? j : j / 16];
-                // endregion
-
-                // draw bg
-                image.setRGB(i, j, ((data == null) ^ darkMode) ? Color.darkGray.getRGB() : Color.WHITE.getRGB());
-
-                // draw ore
-                if (mode == ProspectorMode.ORE && data != null)
-                {
-                    for (String orePrefix : data.values())
-                    {
-                        if (!selected.equals(SELECTED_ALL) && !selected.equals(orePrefix)) continue;
-                        MaterialStack ms = OreDictUnifier.getMaterial(OreDictUnifier.get(orePrefix));
-                        image.setRGB(i, j, ms == null ? orePrefix.hashCode() :
-                                ms.material.getMaterialRGB() | 0XFF000000);
-                        break;
-                    }
-                }
-
-                // draw grid
-                if ((i) % 16 == 0 || (j) % 16 == 0)
-                {
-                    raster.setSample(i, j, 0, raster.getSample(i, j, 0) / 2);
-                    raster.setSample(i, j, 1, raster.getSample(i, j, 1) / 2);
-                    raster.setSample(i, j, 2, raster.getSample(i, j, 2) / 2);
-                }
-            }
-        }
-        cir.setReturnValue(image);
-    }
-
-    @Inject(method = "draw",
-            at = @At("HEAD"),
-            cancellable = true)
-    private void onDraw(int x, int y, CallbackInfo ci)
-    {
-        if (glTextureId < 0)
-        {
-            ci.cancel();
-            return;
-        }
-
-        GlStateManager.bindTexture(glTextureId);
-        Gui.drawModalRectWithCustomSizedTexture(x, y, 0, 0, imageWidth, imageHeight, imageWidth, imageHeight);
-        if (mode == ProspectorMode.FLUID)
-        {
-            for (int cx = 0; cx < radius * 2 - 1; cx++)
-            {
-                for (int cz = 0; cz < radius * 2 - 1; cz++)
-                {
-                    // region patch
-                    // noinspection unchecked
-                    Map<Byte, String> data = (Map<Byte, String>) gtlitecore$map[cx][cz];
-                    // endregion
-                    if (data != null && !data.isEmpty())
-                    {
-                        Fluid fluid = FluidRegistry.getFluid(data.get((byte) 1));
-                        if (selected.equals(SELECTED_ALL) || selected.equals(fluid.getName()))
-                        {
-                            RenderUtil.drawFluidForGui(new FluidStack(fluid, 1), 1,
-                                    x + cx * 16 + 1, y + cz * 16 + 1, 16, 16);
-                        }
-                    }
-                }
-            }
-        }
-
-        // draw red vertical line
-        if (playerXGui % 16 > 7 || playerXGui % 16 == 0)
-        {
-            Gui.drawRect(x + playerXGui - 1, y, x + playerXGui, y + imageHeight, Color.RED.getRGB());
-        }
-        else
-        {
-            Gui.drawRect(x + playerXGui, y, x + playerXGui + 1, y + imageHeight, Color.RED.getRGB());
-        }
-
-        // draw red horizontal line
-        if (playerYGui % 16 > 7 || playerYGui % 16 == 0)
-        {
-            Gui.drawRect(x, y + playerYGui - 1, x + imageWidth, y + playerYGui, Color.RED.getRGB());
-        }
-        else
-        {
-            Gui.drawRect(x, y + playerYGui, x + imageWidth, y + playerYGui + 1, Color.RED.getRGB());
-        }
-        ci.cancel();
+        return new Byte2ObjectOpenHashMap<>(cell == null ? ProspectingTexture.emptyTag : cell);
     }
 
     @Shadow
