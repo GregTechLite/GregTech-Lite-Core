@@ -166,9 +166,9 @@ class MultiblockAdvancedAssemblyLine(id: ResourceLocation) : MetaTileEntityAssem
         if (ConfigHolder.machines.enableResearch)
         {
             return abilities(DATA_ACCESS_HATCH, OPTICAL_DATA_RECEPTION).setExactLimit(1)
-                .or(states(secondCasingState))
+                .or(states(casingState))
         }
-        return states(secondCasingState)
+        return states(casingState)
     }
 
     @SideOnly(Side.CLIENT)
