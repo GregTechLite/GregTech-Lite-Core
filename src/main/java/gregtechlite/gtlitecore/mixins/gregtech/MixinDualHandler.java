@@ -7,16 +7,17 @@ import gregtech.api.capability.INotifiableHandler;
 import gregtech.api.capability.impl.ItemHandlerList;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtechlite.gtlitecore.api.capability.MultipleNotifiableHandler;
-
 import gregtechlite.gtlitecore.mixins.hooks.Implemented;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.ApiStatus.ScheduledForRemoval;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Collection;
 import java.util.List;
@@ -28,67 +29,58 @@ import java.util.List;
 public abstract class MixinDualHandler implements INotifiableHandler, MultipleNotifiableHandler
 {
     @Shadow
-    protected @NotNull IItemHandlerModifiable itemDelegate;
+    protected IItemHandlerModifiable itemDelegate;
 
     @Shadow
-    protected @NotNull IMultipleTankHandler fluidDelegate;
+    protected IMultipleTankHandler fluidDelegate;
 
     @Shadow
     List<MetaTileEntity> notifiableEntities;
 
     /**
-     * @reason Rewrite the notifiable {@code metaTileEntity} logic with {@code MultipleNotifiableHandler}.
-     * @author Magic_Sweepy
+     * Whether the mte actually appended by upstream {@code addNotifiableMetaTileEntity} call,
+     * so the tail injector can skip the early-return case via this param hint.
      */
-    @Overwrite
-    @Override
-    public void addNotifiableMetaTileEntity(MetaTileEntity metaTileEntity)
+    @Unique
+    private boolean gtlitecore$cancelInjector;
+
+    @Inject(method = "addNotifiableMetaTileEntity",
+            at = @At("HEAD"))
+    private void gtlitecore$markRequireCancel(@Nullable MetaTileEntity metaTileEntity, CallbackInfo callbackInfo)
     {
-        if (metaTileEntity == null || this.notifiableEntities.contains(metaTileEntity)) return;
-        this.notifiableEntities.add(metaTileEntity);
-
-        if (getItemDelegate() instanceof INotifiableHandler)
-        {
-            INotifiableHandler handler = (INotifiableHandler) getItemDelegate();
-            handler.addNotifiableMetaTileEntity(metaTileEntity);
-        }
-        else if (getItemDelegate() instanceof ItemHandlerList)
-        {
-            ItemHandlerList list = (ItemHandlerList) getItemDelegate();
-            for (IItemHandler handler : list.getBackingHandlers())
-            {
-                if (handler instanceof INotifiableHandler)
-                {
-                    INotifiableHandler notifiableHandler = (INotifiableHandler) handler;
-                    notifiableHandler.addNotifiableMetaTileEntity(metaTileEntity);
-                }
-            }
-        }
-
-        for (IMultipleTankHandler.ITankEntry entry : getFluidDelegate())
-        {
-            if (entry.getDelegate() instanceof INotifiableHandler)
-            {
-                INotifiableHandler handler = (INotifiableHandler) entry.getDelegate();
-                handler.addNotifiableMetaTileEntity(metaTileEntity);
-            }
-        }
+        gtlitecore$cancelInjector = metaTileEntity != null && !notifiableEntities.contains(metaTileEntity);
     }
 
     /**
-     * @reason Rewrite the notifiable {@code metaTileEntity} logic with {@code MultipleNotifiableHandler}.
      * @author Magic_Sweepy
+     * @reason Rewrite the notifiable {@code metaTileEntity} logic with {@link MultipleNotifiableHandler}.
      */
-    @Overwrite
-    @Override
-    public void removeNotifiableMetaTileEntity(MetaTileEntity metaTileEntity)
+    @Inject(method = "addNotifiableMetaTileEntity",
+            at = @At("TAIL"))
+    private void gtlitecore$addToBackingHandlers(@Nullable MetaTileEntity metaTileEntity, CallbackInfo callbackInfo)
     {
-        this.notifiableEntities.remove(metaTileEntity);
+        if (!gtlitecore$cancelInjector) return;
+        gtlitecore$forEachBackingHandler(metaTileEntity, true);
+    }
+
+    @Inject(method = "removeNotifiableMetaTileEntity", at = @At("TAIL"))
+    private void gtlitecore$removeFromBackingHandlers(MetaTileEntity metaTileEntity, CallbackInfo callbackInfo)
+    {
+        gtlitecore$forEachBackingHandler(metaTileEntity, false);
+    }
+
+    @Unique
+    private void gtlitecore$forEachBackingHandler(@Nullable MetaTileEntity metaTileEntity, boolean shouldAddToHandlers)
+    {
+        if (metaTileEntity == null) return;
 
         if (getItemDelegate() instanceof INotifiableHandler)
         {
             INotifiableHandler handler = (INotifiableHandler) getItemDelegate();
-            handler.removeNotifiableMetaTileEntity(metaTileEntity);
+            if (shouldAddToHandlers)
+                handler.addNotifiableMetaTileEntity(metaTileEntity);
+            else
+                handler.removeNotifiableMetaTileEntity(metaTileEntity);
         }
         else if (getItemDelegate() instanceof ItemHandlerList)
         {
@@ -98,7 +90,10 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
                 if (handler instanceof INotifiableHandler)
                 {
                     INotifiableHandler notifiableHandler = (INotifiableHandler) handler;
-                    notifiableHandler.removeNotifiableMetaTileEntity(metaTileEntity);
+                    if (shouldAddToHandlers)
+                        notifiableHandler.addNotifiableMetaTileEntity(metaTileEntity);
+                    else
+                        notifiableHandler.removeNotifiableMetaTileEntity(metaTileEntity);
                 }
             }
         }
@@ -108,7 +103,10 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
             if (entry.getDelegate() instanceof INotifiableHandler)
             {
                 INotifiableHandler handler = (INotifiableHandler) entry.getDelegate();
-                handler.removeNotifiableMetaTileEntity(metaTileEntity);
+                if (shouldAddToHandlers)
+                    handler.addNotifiableMetaTileEntity(metaTileEntity);
+                else
+                    handler.removeNotifiableMetaTileEntity(metaTileEntity);
             }
         }
     }
@@ -116,7 +114,7 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
     @SuppressWarnings("AddedMixinMembersNamePattern")
     @Unique
     @Override
-    public @NotNull Collection<INotifiableHandler> getBackingNotifiers()
+    public Collection<INotifiableHandler> getBackingNotifiers()
     {
         ImmutableList.Builder<INotifiableHandler> handlerList = ImmutableList.builder();
 
@@ -146,8 +144,8 @@ public abstract class MixinDualHandler implements INotifiableHandler, MultipleNo
     }
 
     @Shadow
-    public abstract @NotNull IItemHandlerModifiable getItemDelegate();
+    public abstract IItemHandlerModifiable getItemDelegate();
 
     @Shadow
-    public abstract @NotNull IMultipleTankHandler getFluidDelegate();
+    public abstract IMultipleTankHandler getFluidDelegate();
 }
