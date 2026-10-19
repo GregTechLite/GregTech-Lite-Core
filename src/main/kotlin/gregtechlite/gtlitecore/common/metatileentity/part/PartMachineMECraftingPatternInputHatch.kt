@@ -58,6 +58,7 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.AbilityInstances
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
+import gregtech.api.metatileentity.multiblock.MultiblockControllerBase
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController
 import gregtech.api.mui.GTGuiTextures
 import gregtech.api.mui.GTGuis
@@ -157,7 +158,15 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         super.initializeInventory()
         patternInventory = PatternInventory()
         manualInventory = ManualInventory()
-        circuitInventory = GhostCircuitItemStackHandler(this)
+        circuitInventory = object : GhostCircuitItemStackHandler(this)
+        {
+            override fun setCircuitValue(config: Int)
+            {
+                if (circuitValue == config) return
+                super.setCircuitValue(config)
+                onOrderInputsChanged()
+            }
+        }
         internalInventory = arrayOfNulls(PATTERN_SLOT_COUNT)
         sharedItemHandler = DynamicItemHandlerList(circuitInventory!!, manualInventory!!)
     }
@@ -183,17 +192,36 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
             needPatternSync = true
         }
 
-        if (newItem == null || newItem.isEmpty || newItem.item !is ICraftingPatternItem) return
+        if (newItem == null || newItem.isEmpty || newItem.item !is ICraftingPatternItem)
+        {
+            onOrderInputsChanged()
+            return
+        }
 
         internalInventory[index] = PatternSlot(newItem.copy())
         needPatternSync = true
-        justHadNewItems = true
+        onOrderInputsChanged()
     }
 
     private fun invalidateRecipeCache(inventory: PatternedSingletonDualInputInventory? = null)
     {
         val logic = (controller as? RecipeMapMultiblockController)?.recipeMapWorkable as? SingletonDualInputAdapter ?: return
         inventory?.let { logic.removeInventoryRecipeCache(inventory) } ?: logic.clearInventoryRecipeCache()
+    }
+
+    private fun onOrderInputsChanged(clearRecipeCache: Boolean = true)
+    {
+        if (clearRecipeCache) invalidateRecipeCache()
+        justHadNewItems = true
+        // Notify with the registered zero-slot bus, without exposing shared slots to ordinary recipes.
+        controller?.addNotifiedInput(importItems)
+        mirrors.forEach { it.onMasterInputsChanged(clearRecipeCache) }
+    }
+
+    override fun addToMultiBlock(controllerBase: MultiblockControllerBase)
+    {
+        super.addToMultiBlock(controllerBase)
+        onOrderInputsChanged()
     }
 
     private fun dropStack(stack: ItemStack)
@@ -231,6 +259,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
     {
         if (mirrors.none { it === mirror })
             mirrors.add(mirror)
+        mirror.onMasterInputsChanged(true)
     }
 
     fun removeMirror(mirror: PartMachineMECraftingPatternInputMirror)
@@ -368,7 +397,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         if (!slot.insertItemsAndFluids(table))
             return false
 
-        justHadNewItems = true
+        onOrderInputsChanged(false)
         return true
     }
 
@@ -381,8 +410,6 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         val inventory = circuitInventory ?: return
         if (inventory.circuitValue == config) return
         inventory.circuitValue = config
-        invalidateRecipeCache()
-        justHadNewItems = true
         if (world?.isRemote == false) markDirty()
     }
 
@@ -436,8 +463,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         manualInventory?.let { GTUtility.readItems(it, "ManualInventory", tag) }
         circuitInventory?.read(tag)
         readInternalInventory(tag)
-        invalidateRecipeCache()
-        justHadNewItems = true
+        onOrderInputsChanged()
         needPatternSync = true
     }
 
@@ -463,6 +489,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         circuitInventory?.read(data)
         readInternalInventory(data)
 
+        onOrderInputsChanged()
         needPatternSync = true
     }
 
@@ -518,7 +545,8 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
     {
         if (abilityInstances.isKey(MultiblockAbility.IMPORT_ITEMS))
         {
-            abilityInstances.add(getSharedItemHandler())
+            // Shared slots use their own recipe search, never ordinary bus aggregation.
+            abilityInstances.add(importItems)
         }
     }
 
@@ -575,6 +603,9 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
             manualRow.add(ItemSlot()
                               .slot(SyncHandlers.itemSlot(manual, index)
                                         .slotGroup("manual_inv")
+                                        .changeListener { _, onlyAmountChanged, _, _ ->
+                                            if (onlyAmountChanged) manual.onContentsChanged(index)
+                                        }
                                         .accessibility(true, true)))
         }
         val manualGrid = ArrayList<MutableList<IWidget>>(1)
@@ -675,8 +706,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         override fun onContentsChanged(slot: Int)
         {
             super.onContentsChanged(slot)
-            invalidateRecipeCache()
-            justHadNewItems = true
+            onOrderInputsChanged()
         }
     }
 
@@ -720,7 +750,7 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
         }
 
         override fun getConsumableItemHandler(): IItemHandlerModifiable
-            = DynamicItemHandlerList(circuitInventory!!, manualInventory!!, DynamicNotifiableItemStackHandler(itemInventory))
+            = DynamicItemHandlerList(DynamicNotifiableItemStackHandler(itemInventory), circuitInventory!!, manualInventory!!)
 
         override fun getConsumableFluidHandler(): IMultipleTankHandler
         {
@@ -733,7 +763,6 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
             val details = patternDetails ?: return SingletonDualInputHandler()
 
             val items = arrayListOf<ItemStack>()
-            getSharedItems().forEach { if (!it.isEmpty) items.add(it) }
 
             val fluids = arrayListOf<FluidStack>()
             for (input in details.inputs)
@@ -752,6 +781,8 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
                     items.add(stack)
                 }
             }
+            // Explicit pattern circuits take priority over the shared fallback circuit.
+            getSharedItems().forEach { if (!it.isEmpty) items.add(it) }
             return SingletonDualInputHandler(items.toTypedArray(), fluids.toTypedArray())
         }
 

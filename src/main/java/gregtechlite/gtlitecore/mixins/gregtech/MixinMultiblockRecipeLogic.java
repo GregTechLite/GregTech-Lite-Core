@@ -67,6 +67,9 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
     @Unique
     private @Nullable RecipeMap<?> gtlitecore$lastRecipeMap = null;
 
+    @Unique
+    private boolean gtlitecore$preparingDualInputRecipe;
+
     public MixinMultiblockRecipeLogic(MetaTileEntity tileEntity, RecipeMap<?> recipeMap)
     {
         super(tileEntity, recipeMap);
@@ -87,7 +90,11 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
     protected boolean canWorkWithInputs()
     {
         if (gtlitecore$consumeDualInputUpdates())
+        {
+            invalidInputsForRecipes = false;
+            isOutputsFull = false;
             return true;
+        }
 
         MultiblockWithDisplayBase controller = (MultiblockWithDisplayBase) metaTileEntity;
         if (controller instanceof RecipeMapMultiblockController)
@@ -195,15 +202,14 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
         return recipeMap;
     }
 
-    @Inject(method = "trySearchNewRecipeCombined",
+    @Inject(method = "invalidateInputs",
             at = @At("HEAD"),
             cancellable = true)
-    private void gtlitecore$trySearchNewRecipeCombined(CallbackInfo callbackInfo)
+    private void gtlitecore$invalidateDualInputRecipe(CallbackInfo callbackInfo)
     {
-        if (gtlitecore$trySearchNewRecipeDualInput())
-        {
+        // A failed order must not invalidate the previously selected ordinary input bus.
+        if (gtlitecore$preparingDualInputRecipe)
             callbackInfo.cancel();
-        }
     }
 
     @Unique
@@ -257,9 +263,19 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
 
                     IItemHandlerModifiable itemInputs = inventory.getConsumableItemHandler();
                     IMultipleTankHandler fluidInputs = inventory.getConsumableFluidHandler();
-                    if (prepareRecipe(recipe, itemInputs, fluidInputs))
+                    boolean prepared;
+                    gtlitecore$preparingDualInputRecipe = true;
+                    try
                     {
-                        previousRecipe = recipe;
+                        prepared = prepareRecipe(recipe, itemInputs, fluidInputs);
+                    }
+                    finally
+                    {
+                        gtlitecore$preparingDualInputRecipe = false;
+                    }
+                    if (prepared)
+                    {
+                        // Orders have their own cache and must not seed ordinary bus recipe reuse.
                         invalidInputsForRecipes = false;
                         return true;
                     }
@@ -273,13 +289,14 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
     private ObjectList<Recipe> gtlitecore$candidateRecipes(PatternedSingletonDualInputInventory inventory,
                                                            long maxVoltage)
     {
+        // Refresh the map before consulting the per-order cache, including on cache hits.
+        RecipeMap<?> recipeMap = getRecipeMap();
         ObjectList<Recipe> cached = gtlitecore$dualInputRecipeCache.get(inventory);
         if (cached != null) return cached;
 
         boolean cacheable = inventory.shouldBeCached();
         ObjectList<Recipe> computed = new ObjectArrayList<>();
 
-        RecipeMap<?> recipeMap = getRecipeMap();
         if (recipeMap != null)
         {
             Recipe recipe;
@@ -363,7 +380,7 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
             return;
         }
 
-        if (gtlitecore$trySearchNewRecipeByChannel(controller))
+        if (gtlitecore$trySearchNewRecipeDualInput() || gtlitecore$trySearchNewRecipeByChannel(controller))
             callbackInfo.cancel();
     }
 
@@ -415,9 +432,6 @@ public abstract class MixinMultiblockRecipeLogic extends AbstractRecipeLogic imp
 
         if (presentMask == 0)
             return false;
-
-        if (gtlitecore$trySearchNewRecipeDualInput())
-            return true;
 
         long maxVoltage = getMaxVoltage();
         boolean distinct = controller.canBeDistinct() && controller.isDistinct()
