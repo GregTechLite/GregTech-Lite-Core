@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.mixins.gregtech.client;
 
+import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockAbilityPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
@@ -9,24 +10,21 @@ import gregtechlite.gtlitecore.core.GTLiteConfigHolder;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.List;
 
 @Mixin(value = MetaTileEntityMultiblockPart.class, remap = false)
 public abstract class MixinMetaTileEntityMultiblockPart
 {
-    @Redirect(method = "renderMetaTileEntity",
-            at = @At(value = "INVOKE",
-                     target = "Lgregtech/api/util/GTUtility;convertRGBtoOpaqueRGBA_CL(I)I"),
-            require = 1)
-    private int gtlitecore$hideMultiblockPartBodyColor(int colorValue)
+    @ModifyExpressionValue(method = "renderMetaTileEntity",
+                           at = @At(value = "INVOKE",
+                                    target = "Lgregtech/api/util/GTUtility;convertRGBtoOpaqueRGBA_CL(I)I"))
+    private int gtlitecore$hideMultiblockPartBodyColor(int original)
     {
         MetaTileEntity self = (MetaTileEntity) (Object) this;
         if (!GTLiteConfigHolder.client.hideMultiblockPartBodyColor
-                || !self.isPainted()
-                || !gtlitecore$isColorChannelPart())
-            return GTUtility.convertRGBtoOpaqueRGBA_CL(colorValue);
+                || !self.isPainted() || !gtlitecore$isColorChannelPart())
+            return original;
         return GTUtility.convertRGBtoOpaqueRGBA_CL(self.getDefaultPaintingColor());
     }
 
