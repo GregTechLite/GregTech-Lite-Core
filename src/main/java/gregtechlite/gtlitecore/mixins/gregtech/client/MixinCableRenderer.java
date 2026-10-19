@@ -1,14 +1,14 @@
 package gregtechlite.gtlitecore.mixins.gregtech.client;
 
-import gregtech.api.pipenet.block.BlockPipe;
-import gregtech.api.pipenet.block.IPipeType;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
 import gregtech.api.pipenet.block.material.TileEntityMaterialPipeBase;
 import gregtech.api.pipenet.tile.IPipeTile;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.pipe.CableRenderer;
-import gregtech.client.renderer.pipe.PipeRenderer;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -18,11 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Let wireGtX/cableGtX renderer {@link MaterialIconSet} textures.
@@ -43,7 +39,7 @@ public abstract class MixinCableRenderer
 
     @Inject(method = "registerIcons",
             at = @At(value = "TAIL"))
-    private void registerIcons(TextureMap map, CallbackInfo ci)
+    private void gtlitecore$registerIcons(TextureMap map, CallbackInfo callbackInfo)
     {
         ResourceLocation wireLocation = GTUtility.gregtechId("blocks/cable/wire");
         gtlitecore$wireTextures.put(MaterialIconSet.DULL, map.registerSprite(wireLocation));
@@ -55,29 +51,31 @@ public abstract class MixinCableRenderer
         }
     }
 
-    @Redirect(method = "buildRenderer",
-            at = @At(value = "FIELD",
-                    target = "Lgregtech/client/renderer/pipe/CableRenderer;wireTexture:Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;"))
-    private TextureAtlasSprite gtlitecore$getWireTexture(CableRenderer instance,
-                                                         PipeRenderer.PipeRenderContext renderContext,
-                                                         BlockPipe<?, ?, ?> blockPipe,
-                                                         IPipeTile<?, ?> pipeTile,
-                                                         IPipeType<?> pipeType,
-                                                         Material material)
+    /**
+     * @author Magic_Sweepy
+     * @reason Replace the {@code wireTexture} field read of {@code buildRenderer}, the enclosing method keeps its own
+     *         parameter list, {@code material} is captured by its local variable slot.
+     */
+    @WrapOperation(method = "buildRenderer",
+                   at = @At(value = "FIELD",
+                            target = "Lgregtech/client/renderer/pipe/CableRenderer;wireTexture:Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;"))
+    private TextureAtlasSprite gtlitecore$getWireTexture(CableRenderer instance, Operation<TextureAtlasSprite> original,
+                                                         @Local(index = 5, argsOnly = true) Material material)
     {
         return gtlitecore$wireTextures.getOrDefault(material.getMaterialIconSet(),
                 gtlitecore$wireTextures.get(MaterialIconSet.DULL));
     }
 
-    @Redirect(method = "getParticleTexture(Lgregtech/api/pipenet/tile/IPipeTile;)Lorg/apache/commons/lang3/tuple/Pair;",
-            at = @At(value = "FIELD",
-                    target = "Lgregtech/client/renderer/pipe/CableRenderer;wireTexture:Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;"))
-    private TextureAtlasSprite gtlitecore$getParticleWireTexture(CableRenderer instance, IPipeTile<?, ?> pipeTile)
+    @WrapOperation(method = "getParticleTexture(Lgregtech/api/pipenet/tile/IPipeTile;)Lorg/apache/commons/lang3/tuple/Pair;",
+                   at = @At(value = "FIELD",
+                            target = "Lgregtech/client/renderer/pipe/CableRenderer;wireTexture:Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;"))
+    private TextureAtlasSprite gtlitecore$getParticleWireTexture(CableRenderer instance,
+                                                                 Operation<TextureAtlasSprite> original,
+                                                                 @Local(index = 1, argsOnly = true) IPipeTile<?, ?> pipeTile)
     {
         Material material = pipeTile instanceof TileEntityMaterialPipeBase
                 ? ((TileEntityMaterialPipeBase<?, ?>) pipeTile).getPipeMaterial() : null;
-        return gtlitecore$wireTextures.getOrDefault(
-                material != null ? material.getMaterialIconSet() : MaterialIconSet.DULL,
-                gtlitecore$wireTextures.get(MaterialIconSet.DULL));
+        return gtlitecore$wireTextures.getOrDefault(material != null ? material.getMaterialIconSet()
+                        : MaterialIconSet.DULL, gtlitecore$wireTextures.get(MaterialIconSet.DULL));
     }
 }

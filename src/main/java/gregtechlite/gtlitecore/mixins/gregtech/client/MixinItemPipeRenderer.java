@@ -2,14 +2,13 @@ package gregtechlite.gtlitecore.mixins.gregtech.client;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import gregtech.api.pipenet.block.BlockPipe;
-import gregtech.api.pipenet.block.IPipeType;
-import gregtech.api.pipenet.tile.IPipeTile;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.pipe.ItemPipeRenderer;
-import gregtech.client.renderer.pipe.PipeRenderer;
 import gregtech.common.pipelike.itempipe.ItemPipeType;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
@@ -20,12 +19,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Add {@link MaterialIconSet} supported for {@link ItemPipeRenderer}.
@@ -51,8 +47,7 @@ public abstract class MixinItemPipeRenderer
 
     @Inject(method = "registerIcons",
             at = @At(value = "TAIL"))
-    private void registerIcons(TextureMap map,
-                               CallbackInfo ci)
+    private void gtlitecore$registerIcons(TextureMap map, CallbackInfo callbackInfo)
     {
         for (MaterialIconSet iconSet : MaterialIconSet.ICON_SETS.values())
         {
@@ -81,23 +76,29 @@ public abstract class MixinItemPipeRenderer
         }
     }
 
-    @Redirect(method = "buildRenderer",
-            at = @At(value = "INVOKE",
-                    target = "Ljava/util/EnumMap;get(Ljava/lang/Object;)Ljava/lang/Object;"))
+    /**
+     * @author Magic_Sweepy
+     * @reason Replace the per-pipe-type texture lookup ({@code EnumMap.get}) of {@code buildRenderer}.
+     */
+    @WrapOperation(method = "buildRenderer",
+                   at = @At(value = "INVOKE",
+                            target = "Ljava/util/EnumMap;get(Ljava/lang/Object;)Ljava/lang/Object;"))
     private Object gtlitecore$getPipeTexture(EnumMap<ItemPipeType, TextureAtlasSprite> enumMap, Object key,
-                                             PipeRenderer.PipeRenderContext renderContext,
-                                             BlockPipe<?, ?, ?> blockPipe, IPipeTile<?, ?> pipeTile,
-                                             IPipeType<?> pipeType, Material material)
+                                             Operation<Object> original,
+                                             @Local(index = 5, argsOnly = true) Material material)
     {
         return gtlitecore$pipeTextures.get((ItemPipeType) key, material.getMaterialIconSet());
     }
 
-    @Redirect(method = "buildRenderer",
-            at = @At(value = "FIELD",
-                    target = "Lgregtech/client/renderer/texture/Textures;PIPE_SIDE:Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;"))
-    private TextureAtlasSprite gtlitecore$getPipeSideTexture(PipeRenderer.PipeRenderContext renderContext,
-                                                             BlockPipe<?, ?, ?> blockPipe, IPipeTile<?, ?> pipeTile,
-                                                             IPipeType<?> pipeType, Material material)
+    /**
+     * @author Magic_Sweepy
+     * @reason Replace the static {@code Textures.PIPE_SIDE} field read of {@code buildRenderer}.
+     */
+    @WrapOperation(method = "buildRenderer",
+                   at = @At(value = "FIELD",
+                            target = "Lgregtech/client/renderer/texture/Textures;PIPE_SIDE:Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;"))
+    private TextureAtlasSprite gtlitecore$getPipeSideTexture(Operation<TextureAtlasSprite> original,
+                                                             @Local(index = 5, argsOnly = true) Material material)
     {
         return gtlitecore$pipeSideTextures.get(material.getMaterialIconSet());
     }
