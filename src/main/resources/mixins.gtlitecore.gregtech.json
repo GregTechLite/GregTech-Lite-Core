@@ -7,9 +7,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "AccessorMultiblockUIFactory",
-    "AccessorMultiblockWithDisplayBase",
     "AccessorTraceabilityPredicate",
-    "AccessorMetaTileEntityPowerSubstation",
     "MixinBlockPattern",
     "MixinMultiblockUIBuilder",
     "MixinMultiblockUIFactory",
