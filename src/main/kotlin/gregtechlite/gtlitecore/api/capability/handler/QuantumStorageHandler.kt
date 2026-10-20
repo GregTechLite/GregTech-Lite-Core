@@ -26,6 +26,8 @@ class QuantumStorageHandler<T>(maxDistinct: Int,
     private val contents = LinkedHashMap<HashKey<T>, BigInteger>()
     private var storedTotal: BigInteger = BigInteger.ZERO
 
+    private val listeners = ArrayList<(T, BigInteger) -> Unit>()
+
     fun rebuild(newMaxDistinct: Int, newTotalCapacity: BigInteger): Boolean
     {
         maxDistinct = newMaxDistinct.coerceAtLeast(0)
@@ -65,6 +67,7 @@ class QuantumStorageHandler<T>(maxDistinct: Int,
             {
                 contents[key] = currentAmount.add(acceptedAmount)
                 storedTotal = storedTotal.add(acceptedAmount)
+                notifyChanged(type, acceptedAmount)
             }
             return acceptedAmount
         }
@@ -77,6 +80,7 @@ class QuantumStorageHandler<T>(maxDistinct: Int,
         {
             contents[key] = acceptedAmount
             storedTotal = storedTotal.add(acceptedAmount)
+            notifyChanged(type, acceptedAmount)
         }
         return acceptedAmount
     }
@@ -95,6 +99,7 @@ class QuantumStorageHandler<T>(maxDistinct: Int,
         else
             contents[key] = remainingAmount
         storedTotal = storedTotal.subtract(removedAmount)
+        notifyChanged(type, removedAmount.negate())
         return removedAmount
     }
 
@@ -127,6 +132,23 @@ class QuantumStorageHandler<T>(maxDistinct: Int,
     fun entries(): List<Pair<T, BigInteger>> = contents.map { (key, amount) -> copyType(key.type) to amount }
 
     fun totalStored(): BigInteger = storedTotal
+
+    fun addListener(listener: (T, BigInteger) -> Unit)
+    {
+        listeners.add(listener)
+    }
+
+    fun removeListener(listener: (T, BigInteger) -> Unit)
+    {
+        listeners.remove(listener)
+    }
+
+    private fun notifyChanged(type: T, delta: BigInteger)
+    {
+        if (listeners.isEmpty()) return
+        val changedType = copyType(type)
+        for (listener in listeners) listener(changedType, delta)
+    }
 
     fun serialize(): NBTTagCompound
     {
