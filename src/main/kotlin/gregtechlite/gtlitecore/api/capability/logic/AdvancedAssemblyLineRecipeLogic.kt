@@ -242,8 +242,12 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
         if (!checkResearch || !recipe.hasProperty(ResearchProperty.getInstance()))
             return true
         for (hatch in dataHatches)
+        {
             if (hatch.isCreative || hatch.isRecipeAvailable(recipe))
+            {
                 return true
+            }
+        }
         return false
     }
 
@@ -296,11 +300,9 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
             slice.reset()
     }
 
-    /** Cheap fingerprint of the input state a lock depends on. */
-    private fun inputSignature(buses: List<IItemHandlerModifiable>,
-                               tanks: List<IFluidTank>,
-                               dataHatches: List<IDataAccessHatch>,
-                               voltage: Long): Int
+    // Cheap fingerprint of the input state a lock depends on.
+    private fun inputSignature(buses: List<IItemHandlerModifiable>, tanks: List<IFluidTank>,
+                               dataHatches: List<IDataAccessHatch>, voltage: Long): Int
     {
         var hash = 1
         for (bus in buses)
@@ -330,15 +332,18 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
     private fun stackSignature(stack: ItemStack): Int
         = 31 * ITEM_HASH_STRATEGY.hashCode(stack) + stack.count
 
-    private fun assemblyLineRecipes(): Collection<Recipe> =
-        recipeSnapshot ?: RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeList.also { recipeSnapshot = it }
+    private fun assemblyLineRecipes(): Collection<Recipe>
+        = recipeSnapshot ?: RecipeMaps.ASSEMBLY_LINE_RECIPES.recipeList.also { recipeSnapshot = it }
 
-    /** True when GT reported an input change since the last call. */
+    /**
+     * @return Returns `true` when GT reported an input change since the last call.
+     */
     private fun consumeInputNotifications(): Boolean
     {
         val items = controller.notifiedItemInputList
         val fluids = controller.notifiedFluidInputList
-        if (items.isEmpty() && fluids.isEmpty()) return false
+        if (items.isEmpty() && fluids.isEmpty())
+            return false
         items.clear()
         fluids.clear()
         return true
@@ -347,8 +352,15 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
     private fun hasAnyInputStack(): Boolean
     {
         for (bus in controller.getAbilities(MultiblockAbility.IMPORT_ITEMS))
+        {
             for (slot in 0 until bus.slots)
-                if (!bus.getStackInSlot(slot).isEmpty) return true
+            {
+                if (!bus.getStackInSlot(slot).isEmpty)
+                {
+                    return true
+                }
+            }
+        }
         return false
     }
 
