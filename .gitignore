@@ -24,3 +24,5 @@ run
 .kotlin
 docs
 libs
+.dsh
+.claude
