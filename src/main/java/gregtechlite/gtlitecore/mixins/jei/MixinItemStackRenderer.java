@@ -25,7 +25,7 @@ public class MixinItemStackRenderer
 {
     /**
      * @author Magic_Sweepy
-     * @reason Replace JEI's {@code CountUtil.renderCountString} effect with scaleable string.
+     * @reason Draws the scalable count for stacks above 64, the branch JEI delegates to {@code CountUtil}.
      */
     @WrapOperation(method = "render*",
                    at = @At(value = "INVOKE",
@@ -38,20 +38,28 @@ public class MixinItemStackRenderer
         {
             ItemCountRenderer.renderCount(fontRenderer, ingredient.getCount(), x, y);
         }
+        else
+        {
+            original.call(fontRenderer, count, x, y, shadow);
+        }
     }
 
     /**
      * @author Magic_Sweepy
-     * @reason Skips the vanilla count overlay when the scaled count was already drawn.
+     * @reason Draws the scalable count for stacks up to 64, which JEI renders through the vanilla overlay.
      */
     @WrapOperation(method = "render*",
                    at = @At(value = "INVOKE",
                             target = "Lnet/minecraft/client/renderer/RenderItem;renderItemOverlayIntoGUI(Lnet/minecraft/client/gui/FontRenderer;Lnet/minecraft/item/ItemStack;IILjava/lang/String;)V"))
-    private void gtlitecore$skipVanillaCountOverlay(RenderItem renderItem, FontRenderer fontRenderer,
-                                                    ItemStack stack, int x, int y, String textOverride,
-                                                    Operation<Void> original)
+    private void gtlitecore$renderCountOrOverlay(RenderItem renderItem, FontRenderer fontRenderer,
+                                                 ItemStack stack, int x, int y, String textOverride,
+                                                 Operation<Void> original)
     {
-        if (!GTLiteConfigHolder.compat.jeiCompat.scaleableFontRenderer)
+        if (GTLiteConfigHolder.compat.jeiCompat.scaleableFontRenderer)
+        {
+            ItemCountRenderer.renderCount(fontRenderer, stack.getCount(), x, y);
+        }
+        else
         {
             original.call(renderItem, fontRenderer, stack, x, y, textOverride);
         }
