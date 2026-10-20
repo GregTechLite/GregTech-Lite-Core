@@ -93,7 +93,8 @@ class AdvancedAssemblyLineRecipeLogic(private val controller: MultiblockAdvanced
         ocResult.setEut(max(1, (ocResult.eut() * (1.0 - controller.processorCasingTier * 0.05)).toLong()))
 
         // +200% / robot arm casing + conveyor casing tier | D' = D / (1 + 2.0 * (T - 1.0)) = D / (2.0 * T - 1.0), where k = 2.0
-        ocResult.setDuration(max(1, (ocResult.duration() * 1.0 / (2.0 * min(controller.conveyorCasingTier, controller.robotArmCasingTier)) - 1.0).toInt()))
+        val speedTier = min(controller.conveyorCasingTier, controller.robotArmCasingTier)
+        ocResult.setDuration(max(1, (ocResult.duration() / (2.0 * speedTier - 1.0).coerceAtLeast(1.0)).toInt()))
     }
 
     private fun maxParallelByOutputs(recipe: Recipe): Int
