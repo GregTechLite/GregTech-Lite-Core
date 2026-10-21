@@ -116,7 +116,7 @@ class MultiblockBlackholeFormer(id: ResourceLocation) : RecipeMapMultiblockContr
         .where('F', states(thirdCasingState))
         .where('G', states(secondCasingState))
         .where('C', states(uniqueCasingState)
-            .setMinGlobalLimited(560)
+            .setMinGlobalLimited(520)
             .or(autoAbilities(false, false, true, true, false, false, false)))
         .where('A', frames(Pikyonium64B))
         .where('E', standardStabilizationFieldGens())
