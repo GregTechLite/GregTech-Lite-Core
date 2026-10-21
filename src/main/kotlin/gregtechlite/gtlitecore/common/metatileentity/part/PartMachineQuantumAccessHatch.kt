@@ -8,6 +8,7 @@ import appeng.api.networking.IGridNode
 import appeng.api.networking.events.MENetworkCellArrayUpdate
 import appeng.api.networking.security.IActionHost
 import appeng.api.networking.security.IActionSource
+import appeng.api.networking.storage.IStorageGrid
 import appeng.api.storage.ICellContainer
 import appeng.api.storage.ICellInventory
 import appeng.api.storage.IMEInventoryHandler
@@ -16,6 +17,7 @@ import appeng.api.storage.channels.IFluidStorageChannel
 import appeng.api.storage.channels.IItemStorageChannel
 import appeng.api.storage.data.IAEFluidStack
 import appeng.api.storage.data.IAEItemStack
+import appeng.api.storage.data.IAEStack
 import appeng.api.storage.data.IItemList
 import appeng.api.util.AECableType
 import appeng.api.util.AEPartLocation
@@ -37,6 +39,7 @@ import com.cleanroommc.modularui.widgets.layout.Flow
 import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget
 import gregtech.api.capability.GregtechDataCodes
 import gregtech.api.metatileentity.MetaTileEntity
+import gregtech.api.metatileentity.multiblock.MultiblockControllerBase
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.mui.GTGuis
 import gregtech.common.metatileentities.multi.multiblockpart.MetaTileEntityMultiblockPart
@@ -46,10 +49,12 @@ import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.storage.MultiblockQuantumChest
 import gregtechlite.gtlitecore.common.metatileentity.multiblock.storage.MultiblockQuantumTank
 import java.math.BigInteger
+import java.util.Optional
 import java.util.EnumSet
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
+import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.network.PacketBuffer
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
@@ -75,8 +80,6 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
 
     private var aeProxy: AENetworkProxy? = null
     private var lastActive: Boolean = false
-    private var lastTotal: BigInteger = BigInteger.ZERO
-    private var lastDistinct: Int = 0
 
     override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
         = PartMachineQuantumAccessHatch(metaTileEntityId, tier)
@@ -84,29 +87,6 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
     override fun update()
     {
         super.update()
-        if (!world.isRemote && offsetTimer % (1.s) == 0L)
-        {
-            val controller = getController()
-            val totalCapacity = when (controller)
-            {
-                is MultiblockQuantumChest -> if (controller.isWorkingEnabled) controller.itemStorage().totalStored() else BigInteger.ZERO
-                is MultiblockQuantumTank  -> if (controller.isWorkingEnabled) controller.fluidStorage().totalStored() else BigInteger.ZERO
-                else                      -> BigInteger.ZERO
-            }
-            val distinctSlots = when (controller)
-            {
-                is MultiblockQuantumChest -> if (controller.isWorkingEnabled) controller.itemStorage().distinctSlots() else 0
-                is MultiblockQuantumTank  -> if (controller.isWorkingEnabled) controller.fluidStorage().distinctSlots() else 0
-                else                      -> 0
-            }
-            if (totalCapacity != lastTotal || distinctSlots != lastDistinct)
-            {
-                notifyME()
-                lastTotal = totalCapacity
-                lastDistinct = distinctSlots
-            }
-        }
-
         val isOnline = getProxy()?.let { it.isActive && it.isPowered } == true
         if (isOnline != lastActive)
         {
@@ -114,6 +94,62 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
             lastActive = isOnline
             writeCustomData(GregtechDataCodes.UPDATE_ONLINE_STATUS) { it.writeBoolean(isOnline) }
         }
+    }
+
+    private val itemAlteration: (ItemStack, BigInteger) -> Unit = { stack, delta ->
+        AEItemStack.fromItemStack(stack)?.let { postAlteration(itemChannel, it.setStackSize(delta.toLong())) }
+    }
+
+    private val fluidAlteration: (FluidStack, BigInteger) -> Unit = { stack, delta ->
+        AEFluidStack.fromFluidStack(FluidStack(stack.fluid, 1))?.let { postAlteration(fluidChannel, it.setStackSize(delta.toLong())) }
+    }
+
+    override fun addToMultiBlock(controllerBase: MultiblockControllerBase)
+    {
+        super.addToMultiBlock(controllerBase)
+        when (controllerBase)
+        {
+            is MultiblockQuantumChest -> controllerBase.itemStorage().addListener(itemAlteration)
+            is MultiblockQuantumTank  -> controllerBase.fluidStorage().addListener(fluidAlteration)
+        }
+        notifyME()
+    }
+
+    override fun removeFromMultiBlock(controllerBase: MultiblockControllerBase)
+    {
+        when (controllerBase)
+        {
+            is MultiblockQuantumChest -> controllerBase.itemStorage().removeListener(itemAlteration)
+            is MultiblockQuantumTank  -> controllerBase.fluidStorage().removeListener(fluidAlteration)
+        }
+        super.removeFromMultiBlock(controllerBase)
+        notifyME()
+    }
+
+    override fun invalidate()
+    {
+        when (val controller = getController())
+        {
+            is MultiblockQuantumChest -> controller.itemStorage().removeListener(itemAlteration)
+            is MultiblockQuantumTank  -> controller.fluidStorage().removeListener(fluidAlteration)
+        }
+        super.invalidate()
+    }
+
+    private val machineSource: IActionSource = object : IActionSource
+    {
+        override fun player(): Optional<EntityPlayer> = Optional.empty<EntityPlayer>()
+        override fun machine(): Optional<IActionHost> = Optional.of<IActionHost>(this@PartMachineQuantumAccessHatch)
+        @Suppress("UNCHECKED_CAST")
+        override fun <T> context(cls: Class<T>): Optional<T> = Optional.empty<Any>() as Optional<T>
+    }
+
+    private fun postAlteration(channel: IStorageChannel<*>, stack: IAEStack<*>?)
+    {
+        if (stack == null) return
+        val grid = getProxy()?.node?.grid ?: return
+        grid.getCache<IStorageGrid>(IStorageGrid::class.java)
+            .postAlterationOfStoredItems(channel, listOf(stack), machineSource)
     }
 
     fun notifyME()
@@ -352,7 +388,6 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
             if (acceptedAmount == 0L)
                 return input
 
-            if (actionable == Actionable.MODULATE) notifyME()
             val leftoverStack = input.copy()
             leftoverStack.decStackSize(acceptedAmount)
             return if (leftoverStack.stackSize <= 0) null else leftoverStack
@@ -363,7 +398,6 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
             if (readMode == AccessRestriction.NO_ACCESS || readMode == AccessRestriction.WRITE)
                 return null
             val drained = drainItems(request, actionable == Actionable.MODULATE)
-            if (drained != null && actionable == Actionable.MODULATE) notifyME()
             return drained
         }
 
@@ -413,9 +447,6 @@ class PartMachineQuantumAccessHatch(id: ResourceLocation, tier: Int)
             val acceptedAmount = fillFluids(input, actionable == Actionable.MODULATE)
             if (acceptedAmount == 0L)
                 return input
-
-            if (actionable == Actionable.MODULATE)
-                notifyME()
 
             val leftoverStack = input.copy()
             leftoverStack.decStackSize(acceptedAmount)
