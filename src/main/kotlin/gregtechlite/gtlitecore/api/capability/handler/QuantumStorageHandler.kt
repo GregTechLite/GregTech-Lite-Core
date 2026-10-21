@@ -23,10 +23,10 @@ class QuantumStorageHandler<T>(maxDistinct: Int,
     var totalCapacity: BigInteger = totalCapacity.max(BigInteger.ZERO)
 
     private var slotCapacity = computeSlotCapacity(this.maxDistinct, this.totalCapacity)
-    private val contents = LinkedHashMap<HashKey<T>, BigInteger>()
+    private val contents = linkedMapOf<HashKey<T>, BigInteger>()
     private var storedTotal: BigInteger = BigInteger.ZERO
 
-    private val listeners = ArrayList<(T, BigInteger) -> Unit>()
+    private val listeners = arrayListOf<(T, BigInteger) -> Unit>()
 
     fun rebuild(newMaxDistinct: Int, newTotalCapacity: BigInteger): Boolean
     {
