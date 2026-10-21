@@ -147,7 +147,8 @@ class QuantumStorageHandler<T>(maxDistinct: Int,
     {
         if (listeners.isEmpty()) return
         val changedType = copyType(type)
-        for (listener in listeners) listener(changedType, delta)
+        for (listener in listeners)
+            listener(changedType, delta)
     }
 
     fun serialize(): NBTTagCompound
@@ -173,7 +174,8 @@ class QuantumStorageHandler<T>(maxDistinct: Int,
         {
             val slot = list.getCompoundTagAt(i)
             val amount = BigInteger(slot.getString("amount"))
-            if (amount.signum() > 0) contents[HashKey(readType(slot), strategy)] = amount
+            if (amount.signum() > 0)
+                contents[HashKey(readType(slot), strategy)] = amount
         }
         recomputeTotal()
     }
@@ -181,7 +183,8 @@ class QuantumStorageHandler<T>(maxDistinct: Int,
     private fun recomputeTotal()
     {
         var total = BigInteger.ZERO
-        for (amount in contents.values) total = total.add(amount)
+        for (amount in contents.values)
+            total = total.add(amount)
         storedTotal = total
     }
 
@@ -196,8 +199,10 @@ class QuantumStorageHandler<T>(maxDistinct: Int,
 
         override fun equals(other: Any?): Boolean
         {
-            if (other !is HashKey<*>) return false
-            if (strategy !== other.strategy) return false
+            if (other !is HashKey<*>)
+                return false
+            if (strategy !== other.strategy)
+                return false
             @Suppress("UNCHECKED_CAST")
             return strategy.equals(type, other.type as T)
         }
