@@ -8,6 +8,7 @@
   "mixins": [
     "AccessorTraceabilityPredicate",
     "MixinBlockPattern",
+    "MixinMultiblockBuilderBehavior",
     "MixinMultiblockUIBuilder",
     "MixinMultiblockUIFactory",
     "MixinFuelRecipeLogic",
