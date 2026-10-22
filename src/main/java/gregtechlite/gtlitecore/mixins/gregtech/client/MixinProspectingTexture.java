@@ -4,6 +4,7 @@ import gregtech.common.gui.widget.prospector.ProspectorMode;
 import gregtech.common.gui.widget.prospector.ProspectingTexture;
 import gregtech.core.network.packets.PacketProspecting;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectOpenHashMap;
+import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.client.resources.IResourceManager;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Map;
 
 @Mixin(value = ProspectingTexture.class, remap = false)
-public abstract class MixinProspectingTexture
+public abstract class MixinProspectingTexture extends AbstractTexture
 {
     @Shadow
     @Final
