@@ -17,5 +17,6 @@ internal class GTLiteModules : CustomModuleContainer
         const val MODULE_JEI: String = "jei"
         const val MODULE_TOP: String = "top"
         const val MODULE_AE2: String = "appeng"
+        const val MODULE_BAUBLES: String = "baubles"
     }
 }
