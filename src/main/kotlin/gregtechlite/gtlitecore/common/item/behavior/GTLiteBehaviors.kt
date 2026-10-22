@@ -117,6 +117,8 @@ object GTLiteBehaviors
             RandomPotionEffect(MobEffects.WITHER, 800, 5, 10)))
         MetaItems.BOTTLE_PURPLE_DRINK.addComponents(BottlecrateBehavior(0xFFB405FF))
 
+        MetaItems.MULTIBLOCK_BUILDER.addComponents(MultiblockBuilderSettingsBehavior)
+
         // Set compressed clay be visitable.
         MetaItems.COMPRESSED_CLAY.setCreativeTabs(GTCreativeTabs.TAB_GREGTECH)
 

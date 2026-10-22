@@ -9,6 +9,8 @@ import it.unimi.dsi.fastutil.chars.Char2ObjectMap
 import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ByteMap
 import it.unimi.dsi.fastutil.ints.Int2ByteOpenHashMap
+import it.unimi.dsi.fastutil.objects.Object2IntMap
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2LongMap
 import it.unimi.dsi.fastutil.objects.Object2LongOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap
@@ -211,5 +213,17 @@ fun <K> obj2LongHashMapOf(vararg pairs: Pair<K, Long>): Object2LongMap<K> = Obje
 // region FastUtil: Int2ByteOpenHashMap
 
 fun int2ByteHashMapOf(): Int2ByteMap = Int2ByteOpenHashMap()
+
+// endregion
+
+// region FastUtil: Object2IntOpenHashMap
+
+fun <K> obj2IntHashMapOf(): Object2IntMap<K> = Object2IntOpenHashMap()
+
+fun <K> obj2IntHashMapOf(map: Map<K, Int>): Object2IntMap<K> = Object2IntOpenHashMap(map)
+
+fun <K> obj2IntHashMapOf(vararg pairs: Pair<K, Int>): Object2IntMap<K> = Object2IntOpenHashMap<K>().apply {
+    pairs.forEach { put(it.first, it.second) }
+}
 
 // endregion
