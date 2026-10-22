@@ -92,7 +92,7 @@ class CandidateResolver(private val player: EntityPlayer,
     }
 
     private fun candidatesOf(predicate: TraceabilityPredicate.SimplePredicate): Array<BlockInfo>
-    = predicate.candidates?.get() ?: emptyArray()
+        = predicate.candidates?.get() ?: emptyArray()
 
     private fun isPlaceHatch(infos: Array<BlockInfo>): Boolean
     {
