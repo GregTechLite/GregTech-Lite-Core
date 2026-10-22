@@ -4,6 +4,7 @@ import gregtech.common.gui.widget.prospector.ProspectorMode;
 import gregtech.common.gui.widget.prospector.ProspectingTexture;
 import gregtech.core.network.packets.PacketProspecting;
 import it.unimi.dsi.fastutil.bytes.Byte2ObjectOpenHashMap;
+import net.minecraft.client.renderer.texture.AbstractTexture;
 import net.minecraft.client.resources.IResourceManager;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Map;
 
 @Mixin(value = ProspectingTexture.class, remap = false)
-public abstract class MixinProspectingTexture
+public abstract class MixinProspectingTexture extends AbstractTexture
 {
     @Shadow
     @Final
@@ -48,8 +49,8 @@ public abstract class MixinProspectingTexture
     {
         int playerChunkX = packet.playerChunkX;
         int playerChunkZ = packet.playerChunkZ;
-        playerXGui = packet.posX - (playerChunkX - this.radius + 1) * 16 + (packet.posX > 0 ? 1 : 0);
-        playerYGui = packet.posZ - (playerChunkZ - this.radius + 1) * 16 + (packet.posX > 0 ? 1 : 0);
+        playerXGui = packet.posX - (playerChunkX - radius + 1) * 16 + (packet.posX > 0 ? 1 : 0);
+        playerYGui = packet.posZ - (playerChunkZ - radius + 1) * 16 + (packet.posX > 0 ? 1 : 0);
 
         int ox;
         if ((packet.chunkX > 0 && playerChunkX > 0) || (packet.chunkX < 0 && playerChunkX < 0))
@@ -79,8 +80,8 @@ public abstract class MixinProspectingTexture
             oy = -oy;
         }
 
-        int currentColumn = (this.radius - 1) + ox;
-        int currentRow = (this.radius - 1) + oy;
+        int currentColumn = (radius - 1) + ox;
+        int currentRow = (radius - 1) + oy;
         if (currentRow < 0)
         {
             callbackInfo.cancel();
