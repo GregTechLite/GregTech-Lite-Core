@@ -7,6 +7,11 @@ import net.minecraft.block.state.IBlockState
 
 class DefaultBlockAttributeRegistry<T>(override val name: String, comparator: Comparator<in T>) : BlockAttributeRegistry<T>
 {
+    init
+    {
+        BlockAttributeRegistry.register(this)
+    }
+
     private val attributeLookup = openHashMapOf<IBlockState, T>()
     private val blockLookup = treeMapOf<T, MutableList<IBlockState>>(comparator)
 

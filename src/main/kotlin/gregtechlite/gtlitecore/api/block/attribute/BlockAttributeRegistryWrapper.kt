@@ -5,6 +5,11 @@ import net.minecraft.block.state.IBlockState
 class BlockAttributeRegistryWrapper<T>(override val name: String, private val registry: MutableMap<IBlockState, T>,
                                        private val comparator: Comparator<in T>) : BlockAttributeRegistry<T>
 {
+    init
+    {
+        BlockAttributeRegistry.register(this)
+    }
+
     override val ascendingBlocks: List<IBlockState>
         get() = registry.asIterable()
             .sortedWith { a, b -> comparator.compare(a.value, b.value) }
