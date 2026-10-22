@@ -49,8 +49,8 @@ public abstract class MixinProspectingTexture extends AbstractTexture
     {
         int playerChunkX = packet.playerChunkX;
         int playerChunkZ = packet.playerChunkZ;
-        playerXGui = packet.posX - (playerChunkX - this.radius + 1) * 16 + (packet.posX > 0 ? 1 : 0);
-        playerYGui = packet.posZ - (playerChunkZ - this.radius + 1) * 16 + (packet.posX > 0 ? 1 : 0);
+        playerXGui = packet.posX - (playerChunkX - radius + 1) * 16 + (packet.posX > 0 ? 1 : 0);
+        playerYGui = packet.posZ - (playerChunkZ - radius + 1) * 16 + (packet.posX > 0 ? 1 : 0);
 
         int ox;
         if ((packet.chunkX > 0 && playerChunkX > 0) || (packet.chunkX < 0 && playerChunkX < 0))
@@ -80,8 +80,8 @@ public abstract class MixinProspectingTexture extends AbstractTexture
             oy = -oy;
         }
 
-        int currentColumn = (this.radius - 1) + ox;
-        int currentRow = (this.radius - 1) + oy;
+        int currentColumn = (radius - 1) + ox;
+        int currentRow = (radius - 1) + oy;
         if (currentRow < 0)
         {
             callbackInfo.cancel();
