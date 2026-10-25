@@ -9,7 +9,9 @@ import gregtech.api.unification.ore.OrePrefix
 import gregtech.common.metatileentities.MetaTileEntities
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.api.gui.GTLiteGuiTextures
 import gregtechlite.gtlitecore.api.module.Module
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
 import gregtechlite.gtlitecore.api.recipe.frontend.SpacePumpRecipeFrontend
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItem1
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItem2
@@ -18,9 +20,11 @@ import gregtechlite.gtlitecore.common.metatileentity.GTLiteMetaTileEntities
 import gregtechlite.gtlitecore.core.module.GTLiteModules.Companion.MODULE_JEI
 import gregtechlite.gtlitecore.integration.IntegrationSubModule
 import gregtechlite.gtlitecore.integration.jei.category.SpacePumpRecipeCategory
+import gregtechlite.gtlitecore.integration.jei.drawable.asJEIDrawable
 import gregtechlite.gtlitecore.integration.jei.group.GTCollapsibleGroups
 import gregtechlite.gtlitecore.integration.jei.group.GTLiteCollapsibleGroups
 import gregtechlite.gtlitecore.integration.jei.info.SpacePumpRecipeWrapper
+import gregtechlite.gtlitecore.integration.jei.renderer.controllerIcon
 import mezz.jei.api.ICollapsibleGroupRegistry
 import mezz.jei.api.IGuiHelper
 import mezz.jei.api.IJeiRuntime
@@ -80,6 +84,19 @@ class JustEnoughItemsModule : IntegrationSubModule(), IModPlugin
         logger.info("Registering JEI Recipe Categories...")
 
         registry.addRecipeCategories(SpacePumpRecipeCategory(registry.jeiHelpers.guiHelper))
+
+        registerCategoryIcons()
+    }
+
+    private fun registerCategoryIcons()
+    {
+        GTLiteRecipeCategories.BLACKHOLE_SHAPING.jeiIcon(
+            GTLiteMetaTileEntities.BLACKHOLE_FORMER.controllerIcon(
+                GTLiteGuiTextures.BLACKHOLE_SHAPING_ICON.asJEIDrawable(8, 8), 1))
+
+        GTLiteRecipeCategories.BLACKHOLE_STAMPING.jeiIcon(
+            GTLiteMetaTileEntities.BLACKHOLE_FORMER.controllerIcon(
+                GTLiteGuiTextures.BLACKHOLE_STAMPING_ICON.asJEIDrawable(8, 8), 1))
     }
 
     override fun registerCollapsibleGroups(registry: ICollapsibleGroupRegistry)
