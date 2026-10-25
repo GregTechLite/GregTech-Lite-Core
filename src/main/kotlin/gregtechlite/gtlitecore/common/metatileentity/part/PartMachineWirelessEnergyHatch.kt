@@ -18,7 +18,6 @@ import gregtech.api.metatileentity.interfaces.IGregTechTileEntity
 import gregtech.api.metatileentity.multiblock.AbilityInstances
 import gregtech.api.metatileentity.multiblock.MultiblockAbility
 import gregtechlite.gtlitecore.api.metatileentity.wireless.WirelessRole
-import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
@@ -33,9 +32,9 @@ class PartMachineWirelessEnergyHatch(id: ResourceLocation, tier: Int, initialAmp
 
     override fun initializeEnergyContainer()
     {
-        energyContainer = object : EnergyContainerHandler(this, V[tier] * 20L * amperage, V[tier], amperage.toLong(), 0L, 0L)
+        energyContainer = object : EnergyContainerHandler(this, V[tier] * 30L * amperage, V[tier], amperage.toLong(), 0L, 0L)
         {
-            override fun getEnergyCapacity(): Long = V[tier] * 20L * amperage
+            override fun getEnergyCapacity(): Long = V[tier] * 30L * amperage
 
             override fun getInputVoltage(): Long = V[tier]
 
@@ -69,18 +68,16 @@ class PartMachineWirelessEnergyHatch(id: ResourceLocation, tier: Int, initialAmp
         if (world.isRemote) return
 
         updateWireless()
-        if (offsetTimer % (1.s) == 0L)
+
+        val holder = wirelessHolder ?: return
+        if (holder.buffer > 0)
         {
-            val holder = wirelessHolder ?: return
-            if (holder.buffer > 0)
+            val canAccept = energyContainer.energyCanBeInserted
+            if (canAccept > 0)
             {
-                val canAccept = energyContainer.energyCanBeInserted
-                if (canAccept > 0)
-                {
-                    val toTransfer = minOf(holder.buffer, canAccept)
-                    energyContainer.addEnergy(toTransfer)
-                    holder.removeEnergy(toTransfer)
-                }
+                val toTransfer = minOf(holder.buffer, canAccept)
+                energyContainer.addEnergy(toTransfer)
+                holder.removeEnergy(toTransfer)
             }
         }
     }
