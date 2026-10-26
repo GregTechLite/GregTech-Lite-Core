@@ -53,8 +53,27 @@ public abstract class MixinBlockPattern implements BlockPatternExtension
     @Final
     public RelativeDirection[] structureDir;
 
+    @Shadow
+    private int[] centerOffset;
+
     @Unique
     private int gtlitecore$previewPages;
+
+    @SuppressWarnings("AddedMixinMembersNamePattern")
+    @Unique
+    @Override
+    public TraceabilityPredicate[][][] getBlockMatches()
+    {
+        return blockMatches;
+    }
+
+    @SuppressWarnings("AddedMixinMembersNamePattern")
+    @Unique
+    @Override
+    public int[] getCenterOffset()
+    {
+        return centerOffset;
+    }
 
     @SuppressWarnings("AddedMixinMembersNamePattern")
     @Unique

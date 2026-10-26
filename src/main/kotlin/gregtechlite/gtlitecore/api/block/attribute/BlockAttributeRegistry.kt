@@ -8,8 +8,23 @@ interface BlockAttributeRegistry<T>
 {
     companion object
     {
+        private val registries = linkedMapOf<String, BlockAttributeRegistry<*>>()
+
         fun <T : P, P : Comparable<P>> create(name: String): BlockAttributeRegistry<T>
-            = DefaultBlockAttributeRegistry(name) { a, b -> a.compareTo(b) }
+        {
+            val registry: BlockAttributeRegistry<T> = DefaultBlockAttributeRegistry(name) { a, b -> a.compareTo(b) }
+            register(registry)
+            return registry
+        }
+
+        fun register(registry: BlockAttributeRegistry<*>)
+        {
+            registries[registry.name] = registry
+        }
+
+        fun all(): Collection<BlockAttributeRegistry<*>> = registries.values
+
+        fun maxAttributeSize(): Int = registries.values.maxOfOrNull { it.attributeSize } ?: 0
     }
 
     val name: String

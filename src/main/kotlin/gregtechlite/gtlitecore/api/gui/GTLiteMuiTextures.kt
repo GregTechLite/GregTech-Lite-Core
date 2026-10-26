@@ -120,6 +120,14 @@ object GTLiteMuiTextures
     val BUTTON_PIPELINE_MODE = texture("textures/gui/widget/button_pipeline_mode.png", 16, 32, 16, 16)
 
     /**
+     * Button for Tick and Cross icon.
+     * - 0: false
+     * - 1: true
+     */
+    @JvmField
+    val BUTTON_TICK_CROSS = texture("textures/gui/widget/button_tick_cross.png", 16, 32, 16, 16)
+
+    /**
      * Space Elevator Logo.
      */
     @JvmField

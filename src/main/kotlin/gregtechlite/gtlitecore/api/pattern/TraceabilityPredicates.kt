@@ -141,7 +141,7 @@ object TraceabilityPredicates
             },
             lazy {
                 registry.ascendingBlocks.filter(candidateFilter).map(::BlockInfo).toTypedArray()
-            }::value, true
+            }::value, true, registry
         ))
     }
 
@@ -175,29 +175,34 @@ object TraceabilityPredicates
     }
 
     @JvmStatic
-    fun optionalStates(symbol: String, vararg allowedStates: IBlockState) = TraceabilityPredicate({ blockWorldState ->
-        val state: IBlockState = blockWorldState.blockState
-        if (state.block is VariantActiveBlock<*>)
-        {
-            blockWorldState.matchContext.getOrPut("VABlock", LinkedList<BlockPos>())
-                .add(blockWorldState.pos)
-        }
-        if (allowedStates.contains(state))
-            return@TraceabilityPredicate blockWorldState.matchContext.getOrPut(symbol, true)
-        return@TraceabilityPredicate blockWorldState.matchContext.get<String>(symbol) == null
-    }, { allowedStates.map(::BlockInfo).toTypedArray() })
+    fun optionalStates(symbol: String, vararg allowedStates: IBlockState) = TraceabilityPredicate().apply {
+        common.add(GTLitePredicate({ blockWorldState ->
+            val state: IBlockState = blockWorldState.blockState
+            if (state.block is VariantActiveBlock<*>)
+            {
+                blockWorldState.matchContext.getOrPut("VABlock", LinkedList<BlockPos>())
+                    .add(blockWorldState.pos)
+            }
+            if (allowedStates.contains(state))
+                return@GTLitePredicate blockWorldState.matchContext.getOrPut(symbol, true)
+            return@GTLitePredicate blockWorldState.matchContext.get<String>(symbol) == null
+        }, { allowedStates.map(::BlockInfo).toTypedArray() }, optionalGroup = symbol))
+    }
 
     @JvmStatic
-    fun quantumStorageUnits(): TraceabilityPredicate = TraceabilityPredicate({ worldState ->
-        val tier = GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER.getAttribute(worldState.blockState)
-        val variant = tier?.let { QuantumStorageUnit.entries[(it - 1).coerceIn(0, QuantumStorageUnit.entries.size - 1)] }
-        return@TraceabilityPredicate variant?.let {
-            val counts = worldState.matchContext.getOrCreate(QuantumStorageUnitCounter.KEY) { QuantumStorageUnitCounter() }
-            counts.totalCapacity = counts.totalCapacity.add(it.totalCapacity)
-            counts.distinctSlots += it.distinctSlots
-            true
-        } ?: false
-    }, { GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER.ascendingBlocks.map { BlockInfo(it, null) }.toTypedArray() })
+    fun quantumStorageUnits(): TraceabilityPredicate = TraceabilityPredicate().apply {
+        common.add(GTLitePredicate({ worldState ->
+            val tier = GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER.getAttribute(worldState.blockState)
+            val variant = tier?.let { QuantumStorageUnit.entries[(it - 1).coerceIn(0, QuantumStorageUnit.entries.size - 1)] }
+            variant?.let {
+                val counts = worldState.matchContext.getOrCreate(QuantumStorageUnitCounter.KEY) { QuantumStorageUnitCounter() }
+                counts.totalCapacity = counts.totalCapacity.add(it.totalCapacity)
+                counts.distinctSlots += it.distinctSlots
+                true
+            } ?: false
+        }, { GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER.ascendingBlocks.map { BlockInfo(it, null) }.toTypedArray() },
+            registry = GTLiteAPI.QUANTUM_STORAGE_UNIT_TIER))
+    }
 
     fun readBlockCount(context: PatternMatchContext): QuantumStorageUnitCounter
         = context.get(QuantumStorageUnitCounter.KEY) as? QuantumStorageUnitCounter ?: QuantumStorageUnitCounter()

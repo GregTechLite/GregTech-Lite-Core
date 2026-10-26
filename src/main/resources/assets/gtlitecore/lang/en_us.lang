@@ -1788,6 +1788,63 @@ metaitem.eggshell_dust_small.name=Eggshell
 metaitem.wet_egg_white_cake_crushed_centrifuged.name=Wet Egg White Cake
 metaitem.milk_dust.name=Milk Powder
 
+item.gtlitecore.multiblock_builder.tooltip.configure=Right-Click to configure Multiblock Builder settings
+
+item.gtlitecore.multiblock_builder.setting.title=Multiblock Builder Settings
+
+item.gtlitecore.multiblock_builder.setting.block_tier=Block Tier
+item.gtlitecore.multiblock_builder.setting.repeat_count=Repeat Layer Count
+item.gtlitecore.multiblock_builder.setting.additional_structure=Additional Structure
+item.gtlitecore.multiblock_builder.setting.no_hatch_mode=No-Hatch Mode
+item.gtlitecore.multiblock_builder.setting.no_hatch_mode.enabled=No-Hatch Mode: §aEnabled§f\nNo hatch is placed during building
+item.gtlitecore.multiblock_builder.setting.no_hatch_mode.disabled=No-Hatch Mode: §cDisabled§f\nAuto placed hatch with multiblock requirement
+item.gtlitecore.multiblock_builder.setting.replace_mode=Replace Mode
+item.gtlitecore.multiblock_builder.setting.replace_mode.enabled=Replace Mode: §aEnabled§f\nReplace corresponding blocks according to their tier during building
+item.gtlitecore.multiblock_builder.setting.replace_mode.disabled=Replace Mode: §cDisabled§f\nNot replace any blocks with its tier
+item.gtlitecore.multiblock_builder.setting.appeng_mode=AE Compat Mode
+item.gtlitecore.multiblock_builder.setting.appeng_mode.enabled=AE Compat Mode: §aEnabled§f\nRead stored items from AE Network connected with Wireless Terminal
+item.gtlitecore.multiblock_builder.setting.appeng_mode.disabled=AE Compat Mode: §cDisabled§f\nRead inventory stored items only
+item.gtlitecore.multiblock_builder.setting.mirror_mode=Mirror Mode
+item.gtlitecore.multiblock_builder.setting.mirror_mode.enabled=Mirror Mode: §aEnabled§f\nBuilding with Mirror Structure, follow the Standard Structure when multiblock not supported
+item.gtlitecore.multiblock_builder.setting.mirror_mode.disabled=Mirror Mode: §cDisabled§f\nBuilding with Standard Structure, regardless of whether it supports Mirror Mode or not
+
+item.gtlitecore.multiblock_builder.setting.parts=Block tiers
+item.gtlitecore.multiblock_builder.setting.parts.tooltip=Open Block Tier Configurations
+
+item.gtlitecore.multiblock_builder.registry.coiltype=Coil Block
+item.gtlitecore.multiblock_builder.registry.motor_casing_tier=Electric Motor Block
+item.gtlitecore.multiblock_builder.registry.piston_casing_tier=Electric Piston Block
+item.gtlitecore.multiblock_builder.registry.pump_casing_tier=Electric Pump Block
+item.gtlitecore.multiblock_builder.registry.conveyor_casing_tier=Conveyor Module Block
+item.gtlitecore.multiblock_builder.registry.robot_arm_casing_tier=Robot Arm Block
+item.gtlitecore.multiblock_builder.registry.emitter_casing_tier=Emitter Block
+item.gtlitecore.multiblock_builder.registry.sensor_casing_tier=Sensor Block
+item.gtlitecore.multiblock_builder.registry.field_gen_casing_tier=Field Generator Block
+item.gtlitecore.multiblock_builder.registry.processor_casing_tier=Processor Block
+item.gtlitecore.multiblock_builder.registry.borosilicate_glass_tier=Borosilicate Glass
+item.gtlitecore.multiblock_builder.registry.fusion_casing_tier=Fusion Casing
+item.gtlitecore.multiblock_builder.registry.fusion_coil_tier=Fusion Coil
+item.gtlitecore.multiblock_builder.registry.cryostat_tier=Cryostat
+item.gtlitecore.multiblock_builder.registry.divertor_tier=Divertor
+item.gtlitecore.multiblock_builder.registry.vacuum_tier=Vacuum
+item.gtlitecore.multiblock_builder.registry.component_casing_tier=Component Assembly Casing
+item.gtlitecore.multiblock_builder.registry.nuclear_reactor_core_tier=Nuclear Reactor Core
+item.gtlitecore.multiblock_builder.registry.manipulator_tier=Manipulator
+item.gtlitecore.multiblock_builder.registry.shielding_core_tier=Shielding Core
+item.gtlitecore.multiblock_builder.registry.acceleration_track_tier=Space Elevator Acceleration Track
+item.gtlitecore.multiblock_builder.registry.eoh_spacetime_field_gen_tier=Spacetime Compression Field Generator (EOH)
+item.gtlitecore.multiblock_builder.registry.standard_spacetime_field_gen_tier=Spacetime Compression Field Generator (Standard)
+item.gtlitecore.multiblock_builder.registry.eoh_time_acceleration_field_gen_tier=Time Acceleration Field Generator (EOH)
+item.gtlitecore.multiblock_builder.registry.standard_time_acceleration_field_gen_tier=Time Acceleration Field Generator (Standard)
+item.gtlitecore.multiblock_builder.registry.eoh_stabilization_field_gen_tier=Stabilization Field Generator (EOH)
+item.gtlitecore.multiblock_builder.registry.standard_stabilization_field_gen_tier=Stabilization Field Generator (Standard)
+item.gtlitecore.multiblock_builder.registry.cleanroom_casing_tier=Filter Machine Casing
+item.gtlitecore.multiblock_builder.registry.quantum_storage_unit_tier=Quantum Storage Unit
+
+item.gtlitecore.multiblock_builder.missing_block=Cannot complete auto build, missing block (%s)
+item.gtlitecore.multiblock_builder.mirror_formed=Mirror Mode auto build required unformed multiblock
+item.gtlitecore.multiblock_builder.mirror_unsupported=This machine unsupported Mirror Mode, will auto build with Standard Mode
+
 # Tools
 item.gt.tool.rolling_pin.name=%s Rolling Pin
 item.gt.tool.combination_wrench.name=%s Combination Wrench
