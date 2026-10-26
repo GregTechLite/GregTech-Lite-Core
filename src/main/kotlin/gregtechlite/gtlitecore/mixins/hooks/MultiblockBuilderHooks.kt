@@ -48,7 +48,7 @@ object MultiblockBuilderHooks
             }
         }
 
-        if (formed)
+        if (formed && !setting.isReplaceMode)
             return null
 
         val pattern = controller.structurePattern ?: return EnumActionResult.SUCCESS
