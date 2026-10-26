@@ -6,7 +6,9 @@ import gregtech.api.recipes.category.GTRecipeCategory
 import gregtech.api.recipes.ingredients.GTRecipeInput
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.info.MaterialFlags.NO_SMASHING
 import gregtech.api.unification.ore.OrePrefix.bolt
+import gregtech.api.unification.ore.OrePrefix.foil
 import gregtech.api.unification.ore.OrePrefix.frameGt
 import gregtech.api.unification.ore.OrePrefix.ingot
 import gregtech.api.unification.ore.OrePrefix.plateDense
@@ -117,6 +119,7 @@ internal object BlackholeFormerRecipeProducer
         wireFine           to SHAPE_FIELD_WIRE_FINE.stack(),
         plateDouble        to SHAPE_FIELD_PLATE_DOUBLE.stack(),
         plateDense         to SHAPE_FIELD_PLATE_DENSE.stack(),
+        foil               to SHAPE_FIELD_FOIL.stack(),
         spring             to SHAPE_FIELD_SPRING.stack(),
         springSmall        to SHAPE_FIELD_SPRING_SMALL.stack())
 
@@ -160,6 +163,9 @@ internal object BlackholeFormerRecipeProducer
             addIngotFormedRecipe(recipe, shapeField, output)
             return
         }
+
+        if (outputPrefix == foil && !recipe.isMetalIngotFoilRecipe())
+            return
 
         val circuit = recipe.inputs.firstOrNull { it is IntCircuitIngredient }
         addRecipe(recipe, shapeField, recipe.inputs.filterNot { it === circuit }, recipe.outputs)
@@ -206,6 +212,15 @@ internal object BlackholeFormerRecipeProducer
         = inputStacks?.firstNotNullOfOrNull {
             extruder2FieldStack.entries.firstOrNull { (extruder, _) -> extruder.isItemEqual(it) }?.value
         }
+
+    private fun Recipe.isMetalIngotFoilRecipe(): Boolean
+    {
+        val output = outputs.firstOrNull() ?: return false
+        val material = OreDictUnifier.getMaterial(output)?.material ?: return false
+        if (material.hasFlag(NO_SMASHING))
+            return false
+        return inputs.any { input -> input.inputStacks?.any { OreDictUnifier.getPrefix(it) == ingot } == true }
+    }
 
     // @formatter: on
 }

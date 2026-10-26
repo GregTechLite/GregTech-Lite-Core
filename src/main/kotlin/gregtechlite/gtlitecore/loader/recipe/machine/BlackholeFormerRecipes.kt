@@ -1,5 +1,6 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
+import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
 import gregtech.api.GTValues.UHV
 import gregtech.api.GTValues.VA
@@ -27,7 +28,10 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.SolarGradeSilicon
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.DYSON_SWARM_PHOTOVOLTAIC_PANEL
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.FUEL_ROD_EMPTY
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.LOW_DENSITY_STRUCTURE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MICA_INSULATOR_FOIL
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.MICA_INSULATOR_PLATE
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_BOTTLE
+import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.SHAPE_FIELD_FOIL
 
 internal object BlackholeFormerRecipes
 {
@@ -103,6 +107,15 @@ internal object BlackholeFormerRecipes
             input(ingot, HSSS, 2)
             output(FUEL_ROD_EMPTY, 64)
             EUt(VA[MV])
+            duration(5.s)
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
+        }
+
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
+            notConsumable(SHAPE_FIELD_FOIL)
+            input(MICA_INSULATOR_PLATE)
+            output(MICA_INSULATOR_FOIL, 4)
+            EUt(VA[LV])
             duration(5.s)
             category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }

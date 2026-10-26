@@ -111,8 +111,8 @@ class MultiblockSpaceAssembler(id: ResourceLocation, tier: Int, moduleTier: Int,
     private fun getTrackTier(moduleTier: Int) = when (moduleTier)
     {
         1 -> "MK1"
-        2 -> "MK2"
-        else -> "MK3"
+        2 -> "MK3"
+        else -> "MK5"
     }
 
     override fun canBeDistinct() = true
