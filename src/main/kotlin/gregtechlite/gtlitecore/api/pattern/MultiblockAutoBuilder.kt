@@ -46,6 +46,7 @@ object MultiblockAutoBuilder
         val facing = controller.frontFacing.opposite
         val upwardsFacing = controller.upwardsFacing
         val isFlipped = mirrored || controller.isFlipped
+        val wasFormed = controller.isStructureFormed
 
         val fingerLength = blockMatches.size
         val thumbLength = if (fingerLength > 0) blockMatches[0].size else 0
@@ -182,6 +183,11 @@ object MultiblockAutoBuilder
         }
 
         fixFrontFacings(world, controller, newPositions, positions)
+        if (wasFormed && placed > 0)
+        {
+            controller.invalidateStructure()
+            controller.checkStructurePattern()
+        }
         return BuildResult(placed, firstMissing)
     }
 
