@@ -57,7 +57,7 @@ object MultiblockBuilderSettingsBehavior : IItemBehaviour, ItemUIFactory
 
     override fun buildUI(guiData: HandGuiData, syncManager: PanelSyncManager, settings: UISettings): ModularPanel
     {
-        val stack = guiData.mainHandItem
+        val stack = guiData.usedItemStack
         val panel = GTGuis.createPanel(stack, 176, 200 - 18)
             .background(GTGuiTextures.BACKGROUND)
 
