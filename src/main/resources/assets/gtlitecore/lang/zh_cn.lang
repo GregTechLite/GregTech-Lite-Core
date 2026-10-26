@@ -1796,9 +1796,17 @@ item.gtlitecore.multiblock_builder.setting.block_tier=方块等级
 item.gtlitecore.multiblock_builder.setting.repeat_count=重复结构片数
 item.gtlitecore.multiblock_builder.setting.additional_structure=附属结构
 item.gtlitecore.multiblock_builder.setting.no_hatch_mode=无仓室模式
+item.gtlitecore.multiblock_builder.setting.no_hatch_mode.enabled=无仓室模式：§a启用§f\n构建时不放置任何仓室
+item.gtlitecore.multiblock_builder.setting.no_hatch_mode.disabled=无仓室模式：§c禁用§f\n根据多方块需求自动放置仓室
 item.gtlitecore.multiblock_builder.setting.replace_mode=替换模式
+item.gtlitecore.multiblock_builder.setting.replace_mode.enabled=替换模式：§a启用§f\n构建时按照方块等级替换对应方块
+item.gtlitecore.multiblock_builder.setting.replace_mode.disabled=替换模式：§c禁用§f\n不替换任何具有方块等级的结构方块
 item.gtlitecore.multiblock_builder.setting.appeng_mode=AE兼容模式
+item.gtlitecore.multiblock_builder.setting.appeng_mode.enabled=AE兼容模式：§a启用§f\n从无线终端连接的AE网络中读取存储物品
+item.gtlitecore.multiblock_builder.setting.appeng_mode.disabled=AE兼容模式：§c禁用§f\n仅从背包中读取存储物品
 item.gtlitecore.multiblock_builder.setting.mirror_mode=镜像模式
+item.gtlitecore.multiblock_builder.setting.mirror_mode.enabled=镜像模式：§a启用§f\n按照镜像结构构建，当多方块不支持时按照标准结构
+item.gtlitecore.multiblock_builder.setting.mirror_mode.disabled=镜像模式：§c禁用§f\n按照标准结构构建，无论其是否支持镜像模式
 
 item.gtlitecore.multiblock_builder.setting.parts=方块等级
 item.gtlitecore.multiblock_builder.setting.parts.tooltip=打开方块等级配置界面

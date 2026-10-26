@@ -224,8 +224,8 @@ object MultiblockBuilderSettingsBehavior : IItemBehaviour, ItemUIFactory
             .value(value)
             .overlay(false, GTLiteMuiTextures.BUTTON_TICK_CROSS[0])
             .overlay(true, GTLiteMuiTextures.BUTTON_TICK_CROSS[1])
-            .addTooltip(false, IKey.lang("item.gtlitecore.multiblock_builder.setting.$labelKey"))
-            .addTooltip(true, IKey.lang("item.gtlitecore.multiblock_builder.setting.$labelKey"))
+            .addTooltip(false, IKey.lang("item.gtlitecore.multiblock_builder.setting.$labelKey.disabled"))
+            .addTooltip(true, IKey.lang("item.gtlitecore.multiblock_builder.setting.$labelKey.enabled"))
 
         icon?.let { button.overlay(it) }
 

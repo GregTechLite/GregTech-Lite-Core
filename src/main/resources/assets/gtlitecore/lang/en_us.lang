@@ -1796,9 +1796,17 @@ item.gtlitecore.multiblock_builder.setting.block_tier=Block Tier
 item.gtlitecore.multiblock_builder.setting.repeat_count=Repeat Layer Count
 item.gtlitecore.multiblock_builder.setting.additional_structure=Additional Structure
 item.gtlitecore.multiblock_builder.setting.no_hatch_mode=No-Hatch Mode
+item.gtlitecore.multiblock_builder.setting.no_hatch_mode.enabled=No-Hatch Mode: §aEnabled§f\nNo hatch is placed during building
+item.gtlitecore.multiblock_builder.setting.no_hatch_mode.disabled=No-Hatch Mode: §cDisabled§f\nAuto placed hatch with multiblock requirement
 item.gtlitecore.multiblock_builder.setting.replace_mode=Replace Mode
+item.gtlitecore.multiblock_builder.setting.replace_mode.enabled=Replace Mode: §aEnabled§f\nReplace corresponding blocks according to their tier during building
+item.gtlitecore.multiblock_builder.setting.replace_mode.disabled=Replace Mode: §cDisabled§f\nNot replace any blocks with its tier
 item.gtlitecore.multiblock_builder.setting.appeng_mode=AE Compat Mode
+item.gtlitecore.multiblock_builder.setting.appeng_mode.enabled=AE Compat Mode: §aEnabled§f\nRead stored items from AE Network connected with Wireless Terminal
+item.gtlitecore.multiblock_builder.setting.appeng_mode.disabled=AE Compat Mode: §cDisabled§f\nRead inventory stored items only
 item.gtlitecore.multiblock_builder.setting.mirror_mode=Mirror Mode
+item.gtlitecore.multiblock_builder.setting.mirror_mode.enabled=Mirror Mode: §aEnabled§f\nBuilding with Mirror Structure, follow the Standard Structure when multiblock not supported
+item.gtlitecore.multiblock_builder.setting.mirror_mode.disabled=Mirror Mode: §cDisabled§f\nBuilding with Standard Structure, regardless of whether it supports Mirror Mode or not
 
 item.gtlitecore.multiblock_builder.setting.parts=Block tiers
 item.gtlitecore.multiblock_builder.setting.parts.tooltip=Open Block Tier Configurations
