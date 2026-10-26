@@ -588,8 +588,9 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
                                    .slot(SyncHandlers.itemSlot(patterns, index)
                                              .slotGroup("pattern_inv")
                                              .filter { it.isEmpty || it.item is ICraftingPatternItem }
-                                             .changeListener { _, onlyAmountChanged, _, _ ->
-                                                 if (onlyAmountChanged) patterns.onContentsChanged(index)
+                                             .changeListener { _, _, client, init ->
+                                                 if (!client && !init)
+                                                     patterns.onContentsChanged(index)
                                              }
                                              .accessibility(true, true)))
             }
@@ -603,8 +604,9 @@ class PartMachineMECraftingPatternInputHatch(id: ResourceLocation, tier: Int, su
             manualRow.add(ItemSlot()
                               .slot(SyncHandlers.itemSlot(manual, index)
                                         .slotGroup("manual_inv")
-                                        .changeListener { _, onlyAmountChanged, _, _ ->
-                                            if (onlyAmountChanged) manual.onContentsChanged(index)
+                                        .changeListener { _, _, client, init ->
+                                            if (!client && !init)
+                                                manual.onContentsChanged(index)
                                         }
                                         .accessibility(true, true)))
         }
