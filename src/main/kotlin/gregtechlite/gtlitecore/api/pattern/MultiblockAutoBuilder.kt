@@ -11,10 +11,12 @@ import gregtech.api.util.BlockInfo
 import gregtech.api.util.RelativeDirection
 import gregtechlite.gtlitecore.api.block.attribute.BlockAttributeRegistry
 import gregtechlite.gtlitecore.api.collection.obj2IntHashMapOf
+import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.integration.appeng.handler.AEItemSource
 import it.unimi.dsi.fastutil.objects.Object2IntMap
 import net.minecraft.block.state.IBlockState
+import net.minecraft.entity.item.EntityItem
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.Item
 import net.minecraft.item.ItemBlock
@@ -70,6 +72,7 @@ object MultiblockAutoBuilder
 
         val globalCount = obj2IntHashMapOf<TraceabilityPredicate.SimplePredicate>()
         val positions = hashSetOf<BlockPos>()
+        val newPositions = hashSetOf<BlockPos>()
         positions += centerPos
 
         var z = 0
@@ -134,7 +137,7 @@ object MultiblockAutoBuilder
                             continue
                         }
 
-                        val found = findMaterial(player, stacks, setting)
+                        val found = findIngredient(player, stacks, setting)
                         if (found == null)
                         {
                             if (firstMissing == null)
@@ -148,8 +151,7 @@ object MultiblockAutoBuilder
                         {
                             if (!player.inventory.addItemStackToInventory(oldBlock))
                             {
-                                if (!player.isCreative)
-                                    player.inventory.addItemStackToInventory(found)
+                                popIngredientAsDrop(player, found)
                                 if (firstMissing == null)
                                     firstMissing = stacks.first()
                                 positions += pos
@@ -158,17 +160,18 @@ object MultiblockAutoBuilder
                             world.setBlockToAir(pos)
                         }
 
-                        if (placeAt(player, world, pos, found))
+                        if (placeAt(player, world, pos, found.stack))
                         {
                             positions += pos
+                            newPositions += pos
                             placed++
                         }
                         else
                         {
-                            player.inventory.addItemStackToInventory(found)
+                            popIngredientAsDrop(player, found)
                             if (oldBlock != null)
                             {
-                                player.inventory.addItemStackToInventory(oldBlock)
+                                popIngredientAsDrop(player, Ingredient(oldBlock))
                                 positions += pos
                             }
                         }
@@ -178,7 +181,7 @@ object MultiblockAutoBuilder
             }
         }
 
-        fixFrontFacings(world, controller, positions)
+        fixFrontFacings(world, controller, newPositions, positions)
         return BuildResult(placed, firstMissing)
     }
 
@@ -201,8 +204,10 @@ object MultiblockAutoBuilder
         return obj2IntHashMapOf(names.withIndex().associate { it.value to it.index })
     }
 
-    private fun findMaterial(player: EntityPlayer, candidates: List<ItemStack>,
-                             setting: MultiblockBuildSetting): ItemStack?
+    private class Ingredient(val stack: ItemStack, val fromNetwork: Boolean = false)
+
+    private fun findIngredient(player: EntityPlayer, candidates: List<ItemStack>,
+                               setting: MultiblockBuildSetting): Ingredient?
     {
         if (player.isCreative)
         {
@@ -210,13 +215,22 @@ object MultiblockAutoBuilder
             {
                 val candidate = candidates[i]
                 if (candidate.item is ItemBlock)
-                    return candidate.copy().apply { count = 1 }
+                    return Ingredient(candidate.copy(1))
             }
             return null
         }
 
-        findInInventory(player, candidates)?.let { return it }
-        return if (setting.isAppengMode) AEItemSource.extract(player, candidates) else null
+        findInInventory(player, candidates)?.let { return Ingredient(it) }
+        return if (setting.isAppengMode) AEItemSource.extract(player, candidates)?.let { Ingredient(it, true) } else null
+    }
+
+    private fun popIngredientAsDrop(player: EntityPlayer, ingredient: Ingredient?)
+    {
+        val stack = ingredient?.stack ?: return
+        if (stack.isEmpty || player.isCreative) return
+        if (ingredient.fromNetwork && AEItemSource.insert(player, stack)) return
+        if (player.inventory.addItemStackToInventory(stack)) return
+        player.world.spawnEntity(EntityItem(player.world, player.posX, player.posY + 0.5, player.posZ, stack))
     }
 
     private fun findInInventory(player: EntityPlayer, candidates: List<ItemStack>): ItemStack?
@@ -250,10 +264,11 @@ object MultiblockAutoBuilder
         return itemBlock.placeBlockAt(stack, player, world, pos, EnumFacing.UP, 0.5f, 0.5f, 0.5f, state)
     }
 
-    private fun fixFrontFacings(world: World, controller: MultiblockControllerBase, positions: Set<BlockPos>)
+    private fun fixFrontFacings(world: World, controller: MultiblockControllerBase,
+                                newPositions: Set<BlockPos>, positions: Set<BlockPos>)
     {
         val facings = arrayOf(controller.frontFacing) + FACINGS
-        for (pos in positions)
+        for (pos in newPositions)
         {
             val metaTileEntity = (world.getTileEntity(pos) as? IGregTechTileEntity)?.metaTileEntity ?: continue
             if (metaTileEntity === controller) continue
@@ -300,5 +315,5 @@ object MultiblockAutoBuilder
 
     // TODO: Change to Morphism Lib ItemUtil usage?
     private fun isSameStack(first: ItemStack, second: ItemStack): Boolean
-            = ItemStack.areItemsEqual(first, second) && ItemStack.areItemStackTagsEqual(first, second)
+        = ItemStack.areItemsEqual(first, second) && ItemStack.areItemStackTagsEqual(first, second)
 }
