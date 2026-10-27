@@ -1,5 +1,8 @@
 package gregtechlite.gtlitecore.loader.recipe.machine
 
+import com.morphismmc.morphismlib.integration.Mods
+import gregtechlite.gtlitecore.integration.appeng.recipe.AEBlackholeFormerRecipes
+
 internal object MachineRecipeList
 {
 
@@ -40,6 +43,10 @@ internal object MachineRecipeList
         BathCondenserRecipes.init()
         BioSimulatorRecipes.init()
         BlackholeFormerRecipes.init()
+
+        if (Mods.AppliedEnergistics2.isActive)
+            AEBlackholeFormerRecipes.init()
+
         ChemicalDehydratorRecipes.init()
         ConcentratedCokingClusterRecipes.init()
         CrystallizationCrucibleRecipes.init()

@@ -2,7 +2,7 @@ package gregtechlite.gtlitecore.loader.recipe.producer
 
 import com.morphismmc.morphismlib.integration.Mods
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder
-import gregtechlite.gtlitecore.integration.appeng.recipe.AppEngCALRecipeProducer
+import gregtechlite.gtlitecore.integration.appeng.recipe.AECircuitRecipeProducer
 
 internal object RecipeProducerList
 {
@@ -18,7 +18,7 @@ internal object RecipeProducerList
         CircuitAssemblyLineRecipeProducer.produce()
 
         if (Mods.AppliedEnergistics2.isActive && GTLiteConfigHolder.compat.ae2Compat.addProcessorCALRecipes)
-            AppEngCALRecipeProducer.produce()
+            AECircuitRecipeProducer.produce()
 
         WrapItemRecipeProducer.produce()
         GreenhouseRecipeProducer.produce()

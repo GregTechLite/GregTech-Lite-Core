@@ -1,6 +1,5 @@
 package gregtechlite.gtlitecore.integration.appeng.recipe
 
-import com.morphismmc.morphismlib.integration.Mods
 import gregtech.api.GTValues.L
 import gregtech.api.GTValues.LV
 import gregtech.api.GTValues.MV
@@ -31,41 +30,31 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_RUBY_CH
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ENGRAVED_SAPPHIRE_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_GOOD_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_PHENOLIC_BOARD
-import net.minecraft.item.ItemStack
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.LOGIC_PROCESSOR
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.CALCULATION_PROCESSOR
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.ENGINEERING_PROCESSOR
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.STORAGE_COMPONENT_1K
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.STORAGE_COMPONENT_4K
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.STORAGE_COMPONENT_16K
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.STORAGE_COMPONENT_64K
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.FLUID_STORAGE_COMPONENT_1K
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.FLUID_STORAGE_COMPONENT_4K
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.FLUID_STORAGE_COMPONENT_16K
+import gregtechlite.gtlitecore.integration.appeng.item.AEItems.FLUID_STORAGE_COMPONENT_64K
 
 /**
  * @see [gregtechlite.gtlitecore.loader.recipe.producer.CircuitAssemblyLineRecipeProducer]
  */
-object AppEngCALRecipeProducer
+object AECircuitRecipeProducer
 {
-    // Enum for AE2 items, to avoid using magic numbers for item meta.
-    enum class AE2Item(val itemName: String, val itemMeta: Int) {
-        LOGIC_PROCESSOR("material", 22),
-        CALCULATION_PROCESSOR("material", 23),
-        ENGINEERING_PROCESSOR("material", 24),
-        STORAGE_COMPONENT_1K("material", 35),
-        STORAGE_COMPONENT_4K("material", 36),
-        STORAGE_COMPONENT_16K("material", 37),
-        STORAGE_COMPONENT_64K("material", 38),
-        FLUID_STORAGE_COMPONENT_1K("material", 54),
-        FLUID_STORAGE_COMPONENT_4K("material", 55),
-        FLUID_STORAGE_COMPONENT_16K("material", 56),
-        FLUID_STORAGE_COMPONENT_64K("material", 57);
-
-        fun getStack(amount: Int = 1): ItemStack {
-            return Mods.AppliedEnergistics2.getItem(itemName, itemMeta, amount)
-        }
-    }
-
     // @formatter:off
 
     fun produce()
     {
-
-        // Traverse all the AE2 items and create circuit pattern recipes for them.
-        AE2Item.entries.forEach {
-            createCircuitPatternRecipeFromItemStack(it.getStack())
-        }
+        arrayOf(LOGIC_PROCESSOR, CALCULATION_PROCESSOR, ENGINEERING_PROCESSOR, STORAGE_COMPONENT_1K,
+                STORAGE_COMPONENT_4K, STORAGE_COMPONENT_16K, STORAGE_COMPONENT_64K, FLUID_STORAGE_COMPONENT_1K,
+                FLUID_STORAGE_COMPONENT_4K, FLUID_STORAGE_COMPONENT_16K, FLUID_STORAGE_COMPONENT_64K)
+            .forEach { createCircuitPatternRecipeFromItemStack(it.stack) }
 
         // Logic Processor
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
@@ -74,11 +63,11 @@ object AppEngCALRecipeProducer
             input(wireGtHex, RedAlloy, 2)
             input(bolt, Gold, 64)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
-            outputs(AE2Item.LOGIC_PROCESSOR.getStack(64))
-            outputs(AE2Item.LOGIC_PROCESSOR.getStack(64))
+            outputs(LOGIC_PROCESSOR.getStack(64))
+            outputs(LOGIC_PROCESSOR.getStack(64))
             EUt(VA[LV])
             duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(AE2Item.LOGIC_PROCESSOR.getStack())
+            circuitInfo(LOGIC_PROCESSOR.stack)
         }
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
@@ -87,13 +76,13 @@ object AppEngCALRecipeProducer
             input(wireGtHex, RedAlloy, 2)
             input(bolt, Electrum, 64)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
-            outputs(AE2Item.LOGIC_PROCESSOR.getStack(64))
-            outputs(AE2Item.LOGIC_PROCESSOR.getStack(64))
-            outputs(AE2Item.LOGIC_PROCESSOR.getStack(64))
-            outputs(AE2Item.LOGIC_PROCESSOR.getStack(64))
+            outputs(LOGIC_PROCESSOR.getStack(64))
+            outputs(LOGIC_PROCESSOR.getStack(64))
+            outputs(LOGIC_PROCESSOR.getStack(64))
+            outputs(LOGIC_PROCESSOR.getStack(64))
             EUt(VA[LV])
             duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(AE2Item.LOGIC_PROCESSOR.getStack())
+            circuitInfo(LOGIC_PROCESSOR.stack)
         }
 
         // Calculation Processor
@@ -103,11 +92,11 @@ object AppEngCALRecipeProducer
             input(wireGtHex, RedAlloy, 2)
             input(bolt, Gold, 64)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
-            outputs(AE2Item.CALCULATION_PROCESSOR.getStack(64))
-            outputs(AE2Item.CALCULATION_PROCESSOR.getStack(64))
+            outputs(CALCULATION_PROCESSOR.getStack(64))
+            outputs(CALCULATION_PROCESSOR.getStack(64))
             EUt(VA[LV])
             duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(AE2Item.CALCULATION_PROCESSOR.getStack())
+            circuitInfo(CALCULATION_PROCESSOR.stack)
         }
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
@@ -116,13 +105,13 @@ object AppEngCALRecipeProducer
             input(wireGtHex, RedAlloy, 2)
             input(bolt, Electrum, 64)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
-            outputs(AE2Item.CALCULATION_PROCESSOR.getStack(64))
-            outputs(AE2Item.CALCULATION_PROCESSOR.getStack(64))
-            outputs(AE2Item.CALCULATION_PROCESSOR.getStack(64))
-            outputs(AE2Item.CALCULATION_PROCESSOR.getStack(64))
+            outputs(CALCULATION_PROCESSOR.getStack(64))
+            outputs(CALCULATION_PROCESSOR.getStack(64))
+            outputs(CALCULATION_PROCESSOR.getStack(64))
+            outputs(CALCULATION_PROCESSOR.getStack(64))
             EUt(VA[LV])
             duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(AE2Item.CALCULATION_PROCESSOR.getStack())
+            circuitInfo(CALCULATION_PROCESSOR.stack)
         }
 
         // Engineering Processor
@@ -132,11 +121,11 @@ object AppEngCALRecipeProducer
             input(wireGtHex, RedAlloy, 2)
             input(bolt, Gold, 64)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
-            outputs(AE2Item.ENGINEERING_PROCESSOR.getStack(64))
-            outputs(AE2Item.ENGINEERING_PROCESSOR.getStack(64))
+            outputs(ENGINEERING_PROCESSOR.getStack(64))
+            outputs(ENGINEERING_PROCESSOR.getStack(64))
             EUt(VA[LV])
             duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(AE2Item.ENGINEERING_PROCESSOR.getStack())
+            circuitInfo(ENGINEERING_PROCESSOR.stack)
         }
 
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
@@ -145,145 +134,143 @@ object AppEngCALRecipeProducer
             input(wireGtHex, RedAlloy, 2)
             input(bolt, Electrum, 64)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
-            outputs(AE2Item.ENGINEERING_PROCESSOR.getStack(64))
-            outputs(AE2Item.ENGINEERING_PROCESSOR.getStack(64))
-            outputs(AE2Item.ENGINEERING_PROCESSOR.getStack(64))
-            outputs(AE2Item.ENGINEERING_PROCESSOR.getStack(64))
+            outputs(ENGINEERING_PROCESSOR.getStack(64))
+            outputs(ENGINEERING_PROCESSOR.getStack(64))
+            outputs(ENGINEERING_PROCESSOR.getStack(64))
+            outputs(ENGINEERING_PROCESSOR.getStack(64))
             EUt(VA[LV])
             duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(AE2Item.ENGINEERING_PROCESSOR.getStack())
+            circuitInfo(ENGINEERING_PROCESSOR.stack)
         }
 
         // 1k ME Storage Cell
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
             input(WRAP_COATED_BOARD)
-            inputs(AE2Item.LOGIC_PROCESSOR.getStack(16))
+            inputs(LOGIC_PROCESSOR.getStack(16))
             input(foil, Gold, 64)
             input(bolt, Iron, 32)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
-            outputs(AE2Item.STORAGE_COMPONENT_1K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_1K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_1K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_1K.getStack(64))
+            outputs(STORAGE_COMPONENT_1K.getStack(64))
+            outputs(STORAGE_COMPONENT_1K.getStack(64))
+            outputs(STORAGE_COMPONENT_1K.getStack(64))
+            outputs(STORAGE_COMPONENT_1K.getStack(64))
             EUt(VA[LV])
             duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(AE2Item.STORAGE_COMPONENT_1K.getStack())
+            circuitInfo(STORAGE_COMPONENT_1K.stack)
         }
 
         // 1k ME Fluid Storage Cell
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
             input(WRAP_COATED_BOARD)
-            inputs(AE2Item.CALCULATION_PROCESSOR.getStack(16))
+            inputs(CALCULATION_PROCESSOR.getStack(16))
             input(foil, Silver, 64)
             input(bolt, Iron, 32)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_1K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_1K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_1K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_1K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_1K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_1K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_1K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_1K.getStack(64))
             EUt(VA[LV])
             duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(AE2Item.FLUID_STORAGE_COMPONENT_1K.getStack())
+            circuitInfo(FLUID_STORAGE_COMPONENT_1K.stack)
         }
 
         // 4k ME Storage Cell
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
             input(WRAP_COATED_BOARD)
-            inputs(AE2Item.STORAGE_COMPONENT_1K.getStack(16))
-            inputs(AE2Item.ENGINEERING_PROCESSOR.getStack(16))
+            inputs(STORAGE_COMPONENT_1K.getStack(16))
+            inputs(ENGINEERING_PROCESSOR.getStack(16))
             input(wireGtHex, Lead, 2)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
-            outputs(AE2Item.STORAGE_COMPONENT_4K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_4K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_4K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_4K.getStack(64))
+            outputs(STORAGE_COMPONENT_4K.getStack(64))
+            outputs(STORAGE_COMPONENT_4K.getStack(64))
+            outputs(STORAGE_COMPONENT_4K.getStack(64))
+            outputs(STORAGE_COMPONENT_4K.getStack(64))
             EUt(VA[LV])
             duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(AE2Item.STORAGE_COMPONENT_4K.getStack())
+            circuitInfo(STORAGE_COMPONENT_4K.stack)
         }
 
         // 4k ME Fluid Storage Cell
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
             input(WRAP_COATED_BOARD)
-            inputs(AE2Item.FLUID_STORAGE_COMPONENT_1K.getStack(16))
-            inputs(AE2Item.ENGINEERING_PROCESSOR.getStack(16))
+            inputs(FLUID_STORAGE_COMPONENT_1K.getStack(16))
+            inputs(ENGINEERING_PROCESSOR.getStack(16))
             input(wireGtHex, Lead, 2)
             fluidInputs(SolderingAlloy.getFluid(L / 2))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_4K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_4K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_4K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_4K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_4K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_4K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_4K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_4K.getStack(64))
             EUt(VA[LV])
             duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(AE2Item.FLUID_STORAGE_COMPONENT_4K.getStack())
+            circuitInfo(FLUID_STORAGE_COMPONENT_4K.stack)
         }
 
         // 16k ME Storage Cell
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
             input(WRAP_PHENOLIC_BOARD)
-            inputs(AE2Item.STORAGE_COMPONENT_4K.getStack(16))
+            inputs(STORAGE_COMPONENT_4K.getStack(16))
             input(circuit, Tier.ULV, 16)
             input(wireGtHex, AnnealedCopper, 2)
             fluidInputs(SolderingAlloy.getFluid(L))
-            outputs(AE2Item.STORAGE_COMPONENT_16K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_16K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_16K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_16K.getStack(64))
+            outputs(STORAGE_COMPONENT_16K.getStack(64))
+            outputs(STORAGE_COMPONENT_16K.getStack(64))
+            outputs(STORAGE_COMPONENT_16K.getStack(64))
+            outputs(STORAGE_COMPONENT_16K.getStack(64))
             EUt(VA[LV])
             duration(3.min) // Original: 15s, Wrapped: 15s * 16 = 240s
-            circuitInfo(AE2Item.STORAGE_COMPONENT_16K.getStack())
+            circuitInfo(STORAGE_COMPONENT_16K.stack)
         }
 
         // 16k ME Fluid Storage Cell
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
             input(WRAP_PHENOLIC_BOARD)
-            inputs(AE2Item.FLUID_STORAGE_COMPONENT_4K.getStack(16))
+            inputs(FLUID_STORAGE_COMPONENT_4K.getStack(16))
             input(circuit, Tier.ULV, 16)
             input(wireGtHex, AnnealedCopper, 2)
             fluidInputs(SolderingAlloy.getFluid(L))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_16K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_16K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_16K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_16K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_16K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_16K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_16K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_16K.getStack(64))
             EUt(VA[LV])
             duration(3.min) // Original: 15s, Wrapped: 15s * 16 = 240s
-            circuitInfo(AE2Item.FLUID_STORAGE_COMPONENT_16K.getStack())
+            circuitInfo(FLUID_STORAGE_COMPONENT_16K.stack)
         }
 
         // 64k ME Storage Cell
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
             input(WRAP_PHENOLIC_BOARD)
-            inputs(AE2Item.STORAGE_COMPONENT_16K.getStack(16))
+            inputs(STORAGE_COMPONENT_16K.getStack(16))
             input(circuit, Tier.LV, 16)
             input(wireGtHex, Gold, 2)
             fluidInputs(SolderingAlloy.getFluid(L))
-            outputs(AE2Item.STORAGE_COMPONENT_64K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_64K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_64K.getStack(64))
-            outputs(AE2Item.STORAGE_COMPONENT_64K.getStack(64))
+            outputs(STORAGE_COMPONENT_64K.getStack(64))
+            outputs(STORAGE_COMPONENT_64K.getStack(64))
+            outputs(STORAGE_COMPONENT_64K.getStack(64))
+            outputs(STORAGE_COMPONENT_64K.getStack(64))
             EUt(VA[MV])
             duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(AE2Item.STORAGE_COMPONENT_64K.getStack())
+            circuitInfo(STORAGE_COMPONENT_64K.stack)
         }
 
         // 64k ME Fluid Storage Cell
         CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
             input(WRAP_PHENOLIC_BOARD)
-            inputs(AE2Item.FLUID_STORAGE_COMPONENT_16K.getStack(16))
+            inputs(FLUID_STORAGE_COMPONENT_16K.getStack(16))
             input(circuit, Tier.LV, 16)
             input(wireGtHex, Gold, 2)
             fluidInputs(SolderingAlloy.getFluid(L))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_64K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_64K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_64K.getStack(64))
-            outputs(AE2Item.FLUID_STORAGE_COMPONENT_64K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_64K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_64K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_64K.getStack(64))
+            outputs(FLUID_STORAGE_COMPONENT_64K.getStack(64))
             EUt(VA[MV])
             duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(AE2Item.FLUID_STORAGE_COMPONENT_64K.getStack())
+            circuitInfo(FLUID_STORAGE_COMPONENT_64K.stack)
         }
-
     }
 
     // @formatter:on
-
 }
