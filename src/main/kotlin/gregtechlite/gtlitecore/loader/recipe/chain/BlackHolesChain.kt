@@ -10,7 +10,6 @@ import gregtech.api.GTValues.VA
 import gregtech.api.recipes.RecipeMaps.AUTOCLAVE_RECIPES
 import gregtech.api.recipes.RecipeMaps.CHEMICAL_BATH_RECIPES
 import gregtech.api.recipes.RecipeMaps.FLUID_SOLIDFICATION_RECIPES
-import gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES
 import gregtech.api.recipes.RecipeMaps.POLARIZER_RECIPES
 import gregtech.api.unification.material.Materials.Neutronium
 import gregtech.api.unification.material.Materials.Rubidium
@@ -25,6 +24,8 @@ import gregtech.common.items.MetaItems.SHAPE_MOLD_BALL
 import gregtechlite.gtlitecore.api.extension.EUt
 import gregtechlite.gtlitecore.api.extension.addRecipe
 import gregtechlite.gtlitecore.api.extension.inputs
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeCategories
+import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.BLACKHOLE_FORMING_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.ELECTRIC_IMPLOSION_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.SPACE_ASSEMBLER_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.STELLAR_FORGE_RECIPES
@@ -199,18 +200,20 @@ internal object BlackHolesChain
         }
 
         // Recursively Folded Negative Space
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(MICROWORMHOLE_GENERATOR)
             output(RECURSIVELY_FOLDED_NEGATIVE_SPACE, 2)
             EUt(VA[UXV])
             duration(1.s)
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
-        FORMING_PRESS_RECIPES.addRecipe {
+        BLACKHOLE_FORMING_RECIPES.addRecipe {
             input(MACROWORMHOLE_GENERATOR)
             output(RECURSIVELY_FOLDED_NEGATIVE_SPACE, 16)
             EUt(VA[UXV])
             duration(2.s)
+            category(GTLiteRecipeCategories.BLACKHOLE_STAMPING)
         }
 
         // Eigenfolded Spacetime Manifold
