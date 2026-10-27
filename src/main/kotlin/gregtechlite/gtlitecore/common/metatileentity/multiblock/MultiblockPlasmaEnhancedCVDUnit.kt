@@ -49,7 +49,6 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation)
     : MultiMapMultiblockController(id, arrayOf(PLASMA_CVD_RECIPES, CRYSTALLIZATION_RECIPES, MOLECULAR_BEAM_RECIPES,
                                                SONICATION_RECIPES))
 {
-
     private var emitterCasingTier = 0
     private var sensorCasingTier = 0
     private var fieldGenCasingTier = 0
@@ -147,6 +146,7 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation)
             addParallelInfo(32, UpgradeMode.PUMP_CASING, UpgradeMode.FIELD_GEN_CASING)
             addDurationInfo(600, UpgradeMode.EMITTER_CASING, UpgradeMode.SENSOR_CASING)
             addEnergyInfo(50)
+            addLaserHatchInfo()
         }
     }
 
@@ -154,7 +154,6 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation)
 
     private inner class PlasmaEnhancedCVDRecipeLogic(mte: RecipeMapMultiblockController) : MultiblockRecipeLogic(mte, true)
     {
-
         override fun modifyOverclockPost(ocResult: OCResult, storage: RecipePropertyStorage)
         {
             super.modifyOverclockPost(ocResult, storage)
@@ -170,5 +169,4 @@ class MultiblockPlasmaEnhancedCVDUnit(id: ResourceLocation)
         override fun getParallelLimit() = 32 * min(pumpCasingTier, fieldGenCasingTier)
 
     }
-
 }
