@@ -2817,7 +2817,7 @@ gtlitecore.machine.integrated_ore_processor.tooltip.11=模式9：§a研磨-洗�
 gtlitecore.machine.integrated_ore_processor.tooltip.12=模式10：§a研磨-化学浸洗-研磨-离心§7
 gtlitecore.machine.integrated_ore_processor.tooltip.13=最大并行数：
 gtlitecore.machine.integrated_ore_processor.tooltip.14=- 电压等级§1IV§7及以下：§e1,024§7
-gtlitecore.machine.integrated_ore_processor.tooltip.15=- 电压等级§dLuV§7及以上：§e[1024×(当前功率/8,192)]^(log4(1.5))§7
+gtlitecore.machine.integrated_ore_processor.tooltip.15=- 电压等级§dLuV§7及以上：§e1024×(当前功率/8,192)^(log4(1.5))§7
 
 gtlitecore.machine.mega_turbine.steam.name=特大蒸汽涡轮
 gtlitecore.machine.mega_turbine.gas.name=特大燃气涡轮
