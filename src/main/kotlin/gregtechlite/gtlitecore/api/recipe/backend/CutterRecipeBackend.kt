@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation
 import kotlin.math.max
 import kotlin.math.min
 
-object CutterRecipeBackend
+internal object CutterRecipeBackend
 {
     fun init()
     {

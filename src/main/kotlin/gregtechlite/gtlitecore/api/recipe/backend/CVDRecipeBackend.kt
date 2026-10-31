@@ -6,14 +6,13 @@ import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.LASER_CVD_RECIPES
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.PLASMA_CVD_RECIPES
 
-object CVDRecipeBackend
+internal object CVDRecipeBackend
 {
-
     fun init()
     {
-        CVD_RECIPES.onRecipeBuild(GTLiteMod.id("advanced_cvd_copy")) { recipeBuilder ->
-
-            // Laser-Induced CVD recipes required laser-induced gas for protective and ensure transmissive correct.
+        CVD_RECIPES.onRecipeBuild(GTLiteMod.id("advanced_cvd_copy")) {
+            // Laser-Induced CVD recipes required laser-induced gas
+            // for protective and ensure transmissive correct.
             for (laserInducedGas in arrayOf(
                 Materials.Helium.getFluid(16000),
                 Materials.Neon.getFluid(16000),
@@ -22,37 +21,35 @@ object CVDRecipeBackend
                 Materials.Xenon.getFluid(16000)))
             {
                 LASER_CVD_RECIPES.recipeBuilder()
-                    .inputs(*recipeBuilder.inputs.toTypedArray())
-                    .fluidInputs(recipeBuilder.fluidInputs)
+                    .inputs(*it.inputs.toTypedArray())
+                    .fluidInputs(it.fluidInputs)
                     .notConsumable(laserInducedGas)
-                    .outputs(recipeBuilder.outputs)
-                    .chancedOutputs(recipeBuilder.chancedOutputs)
-                    .fluidOutputs(recipeBuilder.fluidOutputs)
-                    .chancedFluidOutputs(recipeBuilder.chancedFluidOutputs)
-                    .cleanroom(recipeBuilder.cleanroom)
-                    .EUt(recipeBuilder.eUt)
-                    .duration(recipeBuilder.duration)
-                    .temperature(recipeBuilder.temperature)
+                    .outputs(it.outputs)
+                    .chancedOutputs(it.chancedOutputs)
+                    .fluidOutputs(it.fluidOutputs)
+                    .chancedFluidOutputs(it.chancedFluidOutputs)
+                    .cleanroom(it.cleanroom)
+                    .EUt(it.eUt)
+                    .duration(it.duration)
+                    .temperature(it.temperature)
                     .hidden()
                     .buildAndRegister()
             }
 
             // Plasma-enhanced CVD recipes.
             PLASMA_CVD_RECIPES.recipeBuilder()
-                .inputs(*recipeBuilder.inputs.toTypedArray())
-                .fluidInputs(recipeBuilder.fluidInputs)
-                .outputs(recipeBuilder.outputs)
-                .chancedOutputs(recipeBuilder.chancedOutputs)
-                .fluidOutputs(recipeBuilder.fluidOutputs)
-                .chancedFluidOutputs(recipeBuilder.chancedFluidOutputs)
-                .cleanroom(recipeBuilder.cleanroom)
-                .EUt(recipeBuilder.eUt)
-                .duration(recipeBuilder.duration)
-                .temperature(recipeBuilder.temperature)
+                .inputs(*it.inputs.toTypedArray())
+                .fluidInputs(it.fluidInputs)
+                .outputs(it.outputs)
+                .chancedOutputs(it.chancedOutputs)
+                .fluidOutputs(it.fluidOutputs)
+                .chancedFluidOutputs(it.chancedFluidOutputs)
+                .cleanroom(it.cleanroom)
+                .EUt(it.eUt)
+                .duration(it.duration)
+                .temperature(it.temperature)
                 .hidden()
                 .buildAndRegister()
         }
-
     }
-
 }
