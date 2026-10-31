@@ -11,7 +11,6 @@ import gregtech.api.recipes.builders.BlastRecipeBuilder
 import gregtech.api.recipes.builders.FuelRecipeBuilder
 import gregtech.api.recipes.builders.PrimitiveRecipeBuilder
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
-import gregtech.api.recipes.ui.impl.DistillationTowerUI
 import gregtech.api.unification.material.Materials
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.GTLiteMod
@@ -41,6 +40,7 @@ import gregtechlite.gtlitecore.api.recipe.ui.NanoAssemblyMatrixUI
 import gregtechlite.gtlitecore.api.recipe.ui.SingularityAssemblyUnitUI
 import gregtechlite.gtlitecore.api.recipe.ui.SpaceAssemblerUI
 import gregtechlite.gtlitecore.api.recipe.ui.StellarForgeUI
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.core.sound.GTLiteSoundEvents
 import net.minecraft.init.SoundEvents
 import stanhebben.zenscript.annotations.ZenClass
@@ -58,7 +58,6 @@ import kotlin.math.min
 @ZenRegister
 object GTLiteRecipeMaps
 {
-
     // @formatter:off
 
     // region Single Machine RecipeMaps
@@ -75,32 +74,30 @@ object GTLiteRecipeMaps
         .fluidSlotOverlay(GuiTextures.HEATING_OVERLAY_2, false)
         .progressBar(GuiTextures.PROGRESS_BAR_BATH, MoveType.CIRCULAR)
         .sound(GTSoundEvents.CUT)
-        .onBuild(GTLiteMod.id("polisher_fluid")) { recipeBuilder ->
-            // Same like cutting machine logic, but polisher used more water as coolant, confirm three cutting function
-            // machines, the water required of each recipe is slicer < this < cutter.
-            if (recipeBuilder.fluidInputs.isEmpty())
+        .onBuild(GTLiteMod.id("polisher_fluid")) {
+            if (it.fluidInputs.isEmpty())
             {
-                val eut = recipeBuilder.eUt
-                val duration = recipeBuilder.duration
-
-                // Common water recipes.
-                recipeBuilder.copy()
+                val eut = it.eUt
+                val duration = it.duration
+                it.copy()
                     .fluidInputs(Materials.Water.getFluid(max(4, min(500, duration * eut / 320)).toInt()))
                     .duration(duration * 2)
                     .buildAndRegister()
 
-                // Distilled water recipes, faster than water recipes.
-                recipeBuilder.copy()
+                it.copy()
                     .fluidInputs(Materials.DistilledWater.getFluid(max(3, min(250, duration * eut / 426)).toInt()))
                     .duration(duration * 1.5)
                     .buildAndRegister()
 
-                // Do not call buildAndRegister() as we are mutating the original recipe and already in the middle of a
-                // buildAndRegister() copy call. Adding a second call will result in duplicate recipe generation attempts.
-                recipeBuilder.fluidInputs(Materials.Lubricant.getFluid(max(1, min(125, duration * eut / 1280)).toInt()))
+                it.copy()
+                    .fluidInputs(Materials.Lubricant.getFluid(max(1, min(125, duration * eut / 1280)).toInt()))
                     .duration(max(1, duration))
-                }
+                    .buildAndRegister()
+
+                it.fluidInputs(GTLiteMaterials.DimensionallyShiftedSuperfluid.getFluid(max(1, min(10, duration * eut / 2560)).toInt()))
+                    .duration(max(1, duration / 2))
             }
+        }
         .build()
 
     /**
@@ -119,30 +116,28 @@ object GTLiteRecipeMaps
         .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true, true)
         .progressBar(GTLiteGuiTextures.PROGRESS_BAR_SLICING)
         .sound(GTSoundEvents.CUT)
-        .onBuild(GTLiteMod.id("slicer_fluid")) { recipeBuilder ->
-            // Same like cutting machine logic, but slicer used quite little water as coolant, confirm three cutting
-            // function machines, the water required of each recipe is this < polisher < cutter.
-            if (recipeBuilder.fluidInputs.isEmpty())
+        .onBuild(GTLiteMod.id("slicer_fluid")) {
+            if (it.fluidInputs.isEmpty())
             {
-                val eut = recipeBuilder.eUt
-                val duration = recipeBuilder.duration
-
-                // Common water recipes.
-                recipeBuilder.copy()
+                val eut = it.eUt
+                val duration = it.duration
+                it.copy()
                     .fluidInputs(Materials.Water.getFluid(max(4, min(200, duration * eut / 320)).toInt()))
                     .duration(duration * 2)
                     .buildAndRegister()
 
-                // Distilled water recipes, faster than water recipes.
-                recipeBuilder.copy()
+                it.copy()
                     .fluidInputs(Materials.DistilledWater.getFluid(max(3, min(100, duration * eut / 426)).toInt()))
                     .duration(duration * 1.5)
                     .buildAndRegister()
 
-                // Do not call buildAndRegister() as we are mutating the original recipe and already in the middle of a
-                // buildAndRegister() copy call. Adding a second call will result in duplicate recipe generation attempts.
-                recipeBuilder.fluidInputs(Materials.Lubricant.getFluid(max(1, min(50, duration * eut / 1280)).toInt()))
+                it.copy()
+                    .fluidInputs(Materials.Lubricant.getFluid(max(1, min(50, duration * eut / 1280)).toInt()))
                     .duration(max(1, duration))
+                    .buildAndRegister()
+
+                it.fluidInputs(GTLiteMaterials.DimensionallyShiftedSuperfluid.getFluid(max(1, min(5, duration * eut / 2560)).toInt()))
+                    .duration(max(1, duration / 2))
             }
         }
     .build()
@@ -551,36 +546,35 @@ object GTLiteRecipeMaps
         .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
         .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER, MoveType.HORIZONTAL)
         .sound(GTSoundEvents.ASSEMBLER)
-        .onBuild(GTLiteMod.id("circ_ass_copy")) { builder ->
-
+        .onBuild(GTLiteMod.id("circ_ass_copy")) {
             // Mode 1: Original CAL recipes.
             SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(1)
-                .inputs(*builder.inputs.toTypedArray())
-                .fluidInputs(builder.fluidInputs)
-                .outputs(*builder.outputs.toTypedArray())
-                .chancedOutputs(builder.chancedOutputs)
-                .fluidOutputs(builder.fluidOutputs)
-                .chancedFluidOutputs(builder.chancedFluidOutputs)
-                .cleanroom(builder.cleanroom)
-                .duration(builder.duration)
-                .EUt(builder.eUt)
+                .inputs(*it.inputs.toTypedArray())
+                .fluidInputs(it.fluidInputs)
+                .outputs(*it.outputs.toTypedArray())
+                .chancedOutputs(it.chancedOutputs)
+                .fluidOutputs(it.fluidOutputs)
+                .chancedFluidOutputs(it.chancedFluidOutputs)
+                .cleanroom(it.cleanroom)
+                .duration(it.duration)
+                .EUt(it.eUt)
                 .buildAndRegister()
 
             // Mode 2: 64x base buff with original CAL recipes (the original buff is 16, so it is actual 1024x buff).
-            val inputs = builder.inputs
+            val inputs = it.inputs
                 .filterNotNull()
-                .map { it.copyWithAmount(it.amount * 64) }
+                .map { input -> input.copyWithAmount(input.amount * 64) }
                 .toTypedArray()
 
-            val outputs = builder.outputs
+            val outputs = it.outputs
                 .filterNotNull()
-                .map { it.copy(it.count * 64) }
+                .map { output -> output.copy(output.count * 64) }
                 .toTypedArray()
 
-            val fluidInputs = builder.fluidInputs
+            val fluidInputs = it.fluidInputs
                 .filterNotNull()
-                .map { it.copyWithAmount(it.amount * 64) }
+                .map { input -> input.copyWithAmount(input.amount * 64) }
                 .toList()
 
             SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
@@ -588,12 +582,12 @@ object GTLiteRecipeMaps
                 .inputs(*inputs)
                 .fluidInputs(fluidInputs)
                 .outputs(*outputs)
-                .chancedOutputs(builder.chancedOutputs)
-                .fluidOutputs(builder.fluidOutputs)
-                .chancedFluidOutputs(builder.chancedFluidOutputs)
-                .cleanroom(builder.cleanroom)
-                .duration(builder.duration * 64)
-                .EUt(builder.eUt)
+                .chancedOutputs(it.chancedOutputs)
+                .fluidOutputs(it.fluidOutputs)
+                .chancedFluidOutputs(it.chancedFluidOutputs)
+                .cleanroom(it.cleanroom)
+                .duration(it.duration * 64)
+                .EUt(it.eUt)
                 .buildAndRegister()
         }
         .build()
@@ -743,17 +737,18 @@ object GTLiteRecipeMaps
         .itemOutputs(1)
         .fluidInputs(12)
         .sound(GTSoundEvents.ASSEMBLER)
-        .onBuild(GTLiteMod.id("coal_copy")) { builder ->
+        .onBuild(GTLiteMod.id("coal_copy")) {
+            // Mode 1: Original CoAL recipes.
             SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
-                .inputs(*builder.inputs.toTypedArray())
-                .fluidInputs(builder.fluidInputs)
-                .outputs(*builder.outputs.toTypedArray())
-                .chancedOutputs(builder.chancedOutputs)
-                .fluidOutputs(builder.fluidOutputs)
-                .chancedFluidOutputs(builder.chancedFluidOutputs)
-                .cleanroom(builder.cleanroom)
-                .duration(builder.duration)
-                .EUt(builder.eUt)
+                .inputs(*it.inputs.toTypedArray())
+                .fluidInputs(it.fluidInputs)
+                .outputs(*it.outputs.toTypedArray())
+                .chancedOutputs(it.chancedOutputs)
+                .fluidOutputs(it.fluidOutputs)
+                .chancedFluidOutputs(it.chancedFluidOutputs)
+                .cleanroom(it.cleanroom)
+                .duration(it.duration)
+                .EUt(it.eUt)
                 .buildAndRegister()
 
             // TODO: 16x (1024 equivalence parallel) recipes
@@ -894,7 +889,7 @@ object GTLiteRecipeMaps
         .itemOutputs(1)
         .fluidInputs(4)
         .sound(GTSoundEvents.ASSEMBLER)
-        .build() // AssLine smallRecipeMap actual
+        .build() // smallRecipeMap: ASSEMBLY_LINE_RECIPES
 
     /**
      * @zenProp singularity_assembly_unit
@@ -907,7 +902,7 @@ object GTLiteRecipeMaps
         .itemOutputs(4)
         .fluidInputs(12)
         .sound(GTSoundEvents.ASSEMBLER)
-        .build() // CAL and CoAL smallRecipeMap actual
+        .build() // smallRecipeMap: CIRCUIT_ASSEMBLY_LINE_RECIPES, COMPONENT_ASSEMBLY_LINE_RECIPES
 
     /**
      * @zenProp integrated_ore_processor
@@ -1187,5 +1182,4 @@ object GTLiteRecipeMaps
     }
 
     // @formatter:on
-
 }

@@ -13,7 +13,6 @@ import net.minecraft.client.resources.I18n
 
 object GTLiteRecipeProperties
 {
-
     lateinit var ACCELERATION_TRACK_TIER: RecipeProperty<Int>
     lateinit var ADVANCED_FUSION_TIER: RecipeProperty<Int>
     lateinit var COMPONENT_ASSEMBLY_LINE_TIER: RecipeProperty<Int>
@@ -23,7 +22,6 @@ object GTLiteRecipeProperties
 
     internal fun init()
     {
-
         RecipePropertyBuilder.Companion.apply {
 
             ACCELERATION_TRACK_TIER = tierProperty(GTLiteMod.id("acceleration_track_tier"))
@@ -132,7 +130,6 @@ object GTLiteRecipeProperties
             CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.TOOL_DATA_ORB))
             CircuitPatternProperty.registerCircuit(createDataItemWithTag(MetaItems.TOOL_DATA_MODULE))
         }
-
     }
 
     private fun <T : RecipeProperty<*>> register(property: T, configuration: T.() -> Unit)
@@ -140,5 +137,4 @@ object GTLiteRecipeProperties
         GregTechAPI.RECIPE_PROPERTIES.register(property.key, property)
         configuration(property)
     }
-
 }

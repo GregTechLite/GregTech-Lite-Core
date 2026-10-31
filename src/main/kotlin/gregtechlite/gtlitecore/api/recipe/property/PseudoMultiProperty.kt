@@ -11,7 +11,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 object PseudoMultiProperty : RecipeProperty<PseudoMultiPropertyValues>("blocks", PseudoMultiPropertyValues::class.java)
 {
-
     override fun serialize(value: Any): NBTBase = NBTTagString(castValue(value).blockGroupName)
 
     override fun deserialize(nbt: NBTBase): Any = (nbt as? NBTTagString)!!.string
@@ -22,5 +21,4 @@ object PseudoMultiProperty : RecipeProperty<PseudoMultiPropertyValues>("blocks",
         val localizedBlockGroupMembers = I18n.format("gtlitecore.recipe.block_group_members.${castValue(value).blockGroupName}.name")
         mc.fontRenderer.drawString(I18n.format("gtlitecore.recipe.blocks", localizedBlockGroupMembers), x, y, color)
     }
-
 }
