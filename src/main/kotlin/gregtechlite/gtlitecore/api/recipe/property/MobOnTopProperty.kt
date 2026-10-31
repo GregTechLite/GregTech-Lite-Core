@@ -12,7 +12,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 object MobOnTopProperty : RecipeProperty<ResourceLocation>("mob_on_top", ResourceLocation::class.java)
 {
-
     val playerEntity =  ResourceLocation("player")
 
     override fun serialize(value: Any) = NBTTagString(castValue(value).toString())
@@ -24,16 +23,12 @@ object MobOnTopProperty : RecipeProperty<ResourceLocation>("mob_on_top", Resourc
     {
         mc.fontRenderer.drawString(I18n.format("gtlitecore.recipe.accepted_entity",
             getTranslationName(castValue(value))), x, y, color)
-
     }
 
     @SideOnly(Side.CLIENT)
     private fun getTranslationName(location: ResourceLocation): String
-    {
-        return if (location == playerEntity)
+        = if (location == playerEntity)
             I18n.format("gtlitecore.recipe.entity_name.player")
-        else
+          else
             I18n.format("entity.${EntityList.getTranslationName(location)}.name")
-    }
-
 }

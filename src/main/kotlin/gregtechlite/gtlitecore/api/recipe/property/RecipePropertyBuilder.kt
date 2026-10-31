@@ -11,7 +11,6 @@ import kotlin.reflect.KClass
 
 class RecipePropertyBuilder<T : Any>(val key: String, val type: KClass<T>)
 {
-
     var serializer: ((T) -> NBTBase)? = null
     var deserializer: ((NBTBase) -> T)? = null
 
@@ -70,7 +69,6 @@ class RecipePropertyBuilder<T : Any>(val key: String, val type: KClass<T>)
 
     companion object
     {
-
         fun <T : Any> property(key: String, type: KClass<T>, init: RecipePropertyBuilder<T>.() -> Unit)
            = RecipePropertyBuilder(key, type).apply(init).buildAndRegister()
 
@@ -93,7 +91,5 @@ class RecipePropertyBuilder<T : Any>(val key: String, val type: KClass<T>)
                 deserializer = { (it as NBTTagByte).byte != 0.toByte() }
                 init()
             }
-
     }
-
 }
