@@ -11,7 +11,6 @@ import gregtech.api.recipes.builders.BlastRecipeBuilder
 import gregtech.api.recipes.builders.FuelRecipeBuilder
 import gregtech.api.recipes.builders.PrimitiveRecipeBuilder
 import gregtech.api.recipes.builders.SimpleRecipeBuilder
-import gregtech.api.recipes.ui.impl.DistillationTowerUI
 import gregtech.api.unification.material.Materials
 import gregtech.core.sound.GTSoundEvents
 import gregtechlite.gtlitecore.GTLiteMod
@@ -547,36 +546,35 @@ object GTLiteRecipeMaps
         .itemSlotOverlay(GuiTextures.CIRCUIT_OVERLAY, false)
         .progressBar(GuiTextures.PROGRESS_BAR_CIRCUIT_ASSEMBLER, MoveType.HORIZONTAL)
         .sound(GTSoundEvents.ASSEMBLER)
-        .onBuild(GTLiteMod.id("circ_ass_copy")) { builder ->
-
+        .onBuild(GTLiteMod.id("circ_ass_copy")) {
             // Mode 1: Original CAL recipes.
             SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
                 .circuitMeta(1)
-                .inputs(*builder.inputs.toTypedArray())
-                .fluidInputs(builder.fluidInputs)
-                .outputs(*builder.outputs.toTypedArray())
-                .chancedOutputs(builder.chancedOutputs)
-                .fluidOutputs(builder.fluidOutputs)
-                .chancedFluidOutputs(builder.chancedFluidOutputs)
-                .cleanroom(builder.cleanroom)
-                .duration(builder.duration)
-                .EUt(builder.eUt)
+                .inputs(*it.inputs.toTypedArray())
+                .fluidInputs(it.fluidInputs)
+                .outputs(*it.outputs.toTypedArray())
+                .chancedOutputs(it.chancedOutputs)
+                .fluidOutputs(it.fluidOutputs)
+                .chancedFluidOutputs(it.chancedFluidOutputs)
+                .cleanroom(it.cleanroom)
+                .duration(it.duration)
+                .EUt(it.eUt)
                 .buildAndRegister()
 
             // Mode 2: 64x base buff with original CAL recipes (the original buff is 16, so it is actual 1024x buff).
-            val inputs = builder.inputs
+            val inputs = it.inputs
                 .filterNotNull()
-                .map { it.copyWithAmount(it.amount * 64) }
+                .map { input -> input.copyWithAmount(input.amount * 64) }
                 .toTypedArray()
 
-            val outputs = builder.outputs
+            val outputs = it.outputs
                 .filterNotNull()
-                .map { it.copy(it.count * 64) }
+                .map { output -> output.copy(output.count * 64) }
                 .toTypedArray()
 
-            val fluidInputs = builder.fluidInputs
+            val fluidInputs = it.fluidInputs
                 .filterNotNull()
-                .map { it.copyWithAmount(it.amount * 64) }
+                .map { input -> input.copyWithAmount(input.amount * 64) }
                 .toList()
 
             SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
@@ -584,12 +582,12 @@ object GTLiteRecipeMaps
                 .inputs(*inputs)
                 .fluidInputs(fluidInputs)
                 .outputs(*outputs)
-                .chancedOutputs(builder.chancedOutputs)
-                .fluidOutputs(builder.fluidOutputs)
-                .chancedFluidOutputs(builder.chancedFluidOutputs)
-                .cleanroom(builder.cleanroom)
-                .duration(builder.duration * 64)
-                .EUt(builder.eUt)
+                .chancedOutputs(it.chancedOutputs)
+                .fluidOutputs(it.fluidOutputs)
+                .chancedFluidOutputs(it.chancedFluidOutputs)
+                .cleanroom(it.cleanroom)
+                .duration(it.duration * 64)
+                .EUt(it.eUt)
                 .buildAndRegister()
         }
         .build()
@@ -739,17 +737,18 @@ object GTLiteRecipeMaps
         .itemOutputs(1)
         .fluidInputs(12)
         .sound(GTSoundEvents.ASSEMBLER)
-        .onBuild(GTLiteMod.id("coal_copy")) { builder ->
+        .onBuild(GTLiteMod.id("coal_copy")) {
+            // Mode 1: Original CoAL recipes.
             SINGULARITY_ASSEMBLY_RECIPES.recipeBuilder()
-                .inputs(*builder.inputs.toTypedArray())
-                .fluidInputs(builder.fluidInputs)
-                .outputs(*builder.outputs.toTypedArray())
-                .chancedOutputs(builder.chancedOutputs)
-                .fluidOutputs(builder.fluidOutputs)
-                .chancedFluidOutputs(builder.chancedFluidOutputs)
-                .cleanroom(builder.cleanroom)
-                .duration(builder.duration)
-                .EUt(builder.eUt)
+                .inputs(*it.inputs.toTypedArray())
+                .fluidInputs(it.fluidInputs)
+                .outputs(*it.outputs.toTypedArray())
+                .chancedOutputs(it.chancedOutputs)
+                .fluidOutputs(it.fluidOutputs)
+                .chancedFluidOutputs(it.chancedFluidOutputs)
+                .cleanroom(it.cleanroom)
+                .duration(it.duration)
+                .EUt(it.eUt)
                 .buildAndRegister()
 
             // TODO: 16x (1024 equivalence parallel) recipes
@@ -890,7 +889,7 @@ object GTLiteRecipeMaps
         .itemOutputs(1)
         .fluidInputs(4)
         .sound(GTSoundEvents.ASSEMBLER)
-        .build() // AssLine smallRecipeMap actual
+        .build() // smallRecipeMap: ASSEMBLY_LINE_RECIPES
 
     /**
      * @zenProp singularity_assembly_unit
@@ -903,7 +902,7 @@ object GTLiteRecipeMaps
         .itemOutputs(4)
         .fluidInputs(12)
         .sound(GTSoundEvents.ASSEMBLER)
-        .build() // CAL and CoAL smallRecipeMap actual
+        .build() // smallRecipeMap: CIRCUIT_ASSEMBLY_LINE_RECIPES, COMPONENT_ASSEMBLY_LINE_RECIPES
 
     /**
      * @zenProp integrated_ore_processor
