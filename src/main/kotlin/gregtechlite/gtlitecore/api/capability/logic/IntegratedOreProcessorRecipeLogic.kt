@@ -30,7 +30,6 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
             {
                 if (progressTime > 0)
                 {
-                    setActive(true)
                     updateRecipeProgress()
                 }
                 if (progressTime == 0 && shouldProcessRecipe())
@@ -173,12 +172,17 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
 
         progressTime = 1
         maxProgress = (100 / ocMult).coerceAtLeast(1)
-        recipeEUt = (consumedPower * (10000 / maxProgress / maxProgress)).coerceAtMost(maxParallelVoltage)
+        recipeEUt = (consumedPower * 100 / maxProgress).coerceAtMost(maxParallelVoltage)
 
         val compressedOutputStacks: List<ItemStack> = OreProcessorRecipeWrapper.compressOutput(outputStacks)
         itemOutputs = NonNullList.create()
         for (itemStack in compressedOutputStacks)
             itemOutputs.add(itemStack)
+
+        if (wasActiveAndNeedsUpdate)
+            wasActiveAndNeedsUpdate = false
+        else
+            setActive(true)
     }
 
     /**
