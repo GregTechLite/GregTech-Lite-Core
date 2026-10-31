@@ -21,7 +21,7 @@ const val CIRCUIT_INFO_NBT = "circuitInfo"
  * The map with all item and its wrapped format.
  * Will be initialized when preloading Circuit Assembly Line recipes.
  */
-val wrapItems: MutableMap<ItemStack, ItemStack> = hashBiMapOf()
+val wrapItems = hashBiMapOf<ItemStack, ItemStack>()
 
 /**
  * Create a scanning recipe for circuit info.

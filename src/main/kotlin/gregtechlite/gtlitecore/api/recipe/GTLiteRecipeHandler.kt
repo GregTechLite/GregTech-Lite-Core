@@ -56,7 +56,6 @@ import net.minecraftforge.fluids.FluidStack
 
 object GTLiteRecipeHandler
 {
-
     // region Chemical Reactor Recipe Removal
 
     /**
@@ -373,5 +372,4 @@ object GTLiteRecipeHandler
         ModHandler.removeFurnaceSmelting(UnificationEntry(dustImpure, oreType))
         ModHandler.removeFurnaceSmelting(UnificationEntry(dustPure, oreType))
     }
-
 }
