@@ -41,6 +41,7 @@ import gregtechlite.gtlitecore.api.recipe.ui.NanoAssemblyMatrixUI
 import gregtechlite.gtlitecore.api.recipe.ui.SingularityAssemblyUnitUI
 import gregtechlite.gtlitecore.api.recipe.ui.SpaceAssemblerUI
 import gregtechlite.gtlitecore.api.recipe.ui.StellarForgeUI
+import gregtechlite.gtlitecore.api.unification.GTLiteMaterials
 import gregtechlite.gtlitecore.core.sound.GTLiteSoundEvents
 import net.minecraft.init.SoundEvents
 import stanhebben.zenscript.annotations.ZenClass
@@ -58,7 +59,6 @@ import kotlin.math.min
 @ZenRegister
 object GTLiteRecipeMaps
 {
-
     // @formatter:off
 
     // region Single Machine RecipeMaps
@@ -75,32 +75,30 @@ object GTLiteRecipeMaps
         .fluidSlotOverlay(GuiTextures.HEATING_OVERLAY_2, false)
         .progressBar(GuiTextures.PROGRESS_BAR_BATH, MoveType.CIRCULAR)
         .sound(GTSoundEvents.CUT)
-        .onBuild(GTLiteMod.id("polisher_fluid")) { recipeBuilder ->
-            // Same like cutting machine logic, but polisher used more water as coolant, confirm three cutting function
-            // machines, the water required of each recipe is slicer < this < cutter.
-            if (recipeBuilder.fluidInputs.isEmpty())
+        .onBuild(GTLiteMod.id("polisher_fluid")) {
+            if (it.fluidInputs.isEmpty())
             {
-                val eut = recipeBuilder.eUt
-                val duration = recipeBuilder.duration
-
-                // Common water recipes.
-                recipeBuilder.copy()
+                val eut = it.eUt
+                val duration = it.duration
+                it.copy()
                     .fluidInputs(Materials.Water.getFluid(max(4, min(500, duration * eut / 320)).toInt()))
                     .duration(duration * 2)
                     .buildAndRegister()
 
-                // Distilled water recipes, faster than water recipes.
-                recipeBuilder.copy()
+                it.copy()
                     .fluidInputs(Materials.DistilledWater.getFluid(max(3, min(250, duration * eut / 426)).toInt()))
                     .duration(duration * 1.5)
                     .buildAndRegister()
 
-                // Do not call buildAndRegister() as we are mutating the original recipe and already in the middle of a
-                // buildAndRegister() copy call. Adding a second call will result in duplicate recipe generation attempts.
-                recipeBuilder.fluidInputs(Materials.Lubricant.getFluid(max(1, min(125, duration * eut / 1280)).toInt()))
+                it.copy()
+                    .fluidInputs(Materials.Lubricant.getFluid(max(1, min(125, duration * eut / 1280)).toInt()))
                     .duration(max(1, duration))
-                }
+                    .buildAndRegister()
+
+                it.fluidInputs(GTLiteMaterials.DimensionallyShiftedSuperfluid.getFluid(max(1, min(10, duration * eut / 2560)).toInt()))
+                    .duration(max(1, duration / 2))
             }
+        }
         .build()
 
     /**
@@ -119,30 +117,28 @@ object GTLiteRecipeMaps
         .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true, true)
         .progressBar(GTLiteGuiTextures.PROGRESS_BAR_SLICING)
         .sound(GTSoundEvents.CUT)
-        .onBuild(GTLiteMod.id("slicer_fluid")) { recipeBuilder ->
-            // Same like cutting machine logic, but slicer used quite little water as coolant, confirm three cutting
-            // function machines, the water required of each recipe is this < polisher < cutter.
-            if (recipeBuilder.fluidInputs.isEmpty())
+        .onBuild(GTLiteMod.id("slicer_fluid")) {
+            if (it.fluidInputs.isEmpty())
             {
-                val eut = recipeBuilder.eUt
-                val duration = recipeBuilder.duration
-
-                // Common water recipes.
-                recipeBuilder.copy()
+                val eut = it.eUt
+                val duration = it.duration
+                it.copy()
                     .fluidInputs(Materials.Water.getFluid(max(4, min(200, duration * eut / 320)).toInt()))
                     .duration(duration * 2)
                     .buildAndRegister()
 
-                // Distilled water recipes, faster than water recipes.
-                recipeBuilder.copy()
+                it.copy()
                     .fluidInputs(Materials.DistilledWater.getFluid(max(3, min(100, duration * eut / 426)).toInt()))
                     .duration(duration * 1.5)
                     .buildAndRegister()
 
-                // Do not call buildAndRegister() as we are mutating the original recipe and already in the middle of a
-                // buildAndRegister() copy call. Adding a second call will result in duplicate recipe generation attempts.
-                recipeBuilder.fluidInputs(Materials.Lubricant.getFluid(max(1, min(50, duration * eut / 1280)).toInt()))
+                it.copy()
+                    .fluidInputs(Materials.Lubricant.getFluid(max(1, min(50, duration * eut / 1280)).toInt()))
                     .duration(max(1, duration))
+                    .buildAndRegister()
+
+                it.fluidInputs(GTLiteMaterials.DimensionallyShiftedSuperfluid.getFluid(max(1, min(5, duration * eut / 2560)).toInt()))
+                    .duration(max(1, duration / 2))
             }
         }
     .build()
@@ -1187,5 +1183,4 @@ object GTLiteRecipeMaps
     }
 
     // @formatter:on
-
 }
