@@ -98,21 +98,18 @@ abstract class ModuleMultiblockBase(metaTileEntityId: ResourceLocation,
 
     override fun updateFormedValid()
     {
-        if (offsetTimer % 1.s == 0L && moduleProvider != null)
-        {
-            if (energyContainer.energyCapacity != energyContainer.energyStored
-                && moduleProvider!!.subEnergyContainer!!.energyStored > energyConsumed * 1.s)
-            {
-                val maxModuleReceive = energyContainer.energyCapacity - energyContainer.energyStored
-                val energyDrained = min(moduleProvider!!.subEnergyContainer!!.energyStored, maxModuleReceive)
+        val provider = moduleProvider ?: return
+        if (offsetTimer % 1.s != 0L) return
 
-                moduleProvider!!.subEnergyContainer!!.removeEnergy(energyDrained)
-                energyContainer.addEnergy(energyDrained)
-            }
-        }
-        else if (moduleProvider == null)
+        val subEnergyContainer = provider.subEnergyContainer ?: return
+        if (energyContainer.energyCapacity != energyContainer.energyStored
+            && subEnergyContainer.energyStored > energyConsumed * 1.s)
         {
-            isWorkingEnabled = false
+            val energyDrained = min(subEnergyContainer.energyStored,
+                                    energyContainer.energyCapacity - energyContainer.energyStored)
+
+            subEnergyContainer.removeEnergy(energyDrained)
+            energyContainer.addEnergy(energyDrained)
         }
     }
 
