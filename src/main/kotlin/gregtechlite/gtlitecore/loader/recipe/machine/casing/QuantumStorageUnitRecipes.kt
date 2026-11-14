@@ -92,7 +92,7 @@ internal object QuantumStorageUnitRecipes
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(18)
             input(QUANTUM_CHEST[LuV], 2)
-            input(QUANTUM_CHEST[LuV], 2)
+            input(QUANTUM_TANK[LuV], 2)
             input(FIELD_GENERATOR_UV)
             input(plateDouble, TransitionAlloyA, 4)
             input(rotor, TransitionAlloyA, 2)
@@ -107,7 +107,7 @@ internal object QuantumStorageUnitRecipes
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(18)
             input(QUANTUM_CHEST[LuV], 4)
-            input(QUANTUM_CHEST[LuV], 4)
+            input(QUANTUM_TANK[LuV], 4)
             input(FIELD_GENERATOR_UHV)
             input(plateDouble, Pikyonium64B, 4)
             input(rotor, Pikyonium64B, 2)
@@ -122,7 +122,7 @@ internal object QuantumStorageUnitRecipes
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(18)
             input(QUANTUM_CHEST[ZPM], 4)
-            input(QUANTUM_CHEST[ZPM], 4)
+            input(QUANTUM_TANK[ZPM], 4)
             input(FIELD_GENERATOR_UEV)
             input(plateDouble, ToxicAlloy, 4)
             input(rotor, ToxicAlloy, 2)
@@ -137,7 +137,7 @@ internal object QuantumStorageUnitRecipes
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(18)
             input(QUANTUM_CHEST[ZPM], 8)
-            input(QUANTUM_CHEST[ZPM], 8)
+            input(QUANTUM_TANK[ZPM], 8)
             input(FIELD_GENERATOR_UIV)
             input(plateDouble, ArceusAlloy2B, 4)
             input(rotor, ArceusAlloy2B, 2)
@@ -167,7 +167,7 @@ internal object QuantumStorageUnitRecipes
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(18)
             input(QUANTUM_CHEST[UV], 16)
-            input(QUANTUM_CHEST[UV], 16)
+            input(QUANTUM_TANK[UV], 16)
             input(FIELD_GENERATOR_OpV)
             input(plateDouble, Mellion, 4)
             input(rotor, Mellion, 2)
@@ -182,7 +182,7 @@ internal object QuantumStorageUnitRecipes
         ASSEMBLER_RECIPES.addRecipe {
             circuitMeta(18)
             input(QUANTUM_CHEST[UHV], 16)
-            input(QUANTUM_CHEST[UHV], 16)
+            input(QUANTUM_TANK[UHV], 16)
             input(FIELD_GENERATOR_MAX)
             input(plateDouble, Periodicium, 4)
             input(rotor, Periodicium, 2)
