@@ -30,7 +30,6 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
             {
                 if (progressTime > 0)
                 {
-                    setActive(true)
                     updateRecipeProgress()
                 }
                 if (progressTime == 0 && shouldProcessRecipe())
@@ -49,7 +48,7 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
     private fun recipeProcessing()
     {
         var processedCount = 0
-        var remainingVoltage = maxVoltage
+        var remainingVoltage = maxParallelVoltage
         val inputFluid = GTUtility.fluidHandlerToList(mte.inputFluidInventory)
 
         var mode = -1
@@ -106,9 +105,8 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
                     fluidInputStacks.add(fluidInput.inputFluidStack)
 
                 countToProcess = countToProcess.coerceAtMost(getMaxFluidDeductionMultiplier(fluidInputStacks))
-
                 if (countToProcess == 0)
-                    return
+                    break
 
                 remainingVoltage -= countToProcess * recipe.eUt
                 processedCount += countToProcess
@@ -169,21 +167,27 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
             mte.inputFluidInventory?.drain(fluidStack, true)
         }
 
-        val ocMult = floor(1.0 * maxVoltage / (maxVoltage - remainingVoltage)).pow(0.5).toInt().coerceAtLeast(1)
+        val consumedPower = maxParallelVoltage - remainingVoltage
+        val ocMult = floor(1.0 * maxParallelVoltage / consumedPower).pow(0.5).toInt().coerceAtLeast(1)
 
         progressTime = 1
         maxProgress = (100 / ocMult).coerceAtLeast(1)
-        recipeEUt = (maxVoltage - remainingVoltage) * (10000 / maxProgress / maxProgress)
+        recipeEUt = (consumedPower * 100 / maxProgress).coerceAtMost(maxParallelVoltage)
 
         val compressedOutputStacks: List<ItemStack> = OreProcessorRecipeWrapper.compressOutput(outputStacks)
         itemOutputs = NonNullList.create()
         for (itemStack in compressedOutputStacks)
             itemOutputs.add(itemStack)
+
+        if (wasActiveAndNeedsUpdate)
+            wasActiveAndNeedsUpdate = false
+        else
+            setActive(true)
     }
 
     /**
-     * The parallel limit of IOP is dependent with its [maxVoltage], the following table is
-     * the result for all voltage tier in GTCEu:
+     * The parallel limit of IOP is dependent with its [getMaxParallelVoltage], the following
+     * table is the result for all voltage tier in GTCEu:
      *
      * | Voltage | Parallel Limit | Voltage | Parallel Limit | Voltage | Parallel Limit |
      * |---------|----------------|---------|----------------|---------|----------------|
@@ -199,10 +203,7 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
      * | MAX     | 39366          | MAX+10  | 2270042        |
      */
     override fun getParallelLimit() : Int
-    {
-        return if (maxVoltage <= V[IV]) 1024 else
-            ceil(1024 * (1.0 * maxVoltage / V[IV]).pow(0.292481)).toInt()
-    }
+        = if (maxVoltage <= V[IV]) 1024 else ceil(1024 * (1.0 * maxParallelVoltage / V[IV]).pow(0.292481)).toInt()
 
     private fun getMaxFluidDeductionMultiplier(inputFluids: List<FluidStack>) : Int
     {
