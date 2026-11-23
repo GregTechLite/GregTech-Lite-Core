@@ -26,6 +26,7 @@ import it.unimi.dsi.fastutil.objects.ObjectSet
 import it.unimi.dsi.fastutil.objects.ReferenceLinkedOpenHashSet
 import it.unimi.dsi.fastutil.objects.ReferenceSet
 import net.minecraft.util.IntIdentityHashBiMap
+import net.minecraft.util.NonNullList
 import java.util.*
 
 // region FastUtil: ObjectOpenHashSet
@@ -79,6 +80,16 @@ fun <E> openArrayListOf(vararg elements: E): ObjectList<E> = ObjectArrayList(ele
 fun <E> Collection<E>.toOpenArrayList(): ObjectList<E> = ObjectArrayList(this)
 
 fun <E> Iterator<E>.toOpenArrayList(): ObjectList<E> = ObjectArrayList(this)
+
+// endregion
+
+// region Minecraft: NonNullList
+
+fun <E> nonnullListOf(): NonNullList<E> = NonNullList.create<E>()
+
+fun <E> nonnullListOf(vararg elements: E): NonNullList<E> = NonNullList.create<E>().also {
+    elements.forEach { element -> it.add(element) }
+}
 
 // endregion
 

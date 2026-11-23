@@ -30,6 +30,7 @@ import gregtech.api.util.GTTransferUtils.addFluidsToFluidHandler
 import gregtech.api.util.KeyUtil
 import gregtech.client.renderer.ICubeRenderer
 import gregtech.common.mui.widget.GTFluidSlot
+import gregtechlite.gtlitecore.api.collection.nonnullListOf
 import gregtechlite.gtlitecore.api.gui.GTLiteMuiTextures
 import gregtechlite.gtlitecore.api.pattern.TraceabilityPredicates.SNOW_LAYER
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.COAGULATION_RECIPES
@@ -40,7 +41,6 @@ import kotlin.math.min
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
-import net.minecraft.util.NonNullList
 import net.minecraft.util.ResourceLocation
 import net.minecraft.world.World
 import net.minecraftforge.common.util.Constants
@@ -54,7 +54,6 @@ import net.minecraftforge.items.ItemStackHandler
 class MultiblockCoagulationTank(id: ResourceLocation)
     : RecipeMapPrimitiveMultiblockController(id, COAGULATION_RECIPES), IGhostSlotConfigurable
 {
-
     private var circuitInventory: GhostCircuitItemStackHandler? = null
     private var actualImportItems: IItemHandlerModifiable? = null
 
@@ -126,17 +125,25 @@ class MultiblockCoagulationTank(id: ResourceLocation)
             // Extracted all fluids which in import hatches to fluid container.
             for (tank in getAbilities(IMPORT_FLUIDS))
             {
-                if (tank.fluid != null)
-                {
-                    val fluidStacks = NonNullList.create<FluidStack>()
-                    val toFill = (importFluids.getTankAt(0).capacity - importFluids.getTankAt(0).fluidAmount)
-                    val amount = min(tank.fluidAmount, toFill)
-                    fluidStacks.add(FluidStack(tank.fluid, amount))
-                    if (addFluidsToFluidHandler(importFluids, true, fluidStacks))
+                val fluid = tank.fluid ?: continue
+                // Only tanks holding the same fluid or empty tanks accept this fluid.
+                val toFill = importFluids.fluidTanks.sumOf {
+                    val insideFluid = it.fluid
+                    when
                     {
-                        addFluidsToFluidHandler(importFluids, false, fluidStacks)
-                        tank.drain(amount, true)
+                        insideFluid == null || insideFluid.amount <= 0 -> it.capacity
+                        insideFluid.isFluidEqual(fluid)                -> it.capacity - insideFluid.amount
+                        else                                           -> 0
                     }
+                }
+                val amount = min(fluid.amount, toFill)
+                if (amount <= 0) continue
+
+                val fluids = nonnullListOf(FluidStack(fluid, amount))
+                if (addFluidsToFluidHandler(importFluids, true, fluids))
+                {
+                    addFluidsToFluidHandler(importFluids, false, fluids)
+                    tank.drain(amount, true)
                 }
             }
             // Do same thing for export items.
@@ -273,7 +280,6 @@ class MultiblockCoagulationTank(id: ResourceLocation)
     private inner class CoagulationTankRecipeLogic(mte: RecipeMapPrimitiveMultiblockController,
                                                    recipeMap: RecipeMap<*>) : PrimitiveRecipeLogic(mte, recipeMap)
     {
-
         override fun getParallelLimit(): Int = 8
 
         override fun getMaxParallelVoltage(): Long = 2_147_432_767L // Long.MAX_VALUE - 50800 EU
@@ -281,5 +287,4 @@ class MultiblockCoagulationTank(id: ResourceLocation)
         override fun getParallelLogicType(): ParallelLogicType = ParallelLogicType.MULTIPLY
 
     }
-
 }
