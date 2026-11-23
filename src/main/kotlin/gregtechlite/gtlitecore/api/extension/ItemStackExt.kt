@@ -5,6 +5,7 @@ import gregtech.api.items.metaitem.MetaOreDictItem
 import gregtech.api.metatileentity.MetaTileEntity
 import gregtech.api.unification.material.Materials
 import gregtech.common.blocks.BlockMaterialBase
+import gregtechlite.gtlitecore.api.collection.nonnullListOf
 import gregtechlite.gtlitecore.client.util.ItemStackMap.Companion.WILDCARD_TAG
 import net.minecraft.block.Block
 import net.minecraft.block.state.IBlockState
@@ -114,7 +115,7 @@ fun IBlockState.toItem(amount: Int = 1): ItemStack
     = ItemStack(block, amount, block.getMetaFromState(this))
 
 inline fun <reified T : Block> T.unzipSubBlocks(): List<ItemStack>
-    = NonNullList.create<ItemStack>().also { getSubBlocks(CreativeTabs.SEARCH, it) }
+    = nonnullListOf<ItemStack>().also { getSubBlocks(CreativeTabs.SEARCH, it) }
 
 inline fun <reified T : Block> Map<String, Array<T>>.unzipSubBlocks(): List<ItemStack>
     = values.flatMap { it.asSequence() }.flatMap { it.unzipSubBlocks() }.toList()

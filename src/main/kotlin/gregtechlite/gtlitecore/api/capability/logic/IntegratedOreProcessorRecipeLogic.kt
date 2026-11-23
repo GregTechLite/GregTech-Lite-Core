@@ -7,6 +7,7 @@ import gregtech.api.GTValues.V
 import gregtech.api.capability.impl.MultiblockRecipeLogic
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.util.GTUtility
+import gregtechlite.gtlitecore.api.collection.nonnullListOf
 import gregtechlite.gtlitecore.api.extension.copy
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.INTEGRATED_ORE_PROCESSOR_RECIPES
 import gregtechlite.gtlitecore.api.recipe.util.OreProcessorRecipeWrapper
@@ -175,7 +176,7 @@ open class IntegratedOreProcessorRecipeLogic(val mte: MultiblockIntegratedOrePro
         recipeEUt = (consumedPower * 100 / maxProgress).coerceAtMost(maxParallelVoltage)
 
         val compressedOutputStacks: List<ItemStack> = OreProcessorRecipeWrapper.compressOutput(outputStacks)
-        itemOutputs = NonNullList.create()
+        itemOutputs = nonnullListOf()
         for (itemStack in compressedOutputStacks)
             itemOutputs.add(itemStack)
 
