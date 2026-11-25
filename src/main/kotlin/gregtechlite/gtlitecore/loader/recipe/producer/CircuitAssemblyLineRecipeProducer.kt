@@ -1,52 +1,24 @@
 package gregtechlite.gtlitecore.loader.recipe.producer
 
-import gregtech.api.GTValues.EV
-import gregtech.api.GTValues.HV
-import gregtech.api.GTValues.IV
-import gregtech.api.GTValues.L
-import gregtech.api.GTValues.LV
-import gregtech.api.GTValues.LuV
-import gregtech.api.GTValues.MV
-import gregtech.api.GTValues.UEV
-import gregtech.api.GTValues.UHV
-import gregtech.api.GTValues.UIV
-import gregtech.api.GTValues.UV
-import gregtech.api.GTValues.VA
-import gregtech.api.GTValues.VH
-import gregtech.api.GTValues.VHA
-import gregtech.api.unification.material.MarkerMaterials.Tier
-import gregtech.api.unification.material.Materials.Aluminium
-import gregtech.api.unification.material.Materials.AnnealedCopper
-import gregtech.api.unification.material.Materials.BlueAlloy
-import gregtech.api.unification.material.Materials.Copper
-import gregtech.api.unification.material.Materials.Electrum
-import gregtech.api.unification.material.Materials.Europium
-import gregtech.api.unification.material.Materials.Gold
-import gregtech.api.unification.material.Materials.HSSE
-import gregtech.api.unification.material.Materials.HSSG
-import gregtech.api.unification.material.Materials.Naquadah
-import gregtech.api.unification.material.Materials.Neutronium
-import gregtech.api.unification.material.Materials.NiobiumTitanium
-import gregtech.api.unification.material.Materials.Palladium
-import gregtech.api.unification.material.Materials.Platinum
-import gregtech.api.unification.material.Materials.Polybenzimidazole
-import gregtech.api.unification.material.Materials.RedAlloy
-import gregtech.api.unification.material.Materials.SiliconeRubber
-import gregtech.api.unification.material.Materials.Silver
+import gregtech.api.items.metaitem.MetaItem
+import gregtech.api.recipes.Recipe
+import gregtech.api.recipes.RecipeMaps.CIRCUIT_ASSEMBLER_RECIPES
+import gregtech.api.recipes.ingredients.GTRecipeFluidInput
+import gregtech.api.recipes.ingredients.GTRecipeInput
+import gregtech.api.recipes.ingredients.GTRecipeItemInput
+import gregtech.api.recipes.ingredients.GTRecipeOreInput
+import gregtech.api.unification.FluidUnifier
+import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.SolderingAlloy
-import gregtech.api.unification.material.Materials.SterileGrowthMedium
 import gregtech.api.unification.material.Materials.Tin
-import gregtech.api.unification.material.Materials.VanadiumSteel
-import gregtech.api.unification.material.Materials.YttriumBariumCuprate
-import gregtech.api.unification.ore.OrePrefix.bolt
-import gregtech.api.unification.ore.OrePrefix.circuit
-import gregtech.api.unification.ore.OrePrefix.foil
-import gregtech.api.unification.ore.OrePrefix.frameGt
-import gregtech.api.unification.ore.OrePrefix.pipeTinyFluid
-import gregtech.api.unification.ore.OrePrefix.plate
+import gregtech.api.unification.ore.OrePrefix
 import gregtech.api.unification.ore.OrePrefix.wireFine
+import gregtech.api.unification.ore.OrePrefix.wireGtDouble
 import gregtech.api.unification.ore.OrePrefix.wireGtHex
+import gregtech.api.unification.ore.OrePrefix.wireGtOctal
 import gregtech.api.unification.ore.OrePrefix.wireGtQuadruple
+import gregtech.api.unification.ore.OrePrefix.wireGtSingle
 import gregtech.common.items.MetaItems.ADVANCED_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.ADVANCED_SMD_CAPACITOR
 import gregtech.common.items.MetaItems.ADVANCED_SMD_DIODE
@@ -72,8 +44,8 @@ import gregtech.common.items.MetaItems.EPOXY_BOARD
 import gregtech.common.items.MetaItems.EXTREME_CIRCUIT_BOARD
 import gregtech.common.items.MetaItems.FIBER_BOARD
 import gregtech.common.items.MetaItems.GOOD_CIRCUIT_BOARD
-import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
 import gregtech.common.items.MetaItems.HIGH_POWER_INTEGRATED_CIRCUIT
+import gregtech.common.items.MetaItems.HIGHLY_ADVANCED_SOC
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_HV
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_LV
 import gregtech.common.items.MetaItems.INTEGRATED_CIRCUIT_MV
@@ -109,7 +81,6 @@ import gregtech.common.items.MetaItems.SMD_DIODE
 import gregtech.common.items.MetaItems.SMD_INDUCTOR
 import gregtech.common.items.MetaItems.SMD_RESISTOR
 import gregtech.common.items.MetaItems.SMD_TRANSISTOR
-import gregtech.common.items.MetaItems.STEM_CELLS
 import gregtech.common.items.MetaItems.SYSTEM_ON_CHIP
 import gregtech.common.items.MetaItems.TOOL_DATA_MODULE
 import gregtech.common.items.MetaItems.TOOL_DATA_ORB
@@ -124,19 +95,15 @@ import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_ASSEMBLY_ZPM
 import gregtech.common.items.MetaItems.WETWARE_PROCESSOR_LUV
 import gregtech.common.items.MetaItems.WETWARE_SUPER_COMPUTER_UV
 import gregtech.common.items.MetaItems.WORKSTATION_EV
-import gregtechlite.gtlitecore.api.extension.EUt
+import gregtechlite.gtlitecore.api.LOGGER
 import gregtechlite.gtlitecore.api.extension.addRecipe
-import gregtechlite.gtlitecore.api.min
+import gregtechlite.gtlitecore.api.extension.copy
+import gregtechlite.gtlitecore.api.extension.stack
 import gregtechlite.gtlitecore.api.recipe.GTLiteRecipeMaps.CIRCUIT_ASSEMBLY_LINE_RECIPES
 import gregtechlite.gtlitecore.api.recipe.util.circuitInfo
 import gregtechlite.gtlitecore.api.recipe.util.createCircuitPatternRecipe
 import gregtechlite.gtlitecore.api.recipe.util.createWrapItemMap
-import gregtechlite.gtlitecore.api.s
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Bedrockium
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.CarbonNanotube
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Infinity
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.MutatedLivingSolder
-import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.Vibranium
+import gregtechlite.gtlitecore.api.recipe.util.wrapItems
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ADVANCED_RAM_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.ALL_OPTICAL_CASCADE_NOR_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP
@@ -180,7 +147,6 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.NONLINEAR_CHEMICAL_OS
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_ASSEMBLY_UHV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_COMPUTER_UEV
-import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_FIBER
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_LASER_CONTROL_UNIT
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_MAINFRAME_UIV
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.OPTICAL_PROCESSOR_UV
@@ -316,1368 +282,370 @@ import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ULPIC_CHIP
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_ULTIMATE_CIRCUIT_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_WETWARE_BOARD
 import gregtechlite.gtlitecore.common.item.GTLiteMetaItems.WRAP_WETWARE_CIRCUIT_BOARD
+import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
 
+/**
+ * Circuit Assembly Line (CAL) recipe producer.
+ *
+ * Every recipe of [CIRCUIT_ASSEMBLER_RECIPES] whose output is one of the [TARGETS] is wrapped
+ * into a CAL recipe, so the CAL recipes always follow the actual circuit assembler recipes (including
+ * all modifications done by the `gregtechlite.gtlitecore.loader.recipe.circuit` package).
+ *
+ * A wrapped recipe performs 16 circuit assembler crafts at once, which gives the following rules:
+ *
+ * - Items with a wrapped form ([wrapItems]): transformed into the wrapped item and keep their count
+ *   (1 wrapped item = 16 original items).
+ * - Wires: upgraded by 16 material amounts (`wireFine` -> `wireGtQuadruple`, `wireGtSingle` ->
+ *   `wireGtHex`, ...) and keep their count; if no gauge fits, the heaviest gauge with a whole count
+ *   is used.
+ * - All other solid inputs: multiplied by 16 and capped at one stack (64).
+ * - Fluid inputs: inherited unchanged, the soldering variant of the base recipe wins over the
+ *   automatically generated tin variant.
+ * - Outputs: multiplied by 16 and split into stacks of 64.
+ * - EUt: inherited, duration: multiplied by 16.
+ *
+ * @author Magic_Sweepy
+ */
 internal object CircuitAssemblyLineRecipeProducer
 {
+    private const val WRAP_FACTOR = 16
+
+    private const val MAX_ITEM_INPUTS = 6
+    private const val MAX_FLUID_INPUTS = 1
+    private const val MAX_OUTPUT_STACKS = 6
+
+    private const val MAX_STACK_SIZE = 64
+    private const val DURATION_MULTIPLIER = 16
+
+    private val WIRE_PREFIXES = listOf(wireGtHex, wireGtOctal, wireGtQuadruple, wireGtDouble, wireGtSingle, wireFine)
 
     // @formatter:off
 
+    // Target output item for CAL recipes.
+    private val TARGETS: List<MetaItem<*>.MetaValueItem> = listOf(
+        /* ULV */ VACUUM_TUBE, NAND_CHIP_ULV,
+        /* LV  */ ELECTRONIC_CIRCUIT_LV, INTEGRATED_CIRCUIT_LV, MICROPROCESSOR_LV,
+        /* MV  */ ELECTRONIC_CIRCUIT_MV, INTEGRATED_CIRCUIT_MV, PROCESSOR_MV,
+        /* HV  */ INTEGRATED_CIRCUIT_HV, PROCESSOR_ASSEMBLY_HV, NANO_PROCESSOR_HV,
+        /* EV  */ WORKSTATION_EV, NANO_PROCESSOR_ASSEMBLY_EV, QUANTUM_PROCESSOR_EV,
+        /* IV  */ MAINFRAME_IV, NANO_COMPUTER_IV, QUANTUM_ASSEMBLY_IV, CRYSTAL_PROCESSOR_IV,
+        /* LuV */ NANO_MAINFRAME_LUV, QUANTUM_COMPUTER_LUV, CRYSTAL_ASSEMBLY_LUV, WETWARE_PROCESSOR_LUV,
+        /* ZPM */ QUANTUM_MAINFRAME_ZPM, CRYSTAL_COMPUTER_ZPM, WETWARE_PROCESSOR_ASSEMBLY_ZPM, GOOWARE_PROCESSOR_ZPM,
+        /* UV  */ CRYSTAL_MAINFRAME_UV, WETWARE_SUPER_COMPUTER_UV, GOOWARE_ASSEMBLY_UV, OPTICAL_PROCESSOR_UV,
+        /* UHV */ WETWARE_MAINFRAME_UHV, GOOWARE_COMPUTER_UHV, OPTICAL_ASSEMBLY_UHV, SPINTRONIC_PROCESSOR_UHV,
+        /* UEV */ GOOWARE_MAINFRAME_UEV, OPTICAL_COMPUTER_UEV, SPINTRONIC_ASSEMBLY_UEV, COSMIC_PROCESSOR_UEV,
+        /* UIV */ OPTICAL_MAINFRAME_UIV, SPINTRONIC_COMPUTER_UIV, COSMIC_ASSEMBLY_UIV, SUPRACAUSAL_PROCESSOR_UIV,
+        /* UXV */ SPINTRONIC_MAINFRAME_UXV, COSMIC_COMPUTER_UXV, SUPRACAUSAL_ASSEMBLY_UXV,
+        /* OpV */ COSMIC_MAINFRAME_OpV, SUPRACAUSAL_COMPUTER_OpV,
+        /* MAX */ SUPRACAUSAL_MAINFRAME_MAX,
+        ENERGY_LAPOTRONIC_ORB, DIAMOND_MODULATOR, RUBY_MODULATOR, SAPPHIRE_MODULATOR,
+        CRYSTAL_SOC_SOCKET, NEURO_PROCESSOR, TOOL_DATA_STICK, TOOL_DATA_ORB, TOOL_DATA_MODULE)
+
+    // @formatter:on
+
+    private val wrappedItems = hashMapOf<Pair<Item, Int>, ItemStack>()
+
+    private var isWrapItemsInitialized = false
+
+    private data class RecipeSignature(val inputs: List<String>, val outputs: List<String>, val duration: Int, val eut: Long)
+
+    fun init()
+    {
+        if (isWrapItemsInitialized) return
+        isWrapItemsInitialized = true
+        createWrapItemMaps()
+    }
+
     fun produce()
     {
-        createWrapItemMaps()
+        init()
         createCircuitPatternRecipes()
 
-        // region T1: Electronic
-
-        // LV Electronic Circuit
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_BASIC_CIRCUIT_BOARD)
-            input(WRAP_SMD_RESISTOR, 2)
-            input(VACUUM_TUBE, 32)
-            input(wireGtHex, RedAlloy, 2)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(ELECTRONIC_CIRCUIT_LV, 64)
-            EUt(VH[LV])
-            duration(1.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(ELECTRONIC_CIRCUIT_LV)
-        }
-
-        // MV Good Electronic Circuit
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_GOOD_CIRCUIT_BOARD)
-            input(ELECTRONIC_CIRCUIT_LV, 32)
-            input(WRAP_SMD_DIODE, 2)
-            input(wireGtHex, Copper, 2)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(ELECTRONIC_CIRCUIT_MV, 32)
-            EUt(VH[LV])
-            duration(1.min + 20.s) // Original: 15s, Wrapped: 15s * 16 = 240s
-            circuitInfo(ELECTRONIC_CIRCUIT_MV)
-        }
-
-        // endregion
-
-        // region T2: Integrated
-
-        // LV Integrated Circuit
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_BASIC_CIRCUIT_BOARD)
-            input(WRAP_ILC_CHIP)
-            input(WRAP_SMD_RESISTOR, 2)
-            input(WRAP_SMD_RESISTOR, 2)
-            input(wireGtQuadruple, Copper, 2)
-            input(bolt, Tin, 32)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(INTEGRATED_CIRCUIT_LV, 64)
-            EUt(VH[LV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(INTEGRATED_CIRCUIT_LV)
-        }
-
-        // MV Good Integrated Circuit
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_GOOD_CIRCUIT_BOARD)
-            input(INTEGRATED_CIRCUIT_LV, 64)
-            input(WRAP_SMD_RESISTOR, 2)
-            input(WRAP_SMD_DIODE, 2)
-            input(wireGtQuadruple, Gold, 4)
-            input(bolt, Silver, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(INTEGRATED_CIRCUIT_MV, 48)
-            EUt(24) // LV
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(INTEGRATED_CIRCUIT_MV)
-        }
-
-        // HV Advanced Integrated Circuit
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(INTEGRATED_CIRCUIT_MV, 48)
-            input(WRAP_ILC_CHIP, 2)
-            input(WRAP_RAM_CHIP, 2)
-            input(WRAP_SMD_TRANSISTOR, 4)
-            input(wireGtQuadruple, Electrum, 8)
-            input(bolt, AnnealedCopper, 64)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(INTEGRATED_CIRCUIT_HV, 32)
-            EUt(VA[LV])
-            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
-            circuitInfo(INTEGRATED_CIRCUIT_HV)
-        }
-
-        // endregion
-
-        // region T3: Processor
-
-        // ULV NAND Chip
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_GOOD_CIRCUIT_BOARD)
-            input(WRAP_SIMPLE_SOC_CHIP)
-            input(bolt, RedAlloy, 32)
-            input(wireGtQuadruple, Tin, 2)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(NAND_CHIP_ULV, 64)
-            output(NAND_CHIP_ULV, 64)
-            EUt(VA[MV])
-            duration(3.min) // Original: 15s, Wrapped: 15s * 16 = 240s
-            circuitInfo(NAND_CHIP_ULV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_PLASTIC_CIRCUIT_BOARD)
-            input(WRAP_SIMPLE_SOC_CHIP)
-            input(bolt, RedAlloy, 32)
-            input(wireGtQuadruple, Tin, 2)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(NAND_CHIP_ULV, 64)
-            output(NAND_CHIP_ULV, 64)
-            output(NAND_CHIP_ULV, 64)
-            output(NAND_CHIP_ULV, 64)
-            EUt(VA[MV])
-            duration(3.min) // Original: 15s, Wrapped: 15s * 16 = 240s
-            circuitInfo(NAND_CHIP_ULV)
-        }
-
-        // LV Microprocessor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_PLASTIC_CIRCUIT_BOARD)
-            input(WRAP_CPU_CHIP)
-            input(WRAP_SMD_RESISTOR, 2)
-            input(WRAP_SMD_CAPACITOR, 2)
-            input(WRAP_SMD_TRANSISTOR, 2)
-            input(wireGtQuadruple, Copper)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(MICROPROCESSOR_LV, 64)
-            EUt(VHA[MV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(MICROPROCESSOR_LV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_PLASTIC_CIRCUIT_BOARD)
-            input(WRAP_SOC_CHIP)
-            input(wireGtQuadruple, Copper, 2)
-            input(bolt, Tin, 32)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(MICROPROCESSOR_LV, 64)
-            output(MICROPROCESSOR_LV, 64)
-            EUt(600) // EV
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(MICROPROCESSOR_LV)
-        }
-
-        // MV Processor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_PLASTIC_CIRCUIT_BOARD)
-            input(WRAP_CPU_CHIP)
-            input(WRAP_SMD_RESISTOR, 4)
-            input(WRAP_SMD_CAPACITOR, 4)
-            input(WRAP_SMD_TRANSISTOR, 4)
-            input(wireGtQuadruple, RedAlloy, 4)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(PROCESSOR_MV, 64)
-            EUt(VHA[MV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(PROCESSOR_MV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_PLASTIC_CIRCUIT_BOARD)
-            input(WRAP_SOC_CHIP)
-            input(wireGtQuadruple, RedAlloy, 4)
-            input(bolt, AnnealedCopper, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(PROCESSOR_MV, 64)
-            output(PROCESSOR_MV, 64)
-            EUt(2400) // IV
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(PROCESSOR_MV)
-        }
-
-        // HV Processor Assembly
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_PLASTIC_CIRCUIT_BOARD)
-            input(PROCESSOR_MV, 64)
-            input(WRAP_SMD_INDUCTOR, 4)
-            input(WRAP_SMD_CAPACITOR, 8)
-            input(WRAP_RAM_CHIP, 4)
-            input(wireGtQuadruple, RedAlloy, 8)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(PROCESSOR_ASSEMBLY_HV, 48)
-            EUt(90) // MV
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(PROCESSOR_ASSEMBLY_HV)
-        }
-
-        // EV Workstation
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_PLASTIC_CIRCUIT_BOARD)
-            input(PROCESSOR_ASSEMBLY_HV, 48)
-            input(WRAP_SMD_DIODE, 4)
-            input(WRAP_RAM_CHIP, 4)
-            input(wireGtQuadruple, Electrum, 16)
-            input(bolt, BlueAlloy, 64)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(WORKSTATION_EV, 32)
-            EUt(VA[MV])
-            duration(5.min) // Original: 20s, Wrapped: 20ss * 16 = 320s
-            circuitInfo(WORKSTATION_EV)
-        }
-
-        // IV Mainframe
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(frameGt, Aluminium, 32)
-            input(WORKSTATION_EV, 32)
-            input(WRAP_SMD_INDUCTOR, 8)
-            input(WRAP_SMD_CAPACITOR, 16)
-            input(WRAP_RAM_CHIP, 16)
-            input(wireGtHex, AnnealedCopper, 16)
-            fluidInputs(SolderingAlloy.getFluid(L * 2))
-            output(MAINFRAME_IV, 16)
-            EUt(VA[HV])
-            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
-            circuitInfo(MAINFRAME_IV)
-        }
-
-        // endregion
-
-        // region T4: Nano
-
-        // HV Nano Processor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ADVANCED_CIRCUIT_BOARD)
-            input(WRAP_NANO_CPU_CHIP)
-            input(WRAP_SMD_RESISTOR, 8)
-            input(WRAP_SMD_CAPACITOR, 8)
-            input(WRAP_SMD_TRANSISTOR, 8)
-            input(wireGtQuadruple, Electrum, 8)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(NANO_PROCESSOR_HV, 64)
-            EUt(600) // EV
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(NANO_PROCESSOR_HV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ADVANCED_CIRCUIT_BOARD)
-            input(WRAP_NANO_CPU_CHIP)
-            input(WRAP_ADVANCED_SMD_RESISTOR, 2)
-            input(WRAP_ADVANCED_SMD_CAPACITOR, 2)
-            input(WRAP_ADVANCED_SMD_TRANSISTOR, 2)
-            input(wireGtQuadruple, Electrum, 8)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(NANO_PROCESSOR_HV, 64)
-            EUt(600) // EV
-            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(NANO_PROCESSOR_HV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ADVANCED_CIRCUIT_BOARD)
-            input(WRAP_ADVANCED_SOC_CHIP)
-            input(wireGtQuadruple, Electrum, 4)
-            input(bolt, Platinum, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(NANO_PROCESSOR_HV, 64)
-            output(NANO_PROCESSOR_HV, 64)
-            EUt(9600) // LuV
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(NANO_PROCESSOR_HV)
-        }
-
-        // EV Nano Processor Assembly
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ADVANCED_CIRCUIT_BOARD)
-            input(NANO_PROCESSOR_HV, 64)
-            input(WRAP_SMD_INDUCTOR, 4)
-            input(WRAP_SMD_CAPACITOR, 8)
-            input(WRAP_RAM_CHIP, 8)
-            input(wireGtQuadruple, Electrum, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(NANO_PROCESSOR_ASSEMBLY_EV, 48)
-            EUt(600) // EV
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(NANO_PROCESSOR_ASSEMBLY_EV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ADVANCED_CIRCUIT_BOARD)
-            input(NANO_PROCESSOR_HV, 64)
-            input(WRAP_ADVANCED_SMD_INDUCTOR)
-            input(WRAP_ADVANCED_SMD_CAPACITOR, 2)
-            input(WRAP_RAM_CHIP, 8)
-            input(wireGtQuadruple, Electrum, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(NANO_PROCESSOR_ASSEMBLY_EV, 48)
-            EUt(600) // EV
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(NANO_PROCESSOR_ASSEMBLY_EV)
-        }
-
-        // IV Nano Computer
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ADVANCED_CIRCUIT_BOARD)
-            input(NANO_PROCESSOR_ASSEMBLY_EV, 48)
-            input(WRAP_SMD_DIODE, 8)
-            input(WRAP_NOR_CHIP, 4)
-            input(WRAP_RAM_CHIP, 16)
-            input(wireGtQuadruple, Electrum, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(NANO_COMPUTER_IV, 32)
-            EUt(600) // EV
-            duration(5.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(NANO_COMPUTER_IV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ADVANCED_CIRCUIT_BOARD)
-            input(NANO_PROCESSOR_ASSEMBLY_EV, 48)
-            input(WRAP_ADVANCED_SMD_DIODE, 2)
-            input(WRAP_NOR_CHIP, 4)
-            input(WRAP_RAM_CHIP, 16)
-            input(wireGtQuadruple, Electrum, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(NANO_COMPUTER_IV, 32)
-            EUt(600) // EV
-            duration(2.min + 30.s) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(NANO_COMPUTER_IV)
-        }
-
-        // LuV Nano Mainframe
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(frameGt, VanadiumSteel, 32)
-            input(NANO_COMPUTER_IV, 32)
-            input(WRAP_SMD_INDUCTOR, 16)
-            input(WRAP_SMD_CAPACITOR, 32)
-            input(WRAP_RAM_CHIP, 16)
-            input(wireGtHex, AnnealedCopper, 32)
-            fluidInputs(SolderingAlloy.getFluid(L * 2))
-            output(NANO_MAINFRAME_LUV, 16)
-            EUt(VA[EV])
-            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
-            circuitInfo(NANO_MAINFRAME_LUV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(frameGt, VanadiumSteel, 32)
-            input(NANO_COMPUTER_IV, 32)
-            input(WRAP_ADVANCED_SMD_INDUCTOR, 4)
-            input(WRAP_ADVANCED_SMD_CAPACITOR, 8)
-            input(WRAP_RAM_CHIP, 16)
-            input(wireGtHex, AnnealedCopper, 32)
-            fluidInputs(SolderingAlloy.getFluid(L * 2))
-            output(NANO_MAINFRAME_LUV, 16)
-            EUt(VA[EV])
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(NANO_MAINFRAME_LUV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(frameGt, VanadiumSteel, 32)
-            input(NANO_COMPUTER_IV, 32)
-            input(WRAP_GOOWARE_SMD_INDUCTOR)
-            input(WRAP_GOOWARE_SMD_CAPACITOR, 2)
-            input(WRAP_RAM_CHIP, 16)
-            input(wireGtHex, AnnealedCopper, 32)
-            fluidInputs(SolderingAlloy.getFluid(L * 2))
-            output(NANO_MAINFRAME_LUV, 16)
-            EUt(VA[EV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(NANO_MAINFRAME_LUV)
-        }
-
-        // endregion
-
-        // region T5: Quantum
-
-        // EV Quantum Processor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_EXTREME_CIRCUIT_BOARD)
-            input(WRAP_QUBIT_CPU_CHIP)
-            input(WRAP_NANO_CPU_CHIP)
-            input(WRAP_SMD_CAPACITOR, 12)
-            input(WRAP_SMD_TRANSISTOR, 12)
-            input(wireGtQuadruple, Platinum, 12)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(QUANTUM_PROCESSOR_EV, 64)
-            EUt(2400) // IV
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(QUANTUM_PROCESSOR_EV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_EXTREME_CIRCUIT_BOARD)
-            input(WRAP_QUBIT_CPU_CHIP)
-            input(WRAP_NANO_CPU_CHIP)
-            input(WRAP_ADVANCED_SMD_CAPACITOR, 3)
-            input(WRAP_ADVANCED_SMD_TRANSISTOR, 3)
-            input(wireGtQuadruple, Platinum, 12)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(QUANTUM_PROCESSOR_EV, 64)
-            EUt(2400) // IV
-            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(QUANTUM_PROCESSOR_EV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_EXTREME_CIRCUIT_BOARD)
-            input(WRAP_ADVANCED_SOC_CHIP)
-            input(wireGtQuadruple, Platinum, 12)
-            input(bolt, NiobiumTitanium, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(QUANTUM_PROCESSOR_EV, 64)
-            output(QUANTUM_PROCESSOR_EV, 64)
-            EUt(38400) // ZPM
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(QUANTUM_PROCESSOR_EV)
-        }
-
-        // IV Quantum Processor Assembly
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_EXTREME_CIRCUIT_BOARD)
-            input(QUANTUM_PROCESSOR_EV, 64)
-            input(WRAP_SMD_INDUCTOR, 8)
-            input(WRAP_SMD_CAPACITOR, 16)
-            input(WRAP_RAM_CHIP, 4)
-            input(wireGtQuadruple, Platinum, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(QUANTUM_ASSEMBLY_IV, 48)
-            EUt(2400) // IV
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(QUANTUM_ASSEMBLY_IV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_EXTREME_CIRCUIT_BOARD)
-            input(QUANTUM_PROCESSOR_EV, 64)
-            input(WRAP_ADVANCED_SMD_INDUCTOR, 2)
-            input(WRAP_ADVANCED_SMD_CAPACITOR, 4)
-            input(WRAP_RAM_CHIP, 4)
-            input(wireGtQuadruple, Platinum, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(QUANTUM_ASSEMBLY_IV, 48)
-            EUt(2400) // IV
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(QUANTUM_ASSEMBLY_IV)
-        }
-
-        // LuV Quantum Supercomputer
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_EXTREME_CIRCUIT_BOARD)
-            input(QUANTUM_ASSEMBLY_IV, 48)
-            input(WRAP_SMD_DIODE, 8)
-            input(WRAP_NOR_CHIP, 4)
-            input(WRAP_RAM_CHIP, 16)
-            input(wireGtQuadruple, Platinum, 32)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(QUANTUM_COMPUTER_LUV, 32)
-            EUt(2400) // IV
-            duration(5.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(QUANTUM_COMPUTER_LUV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_EXTREME_CIRCUIT_BOARD)
-            input(QUANTUM_ASSEMBLY_IV, 48)
-            input(WRAP_ADVANCED_SMD_DIODE, 2)
-            input(WRAP_NOR_CHIP, 4)
-            input(WRAP_RAM_CHIP, 16)
-            input(wireGtQuadruple, Platinum, 32)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(QUANTUM_COMPUTER_LUV, 32)
-            EUt(2400) // IV
-            duration(2.min + 30.s) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(QUANTUM_COMPUTER_LUV)
-        }
-
-        // ZPM Quantum Mainframe
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(frameGt, HSSG, 32)
-            input(QUANTUM_COMPUTER_LUV, 32)
-            input(WRAP_SMD_INDUCTOR, 24)
-            input(WRAP_SMD_CAPACITOR, 48)
-            input(WRAP_RAM_CHIP, 24)
-            input(wireGtHex, AnnealedCopper, 48)
-            fluidInputs(SolderingAlloy.getFluid(L * 2))
-            output(QUANTUM_MAINFRAME_ZPM, 16)
-            EUt(VA[IV])
-            duration(8.min) // Original: 40s, Wrapped: 40s * 16 = 640s
-            circuitInfo(QUANTUM_MAINFRAME_ZPM)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(frameGt, HSSG, 32)
-            input(QUANTUM_COMPUTER_LUV, 32)
-            input(WRAP_ADVANCED_SMD_INDUCTOR, 6)
-            input(WRAP_ADVANCED_SMD_CAPACITOR, 12)
-            input(WRAP_RAM_CHIP, 24)
-            input(wireGtHex, AnnealedCopper, 48)
-            fluidInputs(SolderingAlloy.getFluid(L * 2))
-            output(QUANTUM_MAINFRAME_ZPM, 16)
-            EUt(VA[IV])
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(QUANTUM_MAINFRAME_ZPM)
-        }
-
-        // endregion
-
-        // region T6: Crystal
-
-        // IV Crystal Processor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ELITE_CIRCUIT_BOARD)
-            input(WRAP_CRYSTAL_CPU)
-            input(WRAP_NANO_CPU_CHIP, 2)
-            input(WRAP_ADVANCED_SMD_CAPACITOR, 4)
-            input(WRAP_ADVANCED_SMD_TRANSISTOR, 4)
-            input(wireGtQuadruple, NiobiumTitanium, 8)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(CRYSTAL_PROCESSOR_IV, 64)
-            EUt(9600) // LuV
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(CRYSTAL_PROCESSOR_IV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ELITE_CIRCUIT_BOARD)
-            input(WRAP_CRYSTAL_CPU)
-            input(WRAP_NANO_CPU_CHIP, 2)
-            input(WRAP_GOOWARE_SMD_CAPACITOR)
-            input(WRAP_GOOWARE_SMD_TRANSISTOR)
-            input(wireGtQuadruple, NiobiumTitanium, 8)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(CRYSTAL_PROCESSOR_IV, 64)
-            EUt(9600) // LuV
-            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(CRYSTAL_PROCESSOR_IV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ELITE_CIRCUIT_BOARD)
-            input(WRAP_CRYSTAL_SOC)
-            input(wireGtQuadruple, NiobiumTitanium, 8)
-            input(bolt, YttriumBariumCuprate, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(CRYSTAL_PROCESSOR_IV, 64)
-            output(CRYSTAL_PROCESSOR_IV, 64)
-            EUt(86000) // ZPM
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(CRYSTAL_PROCESSOR_IV)
-        }
-
-        // LuV Crystal Processor Assembly
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ELITE_CIRCUIT_BOARD)
-            input(CRYSTAL_PROCESSOR_IV, 64)
-            input(WRAP_ADVANCED_SMD_INDUCTOR, 4)
-            input(WRAP_ADVANCED_SMD_CAPACITOR, 8)
-            input(WRAP_RAM_CHIP, 24)
-            input(wireGtQuadruple, NiobiumTitanium, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(CRYSTAL_ASSEMBLY_LUV, 48)
-            EUt(9600) // LuV
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(CRYSTAL_ASSEMBLY_LUV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ELITE_CIRCUIT_BOARD)
-            input(CRYSTAL_PROCESSOR_IV, 64)
-            input(WRAP_GOOWARE_SMD_INDUCTOR)
-            input(WRAP_GOOWARE_SMD_CAPACITOR, 2)
-            input(WRAP_RAM_CHIP, 24)
-            input(wireGtQuadruple, NiobiumTitanium, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(CRYSTAL_ASSEMBLY_LUV, 48)
-            EUt(9600) // LuV
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(CRYSTAL_ASSEMBLY_LUV)
-        }
-
-        // ZPM Crystal Supercomputer
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ELITE_CIRCUIT_BOARD)
-            input(CRYSTAL_ASSEMBLY_LUV, 48)
-            input(WRAP_RAM_CHIP, 4)
-            input(WRAP_NOR_CHIP, 32)
-            input(WRAP_NAND_CHIP, 64)
-            input(wireGtQuadruple, NiobiumTitanium, 32)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(CRYSTAL_COMPUTER_ZPM, 32)
-            EUt(9600) // LuV
-            duration(5.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(CRYSTAL_COMPUTER_ZPM)
-        }
-
-        // UV Crystal Mainframe (AssLine)
-
-        // endregion
-
-        // region T7: Wetware
-
-        // LuV Wetware Processor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_NEURO_PROCESSOR)
-            input(WRAP_CRYSTAL_CPU)
-            input(WRAP_QUBIT_CPU_CHIP)
-            input(WRAP_ADVANCED_SMD_CAPACITOR, 8)
-            input(WRAP_ADVANCED_SMD_TRANSISTOR, 8)
-            input(wireGtQuadruple, YttriumBariumCuprate, 8)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(WETWARE_PROCESSOR_LUV, 64)
-            EUt(38400) // ZPM
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(WETWARE_PROCESSOR_LUV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_NEURO_PROCESSOR)
-            input(WRAP_CRYSTAL_CPU)
-            input(WRAP_QUBIT_CPU_CHIP)
-            input(WRAP_GOOWARE_SMD_CAPACITOR, 2)
-            input(WRAP_GOOWARE_SMD_TRANSISTOR, 2)
-            input(wireGtQuadruple, YttriumBariumCuprate, 8)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(WETWARE_PROCESSOR_LUV, 64)
-            EUt(38400) // ZPM
-            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(WETWARE_PROCESSOR_LUV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_NEURO_PROCESSOR)
-            input(WRAP_HIGHLY_ADVANCED_SOC_CHIP)
-            input(wireGtQuadruple, YttriumBariumCuprate, 8)
-            input(bolt, Naquadah, 8)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(WETWARE_PROCESSOR_LUV, 64)
-            output(WETWARE_PROCESSOR_LUV, 64)
-            EUt(150_000) // UV
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(WETWARE_PROCESSOR_LUV)
-        }
-
-        // ZPM Wetware Processor Assembly
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_WETWARE_CIRCUIT_BOARD)
-            input(WETWARE_PROCESSOR_LUV, 64)
-            input(WRAP_ADVANCED_SMD_INDUCTOR, 8)
-            input(WRAP_ADVANCED_SMD_CAPACITOR, 16)
-            input(WRAP_ARAM_CHIP, 24)
-            input(wireGtQuadruple, YttriumBariumCuprate, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
-            EUt(38400) // ZPM
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_WETWARE_CIRCUIT_BOARD)
-            input(WETWARE_PROCESSOR_LUV, 64)
-            input(WRAP_GOOWARE_SMD_INDUCTOR, 2)
-            input(WRAP_GOOWARE_SMD_CAPACITOR, 4)
-            input(WRAP_ARAM_CHIP, 24)
-            input(wireGtQuadruple, YttriumBariumCuprate, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
-            EUt(38400) // ZPM
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
-        }
-
-        // UV Wetware Supercomputer
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_WETWARE_CIRCUIT_BOARD)
-            input(WETWARE_PROCESSOR_ASSEMBLY_ZPM, 48)
-            input(WRAP_ARAM_CHIP, 8)
-            input(WRAP_NOR_CHIP, 64)
-            input(WRAP_NAND_CHIP, 64)
-            input(wireGtQuadruple, YttriumBariumCuprate, 32)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(WETWARE_SUPER_COMPUTER_UV, 32)
-            EUt(38400) // ZPM
-            duration(5.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(WETWARE_SUPER_COMPUTER_UV)
-        }
-
-        // UHV Wetware Mainframe (AssLine)
-
-        // endregion
-
-        // region T8: Gooware
-
-        // ZPM Gooware Processor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ULTIMATE_CIRCUIT_BOARD)
-            input(WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
-            input(WRAP_CRYSTAL_CPU)
-            input(WRAP_GOOWARE_SMD_CAPACITOR, 16)
-            input(WRAP_GOOWARE_SMD_TRANSISTOR, 16)
-            input(wireGtQuadruple, Europium, 8)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(GOOWARE_PROCESSOR_ZPM, 64)
-            EUt(VHA[UV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(GOOWARE_PROCESSOR_ZPM)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ULTIMATE_CIRCUIT_BOARD)
-            input(WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
-            input(WRAP_CRYSTAL_CPU)
-            input(WRAP_OPTICAL_SMD_CAPACITOR, 4)
-            input(WRAP_OPTICAL_SMD_TRANSISTOR, 4)
-            input(wireGtQuadruple, Europium, 8)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(GOOWARE_PROCESSOR_ZPM, 64)
-            EUt(VHA[UV])
-            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(GOOWARE_PROCESSOR_ZPM)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ULTIMATE_CIRCUIT_BOARD)
-            input(WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
-            input(WRAP_CRYSTAL_CPU)
-            input(WRAP_SPINTRONIC_SMD_CAPACITOR)
-            input(WRAP_SPINTRONIC_SMD_TRANSISTOR)
-            input(wireGtQuadruple, Europium, 8)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(GOOWARE_PROCESSOR_ZPM, 64)
-            EUt(VHA[UV])
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(GOOWARE_PROCESSOR_ZPM)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ULTIMATE_CIRCUIT_BOARD)
-            input(WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
-            input(WRAP_UHASOC_CHIP)
-            input(wireGtQuadruple, Europium, 8)
-            input(bolt, Neutronium, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(GOOWARE_PROCESSOR_ZPM, 64)
-            output(GOOWARE_PROCESSOR_ZPM, 64)
-            EUt(VHA[UHV])
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(GOOWARE_PROCESSOR_ZPM)
-        }
-
-        // UV Gooware Processor Assembly
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ULTIMATE_CIRCUIT_BOARD)
-            input(GOOWARE_PROCESSOR_ZPM, 64)
-            input(WRAP_GOOWARE_SMD_INDUCTOR, 16)
-            input(WRAP_GOOWARE_SMD_CAPACITOR, 32)
-            input(WRAP_ARAM_CHIP, 32)
-            input(wireGtQuadruple, Europium, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(GOOWARE_ASSEMBLY_UV, 48)
-            EUt(VHA[UV])
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(GOOWARE_ASSEMBLY_UV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ULTIMATE_CIRCUIT_BOARD)
-            input(GOOWARE_PROCESSOR_ZPM, 64)
-            input(WRAP_OPTICAL_SMD_INDUCTOR, 4)
-            input(WRAP_OPTICAL_SMD_CAPACITOR, 8)
-            input(WRAP_ARAM_CHIP, 32)
-            input(wireGtQuadruple, Europium, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(GOOWARE_ASSEMBLY_UV, 48)
-            EUt(VHA[UV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(GOOWARE_ASSEMBLY_UV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ULTIMATE_CIRCUIT_BOARD)
-            input(GOOWARE_PROCESSOR_ZPM, 64)
-            input(WRAP_SPINTRONIC_SMD_INDUCTOR)
-            input(WRAP_SPINTRONIC_SMD_CAPACITOR, 2)
-            input(WRAP_ARAM_CHIP, 32)
-            input(wireGtQuadruple, Europium, 16)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(GOOWARE_ASSEMBLY_UV, 48)
-            EUt(VHA[UV])
-            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(GOOWARE_ASSEMBLY_UV)
-        }
-
-        // UHV Gooware Supercomputer (AssLine)
-
-        // UEV Gooware Mainframe (AssLine)
-
-        // endregion
-
-        // region T9: Optical
-
-        // UV Optical Processor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
-            input(WRAP_CRYSTAL_CPU)
-            input(WRAP_OPTICAL_SMD_RESISTOR, 16)
-            input(WRAP_OPTICAL_SMD_CAPACITOR, 16)
-            input(WRAP_OPTICAL_SMD_TRANSISTOR, 16)
-            input(OPTICAL_FIBER, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(OPTICAL_PROCESSOR_UV, 64)
-            EUt(VA[UHV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(OPTICAL_PROCESSOR_UV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
-            input(WRAP_CRYSTAL_CPU)
-            input(WRAP_SPINTRONIC_SMD_RESISTOR, 4)
-            input(WRAP_SPINTRONIC_SMD_CAPACITOR, 4)
-            input(WRAP_SPINTRONIC_SMD_TRANSISTOR, 4)
-            input(OPTICAL_FIBER, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(OPTICAL_PROCESSOR_UV, 64)
-            EUt(VA[UHV])
-            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(OPTICAL_PROCESSOR_UV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
-            input(WRAP_CRYSTAL_CPU)
-            input(WRAP_COSMIC_SMD_RESISTOR)
-            input(WRAP_COSMIC_SMD_CAPACITOR)
-            input(WRAP_COSMIC_SMD_TRANSISTOR)
-            input(OPTICAL_FIBER, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(OPTICAL_PROCESSOR_UV, 64)
-            EUt(VA[UHV])
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(OPTICAL_PROCESSOR_UV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_OPTICAL_LASER_CONTROL_UNIT)
-            input(WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP)
-            input(OPTICAL_FIBER, 64)
-            input(bolt, Bedrockium, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(OPTICAL_PROCESSOR_UV, 64)
-            output(OPTICAL_PROCESSOR_UV, 64)
-            EUt(VA[UEV])
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(OPTICAL_PROCESSOR_UV)
-        }
-
-        // UHV Optical Processor Assembly
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_PERFECT_CIRCUIT_BOARD)
-            input(OPTICAL_PROCESSOR_UV, 64)
-            input(WRAP_OPTICAL_SMD_INDUCTOR, 16)
-            input(WRAP_OPTICAL_SMD_CAPACITOR, 32)
-            input(WRAP_HIGHLY_ADVANCED_SOC_CHIP, 32)
-            input(OPTICAL_FIBER, 64)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(OPTICAL_ASSEMBLY_UHV, 48)
-            EUt(VA[UHV])
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(OPTICAL_ASSEMBLY_UHV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_PERFECT_CIRCUIT_BOARD)
-            input(OPTICAL_PROCESSOR_UV, 64)
-            input(WRAP_SPINTRONIC_SMD_INDUCTOR, 4)
-            input(WRAP_SPINTRONIC_SMD_CAPACITOR, 8)
-            input(WRAP_HIGHLY_ADVANCED_SOC_CHIP, 32)
-            input(OPTICAL_FIBER, 64)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(OPTICAL_ASSEMBLY_UHV, 48)
-            EUt(VA[UHV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(OPTICAL_ASSEMBLY_UHV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_PERFECT_CIRCUIT_BOARD)
-            input(OPTICAL_PROCESSOR_UV, 64)
-            input(WRAP_COSMIC_SMD_INDUCTOR)
-            input(WRAP_COSMIC_SMD_CAPACITOR, 2)
-            input(WRAP_HIGHLY_ADVANCED_SOC_CHIP, 32)
-            input(OPTICAL_FIBER, 64)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(OPTICAL_ASSEMBLY_UHV, 48)
-            EUt(VA[UHV])
-            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(OPTICAL_ASSEMBLY_UHV)
-        }
-
-        // UEV Optical Computer (AssLine)
-
-        // UIV Optical Mainframe (AssLine)
-
-        // endregion
-
-        // region T10: Spintronic
-
-        // UHV Spintronic Processor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ESR_COMPUTATION_UNIT)
-            input(WRAP_CRYSTAL_SOC)
-            input(WRAP_SPINTRONIC_SMD_RESISTOR, 16)
-            input(WRAP_SPINTRONIC_SMD_CAPACITOR, 16)
-            input(WRAP_SPINTRONIC_SMD_TRANSISTOR, 16)
-            input(wireGtQuadruple, CarbonNanotube, 8)
-            fluidInputs(MutatedLivingSolder.getFluid(L / 2))
-            output(SPINTRONIC_PROCESSOR_UHV, 64)
-            EUt(VA[UEV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(SPINTRONIC_PROCESSOR_UHV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ESR_COMPUTATION_UNIT)
-            input(WRAP_CRYSTAL_SOC)
-            input(WRAP_COSMIC_SMD_RESISTOR, 4)
-            input(WRAP_COSMIC_SMD_CAPACITOR, 4)
-            input(WRAP_COSMIC_SMD_TRANSISTOR, 4)
-            input(wireGtQuadruple, CarbonNanotube, 8)
-            fluidInputs(MutatedLivingSolder.getFluid(L / 2))
-            output(SPINTRONIC_PROCESSOR_UHV, 64)
-            EUt(VA[UEV])
-            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(SPINTRONIC_PROCESSOR_UHV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ESR_COMPUTATION_UNIT)
-            input(WRAP_CRYSTAL_SOC)
-            input(WRAP_SUPRACAUSAL_SMD_RESISTOR)
-            input(WRAP_SUPRACAUSAL_SMD_CAPACITOR)
-            input(WRAP_SUPRACAUSAL_SMD_TRANSISTOR)
-            input(wireGtQuadruple, CarbonNanotube, 8)
-            fluidInputs(MutatedLivingSolder.getFluid(L / 2))
-            output(SPINTRONIC_PROCESSOR_UHV, 64)
-            EUt(VA[UEV])
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(SPINTRONIC_PROCESSOR_UHV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ESR_COMPUTATION_UNIT)
-            input(WRAP_EXOTIC_SYSTEM_ON_CHIP)
-            input(wireGtQuadruple, CarbonNanotube, 8)
-            input(bolt, Vibranium, 64)
-            fluidInputs(MutatedLivingSolder.getFluid(L / 2))
-            output(SPINTRONIC_PROCESSOR_UHV, 64)
-            output(SPINTRONIC_PROCESSOR_UHV, 64)
-            EUt(VA[UIV])
-            duration(30.s) // Original: 2.5s, Wrapped: 2.5s * 16 = 40s
-            circuitInfo(SPINTRONIC_PROCESSOR_UHV)
-        }
-
-        // UEV Spintronic Processor Assembly (AssLine)
-
-        // UIV Spintronic Computer (AssLine)
-
-        // UXV Spintronic Mainframe (AssLine)
-
-        // endregion
-
-        // region T11: Cosmic
-
-        // UEV Cosmic Processor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_HOLOGRAPHIC_INFORMATION_IMC)
-            input(WRAP_CRYSTAL_SOC)
-            input(WRAP_COSMIC_SMD_RESISTOR, 32)
-            input(WRAP_COSMIC_SMD_CAPACITOR, 32)
-            input(WRAP_COSMIC_SMD_TRANSISTOR, 32)
-            input(wireGtQuadruple, Infinity, 8)
-            fluidInputs(MutatedLivingSolder.getFluid(L / 2))
-            output(COSMIC_PROCESSOR_UEV, 64)
-            EUt(VA[UIV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(COSMIC_PROCESSOR_UEV)
-        }
-
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_HOLOGRAPHIC_INFORMATION_IMC)
-            input(WRAP_CRYSTAL_SOC)
-            input(WRAP_SUPRACAUSAL_SMD_RESISTOR, 8)
-            input(WRAP_SUPRACAUSAL_SMD_CAPACITOR, 8)
-            input(WRAP_SUPRACAUSAL_SMD_TRANSISTOR, 8)
-            input(wireGtQuadruple, Infinity, 8)
-            fluidInputs(MutatedLivingSolder.getFluid(L / 2))
-            output(COSMIC_PROCESSOR_UEV, 64)
-            EUt(VA[UIV])
-            duration(1.min) // Original: 5s, Wrapped: 5s * 16 = 80s
-            circuitInfo(COSMIC_PROCESSOR_UEV)
-        }
-
-        // UIV Cosmic Processor Assembly (AssLine)
-
-        // UXV Cosmic Supercomputer (AssLine)
-
-        // OpV Cosmic Mainframe (AssLine)
-
-        // endregion
-
-        // region T12: Supracausal
-
-        // UIV Supercausal Processor (NAC)
-
-        // UXV Supracausal Processor Assembly (NAC)
-
-        // OpV Supracausal Supercomputer (NAC)
-
-        // MAX Supracausal Mainframe (NAC)
-
-        // endregion
-
-        // region Misc
-
-        // Lapotronic Orb
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_EXTREME_CIRCUIT_BOARD)
-            input(WRAP_PIC_CHIP, 4)
-            input(WRAP_ENGRAVED_LAPOTRON_CHIP, 24)
-            input(WRAP_NANO_CPU_CHIP, 2)
-            input(wireGtQuadruple, Platinum, 16)
-            input(plate, Platinum, 64)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(ENERGY_LAPOTRONIC_ORB, 16)
-            EUt(VH[EV])
-            duration(6.min) // Original: 25.6s, Wrapped: 25.6s * 16 = 409.6s
-            circuitInfo(ENERGY_LAPOTRONIC_ORB)
-        }
-
-        // Data Stick
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ADVANCED_CIRCUIT_BOARD)
-            input(circuit, Tier.HV, 32)
-            input(WRAP_RAM_CHIP, 4)
-            input(WRAP_NOR_CHIP, 16)
-            input(WRAP_NAND_CHIP, 32)
-            input(wireGtQuadruple, Platinum, 32)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(TOOL_DATA_STICK, 16)
-            EUt(1200) // EV
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(TOOL_DATA_STICK)
-        }
-
-        // Data Orb
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_EXTREME_CIRCUIT_BOARD)
-            input(circuit, Tier.IV, 32)
-            input(WRAP_RAM_CHIP, 8)
-            input(WRAP_NOR_CHIP, 32)
-            input(WRAP_NAND_CHIP, 48)
-            input(wireGtQuadruple, NiobiumTitanium, 32)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(TOOL_DATA_ORB, 16)
-            EUt(9600) // LuV
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(TOOL_DATA_ORB)
-        }
-
-        // Data Module
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_WETWARE_CIRCUIT_BOARD)
-            input(circuit, Tier.ZPM, 32)
-            input(WRAP_ARAM_CHIP, 32)
-            input(WRAP_NOR_CHIP, 64)
-            input(WRAP_NAND_CHIP, 64)
-            input(wireGtQuadruple, YttriumBariumCuprate, 32)
-            fluidInputs(SolderingAlloy.getFluid(L))
-            output(TOOL_DATA_MODULE, 16)
-            EUt(38400) // ZPM
-            duration(4.min) // Original: 20s, Wrapped: 20s * 16 = 320s
-            circuitInfo(TOOL_DATA_MODULE)
-        }
-
-        // Diamond Modulator
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ENGRAVED_DIAMOND_CHIP)
-            input(WRAP_PLASTIC_CIRCUIT_BOARD)
-            input(wireFine, Palladium, 64)
-            input(bolt, Platinum, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(DIAMOND_MODULATOR, 64)
-            output(DIAMOND_MODULATOR, 64)
-            EUt(VA[IV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(DIAMOND_MODULATOR)
-        }
-
-        // Ruby Modulator
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ENGRAVED_RUBY_CHIP)
-            input(WRAP_PLASTIC_CIRCUIT_BOARD)
-            input(wireFine, Palladium, 64)
-            input(bolt, Platinum, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(RUBY_MODULATOR, 64)
-            output(RUBY_MODULATOR, 64)
-            EUt(VA[IV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(RUBY_MODULATOR)
-        }
-
-        // Sapphire Modulator
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_ENGRAVED_SAPPHIRE_CHIP)
-            input(WRAP_PLASTIC_CIRCUIT_BOARD)
-            input(wireFine, Palladium, 64)
-            input(bolt, Platinum, 64)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(SAPPHIRE_MODULATOR, 64)
-            output(SAPPHIRE_MODULATOR, 64)
-            EUt(VA[IV])
-            duration(2.min) // Original: 10s, Wrapped: 10s * 16 = 160s
-            circuitInfo(SAPPHIRE_MODULATOR)
-        }
-
-        // Crystal SoC Socket
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_CRYSTAL_INTERFACE_CHIP)
-            input(DIAMOND_MODULATOR, 16)
-            input(RUBY_MODULATOR, 16)
-            input(SAPPHIRE_MODULATOR, 16)
-            input(wireGtQuadruple, Europium, 4)
-            fluidInputs(SolderingAlloy.getFluid(L / 2))
-            output(CRYSTAL_SOC_SOCKET, 16)
-            EUt(VA[LuV])
-            duration(20.s) // Original: 5s, Wrapped: 5s * 16 = 40s
-            circuitInfo(CRYSTAL_SOC_SOCKET)
-        }
-
-        // Neuro Processor
-        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
-            input(WRAP_WETWARE_CIRCUIT_BOARD)
-            input(STEM_CELLS, 64)
-            input(pipeTinyFluid, Polybenzimidazole, 32)
-            input(plate, Electrum, 64)
-            input(foil, SiliconeRubber, 64)
-            input(bolt, HSSE, 64)
-            fluidInputs(SterileGrowthMedium.getFluid(250))
-            output(NEURO_PROCESSOR, 32)
-            EUt(80000) // ZPM
-            duration(6.min) // Original: 30s, Wrapped: 30s * 16 = 480s
-            circuitInfo(NEURO_PROCESSOR)
-        }
-
-        // endregion
+        val targets = hashMapOf<Pair<Item, Int>, MetaItem<*>.MetaValueItem>()
+        TARGETS.forEach { targets[it.stack().toMetadataKey()] = it }
+
+        val baseRecipes = linkedMapOf<RecipeSignature, MutableList<Recipe>>()
+        for (base in CIRCUIT_ASSEMBLER_RECIPES.recipeList)
+        {
+            if (base.isHidden) continue
+            if (base.outputs.none { it.toMetadataKey() in targets }) continue
+            baseRecipes.getOrPut(createRecipeSignature(base)) { mutableListOf() }.add(base)
+        }
+
+        val recipesByTarget = linkedMapOf<MetaItem<*>.MetaValueItem, MutableList<Recipe>>()
+        for (candidates in baseRecipes.values)
+        {
+            // Prefer the soldering alloy recipe, the tin recipe is its cheaper fallback.
+            val base = candidates.firstOrNull { it.hasFluid(SolderingAlloy) }
+                ?: candidates.firstOrNull { !it.hasFluid(Tin) }
+                ?: candidates.first()
+            val target = base.outputs.firstNotNullOfOrNull { stack -> targets[stack.toMetadataKey()] } ?: continue
+            recipesByTarget.getOrPut(target) { mutableListOf() }.add(base)
+        }
+
+        var droppedRecipe = 0
+        for (target in TARGETS)
+        {
+            val candidates = recipesByTarget[target] ?: continue
+            for (candidate in candidates.sortedWith(compareBy({ it.duration }, { it.eUt })))
+            {
+                if (!generateCALRecipe(candidate, target))
+                    droppedRecipe++
+            }
+        }
+        if (droppedRecipe > 0)
+            LOGGER.warn("Dropped {} CAL recipe(s), see the messages above for the affected circuits", droppedRecipe)
     }
+
+    private fun generateCALRecipe(base: Recipe, target: MetaItem<*>.MetaValueItem): Boolean
+    {
+        val ingredients = base.inputs.asSequence()
+            .filterNot { it.isNonConsumable }
+            .mapNotNull { transformInput(it) }
+            .toList()
+
+        val fluids = base.fluidInputs.mapNotNull { (it as? GTRecipeFluidInput)?.inputFluidStack }
+        val results = splitOutputs(base.outputs)
+
+        if (ingredients.size > MAX_ITEM_INPUTS || fluids.size > MAX_FLUID_INPUTS
+            || results.size > MAX_OUTPUT_STACKS)
+        {
+            LOGGER.warn("Skipped CAL recipe for {}: {} item inputs (max {}), {} fluid inputs (max {}), " +
+                "{} output stacks (max {})", target.stack().displayName, ingredients.size, MAX_ITEM_INPUTS,
+                fluids.size, MAX_FLUID_INPUTS, results.size, MAX_OUTPUT_STACKS)
+            return false
+        }
+
+        CIRCUIT_ASSEMBLY_LINE_RECIPES.addRecipe {
+            inputIngredients(ingredients)
+            fluids.forEach { fluidInputs(it.copy()) }
+            outputs(results)
+            EUt(base.eUt)
+            duration(base.duration * DURATION_MULTIPLIER)
+            circuitInfo(target)
+        }
+        return true
+    }
+
+    private fun transformInput(input: GTRecipeInput): GTRecipeInput? = when (input)
+    {
+        is GTRecipeOreInput  -> transformOreInput(input)
+        is GTRecipeItemInput -> transformItemInput(input)
+        else                 -> input
+    }
+
+    private fun transformOreInput(input: GTRecipeOreInput): GTRecipeInput
+    {
+        val stacks = input.inputStacks
+
+        // Prefer a candidate with a wrapped form, e.g. the SMD variant of a component tag.
+        stacks.firstNotNullOfOrNull { wrappedItems[it.toMetadataKey()] }?.let {
+            return GTRecipeItemInput(it.copy(input.amount))
+        }
+
+        // Tags with several materials cannot be resolved to one of them, so they keep their tag.
+        if (stacks.size == 1)
+        {
+            val stack = stacks.first()
+            val prefix = OreDictUnifier.getPrefix(stack)
+            val material = OreDictUnifier.getMaterial(stack)?.material
+            if (prefix != null && material != null)
+            {
+                return if (prefix in WIRE_PREFIXES) transformWireInput(prefix, material, input.amount)
+                else GTRecipeOreInput(prefix, material, scaleCount(input.amount))
+            }
+        }
+        return input.copyWithAmount(scaleCount(input.amount))
+    }
+
+    private fun transformItemInput(input: GTRecipeItemInput): GTRecipeInput
+    {
+        val stacks = input.inputStacks
+        if (stacks.size == 1)
+        {
+            wrappedItems[stacks.first().toMetadataKey()]?.let {
+                return GTRecipeItemInput(it.copy(input.amount))
+            }
+        }
+        return input.copyWithAmount(scaleCount(input.amount))
+    }
+
+    private fun transformWireInput(prefix: OrePrefix, material: Material, count: Int): GTRecipeInput
+    {
+        val amount = prefix.getMaterialAmount(material)
+        if (amount <= 0) return GTRecipeOreInput(prefix, material, scaleCount(count))
+
+        // Keep the count and upgrade the gauge by exactly 16 material amounts.
+        WIRE_PREFIXES.firstOrNull { it.getMaterialAmount(material) == amount * WRAP_FACTOR }?.let {
+            return GTRecipeOreInput(it, material, count)
+        }
+
+        val total = amount * count * WRAP_FACTOR
+        WIRE_PREFIXES.firstOrNull { candidate ->
+            val candidateAmount = candidate.getMaterialAmount(material)
+            candidateAmount > 0 && total % candidateAmount == 0L
+                && total / candidateAmount <= MAX_STACK_SIZE
+        }?.let {
+            return GTRecipeOreInput(it, material, (total / it.getMaterialAmount(material)).toInt())
+        }
+
+        return GTRecipeOreInput(prefix, material, scaleCount(count))
+    }
+
+    private fun splitOutputs(outputs: List<ItemStack>): List<ItemStack>
+    {
+        val stacks = mutableListOf<ItemStack>()
+        for (output in outputs)
+        {
+            var remaining = output.count.toLong() * WRAP_FACTOR
+            while (remaining > 0L)
+            {
+                val count = minOf(remaining, MAX_STACK_SIZE.toLong()).toInt()
+                stacks.add(output.copy(count))
+                remaining -= count
+            }
+        }
+        return stacks
+    }
+
+    private fun scaleCount(count: Int): Int = minOf(count * WRAP_FACTOR, MAX_STACK_SIZE)
+
+    private fun createRecipeSignature(base: Recipe) = RecipeSignature(
+        base.inputs.map { it.toString() },
+        base.outputs.map { "${it.item.registryName}@${it.metadata}x${it.count}" },
+        base.duration, base.eUt)
+
+    @Suppress("UnstableApiUsage")
+    private fun Recipe.hasFluid(material: Material): Boolean = fluidInputs.any { input ->
+        val stack = (input as? GTRecipeFluidInput)?.inputFluidStack ?: return@any false
+        FluidUnifier.getMaterialFromFluid(stack.fluid) == material
+    }
+
+    private fun ItemStack.toMetadataKey(): Pair<Item, Int> = item to metadata
 
     private fun createCircuitPatternRecipes()
     {
-        // ULV Tier
-        createCircuitPatternRecipe(VACUUM_TUBE)
-        createCircuitPatternRecipe(NAND_CHIP_ULV)
+        TARGETS.forEach { createCircuitPatternRecipe(it) }
+    }
 
-        // LV Tier
-        createCircuitPatternRecipe(ELECTRONIC_CIRCUIT_LV)
-        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_LV)
-        createCircuitPatternRecipe(MICROPROCESSOR_LV)
-
-        // MV Tier
-        createCircuitPatternRecipe(ELECTRONIC_CIRCUIT_MV)
-        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_MV)
-        createCircuitPatternRecipe(PROCESSOR_MV)
-
-        // HV Tier
-        createCircuitPatternRecipe(INTEGRATED_CIRCUIT_HV)
-        createCircuitPatternRecipe(PROCESSOR_ASSEMBLY_HV)
-        createCircuitPatternRecipe(NANO_PROCESSOR_HV)
-
-        // EV Tier
-        createCircuitPatternRecipe(WORKSTATION_EV)
-        createCircuitPatternRecipe(NANO_PROCESSOR_ASSEMBLY_EV)
-        createCircuitPatternRecipe(QUANTUM_PROCESSOR_EV)
-
-        // IV Tier
-        createCircuitPatternRecipe(MAINFRAME_IV)
-        createCircuitPatternRecipe(NANO_COMPUTER_IV)
-        createCircuitPatternRecipe(QUANTUM_ASSEMBLY_IV)
-        createCircuitPatternRecipe(CRYSTAL_PROCESSOR_IV)
-
-        // LuV Tier
-        createCircuitPatternRecipe(NANO_MAINFRAME_LUV)
-        createCircuitPatternRecipe(QUANTUM_COMPUTER_LUV)
-        createCircuitPatternRecipe(CRYSTAL_ASSEMBLY_LUV)
-        createCircuitPatternRecipe(WETWARE_PROCESSOR_LUV)
-
-        // ZPM Tier
-        createCircuitPatternRecipe(QUANTUM_MAINFRAME_ZPM)
-        createCircuitPatternRecipe(CRYSTAL_COMPUTER_ZPM)
-        createCircuitPatternRecipe(WETWARE_PROCESSOR_ASSEMBLY_ZPM)
-        createCircuitPatternRecipe(GOOWARE_PROCESSOR_ZPM)
-
-        // UV Tier
-        createCircuitPatternRecipe(CRYSTAL_MAINFRAME_UV)
-        createCircuitPatternRecipe(WETWARE_SUPER_COMPUTER_UV)
-        createCircuitPatternRecipe(GOOWARE_ASSEMBLY_UV)
-        createCircuitPatternRecipe(OPTICAL_PROCESSOR_UV)
-
-        // UHV Tier
-        createCircuitPatternRecipe(WETWARE_MAINFRAME_UHV)
-        createCircuitPatternRecipe(GOOWARE_COMPUTER_UHV)
-        createCircuitPatternRecipe(OPTICAL_ASSEMBLY_UHV)
-        createCircuitPatternRecipe(SPINTRONIC_PROCESSOR_UHV)
-
-        // UEV Tier
-        createCircuitPatternRecipe(GOOWARE_MAINFRAME_UEV)
-        createCircuitPatternRecipe(OPTICAL_COMPUTER_UEV)
-        createCircuitPatternRecipe(SPINTRONIC_ASSEMBLY_UEV)
-        createCircuitPatternRecipe(COSMIC_PROCESSOR_UEV)
-
-        // UIV Tier
-        createCircuitPatternRecipe(OPTICAL_MAINFRAME_UIV)
-        createCircuitPatternRecipe(SPINTRONIC_COMPUTER_UIV)
-        createCircuitPatternRecipe(COSMIC_ASSEMBLY_UIV)
-        createCircuitPatternRecipe(SUPRACAUSAL_PROCESSOR_UIV)
-
-        // UXV Tier
-        createCircuitPatternRecipe(SPINTRONIC_MAINFRAME_UXV)
-        createCircuitPatternRecipe(COSMIC_COMPUTER_UXV)
-        createCircuitPatternRecipe(SUPRACAUSAL_ASSEMBLY_UXV)
-
-        // OpV Tier
-        createCircuitPatternRecipe(COSMIC_MAINFRAME_OpV)
-        createCircuitPatternRecipe(SUPRACAUSAL_COMPUTER_OpV)
-
-        // MAX Tier
-        createCircuitPatternRecipe(SUPRACAUSAL_MAINFRAME_MAX)
-
-        // Misc
-        createCircuitPatternRecipe(ENERGY_LAPOTRONIC_ORB)
-        createCircuitPatternRecipe(DIAMOND_MODULATOR)
-        createCircuitPatternRecipe(RUBY_MODULATOR)
-        createCircuitPatternRecipe(SAPPHIRE_MODULATOR)
-        createCircuitPatternRecipe(CRYSTAL_SOC_SOCKET)
-        createCircuitPatternRecipe(TOOL_DATA_STICK)
-        createCircuitPatternRecipe(TOOL_DATA_ORB)
-        createCircuitPatternRecipe(TOOL_DATA_MODULE)
-        createCircuitPatternRecipe(NEURO_PROCESSOR)
+    private fun wrap(item: MetaItem<*>.MetaValueItem, wrapItem: MetaItem<*>.MetaValueItem)
+    {
+        createWrapItemMap(item, wrapItem)
+        wrappedItems[item.stack().toMetadataKey()] = wrapItem.stack()
     }
 
     private fun createWrapItemMaps()
     {
         // Boards
-        createWrapItemMap(COATED_BOARD, WRAP_COATED_BOARD)
-        createWrapItemMap(PHENOLIC_BOARD, WRAP_PHENOLIC_BOARD)
-        createWrapItemMap(PLASTIC_BOARD, WRAP_PLASTIC_BOARD)
-        createWrapItemMap(EPOXY_BOARD, WRAP_EPOXY_BOARD)
-        createWrapItemMap(FIBER_BOARD, WRAP_FIBER_BOARD)
-        createWrapItemMap(MULTILAYER_FIBER_BOARD, WRAP_MULTILAYER_FIBER_BOARD)
-        createWrapItemMap(WETWARE_BOARD, WRAP_WETWARE_BOARD)
-        createWrapItemMap(GOOWARE_BOARD, WRAP_GOOWARE_BOARD)
-        createWrapItemMap(OPTICAL_BOARD, WRAP_OPTICAL_BOARD)
-        createWrapItemMap(SPINTRONIC_BOARD, WRAP_SPINTRONIC_BOARD)
+        wrap(COATED_BOARD, WRAP_COATED_BOARD)
+        wrap(PHENOLIC_BOARD, WRAP_PHENOLIC_BOARD)
+        wrap(PLASTIC_BOARD, WRAP_PLASTIC_BOARD)
+        wrap(EPOXY_BOARD, WRAP_EPOXY_BOARD)
+        wrap(FIBER_BOARD, WRAP_FIBER_BOARD)
+        wrap(MULTILAYER_FIBER_BOARD, WRAP_MULTILAYER_FIBER_BOARD)
+        wrap(WETWARE_BOARD, WRAP_WETWARE_BOARD)
+        wrap(GOOWARE_BOARD, WRAP_GOOWARE_BOARD)
+        wrap(OPTICAL_BOARD, WRAP_OPTICAL_BOARD)
+        wrap(SPINTRONIC_BOARD, WRAP_SPINTRONIC_BOARD)
 
         // Circuit Boards
-        createWrapItemMap(BASIC_CIRCUIT_BOARD, WRAP_BASIC_CIRCUIT_BOARD)
-        createWrapItemMap(GOOD_CIRCUIT_BOARD, WRAP_GOOD_CIRCUIT_BOARD)
-        createWrapItemMap(PLASTIC_CIRCUIT_BOARD, WRAP_PLASTIC_CIRCUIT_BOARD)
-        createWrapItemMap(ADVANCED_CIRCUIT_BOARD, WRAP_ADVANCED_CIRCUIT_BOARD)
-        createWrapItemMap(EXTREME_CIRCUIT_BOARD, WRAP_EXTREME_CIRCUIT_BOARD)
-        createWrapItemMap(ELITE_CIRCUIT_BOARD, WRAP_ELITE_CIRCUIT_BOARD)
-        createWrapItemMap(WETWARE_CIRCUIT_BOARD, WRAP_WETWARE_CIRCUIT_BOARD)
-        createWrapItemMap(ULTIMATE_CIRCUIT_BOARD, WRAP_ULTIMATE_CIRCUIT_BOARD)
-        createWrapItemMap(PERFECT_CIRCUIT_BOARD, WRAP_PERFECT_CIRCUIT_BOARD)
-        createWrapItemMap(INFINITE_CIRCUIT_BOARD, WRAP_INFINITE_CIRCUIT_BOARD)
+        wrap(BASIC_CIRCUIT_BOARD, WRAP_BASIC_CIRCUIT_BOARD)
+        wrap(GOOD_CIRCUIT_BOARD, WRAP_GOOD_CIRCUIT_BOARD)
+        wrap(PLASTIC_CIRCUIT_BOARD, WRAP_PLASTIC_CIRCUIT_BOARD)
+        wrap(ADVANCED_CIRCUIT_BOARD, WRAP_ADVANCED_CIRCUIT_BOARD)
+        wrap(EXTREME_CIRCUIT_BOARD, WRAP_EXTREME_CIRCUIT_BOARD)
+        wrap(ELITE_CIRCUIT_BOARD, WRAP_ELITE_CIRCUIT_BOARD)
+        wrap(WETWARE_CIRCUIT_BOARD, WRAP_WETWARE_CIRCUIT_BOARD)
+        wrap(ULTIMATE_CIRCUIT_BOARD, WRAP_ULTIMATE_CIRCUIT_BOARD)
+        wrap(PERFECT_CIRCUIT_BOARD, WRAP_PERFECT_CIRCUIT_BOARD)
+        wrap(INFINITE_CIRCUIT_BOARD, WRAP_INFINITE_CIRCUIT_BOARD)
 
         // SMDs
-        createWrapItemMap(SMD_TRANSISTOR, WRAP_SMD_TRANSISTOR)
-        createWrapItemMap(SMD_RESISTOR, WRAP_SMD_RESISTOR)
-        createWrapItemMap(SMD_CAPACITOR, WRAP_SMD_CAPACITOR)
-        createWrapItemMap(SMD_DIODE, WRAP_SMD_DIODE)
-        createWrapItemMap(SMD_INDUCTOR, WRAP_SMD_INDUCTOR)
-        createWrapItemMap(ADVANCED_SMD_TRANSISTOR, WRAP_ADVANCED_SMD_TRANSISTOR)
-        createWrapItemMap(ADVANCED_SMD_RESISTOR, WRAP_ADVANCED_SMD_RESISTOR)
-        createWrapItemMap(ADVANCED_SMD_CAPACITOR, WRAP_ADVANCED_SMD_CAPACITOR)
-        createWrapItemMap(ADVANCED_SMD_DIODE, WRAP_ADVANCED_SMD_DIODE)
-        createWrapItemMap(ADVANCED_SMD_INDUCTOR, WRAP_ADVANCED_SMD_INDUCTOR)
-        createWrapItemMap(GOOWARE_SMD_TRANSISTOR, WRAP_GOOWARE_SMD_TRANSISTOR)
-        createWrapItemMap(GOOWARE_SMD_RESISTOR, WRAP_GOOWARE_SMD_RESISTOR)
-        createWrapItemMap(GOOWARE_SMD_CAPACITOR, WRAP_GOOWARE_SMD_CAPACITOR)
-        createWrapItemMap(GOOWARE_SMD_DIODE, WRAP_GOOWARE_SMD_DIODE)
-        createWrapItemMap(GOOWARE_SMD_INDUCTOR, WRAP_GOOWARE_SMD_INDUCTOR)
-        createWrapItemMap(OPTICAL_SMD_TRANSISTOR, WRAP_OPTICAL_SMD_TRANSISTOR)
-        createWrapItemMap(OPTICAL_SMD_RESISTOR, WRAP_OPTICAL_SMD_RESISTOR)
-        createWrapItemMap(OPTICAL_SMD_CAPACITOR, WRAP_OPTICAL_SMD_CAPACITOR)
-        createWrapItemMap(OPTICAL_SMD_DIODE, WRAP_OPTICAL_SMD_DIODE)
-        createWrapItemMap(OPTICAL_SMD_INDUCTOR, WRAP_OPTICAL_SMD_INDUCTOR)
-        createWrapItemMap(SPINTRONIC_SMD_TRANSISTOR, WRAP_SPINTRONIC_SMD_TRANSISTOR)
-        createWrapItemMap(SPINTRONIC_SMD_RESISTOR, WRAP_SPINTRONIC_SMD_RESISTOR)
-        createWrapItemMap(SPINTRONIC_SMD_CAPACITOR, WRAP_SPINTRONIC_SMD_CAPACITOR)
-        createWrapItemMap(SPINTRONIC_SMD_DIODE, WRAP_SPINTRONIC_SMD_DIODE)
-        createWrapItemMap(SPINTRONIC_SMD_INDUCTOR, WRAP_SPINTRONIC_SMD_INDUCTOR)
-        createWrapItemMap(COSMIC_SMD_TRANSISTOR, WRAP_COSMIC_SMD_TRANSISTOR)
-        createWrapItemMap(COSMIC_SMD_RESISTOR, WRAP_COSMIC_SMD_RESISTOR)
-        createWrapItemMap(COSMIC_SMD_CAPACITOR, WRAP_COSMIC_SMD_CAPACITOR)
-        createWrapItemMap(COSMIC_SMD_DIODE, WRAP_COSMIC_SMD_DIODE)
-        createWrapItemMap(COSMIC_SMD_INDUCTOR, WRAP_COSMIC_SMD_INDUCTOR)
-        createWrapItemMap(SUPRACAUSAL_SMD_TRANSISTOR, WRAP_SUPRACAUSAL_SMD_TRANSISTOR)
-        createWrapItemMap(SUPRACAUSAL_SMD_RESISTOR, WRAP_SUPRACAUSAL_SMD_RESISTOR)
-        createWrapItemMap(SUPRACAUSAL_SMD_CAPACITOR, WRAP_SUPRACAUSAL_SMD_CAPACITOR)
-        createWrapItemMap(SUPRACAUSAL_SMD_DIODE, WRAP_SUPRACAUSAL_SMD_DIODE)
-        createWrapItemMap(SUPRACAUSAL_SMD_INDUCTOR, WRAP_SUPRACAUSAL_SMD_INDUCTOR)
+        wrap(SMD_TRANSISTOR, WRAP_SMD_TRANSISTOR)
+        wrap(SMD_RESISTOR, WRAP_SMD_RESISTOR)
+        wrap(SMD_CAPACITOR, WRAP_SMD_CAPACITOR)
+        wrap(SMD_DIODE, WRAP_SMD_DIODE)
+        wrap(SMD_INDUCTOR, WRAP_SMD_INDUCTOR)
+        wrap(ADVANCED_SMD_TRANSISTOR, WRAP_ADVANCED_SMD_TRANSISTOR)
+        wrap(ADVANCED_SMD_RESISTOR, WRAP_ADVANCED_SMD_RESISTOR)
+        wrap(ADVANCED_SMD_CAPACITOR, WRAP_ADVANCED_SMD_CAPACITOR)
+        wrap(ADVANCED_SMD_DIODE, WRAP_ADVANCED_SMD_DIODE)
+        wrap(ADVANCED_SMD_INDUCTOR, WRAP_ADVANCED_SMD_INDUCTOR)
+        wrap(GOOWARE_SMD_TRANSISTOR, WRAP_GOOWARE_SMD_TRANSISTOR)
+        wrap(GOOWARE_SMD_RESISTOR, WRAP_GOOWARE_SMD_RESISTOR)
+        wrap(GOOWARE_SMD_CAPACITOR, WRAP_GOOWARE_SMD_CAPACITOR)
+        wrap(GOOWARE_SMD_DIODE, WRAP_GOOWARE_SMD_DIODE)
+        wrap(GOOWARE_SMD_INDUCTOR, WRAP_GOOWARE_SMD_INDUCTOR)
+        wrap(OPTICAL_SMD_TRANSISTOR, WRAP_OPTICAL_SMD_TRANSISTOR)
+        wrap(OPTICAL_SMD_RESISTOR, WRAP_OPTICAL_SMD_RESISTOR)
+        wrap(OPTICAL_SMD_CAPACITOR, WRAP_OPTICAL_SMD_CAPACITOR)
+        wrap(OPTICAL_SMD_DIODE, WRAP_OPTICAL_SMD_DIODE)
+        wrap(OPTICAL_SMD_INDUCTOR, WRAP_OPTICAL_SMD_INDUCTOR)
+        wrap(SPINTRONIC_SMD_TRANSISTOR, WRAP_SPINTRONIC_SMD_TRANSISTOR)
+        wrap(SPINTRONIC_SMD_RESISTOR, WRAP_SPINTRONIC_SMD_RESISTOR)
+        wrap(SPINTRONIC_SMD_CAPACITOR, WRAP_SPINTRONIC_SMD_CAPACITOR)
+        wrap(SPINTRONIC_SMD_DIODE, WRAP_SPINTRONIC_SMD_DIODE)
+        wrap(SPINTRONIC_SMD_INDUCTOR, WRAP_SPINTRONIC_SMD_INDUCTOR)
+        wrap(COSMIC_SMD_TRANSISTOR, WRAP_COSMIC_SMD_TRANSISTOR)
+        wrap(COSMIC_SMD_RESISTOR, WRAP_COSMIC_SMD_RESISTOR)
+        wrap(COSMIC_SMD_CAPACITOR, WRAP_COSMIC_SMD_CAPACITOR)
+        wrap(COSMIC_SMD_DIODE, WRAP_COSMIC_SMD_DIODE)
+        wrap(COSMIC_SMD_INDUCTOR, WRAP_COSMIC_SMD_INDUCTOR)
+        wrap(SUPRACAUSAL_SMD_TRANSISTOR, WRAP_SUPRACAUSAL_SMD_TRANSISTOR)
+        wrap(SUPRACAUSAL_SMD_RESISTOR, WRAP_SUPRACAUSAL_SMD_RESISTOR)
+        wrap(SUPRACAUSAL_SMD_CAPACITOR, WRAP_SUPRACAUSAL_SMD_CAPACITOR)
+        wrap(SUPRACAUSAL_SMD_DIODE, WRAP_SUPRACAUSAL_SMD_DIODE)
+        wrap(SUPRACAUSAL_SMD_INDUCTOR, WRAP_SUPRACAUSAL_SMD_INDUCTOR)
 
         // Chips
-        createWrapItemMap(CENTRAL_PROCESSING_UNIT, WRAP_CPU_CHIP)
-        createWrapItemMap(RANDOM_ACCESS_MEMORY, WRAP_RAM_CHIP)
-        createWrapItemMap(INTEGRATED_LOGIC_CIRCUIT, WRAP_ILC_CHIP)
-        createWrapItemMap(NANO_CENTRAL_PROCESSING_UNIT, WRAP_NANO_CPU_CHIP)
-        createWrapItemMap(QUBIT_CENTRAL_PROCESSING_UNIT, WRAP_QUBIT_CPU_CHIP)
-        createWrapItemMap(SIMPLE_SYSTEM_ON_CHIP, WRAP_SIMPLE_SOC_CHIP)
-        createWrapItemMap(SYSTEM_ON_CHIP, WRAP_SOC_CHIP)
-        createWrapItemMap(ADVANCED_SYSTEM_ON_CHIP, WRAP_ADVANCED_SOC_CHIP)
-        createWrapItemMap(HIGHLY_ADVANCED_SOC, WRAP_HIGHLY_ADVANCED_SOC_CHIP)
-        createWrapItemMap(NAND_MEMORY_CHIP, WRAP_NAND_CHIP)
-        createWrapItemMap(NOR_MEMORY_CHIP, WRAP_NOR_CHIP)
-        createWrapItemMap(ULTRA_LOW_POWER_INTEGRATED_CIRCUIT, WRAP_ULPIC_CHIP)
-        createWrapItemMap(LOW_POWER_INTEGRATED_CIRCUIT, WRAP_LPIC_CHIP)
-        createWrapItemMap(POWER_INTEGRATED_CIRCUIT, WRAP_PIC_CHIP)
-        createWrapItemMap(HIGH_POWER_INTEGRATED_CIRCUIT, WRAP_HPIC_CHIP)
-        createWrapItemMap(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, WRAP_UHPIC_CHIP)
-        createWrapItemMap(NANO_PIC_CHIP, WRAP_NPIC_CHIP)
-        createWrapItemMap(PICO_PIC_CHIP, WRAP_PPIC_CHIP)
-        createWrapItemMap(FEMTO_PIC_CHIP, WRAP_FPIC_CHIP)
-        createWrapItemMap(ATTO_PIC_CHIP, WRAP_APIC_CHIP)
-        createWrapItemMap(ADVANCED_RAM_CHIP, WRAP_ARAM_CHIP)
-        createWrapItemMap(ULTRA_HIGHLY_ADVANCED_SOC_CHIP, WRAP_UHASOC_CHIP)
-        createWrapItemMap(CRYSTAL_INTERFACE_CHIP, WRAP_CRYSTAL_INTERFACE_CHIP)
-        createWrapItemMap(PHASE_CHANGE_RAM_CHIP, WRAP_PRAM_CHIP)
-        createWrapItemMap(ALL_OPTICAL_CASCADE_NOR_CHIP, WRAP_ACNOR_CHIP)
-        createWrapItemMap(SPIN_TRANSFER_TORQUE_RAM_CHIP, WRAP_STTRAM_CHIP)
-        createWrapItemMap(MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP, WRAP_MINAND_CHIP)
-        createWrapItemMap(EXCITED_EXOTIC_ATOM_RESTRICT_CPU_CHIP, WRAP_EARCPU_CHIP)
-        createWrapItemMap(AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP, WRAP_ADDRAM_CHIP)
-        createWrapItemMap(EXCITATION_SPECTRUM_COMPOSITE_LOGICAL_GATE_CHIP, WRAP_ESCLG_CHIP)
+        wrap(CENTRAL_PROCESSING_UNIT, WRAP_CPU_CHIP)
+        wrap(RANDOM_ACCESS_MEMORY, WRAP_RAM_CHIP)
+        wrap(INTEGRATED_LOGIC_CIRCUIT, WRAP_ILC_CHIP)
+        wrap(NANO_CENTRAL_PROCESSING_UNIT, WRAP_NANO_CPU_CHIP)
+        wrap(QUBIT_CENTRAL_PROCESSING_UNIT, WRAP_QUBIT_CPU_CHIP)
+        wrap(SIMPLE_SYSTEM_ON_CHIP, WRAP_SIMPLE_SOC_CHIP)
+        wrap(SYSTEM_ON_CHIP, WRAP_SOC_CHIP)
+        wrap(ADVANCED_SYSTEM_ON_CHIP, WRAP_ADVANCED_SOC_CHIP)
+        wrap(HIGHLY_ADVANCED_SOC, WRAP_HIGHLY_ADVANCED_SOC_CHIP)
+        wrap(NAND_MEMORY_CHIP, WRAP_NAND_CHIP)
+        wrap(NOR_MEMORY_CHIP, WRAP_NOR_CHIP)
+        wrap(ULTRA_LOW_POWER_INTEGRATED_CIRCUIT, WRAP_ULPIC_CHIP)
+        wrap(LOW_POWER_INTEGRATED_CIRCUIT, WRAP_LPIC_CHIP)
+        wrap(POWER_INTEGRATED_CIRCUIT, WRAP_PIC_CHIP)
+        wrap(HIGH_POWER_INTEGRATED_CIRCUIT, WRAP_HPIC_CHIP)
+        wrap(ULTRA_HIGH_POWER_INTEGRATED_CIRCUIT, WRAP_UHPIC_CHIP)
+        wrap(NANO_PIC_CHIP, WRAP_NPIC_CHIP)
+        wrap(PICO_PIC_CHIP, WRAP_PPIC_CHIP)
+        wrap(FEMTO_PIC_CHIP, WRAP_FPIC_CHIP)
+        wrap(ATTO_PIC_CHIP, WRAP_APIC_CHIP)
+        wrap(ADVANCED_RAM_CHIP, WRAP_ARAM_CHIP)
+        wrap(ULTRA_HIGHLY_ADVANCED_SOC_CHIP, WRAP_UHASOC_CHIP)
+        wrap(CRYSTAL_INTERFACE_CHIP, WRAP_CRYSTAL_INTERFACE_CHIP)
+        wrap(PHASE_CHANGE_RAM_CHIP, WRAP_PRAM_CHIP)
+        wrap(ALL_OPTICAL_CASCADE_NOR_CHIP, WRAP_ACNOR_CHIP)
+        wrap(SPIN_TRANSFER_TORQUE_RAM_CHIP, WRAP_STTRAM_CHIP)
+        wrap(MAGNETIC_DOMAIN_WALL_INVERSION_NAND_CHIP, WRAP_MINAND_CHIP)
+        wrap(EXCITED_EXOTIC_ATOM_RESTRICT_CPU_CHIP, WRAP_EARCPU_CHIP)
+        wrap(AMPLITUDE_DUALITY_DISTURBANCE_RAM_CHIP, WRAP_ADDRAM_CHIP)
+        wrap(EXCITATION_SPECTRUM_COMPOSITE_LOGICAL_GATE_CHIP, WRAP_ESCLG_CHIP)
 
         // Engraved Chips
-        createWrapItemMap(ENGRAVED_LAPOTRON_CHIP, WRAP_ENGRAVED_LAPOTRON_CHIP)
-        createWrapItemMap(ENGRAVED_DIAMOND_CHIP, WRAP_ENGRAVED_DIAMOND_CHIP)
-        createWrapItemMap(ENGRAVED_RUBY_CHIP, WRAP_ENGRAVED_RUBY_CHIP)
-        createWrapItemMap(ENGRAVED_SAPPHIRE_CHIP, WRAP_ENGRAVED_SAPPHIRE_CHIP)
+        wrap(ENGRAVED_LAPOTRON_CHIP, WRAP_ENGRAVED_LAPOTRON_CHIP)
+        wrap(ENGRAVED_DIAMOND_CHIP, WRAP_ENGRAVED_DIAMOND_CHIP)
+        wrap(ENGRAVED_RUBY_CHIP, WRAP_ENGRAVED_RUBY_CHIP)
+        wrap(ENGRAVED_SAPPHIRE_CHIP, WRAP_ENGRAVED_SAPPHIRE_CHIP)
 
         // Circuit Components
-        createWrapItemMap(CRYSTAL_CENTRAL_PROCESSING_UNIT, WRAP_CRYSTAL_CPU)
-        createWrapItemMap(CRYSTAL_SYSTEM_ON_CHIP, WRAP_CRYSTAL_SOC)
-        createWrapItemMap(NEURO_PROCESSOR, WRAP_NEURO_PROCESSOR)
-        createWrapItemMap(NONLINEAR_CHEMICAL_OSCILLATOR, WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
-        createWrapItemMap(OPTICAL_LASER_CONTROL_UNIT, WRAP_OPTICAL_LASER_CONTROL_UNIT)
-        createWrapItemMap(OPTOELECTRONIC_SYSTEM_ON_CHIP, WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP)
-        createWrapItemMap(ESR_COMPUTATION_UNIT, WRAP_ESR_COMPUTATION_UNIT)
-        createWrapItemMap(EXOTIC_SYSTEM_ON_CHIP, WRAP_EXOTIC_SYSTEM_ON_CHIP)
-        createWrapItemMap(COSMIC_INFORMATION_MODULE, WRAP_COSMIC_INFORMATION_MODULE)
-        createWrapItemMap(HOLOGRAPHIC_INFORMATION_IMC, WRAP_HOLOGRAPHIC_INFORMATION_IMC)
+        wrap(CRYSTAL_CENTRAL_PROCESSING_UNIT, WRAP_CRYSTAL_CPU)
+        wrap(CRYSTAL_SYSTEM_ON_CHIP, WRAP_CRYSTAL_SOC)
+        wrap(NEURO_PROCESSOR, WRAP_NEURO_PROCESSOR)
+        wrap(NONLINEAR_CHEMICAL_OSCILLATOR, WRAP_NONLINEAR_CHEMICAL_OSCILLATOR)
+        wrap(OPTICAL_LASER_CONTROL_UNIT, WRAP_OPTICAL_LASER_CONTROL_UNIT)
+        wrap(OPTOELECTRONIC_SYSTEM_ON_CHIP, WRAP_OPTOELECTRONIC_SYSTEM_ON_CHIP)
+        wrap(ESR_COMPUTATION_UNIT, WRAP_ESR_COMPUTATION_UNIT)
+        wrap(EXOTIC_SYSTEM_ON_CHIP, WRAP_EXOTIC_SYSTEM_ON_CHIP)
+        wrap(COSMIC_INFORMATION_MODULE, WRAP_COSMIC_INFORMATION_MODULE)
+        wrap(HOLOGRAPHIC_INFORMATION_IMC, WRAP_HOLOGRAPHIC_INFORMATION_IMC)
     }
-
-    // @formatter:on
-
 }
