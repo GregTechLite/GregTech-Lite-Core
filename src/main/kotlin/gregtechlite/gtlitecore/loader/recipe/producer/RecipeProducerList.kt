@@ -14,8 +14,7 @@ internal object RecipeProducerList
         StoneVariantRecipeProducer.produce()
         DisposableToolRecipeProducer.produce()
         MassReplicationRecipeProducer.produce()
-
-        CircuitAssemblyLineRecipeProducer.produce()
+        CircuitAssemblyLineRecipeProducer.init()
 
         if (Mods.AppliedEnergistics2.isActive && GTLiteConfigHolder.compat.ae2Compat.addProcessorCALRecipes)
             AECircuitRecipeProducer.produce()
@@ -30,6 +29,7 @@ internal object RecipeProducerList
 
     fun postInit()
     {
+        CircuitAssemblyLineRecipeProducer.produce()
         ComponentAssemblyLineRecipeProducer.produce()
         AdvancedFusionRecipeProducer.produce()
         BlackholeFormerRecipeProducer.produce()
