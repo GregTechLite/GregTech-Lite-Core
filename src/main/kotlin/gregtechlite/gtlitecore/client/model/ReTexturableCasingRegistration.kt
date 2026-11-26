@@ -1,11 +1,11 @@
 package gregtechlite.gtlitecore.client.model
 
-import com.google.common.collect.ImmutableMap
 import gregtech.api.block.VariantBlock
 import gregtechlite.gtlitecore.GTLiteMod
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.api.block.ReTexturableCasingRegistry
 import gregtechlite.gtlitecore.api.block.ReTexturableCasing
+import gregtechlite.gtlitecore.api.collection.immutableMapOf
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import gregtechlite.gtlitecore.client.model.retexture.ReTexturedModelProvider
 import gregtechlite.gtlitecore.core.GTLiteConfigHolder
@@ -61,7 +61,7 @@ object ReTexturableCasingRegistration
             if (modelResource != casing.casingModel)
                 return model
             val tier = getTierName(variant) ?: return model
-            return model.retexture(ImmutableMap.of("1", tierTexture(tier).toString()))
+            return model.retexture(immutableMapOf("1" to tierTexture(tier).toString()))
         }
 
         override fun reTextured(state: IBlockState?, side: EnumFacing?,

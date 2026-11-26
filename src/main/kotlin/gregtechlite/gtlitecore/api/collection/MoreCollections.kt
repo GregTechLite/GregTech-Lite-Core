@@ -4,6 +4,7 @@ package gregtechlite.gtlitecore.api.collection
 
 import com.google.common.collect.HashBasedTable
 import com.google.common.collect.HashBiMap
+import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSet
 import it.unimi.dsi.fastutil.chars.Char2ObjectMap
 import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap
@@ -154,6 +155,17 @@ fun <R, C, V> Triple<R, C, V>.toTable(): HashBasedTable<R, C, V> = HashBasedTabl
 fun <R, C, V> Iterable<Triple<R, C, V>>.toTable(): HashBasedTable<R, C, V> = HashBasedTable.create<R, C, V>().apply {
     forEach { put(it.first!!, it.second!!, it.third!!) }
 }
+
+// endregion
+
+// region Guava: ImmutableMap
+
+fun <K, V> immutableMapOf(): ImmutableMap<K, V> = ImmutableMap.of()
+
+fun <K, V> immutableMapOf(vararg pairs: Pair<K, V>): ImmutableMap<K, V>
+    = ImmutableMap.builder<K, V>().apply {
+          pairs.forEach { put(it.first!!, it.second!!) }
+      }.build()
 
 // endregion
 
