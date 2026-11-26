@@ -2,6 +2,7 @@ package gregtechlite.gtlitecore.api.block.variant
 
 import com.morphismmc.morphismlib.util.Unchecks
 import gregtech.api.block.VariantBlock
+import gregtechlite.gtlitecore.api.block.variant.types.makeComponentCasingBlock
 import gregtechlite.gtlitecore.api.block.variant.types.makeCrucibleBlock
 import gregtechlite.gtlitecore.api.block.variant.types.makeMetalActiveBlock
 import gregtechlite.gtlitecore.api.block.variant.types.makeMetalBlock
@@ -22,6 +23,7 @@ object VariantBlockFactory
             BlockVariantType.WIRE_COIL_BLOCK -> Unchecks.cast<VariantBlock<T>>(makeWireCoilBlock())
             BlockVariantType.TRANSPARENT_BLOCK -> makeTransparentBlock()
             BlockVariantType.CRUCIBLE_BLOCK -> Unchecks.cast<VariantBlock<T>>(makeCrucibleBlock())
+            BlockVariantType.COMPONENT_CASING_BLOCK -> Unchecks.cast<VariantBlock<T>>(makeComponentCasingBlock<T>())
         }
     }
 }
