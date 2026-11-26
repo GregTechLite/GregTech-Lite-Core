@@ -15,6 +15,7 @@ import gregtechlite.gtlitecore.api.block.variant.BlockVariantType
 import gregtechlite.gtlitecore.api.block.variant.VariantBlockFactory
 import gregtechlite.gtlitecore.api.collection.openHashMapOf
 import gregtechlite.gtlitecore.api.collection.treeMapOf
+import gregtechlite.gtlitecore.client.model.ReTexturableCasingRegistration
 import gregtechlite.gtlitecore.common.block.variant.ActiveUniqueCasing
 import gregtechlite.gtlitecore.common.block.variant.BoilerCasing
 import gregtechlite.gtlitecore.common.block.variant.ComponentAssemblyCasing
@@ -430,15 +431,15 @@ object GTLiteBlocks
             this::createMetalWallBlock)
 
         // Initialized meta blocks.
-        MOTOR_CASING = simpleBlock("motor_casing", BlockVariantType.METAL_CUTOUT_BLOCK)
-        PISTON_CASING = simpleBlock("piston_casing", BlockVariantType.METAL_CUTOUT_BLOCK)
-        PUMP_CASING = simpleBlock("pump_casing", BlockVariantType.METAL_CUTOUT_BLOCK)
-        CONVEYOR_CASING = simpleBlock("conveyor_casing", BlockVariantType.METAL_CUTOUT_BLOCK)
-        ROBOT_ARM_CASING = simpleBlock("robot_arm_casing", BlockVariantType.METAL_CUTOUT_BLOCK)
-        EMITTER_CASING = simpleBlock("emitter_casing", BlockVariantType.METAL_CUTOUT_BLOCK)
-        SENSOR_CASING = simpleBlock("sensor_casing", BlockVariantType.METAL_CUTOUT_BLOCK)
-        FIELD_GEN_CASING = simpleBlock("field_gen_casing", BlockVariantType.METAL_CUTOUT_BLOCK)
-        PROCESSOR_CASING = simpleBlock("processor_casing", BlockVariantType.METAL_CUTOUT_BLOCK)
+        MOTOR_CASING = simpleBlock("motor_casing", BlockVariantType.COMPONENT_CASING_BLOCK)
+        PISTON_CASING = simpleBlock("piston_casing", BlockVariantType.COMPONENT_CASING_BLOCK)
+        PUMP_CASING = simpleBlock("pump_casing", BlockVariantType.COMPONENT_CASING_BLOCK)
+        CONVEYOR_CASING = simpleBlock("conveyor_casing", BlockVariantType.COMPONENT_CASING_BLOCK)
+        ROBOT_ARM_CASING = simpleBlock("robot_arm_casing", BlockVariantType.COMPONENT_CASING_BLOCK)
+        EMITTER_CASING = simpleBlock("emitter_casing", BlockVariantType.COMPONENT_CASING_BLOCK)
+        SENSOR_CASING = simpleBlock("sensor_casing", BlockVariantType.COMPONENT_CASING_BLOCK)
+        FIELD_GEN_CASING = simpleBlock("field_gen_casing", BlockVariantType.COMPONENT_CASING_BLOCK)
+        PROCESSOR_CASING = simpleBlock("processor_casing", BlockVariantType.COMPONENT_CASING_BLOCK)
 
         PRIMITIVE_CASING = simpleBlock("primitive_casing", BlockVariantType.METAL_BLOCK)
 
@@ -774,10 +775,11 @@ object GTLiteBlocks
     {
         for (state in block.blockState.validStates)
         {
+            val location = ModelResourceLocation(checkNotNull(block.registryName),
+                MetaBlocks.statePropertiesToString(state.properties))
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
-                block.getMetaFromState(state),
-                ModelResourceLocation(checkNotNull(block.registryName),
-                    MetaBlocks.statePropertiesToString(state.properties)))
+                block.getMetaFromState(state), location)
+            ReTexturableCasingRegistration.register(block, state, location)
         }
     }
 

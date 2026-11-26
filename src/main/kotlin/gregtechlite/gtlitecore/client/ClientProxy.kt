@@ -3,6 +3,7 @@ package gregtechlite.gtlitecore.client
 import gregtechlite.gtlitecore.api.MOD_ID
 import gregtechlite.gtlitecore.client.event.ClientEventHandlers
 import gregtechlite.gtlitecore.client.event.GTLiteTooltips
+import gregtechlite.gtlitecore.client.model.retexture.ReTexturedModelLoader
 import gregtechlite.gtlitecore.client.renderer.handler.tesr.TESRBottlecrate
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
@@ -15,6 +16,7 @@ import gregtechlite.gtlitecore.core.network.ClientNetworkHandler
 import gregtechlite.gtlitecore.core.network.NetworkHandlerImpl
 import gregtechlite.gtlitecore.core.network.PacketHandler
 import net.minecraftforge.client.event.ModelRegistryEvent
+import net.minecraftforge.client.model.ModelLoaderRegistry
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber
@@ -30,6 +32,7 @@ class ClientProxy : CommonProxy()
     {
         super.onPreInit()
         GTLiteTextures.preInit()
+        ModelLoaderRegistry.registerLoader(ReTexturedModelLoader)
         MinecraftForge.EVENT_BUS.register(CosmicShaderHelper)
         MinecraftForge.EVENT_BUS.register(GTLiteTooltips)
         MinecraftForge.EVENT_BUS.register(ClientEventHandlers)

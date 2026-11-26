@@ -4,11 +4,14 @@ package gregtechlite.gtlitecore.api.collection
 
 import com.google.common.collect.HashBasedTable
 import com.google.common.collect.HashBiMap
+import com.google.common.collect.ImmutableMap
 import com.google.common.collect.ImmutableSet
 import it.unimi.dsi.fastutil.chars.Char2ObjectMap
 import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.ints.Int2ByteMap
 import it.unimi.dsi.fastutil.ints.Int2ByteOpenHashMap
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2IntMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import it.unimi.dsi.fastutil.objects.Object2LongMap
@@ -155,6 +158,17 @@ fun <R, C, V> Iterable<Triple<R, C, V>>.toTable(): HashBasedTable<R, C, V> = Has
 
 // endregion
 
+// region Guava: ImmutableMap
+
+fun <K, V> immutableMapOf(): ImmutableMap<K, V> = ImmutableMap.of()
+
+fun <K, V> immutableMapOf(vararg pairs: Pair<K, V>): ImmutableMap<K, V>
+    = ImmutableMap.builder<K, V>().apply {
+          pairs.forEach { put(it.first!!, it.second!!) }
+      }.build()
+
+// endregion
+
 // region FastUtil: Object2ObjectOpenHashMap
 
 fun <K, V> openHashMapOf(): Object2ObjectMap<K, V> = Object2ObjectOpenHashMap()
@@ -218,6 +232,12 @@ fun <K> obj2LongHashMapOf(map: Map<K, Long>): Object2LongMap<K> = Object2LongOpe
 fun <K> obj2LongHashMapOf(vararg pairs: Pair<K, Long>): Object2LongMap<K> = Object2LongOpenHashMap<K>().apply {
     pairs.forEach { put(it.first, it.second) }
 }
+
+// endregion
+
+// region FastUtil: Int2ObjectOpenHashMap
+
+fun <V> intOpenHashMapOf(): Int2ObjectMap<V> = Int2ObjectOpenHashMap()
 
 // endregion
 

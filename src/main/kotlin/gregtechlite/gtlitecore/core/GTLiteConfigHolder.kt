@@ -59,6 +59,13 @@ object GTLiteConfigHolder
         @JvmField
         var hideMultiblockPartBodyColor: Boolean = false
 
+        @Comment("Render the tiered component casings (Motor Casing, Pump Casing, ...) with the base texture of the",
+                 "multiblock structure they belong to, instead of their own base material.",
+                 "Default: true")
+        @Name("Multiblock Casing Base Texture")
+        @JvmField
+        var useMultiblockCasingTextures: Boolean = true
+
         @Comment("Config options for Shaders and Post-processing Effects")
         @Name("Shader Options")
         @JvmField
