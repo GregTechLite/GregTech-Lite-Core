@@ -38,11 +38,14 @@ import gregtechlite.gtlitecore.api.s
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteOverlays
 import gregtechlite.gtlitecore.common.block.variant.aerospace.AerospaceCasing
 import java.util.concurrent.ConcurrentHashMap
+import kotlin.math.max
 import net.minecraft.client.resources.I18n
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.network.PacketBuffer
+import net.minecraft.util.EnumFacing
 import net.minecraft.util.ResourceLocation
+import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextFormatting
 import net.minecraft.world.World
 import net.minecraftforge.fml.relauncher.Side
@@ -50,7 +53,6 @@ import net.minecraftforge.fml.relauncher.SideOnly
 
 class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(id), ModuleProvider
 {
-
     private val moduleReceivers = ConcurrentHashMap.newKeySet<ModuleReceiver>()
 
     private var energyContainer: IEnergyContainer? = null
@@ -63,29 +65,80 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
 
     private var isExtended = false
 
+    val cableOrigin: BlockPos
+        get() = pos.offset(getFrontFacing().opposite, CABLE_ANCHOR_FORWARD)
+            .offset(EnumFacing.UP, CABLE_ANCHOR_HEIGHT - CABLE_ANCHOR_DEPTH)
+
+    @SideOnly(Side.CLIENT)
+    var climberHeight: Float = CLIMBER_MAX_HEIGHT
+        private set
+
+    @SideOnly(Side.CLIENT)
+    var previousClimberHeight: Float = CLIMBER_MAX_HEIGHT
+        private set
+
+    @SideOnly(Side.CLIENT)
+    var climberRotation: Float = 0f
+        private set
+
+    @SideOnly(Side.CLIENT)
+    private var climberAnimation = ClimberAnimation.NONE
+
+    @SideOnly(Side.CLIENT)
+    private var climberMoving = false
+
+    @SideOnly(Side.CLIENT)
+    private var climberRotating = false
+
+    @SideOnly(Side.CLIENT)
+    private var climberMovingUp = true
+
+    @SideOnly(Side.CLIENT)
+    private var climberWaitTicks = 0
+
+    @SideOnly(Side.CLIENT)
+    private var climberIdleTicks = 0
+
+    @SideOnly(Side.CLIENT)
+    private var climberFormed = false
+
     companion object
     {
         private val casingState = AerospaceCasing.ELEVATOR_BASE_CASING.state
         private val secondCasingState = AerospaceCasing.INTERNAL_STRUCTURE_CASING.state
         private val thirdCasingState = AerospaceCasing.SUPPORT_STRUCTURE_CASING.state
         private val fourthCasingState = AerospaceCasing.HIGH_STRENGTH_CONCRETE.state
+
+        private const val CABLE_ANCHOR_HEIGHT = 22
+        private const val CABLE_ANCHOR_DEPTH = 23
+        private const val CABLE_ANCHOR_FORWARD = 3
+        private const val CLIMBER_MAX_HEIGHT = 250f
+        private const val CLIMBER_VERTICAL_SPEED = 1f
+        private const val CLIMBER_ROTATION_SPEED = 0.5f
+        private const val CLIMBER_STANDBY_TICKS = 200
+        private const val CLIMBER_ACCELERATION_DISTANCE = 30f
+        private const val CLIMBER_ACCELERATION_FACTOR = 1f / CLIMBER_ACCELERATION_DISTANCE
+        private const val CLIMBER_DELIVER_INTERVAL = 2000
     }
 
-    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity =
-        MultiblockSpaceElevator(metaTileEntityId)
+    override fun createMetaTileEntity(te: IGregTechTileEntity): MetaTileEntity
+        = MultiblockSpaceElevator(metaTileEntityId)
 
     override fun update()
     {
         super.update()
         if (!isStructureFormed)
             moduleReceivers.forEach { it.sentWorkingDisabled() }
+        if (!world.isRemote)
+            updateClimberAnimation()
     }
 
     override fun updateFormedValid()
     {
         if (!moduleReceivers.isEmpty())
         {
-            if (!checkModules()) invalidateStructure()
+            if (!checkModules())
+                invalidateStructure()
         }
         if (offsetTimer % 1.s == 0L)
         {
@@ -160,7 +213,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
                 .aisle("                FFF                ", "                 E                 ", "                 E                 ", "                 E                 ", "                 E                 ", "                 E                 ", "               F   F               ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "                                   ", "                                   ", "                FFF                ", "                                   ", "                                   ", "            H         H            ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                FFF                ", "                                   ", "                                   ", "                                   ", "                                   ", "       H                   H       ", "                                   ", "                                   ", "                                   ", "                                   ", "                XXX                ", "                X~X                ", "  D             XXX             D  ", " FFF        FFFFFFFFFFF        FFF ", " AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ")
                 .aisle("               F D F               ", "                 D                 ", "                 D                 ", "                 D                 ", "                 D                 ", "                 D                 ", "              F  D  F              ", "                 D                 ", "            D    D    D            ", "            D    D    D            ", "            D    D    D            ", "            D    D    D            ", "            D    D    D            ", "            D    D    D            ", "            D    D    D            ", "           DD    D    DD           ", "           D     D     D           ", "           D     D     D           ", "           D   F D F   D           ", "           D     C     D           ", "           D     C     D           ", "           D     C     D           ", "           D     C     D           ", "          DD     C     DD          ", "          D      C      D          ", "          D      C      D          ", "          D      C      D          ", "         DD      C      DD         ", "         D     FDCDF     D         ", "         D      DCD      D         ", "        DD      DCD      DD        ", "        D       DCD       D        ", "        D       DCD       D        ", "       DD      DDCDD      DD       ", "       D       D C D       D       ", "       D       D C D       D       ", "      DD       D C D       DD      ", "      D        D C D        D      ", "     DD VV     XDCDX     VV DD     ", "    DD  VI     XDCDX     IV  DD    ", " DDDD   VV     XDCDX     VV   DDDD ", "FFFD    VVFFFFFDDDDDFFFFFVV    DFFF", "AAAAAAAAVV  AAAXXXXXAAA  VVAAAAAAAA")
                 .aisle("              F     F              ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "             F       F             ", "            E         E            ", "            E         E            ", "            E         E            ", "            E         E            ", "            E         E            ", "            E         E            ", "            E         E            ", "           EE         EE           ", "           EE         EE           ", "           E           E           ", "           E           E           ", "           E  F     F  E           ", "           E           E           ", "           E           E           ", "           E           E           ", "          EE           EE          ", "          EE           EE          ", "          E             E          ", "          E             E          ", "         EE             EE         ", "         EE             EE         ", "         E    FD   DF    E         ", "        EE     D   D     EE        ", "        EE     D   D     EE        ", "        E      D   D      E        ", "       EE      D   D      EE       ", "       EE      D   D      EE       ", "       E                   E       ", "      EE                   EE      ", "      EE                   EE      ", "     EE                     EE     ", "    EEE       XD   DX       EEE    ", "   EEE        XD   DX        EEE   ", "  EE          XD   DX          EE  ", "FFF         FFFDDDDDFFF         FFF", "AAAAAAAA    AAAXXXXXAAA    AAAAAAAA")
-                .aisle("              FD   DF              ", "              ED   DE              ", "              ED   DE              ", "              ED   DE              ", "              ED   DE              ", "              ED   DE              ", "             F D   D F             ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D B D               ", "              FD - DF              ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "              FC - CF              ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "        VV    XC - CX    VV        ", "        VI    XC - CX    IV        ", "        VV    XC - CX    VV        ", "        VVFFFFFDDDDDFFFFFVV        ", "AAAAAAAAVV  AAAXXXXXAAA  VVAAAAAAAA")
+                .aisle("              FD   DF              ", "              ED   DE              ", "              ED   DE              ", "              ED   DE              ", "              ED   DE              ", "              ED   DE              ", "             F D   D F             ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "               D   D               ", "              FD - DF              ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "              FC - CF              ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "               C - C               ", "        VV    XC - CX    VV        ", "        VI    XC - CX    IV        ", "        VV    XC - CX    VV        ", "        VVFFFFFDDDDDFFFFFVV        ", "AAAAAAAAVV  AAAXXXXXAAA  VVAAAAAAAA")
                 .aisle("              F     F              ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "             F       F             ", "            E         E            ", "            E         E            ", "            E         E            ", "            E         E            ", "            E         E            ", "            E         E            ", "            E         E            ", "           EE         EE           ", "           EE         EE           ", "           E           E           ", "           E           E           ", "           E  F     F  E           ", "           E           E           ", "           E           E           ", "           E           E           ", "          EE           EE          ", "          EE           EE          ", "          E             E          ", "          E             E          ", "         EE             EE         ", "         EE             EE         ", "         E    FD   DF    E         ", "        EE     D   D     EE        ", "        EE     D   D     EE        ", "        E      D   D      E        ", "       EE      D   D      EE       ", "       EE      D   D      EE       ", "       E                   E       ", "      EE                   EE      ", "      EE                   EE      ", "     EE                     EE     ", "    EEE       XD   DX       EEE    ", "   EEE        XD   DX        EEE   ", "  EE          XD   DX          EE  ", "FFF         FFFDDDDDFFF         FFF", "AAAAAAAA    AAAXXXXXAAA    AAAAAAAA")
                 .aisle("               F D F               ", "                 D                 ", "                 D                 ", "                 D                 ", "                 D                 ", "                 D                 ", "              F  D  F              ", "                 D                 ", "            D    D    D            ", "            D    D    D            ", "            D    D    D            ", "            D    D    D            ", "            D    D    D            ", "            D    D    D            ", "            D    D    D            ", "           DD    D    DD           ", "           D     D     D           ", "           D     D     D           ", "           D   F D F   D           ", "           D     C     D           ", "           D     C     D           ", "           D     C     D           ", "           D     C     D           ", "          DD     C     DD          ", "          D      C      D          ", "          D      C      D          ", "          D      C      D          ", "         DD      C      DD         ", "         D     FDCDF     D         ", "         D      DCD      D         ", "        DD      DCD      DD        ", "        D       DCD       D        ", "        D       DCD       D        ", "       DD      DDCDD      DD       ", "       D       D C D       D       ", "       D       D C D       D       ", "      DD       D C D       DD      ", "      D        D C D        D      ", "     DD VV     XDCDX     VV DD     ", "    DD  VI     XDCDX     IV  DD    ", " DDDD   VV     XDCDX     VV   DDDD ", "FFFD    VVFFFFFDDDDDFFFFFVV    DFFF", "AAAAAAAAVV  AAAXXXXXAAA  VVAAAAAAAA")
                 .aisle("                FFF                ", "                 E                 ", "                 E                 ", "                 E                 ", "                 E                 ", "                 E                 ", "               F   F               ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "              E     E              ", "                                   ", "                                   ", "                FFF                ", "                                   ", "                                   ", "            H         H            ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                                   ", "                FFF                ", "                                   ", "                                   ", "                                   ", "                                   ", "       H                   H       ", "                                   ", "                                   ", "                                   ", "                                   ", "                XXX                ", "                XXX                ", "  D             XXX             D  ", " FFF        FFFFFFFFFFF        FFF ", " AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ")
@@ -202,7 +255,6 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
                     .or(modulePredicate()))
                 .where(' ', any())
                 .where('-', air())
-                .where('B', air()) // TODO: A renderer block (space elevator cable)?
                 .build()
         }
         else
@@ -231,7 +283,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
                 .aisle("                      FFF                      ", "                       E                       ", "                       E                       ", "                       E                       ", "                       E                       ", "                       E                       ", "                     F   F                     ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                                               ", "                                               ", "                      FFF                      ", "                                               ", "                                               ", "                  H         H                  ", "                                               ", "                                               ", "                                               ", "                                               ", "                                               ", "                                               ", "                      FFF                      ", "                                               ", "                                               ", "                                               ", "                                               ", "             H                   H             ", "                                               ", "                                               ", "                                               ", "                                               ", "                      XXX                      ", "                      X~X                      ", "        D             XXX             D        ", "FFFFFFFFFF        FFFFFFFFFFF        FFFFFFFFFF", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
                 .aisle("                     F D F                     ", "                       D                       ", "                       D                       ", "                       D                       ", "                       D                       ", "                       D                       ", "                    F  D  F                    ", "                       D                       ", "                  D    D    D                  ", "                  D    D    D                  ", "                  D    D    D                  ", "                  D    D    D                  ", "                  D    D    D                  ", "                  D    D    D                  ", "                  D    D    D                  ", "                 DD    D    DD                 ", "                 D     D     D                 ", "                 D     D     D                 ", "                 D   F D F   D                 ", "                 D     C     D                 ", "                 D     C     D                 ", "                 D     C     D                 ", "                 D     C     D                 ", "                DD     C     DD                ", "                D      C      D                ", "                D      C      D                ", "                D      C      D                ", "               DD      C      DD               ", "               D     FDCDF     D               ", "               D      DCD      D               ", "              DD      DCD      DD              ", "              D       DCD       D              ", "              D       DCD       D              ", "             DD      DDCDD      DD             ", "             D       D C D       D             ", "             D       D C D       D             ", "            DD       D C D       DD            ", "            D        D C D        D            ", " VV        DD VV     XDCDX     VV DD        VV ", " VI       DD  VI     XDCDX     IV  DD       IV ", " VV    DDDD   VV     XDCDX     VV   DDDD    VV ", "FVVFFFFFFD    VVFFFFFDDDDDFFFFFVV    DFFFFFFVVF", "AVVAAAAAAAAAAAVV  AAAXXXXXAAA  VVAAAAAAAAAAAVVA")
                 .aisle("                    F     F                    ", "                                               ", "                                               ", "                                               ", "                                               ", "                                               ", "                   F       F                   ", "                  E         E                  ", "                  E         E                  ", "                  E         E                  ", "                  E         E                  ", "                  E         E                  ", "                  E         E                  ", "                  E         E                  ", "                 EE         EE                 ", "                 EE         EE                 ", "                 E           E                 ", "                 E           E                 ", "                 E  F     F  E                 ", "                 E           E                 ", "                 E           E                 ", "                 E           E                 ", "                EE           EE                ", "                EE           EE                ", "                E             E                ", "                E             E                ", "               EE             EE               ", "               EE             EE               ", "               E    FD   DF    E               ", "              EE     D   D     EE              ", "              EE     D   D     EE              ", "              E      D   D      E              ", "             EE      D   D      EE             ", "             EE      D   D      EE             ", "             E                   E             ", "            EE                   EE            ", "            EE                   EE            ", "           EE                     EE           ", "          EEE       XD   DX       EEE          ", "         EEE        XD   DX        EEE         ", "        EE          XD   DX          EE        ", "F     FFF         FFFDDDDDFFF         FFF     F", "A     AAAAAAAA    AAAXXXXXAAA    AAAAAAAA     A")
-                .aisle("                    FD   DF                    ", "                    ED   DE                    ", "                    ED   DE                    ", "                    ED   DE                    ", "                    ED   DE                    ", "                    ED   DE                    ", "                   F D   D F                   ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D B D                     ", "                    FD - DF                    ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                    FC - CF                    ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", " VV           VV    XC - CX    VV           VV ", " VI           VI    XC - CX    IV           IV ", " VV           VV    XC - CX    VV           VV ", "FVVFFFF       VVFFFFFDDDDDFFFFFVV       FFFFVVF", "AVV   AAAAAAAAVV  AAAXXXXXAAA  VVAAAAAAAA   VVA")
+                .aisle("                    FD   DF                    ", "                    ED   DE                    ", "                    ED   DE                    ", "                    ED   DE                    ", "                    ED   DE                    ", "                    ED   DE                    ", "                   F D   D F                   ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                     D   D                     ", "                    FD - DF                    ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                    FC - CF                    ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", "                     C - C                     ", " VV           VV    XC - CX    VV           VV ", " VI           VI    XC - CX    IV           IV ", " VV           VV    XC - CX    VV           VV ", "FVVFFFF       VVFFFFFDDDDDFFFFFVV       FFFFVVF", "AVV   AAAAAAAAVV  AAAXXXXXAAA  VVAAAAAAAA   VVA")
                 .aisle("                    F     F                    ", "                                               ", "                                               ", "                                               ", "                                               ", "                                               ", "                   F       F                   ", "                  E         E                  ", "                  E         E                  ", "                  E         E                  ", "                  E         E                  ", "                  E         E                  ", "                  E         E                  ", "                  E         E                  ", "                 EE         EE                 ", "                 EE         EE                 ", "                 E           E                 ", "                 E           E                 ", "                 E  F     F  E                 ", "                 E           E                 ", "                 E           E                 ", "                 E           E                 ", "                EE           EE                ", "                EE           EE                ", "                E             E                ", "                E             E                ", "               EE             EE               ", "               EE             EE               ", "               E    FD   DF    E               ", "              EE     D   D     EE              ", "              EE     D   D     EE              ", "              E      D   D      E              ", "             EE      D   D      EE             ", "             EE      D   D      EE             ", "             E                   E             ", "            EE                   EE            ", "            EE                   EE            ", "           EE                     EE           ", "          EEE       XD   DX       EEE          ", "         EEE        XD   DX        EEE         ", "        EE          XD   DX          EE        ", "F     FFF         FFFDDDDDFFF         FFF     F", "A     AAAAAAAA    AAAXXXXXAAA    AAAAAAAA     A")
                 .aisle("                     F D F                     ", "                       D                       ", "                       D                       ", "                       D                       ", "                       D                       ", "                       D                       ", "                    F  D  F                    ", "                       D                       ", "                  D    D    D                  ", "                  D    D    D                  ", "                  D    D    D                  ", "                  D    D    D                  ", "                  D    D    D                  ", "                  D    D    D                  ", "                  D    D    D                  ", "                 DD    D    DD                 ", "                 D     D     D                 ", "                 D     D     D                 ", "                 D   F D F   D                 ", "                 D     C     D                 ", "                 D     C     D                 ", "                 D     C     D                 ", "                 D     C     D                 ", "                DD     C     DD                ", "                D      C      D                ", "                D      C      D                ", "                D      C      D                ", "               DD      C      DD               ", "               D     FDCDF     D               ", "               D      DCD      D               ", "              DD      DCD      DD              ", "              D       DCD       D              ", "              D       DCD       D              ", "             DD      DDCDD      DD             ", "             D       D C D       D             ", "             D       D C D       D             ", "            DD       D C D       DD            ", "            D        D C D        D            ", " VV        DD VV     XDCDX     VV DD        VV ", " VI       DD  VI     XDCDX     IV  DD       IV ", " VV    DDDD   VV     XDCDX     VV   DDDD    VV ", "FVVFFFFFFD    VVFFFFFDDDDDFFFFFVV    DFFFFFFVVF", "AVVAAAAAAAAAAAVV  AAAXXXXXAAA  VVAAAAAAAAAAAVVA")
                 .aisle("                      FFF                      ", "                       E                       ", "                       E                       ", "                       E                       ", "                       E                       ", "                       E                       ", "                     F   F                     ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                    E     E                    ", "                                               ", "                                               ", "                      FFF                      ", "                                               ", "                                               ", "                  H         H                  ", "                                               ", "                                               ", "                                               ", "                                               ", "                                               ", "                                               ", "                      FFF                      ", "                                               ", "                                               ", "                                               ", "                                               ", "             H                   H             ", "                                               ", "                                               ", "                                               ", "                                               ", "                      XXX                      ", "                      XXX                      ", "        D             XXX             D        ", "FFFFFFFFFF        FFFFFFFFFFF        FFFFFFFFFF", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
@@ -279,7 +331,6 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
                     .or(modulePredicate()))
                 .where(' ', any())
                 .where('-', air())
-                .where('B', air()) // TODO A renderer block (space elevator cable)?
                 .build()
         }
     }
@@ -407,6 +458,150 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         tooltip.add(I18n.format("gtlitecore.machine.space_elevator.tooltip.8"))
     }
 
+    private enum class ClimberAnimation
+    {
+        NONE,
+        FORMATION,
+        DELIVER
+    }
+
+    @SideOnly(Side.CLIENT)
+    private fun updateClimberAnimation()
+    {
+        if (!isStructureFormed)
+        {
+            if (climberFormed)
+            {
+                climberFormed = false
+                resetClimber()
+            }
+            return
+        }
+
+        if (!climberFormed)
+        {
+            climberFormed = true
+            resetClimber()
+            startClimberAnimation(ClimberAnimation.FORMATION)
+        }
+
+        if (climberAnimation == ClimberAnimation.NONE && ++climberIdleTicks >= CLIMBER_DELIVER_INTERVAL)
+            startClimberAnimation(ClimberAnimation.DELIVER)
+
+        previousClimberHeight = climberHeight
+        when (climberAnimation)
+        {
+            ClimberAnimation.FORMATION -> animateClimberFormation()
+            ClimberAnimation.DELIVER   -> animateClimberDelivery()
+            ClimberAnimation.NONE      -> Unit
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private fun resetClimber()
+    {
+        climberHeight = CLIMBER_MAX_HEIGHT
+        previousClimberHeight = CLIMBER_MAX_HEIGHT
+        climberRotation = 0f
+        climberWaitTicks = 0
+        climberMoving = false
+        climberRotating = false
+        climberMovingUp = true
+        climberIdleTicks = 0
+        climberAnimation = ClimberAnimation.NONE
+    }
+
+    @SideOnly(Side.CLIENT)
+    private fun startClimberAnimation(animation: ClimberAnimation)
+    {
+        climberAnimation = animation
+        climberMoving = true
+        climberRotating = true
+        climberIdleTicks = 0
+    }
+
+    @SideOnly(Side.CLIENT)
+    private fun stopClimberAnimation()
+    {
+        climberAnimation = ClimberAnimation.NONE
+        climberMoving = false
+        climberRotating = false
+    }
+
+    @SideOnly(Side.CLIENT)
+    private fun advanceClimberRotation()
+    {
+        if (!climberRotating) return
+        climberRotation = (climberRotation + CLIMBER_ROTATION_SPEED) % 360f
+    }
+
+    @SideOnly(Side.CLIENT)
+    private fun animateClimberFormation()
+    {
+        advanceClimberRotation()
+        if (!climberMoving) return
+
+        if (climberHeight <= 0f)
+        {
+            climberMovingUp = true
+            stopClimberAnimation()
+            return
+        }
+
+        climberHeight -= if (climberHeight < CLIMBER_ACCELERATION_DISTANCE)
+            CLIMBER_VERTICAL_SPEED * CLIMBER_ACCELERATION_FACTOR * max(climberHeight, 1f)
+        else CLIMBER_VERTICAL_SPEED
+    }
+
+    @SideOnly(Side.CLIENT)
+    private fun animateClimberDelivery()
+    {
+        advanceClimberRotation()
+        if (climberWaitTicks > 0)
+        {
+            climberWaitTicks--
+            return
+        }
+        if (!climberMoving) return
+
+        if (climberMovingUp)
+        {
+            when
+            {
+                climberHeight >= CLIMBER_MAX_HEIGHT ->
+                {
+                    climberMovingUp = false
+                    climberWaitTicks = CLIMBER_STANDBY_TICKS
+                }
+                climberHeight <= CLIMBER_ACCELERATION_DISTANCE ->
+                    climberHeight += climberAcceleration(climberHeight)
+                climberHeight >= CLIMBER_MAX_HEIGHT - CLIMBER_ACCELERATION_DISTANCE ->
+                    climberHeight += climberAcceleration(CLIMBER_MAX_HEIGHT - climberHeight)
+                else -> climberHeight += CLIMBER_VERTICAL_SPEED
+            }
+        }
+        else
+        {
+            when
+            {
+                climberHeight <= 0f ->
+                {
+                    climberMovingUp = true
+                    stopClimberAnimation()
+                }
+                climberHeight < CLIMBER_ACCELERATION_DISTANCE ->
+                    climberHeight -= climberAcceleration(climberHeight)
+                climberHeight >= CLIMBER_MAX_HEIGHT - CLIMBER_ACCELERATION_DISTANCE ->
+                    climberHeight -= climberAcceleration(CLIMBER_MAX_HEIGHT - climberHeight)
+                else -> climberHeight -= CLIMBER_VERTICAL_SPEED
+            }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private fun climberAcceleration(remaining: Float): Float
+        = CLIMBER_VERTICAL_SPEED * CLIMBER_ACCELERATION_FACTOR * max(remaining, 1f)
+
     private fun disabledAllModules()
     {
         moduleReceivers.forEach { it.sentWorkingDisabled() }
@@ -450,10 +645,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
 
     override fun isModule(receiver: ModuleReceiver): Boolean = moduleReceivers.contains(receiver)
 
-    /**
-     * The UI Factory for Space Elevator
-     * Used to create buttons for enabling modules and disabling modules.
-     */
+    // TODO: Rework it, and new theme for it and all space elevator modules.
     private class SpaceElevatorUIFactory(val controller: MultiblockSpaceElevator) : MultiblockUIFactory(controller)
     {
         override fun createDistinctButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): IWidget
@@ -485,7 +677,6 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
                     panelSyncManager.callSyncedAction("disable_modules")
                     true
                 }
-
         }
 
         override fun createPowerButton(mainPanel: ModularPanel, panelSyncManager: PanelSyncManager): Widget<*>
@@ -499,7 +690,5 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
                 .addTooltip(true, KeyUtil.lang("gtlitecore.machine.space_elevator.extension_info.enabled"))
                 .value(state)
         }
-
     }
-
 }

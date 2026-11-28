@@ -26,6 +26,7 @@ object GTLiteTextures : TextureUtils.IIconRegister
     lateinit var COSMIC_8: TextureAtlasSprite
     lateinit var COSMIC_9: TextureAtlasSprite
     lateinit var FORCE_FIELD: TextureAtlasSprite
+    lateinit var SPACE_ELEVATOR_CABLE: TextureAtlasSprite
 
     // endregion
 
@@ -64,6 +65,7 @@ object GTLiteTextures : TextureUtils.IIconRegister
         COSMIC_8 = textureMap.registerSprite("shaders/cosmic_8")
         COSMIC_9 = textureMap.registerSprite("shaders/cosmic_9")
         FORCE_FIELD = textureMap.registerSprite("shaders/force_field")
+        SPACE_ELEVATOR_CABLE = textureMap.registerSprite("models/space_elevator/cable_part")
 
         COSMIC = arrayOf(
             COSMIC_0, COSMIC_1, COSMIC_2, COSMIC_3, COSMIC_4,
