@@ -12,6 +12,7 @@ import gregtech.api.recipes.RecipeMaps.SIFTER_RECIPES
 import gregtech.api.recipes.RecipeMaps.THERMAL_CENTRIFUGE_RECIPES
 import gregtech.api.recipes.ingredients.IntCircuitIngredient
 import gregtech.api.unification.OreDictUnifier
+import gregtech.api.unification.material.Material
 import gregtech.api.unification.material.Materials.DistilledWater
 import gregtech.api.unification.material.Materials.Lubricant
 import gregtech.api.unification.material.Materials.Mercury
@@ -51,7 +52,6 @@ import net.minecraftforge.oredict.OreDictionary
 
 internal object IntegratedOreProcessorRecipeProducer
 {
-
     // @formatter:off
 
     val orePrefixes = mutableListOf(ore, oreNetherrack, oreEndstone)
@@ -141,48 +141,35 @@ internal object IntegratedOreProcessorRecipeProducer
 
     }
 
-    private fun <T : RecipeBuilder<T>> initRecipe(circuit: Int, ops: List<OreProcessorOps<T>>, extraFluids: List<FluidStack>? = null)
+    private fun <T : RecipeBuilder<T>> initRecipe(circuit: Int,
+                                                  ops: List<OreProcessorOps<T>>,
+                                                  extraFluids: List<FluidStack>? = null)
     {
-        val oreItems = mutableListOf<ItemStack>()
-        for (name in OreDictionary.getOreNames())
+        for ((material, ore) in getAllOres())
         {
-            if (name.startsWith("ore"))
-            {
-                val itemStack = OreDictUnifier.get(name)
-                if (OreDictUnifier.getPrefix(itemStack) == ore && OreDictUnifier.getMaterial(itemStack) != null)
-                    oreItems.add(itemStack)
-            }
-        }
-
-        for (item in oreItems)
-        {
-            val inputItem = OreDictUnifier.getPrefix(item)?.let { item.copy(10000 * getOreProductMultiplier(it)) }
-            var output: List<ItemStack>? = listOf(inputItem!!.copy())
+            val (orePrefix, oreItem) = ore
+            var outputs: List<ItemStack>? = listOf(oreItem.copy(10000 / getOreProductMultiplier(orePrefix)))
 
             for (op in ops)
             {
-                if (output == null)
-                    break
-
-                output = OreProcessorRecipeWrapper.doRecipe(output, op.recipeMap, op.extraFluids, op.extraItems)
+                if (outputs == null) break
+                outputs = OreProcessorRecipeWrapper.doRecipe(outputs, op.recipeMap, op.extraFluids, op.extraItems)
             }
 
-            if (output == null || output.isEmpty() || output.size == 1 && output[0].isItemEqual(item))
+            if (outputs == null || outputs.isEmpty() || outputs.size == 1 && outputs[0].isItemEqual(oreItem))
                 continue // No corresponding recipe tree for it
-
-            val material = OreDictUnifier.getMaterial(item)?.material
 
             for (prefix in orePrefixes)
             {
-                val itemStack = OreDictUnifier.get(prefix, material)
-                if (itemStack.isEmpty)
+                val stack = OreDictUnifier.get(prefix, material)
+                if (stack.isEmpty)
                     continue // This stone type does not exist ore
 
-                itemStack.count = 1
+                stack.count = 1
 
                 val builder = INTEGRATED_ORE_PROCESSOR_RECIPES.recipeBuilder()
                     .circuitMeta(circuit)
-                    .inputs(itemStack)
+                    .inputs(stack)
                     .fluidInputs(DistilledWater.getFluid(100), Lubricant.getFluid(5))
 
                 if (extraFluids != null)
@@ -193,7 +180,7 @@ internal object IntegratedOreProcessorRecipeProducer
                     }
                 }
 
-                for (outputItem in output)
+                for (outputItem in outputs)
                 {
                     val chancedCount = outputItem.count * getOreProductMultiplier(prefix)
                     if (chancedCount < 10000)
@@ -215,6 +202,31 @@ internal object IntegratedOreProcessorRecipeProducer
         }
     }
 
+    private fun getAllOres(): Map<Material, Pair<OrePrefix, ItemStack>>
+    {
+        val ores = linkedMapOf<Material, Pair<OrePrefix, ItemStack>>()
+        for (oreDict in OreDictionary.getOreNames())
+        {
+            if (!oreDict.startsWith("ore"))
+                continue
+
+            val material = OreDictUnifier.getMaterial(OreDictUnifier.get(oreDict))?.material ?: continue
+            if (ores.containsKey(material))
+                continue
+
+            for (prefix in orePrefixes)
+            {
+                val stack = OreDictUnifier.get(prefix, material)
+                if (!stack.isEmpty)
+                {
+                    ores[material] = prefix to stack
+                    break
+                }
+            }
+        }
+        return ores
+    }
+
     private fun getOreProductMultiplier(prefix: OrePrefix): Int = when (prefix)
     {
         oreNetherrack -> 2
@@ -228,5 +240,4 @@ internal object IntegratedOreProcessorRecipeProducer
         val extraItems: List<ItemStack>? = null)
 
     // @formatter:on
-
 }
