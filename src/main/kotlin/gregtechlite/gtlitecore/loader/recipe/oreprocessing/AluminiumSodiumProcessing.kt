@@ -156,6 +156,7 @@ internal object AluminiumSodiumProcessing
         // An easier NaOH recipes.
         // Na + H2O -> NaOH + H
         CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(1)
             input(dust, Sodium)
             fluidInputs(Water.getFluid(1000))
             output(dust, SodiumHydroxide, 3)
