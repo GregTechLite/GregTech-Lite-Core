@@ -79,7 +79,6 @@ import gregtechlite.gtlitecore.api.unification.GTLiteMaterials.ResonantStrangeMe
 
 object EntrodynamicallyPhaseChangerRecipes
 {
-
     // @formatter:off
 
     fun init()
@@ -809,5 +808,4 @@ object EntrodynamicallyPhaseChangerRecipes
     }
 
     // @formatter:on
-
 }

@@ -11,6 +11,7 @@ internal object RecipeProducerList
 
     fun init()
     {
+        EntrodynamicallyPhaseChangerRecipeProducer.produce()
         StoneVariantRecipeProducer.produce()
         DisposableToolRecipeProducer.produce()
         MassReplicationRecipeProducer.produce()
