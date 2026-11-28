@@ -37,6 +37,7 @@
     "MixinTextFormattingUtil",
     "MixinMultiMapMultiblockController",
     "MixinOreConfigUtils",
+    "MixinOreDictUnifier",
     "MixinOreRecipeHandler",
     "MixinPartsRecipeHandler",
     "MixinRecipeBuilder",
