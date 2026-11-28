@@ -68,6 +68,7 @@ internal object BETSPerrhenateChain
 
         // 4Na + 2HCOOH + 2Br + 2H2O -> 4NaOH + C2H2Br2O2 + 2H
         CHEMICAL_RECIPES.addRecipe {
+            circuitMeta(2)
             input(dust, Sodium, 4)
             fluidInputs(FormicAcid.getFluid(2000))
             fluidInputs(Bromine.getFluid(2000))
