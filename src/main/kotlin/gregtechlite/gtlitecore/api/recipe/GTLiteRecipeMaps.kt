@@ -863,7 +863,6 @@ object GTLiteRecipeMaps
         .progressBar(GTLiteGuiTextures.PROGRESS_BAR_PHASE_CHANGE)
         .sound(GTSoundEvents.FURNACE)
         .build()
-        .setSmallRecipeMap(RecipeMaps.BLAST_RECIPES)
 
     /**
      * @zenProp plasma_arc_transmitter
