@@ -129,7 +129,7 @@ class MultiblockSpaceElevator(id: ResourceLocation) : MultiblockWithDisplayBase(
         super.update()
         if (!isStructureFormed)
             moduleReceivers.forEach { it.sentWorkingDisabled() }
-        if (!world.isRemote)
+        if (world?.isRemote == true)
             updateClimberAnimation()
     }
 
