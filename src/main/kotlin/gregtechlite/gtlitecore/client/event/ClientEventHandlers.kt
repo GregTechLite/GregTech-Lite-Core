@@ -10,6 +10,7 @@ import gregtech.client.utils.TooltipHelper
 import gregtechlite.gtlitecore.api.cosmetic.GTLiteContributor
 import gregtechlite.gtlitecore.api.extension.formatting
 import gregtechlite.gtlitecore.api.extension.stack
+import gregtechlite.gtlitecore.client.renderer.handler.world.SpaceElevatorRenderer
 import gregtechlite.gtlitecore.client.renderer.handler.world.StructureSelectRenderer
 import gregtechlite.gtlitecore.client.renderer.texture.GTLiteTextures
 import gregtechlite.gtlitecore.client.shader.CosmicShaderHelper
@@ -119,6 +120,7 @@ object ClientEventHandlers
     fun onRenderWorldLast(event: RenderWorldLastEvent)
     {
         StructureSelectRenderer.render(event)
+        SpaceElevatorRenderer.render(event)
     }
 
     @SubscribeEvent
